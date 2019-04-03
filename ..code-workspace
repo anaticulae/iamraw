@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "name": "data data data only",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.cache": true,
+      "**/.coverage": true,
+      "**/.git": true,
+      "**/.pytest_cache": true,
+      "**/.tmp": true,
+      "**/.vscode": true,
+      "**/build": true,
+      "**/doctrees": true,
+      "**/html": true,
+      "**/log": true,
+      "**/tmp": true,
+    },
+    "python.unitTest.pyTestEnabled": true
+  }
+}
