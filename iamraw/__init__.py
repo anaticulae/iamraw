@@ -9,6 +9,9 @@
 
 import os
 
+from iamraw.toc import Section
+from iamraw.toc import Toc
+
 __version__ = '0.0.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
