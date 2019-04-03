@@ -30,4 +30,5 @@ class Section:
 
 @dataclass
 class Toc:
+    level: int = 0  # level must alsways be 0
     children: List[Section] = field(default_factory=list)
