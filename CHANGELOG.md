@@ -2,5 +2,11 @@
 
 Every noteable change is logged here.
 
+## v0.1.0
+
+### Feature
+
+* add Toc and Section to store a table of content with section's (75b2cf970cd0)
+
 ## v0.0.0 Initial release
 
