@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.1.2
+
+### Fix
+
+* add level to root(toc) to simplify algorithms (b6c92925053d)
+
 ## v0.1.1
 
 ## v0.1.0
