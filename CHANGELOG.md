@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.2
+
+### Fix
+
+* add missing data files to make package installable with requirements (a7f8e4ce45dc)
+
 ## v0.2.1
 
 ### Fix
