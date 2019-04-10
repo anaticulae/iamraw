@@ -7,22 +7,20 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
+from dataclasses import dataclass
+from dataclasses import field
+from typing import List
 
-# document
-from iamraw.document.document import Document
-from iamraw.document.page import Char
-from iamraw.document.page import Line
 from iamraw.document.page import Page
-from iamraw.document.page import TextContainer
-from iamraw.document.page import VirtualChar
-# utils
 from iamraw.document.utils import BoundingBox
-from iamraw.document.utils import PageObject
-# table of content
-from iamraw.toc import Section
-from iamraw.toc import Toc
 
-__version__ = '0.1.2'
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+@dataclass
+class Document:
+    dimension: BoundingBox = None
+    pages: List[Page] = field(default_factory=list)
+
+    @property
+    def page_count(self):
+        """Return pagecount of this document"""
+        return len(self.pages)

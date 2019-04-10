@@ -7,22 +7,22 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
+from dataclasses import dataclass
 
-# document
-from iamraw.document.document import Document
-from iamraw.document.page import Char
-from iamraw.document.page import Line
-from iamraw.document.page import Page
-from iamraw.document.page import TextContainer
-from iamraw.document.page import VirtualChar
-# utils
-from iamraw.document.utils import BoundingBox
-from iamraw.document.utils import PageObject
-# table of content
-from iamraw.toc import Section
-from iamraw.toc import Toc
+from utila import INF
 
-__version__ = '0.1.2'
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+@dataclass
+class BoundingBox:
+    x_bottom: float = -INF
+    y_bottom: float = -INF
+
+    x_top: float = INF
+    y_top: float = INF
+
+
+@dataclass
+class PageObject:
+    """Object to store every unsupported type"""
+    box: BoundingBox = None
+    content: str = None
