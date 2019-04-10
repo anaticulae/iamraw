@@ -23,6 +23,6 @@ from iamraw.document.utils import PageObject
 from iamraw.toc import Section
 from iamraw.toc import Toc
 
-__version__ = '0.1.2'
+__version__ = '0.2.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))

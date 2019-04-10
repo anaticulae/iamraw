@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.0
+
+### Feature
+
+* add data structure of common document (7b0d8311cac9)
+
 ## v0.1.2
 
 ### Fix
