@@ -21,26 +21,33 @@ with open(join(ROOT, 'README.md'), 'rt', encoding='utf8') as fp:
 with open(join(ROOT, 'iamraw/__init__.py'), 'rt', encoding='utf8') as fp:
     VERSION = search(r'__version__ = \'(.*?)\'', fp.read()).group(1)
 
+with open(join(ROOT, "requirements.txt"), mode='rt', encoding='utf-8') as fp:
+    INSTALL_REQUIRES = [
+        line for line in fp.readlines() if line and '#' not in line
+    ]
+
 if __name__ == "__main__":
     setup(
-        name='iamraw',
-        version=VERSION,
         author='Helmut Konrad Fahrendholz',
         author_email='kiwi@derspanier.de',
         description='data data data only',
-        long_description=README,
-        packages=[
-            'iamraw',
-        ],
         include_package_data=True,
-        zip_safe=False,  # create 'zip'-file if True. Don't do it!
+        install_requires=INSTALL_REQUIRES,
+        long_description=README,
+        name='iamraw',
         platforms='any',
-        install_requires=[],
         setup_requires=[],
         tests_require=[],
+        url='https://dev.package.checkitweg.de/iamraw',
+        version=VERSION,
+        zip_safe=False,  # create 'zip'-file if True. Don't do it!
         classifiers=[
             'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
+        ],
+        packages=[
+            'iamraw',
+            'iamraw.document',
         ],
     )
