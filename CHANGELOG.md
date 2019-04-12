@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.3
+
+### Feature
+
+* add field to extract text from document, page, line (7e30ded6f287)
+
 ## v0.2.2
 
 ### Fix
