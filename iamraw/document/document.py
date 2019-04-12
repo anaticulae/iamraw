@@ -24,3 +24,10 @@ class Document:
     def page_count(self):
         """Return pagecount of this document"""
         return len(self.pages)
+
+    @property
+    def text(self):
+        texts = []
+        for page in self.pages:
+            texts.append(page.text)
+        return ''.join(texts)

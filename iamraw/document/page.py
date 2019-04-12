@@ -41,10 +41,8 @@ class Line(PageObject):
     def text(self) -> str:
         return ''.join([item.value for item in self.chars])
 
-    @classmethod
-    def from_str(cls, content: str):
-        chars = [Char(value=item) for item in content]
-        return cls(chars=chars)
+    def __str__(self):
+        return self.text
 
 
 @dataclass
@@ -53,7 +51,13 @@ class TextContainer(PageObject):
 
     @property
     def text(self):
-        return NEWLINE.join([item.text for item in self.lines])
+        return ''.join([item.text for item in self.lines])
+
+    def __len__(self):
+        return len(self.lines)
+
+    def __getitem__(self, index):
+        return self.lines[index]
 
 
 @dataclass
@@ -61,3 +65,13 @@ class Page:
     number: int = 0
     dimension: BoundingBox = None
     children: List[Any] = field(default_factory=list)
+
+    @property
+    def text(self):
+        result = []
+        for item in self.children:
+            try:
+                result += item.text
+            except AttributeError:
+                pass
+        return ''.join(result)
