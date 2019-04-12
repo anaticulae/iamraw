@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.3.0
+
+### Feature
+
+* move create_toc from rawmaker (c86d8d633568)
+
 ## v0.2.3
 
 ### Feature
