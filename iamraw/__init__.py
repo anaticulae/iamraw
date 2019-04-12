@@ -22,6 +22,7 @@ from iamraw.document.utils import PageObject
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import Toc
+from iamraw.toc import create_toc
 
 __version__ = '0.2.3'
 

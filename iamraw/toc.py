@@ -32,3 +32,57 @@ class Section:
 class Toc:
     level: int = 0  # level must alsways be 0
     children: List[Section] = field(default_factory=list)
+
+
+def create_toc(outlines: List[Section]):
+    """Extract toc out of pdf-outlines
+
+    The highest level is 0 the document root. Higher number level means more
+    distance to root.
+    """
+    root = Toc()
+    current = root
+    for item in outlines:
+        level = item.level
+        if level == current.level:
+            # Content is on the same level, therefore they have the same
+            # parent together.
+            new_one = Section(
+                parent=current.parent,
+                level=item.level,
+                title=item.title,
+            )
+            add_children(current.parent, new_one)
+        elif level > current.level:
+            # The level of the item to add is higher than the current item in
+            # table of content, therefore add the new one as a paranet of
+            # current.
+            new_one = Section(
+                parent=current,
+                level=item.level,
+                title=item.title,
+            )
+            add_children(current, new_one)
+        else:
+            # The level of the `new_one` is lower than the item in index. That
+            # means that the distance of the item to add to the index is
+            # samller as the current one.
+            # For example: Current = 1.4.4.2
+            #              item    = 1.5
+            # We have to go up in the tree to find a common parent of both
+            # and add item.
+            while level <= current.level:
+                current = current.parent
+            new_one = Section(
+                parent=current,
+                level=item.level,
+                title=item.title,
+            )
+            add_children(current, new_one)
+        current = new_one
+    return root
+
+
+def add_children(section: Section, item):
+    assert section, item
+    section.children.append(item)
