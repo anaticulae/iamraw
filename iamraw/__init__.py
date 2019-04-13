@@ -19,6 +19,11 @@ from iamraw.document.page import VirtualChar
 # utils
 from iamraw.document.utils import BoundingBox
 from iamraw.document.utils import PageObject
+# serializeraw
+from iamraw.serializeraw import dump_document
+from iamraw.serializeraw import dump_toc
+from iamraw.serializeraw import load_document
+from iamraw.serializeraw import load_toc
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import Toc
