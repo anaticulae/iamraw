@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from iamraw.serializeraw import *
+from serializeraw import *
 
 
 def test_import_all():

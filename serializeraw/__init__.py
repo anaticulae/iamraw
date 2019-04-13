@@ -13,8 +13,8 @@ Package to load and store raw objects as yaml files.
 import os
 
 # document
-from iamraw.serializeraw.text import dump_yaml as dump_document
-from iamraw.serializeraw.text import load_yaml as load_document
+from serializeraw.text import dump_yaml as dump_document
+from serializeraw.text import load_yaml as load_document
 # toc
-from iamraw.serializeraw.toc import dump_yaml as dump_toc
-from iamraw.serializeraw.toc import load_yaml as load_toc
+from serializeraw.toc import dump_yaml as dump_toc
+from serializeraw.toc import load_yaml as load_toc

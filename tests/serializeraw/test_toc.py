@@ -17,9 +17,10 @@ from tests.serializeraw import TOC_YAML
 
 from iamraw import Section
 from iamraw import Toc
-from iamraw.serializeraw.toc import dump_yaml
-from iamraw.serializeraw.toc import load_yaml
 from utila import file_create
+
+from serializeraw.toc import dump_yaml
+from serializeraw.toc import load_yaml
 
 
 def create_section(level: int, title: str, parent) -> Section:

@@ -14,14 +14,15 @@ from iamraw import Char
 from iamraw import Line
 from iamraw import Page
 from iamraw import TextContainer
-from iamraw.serializeraw import dump_document
-from iamraw.serializeraw import load_document
-from iamraw.serializeraw.text import _dump_line
-from iamraw.serializeraw.text import _dump_page
-from iamraw.serializeraw.text import _dump_textcontainer
-from iamraw.serializeraw.text import _load_line
-from iamraw.serializeraw.text import _load_page
-from iamraw.serializeraw.text import _load_textcontainer
+
+from serializeraw import dump_document
+from serializeraw import load_document
+from serializeraw.text import _dump_line
+from serializeraw.text import _dump_page
+from serializeraw.text import _dump_textcontainer
+from serializeraw.text import _load_line
+from serializeraw.text import _load_page
+from serializeraw.text import _load_textcontainer
 
 
 def test_load_document_from_path():
