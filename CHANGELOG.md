@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.0
+
+### Feature
+
+* merge library serializeraw to reduce upgrade complexity (5bc565baeaf0)
+
 ## v0.3.1
 
 ## v0.3.0
