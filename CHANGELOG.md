@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.4.1
+
+### Feature
+
+* deliver as double package of iamraw and serializeraw (b4d8eee78884)
+* add API to public iamraw API (265329d9e5b9)
+
 ## v0.4.0
 
 ### Feature
