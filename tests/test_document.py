@@ -8,13 +8,13 @@
 # =============================================================================
 
 from pytest import fixture
+from utila import NEWLINE
 
 from iamraw.document.document import Document
 from iamraw.document.page import Char
 from iamraw.document.page import Line
 from iamraw.document.page import Page
 from iamraw.document.page import TextContainer
-from utila import NEWLINE
 
 
 def line_from_str(line: str) -> Line:

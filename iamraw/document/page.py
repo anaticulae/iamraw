@@ -12,10 +12,11 @@ from dataclasses import field
 from typing import Any
 from typing import List
 
-from iamraw.document.utils import BoundingBox
-from iamraw.document.utils import PageObject
 from utila import INF
 from utila import NEWLINE
+
+from iamraw.document.utils import BoundingBox
+from iamraw.document.utils import PageObject
 
 
 @dataclass

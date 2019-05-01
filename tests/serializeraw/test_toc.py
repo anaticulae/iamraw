@@ -11,16 +11,16 @@ Dump and load toc to yaml. Ensure loading from raw-string and file-path.
 """
 
 from os.path import join
+
 from pytest import fixture
 from pytest import raises
-from tests.serializeraw import TOC_YAML
+from utila import file_create
 
 from iamraw import Section
 from iamraw import Toc
-from utila import file_create
-
 from serializeraw.toc import dump_yaml
 from serializeraw.toc import load_yaml
+from tests.serializeraw import TOC_YAML
 
 
 def create_section(level: int, title: str, parent) -> Section:
