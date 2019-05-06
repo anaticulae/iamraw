@@ -7,8 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+# pylint: disable=wildcard-import,unused-wildcard-import
 from iamraw import *
 
 
-def test_just_execute_this():
+def test_import_iamraw():
     pass

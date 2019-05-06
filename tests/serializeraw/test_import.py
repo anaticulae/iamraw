@@ -7,9 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+# pylint: disable=wildcard-import,unused-wildcard-import
 from serializeraw import *
 
 
-def test_import_all():
+def test_import_serializeraw():
     # avoid python compiling problems
     pass
