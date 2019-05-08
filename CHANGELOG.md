@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.7
+
+### Feature
+
+* add border to represent single object and page size (b03614e9c4a9)
+
 ## v0.4.6
 
 ## v0.4.5
