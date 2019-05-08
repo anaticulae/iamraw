@@ -9,6 +9,9 @@
 
 import os
 
+# border
+from iamraw.border import Border
+from iamraw.border import PageSize
 # document
 from iamraw.document.document import Document
 from iamraw.document.page import Char
