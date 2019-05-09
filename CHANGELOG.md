@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.8
+
+### Feature
+
+* support empty pages which result in Border(None,None..) (25be66d59ac7)
+
 ## v0.4.7
 
 ### Feature
