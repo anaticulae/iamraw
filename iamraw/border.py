@@ -9,5 +9,5 @@
 
 from collections import namedtuple
 
-Border = namedtuple('Border', 'left right top bottom')
+Border = namedtuple('Border', 'left bottom right top')
 PageSize = namedtuple('PageSize', 'width height')
