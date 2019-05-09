@@ -8,20 +8,25 @@
 # =============================================================================
 
 from pytest import fixture
+from pytest import mark
+
+from iamraw import Border
+from iamraw import PageSize
 from serializeraw import dump_boundingboxes
 from serializeraw import dump_pageborders
 from serializeraw import load_boundingboxes
 from serializeraw import load_pageborders
-
-from iamraw import Border
-from iamraw import PageSize
+from serializeraw.border import border_fromraw
+from serializeraw.border import border_toraw
+from serializeraw.border import size_fromraw
+from serializeraw.border import size_toraw
 
 
 @fixture
 def boxdata_from_pdf():
     size = [
         PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
+        PageSize(width=None, height=None),
         PageSize(width=595.28, height=841.89),
         PageSize(width=595.28, height=841.89),
         PageSize(width=595.28, height=841.89),
@@ -36,7 +41,7 @@ def boxdata_from_pdf():
     ]
     border = [
         Border(left=194.37, right=400.9, top=648.34, bottom=72.0),
-        Border(left=50.4, right=544.88, top=700.13, bottom=40.18),
+        Border(left=None, right=None, top=None, bottom=None),
         Border(left=50.4, right=544.88, top=700.78, bottom=40.18),
         Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
         Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
@@ -115,3 +120,22 @@ def test_dump_and_load_boundingbox(boxdata_from_pdf):  #pylint:disable=W0621
     loaded = load_boundingboxes(dumped)
 
     assert loaded == boxes
+
+
+@mark.parametrize('size', [
+    PageSize(10.5, 5.0),
+    PageSize(1, 1),
+    PageSize(None, None),
+])
+def test_convert_size(size):
+    raw = size_toraw(size)
+    assert size_fromraw(raw) == size
+
+
+@mark.parametrize('border', [
+    Border(1, 2, 3, 4),
+    Border(None, None, None, None),
+])
+def test_convert_border(border):
+    raw = border_toraw(border)
+    assert border_fromraw(raw) == border
