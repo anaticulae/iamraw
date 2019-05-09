@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.9
+
+### Fix
+
+* fix order of arguments to archive x0,y0,x1,y1 in raw handling (cf6548689379)
+
 ## v0.4.8
 
 ### Feature
