@@ -16,12 +16,13 @@ Public methods:
     load_yamp
 
 """
-from iamraw import Section
-from iamraw import Toc
-from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
+
+from iamraw import Section
+from iamraw import Toc
+from utila import from_raw_or_path
 
 
 def dump_yaml(content: Toc) -> str:

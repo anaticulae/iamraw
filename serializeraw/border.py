@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from typing import List
+
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -45,15 +47,13 @@ def load_boundingboxes(content):
     return pages
 
 
-def dump_pageborders(size, border):
+def dump_pageborders(size: List[PageSize], border: List[Border]) -> str:
     assert len(size) == len(border)
-    page = [
-        {
-            'number': index,
-            'size': '%.2f %.2f' % size,  #(size.width, size.height),
-            'border': '%.2f %.2f %.2f %.2f' % border,
-        } for index, (size, border) in enumerate(zip(size, border))
-    ]
+    page = [{
+        'number': index,
+        'size': size_toraw(size),
+        'border': border_toraw(border),
+    } for index, (size, border) in enumerate(zip(size, border))]
     dumped = dump(page)
     return dumped
 
@@ -63,6 +63,39 @@ def load_pageborders(content: str):
     loaded = load(content, Loader=FullLoader)
     size, border = [], []
     for item in loaded:
-        size.append(PageSize(*[float(var) for var in item['size'].split()]))
-        border.append(Border(*[float(var) for var in item['border'].split()]))
+        size.append(size_fromraw(item['size']))
+        border.append(border_fromraw(item['border']))
     return size, border
+
+
+def size_toraw(size: PageSize) -> str:
+    assert isinstance(size, PageSize)
+    try:
+        return '%.2f %.2f' % size  #(size.width, size.height)
+    except TypeError:
+        # PageSize(None,None)
+        return 'None'
+
+
+def size_fromraw(size: str) -> PageSize:
+    assert isinstance(size, str)
+    try:
+        return PageSize(*[float(var) for var in size.split()])
+    except ValueError:
+        return PageSize(None, None)
+
+
+def border_toraw(border: Border) -> str:
+    assert isinstance(border, Border)
+    try:
+        return '%.2f %.2f %.2f %.2f' % border
+    except TypeError:
+        return 'None'
+
+
+def border_fromraw(border: str) -> Border:
+    assert isinstance(border, str)
+    try:
+        return Border(*[float(var) for var in border.split()])
+    except ValueError:
+        return Border(None, None, None, None)
