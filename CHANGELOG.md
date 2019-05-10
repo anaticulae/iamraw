@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.10
+
+### Feature
+
+* add load and dump method to serialize border hits (e920a2e5e4e2)
+
 ## v0.4.9
 
 ### Fix
