@@ -6,21 +6,22 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-from os.path import exists
-from os.path import join
 
-from iamraw import ROOT
+from utila import file_read
 
-TEST = join(ROOT, 'tests/serializeraw')
-assert exists(TEST), TEST
+from serializeraw import dump_hits
+from serializeraw import load_hits
+from tests.serializeraw import HITS_YAML
 
-DATA = join(TEST, 'data')
 
-TEXT_YAML = join(DATA, 'text.yaml')
-assert exists(TEXT_YAML), TEXT_YAML
+def test_load_and_dump_hits():
+    expected = file_read(HITS_YAML)
+    border, hits = load_hits(HITS_YAML)
+    assert border, hits
 
-TOC_YAML = join(DATA, 'toc.yaml')
-assert exists(TOC_YAML), TOC_YAML
+    dumped = dump_hits(border, hits)
+    assert dumped == expected
 
-HITS_YAML = join(DATA, 'hitthebox__hits.yaml')
-assert exists(HITS_YAML), HITS_YAML
+    loaded_border, loaded_hits = load_hits(dumped)
+    assert loaded_border == border
+    assert loaded_hits == hits
