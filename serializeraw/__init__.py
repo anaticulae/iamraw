@@ -17,6 +17,9 @@ from serializeraw.border import dump_boundingboxes
 from serializeraw.border import dump_pageborders
 from serializeraw.border import load_boundingboxes
 from serializeraw.border import load_pageborders
+# hits
+from serializeraw.hits import dump_hits
+from serializeraw.hits import load_hits
 # document
 from serializeraw.text import dump_yaml as dump_document
 from serializeraw.text import load_yaml as load_document
