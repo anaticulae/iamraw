@@ -22,6 +22,11 @@ from iamraw.document.page import VirtualChar
 # utils
 from iamraw.document.utils import BoundingBox
 from iamraw.document.utils import PageObject
+# fonts
+from iamraw.fonts import Font
+from iamraw.fonts import Stretch
+from iamraw.fonts import Style
+from iamraw.fonts import Weight
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import Toc
