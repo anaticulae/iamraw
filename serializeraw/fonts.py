@@ -43,7 +43,7 @@ def load_fontstore(content):
     for item in loaded:
         fontraw = item['font']
 
-        weight = Weight[fontraw['weigt']]
+        weight = Weight[fontraw['weight']]
         stretch = Stretch[fontraw['stretch']]
         style = Style[fontraw['style']]
 

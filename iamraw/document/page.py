@@ -13,25 +13,23 @@ from typing import Any
 from typing import List
 
 from iamraw.document.utils import BoundingBox
-from iamraw.document.utils import PageObject
+from iamraw.document.utils import Boxed
 
 
 @dataclass
-class Char(PageObject):
+class Char(Boxed):
     value: str = None
-    size: float = None
     font: float = None
-    style: float = None  # bold, italic, underline
 
 
 @dataclass
-class VirtualChar():
+class VirtualChar:
     value: str = None
     look: int = None
 
 
 @dataclass
-class Line(PageObject):
+class Line(Boxed):
 
     chars: List[Char] = field(default_factory=list)
 
@@ -50,7 +48,7 @@ class Line(PageObject):
 
 
 @dataclass
-class TextContainer(PageObject):
+class TextContainer(Boxed):
     lines: List[Line] = field(default_factory=list)
 
     @property
