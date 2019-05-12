@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v0.4.11
+
+### Feature
+
+* introduce BoxedObject to have a simpler parent class (ea01e625b905)
+* extend printing objects for debugging (714362b2b172)
+* add dump and load fonts (0e42ac1e8f89)
+
 ## v0.4.10
 
 ### Feature
