@@ -42,6 +42,12 @@ class Line(PageObject):
     def __str__(self):
         return self.text
 
+    def __repr__(self):
+        return str(self)[0:-1]  # remove newline
+
+    def __getitem__(self, index):
+        return self.chars[index]
+
 
 @dataclass
 class TextContainer(PageObject):
@@ -73,3 +79,9 @@ class Page:
             except AttributeError:
                 pass
         return ''.join(result)
+
+    def __repr__(self):
+        result = 'Page[%d, %s]\n' % (self.number, self.dimension)
+        for item in self.children:
+            result += '  %s\n' % item
+        return result

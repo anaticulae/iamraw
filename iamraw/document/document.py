@@ -31,3 +31,9 @@ class Document:
         for page in self.pages:
             texts.append(page.text)
         return ''.join(texts)
+
+    def __repr__(self):
+        result = 'Document: pages[%d]\n' % len(self.pages)
+        for page in self.pages:
+            result += str(page) + '\n'
+        return result

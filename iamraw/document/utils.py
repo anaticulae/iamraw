@@ -20,6 +20,27 @@ class BoundingBox:
     x_top: float = INF
     y_top: float = INF
 
+    def __repr__(self):
+        return '[%.2f %.2f %.2f %.2f]' % (self.x_bottom, self.y_bottom,
+                                          self.x_top, self.y_top)
+
+    def __getitem__(self, index):
+        if index == 0:
+            return self.x_bottom
+        if index == 1:
+            return self.y_bottom
+        if index == 2:
+            return self.x_top
+        if index == 3:
+            return self.y_top
+        raise IndexError('Index to hight %d > 3' % index)
+
+
+@dataclass
+class Boxed:
+    """Object to store every unsupported type"""
+    box: BoundingBox = None
+
 
 @dataclass
 class PageObject:
