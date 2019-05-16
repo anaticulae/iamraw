@@ -22,5 +22,5 @@ assert exists(TEXT_YAML), TEXT_YAML
 TOC_YAML = join(DATA, 'toc.yaml')
 assert exists(TOC_YAML), TOC_YAML
 
-HITS_YAML = join(DATA, 'hitthebox__hits.yaml')
+HITS_YAML = join(DATA, 'decider_border_hitthebox__hits.yaml')
 assert exists(HITS_YAML), HITS_YAML
