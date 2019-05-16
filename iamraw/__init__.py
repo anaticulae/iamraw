@@ -21,6 +21,7 @@ from iamraw.document.page import TextContainer
 from iamraw.document.page import VirtualChar
 # utils
 from iamraw.document.utils import BoundingBox
+from iamraw.document.utils import Boxed
 from iamraw.document.utils import PageObject
 # fonts
 from iamraw.fonts import Font
