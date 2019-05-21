@@ -35,9 +35,15 @@ class BoundingBox:
             return self.y_top
         raise IndexError('Index to hight %d > 3' % index)
 
+    @classmethod
     def from_list(cls, data):
         """Create Box from list"""
-        cls(x_bottom=data[0], y_bottom=data[1], x_top=data[2], y_top=data[3])
+        return cls(
+               x_bottom=data[0],
+               y_bottom=data[1],
+               x_top=data[2],
+               y_top=data[3],
+        )
 
 @dataclass
 class Boxed:
