@@ -21,8 +21,12 @@ class BoundingBox:
     y_top: float = INF
 
     def __repr__(self):
-        return '[%.2f %.2f %.2f %.2f]' % (self.x_bottom, self.y_bottom,
-                                          self.x_top, self.y_top)
+        return 'BoundingBox(%.2f, %.2f, %.2f, %.2f)' % (
+            self.x_bottom,
+            self.y_bottom,
+            self.x_top,
+            self.y_top,
+        )
 
     def __getitem__(self, index):
         if index == 0:
