@@ -28,6 +28,14 @@ class BoundingBox:
             self.y_top,
         )
 
+    def raw(self):
+        return '%.2f %.2f %.2f %.2f' % (
+            self.x_bottom,
+            self.y_bottom,
+            self.x_top,
+            self.y_top,
+        )
+
     def __getitem__(self, index):
         if index == 0:
             return self.x_bottom
@@ -43,11 +51,12 @@ class BoundingBox:
     def from_list(cls, data):
         """Create Box from list"""
         return cls(
-               x_bottom=data[0],
-               y_bottom=data[1],
-               x_top=data[2],
-               y_top=data[3],
+            x_bottom=data[0],
+            y_bottom=data[1],
+            x_top=data[2],
+            y_top=data[3],
         )
+
 
 @dataclass
 class Boxed:
