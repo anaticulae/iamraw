@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v0.4.12
+
+### Feature
+
+* add raw method to dump data of box in str (f0cb9795e957)
+* extend public API with Boxed object (74ddc24685e8)
+* add creation method for bounding box from_list (3d7a52d60aef)
+
+### Fix
+
+* fix dunder repr from BoundingBox (aa694e1e872b)
+* fix class method constructor of BoundingBox (2ae1a4ce464f)
+* update name of decider box output (24ec4435ad71)
+
 ## v0.4.11
 
 ### Feature
