@@ -12,6 +12,9 @@ import os
 # border
 from iamraw.border import Border
 from iamraw.border import PageSize
+# boxes
+from iamraw.boxes import Box
+from iamraw.boxes import HorizontalLine
 # document
 from iamraw.document.document import Document
 from iamraw.document.page import Char

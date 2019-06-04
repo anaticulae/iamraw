@@ -1,0 +1,31 @@
+# =============================================================================
+# C O P Y R I G H T
+# -----------------------------------------------------------------------------
+# Copyright (c) 2019 by Helmut Konrad Fahrendholz. All rights reserved.
+# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# use or distribution is an offensive act against international law and may
+# be prosecuted under federal law. Its content is company confidential.
+# =============================================================================
+from dataclasses import dataclass
+
+from iamraw.document.utils import Boxed
+
+
+@dataclass
+class HorizontalLine(Boxed):
+
+    @property
+    def width(self):
+        return abs(self.box.x_top - self.box.x_bottom)
+
+    def __str__(self):
+        xleft = min([self.box.x_bottom, self.box.x_top])
+        return 'HorizontalLine[xleft=%d, width=%d]' % (xleft, self.width)
+
+
+@dataclass
+class Box(Boxed):
+    # TODO: Textbox?
+
+    def __str__(self):
+        return 'Box(box=%s)' % str(self.box)
