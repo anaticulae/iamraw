@@ -17,6 +17,11 @@ from serializeraw.border import dump_boundingboxes
 from serializeraw.border import dump_pageborders
 from serializeraw.border import load_boundingboxes
 from serializeraw.border import load_pageborders
+# boxes
+from serializeraw.boxes import dump_boxes
+from serializeraw.boxes import dump_horizontals
+from serializeraw.boxes import load_boxes
+from serializeraw.boxes import load_horizontals
 # fonts
 from serializeraw.fonts import dump_fonts
 from serializeraw.fonts import dump_fontstore

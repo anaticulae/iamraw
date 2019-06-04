@@ -29,7 +29,7 @@ def dump_boxes(pages):
     return dumped
 
 
-def dump_horizontal(pages):
+def dump_horizontals(pages):
     raw = []
     for index, page in enumerate(pages):
         result = [horizontal.box.raw() for horizontal in page]
