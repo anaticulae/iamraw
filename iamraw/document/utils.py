@@ -60,7 +60,7 @@ class BoundingBox:
 
 @dataclass
 class Boxed:
-    """Object to store every unsupported type"""
+    """Object with outlines like a rectangle"""
     box: BoundingBox = None
 
 
