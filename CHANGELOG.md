@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v0.4.14
+
+### Feature
+
+* move boxes code from iamraw (572f7709c6a0)
+
+### Documentation
+
+* extend basic readme (be4c0c321b1c)
+
 ## v0.4.13
 
 ## v0.4.12
