@@ -83,3 +83,7 @@ class Page:
         for item in self.children:
             result += '  %s\n' % item
         return result
+
+    def __getitem__(self, key):
+        """Iterate over children in page"""
+        return self.children[key]

@@ -37,3 +37,7 @@ class Document:
         for page in self.pages:
             result += str(page) + '\n'
         return result
+
+    def __getitem__(self, key):
+        """Iterate over pages"""
+        return self.pages[key]  # pylint: disable=unsubscriptable-object
