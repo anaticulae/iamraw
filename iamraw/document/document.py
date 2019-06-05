@@ -17,6 +17,9 @@ from iamraw.document.utils import BoundingBox
 
 @dataclass
 class Document:
+    """A document describe a parsed PDF file. It is possbile to iterate over
+    the different pages to inspect the parsed children.
+    """
     dimension: BoundingBox = None
     pages: List[Page] = field(default_factory=list)
 
@@ -27,14 +30,15 @@ class Document:
 
     @property
     def text(self):
+        """Return the raw text of the document separated by pages"""
         texts = []
-        for page in self.pages:
+        for page in self.pages:  # pylint: disable=not-an-iterable
             texts.append(page.text)
         return ''.join(texts)
 
     def __repr__(self):
         result = 'Document: pages[%d]\n' % len(self.pages)
-        for page in self.pages:
+        for page in self.pages:  # pylint: disable=not-an-iterable
             result += str(page) + '\n'
         return result
 
