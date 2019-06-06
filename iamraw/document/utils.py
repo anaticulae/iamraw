@@ -21,7 +21,9 @@ class BoundingBox:
     y_top: float = INF
 
     def __repr__(self):
-        return 'BoundingBox(%.2f, %.2f, %.2f, %.2f)' % (
+        raw = ('BoundingBox(x_bottom=%.2f, y_bottom=%.2f, '
+               'x_top=%.2f, y_top=%.2f)')
+        return raw % (
             self.x_bottom,
             self.y_bottom,
             self.x_top,
