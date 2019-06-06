@@ -59,6 +59,11 @@ class BoundingBox:
             y_top=data[3],
         )
 
+    @classmethod
+    def from_str(cls, raw: str):
+        """Create BoundingBox from raw data which contains 4 floats"""
+        return cls.from_list([float(item) for item in raw.split()])
+
 
 @dataclass
 class Boxed:
