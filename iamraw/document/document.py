@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import warnings
 from dataclasses import dataclass
 from dataclasses import field
 from typing import List
@@ -26,6 +27,7 @@ class Document:
     @property
     def page_count(self):
         """Return pagecount of this document"""
+        warnings.warn("use __len__", DeprecationWarning)
         return len(self.pages)
 
     @property
@@ -35,6 +37,10 @@ class Document:
         for page in self.pages:  # pylint: disable=not-an-iterable
             texts.append(page.text)
         return ''.join(texts)
+
+    def __len__(self):
+        """Return pagecount of document"""
+        return len(self.pages)
 
     def __repr__(self):
         result = 'Document: pages[%d]\n' % len(self.pages)
