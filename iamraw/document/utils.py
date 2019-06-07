@@ -52,6 +52,7 @@ class BoundingBox:
     @classmethod
     def from_list(cls, data):
         """Create Box from list"""
+        assert len(data) == 4, 'data has wrong length %d, require 4' % len(data)
         return cls(
             x_bottom=data[0],
             y_bottom=data[1],
@@ -62,6 +63,8 @@ class BoundingBox:
     @classmethod
     def from_str(cls, raw: str):
         """Create BoundingBox from raw data which contains 4 floats"""
+        length = len(raw.split())
+        assert length == 4, 'wrong split length %d for "%s"' % (length, raw)
         return cls.from_list([float(item) for item in raw.split()])
 
 
