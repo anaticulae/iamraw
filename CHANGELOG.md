@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v0.4.15
+
+### Feature
+
+* add BoundingBox constructor `from_str` (9f68119d9225)
+* make document and page iterable due python protocol (5f0d0a2f33bf)
+
+### Fix
+
+* fix BoundingBox representation to valid python code (3dd9d4b47481)
+
+### Documentation
+
+* extend documentation of document class (c38585d80067)
+* fix description of Boxed (ff2cbbb6c7b2)
+
 ## v0.4.14
 
 ### Feature
