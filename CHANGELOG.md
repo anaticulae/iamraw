@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v0.4.16
+
+### Feature
+
+* add __len__ to determine page count instead of `page_count` (671deda026b6)
+* check length of raw data for creating `BoundingBox` (e5542601a0e3)
+
 ## v0.4.15
 
 ### Feature
