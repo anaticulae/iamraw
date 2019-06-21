@@ -33,6 +33,9 @@ from serializeraw.fonts import load_fontstore
 # hits
 from serializeraw.hits import dump_hits
 from serializeraw.hits import load_hits
+# likelihood
+from serializeraw.likelihood import dump_likelihood
+from serializeraw.likelihood import load_likelihood
 # document
 from serializeraw.text import dump_yaml as dump_document
 from serializeraw.text import load_yaml as load_document
