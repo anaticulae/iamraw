@@ -7,17 +7,18 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from utila import from_raw_or_path
+from utila import logging_error
+from yaml import FullLoader
+from yaml import dump
+from yaml import load
+
 from iamraw import Char
 from iamraw import Document
 from iamraw import Line
 from iamraw import Page
 from iamraw import PageObject
 from iamraw import TextContainer
-from utila import from_raw_or_path
-from utila import logging_error
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
 
 
 def _load_pageobject(content: str):
