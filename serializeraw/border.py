@@ -8,6 +8,7 @@
 # =============================================================================
 
 from typing import List
+from typing import Tuple
 
 from utila import from_raw_or_path
 from yaml import FullLoader
@@ -58,7 +59,22 @@ def dump_pageborders(size: List[PageSize], border: List[Border]) -> str:
     return dumped
 
 
-def load_pageborders(content: str):
+def load_pageborders(content: str) -> Tuple[List[PageSize], List[Border]]:
+    """Load pdf page size and content border from raw data
+
+    This method loads 2 lists with items for every single page. The first list
+    contains the size of the pdf page in "pixel?". The second list contains
+    the border of the content of the page. This border is maximized in every
+    4 page directions. The diff between pagesize - pageborder is the whitespace
+    where is nothing printed.
+
+    TODO: Clearify pixel or mm?
+
+    Args:
+        content(str): path or raw content to load
+    Returns:
+        List[PageSize], List[Border]
+    """
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
     size, border = [], []
