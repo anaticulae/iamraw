@@ -12,6 +12,9 @@ Package to load and store raw objects as yaml files.
 
 import os
 
+# annotation
+from serializeraw.annotation import dump_annotations
+from serializeraw.annotation import load_annotations
 # border
 from serializeraw.border import dump_boundingboxes
 from serializeraw.border import dump_pageborders

@@ -9,6 +9,15 @@
 
 import os
 
+# annotation
+from iamraw.annotation import Annotation
+from iamraw.annotation import HyperLink
+from iamraw.annotation import Link
+from iamraw.annotation import PageAnnotation
+from iamraw.annotation import PageAnnotations
+from iamraw.annotation import PageLink
+from iamraw.annotation import hyperlink_annotations
+from iamraw.annotation import pagelink_annotations
 # border
 from iamraw.border import Border
 from iamraw.border import PageSize
