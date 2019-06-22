@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.4.17
+
+### Feature
+
+* add method to dump and load likelihood (45055a271672)
+* add annotation to define `PageLinks` and `Hyperlinks` (070294e147b6)
+
+### Documentation
+
+* extend documentation of load_pageborder (b6d66c9dbc95)
+
 ## v0.4.16
 
 ### Feature
