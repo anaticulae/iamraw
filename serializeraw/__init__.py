@@ -25,6 +25,9 @@ from serializeraw.boxes import dump_boxes
 from serializeraw.boxes import dump_horizontals
 from serializeraw.boxes import load_boxes
 from serializeraw.boxes import load_horizontals
+# chapter
+from serializeraw.chapter import dump_chapter
+from serializeraw.chapter import load_chapter
 # fonts
 from serializeraw.fonts import dump_fonts
 from serializeraw.fonts import dump_fontstore
