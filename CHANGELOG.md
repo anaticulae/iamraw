@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.23
+
+### Feature
+
+* add method to load and save chapter (3f5e7f071322)
+
 ## v0.4.22
 
 ## v0.4.21
