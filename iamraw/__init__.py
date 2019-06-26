@@ -35,6 +35,7 @@ from iamraw.document.page import VirtualChar
 from iamraw.document.utils import BoundingBox
 from iamraw.document.utils import Boxed
 from iamraw.document.utils import PageObject
+from iamraw.document.utils import common_box
 # fonts
 from iamraw.fonts import Font
 from iamraw.fonts import Stretch

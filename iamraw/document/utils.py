@@ -68,6 +68,17 @@ class BoundingBox:
         return cls.from_list([float(item) for item in raw.split()])
 
 
+def common_box(items) -> BoundingBox:
+    """Determine largest box which contains the border of all `items`"""
+    x0, y0, x1, y1 = INF, INF, -INF, -INF
+    for (cx0, cy0, cx1, cy1) in items:
+        x0 = min(x0, cx0)
+        y0 = min(y0, cy0)
+        x1 = max(x1, cx1)
+        y1 = max(y1, cy1)
+    return BoundingBox.from_list([x0, y0, x1, y1])
+
+
 @dataclass
 class Boxed:
     """Object with outlines like a rectangle"""

@@ -9,6 +9,7 @@
 from iamraw import BoundingBox
 from iamraw import Box
 from iamraw import HorizontalLine
+from iamraw import common_box
 from serializeraw import dump_boxes
 from serializeraw import dump_horizontals
 from serializeraw import load_boxes
@@ -64,3 +65,14 @@ def test_dump_and_load_horizontal():
 
     loaded = load_horizontals(dumped)
     assert loaded == pages
+
+
+def test_boxes_common_box():
+    left_bottom = BoundingBox.from_list([0.0, 0.0, 100.0, 100.0])
+    middle = BoundingBox.from_list([-25.0, 25.0, 50.0, 100.0])
+    right_top = BoundingBox.from_list([75.0, 75.0, 150.0, 150.0])
+
+    merged = common_box([left_bottom, middle, right_top])
+    expected = BoundingBox.from_list([-25.0, 0.0, 150.0, 150.0])
+
+    assert merged == expected
