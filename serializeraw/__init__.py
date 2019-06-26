@@ -29,10 +29,10 @@ from serializeraw.boxes import load_horizontals
 from serializeraw.chapter import dump_chapter
 from serializeraw.chapter import load_chapter
 # fonts
-from serializeraw.fonts import dump_fonts
-from serializeraw.fonts import dump_fontstore
-from serializeraw.fonts import load_fonts
-from serializeraw.fonts import load_fontstore
+from serializeraw.fonts import dump_font_content
+from serializeraw.fonts import dump_font_header
+from serializeraw.fonts import load_font_content
+from serializeraw.fonts import load_font_header
 # hits
 from serializeraw.hits import dump_hits
 from serializeraw.hits import load_hits

@@ -18,7 +18,7 @@ from iamraw import Style
 from iamraw import Weight
 
 
-def dump_fontstore(fonts):
+def dump_font_header(fonts):
     result = []
     for index, item in enumerate(fonts):
         result.append({
@@ -35,7 +35,7 @@ def dump_fontstore(fonts):
     return dumped
 
 
-def load_fontstore(content):
+def load_font_header(content):
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
 
@@ -58,7 +58,7 @@ def load_fontstore(content):
     return fonts
 
 
-def dump_fonts(pages):
+def dump_font_content(pages):
     result = []
     for index, page in enumerate(pages):
         items = []
@@ -73,7 +73,7 @@ def dump_fonts(pages):
     return dumped
 
 
-def load_fonts(content):
+def load_font_content(content):
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
     result = []
