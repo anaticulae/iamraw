@@ -30,6 +30,7 @@ from iamraw.document.page import Char
 from iamraw.document.page import Line
 from iamraw.document.page import Page
 from iamraw.document.page import TextContainer
+from iamraw.document.page import UnicodeChar
 from iamraw.document.page import VirtualChar
 # utils
 from iamraw.document.utils import BoundingBox

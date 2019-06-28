@@ -23,6 +23,11 @@ class Char(Boxed):
 
 
 @dataclass
+class UnicodeChar(Char):
+    special: str = None
+
+
+@dataclass
 class VirtualChar:
     value: str = None
     look: int = None
