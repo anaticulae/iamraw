@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.4.24
+
+### Feature
+
+* add special unicode char to save special values (f75ff63de092)
+* add method to determine the largest box of list of BoundingBoxes (db92ddb94fc5)
+
+### Fix
+
+* improve naming of fontstore-/fontcontent/header (0483a2f11fd7)
+
 ## v0.4.23
 
 ### Feature
