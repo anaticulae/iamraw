@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.4.25
+
+### Feature
+
+* add default value for fonts(stretch, weight, style) (71e32d60dfdb)
+
 ## v0.4.24
 
 ### Feature
