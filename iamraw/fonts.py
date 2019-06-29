@@ -8,6 +8,7 @@
 # =============================================================================
 
 from dataclasses import dataclass
+from dataclasses import field
 from enum import Enum
 from enum import auto
 
@@ -31,6 +32,11 @@ class Stretch(Enum):
     EXTENDED = auto()
 
 
+DEFAULT_WEIGHT = Weight.MEDIUM
+DEFAULT_STYLE = Style.NORMAL
+DEFAULT_STRETCH = Stretch.REGULAR
+
+
 @dataclass
 class Font:
     # DVDJKK+NimbusSanL-Regu
@@ -38,6 +44,6 @@ class Font:
     # CQYGZP+NimbusSanL-BoldItal
     name: str
     scale: float
-    weight: Weight
-    style: Style
-    stretch: Stretch
+    weight: Weight = field(default=DEFAULT_WEIGHT)
+    style: Style = field(default=DEFAULT_STYLE)
+    stretch: Stretch = field(default=DEFAULT_STRETCH)
