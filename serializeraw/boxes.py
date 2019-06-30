@@ -20,7 +20,7 @@ from iamraw import HorizontalLine
 def dump_boxes(pages):
     raw = []
     for index, page in enumerate(pages):
-        result = [box.box.raw() for box in page]
+        result = [str(box.box) for box in page]
         raw.append({
             'page': index,
             'boxes': result,
@@ -32,7 +32,7 @@ def dump_boxes(pages):
 def dump_horizontals(pages):
     raw = []
     for index, page in enumerate(pages):
-        result = [horizontal.box.raw() for horizontal in page]
+        result = [str(horizontal.box) for horizontal in page]
         raw.append({
             'page': index,
             'horizontal': result,

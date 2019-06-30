@@ -19,33 +19,28 @@ EXAMPLE = [
      [
          HyperLink(
              goal='http://pythondsp.readthedocs.io/en/latest/pythondsp/toc.html',
-             bounds=BoundingBox(
-                 x_bottom=351.92, y_bottom=71.00, x_top=401.90, y_top=80.92),
+             bounds=BoundingBox(x0=351.92, y0=71.00, x1=401.90, y1=80.92),
              typ=Link.HYPERLINK)
      ]],
     [[
         PageLink(
             goal='chapter*.1',
-            bounds=BoundingBox(
-                x_bottom=49.40, y_bottom=571.64, x_top=137.22, y_top=580.50),
+            bounds=BoundingBox(x0=49.40, y0=571.64, x1=137.22, y1=580.50),
             typ=Link.INTERNAL),
         PageLink(
             goal='chapter.1',
-            bounds=BoundingBox(
-                x_bottom=49.40, y_bottom=549.72, x_top=147.44, y_top=558.59),
+            bounds=BoundingBox(x0=49.40, y0=549.72, x1=147.44, y1=558.59),
             typ=Link.INTERNAL),
         PageLink(
             goal='section.1.1',
-            bounds=BoundingBox(
-                x_bottom=64.34, y_bottom=535.83, x_top=146.54, y_top=546.62),
+            bounds=BoundingBox(x0=64.34, y0=535.83, x1=146.54, y1=546.62),
             typ=Link.INTERNAL),
     ], []],
     [[],
      [
          HyperLink(
              goal='https://drive.google.com/file/lSkE/view?usp=sharing',
-             bounds=BoundingBox(
-                 x_bottom=162.90, y_bottom=456.32, x_top=192.31, y_top=467.11),
+             bounds=BoundingBox(x0=162.90, y0=456.32, x1=192.31, y1=467.11),
              typ=Link.HYPERLINK)
      ]],
 ]
@@ -53,7 +48,6 @@ EXAMPLE = [
 
 def test_annotation_dump_and_load():
     dumped = dump_annotations(EXAMPLE)
-
     loaded = load_annotations(dumped)
 
     assert str(loaded) == str(EXAMPLE)

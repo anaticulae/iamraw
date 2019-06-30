@@ -12,6 +12,8 @@ from dataclasses import dataclass
 from dataclasses import field
 from typing import List
 
+from utila import NEWLINE
+
 from iamraw.document.page import Page
 from iamraw.document.utils import BoundingBox
 
@@ -45,7 +47,7 @@ class Document:
     def __repr__(self):
         result = 'Document: pages[%d]\n' % len(self.pages)
         for page in self.pages:  # pylint: disable=not-an-iterable
-            result += str(page) + '\n'
+            result += str(page) + NEWLINE
         return result
 
     def __getitem__(self, key):

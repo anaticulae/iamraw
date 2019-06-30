@@ -25,12 +25,12 @@ def dump_annotations(annotations: PageAnnotations) -> str:
 
         rawpage = [{
             'goto': link.goal,
-            'bounds': link.bounds.raw(),
+            'bounds': str(link.bounds),
         } for link in pagelink]
 
         rawhyper = [{
             'href': link.goal,
-            'bounds': link.bounds.raw(),
+            'bounds': str(link.bounds),
         } for link in hyperlink]
 
         raw.append([

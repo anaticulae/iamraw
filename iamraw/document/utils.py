@@ -6,7 +6,13 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-
+"""
+    x0,y0 ----------------|
+    |                     |
+    |    BoundingBox      |
+    |                     |
+    |-----------------x1,y1
+"""
 from dataclasses import dataclass
 
 from utila import INF
@@ -14,58 +20,47 @@ from utila import INF
 
 @dataclass
 class BoundingBox:
-    x_bottom: float = -INF
-    y_bottom: float = -INF
 
-    x_top: float = INF
-    y_top: float = INF
+    x0: float = -INF
+    y0: float = -INF
+    x1: float = INF
+    y1: float = INF
 
     def __repr__(self):
-        raw = ('BoundingBox(x_bottom=%.2f, y_bottom=%.2f, '
-               'x_top=%.2f, y_top=%.2f)')
-        return raw % (
-            self.x_bottom,
-            self.y_bottom,
-            self.x_top,
-            self.y_top,
-        )
+        raw = 'BoundingBox(x0=%.2f, y0=%.2f, x1=%.2f, y1=%.2f)'
+        return raw % (self.x0, self.y0, self.x1, self.y1)
 
-    def raw(self):
-        return '%.2f %.2f %.2f %.2f' % (
-            self.x_bottom,
-            self.y_bottom,
-            self.x_top,
-            self.y_top,
-        )
+    def __str__(self):
+        return '%.2f %.2f %.2f %.2f' % (self.x0, self.y0, self.x1, self.y1)
 
     def __getitem__(self, index):
         if index == 0:
-            return self.x_bottom
+            return self.x0
         if index == 1:
-            return self.y_bottom
+            return self.y0
         if index == 2:
-            return self.x_top
+            return self.x1
         if index == 3:
-            return self.y_top
-        raise IndexError('Index to hight %d > 3' % index)
+            return self.y1
+        raise IndexError('index to hight %d > 3' % index)
+
+    def __post_init__(self):
+        assert self.x0 <= self.x1, '%.2f <= %.2f' % (self.x0, self.x1)
+        assert self.y0 <= self.y1, '%.2f <= %.2f' % (self.y0, self.y1)
 
     @classmethod
     def from_list(cls, data):
-        """Create Box from list"""
+        """Create `BoundingBox` from list"""
         assert len(data) == 4, 'data has wrong length %d, require 4' % len(data)
-        return cls(
-            x_bottom=data[0],
-            y_bottom=data[1],
-            x_top=data[2],
-            y_top=data[3],
-        )
+        return cls(x0=data[0], y0=data[1], x1=data[2], y1=data[3])
 
     @classmethod
     def from_str(cls, raw: str):
-        """Create BoundingBox from raw data which contains 4 floats"""
-        length = len(raw.split())
+        """Create `BoundingBox` from raw data which contains 4 floats"""
+        splitted = raw.split()
+        length = len(splitted)
         assert length == 4, 'wrong split length %d for "%s"' % (length, raw)
-        return cls.from_list([float(item) for item in raw.split()])
+        return cls.from_list([float(item) for item in splitted])
 
 
 def common_box(items) -> BoundingBox:

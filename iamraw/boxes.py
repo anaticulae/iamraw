@@ -16,10 +16,10 @@ class HorizontalLine(Boxed):
 
     @property
     def width(self):
-        return abs(self.box.x_top - self.box.x_bottom)
+        return abs(self.box.x1 - self.box.x0)
 
     def __str__(self):
-        xleft = min([self.box.x_bottom, self.box.x_top])
+        xleft = min([self.box.x0, self.box.x1])
         return 'HorizontalLine[xleft=%d, width=%d]' % (xleft, self.width)
 
 
