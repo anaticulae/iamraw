@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.0.0
+
+### Feature
+
+* flip BoundingBox top/down (258694f970ad)
+
 ## v0.4.25
 
 ### Feature
