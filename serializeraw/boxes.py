@@ -7,6 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from typing import Iterable
+from typing import List
+
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -15,9 +18,12 @@ from yaml import load
 from iamraw import BoundingBox
 from iamraw import Box
 from iamraw import HorizontalLine
+from iamraw import PagesWithBoxList
+from iamraw import PagesWithHorizontalList
 
 
-def dump_boxes(pages):
+def dump_boxes(pages: PagesWithBoxList):
+    assert isinstance(pages, Iterable), type(pages)
     raw = []
     for index, page in enumerate(pages):
         result = [str(box.box) for box in page]
@@ -29,7 +35,8 @@ def dump_boxes(pages):
     return dumped
 
 
-def dump_horizontals(pages):
+def dump_horizontals(pages: PagesWithHorizontalList):
+    assert isinstance(pages, Iterable), type(pages)
     raw = []
     for index, page in enumerate(pages):
         result = [str(horizontal.box) for horizontal in page]
@@ -41,7 +48,7 @@ def dump_horizontals(pages):
     return dumped
 
 
-def load_boxes(content: str):
+def load_boxes(content: str) -> PagesWithBoxList:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
 
@@ -57,7 +64,7 @@ def load_boxes(content: str):
     return pages
 
 
-def load_horizontals(content: str):
+def load_horizontals(content: str) -> PagesWithHorizontalList:
 
     def create_box(item: str):
         converted = [float(splitted) for splitted in item.split()]

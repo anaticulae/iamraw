@@ -24,6 +24,8 @@ from iamraw.border import PageSize
 # boxes
 from iamraw.boxes import Box
 from iamraw.boxes import HorizontalLine
+from iamraw.boxes import PagesWithBoxList
+from iamraw.boxes import PagesWithHorizontalList
 # document
 from iamraw.document.document import Document
 from iamraw.document.page import Char

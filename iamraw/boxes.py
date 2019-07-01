@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 from dataclasses import dataclass
+from typing import List
 
 from iamraw.document.utils import Boxed
 
@@ -29,3 +30,7 @@ class Box(Boxed):
 
     def __str__(self):
         return 'Box(box=%s)' % str(self.box)
+
+
+PagesWithBoxList = List[List[Box]]
+PagesWithHorizontalList = List[List[HorizontalLine]]
