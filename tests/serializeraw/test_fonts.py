@@ -7,6 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from yaml import FullLoader
+from yaml import load
+
 from iamraw import Font
 from iamraw import Stretch
 from iamraw import Style
@@ -45,3 +48,32 @@ def test_fonts_dump_and_load_font_header():
     dumped = dump_font_header(FONT_HEADER)
     loaded = load_font_header(dumped)
     assert loaded == FONT_HEADER
+
+
+FONT_HEADER_WITH_DEFAULT = [
+    Font(name='WLXADN+NimbusSanL', scale=31.1, weight=Weight.BOLD),
+    Font(
+        name='AJOVIH+NimbusSanL',
+        scale=21.7,
+        weight=Weight.BOLD,
+        style=Style.ITALIC,
+    ),
+    Font(name='WLXADN+NimbusSanL', scale=21.6),
+]
+
+
+def test_fonts_remove_default_while_dumping():
+    dumped = dump_font_header(FONT_HEADER_WITH_DEFAULT)
+
+    loaded = load(dumped, Loader=FullLoader)
+    # first font
+    # assert that some keys are there/left
+    first_keys = loaded[0]['font']
+    assert first_keys
+    assert 'style' not in first_keys, str(first_keys)
+    assert 'stretch' not in first_keys, str(first_keys)
+    # third font
+    # assert that some keys are there/left
+    third_keys = loaded[2]['font']
+    assert third_keys
+    assert 'stretch' not in third_keys, str(third_keys)

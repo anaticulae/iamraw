@@ -12,30 +12,47 @@ from yaml import FullLoader
 from yaml import dump
 from yaml import load
 
+from iamraw import DEFAULT_STRETCH
+from iamraw import DEFAULT_STYLE
+from iamraw import DEFAULT_WEIGHT
 from iamraw import Font
 from iamraw import Stretch
 from iamraw import Style
 from iamraw import Weight
 
 
-def dump_font_header(fonts):
+def dump_font_header(fonts) -> str:
+    """Write font header to raw string representation"""
+
+    def remove_default_value(font):
+        if font['stretch'] == DEFAULT_STRETCH.name:
+            del font['stretch']
+        if font['style'] == DEFAULT_STYLE.name:
+            del font['style']
+        if font['weight'] == DEFAULT_WEIGHT.name:
+            del font['weight']
+
     result = []
     for index, item in enumerate(fonts):
-        result.append({
+        raw = {
             'index': index,
             'font': {
-                'scale': item.scale,
                 'name': item.name,
-                'weight': item.weight.name,
-                'style': item.style.name,
+                'scale': item.scale,
                 'stretch': item.stretch.name,
+                'style': item.style.name,
+                'weight': item.weight.name,
             },
-        })
+        }
+        # do not store default value in yaml representation
+        remove_default_value(raw['font'])
+        result.append(raw)
     dumped = dump(result)
     return dumped
 
 
 def load_font_header(content):
+    """Load font header from raw string representation"""
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
 
@@ -43,9 +60,9 @@ def load_font_header(content):
     for item in loaded:
         fontraw = item['font']
 
-        weight = Weight[fontraw['weight']]
-        stretch = Stretch[fontraw['stretch']]
-        style = Style[fontraw['style']]
+        weight = Weight[fontraw.get('weight', DEFAULT_WEIGHT.name)]
+        stretch = Stretch[fontraw.get('stretch', DEFAULT_STRETCH.name)]
+        style = Style[fontraw.get('style', DEFAULT_STYLE.name)]
 
         font = Font(
             name=fontraw['name'],
