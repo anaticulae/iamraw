@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from contextlib import suppress
 from dataclasses import dataclass
 from dataclasses import field
 from typing import Any
@@ -77,10 +78,8 @@ class Page:
     def text(self):
         result = []
         for item in self.children:
-            try:
+            with suppress(AttributeError):
                 result += item.text
-            except AttributeError:
-                pass
         return ''.join(result)
 
     def __repr__(self):
