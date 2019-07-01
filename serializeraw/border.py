@@ -10,6 +10,7 @@
 from typing import List
 from typing import Tuple
 
+from utila import debug
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -88,8 +89,8 @@ def size_toraw(size: PageSize) -> str:
     assert isinstance(size, PageSize)
     try:
         return '%.2f %.2f' % size  #(size.width, size.height)
-    except TypeError:
-        # PageSize(None,None)
+    except TypeError as error:
+        debug('%s %r' % (error, size))
         return 'None'
 
 
@@ -97,7 +98,8 @@ def size_fromraw(size: str) -> PageSize:
     assert isinstance(size, str)
     try:
         return PageSize(*[float(var) for var in size.split()])
-    except ValueError:
+    except ValueError as error:
+        debug('%s %r' % (error, size))
         return PageSize(None, None)
 
 
@@ -105,7 +107,8 @@ def border_toraw(border: Border) -> str:
     assert isinstance(border, Border)
     try:
         return '%.2f %.2f %.2f %.2f' % border
-    except TypeError:
+    except TypeError as error:
+        debug('%s %r' % (error, border))
         return 'None'
 
 
@@ -113,5 +116,6 @@ def border_fromraw(border: str) -> Border:
     assert isinstance(border, str)
     try:
         return Border(*[float(var) for var in border.split()])
-    except ValueError:
+    except ValueError as error:
+        debug('%s %r' % (error, border))
         return Border(None, None, None, None)
