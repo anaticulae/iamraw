@@ -12,6 +12,7 @@ from pytest import mark
 
 from iamraw import Border
 from iamraw import PageSize
+from iamraw.border import validate
 from serializeraw import dump_boundingboxes
 from serializeraw import dump_pageborders
 from serializeraw import load_boundingboxes
@@ -139,3 +140,18 @@ def test_convert_size(size):
 def test_convert_border(border):
     raw = border_toraw(border)
     assert border_fromraw(raw) == border
+
+
+#pylint:disable=W0621
+def test_border_validate_border_and_pages(boxdata_from_pdf):
+    size, border, _ = boxdata_from_pdf
+
+    valid_size = validate(size)
+    valid_border = validate(border)
+
+    invalid_border = Border(-1, 0, 100, 200)
+    valid = validate(invalid_border)
+
+    assert valid_size
+    assert valid_border
+    assert not valid

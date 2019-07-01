@@ -9,5 +9,28 @@
 
 from collections import namedtuple
 
-Border = namedtuple('Border', 'left bottom right top')
+from utila import logging_error
+
+Border = namedtuple('Border', 'left right top bottom')
 PageSize = namedtuple('PageSize', 'width height')
+
+
+def validate(items) -> bool:
+    """Iterate throw elements and check if some element contains a negative
+    element.
+
+    Args:
+        items(List[Border/PageSize]): list or single item is supported
+    Returns:
+        True if all elements are positive, False if at least one is not
+    """
+    valid = True
+    if not isinstance(items, list):
+        items = [items]
+    for index, item in enumerate(items):
+        for itemindex, check in enumerate(item):
+            if check is not None and check < 0:
+                msg = 'invalid field(%d, %d): %r' % (index, itemindex, check)
+                logging_error(msg)
+                valid = False
+    return valid
