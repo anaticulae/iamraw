@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.1.0
+
+### Feature
+
+* add hash method to use Font in dictionary's (70f56329b633)
+* extend interface with type hints (cc88720ea324)
+* add debug information to border converter (72f779169ba1)
+* do not save default font style to serialized files (516a121e7c6e)
+* add default font style to public API (ecdc14f86e52)
+* add method to validate `Border` and `PageSize` (dd7040d860b9)
+
 ## v1.0.0
 
 ### Feature
