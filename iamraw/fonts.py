@@ -37,7 +37,7 @@ DEFAULT_STYLE = Style.NORMAL
 DEFAULT_STRETCH = Stretch.REGULAR
 
 
-@dataclass
+@dataclass(unsafe_hash=True)
 class Font:
     # DVDJKK+NimbusSanL-Regu
     # JCUGNO+NimbusSanL-Bold
