@@ -7,6 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from functools import lru_cache
+
+from configo import CACHE_SMALL
 from utila import from_raw_or_path
 from utila import logging_error
 from yaml import FullLoader
@@ -104,6 +107,7 @@ def dump_yaml(document: Document) -> str:
     return dump(raw)
 
 
+@lru_cache(CACHE_SMALL)
 def load_yaml(content: str) -> Document:
     """Load document from raw-string or filepath.
 

@@ -7,6 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from functools import lru_cache
+
+from configo import CACHE_MEDIUM
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -41,6 +44,7 @@ def dump_annotations(annotations: PageAnnotations) -> str:
     return dumped
 
 
+@lru_cache(CACHE_MEDIUM)
 def load_annotations(content: str) -> PageAnnotations:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)

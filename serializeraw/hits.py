@@ -7,6 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from functools import lru_cache
+
+from configo import CACHE_SMALL
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -28,6 +31,7 @@ def dump_hits(border, content):
     return dump(raw)
 
 
+@lru_cache(CACHE_SMALL)
 def load_hits(content):
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)

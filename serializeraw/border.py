@@ -7,9 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from functools import lru_cache
 from typing import List
 from typing import Tuple
 
+from configo import CACHE_SMALL
 from utila import debug
 from utila import from_raw_or_path
 from yaml import FullLoader
@@ -36,6 +38,7 @@ def dump_boundingboxes(boxes):
     return dumped
 
 
+@lru_cache(CACHE_SMALL)
 def load_boundingboxes(content):
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
@@ -60,6 +63,7 @@ def dump_pageborders(size: List[PageSize], border: List[Border]) -> str:
     return dumped
 
 
+@lru_cache(CACHE_SMALL)
 def load_pageborders(content: str) -> Tuple[List[PageSize], List[Border]]:
     """Load pdf page size and content border from raw data
 

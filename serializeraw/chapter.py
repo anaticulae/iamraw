@@ -7,9 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from functools import lru_cache
 from typing import Dict
 from typing import List
 
+from configo import CACHE_SMALL
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -29,6 +31,7 @@ def dump_chapter(chapters: List[Dict]) -> str:
     return dumped
 
 
+@lru_cache(CACHE_SMALL)
 def load_chapter(content: str) -> List[Dict]:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)

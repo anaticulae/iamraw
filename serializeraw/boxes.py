@@ -7,9 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from functools import lru_cache
 from typing import Iterable
-from typing import List
 
+from configo import CACHE_SMALL
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -48,6 +49,7 @@ def dump_horizontals(pages: PagesWithHorizontalList):
     return dumped
 
 
+@lru_cache(CACHE_SMALL)
 def load_boxes(content: str) -> PagesWithBoxList:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
@@ -64,6 +66,7 @@ def load_boxes(content: str) -> PagesWithBoxList:
     return pages
 
 
+@lru_cache(CACHE_SMALL)
 def load_horizontals(content: str) -> PagesWithHorizontalList:
 
     def create_box(item: str):

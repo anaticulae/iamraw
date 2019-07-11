@@ -16,6 +16,9 @@ Public methods:
     load_yamp
 
 """
+from functools import lru_cache
+
+from configo import CACHE_SMALL
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -32,6 +35,7 @@ def dump_yaml(content: Toc) -> str:
     return dump(raw)
 
 
+@lru_cache(CACHE_SMALL)
 def load_yaml(content: str) -> Toc:
     """Load table of content from file or content
 

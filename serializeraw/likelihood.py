@@ -7,8 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from functools import lru_cache
 from typing import List
 
+from configo import CACHE_SMALL
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -22,6 +24,7 @@ def dump_likelihood(likelihoods: List[float]) -> str:
     return dumped
 
 
+@lru_cache(CACHE_SMALL)
 def load_likelihood(content: str) -> List[float]:
     """Load list of likelihoods from single `content`"""
     content = from_raw_or_path(content, ftype='yaml')

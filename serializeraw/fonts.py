@@ -7,6 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from functools import lru_cache
+
+from configo import CACHE_SMALL
 from utila import from_raw_or_path
 from yaml import FullLoader
 from yaml import dump
@@ -51,6 +54,7 @@ def dump_font_header(fonts) -> str:
     return dumped
 
 
+@lru_cache(CACHE_SMALL)
 def load_font_header(content):
     """Load font header from raw string representation"""
     content = from_raw_or_path(content, ftype='yaml')
@@ -90,6 +94,7 @@ def dump_font_content(pages):
     return dumped
 
 
+@lru_cache(CACHE_SMALL)
 def load_font_content(content):
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
