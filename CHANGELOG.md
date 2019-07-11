@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.2.0
+
+### Feature
+
+* add cache to all yaml loader (863a847d228c)
+
 ## v1.1.1
 
 ## v1.1.0
