@@ -1,3 +1,4 @@
 PyYAML==5.1
 
+configo==0.1.6
 utila==0.7.7
