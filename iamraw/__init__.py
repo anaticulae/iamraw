@@ -53,6 +53,17 @@ from iamraw.headlines import PagesHeadlineList
 # list
 from iamraw.list import ListType
 from iamraw.list import PageList
+# text
+from iamraw.text import DOT
+from iamraw.text import ChapterText
+from iamraw.text import Content
+from iamraw.text import ContentType
+from iamraw.text import PageNumber
+from iamraw.text import Paragraph
+from iamraw.text import ParagraphContent
+from iamraw.text import ParagraphItem
+from iamraw.text import Paragraphs
+from iamraw.text import Undefined
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import Toc

@@ -49,6 +49,9 @@ from serializeraw.likelihood import load_likelihood
 # list
 from serializeraw.list import dump_lists
 from serializeraw.list import load_lists
+# text
+from serializeraw.text import dump_text
+from serializeraw.text import load_text
 # toc
 from serializeraw.toc import dump_yaml as dump_toc
 from serializeraw.toc import load_yaml as load_toc
