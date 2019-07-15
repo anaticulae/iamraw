@@ -43,6 +43,9 @@ from serializeraw.hits import load_hits
 # likelihood
 from serializeraw.likelihood import dump_likelihood
 from serializeraw.likelihood import load_likelihood
+# list
+from serializeraw.list import dump_lists
+from serializeraw.list import load_lists
 # document
 from serializeraw.text import dump_yaml as dump_document
 from serializeraw.text import load_yaml as load_document

@@ -50,6 +50,9 @@ from iamraw.fonts import Weight
 # headlines
 from iamraw.headlines import Headline
 from iamraw.headlines import PagesHeadlineList
+# list
+from iamraw.list import ListType
+from iamraw.list import PageList
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import Toc
