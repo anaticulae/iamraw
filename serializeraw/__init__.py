@@ -29,6 +29,9 @@ from serializeraw.boxes import load_horizontals
 # chapter
 from serializeraw.chapter import dump_chapter
 from serializeraw.chapter import load_chapter
+# document
+from serializeraw.document import dump_yaml as dump_document
+from serializeraw.document import load_yaml as load_document
 # fonts
 from serializeraw.fonts import dump_font_content
 from serializeraw.fonts import dump_font_header
@@ -46,9 +49,6 @@ from serializeraw.likelihood import load_likelihood
 # list
 from serializeraw.list import dump_lists
 from serializeraw.list import load_lists
-# document
-from serializeraw.text import dump_yaml as dump_document
-from serializeraw.text import load_yaml as load_document
 # toc
 from serializeraw.toc import dump_yaml as dump_toc
 from serializeraw.toc import load_yaml as load_toc

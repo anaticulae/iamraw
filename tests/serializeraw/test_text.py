@@ -15,12 +15,12 @@ from iamraw import Page
 from iamraw import TextContainer
 from serializeraw import dump_document
 from serializeraw import load_document
-from serializeraw.text import _dump_line
-from serializeraw.text import _dump_page
-from serializeraw.text import _dump_textcontainer
-from serializeraw.text import _load_line
-from serializeraw.text import _load_page
-from serializeraw.text import _load_textcontainer
+from serializeraw.document import _dump_line
+from serializeraw.document import _dump_page
+from serializeraw.document import _dump_textcontainer
+from serializeraw.document import _load_line
+from serializeraw.document import _load_page
+from serializeraw.document import _load_textcontainer
 from tests.serializeraw import TEXT_YAML
 
 
