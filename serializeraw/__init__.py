@@ -34,6 +34,9 @@ from serializeraw.fonts import dump_font_content
 from serializeraw.fonts import dump_font_header
 from serializeraw.fonts import load_font_content
 from serializeraw.fonts import load_font_header
+# headlines
+from serializeraw.headlines import dump_headlines
+from serializeraw.headlines import load_headlines
 # hits
 from serializeraw.hits import dump_hits
 from serializeraw.hits import load_hits

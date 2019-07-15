@@ -47,6 +47,9 @@ from iamraw.fonts import Font
 from iamraw.fonts import Stretch
 from iamraw.fonts import Style
 from iamraw.fonts import Weight
+# headlines
+from iamraw.headlines import Headline
+from iamraw.headlines import PagesHeadlineList
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import Toc
