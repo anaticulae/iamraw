@@ -18,6 +18,9 @@ from serializeraw.border import dump_boundingboxes
 from serializeraw.border import dump_pageborders
 from serializeraw.border import load_boundingboxes
 from serializeraw.border import load_pageborders
+# boxedcontent
+from serializeraw.boxedcontent import dump_boxedcontent
+from serializeraw.boxedcontent import load_boxedcontent
 # boxes
 from serializeraw.boxes import dump_boxes
 from serializeraw.boxes import dump_horizontals
