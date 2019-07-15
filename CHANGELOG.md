@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v1.3.0
+
+### Feature
+
+* add method to load and dump parse text(list, boxed, table...) (2356ae2fc525)
+* move dump/load list from `hey` project (68d077e94ea8)
+* move dump/load headlines from `hey` project (a47c49ac7495)
+* move dump/load boxedcontent from `hey` (d02e50e164c2)
+
 ## v1.2.0
 
 ### Feature
