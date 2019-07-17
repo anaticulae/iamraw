@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.3.2
+
+### Feature
+
+* move method to load and dump pagesnumber from `groupme` project (ad37e4625eb1)
+
 ## v1.3.1
 
 ### Feature
