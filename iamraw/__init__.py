@@ -53,6 +53,10 @@ from iamraw.headlines import PagesHeadlineList
 # list
 from iamraw.list import ListType
 from iamraw.list import PageList
+# sections
+from iamraw.sections import AreaItem
+from iamraw.sections import DocumentSection
+from iamraw.sections import Sections
 # text
 from iamraw.text import DOT
 from iamraw.text import ChapterText
