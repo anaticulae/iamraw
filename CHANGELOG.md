@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.3.1
+
+### Feature
+
+* move methods to dump and load sections from `hey` (624fd59a9cab)
+
 ## v1.3.0
 
 ### Feature
