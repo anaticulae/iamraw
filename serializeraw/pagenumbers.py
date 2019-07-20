@@ -30,9 +30,10 @@ def dump_pagenumbers(items) -> str:
             content, key=lambda number: number[0])]
         return items
 
-    try:
+    if not isinstance(items, tuple):
+        # single
         result = raw(items)
-    except ValueError:
+    else:
         left, right = items
         result = {
             'left': raw(left),
