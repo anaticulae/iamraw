@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.3.4
+
+### Fix
+
+* fix error when dumping empty pagenumbers of double page document (d7fa1f23b0eb)
+
 ## v1.3.3
 
 ## v1.3.2
