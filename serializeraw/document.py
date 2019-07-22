@@ -22,6 +22,8 @@ from iamraw import Line
 from iamraw import Page
 from iamraw import PageObject
 from iamraw import TextContainer
+from serializeraw.border import size_fromraw
+from serializeraw.border import size_toraw
 
 
 def _load_pageobject(content: str):
@@ -82,19 +84,22 @@ def _dump_textcontainer(container: TextContainer):
 
 
 def _load_textcontainer(content) -> TextContainer:
-
     lines = [_load_line(item) for item in content]
     return TextContainer(lines=lines)
 
 
 def _load_document(content):
-    document = Document()
-    document.pages = [loadme(Page, item) for item in content['pages']]
-    return document
+    dimension = size_fromraw(content['dimension'])
+    pages = [loadme(Page, item) for item in content['pages']]
+    result = Document(dimension=dimension, pages=pages)
+    return result
 
 
 def _dump_document(document: Document) -> dict:
+    assert document
+    assert document.dimension, str(document.dimension)
     result = {
+        'dimension': size_toraw(document.dimension),
         'pages': [dumper(item) for item in document.pages],
     }
     return result

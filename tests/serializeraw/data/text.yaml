@@ -1,3 +1,4 @@
+dimension: '612.0, 792.0'
 pages:
 - children:
   - - TextContainer
