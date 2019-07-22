@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.3.6
+
+### Feature
+
+* extend document loader/dumper with `pagesize` (ac3922469fd2)
+
 ## v1.3.5
 
 ## v1.3.4
