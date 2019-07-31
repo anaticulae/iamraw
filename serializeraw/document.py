@@ -10,8 +10,8 @@
 from functools import lru_cache
 
 from configo import CACHE_SMALL
+from utila import error
 from utila import from_raw_or_path
-from utila import logging_error
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -136,7 +136,7 @@ def dumper(content):
     try:
         dumpy, _ = DUMP_LOAD[key]
     except KeyError as error:
-        logging_error('Could not dump %s' % error)
+        error('Could not dump %s' % error)
         return None
     else:
         return dumpy(content)
@@ -146,7 +146,7 @@ def loadme(structure, data):
     try:
         _, loady = DUMP_LOAD[structure.__name__]
     except KeyError as error:
-        logging_error('Could not load %s' % error)
+        error('Could not load %s' % error)
         return None
     else:
         return loady(data)

@@ -9,7 +9,7 @@
 
 from collections import namedtuple
 
-from utila import logging_error
+from utila import error
 
 Border = namedtuple('Border', 'left right top bottom')
 PageSize = namedtuple('PageSize', 'width height')
@@ -31,6 +31,6 @@ def validate(items) -> bool:
         for itemindex, check in enumerate(item):
             if check is not None and check < 0:
                 msg = 'invalid field(%d, %d): %r' % (index, itemindex, check)
-                logging_error(msg)
+                error(msg)
                 valid = False
     return valid
