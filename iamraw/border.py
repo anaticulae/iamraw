@@ -12,7 +12,6 @@ from collections import namedtuple
 from utila import error
 
 Border = namedtuple('Border', 'left right top bottom')
-PageSize = namedtuple('PageSize', 'width height')
 
 
 def validate(items) -> bool:

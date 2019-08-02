@@ -20,7 +20,6 @@ from iamraw.annotation import hyperlink_annotations
 from iamraw.annotation import pagelink_annotations
 # border
 from iamraw.border import Border
-from iamraw.border import PageSize
 # boxes
 from iamraw.boxes import Box
 from iamraw.boxes import HorizontalLine
@@ -31,6 +30,7 @@ from iamraw.document.document import Document
 from iamraw.document.page import Char
 from iamraw.document.page import Line
 from iamraw.document.page import Page
+from iamraw.document.page import PageSize
 from iamraw.document.page import TextContainer
 from iamraw.document.page import UnicodeChar
 from iamraw.document.page import VirtualChar

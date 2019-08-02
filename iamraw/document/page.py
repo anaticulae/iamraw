@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from collections import namedtuple
 from contextlib import suppress
 from dataclasses import dataclass
 from dataclasses import field
@@ -15,6 +16,8 @@ from typing import List
 
 from iamraw.document.utils import BoundingBox
 from iamraw.document.utils import Boxed
+
+PageSize = namedtuple('PageSize', 'width height')
 
 
 @dataclass
