@@ -15,7 +15,7 @@ from typing import List
 from utila import NEWLINE
 
 from iamraw.document.page import Page
-from iamraw.document.utils import BoundingBox
+from iamraw.document.page import PageSize
 
 
 @dataclass
@@ -23,7 +23,7 @@ class Document:
     """A document describe a parsed PDF file. It is possbile to iterate over
     the different pages to inspect the parsed children.
     """
-    dimension: BoundingBox = None
+    dimension: PageSize = None
     pages: List[Page] = field(default_factory=list)
 
     @property
