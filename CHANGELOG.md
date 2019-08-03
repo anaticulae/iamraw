@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.3.16
+
+### Fix
+
+* add missing `DocumentSection` `Unknown` (a2eed2a64e80)
+
 ## v1.3.15
 
 ### Fix
