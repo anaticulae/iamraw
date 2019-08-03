@@ -26,6 +26,7 @@ from iamraw.sections import Table
 from iamraw.sections import TableOfContent
 from iamraw.sections import Text
 from iamraw.sections import TitlePage
+from iamraw.sections import Unknown
 from iamraw.sections import WhitePage
 
 CLASSNAME = '__class__'
@@ -65,8 +66,19 @@ def load_sections(content: str) -> Sections:
     def generate_ctor():
         """Create table with name[constructor]"""
         items = [
-            Appendix, Chapter, Content, DocumentSection, Index, Introduction,
-            Sections, Table, TableOfContent, Text, TitlePage, WhitePage
+            Appendix,
+            Chapter,
+            Content,
+            DocumentSection,
+            Index,
+            Introduction,
+            Sections,
+            Table,
+            TableOfContent,
+            Text,
+            TitlePage,
+            Unknown,
+            WhitePage,
         ]
         return {str(item.__name__): item for item in items}
 
