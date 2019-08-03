@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.3.15
+
+### Fix
+
+* fix datatype of document (a06743f7a582)
+
 ## v1.3.14
 
 ## v1.3.13
