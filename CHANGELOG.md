@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.4.0
+
+### Feature
+
+* extend font style attributes belong to pdf 1.7 standard (52098874abaa)
+
 ## v1.3.16
 
 ### Fix
