@@ -27,9 +27,22 @@ class Style(Enum):
 
 
 class Stretch(Enum):
+    # PDF 32000-1:2008 - Table 122
+    ULTRACONDENSED = auto()
+    EXTRACONDENSED = auto()
+
     CONDENSED = auto()
-    REGULAR = auto()
-    EXTENDED = auto()
+    SEMICONDENSED = auto()
+
+    NORMAL = auto()
+    REGULAR = auto()  #?
+
+    SEMIEXPANDED = auto()
+    EXPANDED = auto()
+
+    EXTRAEXPANDED = auto()
+    ULTRAEXPANDED = auto()
+    EXTENDED = auto()  #?
 
 
 DEFAULT_WEIGHT = Weight.MEDIUM
