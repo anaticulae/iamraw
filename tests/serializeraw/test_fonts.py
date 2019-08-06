@@ -11,7 +11,6 @@ from yaml import FullLoader
 from yaml import load
 
 from iamraw import Font
-from iamraw import Stretch
 from iamraw import Style
 from iamraw import Weight
 from serializeraw import dump_font_content
@@ -77,3 +76,19 @@ def test_fonts_remove_default_while_dumping():
     third_keys = loaded[2]['font']
     assert third_keys
     assert 'stretch' not in third_keys, str(third_keys)
+
+
+def test_fonts_dump_and_load_none():
+    header_with_none = [
+        Font(
+            name='WLXADN+NimbusSanL',
+            scale=31.1,
+            weight=Weight.BOLD,
+            stretch=None,
+            style=None,
+        ),
+    ]
+    dumped = dump_font_header(header_with_none)
+    loaded = load_font_header(dumped)
+
+    assert loaded == header_with_none, str(loaded)

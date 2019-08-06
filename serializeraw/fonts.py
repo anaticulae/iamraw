@@ -42,9 +42,9 @@ def dump_font_header(fonts) -> str:
             'font': {
                 'name': item.name,
                 'scale': item.scale,
-                'stretch': item.stretch.name,
-                'style': item.style.name,
-                'weight': item.weight.name,
+                'stretch': item.stretch.name if item.stretch else 'NONE',
+                'style': item.style.name if item.style else 'NONE',
+                'weight': item.weight.name if item.weight else 'NONE',
             },
         }
         # do not store default value in yaml representation
@@ -56,7 +56,12 @@ def dump_font_header(fonts) -> str:
 
 @lru_cache(CACHE_SMALL)
 def load_font_header(content):
-    """Load font header from raw string representation"""
+    """Load font header from raw string representation.
+
+    There are 3 different states to load. If the key is not defined, the
+    `default` value is used. If the value is `NONE` is it replaced by `None`.
+    Third, if the state is defined the state is loaded.
+    """
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
 
@@ -64,9 +69,18 @@ def load_font_header(content):
     for item in loaded:
         fontraw = item['font']
 
-        weight = Weight[fontraw.get('weight', DEFAULT_WEIGHT.name)]
-        stretch = Stretch[fontraw.get('stretch', DEFAULT_STRETCH.name)]
-        style = Style[fontraw.get('style', DEFAULT_STYLE.name)]
+        def parse(raw, ctor, default):
+            key = str(default.__class__.__name__.lower())
+            try:
+                if raw[key] == 'NONE':
+                    return None
+                return ctor[raw[key]]
+            except KeyError:
+                return default
+
+        weight = parse(fontraw, Weight, DEFAULT_WEIGHT)
+        stretch = parse(fontraw, Stretch, DEFAULT_STRETCH)
+        style = parse(fontraw, Style, DEFAULT_STYLE)
 
         font = Font(
             name=fontraw['name'],
