@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.4.1
+
+### Feature
+
+* add dump and font `None` style, stretch and weight (e90282ee6db4)
+
 ## v1.4.0
 
 ### Feature
