@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.5.0
+
+### Feature
+
+* add page number to save chunks of annotation (8d33ac652a0f)
+
 ## v1.4.3
 
 ## v1.4.2
