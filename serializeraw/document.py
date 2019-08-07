@@ -43,12 +43,11 @@ def _dump_char(value: Char) -> str:
 
 
 def _load_page(content):
-    number = content['number']
+    pagenumber = content['page']
     children = content['children']
 
-    page = Page(number)
+    page = Page(pagenumber)
     for class_, item_content in children:
-
         if class_ == TextContainer.__name__:
             page.children.append(loadme(TextContainer, item_content))  # pylint:disable=E1101
 
@@ -59,7 +58,7 @@ def _load_page(content):
 
 def _dump_page(page: Page):
     result = {
-        'number': page.number,
+        'page': page.number,
         'children': [dumper(item) for item in page.children],
     }
     return result

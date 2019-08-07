@@ -172,7 +172,7 @@ pages:
     - <LTLine 541.893,93.187,541.893,226.527>
   - - PageObject
     - <LTLine 75.985,95.279,543.985,95.279>
-  number: 1
+  page: 1
 - children:
   - - TextContainer
     - - '1 The Short Explanation
@@ -326,7 +326,7 @@ pages:
     - - '2
 
         '
-  number: 2
+  page: 2
 - children:
   - - TextContainer
     - - '2.2 Make sure you specify the proper version support in your setup.py file
@@ -481,7 +481,7 @@ pages:
     - - '3
 
         '
-  number: 3
+  page: 3
 - children:
   - - TextContainer
     - - 'Division
@@ -695,7 +695,7 @@ pages:
     - <LTLine 372.725,125.293,372.725,137.248>
   - - PageObject
     - <LTLine 239.076,125.093,372.924,125.093>
-  number: 4
+  page: 4
 - children:
   - - TextContainer
     - - 'This allows your code to work with only text internally and thus eliminates
@@ -851,7 +851,7 @@ pages:
     - - '5
 
         '
-  number: 5
+  page: 5
 - children:
   - - TextContainer
     - - 'import sys
@@ -1041,7 +1041,7 @@ pages:
     - <LTLine 68.613,293.527,543.387,293.527>
   - - PageObject
     - <LTLine 68.613,251.285,543.387,251.285>
-  number: 6
+  page: 6
 - children:
   - - TextContainer
     - - "projects \u2013 directly or indirectly \u2013 are blocking you from supporting\
@@ -1155,4 +1155,4 @@ pages:
     - - '7
 
         '
-  number: 7
+  page: 7
