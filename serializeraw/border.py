@@ -21,9 +21,6 @@ from yaml import load
 from iamraw import Border
 from iamraw import PageSize
 
-# round results to 2 digits
-NDIGITS = 2
-
 
 def dump_boundingboxes(boxes):
     simple = [{
