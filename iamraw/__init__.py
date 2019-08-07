@@ -20,6 +20,9 @@ from iamraw.annotation import hyperlink_annotations
 from iamraw.annotation import pagelink_annotations
 # border
 from iamraw.border import Border
+# boounding
+from iamraw.bounding import BoundingBox
+from iamraw.bounding import common_box
 # boxes
 from iamraw.boxes import Box
 from iamraw.boxes import HorizontalLine
@@ -35,10 +38,8 @@ from iamraw.document.page import TextContainer
 from iamraw.document.page import UnicodeChar
 from iamraw.document.page import VirtualChar
 # utils
-from iamraw.document.utils import BoundingBox
 from iamraw.document.utils import Boxed
 from iamraw.document.utils import PageObject
-from iamraw.document.utils import common_box
 # fonts
 from iamraw.fonts import DEFAULT_STRETCH
 from iamraw.fonts import DEFAULT_STYLE

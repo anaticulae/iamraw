@@ -22,33 +22,6 @@ from iamraw import Border
 from iamraw import PageSize
 
 
-def dump_boundingboxes(boxes):
-    simple = [{
-        'pages':
-        page,
-        'content': [{
-            'item': index,
-            'box': '%.2f %.2f %.2f %.2f' % tuple(box)
-        } for index, box in pagebox],
-    } for page, pagebox in enumerate(boxes)]
-    dumped = dump(simple)
-    return dumped
-
-
-@lru_cache(CACHE_SMALL)
-def load_boundingboxes(content):
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
-    pages = []
-    for page in loaded:
-        borders = [[
-            item['item'],
-            [float(var) for var in item['box'].split()],
-        ] for item in page['content']]
-        pages.append(borders)
-    return pages
-
-
 def dump_pageborders(size: List[PageSize], border: List[Border]) -> str:
     assert len(size) == len(border)
     page = [{
