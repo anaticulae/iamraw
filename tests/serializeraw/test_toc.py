@@ -56,7 +56,7 @@ def test_load_toc_from_path():
     assert toc
 
 
-def test_dump_and_load_toc(toc_example):
+def test_dump_and_load_toc(toc_example):  # pylint:disable=W0621
     """Serialize toc and load it afterwards"""
     root = toc_example
     content = dump_yaml(root)
@@ -65,7 +65,7 @@ def test_dump_and_load_toc(toc_example):
     assert loaded == root
 
 
-def test_load_from_filepath(tmpdir, toc_example):
+def test_load_from_filepath(tmpdir, toc_example):  # pylint:disable=W0621
     """Compare loading from raw string and filepath."""
 
     dumped = dump_yaml(toc_example)

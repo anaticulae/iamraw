@@ -9,6 +9,9 @@
 
 from iamraw import Headline
 
+# TODO: search and refactor strings with automic tool
+# ignore lines to long
+# pylint:disable=C0301
 EXAMPLE = [
     (6, [(Headline(
         text='CHAPTER 1', level=1, rawlevel=None, page=6, container=0), []),

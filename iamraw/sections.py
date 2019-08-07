@@ -49,7 +49,7 @@ class DocumentSection:
     content: List[AreaItem] = field(default_factory=list)
 
     def __getitem__(self, index):
-        return self.content[index]
+        return self.content[index]  #  pylint:disable=E1136
 
     def __len__(self):
         return len(self.content)
@@ -60,13 +60,13 @@ class Sections:
     content: List[DocumentSection] = field(default_factory=list)
 
     def __getitem__(self, index):
-        return self.content[index]
+        return self.content[index]  #  pylint:disable=E1136
 
     def __len__(self):
         return len(self.content)
 
     def append(self, item):
-        self.content.append(item)
+        self.content.append(item)  #  pylint:disable=E1101
 
 
 @dataclass

@@ -48,11 +48,11 @@ def create_toc(outlines: List[Section]):
             # Content is on the same level, therefore they have the same
             # parent together.
             new_one = Section(
-                parent=current.parent,
+                parent=current.parent,  # pylint:disable=E1101
                 level=item.level,
                 title=item.title,
             )
-            add_children(current.parent, new_one)
+            add_children(current.parent, new_one)  # pylint:disable=E1101
         elif level > current.level:
             # The level of the item to add is higher than the current item in
             # table of content, therefore add the new one as a paranet of
@@ -72,7 +72,7 @@ def create_toc(outlines: List[Section]):
             # We have to go up in the tree to find a common parent of both
             # and add item.
             while level <= current.level:
-                current = current.parent
+                current = current.parent  # pylint:disable=E1101
             new_one = Section(
                 parent=current,
                 level=item.level,

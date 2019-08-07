@@ -30,13 +30,13 @@ class PageList:
     area: List[int] = field(default_factory=list)
 
     def append(self, title: str, level: str = None):
-        self.data.append((level, title))
+        self.data.append((level, title))  # pylint:disable=E1101
 
     def __getitem__(self, index):
-        return self.data[index]
+        return self.data[index]  # pylint:disable=E1136
 
     def __len__(self):
         return len(self.data)
 
-    def ltype(self):
+    def ltype(self):  # pylint:disable=R0201
         return ListType.UNDEFINED

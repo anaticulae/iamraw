@@ -58,16 +58,23 @@ def line_from_str(line: str) -> Line:
 @fixture
 def simple_textcontainer():
     container = TextContainer()
+    # pylint:disable=E1101
     container.lines.append(line_from_str('I am a beautiful Line'))
     container.lines.append(line_from_str('I am a more beautiful Line'))
     container.lines.append(line_from_str('I am a the most beautiful Line'))
     return container
 
 
+# TODO: define regex which ignores:
+# def simple_page(simple_textcontainer):  # pylint:disable=W0621
+# in general
+
+
 @fixture
-def simple_page(simple_textcontainer):
+def simple_page(simple_textcontainer):  # pylint:disable=W0621
     page = Page()
 
+    # pylint:disable=E1101
     page.children.append(simple_textcontainer)
     page.children.append(simple_textcontainer)
     page.children.append(simple_textcontainer)
@@ -75,7 +82,7 @@ def simple_page(simple_textcontainer):
     return page
 
 
-def test_dump_and_load_textcontainer(simple_textcontainer):
+def test_dump_and_load_textcontainer(simple_textcontainer):  # pylint:disable=W0621
     container = simple_textcontainer
 
     _, dumped = _dump_textcontainer(container)
@@ -85,7 +92,7 @@ def test_dump_and_load_textcontainer(simple_textcontainer):
     assert loaded == container
 
 
-def test_dump_and_load_page(simple_page):
+def test_dump_and_load_page(simple_page):  # pylint:disable=W0621
     dumped = _dump_page(simple_page)
     loaded = _load_page(dumped)
 
