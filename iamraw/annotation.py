@@ -6,10 +6,10 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+from collections import namedtuple
 from dataclasses import dataclass
 from enum import Enum
 from typing import List
-from typing import Tuple
 
 from iamraw.document.utils import BoundingBox
 
@@ -37,13 +37,13 @@ class PageLink(Annotation):
     typ: Link = Link.INTERNAL
 
 
-PageAnnotation = Tuple[List[PageLink], List[HyperLink]]
+PageAnnotation = namedtuple('PageAnnotation', 'pagelinks,hyperlinks,page')
 PageAnnotations = List[PageAnnotation]
 
 
 def pagelink_annotations(annotations: PageAnnotations) -> List[PageLink]:
-    return [item[0] for item in annotations]
+    return [item.pagelinks for item in annotations]
 
 
 def hyperlink_annotations(annotations: PageAnnotations) -> List[HyperLink]:
-    return [item[1] for item in annotations]
+    return [item.hyperlinks for item in annotations]

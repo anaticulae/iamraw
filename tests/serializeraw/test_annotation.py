@@ -10,44 +10,55 @@
 from iamraw import BoundingBox
 from iamraw import HyperLink
 from iamraw import Link
+from iamraw import PageAnnotation
 from iamraw import PageLink
 from serializeraw import dump_annotations
 from serializeraw import load_annotations
 
 EXAMPLE = [
-    [[],
-     [
-         HyperLink(
-             goal='http://pythondsp.readthedocs.io/en/latest/pythondsp/toc.html',
-             bounds=BoundingBox(x0=351.92, y0=71.00, x1=401.90, y1=80.92),
-             typ=Link.HYPERLINK)
-     ]],
-    [[
-        PageLink(
-            goal='chapter*.1',
-            bounds=BoundingBox(x0=49.40, y0=571.64, x1=137.22, y1=580.50),
-            typ=Link.INTERNAL),
-        PageLink(
-            goal='chapter.1',
-            bounds=BoundingBox(x0=49.40, y0=549.72, x1=147.44, y1=558.59),
-            typ=Link.INTERNAL),
-        PageLink(
-            goal='section.1.1',
-            bounds=BoundingBox(x0=64.34, y0=535.83, x1=146.54, y1=546.62),
-            typ=Link.INTERNAL),
-    ], []],
-    [[],
-     [
-         HyperLink(
-             goal='https://drive.google.com/file/lSkE/view?usp=sharing',
-             bounds=BoundingBox(x0=162.90, y0=456.32, x1=192.31, y1=467.11),
-             typ=Link.HYPERLINK)
-     ]],
+    PageAnnotation(
+        [],
+        [
+            HyperLink(
+                goal=
+                'http://pythondsp.readthedocs.io/en/latest/pythondsp/toc.html',
+                bounds=BoundingBox(x0=351.92, y0=71.00, x1=401.90, y1=80.92),
+                typ=Link.HYPERLINK)
+        ],
+        0,
+    ),
+    PageAnnotation(
+        [
+            PageLink(
+                goal='chapter*.1',
+                bounds=BoundingBox(x0=49.40, y0=571.64, x1=137.22, y1=580.50),
+                typ=Link.INTERNAL),
+            PageLink(
+                goal='chapter.1',
+                bounds=BoundingBox(x0=49.40, y0=549.72, x1=147.44, y1=558.59),
+                typ=Link.INTERNAL),
+            PageLink(
+                goal='section.1.1',
+                bounds=BoundingBox(x0=64.34, y0=535.83, x1=146.54, y1=546.62),
+                typ=Link.INTERNAL),
+        ],
+        [],
+        3  # we do not need `full` ascending pages
+    ),
+    PageAnnotation(
+        [],
+        [
+            HyperLink(
+                goal='https://drive.google.com/file/lSkE/view?usp=sharing',
+                bounds=BoundingBox(x0=162.90, y0=456.32, x1=192.31, y1=467.11),
+                typ=Link.HYPERLINK)
+        ],
+        4,
+    ),
 ]
 
 
 def test_annotation_dump_and_load():
     dumped = dump_annotations(EXAMPLE)
     loaded = load_annotations(dumped)
-
-    assert str(loaded) == str(EXAMPLE)
+    assert loaded == EXAMPLE

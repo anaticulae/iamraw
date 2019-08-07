@@ -17,35 +17,58 @@ from yaml import load
 
 from iamraw import BoundingBox
 from iamraw import HyperLink
+from iamraw import PageAnnotation
 from iamraw import PageAnnotations
 from iamraw import PageLink
 
 
 def dump_annotations(annotations: PageAnnotations) -> str:
+    """Convert PageAnnotations to raw data
+
+    Write list with one PageAnnotation per Page when Page contains any
+    Annotation.
+
+    Args:
+        annotations(PageAnnotations): list of PageAnnotation
+    Returns:
+        dumped raw data
+
+    """
     raw = []
     for page in annotations:
-        pagelink, hyperlink = page
-
+        if not page.pagelinks and not page.hyperlinks:
+            # skip empty pages
+            continue
         rawpage = [{
             'goto': link.goal,
             'bounds': str(link.bounds),
-        } for link in pagelink]
+        } for link in page.pagelinks]
 
         rawhyper = [{
             'href': link.goal,
             'bounds': str(link.bounds),
-        } for link in hyperlink]
+        } for link in page.hyperlinks]
 
-        raw.append([
-            rawpage,
-            rawhyper,
-        ])
+        raw.append({
+            'data': [
+                rawpage,
+                rawhyper,
+            ],
+            'page': page.page
+        })
     dumped = dump(raw)
     return dumped
 
 
 @lru_cache(CACHE_MEDIUM)
 def load_annotations(content: str) -> PageAnnotations:
+    """Load annotations from dumped raw data.
+
+    Args:
+        content(str): dumped raw data
+    Returns:
+        loaded PageAnnotations
+    """
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
     result = []
@@ -53,15 +76,16 @@ def load_annotations(content: str) -> PageAnnotations:
         pagelinks = [
             PageLink(
                 goal=item['goto'], bounds=BoundingBox.from_str(item['bounds']))
-            for item in page[0]
+            for item in page['data'][0]
         ]
         hyperlinks = [
             HyperLink(
                 goal=item['href'], bounds=BoundingBox.from_str(item['bounds']))
-            for item in page[1]
+            for item in page['data'][1]
         ]
-        result.append([
+        result.append(PageAnnotation(
             pagelinks,
             hyperlinks,
-        ])
+            page['page'],
+        ))
     return result
