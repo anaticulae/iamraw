@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.5.1
+
+### Fix
+
+* add type check to ease debugging (7f0ea91c1917)
+
 ## v1.5.0
 
 ### Feature
