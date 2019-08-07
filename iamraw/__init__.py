@@ -22,6 +22,8 @@ from iamraw.annotation import pagelink_annotations
 from iamraw.border import Border
 # boounding
 from iamraw.bounding import BoundingBox
+from iamraw.bounding import PageBoundings
+from iamraw.bounding import PageBoundingsList
 from iamraw.bounding import common_box
 # boxes
 from iamraw.boxes import Box

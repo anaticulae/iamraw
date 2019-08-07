@@ -14,6 +14,9 @@
     |-----------------x1,y1
 """
 from dataclasses import dataclass
+from dataclasses import field
+from typing import List
+from typing import Tuple
 
 from utila import INF
 
@@ -72,3 +75,14 @@ def common_box(items) -> BoundingBox:
         x1 = max(x1, cx1)
         y1 = max(y1, cy1)
     return BoundingBox.from_list([x0, y0, x1, y1])
+
+
+@dataclass
+class PageBoundings:
+    # list of `BoundingBox`es on current `page`
+    boundings: List[Tuple[int, BoundingBox]] = field(default_factory=list)
+    # current page number
+    page: int = 0
+
+
+PageBoundingsList = List[PageBoundings]

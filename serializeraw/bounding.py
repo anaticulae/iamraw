@@ -15,29 +15,37 @@ from yaml import FullLoader
 from yaml import dump
 from yaml import load
 
+from iamraw import PageBoundings
+from iamraw import PageBoundingsList
 
-def dump_boundingboxes(boxes):
-    simple = [{
-        'page':
-        page,
-        'content': [{
-            'item': index,
-            'box': '%.2f %.2f %.2f %.2f' % tuple(box)
-        } for index, box in pagebox],
-    } for page, pagebox in enumerate(boxes)]
+
+def dump_boundingboxes(boxes: PageBoundingsList) -> str:
+    simple = []
+    for page in boxes:
+        assert isinstance(page, PageBoundings), type(page)
+        item = {
+            'page':
+            page.page,
+            'content': [{
+                'item': index,
+                'box': '%.2f %.2f %.2f %.2f' % tuple(box)
+            } for index, box in page.boundings],
+        }
+        simple.append(item)
     dumped = dump(simple)
     return dumped
 
 
 @lru_cache(CACHE_SMALL)
-def load_boundingboxes(content):
+def load_boundingboxes(content: str) -> PageBoundingsList:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
     pages = []
     for page in loaded:
-        borders = [[
+        boundings = [[
             item['item'],
             [float(var) for var in item['box'].split()],
         ] for item in page['content']]
-        pages.append(borders)
+        pagenumber = page['page']
+        pages.append(PageBoundings(boundings=boundings, page=pagenumber))
     return pages
