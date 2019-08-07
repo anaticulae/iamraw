@@ -36,6 +36,7 @@ def dump_annotations(annotations: PageAnnotations) -> str:
     """
     raw = []
     for page in annotations:
+        assert isinstance(page, PageAnnotation), type(page)
         if not page.pagelinks and not page.hyperlinks:
             # skip empty pages
             continue
