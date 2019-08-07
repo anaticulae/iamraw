@@ -44,7 +44,7 @@ class Line(Boxed):
 
     @property
     def text(self) -> str:
-        return ''.join([item.value for item in self.chars])
+        return ''.join([item.value for item in self.chars])  # pylint:disable=E1133
 
     def __str__(self):
         return self.text
@@ -53,7 +53,7 @@ class Line(Boxed):
         return str(self)[0:-1]  # remove newline
 
     def __getitem__(self, index):
-        return self.chars[index]
+        return self.chars[index]  # pylint:disable=E1136
 
 
 @dataclass
@@ -62,13 +62,13 @@ class TextContainer(Boxed):
 
     @property
     def text(self):
-        return ''.join([item.text for item in self.lines])
+        return ''.join([item.text for item in self.lines])  # pylint:disable=E1133
 
     def __len__(self):
         return len(self.lines)
 
     def __getitem__(self, index):
-        return self.lines[index]
+        return self.lines[index]  # pylint:disable=E1136
 
 
 @dataclass
@@ -80,17 +80,17 @@ class Page:
     @property
     def text(self):
         result = []
-        for item in self.children:
+        for item in self.children:  # pylint:disable=E1133
             with suppress(AttributeError):
                 result += item.text
         return ''.join(result)
 
     def __repr__(self):
         result = 'Page[%d, %s]\n' % (self.number, self.dimension)
-        for item in self.children:
+        for item in self.children:  # pylint:disable=E1133
             result += '  %s\n' % item
         return result
 
     def __getitem__(self, key):
         """Iterate over children in page"""
-        return self.children[key]
+        return self.children[key]  # pylint:disable=E1136

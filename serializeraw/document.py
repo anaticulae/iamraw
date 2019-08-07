@@ -50,10 +50,10 @@ def _load_page(content):
     for class_, item_content in children:
 
         if class_ == TextContainer.__name__:
-            page.children.append(loadme(TextContainer, item_content))
+            page.children.append(loadme(TextContainer, item_content))  # pylint:disable=E1101
 
         if class_ == PageObject.__name__:
-            page.children.append(loadme(PageObject, item_content))
+            page.children.append(loadme(PageObject, item_content))  # pylint:disable=E1101
     return page
 
 
