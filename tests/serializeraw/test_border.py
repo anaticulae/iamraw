@@ -10,12 +10,9 @@
 from pytest import mark
 
 from iamraw import Border
-from iamraw import PageBoundings
 from iamraw import PageSize
 from iamraw.border import validate
-from serializeraw import dump_boundingboxes
 from serializeraw import dump_pageborders
-from serializeraw import load_boundingboxes
 from serializeraw import load_pageborders
 from serializeraw.border import border_fromraw
 from serializeraw.border import border_toraw
@@ -26,24 +23,17 @@ from tests.serializeraw.fixtures import boxdata_from_pdf
 
 
 def test_border_work(boxdata_from_pdf):  #pylint:disable=W0621
-    assert len(boxdata_from_pdf) == 3
+    assert len(boxdata_from_pdf) == 2
 
 
 def test_dump_and_load_page(boxdata_from_pdf):  #pylint:disable=W0621
-    size, border, _ = boxdata_from_pdf
-    dumped = dump_pageborders(size, border)
-    loaded_size, loaded_border = load_pageborders(dumped)
+    sizeandborders, _ = boxdata_from_pdf
 
-    assert loaded_size == size
-    assert loaded_border == border
+    dumped = dump_pageborders(sizeandborders)
 
+    loaded_sizeandborders = load_pageborders(dumped)
 
-def test_dump_and_load_boundingbox(boxdata_from_pdf):  #pylint:disable=W0621
-    _, __, boxes = boxdata_from_pdf
-    dumped = dump_boundingboxes(boxes)
-    loaded = load_boundingboxes(dumped)
-
-    assert loaded == boxes
+    assert loaded_sizeandborders == sizeandborders
 
 
 @mark.parametrize('size', [
@@ -67,7 +57,10 @@ def test_convert_border(border):
 
 #pylint:disable=W0621
 def test_border_validate_border_and_pages(boxdata_from_pdf):
-    size, border, _ = boxdata_from_pdf
+    sizeandborder, _ = boxdata_from_pdf
+
+    size = [item.size for item in sizeandborder]
+    border = [item.border for item in sizeandborder]
 
     valid_size = validate(size)
     valid_border = validate(border)

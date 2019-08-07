@@ -56,6 +56,9 @@ from iamraw.headlines import PagesHeadlineList
 # list
 from iamraw.list import ListType
 from iamraw.list import PageList
+# pages
+from iamraw.page import PageSizeBorder
+from iamraw.page import PageSizeBorderList
 # sections
 from iamraw.sections import AreaItem
 from iamraw.sections import DocumentSection

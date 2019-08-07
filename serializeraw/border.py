@@ -8,8 +8,6 @@
 # =============================================================================
 
 from functools import lru_cache
-from typing import List
-from typing import Tuple
 
 from configo import CACHE_SMALL
 from utila import debug
@@ -20,21 +18,23 @@ from yaml import load
 
 from iamraw import Border
 from iamraw import PageSize
+from iamraw import PageSizeBorder
+from iamraw import PageSizeBorderList
 
 
-def dump_pageborders(size: List[PageSize], border: List[Border]) -> str:
-    assert len(size) == len(border)
+# def dump_pageborders(size: List[PageSize], border: List[Border]) -> str:
+def dump_pageborders(sizeandborders: PageSizeBorderList) -> str:
     page = [{
-        'number': index,
-        'size': size_toraw(size),
-        'border': border_toraw(border),
-    } for index, (size, border) in enumerate(zip(size, border))]
+        'page': item.page,
+        'size': size_toraw(item.size),
+        'border': border_toraw(item.border),
+    } for item in sizeandborders]
     dumped = dump(page)
     return dumped
 
 
 @lru_cache(CACHE_SMALL)
-def load_pageborders(content: str) -> Tuple[List[PageSize], List[Border]]:
+def load_pageborders(content: str) -> PageSizeBorderList:
     """Load pdf page size and content border from raw data
 
     This method loads 2 lists with items for every single page. The first list
@@ -52,11 +52,13 @@ def load_pageborders(content: str) -> Tuple[List[PageSize], List[Border]]:
     """
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
-    size, border = [], []
+    result = []
     for item in loaded:
-        size.append(size_fromraw(item['size']))
-        border.append(border_fromraw(item['border']))
-    return size, border
+        page = item['page']
+        size = size_fromraw(item['size'])
+        border = border_fromraw(item['border'])
+        result.append(PageSizeBorder(size=size, border=border, page=page))
+    return result
 
 
 def size_toraw(size: PageSize) -> str:
