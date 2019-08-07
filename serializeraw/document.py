@@ -134,8 +134,8 @@ def dumper(content):
     key = content.__class__.__name__
     try:
         dumpy, _ = DUMP_LOAD[key]
-    except KeyError as error:
-        error('Could not dump %s' % error)
+    except KeyError as msg:
+        error('Could not dump: %s' % msg)
         return None
     else:
         return dumpy(content)
@@ -144,8 +144,8 @@ def dumper(content):
 def loadme(structure, data):
     try:
         _, loady = DUMP_LOAD[structure.__name__]
-    except KeyError as error:
-        error('Could not load %s' % error)
+    except KeyError as msg:
+        error('Could not load: %s' % msg)
         return None
     else:
         return loady(data)
