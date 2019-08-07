@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.5.2
+
+### Feature
+
+* add page number to dump/load_boundingboxes (0d869a3793f1)
+
 ## v1.5.1
 
 ### Fix
