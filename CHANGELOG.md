@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.5.3
+
+### Feature
+
+* add page number to page border and bounding (f0995331e968)
+
+### Fix
+
+* fix missing utila API change (7d4734aefd19)
+
 ## v1.5.2
 
 ### Feature
