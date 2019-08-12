@@ -7,10 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from collections import namedtuple
 from dataclasses import dataclass
 from dataclasses import field
 from enum import Enum
 from enum import auto
+from typing import List
+
+PageFontContent = namedtuple('PageFontContent', 'content page')
+PageFontContents = List[PageFontContent]
 
 
 class Weight(Enum):

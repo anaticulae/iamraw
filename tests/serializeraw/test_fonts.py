@@ -11,6 +11,7 @@ from yaml import FullLoader
 from yaml import load
 
 from iamraw import Font
+from iamraw import PageFontContent
 from iamraw import Style
 from iamraw import Weight
 from serializeraw import dump_font_content
@@ -19,10 +20,27 @@ from serializeraw import load_font_content
 from serializeraw import load_font_header
 
 FONT_CONTENT = [
-    [(1, 0, 0, 0), (2, 0, 0, 1), (3, 0, 0, 2), (3, 0, 12, 3)],
-    [],
-    [(1, 0, 0, 4), (4, 1, 0, 5), (5, 0, 0, 6), (8, 1, 0, 5), (9, 0, 0, 6),
-     (17, 0, 0, 5), (17, 0, 1, 7)],
+    PageFontContent(
+        content=[
+            (1, 0, 0, 0),
+            (2, 0, 0, 1),
+            (3, 0, 0, 2),
+            (3, 0, 12, 3),
+        ],
+        page=3,
+    ),
+    PageFontContent(
+        content=[
+            (1, 0, 0, 4),
+            (4, 1, 0, 5),
+            (5, 0, 0, 6),
+            (8, 1, 0, 5),
+            (9, 0, 0, 6),
+            (17, 0, 0, 5),
+            (17, 0, 1, 7),
+        ],
+        page=5,
+    ),
 ]
 
 FONT_HEADER = [

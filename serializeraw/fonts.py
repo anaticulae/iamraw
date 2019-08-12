@@ -19,6 +19,8 @@ from iamraw import DEFAULT_STRETCH
 from iamraw import DEFAULT_STYLE
 from iamraw import DEFAULT_WEIGHT
 from iamraw import Font
+from iamraw import PageFontContent
+from iamraw import PageFontContents
 from iamraw import Stretch
 from iamraw import Style
 from iamraw import Weight
@@ -93,15 +95,16 @@ def load_font_header(content):
     return fonts
 
 
-def dump_font_content(pages):
+def dump_font_content(pages: PageFontContents) -> str:
+    assert pages
     result = []
-    for index, page in enumerate(pages):
+    for page in pages:
         items = []
-        for item in page:
+        for item in page.content:
             raw = '%d %d %d %d' % item  #  (container, line, char, fontkey)
             items.append(raw)
         result.append({
-            'page': index,
+            'page': page.page,
             'fonts': items,
         })
     dumped = dump(result)
@@ -114,8 +117,9 @@ def load_font_content(content):
     loaded = load(content, Loader=FullLoader)
     result = []
     for page in loaded:
+        number = int(page['page'])
         item = []
         for fontraw in page['fonts']:
             item.append(tuple([int(item) for item in fontraw.split()]))
-        result.append(item)
+        result.append(PageFontContent(content=item, page=number))
     return result
