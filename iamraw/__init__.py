@@ -31,22 +31,23 @@ from iamraw.boxes import HorizontalLine
 from iamraw.boxes import PagesWithBoxList
 from iamraw.boxes import PagesWithHorizontalList
 # document
-from iamraw.document.document import Document
-from iamraw.document.page import Char
-from iamraw.document.page import Line
-from iamraw.document.page import Page
-from iamraw.document.page import PageSize
-from iamraw.document.page import TextContainer
-from iamraw.document.page import UnicodeChar
-from iamraw.document.page import VirtualChar
-# utils
-from iamraw.document.utils import Boxed
-from iamraw.document.utils import PageObject
+from iamraw.document import Boxed
+from iamraw.document import Char
+from iamraw.document import Document
+from iamraw.document import Line
+from iamraw.document import Page
+from iamraw.document import PageObject
+from iamraw.document import PageSize
+from iamraw.document import TextContainer
+from iamraw.document import UnicodeChar
+from iamraw.document import VirtualChar
 # fonts
 from iamraw.fonts import DEFAULT_STRETCH
 from iamraw.fonts import DEFAULT_STYLE
 from iamraw.fonts import DEFAULT_WEIGHT
 from iamraw.fonts import Font
+from iamraw.fonts import PageFontContent
+from iamraw.fonts import PageFontContents
 from iamraw.fonts import Stretch
 from iamraw.fonts import Style
 from iamraw.fonts import Weight

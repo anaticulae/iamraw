@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import List
 
-from iamraw.document.utils import BoundingBox
+from iamraw.document import BoundingBox
 
 
 class Link(Enum):

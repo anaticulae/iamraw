@@ -9,7 +9,7 @@
 from dataclasses import dataclass
 from typing import List
 
-from iamraw.document.utils import Boxed
+from iamraw.document import Boxed
 
 
 @dataclass
