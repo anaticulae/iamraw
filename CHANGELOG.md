@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.5.4
+
+### Feature
+
+* add page number to font serializer (868a0bfb9c32)
+
 ## v1.5.3
 
 ### Feature
