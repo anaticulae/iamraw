@@ -6,8 +6,17 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
-"""
-Package to load and store raw objects as yaml files.
+"""Package to load and store raw objects as yaml files.
+
+Reuqired environment variables:
+
+PYTHONHASHSEED:
+
+    This packages requires to set `PYTHONHASHSEED` to ensure that using the
+    buildin function `hash` always generates the equal value. If
+    `PYTHONHASHSEED` is not set, a random seed is used and therefore
+    serializing data is not possible.
+
 """
 
 # annotation
