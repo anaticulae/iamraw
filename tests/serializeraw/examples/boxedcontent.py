@@ -9,6 +9,7 @@
 
 from iamraw import BoundingBox
 
+# pylint:disable=C0301
 EXAMPLE = [
     (9, [(0, 0, [[(BoundingBox(x0=68.61, y0=140.62, x1=543.39, y1=223.71),
                    (1, [(BoundingBox(x0=72.00, y0=143.40, x1=179.60, y1=152.80),

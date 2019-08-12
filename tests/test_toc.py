@@ -44,7 +44,7 @@ def test_create_toc():
 
     assert_children(root, 3)
 
-    first_chapter = root.children[0]
+    first_chapter = root.children[0]  # pylint:disable=E1136
     assert_children(first_chapter, 3)
 
     first_section = first_chapter.children[0]
@@ -52,9 +52,9 @@ def test_create_toc():
     second_section = first_chapter.children[1]
     assert_children(second_section, 3)
 
-    second_chapter = root.children[1]
+    second_chapter = root.children[1]  # pylint:disable=E1136
     assert_children(second_chapter, 2)
-    third_chapter = root.children[2]
+    third_chapter = root.children[2]  # pylint:disable=E1136
     assert_children(third_chapter, 0)
 
 
@@ -76,13 +76,13 @@ def test_parse_invalid_toc():
     assert root is not None
     assert_children(root, 3)
 
-    invalid_first_chapter = root.children[0]
+    invalid_first_chapter = root.children[0]  # pylint:disable=E1136
     assert_children(invalid_first_chapter, 0)
     assert invalid_first_chapter.title == INVALID_TOC[0].title
     assert invalid_first_chapter.level == INVALID_TOC[0].level
 
-    first_chapter = root.children[1]
-    second_chapter = root.children[2]
+    first_chapter = root.children[1]  # pylint:disable=E1136
+    second_chapter = root.children[2]  # pylint:disable=E1136
 
     assert_children(first_chapter, 1)
     assert_children(second_chapter, 0)
