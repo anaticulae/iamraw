@@ -65,3 +65,16 @@ class Font:
     weight: Weight = field(default=DEFAULT_WEIGHT)
     style: Style = field(default=DEFAULT_STYLE)
     stretch: Stretch = field(default=DEFAULT_STRETCH)
+
+    # TODO: CHECK WHY repr=TRUE DOES NOT GENERATE THE RIGHT BEHAVIOR
+
+    def __repr__(self):
+        ctor = "Font(name='%s', scale=%.2f, weight=%s, style=%s, stretch=%s)"
+        result = ctor % (
+            self.name,
+            self.scale,
+            self.weight,
+            self.style,
+            self.stretch,
+        )
+        return result
