@@ -82,6 +82,6 @@ from iamraw.toc import Section
 from iamraw.toc import Toc
 from iamraw.toc import create_toc
 
-__version__ = '1.5.5'
+__version__ = '1.5.6'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))

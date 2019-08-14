@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.5.6
+
+### Feature
+
+* add specific page number to dumped boxes/horizontals (4794a0c51549)
+* add repr to font to easier write unit tests (20739f310152)
+
+### Documentation
+
+* add information about required environment variables (c96cd32656b0)
+
 ## v1.5.5
 
 ## v1.5.4
