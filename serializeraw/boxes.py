@@ -19,6 +19,8 @@ from yaml import load
 from iamraw import BoundingBox
 from iamraw import Box
 from iamraw import HorizontalLine
+from iamraw import PageContentBoxes
+from iamraw import PageContentHorizontals
 from iamraw import PagesWithBoxList
 from iamraw import PagesWithHorizontalList
 
@@ -26,10 +28,10 @@ from iamraw import PagesWithHorizontalList
 def dump_boxes(pages: PagesWithBoxList):
     assert isinstance(pages, Iterable), type(pages)
     raw = []
-    for index, page in enumerate(pages):
-        result = [str(box.box) for box in page]
+    for page in pages:
+        result = [str(box.box) for box in page.content]
         raw.append({
-            'page': index,
+            'page': page.page,
             'boxes': result,
         })
     dumped = dump(raw)
@@ -39,11 +41,11 @@ def dump_boxes(pages: PagesWithBoxList):
 def dump_horizontals(pages: PagesWithHorizontalList):
     assert isinstance(pages, Iterable), type(pages)
     raw = []
-    for index, page in enumerate(pages):
-        result = [str(horizontal.box) for horizontal in page]
+    for page in pages:
+        result = [str(horizontal.box) for horizontal in page.content]
         raw.append({
-            'page': index,
-            'horizontal': result,
+            'page': page.page,
+            'horizontals': result,
         })
     dumped = dump(raw)
     return dumped
@@ -62,7 +64,9 @@ def load_boxes(content: str) -> PagesWithBoxList:
                  for splitted in item.split()]),)
             for item in page['boxes']
         ]
-        pages.append(box)
+        pagenumber = int(page['page'])
+        item = PageContentBoxes(content=box, page=pagenumber)
+        pages.append(item)
     return pages
 
 
@@ -77,8 +81,10 @@ def load_horizontals(content: str) -> PagesWithHorizontalList:
     loaded = load(content, Loader=FullLoader)
     pages = []
     for page in loaded:
-        box = [
-            HorizontalLine(box=create_box(item)) for item in page['horizontal']
+        horizontals = [
+            HorizontalLine(box=create_box(item)) for item in page['horizontals']
         ]
-        pages.append(box)
+        pagenumber = int(page['page'])
+        item = PageContentHorizontals(content=horizontals, page=pagenumber)
+        pages.append(item)
     return pages

@@ -28,6 +28,8 @@ from iamraw.bounding import common_box
 # boxes
 from iamraw.boxes import Box
 from iamraw.boxes import HorizontalLine
+from iamraw.boxes import PageContentBoxes
+from iamraw.boxes import PageContentHorizontals
 from iamraw.boxes import PagesWithBoxList
 from iamraw.boxes import PagesWithHorizontalList
 # document
