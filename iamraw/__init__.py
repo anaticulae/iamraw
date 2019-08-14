@@ -77,6 +77,9 @@ from iamraw.text import ParagraphContent
 from iamraw.text import ParagraphItem
 from iamraw.text import Paragraphs
 from iamraw.text import Undefined
+# textposition
+from iamraw.textposition import PageContentTextPosition
+from iamraw.textposition import PageContentTextPositions
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import Toc

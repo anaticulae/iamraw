@@ -68,6 +68,9 @@ from serializeraw.sections import load_sections
 # text
 from serializeraw.text import dump_text
 from serializeraw.text import load_text
+# textpostions
+from serializeraw.textposition import dump_textpositions
+from serializeraw.textposition import load_textpositions
 # toc
 from serializeraw.toc import dump_toc
 from serializeraw.toc import load_toc
