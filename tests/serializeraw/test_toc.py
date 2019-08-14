@@ -18,8 +18,8 @@ from utila import file_create
 
 from iamraw import Section
 from iamraw import Toc
-from serializeraw.toc import dump_yaml
-from serializeraw.toc import load_yaml
+from serializeraw.toc import dump_toc
+from serializeraw.toc import load_toc
 from tests.serializeraw import TOC_YAML
 
 
@@ -52,15 +52,15 @@ def toc_example():
 
 
 def test_load_toc_from_path():
-    toc = load_yaml(TOC_YAML)
+    toc = load_toc(TOC_YAML)
     assert toc
 
 
 def test_dump_and_load_toc(toc_example):  # pylint:disable=W0621
     """Serialize toc and load it afterwards"""
     root = toc_example
-    content = dump_yaml(root)
-    loaded = load_yaml(content)
+    content = dump_toc(root)
+    loaded = load_toc(content)
     assert str(loaded) == str(root)
     assert loaded == root
 
@@ -68,14 +68,14 @@ def test_dump_and_load_toc(toc_example):  # pylint:disable=W0621
 def test_load_from_filepath(tmpdir, toc_example):  # pylint:disable=W0621
     """Compare loading from raw string and filepath."""
 
-    dumped = dump_yaml(toc_example)
+    dumped = dump_toc(toc_example)
 
     to_write = join(tmpdir, 'toc.yaml')
 
     file_create(to_write, dumped)
 
-    from_file = load_yaml(to_write)  # from path
-    from_raw = load_yaml(dumped)  # from raw
+    from_file = load_toc(to_write)  # from path
+    from_raw = load_toc(dumped)  # from raw
 
     assert from_file == toc_example
     assert from_file == from_raw
@@ -86,4 +86,4 @@ def test_load_non_existing_toc():
     path = 'C:/iamthepath/toc.yaml'
 
     with raises(ValueError):
-        load_yaml(path)
+        load_toc(path)

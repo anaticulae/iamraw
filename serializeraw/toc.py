@@ -28,7 +28,7 @@ from iamraw import Section
 from iamraw import Toc
 
 
-def dump_yaml(content: Toc) -> str:
+def dump_toc(content: Toc) -> str:
     """Convert table of content to raw yaml representation."""
     assert isinstance(content, Toc)
     raw = _dump(content)
@@ -36,7 +36,7 @@ def dump_yaml(content: Toc) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_yaml(content: str) -> Toc:
+def load_toc(content: str) -> Toc:
     """Load table of content from file or content
 
     Args:
@@ -66,8 +66,7 @@ def _dump(current: Section):
 
 def _load(current: dict, parent: Section):
     """Load from raw python without complex objects"""
-    if not isinstance(current, dict):
-        raise ValueError('Invalid table of content: %s' % current)
+    assert isinstance(current, dict), type(current)
     try:
         result = Section(
             level=current['level'],
