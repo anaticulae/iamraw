@@ -38,9 +38,8 @@ def dump_font_header(fonts) -> str:
             del font['weight']
 
     result = []
-    for index, item in enumerate(fonts):
+    for item in fonts:
         raw = {
-            'index': index,
             'font': {
                 'name': item.name,
                 'scale': item.scale,
