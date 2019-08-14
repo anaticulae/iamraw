@@ -62,5 +62,5 @@ def test_textcontainer_loop(textcontainer: TextContainer):
 
 def test_document_text(page: Page):
     document: Document = Document(pages=[page])
-    assert document.page_count == 1
+    assert len(document) == 1
     assert document.text

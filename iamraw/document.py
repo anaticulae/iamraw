@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import warnings
 from collections import namedtuple
 from contextlib import suppress
 from dataclasses import dataclass
@@ -56,17 +55,10 @@ class Page:
 
 @dataclass
 class Document:
-    """A document describe a parsed PDF file. It is possbile to iterate over
-    the different pages to inspect the parsed children.
-    """
+    """A document describes a parsed PDF file. It is possbile to iterate over
+    the different pages to inspect the parsed children."""
     dimension: PageSize = None
     pages: List[Page] = field(default_factory=list)
-
-    @property
-    def page_count(self):
-        """Return pagecount of this document"""
-        warnings.warn("use __len__", DeprecationWarning)
-        return len(self.pages)
 
     @property
     def text(self):
@@ -89,7 +81,6 @@ class Document:
 
     def __getitem__(self, key):
         """Iterate over pages"""
-
         return self.pages[key]  # pylint: disable=unsubscriptable-object
 
 
