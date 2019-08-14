@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.5.7
+
+### Feature
+
+* skip empty entries (bf3d8f9995a1)
+
 ## v1.5.6
 
 ### Feature
