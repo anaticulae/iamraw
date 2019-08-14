@@ -25,10 +25,12 @@ from iamraw import PagesWithBoxList
 from iamraw import PagesWithHorizontalList
 
 
-def dump_boxes(pages: PagesWithBoxList):
+def dump_boxes(pages: PagesWithBoxList) -> str:
     assert isinstance(pages, Iterable), type(pages)
     raw = []
     for page in pages:
+        if not page.content:
+            continue  # skip empty pages
         result = [str(box.box) for box in page.content]
         raw.append({
             'page': page.page,
@@ -38,10 +40,12 @@ def dump_boxes(pages: PagesWithBoxList):
     return dumped
 
 
-def dump_horizontals(pages: PagesWithHorizontalList):
+def dump_horizontals(pages: PagesWithHorizontalList) -> str:
     assert isinstance(pages, Iterable), type(pages)
     raw = []
     for page in pages:
+        if not page.content:
+            continue  # skip empty pages
         result = [str(horizontal.box) for horizontal in page.content]
         raw.append({
             'page': page.page,
@@ -65,8 +69,8 @@ def load_boxes(content: str) -> PagesWithBoxList:
             for item in page['boxes']
         ]
         pagenumber = int(page['page'])
-        item = PageContentBoxes(content=box, page=pagenumber)
-        pages.append(item)
+        boxes = PageContentBoxes(content=box, page=pagenumber)
+        pages.append(boxes)
     return pages
 
 
