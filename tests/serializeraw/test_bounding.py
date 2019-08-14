@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from iamraw import BoundingBox
 from serializeraw import dump_boundingboxes
 from serializeraw import load_boundingboxes
 # pylint:disable=W0611
@@ -19,3 +20,8 @@ def test_bounding_dump_and_load_boundingbox(boxdata_from_pdf):  #pylint:disable=
     loaded = load_boundingboxes(dumped)
 
     assert loaded == boxes
+
+
+def test_bounding_repr():
+    example = BoundingBox.from_str('1 2 3 4')
+    assert eval(repr(example)) == example  # pylint:disable=eval-used
