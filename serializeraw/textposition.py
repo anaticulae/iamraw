@@ -33,6 +33,9 @@ def load_textpositions(content: str) -> PageContentTextPositions:
             key, position = item.split(maxsplit=1)
             pagedata[int(key)] = BoundingBox.from_str(position)
 
+        if not content:
+            continue
+
         textposition = PageContentTextPosition(
             content=pagedata,
             page=pagenumber,
@@ -46,6 +49,8 @@ def dump_textpositions(items: PageContentTextPositions) -> str:
     for page in items:
         pagenumber = page.page
         content = page.content
+        if not content:
+            continue
         raw = ['%s %s' % (key, str(value)) for key, value in content.items()]
         result.append({
             'content': raw,
