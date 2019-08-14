@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.6.0
+
+### Feature
+
+* add method to dump and load text position (ac7b94a10fde)
+
+### Fix
+
+* remove page_count use __len__ instead (5f954a99cef6)
+* do not save font index (ba33e76b67fb)
+
 ## v1.5.7
 
 ### Feature
