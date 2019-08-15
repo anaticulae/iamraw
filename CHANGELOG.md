@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.7.0
+
+### Feature
+
+* add pages feature to analyze specific pages (3524fa88f1eb)
+
+### Fix
+
+* do not serialize empty pages (b69e9236c7ab)
+
 ## v1.6.0
 
 ### Feature
