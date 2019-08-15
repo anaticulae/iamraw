@@ -104,7 +104,7 @@ def _dump_document(document: Document) -> dict:
     return result
 
 
-def dump_yaml(document: Document) -> str:
+def dump_document(document: Document) -> str:
     """Convert to raw python to have more clear yaml output"""
     assert isinstance(document, Document), type(document)
     raw = dumper(document)
@@ -112,7 +112,7 @@ def dump_yaml(document: Document) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_yaml(content: str) -> Document:
+def load_document(content: str) -> Document:
     """Load document from raw-string or filepath.
 
     If document is loaded from file-path, the content is loaded and parsed

@@ -40,8 +40,8 @@ from serializeraw.boxes import load_horizontals
 from serializeraw.chapter import dump_chapter
 from serializeraw.chapter import load_chapter
 # document
-from serializeraw.document import dump_yaml as dump_document
-from serializeraw.document import load_yaml as load_document
+from serializeraw.document import dump_document
+from serializeraw.document import load_document
 # fonts
 from serializeraw.fonts import dump_font_content
 from serializeraw.fonts import dump_font_header
