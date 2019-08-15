@@ -12,6 +12,7 @@ from typing import List
 
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -42,12 +43,14 @@ def dump_lists(lists: List[str]) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_lists(content: str) -> List[str]:
+def load_lists(content: str, pages=None) -> List[str]:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
+        if should_skip(pagenumber, pages):
+            continue
         content = page['lists']
         newpage = []
         for listinstance in content:

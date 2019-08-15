@@ -12,6 +12,7 @@ from functools import lru_cache
 from configo import CACHE_SMALL
 from utila import error
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -112,7 +113,7 @@ def dump_document(document: Document) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_document(content: str) -> Document:
+def load_document(content: str, pages=None) -> Document:
     """Load document from raw-string or filepath.
 
     If document is loaded from file-path, the content is loaded and parsed
@@ -127,6 +128,20 @@ def load_document(content: str) -> Document:
     """
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
+
+    def remove_skipped(loaded, pages):
+        """Remove pages which are not part of todo list `pages`"""
+        to_process = []
+        for item in loaded['pages']:
+            pagenumber = int(item['page'])
+            if should_skip(pagenumber, pages):
+                continue
+            to_process.append(item)
+        loaded['pages'] = to_process
+        return loaded
+
+    loaded = remove_skipped(loaded, pages)
+
     return loadme(Document, loaded)
 
 

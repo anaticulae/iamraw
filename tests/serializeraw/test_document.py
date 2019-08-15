@@ -28,6 +28,9 @@ def test_load_document_from_path():
     document = load_document(TEXT_YAML)
     assert document
 
+    document = load_document(TEXT_YAML, (1, 2))
+    assert len(document) == 2
+
 
 def test_load_dump_load_document():
     document = load_document(TEXT_YAML)

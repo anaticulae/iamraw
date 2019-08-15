@@ -17,3 +17,6 @@ def test_words_boxed_dump_and_load():
 
     loaded = load_boxedcontent(dumped)
     assert loaded == EXAMPLE
+
+    loaded = load_boxedcontent(dumped, (9, 12, 14))
+    assert len(loaded) == 3

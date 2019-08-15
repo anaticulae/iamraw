@@ -25,7 +25,7 @@ EXAMPLE = [
                 bounds=BoundingBox(x0=351.92, y0=71.00, x1=401.90, y1=80.92),
                 typ=Link.HYPERLINK)
         ],
-        0,
+        page=0,
     ),
     PageAnnotation(
         [
@@ -43,7 +43,7 @@ EXAMPLE = [
                 typ=Link.INTERNAL),
         ],
         [],
-        3  # we do not need `full` ascending pages
+        page=3  # we do not need `full` ascending pages
     ),
     PageAnnotation(
         [],
@@ -53,7 +53,13 @@ EXAMPLE = [
                 bounds=BoundingBox(x0=162.90, y0=456.32, x1=192.31, y1=467.11),
                 typ=Link.HYPERLINK)
         ],
-        4,
+        page=4,
+    ),
+    # test to skip empty PageAnnoation
+    PageAnnotation(
+        [],
+        [],
+        page=6,
     ),
 ]
 
@@ -61,4 +67,9 @@ EXAMPLE = [
 def test_annotation_dump_and_load():
     dumped = dump_annotations(EXAMPLE)
     loaded = load_annotations(dumped)
-    assert loaded == EXAMPLE
+    # empty Annotations are not serialized
+    example_without_last_one = EXAMPLE[:-1]
+    assert loaded == example_without_last_one
+
+    loaded = load_annotations(dumped, pages=(0, 4, 5))
+    assert len(loaded) == 2

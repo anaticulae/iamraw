@@ -65,6 +65,9 @@ def test_dump_and_load_boxes():
     loaded = load_boxes(dumped)
     assert loaded == pages
 
+    loaded = load_boxes(dumped, (2, 3, 4, 5, 6, 7, 8))
+    assert len(loaded) == 7
+
 
 def test_dump_and_load_horizontal():
     pages = [

@@ -11,6 +11,7 @@ from typing import List
 
 from utila import flatten
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -46,7 +47,11 @@ def dump_text(text: List[ChapterText]) -> str:
     return dumped
 
 
-def load_text(content: str, headlines: PagesHeadlineList) -> List[ChapterText]:
+def load_text(
+        content: str,
+        headlines: PagesHeadlineList,
+        pages=None,
+) -> List[ChapterText]:
     """Load text and replace headline reference with current headline
 
     Args:
@@ -63,7 +68,9 @@ def load_text(content: str, headlines: PagesHeadlineList) -> List[ChapterText]:
 
     result = []
     for line in loaded:
-        page, content = line['page'], line['content']
+        page, content = int(line['page']), line['content']
+        if should_skip(page, pages):
+            continue
         pagecontent = []
         for section in content:
             section_content, headline = section['content'], section['headline']

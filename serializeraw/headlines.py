@@ -10,6 +10,7 @@ from functools import lru_cache
 
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -40,20 +41,24 @@ def dump_headlines(headlines: PagesHeadlineList) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_headlines(content: str) -> PagesHeadlineList:
+def load_headlines(content: str, pages=None) -> PagesHeadlineList:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
     result = []
-    for page in loaded:
-        step = []
-        for headline in page['headlines']:
-            step.append(
-                Headline(
-                    container=int(headline['container']),
-                    level=int(headline['level']),
-                    page=headline['page'],
-                    rawlevel=headline['rawlevel'],
-                    text=headline['text'],
-                ))
-        result.append(step)
+    for step in loaded:
+        loadedstep = []
+        for headline in step['headlines']:
+            pagenumber = int(headline['page'])
+            if should_skip(pagenumber, pages):
+                continue
+            item = Headline(
+                container=int(headline['container']),
+                level=int(headline['level']),
+                page=pagenumber,
+                rawlevel=headline['rawlevel'],
+                text=headline['text'],
+            )
+            loadedstep.append(item)
+        if loadedstep:
+            result.append(loadedstep)
     return result

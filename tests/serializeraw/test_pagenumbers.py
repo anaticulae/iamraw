@@ -26,6 +26,9 @@ def test_dump_and_load_pagenumbers(pages):
 
     assert loaded == pages
 
+    loaded = load_pagenumbers(dumped, (tuple(range(30))))
+    assert len(loaded) >= 2
+
 
 SINGLE_PAGES_EMPTY = []
 TWO_PAGES_EMPTY = ([], [])

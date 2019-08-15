@@ -11,6 +11,7 @@ from functools import lru_cache
 
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -111,14 +112,22 @@ def dump_font_content(pages: PageFontContents) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_font_content(content):
+def load_font_content(content, pages=None):
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
     result = []
     for page in loaded:
-        number = int(page['page'])
-        item = []
-        for fontraw in page['fonts']:
-            item.append(tuple([int(item) for item in fontraw.split()]))
-        result.append(PageFontContent(content=item, page=number))
+        pagenumber = int(page['page'])
+        if should_skip(pagenumber, pages):
+            continue
+
+        def parse_font(pagefonts):
+            item = []
+            for fontraw in pagefonts:
+                item.append(tuple([int(item) for item in fontraw.split()]))
+            return item
+
+        pagefonts = page['fonts']
+        fonts = parse_font(pagefonts)
+        result.append(PageFontContent(content=fonts, page=pagenumber))
     return result

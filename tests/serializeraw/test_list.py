@@ -17,5 +17,6 @@ def test_words_list_dump_and_load_lists():
 
     dumped = dump_lists(result)
     loaded = load_lists(dumped)
-
     assert loaded == result
+    loaded = load_lists(dumped, (8, 24))
+    assert len(loaded) == 2

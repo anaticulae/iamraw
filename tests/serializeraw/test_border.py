@@ -32,8 +32,10 @@ def test_dump_and_load_page(boxdata_from_pdf):  #pylint:disable=W0621
     dumped = dump_pageborders(sizeandborders)
 
     loaded_sizeandborders = load_pageborders(dumped)
-
     assert loaded_sizeandborders == sizeandborders
+
+    loaded_sizeandborders = load_pageborders(dumped, pages=(1, 2, 3))
+    assert len(loaded_sizeandborders) == 3
 
 
 @mark.parametrize('size', [

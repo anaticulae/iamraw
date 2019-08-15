@@ -12,6 +12,7 @@ from functools import lru_cache
 
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -44,7 +45,7 @@ def dump_pagenumbers(items) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_pagenumbers(content: str):
+def load_pagenumbers(content: str, pages=None):
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
 
@@ -53,15 +54,17 @@ def load_pagenumbers(content: str):
             return int(item)
         return item
 
-    def fromraw(content):
-        result = [(
-            to_int(item['pdfpage']),
-            BoundingBox.from_str(item['bounding']),
-            to_int(item['detected'],),
-        ) for item in content]
+    def fromraw(content, pages):
+        result = []
+        for item in content:
+            pagenumber = to_int(item['pdfpage'])
+            if should_skip(pagenumber, pages):
+                continue
+            box = BoundingBox.from_str(item['bounding'])
+            detected = to_int(item['detected'])
+            result.append((pagenumber, box, detected))
         return result
 
-    try:
-        return fromraw(loaded)
-    except TypeError:
-        return fromraw(loaded['left']), fromraw(loaded['right'])
+    with suppress(TypeError):
+        return fromraw(loaded, pages)
+    return fromraw(loaded['left'], pages), fromraw(loaded['right'], pages)

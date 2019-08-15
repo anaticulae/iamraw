@@ -12,6 +12,7 @@ from functools import lru_cache
 from configo import CACHE_SMALL
 from utila import debug
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -34,7 +35,7 @@ def dump_pageborders(sizeandborders: PageSizeBorderList) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_pageborders(content: str) -> PageSizeBorderList:
+def load_pageborders(content: str, pages=None) -> PageSizeBorderList:
     """Load pdf page size and content border from raw data
 
     This method loads 2 lists with items for every single page. The first list
@@ -54,10 +55,12 @@ def load_pageborders(content: str) -> PageSizeBorderList:
     loaded = load(content, Loader=FullLoader)
     result = []
     for item in loaded:
-        page = item['page']
+        pagenumber = int(item['page'])
+        if should_skip(pagenumber, pages):
+            continue
         size = size_fromraw(item['size'])
         border = border_fromraw(item['border'])
-        result.append(PageSizeBorder(size=size, border=border, page=page))
+        result.append(PageSizeBorder(size=size, border=border, page=pagenumber))
     return result
 
 

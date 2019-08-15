@@ -11,6 +11,7 @@ from functools import lru_cache
 
 from configo import CACHE_MEDIUM
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -62,11 +63,12 @@ def dump_annotations(annotations: PageAnnotations) -> str:
 
 
 @lru_cache(CACHE_MEDIUM)
-def load_annotations(content: str) -> PageAnnotations:
+def load_annotations(content: str, pages=None) -> PageAnnotations:
     """Load annotations from dumped raw data.
 
     Args:
         content(str): dumped raw data
+        pages(list): pages to load
     Returns:
         loaded PageAnnotations
     """
@@ -74,6 +76,9 @@ def load_annotations(content: str) -> PageAnnotations:
     loaded = load(content, Loader=FullLoader)
     result = []
     for page in loaded:
+        pagenumber = int(page['page'])
+        if should_skip(pagenumber, pages):
+            continue
         pagelinks = [
             PageLink(
                 goal=item['goto'], bounds=BoundingBox.from_str(item['bounds']))
@@ -87,6 +92,6 @@ def load_annotations(content: str) -> PageAnnotations:
         result.append(PageAnnotation(
             pagelinks,
             hyperlinks,
-            page['page'],
+            pagenumber,
         ))
     return result

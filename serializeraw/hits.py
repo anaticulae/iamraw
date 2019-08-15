@@ -11,6 +11,7 @@ from functools import lru_cache
 
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -32,7 +33,7 @@ def dump_hits(border, content):
 
 
 @lru_cache(CACHE_SMALL)
-def load_hits(content):
+def load_hits(content, pages=None):
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
 
@@ -43,6 +44,8 @@ def load_hits(content):
     for hit in hits_raw:
         splitted = hit.split(' ', maxsplit=2)
         page = int(splitted[0])
+        if should_skip(page, pages):
+            continue
         index = int(splitted[1])
         box = border_fromraw(splitted[2])
 

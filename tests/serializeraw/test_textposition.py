@@ -41,3 +41,6 @@ def test_textpositions_dump_and_load_texpositions():
     loaded = load_textpositions(dumped)
 
     assert loaded == EXAMPLE
+
+    loaded = load_textpositions(dumped, (0, 3))
+    assert len(loaded) == 2

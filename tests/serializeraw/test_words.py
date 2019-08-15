@@ -18,3 +18,6 @@ def test_words_dump_and_load_words_result():
     dumped = dump_text(result)
     loaded = load_text(dumped, headlines)
     assert loaded == result
+
+    loaded = load_text(dumped, headlines, (6, 7, 8, 9))
+    assert len(loaded) == 3

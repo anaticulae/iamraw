@@ -11,6 +11,7 @@ from functools import lru_cache
 
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -21,13 +22,15 @@ from iamraw import PageContentTextPositions
 
 
 @lru_cache(CACHE_SMALL)
-def load_textpositions(content: str) -> PageContentTextPositions:
+def load_textpositions(content: str, pages=None) -> PageContentTextPositions:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
 
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
+        if should_skip(pagenumber, pages):
+            continue
         pagedata = {}
         for item in page['content']:
             key, position = item.split(maxsplit=1)

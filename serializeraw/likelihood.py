@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from collections import namedtuple
 from functools import lru_cache
 from typing import List
 

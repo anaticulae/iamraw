@@ -102,6 +102,7 @@ def boxdata_from_pdf():
                 [31, [539.15, 40.18, 544.88, 52.68]],
                 [32, [94.23, 471.61, 525.95, 532.38]],
             ],
-            page=2),
+            page=2,
+        ),
     ]
     return sizesandborders, boxes

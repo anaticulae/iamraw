@@ -73,3 +73,6 @@ def test_headlines_dump_and_load_headlines():
     loaded = load_headlines(dumped)
 
     assert loaded == EXPECTED
+
+    loaded = load_headlines(dumped, tuple(range(10)))
+    assert len(loaded) == 2

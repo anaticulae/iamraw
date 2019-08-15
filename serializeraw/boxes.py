@@ -12,6 +12,7 @@ from typing import Iterable
 
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -56,26 +57,28 @@ def dump_horizontals(pages: PagesWithHorizontalList) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_boxes(content: str) -> PagesWithBoxList:
+def load_boxes(content: str, pages=None) -> PagesWithBoxList:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
 
-    pages = []
+    result = []
     for page in loaded:
+        pagenumber = int(page['page'])
+        if should_skip(pagenumber, pages):
+            continue
         box = [
             Box(box=BoundingBox.from_list(
                 [float(splitted)
                  for splitted in item.split()]),)
             for item in page['boxes']
         ]
-        pagenumber = int(page['page'])
         boxes = PageContentBoxes(content=box, page=pagenumber)
-        pages.append(boxes)
-    return pages
+        result.append(boxes)
+    return result
 
 
 @lru_cache(CACHE_SMALL)
-def load_horizontals(content: str) -> PagesWithHorizontalList:
+def load_horizontals(content: str, pages=None) -> PagesWithHorizontalList:
 
     def create_box(item: str):
         converted = [float(splitted) for splitted in item.split()]
@@ -83,12 +86,14 @@ def load_horizontals(content: str) -> PagesWithHorizontalList:
 
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
-    pages = []
+    result = []
     for page in loaded:
+        pagenumber = int(page['page'])
+        if should_skip(pagenumber, pages):
+            continue
         horizontals = [
             HorizontalLine(box=create_box(item)) for item in page['horizontals']
         ]
-        pagenumber = int(page['page'])
         item = PageContentHorizontals(content=horizontals, page=pagenumber)
-        pages.append(item)
-    return pages
+        result.append(item)
+    return result

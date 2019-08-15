@@ -6,10 +6,8 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-"""
-A simple test to getting started with yaml api and ensure a little bit of
-upgrading external yaml package.
-"""
+"""A simple test to getting started with yaml API and ensure a little bit of
+upgrading external yaml package."""
 
 from yaml import safe_dump
 from yaml import safe_load

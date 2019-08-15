@@ -12,6 +12,7 @@ from functools import lru_cache
 
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -68,7 +69,7 @@ def dump_boxedcontent(boxed) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_boxedcontent(content: str):
+def load_boxedcontent(content: str, pages=None):
 
     def _parse_box_content(line: str):
         """Returns:
@@ -84,7 +85,9 @@ def load_boxedcontent(content: str):
     loaded = load(content, Loader=FullLoader)
     pagedict = defaultdict(list)
     for line in loaded:
-        page = line['page']
+        pagenumber = int(line['page'])
+        if should_skip(pagenumber, pages):
+            continue
         for item in line['content']:
             multiboxed = []
             headlinenumber = item['headlinenumber']
@@ -100,7 +103,7 @@ def load_boxedcontent(content: str):
                     m_content = [_parse_box_content(item) for item in m_content]
                     boxed.append((m_bounding, (boxid, m_content)))
                 multiboxed.append(boxed)
-            pagedict[page].append((
+            pagedict[pagenumber].append((
                 headlinenumber,
                 headlineblocknumber,
                 multiboxed,

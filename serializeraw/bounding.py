@@ -11,6 +11,7 @@ from functools import lru_cache
 
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
+from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -37,15 +38,17 @@ def dump_boundingboxes(boxes: PageBoundingsList) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_boundingboxes(content: str) -> PageBoundingsList:
+def load_boundingboxes(content: str, pages=None) -> PageBoundingsList:
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
-    pages = []
+    result = []
     for page in loaded:
+        pagenumber = int(page['page'])
+        if should_skip(pagenumber, pages):
+            continue
         boundings = [[
             item['item'],
             [float(var) for var in item['box'].split()],
         ] for item in page['content']]
-        pagenumber = page['page']
-        pages.append(PageBoundings(boundings=boundings, page=pagenumber))
-    return pages
+        result.append(PageBoundings(boundings=boundings, page=pagenumber))
+    return result
