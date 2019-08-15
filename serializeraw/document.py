@@ -58,7 +58,7 @@ def _load_page(content):
 
 def _dump_page(page: Page):
     result = {
-        'page': page.number,
+        'page': page.page,
         'children': [dumper(item) for item in page.children],
     }
     return result

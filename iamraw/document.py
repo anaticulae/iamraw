@@ -30,7 +30,7 @@ class PageObject:
 
 @dataclass
 class Page:
-    number: int = 0
+    page: int = 0
     dimension: BoundingBox = None
     children: List[Any] = field(default_factory=list)
 
@@ -43,7 +43,7 @@ class Page:
         return ''.join(result)
 
     def __repr__(self):
-        result = 'Page[%d, %s]\n' % (self.number, self.dimension)
+        result = 'Page[%d, %s]\n' % (self.page, self.dimension)
         for item in self.children:  # pylint:disable=E1133
             result += '  %s\n' % item
         return result
