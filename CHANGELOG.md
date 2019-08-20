@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.7.1
+
+### Feature
+
+* support multiple like hoods on one page (78ed5d5d2464)
+
 ## v1.7.0
 
 ### Feature
