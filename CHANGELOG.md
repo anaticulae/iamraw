@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.7.3
+
+### Feature
+
+* convert single item list to single value (25195df6e6d0)
+
 ## v1.7.2
 
 ## v1.7.1
