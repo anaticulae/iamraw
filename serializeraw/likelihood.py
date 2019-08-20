@@ -7,28 +7,66 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from collections import namedtuple
-from functools import lru_cache
-from typing import List
+import contextlib
+import functools
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
+import yaml
+
+import iamraw
 
 
-def dump_likelihood(likelihoods: List[float]) -> str:
-    """Write list of likelihoods into a single str"""
-    result = ['%.2f' % item for item in likelihoods]
-    dumped = dump(result)
+def dump_likelihood(likelihoods: iamraw.PageContentLikelihoods) -> str:
+    """Dump list of page likehoods"""
+    result = []
+    for page in likelihoods:
+        assert isinstance(page, iamraw.PageContentLikelihood), type(page)
+        content = page.content
+        if not isinstance(content, list):
+            content = [content]
+
+        pageresult = []
+        for single in content:
+            item = {'value': single.value}
+            if single.name:
+                item['name'] = single.name
+            pageresult.append(item)
+
+        if not pageresult:
+            continue
+
+        result.append({
+            'page': page.page,
+            'content': pageresult,
+        })
+    dumped = yaml.dump(result)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
-def load_likelihood(content: str) -> List[float]:
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_likelihood(
+        content: str,
+        pages: tuple = None,
+) -> iamraw.PageContentLikelihoods:
     """Load list of likelihoods from single `content`"""
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
-    result = [float(item) for item in loaded]
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
+
+    result = []
+    for page in loaded:
+        pagenumber = page['page']
+        if utila.should_skip(pagenumber, pages):
+            continue
+        content = page['content']
+        pagecontent = []
+        for item in content:
+            value = item['value']
+            hood = iamraw.Likelihood(value=value)
+            with contextlib.suppress(KeyError):
+                hood.name = item['name']
+            pagecontent.append(hood)
+        if not pagecontent:
+            continue
+        result.append(iamraw.PageContentLikelihood(pagenumber, pagecontent))
     return result

@@ -56,6 +56,10 @@ from iamraw.fonts import Weight
 # headlines
 from iamraw.headlines import Headline
 from iamraw.headlines import PagesHeadlineList
+# likelihood
+from iamraw.likelihood import Likelihood
+from iamraw.likelihood import PageContentLikelihood
+from iamraw.likelihood import PageContentLikelihoods
 # list
 from iamraw.list import ListType
 from iamraw.list import PageList
