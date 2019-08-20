@@ -47,6 +47,7 @@ def dump_likelihood(likelihoods: iamraw.PageContentLikelihoods) -> str:
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_likelihood(
         content: str,
+        singlevalue: bool = True,
         pages: tuple = None,
 ) -> iamraw.PageContentLikelihoods:
     """Load list of likelihoods from single `content`"""
@@ -66,7 +67,7 @@ def load_likelihood(
             with contextlib.suppress(KeyError):
                 hood.name = item['name']
             pagecontent.append(hood)
-        if not pagecontent:
-            continue
+        if len(pagecontent) == 1 and singlevalue:
+            pagecontent = pagecontent[0]
         result.append(iamraw.PageContentLikelihood(pagenumber, pagecontent))
     return result

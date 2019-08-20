@@ -31,6 +31,19 @@ EXAMPLE = [
         content=[],
     ),
 ]
+EXAMPLE_WITH_SINGLE_VALUE = [
+    iamraw.PageContentLikelihood(
+        page=5,
+        content=iamraw.Likelihood(0.1),
+    ),
+    iamraw.PageContentLikelihood(
+        page=6,
+        content=[
+            iamraw.Likelihood(0.1),
+            iamraw.Likelihood('Hello'),
+        ],
+    ),
+]
 
 
 def test_likelihood_dump_and_load():
@@ -39,6 +52,13 @@ def test_likelihood_dump_and_load():
 
     # Dump removes empty page 3
     assert loaded == EXAMPLE[0:2], str(loaded)
+
+
+def test_likelihood_dump_and_load_with_single_value():
+    dumped = serializeraw.dump_likelihood(EXAMPLE_WITH_SINGLE_VALUE)
+    loaded = serializeraw.load_likelihood(dumped)
+    # Dump removes empty page 3
+    assert loaded == EXAMPLE_WITH_SINGLE_VALUE, str(loaded)
 
 
 def test_likelihood_dump_and_load_page2():
