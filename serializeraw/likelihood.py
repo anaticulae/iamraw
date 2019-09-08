@@ -50,7 +50,14 @@ def load_likelihood(
         singlevalue: bool = True,
         pages: tuple = None,
 ) -> iamraw.PageContentLikelihoods:
-    """Load list of likelihoods from single `content`"""
+    """Load list of likelihoods from single `content`
+
+    Args:
+        content(str): dumped str data
+        singlevalue(bool): if true, the PageContentLikelihood is converted to
+                           single item instead of a list with one item
+        pages(tuple): select pages to load; if None load all items
+    """
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.load(content, Loader=yaml.FullLoader)
 
