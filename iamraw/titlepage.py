@@ -1,0 +1,72 @@
+# =============================================================================
+# C O P Y R I G H T
+# -----------------------------------------------------------------------------
+# Copyright (c) 2019 by Helmut Konrad Fahrendholz. All rights reserved.
+# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# use or distribution is an offensive act against international law and may
+# be prosecuted under federal law. Its content is company confidential.
+# =============================================================================
+
+import collections
+import dataclasses
+import enum
+import typing
+
+
+class DocumentType(enum.Enum):
+    NONE = enum.auto()
+    STUDY = enum.auto()
+    BACHELOR = enum.auto()
+    MASTER = enum.auto()
+    DOCTOR = enum.auto()
+    BOOK = enum.auto()
+
+
+THESIS = {
+    DocumentType.STUDY: {
+        'Komplexe Transferaufgabe',
+        'Studienarbeit',
+    },
+    DocumentType.BACHELOR: {
+        'Bachelor',
+        'Bachelorarbeit',
+        'Bachelorthesis',
+    },
+    DocumentType.MASTER: {
+        'Master',
+        'Masterarbeit',
+        'Masterthesis',
+    },
+    DocumentType.DOCTOR: {
+        'Doktor',
+        'Doktorarbeit',
+        'Promotion',
+    },
+}
+
+TitleDate = collections.namedtuple('TitleDate',
+                                   'year month day location valid raw')
+
+Person = collections.namedtuple('Person', 'title name firstname raw')
+
+Matrikel = collections.namedtuple('Matrikel', 'number intro raw')
+
+
+@dataclasses.dataclass
+class Institution:
+    courseofstudies: str = None
+    department: str = None
+    field: str = None
+    institute: str = None
+    university: str = None
+
+
+@dataclasses.dataclass
+class TitlePage:
+    title: str = ''
+    thesis: DocumentType = None
+    date: TitleDate = None
+    author: Person = None
+    matrikel: Matrikel = None
+    examiner: typing.List[Person] = dataclasses.field(default_factory=list)
+    institution: Institution = None

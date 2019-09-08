@@ -84,6 +84,13 @@ from iamraw.text import Undefined
 # textposition
 from iamraw.textposition import PageContentTextPosition
 from iamraw.textposition import PageContentTextPositions
+# title
+from iamraw.titlepage import DocumentType
+from iamraw.titlepage import Institution
+from iamraw.titlepage import Matrikel
+from iamraw.titlepage import Person
+from iamraw.titlepage import TitleDate
+from iamraw.titlepage import TitlePage
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import Toc

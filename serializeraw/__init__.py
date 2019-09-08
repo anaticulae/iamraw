@@ -71,6 +71,9 @@ from serializeraw.text import load_text
 # textpostions
 from serializeraw.textposition import dump_textpositions
 from serializeraw.textposition import load_textpositions
+# titlepage
+from serializeraw.titlepage import dump_titlepage
+from serializeraw.titlepage import load_titlepage
 # toc
 from serializeraw.toc import dump_toc
 from serializeraw.toc import load_toc
