@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.8.0
+
+### Feature
+
+* add TitlePage to store information of title page of document (1c9237cc050a)
+
+### Documentation
+
+* extend interface documentation (be778a89ab9d)
+
 ## v1.7.5
 
 ## v1.7.4
