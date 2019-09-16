@@ -33,6 +33,7 @@ THESIS = {
         'Bachelorthesis',
     },
     DocumentType.MASTER: {
+        'Diplomarbeit',
         'Master',
         'Masterarbeit',
         'Masterthesis',
