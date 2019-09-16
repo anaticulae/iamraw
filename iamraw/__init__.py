@@ -85,6 +85,7 @@ from iamraw.text import Undefined
 from iamraw.textposition import PageContentTextPosition
 from iamraw.textposition import PageContentTextPositions
 # title
+from iamraw.titlepage import THESIS
 from iamraw.titlepage import DocumentType
 from iamraw.titlepage import Institution
 from iamraw.titlepage import Matrikel
