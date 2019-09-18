@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.8.7
+
+### Feature
+
+* add `THESIS` to public API (a66c9d0827fb)
+* add `Diplomarbeit` to Document-Master-Type (2ddd7e43f10f)
+
 ## v1.8.6
 
 ## v1.8.5
