@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.8.8
+
+### Documentation
+
+* add translation of different `Institution` parameter (dfb54e37acbe)
+
 ## v1.8.7
 
 ### Feature
