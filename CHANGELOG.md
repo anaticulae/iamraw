@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.9.0
+
+### Feature
+
+* add method to dump/load footerheader, footnotes (515ad2d3ac3d)
+
 ## v1.8.13
 
 ## v1.8.12
