@@ -53,6 +53,19 @@ from iamraw.fonts import PageFontContents
 from iamraw.fonts import Stretch
 from iamraw.fonts import Style
 from iamraw.fonts import Weight
+# headerfooter
+from iamraw.headerfooter import FixedFooterInformation
+from iamraw.headerfooter import FixedHeaderInformation
+from iamraw.headerfooter import FooterInformation
+from iamraw.headerfooter import FootNote
+from iamraw.headerfooter import HeaderImages
+from iamraw.headerfooter import HeaderInformation
+from iamraw.headerfooter import HeaderTitle
+from iamraw.headerfooter import MovingFooterInformation
+from iamraw.headerfooter import PageContentFooterHeader
+from iamraw.headerfooter import PageInformation
+from iamraw.headerfooter import PagesFooterInformation
+from iamraw.headerfooter import RawText
 # headlines
 from iamraw.headlines import Headline
 from iamraw.headlines import PagesHeadlineList

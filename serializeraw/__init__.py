@@ -47,6 +47,11 @@ from serializeraw.fonts import dump_font_content
 from serializeraw.fonts import dump_font_header
 from serializeraw.fonts import load_font_content
 from serializeraw.fonts import load_font_header
+# headerfooter
+from serializeraw.headerfooter import dump_footnote
+from serializeraw.headerfooter import dump_headerfooter
+from serializeraw.headerfooter import load_footnote
+from serializeraw.headerfooter import load_headerfooter
 # headlines
 from serializeraw.headlines import dump_headlines
 from serializeraw.headlines import load_headlines

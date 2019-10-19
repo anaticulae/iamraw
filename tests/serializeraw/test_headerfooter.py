@@ -1,0 +1,35 @@
+# =============================================================================
+# C O P Y R I G H T
+# -----------------------------------------------------------------------------
+# Copyright (c) 2019 by Helmut Konrad Fahrendholz. All rights reserved.
+# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# use or distribution is an offensive act against international law and may
+# be prosecuted under federal law. Its content is company confidential.
+# =============================================================================
+
+import pytest
+
+import serializeraw
+import tests.serializeraw.examples.footnotes
+import tests.serializeraw.examples.headerfooter
+
+
+def test_footnotes_dump_and_load():
+    notes = tests.serializeraw.examples.footnotes.FOOTNOTES
+
+    for note in notes:
+        dumped = serializeraw.dump_footnote(note)
+        loaded = serializeraw.load_footnote(dumped)
+        assert loaded == note
+
+
+@pytest.mark.parametrize('example', [
+    tests.serializeraw.examples.headerfooter.FOOTER_HEADER,
+    tests.serializeraw.examples.headerfooter.SECOND,
+    tests.serializeraw.examples.headerfooter.THIRD,
+    tests.serializeraw.examples.headerfooter.FOURTH,
+])
+def test_footerheader_dump_and_load(example):
+    dumped = serializeraw.dump_headerfooter(example)
+    loaded = serializeraw.load_headerfooter(dumped)
+    assert example == loaded
