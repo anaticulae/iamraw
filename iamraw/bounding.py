@@ -13,11 +13,13 @@
     |                     |
     |-----------------x1,y1
 """
+import math
 from dataclasses import dataclass
 from dataclasses import field
 from typing import List
 from typing import Tuple
 
+import utila
 from utila import INF
 
 
@@ -47,6 +49,9 @@ class BoundingBox:
             return self.y1
         raise IndexError('index to hight %d > 3' % index)
 
+    def __len__(self):
+        return 4
+
     def __post_init__(self):
         assert self.x0 <= self.x1, '%.2f <= %.2f' % (self.x0, self.x1)
         assert self.y0 <= self.y1, '%.2f <= %.2f' % (self.y0, self.y1)
@@ -64,6 +69,24 @@ class BoundingBox:
         length = len(splitted)
         assert length == 4, 'wrong split length %d for "%s"' % (length, raw)
         return cls.from_list([float(item) for item in splitted])
+
+
+def area(bounding) -> float:
+    """Determine area out of `BoundingBox` or `tuple(4)`
+
+    Args:
+        bounding(BoundingBox/tuple): area to determine size of
+    Returns:
+        size of bounds [ ]
+    """
+
+    assert len(bounding) == 4, str(bounding)
+    height = math.fabs(bounding[2] - bounding[0])
+    width = math.fabs(bounding[1] - bounding[3])
+
+    result = height * width
+    result = utila.roundme(result)
+    return result
 
 
 def common_box(items) -> BoundingBox:

@@ -24,6 +24,7 @@ from iamraw.border import Border
 from iamraw.bounding import BoundingBox
 from iamraw.bounding import PageBoundings
 from iamraw.bounding import PageBoundingsList
+from iamraw.bounding import area
 from iamraw.bounding import common_box
 # boxes
 from iamraw.boxes import Box
