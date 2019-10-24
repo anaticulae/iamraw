@@ -53,6 +53,12 @@ class BoundingBox:
         return 4
 
     def __post_init__(self):
+        # round to clarify coordinate and avoid confusion in math accuracy
+        self.x0 = utila.roundme(self.x0)
+        self.x1 = utila.roundme(self.x1)
+        self.y0 = utila.roundme(self.y0)
+        self.y1 = utila.roundme(self.y1)
+        # ensure correct coordinate relation
         assert self.x0 <= self.x1, '%.2f <= %.2f' % (self.x0, self.x1)
         assert self.y0 <= self.y1, '%.2f <= %.2f' % (self.y0, self.y1)
 

@@ -27,3 +27,8 @@ def test_bounding_dump_and_load_boundingbox(boxdata_from_pdf):  #pylint:disable=
 def test_bounding_repr():
     example = BoundingBox.from_str('1 2 3 4')
     assert eval(repr(example)) == example  # pylint:disable=eval-used
+
+
+def test_bounding_round_coordinate():
+    example = BoundingBox.from_str('1.033 2.22 3.555 4.4')
+    assert example == BoundingBox(1.03, 2.22, 3.56, 4.4)
