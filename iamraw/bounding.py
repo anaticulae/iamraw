@@ -13,23 +13,20 @@
     |                     |
     |-----------------x1,y1
 """
+import dataclasses
 import math
-from dataclasses import dataclass
-from dataclasses import field
-from typing import List
-from typing import Tuple
+import typing
 
 import utila
-from utila import INF
 
 
-@dataclass
+@dataclasses.dataclass
 class BoundingBox:
 
-    x0: float = -INF
-    y0: float = -INF
-    x1: float = INF
-    y1: float = INF
+    x0: float = -utila.INF
+    y0: float = -utila.INF
+    x1: float = utila.INF
+    y1: float = utila.INF
 
     def __repr__(self):
         raw = 'BoundingBox(x0=%.2f, y0=%.2f, x1=%.2f, y1=%.2f)'
@@ -97,7 +94,7 @@ def area(bounding) -> float:
 
 def common_box(items) -> BoundingBox:
     """Determine largest box which contains the border of all `items`"""
-    x0, y0, x1, y1 = INF, INF, -INF, -INF
+    x0, y0, x1, y1 = utila.INF, utila.INF, -utila.INF, -utila.INF
     for (cx0, cy0, cx1, cy1) in items:
         x0 = min(x0, cx0)
         y0 = min(y0, cy0)
@@ -106,12 +103,15 @@ def common_box(items) -> BoundingBox:
     return BoundingBox.from_list([x0, y0, x1, y1])
 
 
-@dataclass
+Boundings = typing.List[typing.Tuple[int, BoundingBox]]
+
+
+@dataclasses.dataclass  # pylint:disable=R0903
 class PageBoundings:
     # list of `BoundingBox`es on current `page`
-    boundings: List[Tuple[int, BoundingBox]] = field(default_factory=list)
+    boundings: Boundings = dataclasses.field(default_factory=list)
     # current page number
     page: int = 0
 
 
-PageBoundingsList = List[PageBoundings]
+PageBoundingsList = typing.List[PageBoundings]
