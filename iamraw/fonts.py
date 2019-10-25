@@ -50,6 +50,16 @@ class Stretch(Enum):
     EXTENDED = auto()  #?
 
 
+def __repr__(self):
+    msg = f'{self.__class__.__module__}.{self.__class__.__name__}.{self.name}'
+    return msg
+
+
+# create manually to have valid python code
+Stretch.__repr__ = __repr__
+Style.__repr__ = __repr__
+Weight.__repr__ = __repr__
+
 DEFAULT_WEIGHT = Weight.MEDIUM
 DEFAULT_STYLE = Style.NORMAL
 DEFAULT_STRETCH = Stretch.REGULAR
@@ -61,20 +71,7 @@ class Font:
     # JCUGNO+NimbusSanL-Bold
     # CQYGZP+NimbusSanL-BoldItal
     name: str
-    scale: float
+    scale: float  # NOTE: Remove scale?
     weight: Weight = field(default=DEFAULT_WEIGHT)
     style: Style = field(default=DEFAULT_STYLE)
     stretch: Stretch = field(default=DEFAULT_STRETCH)
-
-    # TODO: CHECK WHY repr=TRUE DOES NOT GENERATE THE RIGHT BEHAVIOR
-
-    def __repr__(self):
-        ctor = "Font(name='%s', scale=%.2f, weight=%s, style=%s, stretch=%s)"
-        result = ctor % (
-            self.name,
-            self.scale,
-            self.weight,
-            self.style,
-            self.stretch,
-        )
-        return result

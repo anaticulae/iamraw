@@ -7,21 +7,20 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from iamraw import Font
-from iamraw import Stretch
-from iamraw import Style
-from iamraw import Weight
+import iamraw
+import iamraw.fonts
 
 
 def test_fonts_repr():
     """Test that to_str generates valid python code to ease writing tests"""
-    helvetica = Font(name='Helvetica', scale=12.0)
+    expected = iamraw.Font(name='Helvetica', scale=12.0)
 
+    # required imports for eval
     required = {
-        'Weight': Weight,
-        'Style': Style,
-        'Stretch': Stretch,
-        'Font': Font
+        'Font': iamraw.Font,
+        'iamraw': iamraw,
+        'iamraw.fonts': iamraw.fonts,
     }
-    # pylint:disable=eval-used
-    assert eval(str(helvetica), required) == helvetica
+    created = eval(str(expected), required)  # pylint:disable=eval-used
+
+    assert created == expected
