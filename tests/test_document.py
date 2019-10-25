@@ -28,7 +28,7 @@ def line_from_str(line: str) -> Line:
 @fixture
 def textcontainer() -> TextContainer:
     container: TextContainer = TextContainer()
-    append = container.lines.append
+    append = container.lines.append  # pylint:disable=E1101
     append(line_from_str('First'))
     append(line_from_str('Second'))
     append(line_from_str('Third Third Third'))
@@ -36,31 +36,31 @@ def textcontainer() -> TextContainer:
 
 
 @fixture
-def page(textcontainer) -> Page:
-    page: Page = Page()
-    append = page.children.append
+def page(textcontainer) -> Page:  # pylint:disable=W0621
+    page_ = Page()
+    append = page_.children.append  # pylint:disable=E1101
     append(textcontainer)
     append(textcontainer)
     append(textcontainer)
-    return page
+    return page_
 
 
-def test_page_text(page: Page):
+def test_page_text(page: Page):  # pylint:disable=W0621
     content = page.text
     assert len(content.splitlines()) == 9
 
 
-def test_textcontainer_iter(textcontainer: TextContainer):
+def test_textcontainer_iter(textcontainer: TextContainer):  # pylint:disable=W0621
     assert len(textcontainer) == 3
     assert len(textcontainer.text.splitlines()) == len(textcontainer)
 
 
-def test_textcontainer_loop(textcontainer: TextContainer):
+def test_textcontainer_loop(textcontainer: TextContainer):  # pylint:disable=W0621
     for item in textcontainer:
         assert item
 
 
-def test_document_text(page: Page):
+def test_document_text(page: Page):  # pylint:disable=W0621
     document: Document = Document(pages=[page])
     assert len(document) == 1
     assert document.text
