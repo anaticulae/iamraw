@@ -6,7 +6,6 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-
 from collections import namedtuple
 from contextlib import suppress
 from dataclasses import dataclass
@@ -94,6 +93,11 @@ class Boxed:
 class Char(Boxed):
     value: str = None
     font: float = None
+    size: float = None
+    rise: float = None
+    """Adobe PDF/9.3.7; Shall specify the distance in unscaled text
+    space units to move text the baseline up or down.
+    No rise 0, superscripts greater than 0, subscript lower than 0."""
 
 
 @dataclass
