@@ -18,7 +18,6 @@ import iamraw
 
 
 def dump_headerfooter(pages) -> str:
-    # TODO: Move to iamraw
     result = []
     for page in pages:
         raw_header = _dump_header(page.header)
