@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v1.10.0
+
+### Feature
+
+* add text rise to mark character as superscripts or subscripts (ab6b201059b4)
+* add method to determine size of BoundingBox (d6a415367df5)
+
+### Fix
+
+* solve todo to investigate __repr__ method (35c6f613cb02)
+* round coordinates to avoid confusing with math accuracy (451566c16066)
+
 ## v1.9.0
 
 ### Feature
