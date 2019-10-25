@@ -6,38 +6,36 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-from collections import namedtuple
-from contextlib import suppress
-from dataclasses import dataclass
-from dataclasses import field
-from typing import Any
-from typing import List
+import collections
+import contextlib
+import dataclasses
+import typing
 
-from utila import NEWLINE
+import utila
 
 from iamraw.bounding import BoundingBox
 
-PageSize = namedtuple('PageSize', 'width height')
+PageSize = collections.namedtuple('PageSize', 'width height')
 
 
-@dataclass
+@dataclasses.dataclass
 class PageObject:
     """Object to store every unsupported type"""
     box: BoundingBox = None
     content: str = None
 
 
-@dataclass
+@dataclasses.dataclass
 class Page:
     page: int = 0
     dimension: BoundingBox = None
-    children: List[Any] = field(default_factory=list)
+    children: typing.List[typing.Any] = dataclasses.field(default_factory=list)
 
     @property
     def text(self):
         result = []
         for item in self.children:  # pylint:disable=E1133
-            with suppress(AttributeError):
+            with contextlib.suppress(AttributeError):
                 result += item.text
         return ''.join(result)
 
@@ -52,12 +50,12 @@ class Page:
         return self.children[key]  # pylint:disable=E1136
 
 
-@dataclass
+@dataclasses.dataclass
 class Document:
     """A document describes a parsed PDF file. It is possbile to iterate over
     the different pages to inspect the parsed children."""
     dimension: PageSize = None
-    pages: List[Page] = field(default_factory=list)
+    pages: typing.List[Page] = dataclasses.field(default_factory=list)
 
     @property
     def text(self):
@@ -75,7 +73,7 @@ class Document:
         result = 'Document: pages[%d]\n' % len(self.pages)
 
         for page in self.pages:  # pylint: disable=not-an-iterable
-            result += str(page) + NEWLINE
+            result += str(page) + utila.NEWLINE
         return result
 
     def __getitem__(self, key):
@@ -83,13 +81,13 @@ class Document:
         return self.pages[key]  # pylint: disable=unsubscriptable-object
 
 
-@dataclass
+@dataclasses.dataclass
 class Boxed:
     """Object with outlines like a rectangle"""
     box: BoundingBox = None
 
 
-@dataclass
+@dataclasses.dataclass
 class Char(Boxed):
     value: str = None
     font: float = None
@@ -100,21 +98,21 @@ class Char(Boxed):
     No rise 0, superscripts greater than 0, subscript lower than 0."""
 
 
-@dataclass
+@dataclasses.dataclass
 class UnicodeChar(Char):
     special: str = None
 
 
-@dataclass
+@dataclasses.dataclass
 class VirtualChar:
     value: str = None
     look: int = None
 
 
-@dataclass
+@dataclasses.dataclass
 class Line(Boxed):
 
-    chars: List[Char] = field(default_factory=list)
+    chars: typing.List[Char] = dataclasses.field(default_factory=list)
 
     @property
     def text(self) -> str:
@@ -132,9 +130,9 @@ class Line(Boxed):
         return self.chars[index]  # pylint:disable=E1136
 
 
-@dataclass
+@dataclasses.dataclass
 class TextContainer(Boxed):
-    lines: List[Line] = field(default_factory=list)
+    lines: typing.List[Line] = dataclasses.field(default_factory=list)
 
     @property
     def text(self):
