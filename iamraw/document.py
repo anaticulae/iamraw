@@ -107,6 +107,8 @@ class UnicodeChar(Char):
 class VirtualChar:
     value: str = None
     look: int = None
+    size: float = None
+    rise: float = None
 
 
 @dataclasses.dataclass
@@ -129,6 +131,9 @@ class Line(Boxed):
     def __getitem__(self, index):
         return self.chars[index]  # pylint:disable=E1136
 
+    def __len__(self):
+        return len(self.chars)
+
 
 @dataclasses.dataclass
 class TextContainer(Boxed):
@@ -136,12 +141,10 @@ class TextContainer(Boxed):
 
     @property
     def text(self):
-
         return ''.join([item.text for item in self.lines])  # pylint:disable=E1133
 
     def __len__(self):
         return len(self.lines)
 
     def __getitem__(self, index):
-
         return self.lines[index]  # pylint:disable=E1136

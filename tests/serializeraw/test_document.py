@@ -44,12 +44,13 @@ def test_load_dump_load_document():
 
 def test_load_and_dump_line():
     text = 'I am a Line'
-
-    loaded = _load_line(text)
+    style = [f'0 {len(text)} 12.00 15.00']
+    expected = [text, style]
+    loaded = _load_line(expected)
     assert len(loaded.chars) == len(text)
 
     dumped = _dump_line(loaded)
-    assert dumped[1] == text
+    assert dumped == expected, dumped
 
 
 def line_from_str(line: str) -> Line:
@@ -95,8 +96,13 @@ def test_dump_and_load_textcontainer(simple_textcontainer):  # pylint:disable=W0
     assert loaded == container
 
 
-def test_dump_and_load_page(simple_page):  # pylint:disable=W0621
+def test_document_dump_and_load_page(simple_page):  # pylint:disable=W0621
     dumped = _dump_page(simple_page)
     loaded = _load_page(dumped)
 
+    assert loaded.text == simple_page.text
+
+    for current, expected in zip(loaded.children, simple_page.children):
+        assert current == expected
+    assert loaded.children == simple_page.children
     assert loaded == simple_page

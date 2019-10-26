@@ -9,6 +9,7 @@
 
 from functools import lru_cache
 
+import utila
 from configo import CACHE_SMALL
 from utila import error
 from utila import from_raw_or_path
@@ -23,6 +24,7 @@ from iamraw import Line
 from iamraw import Page
 from iamraw import PageObject
 from iamraw import TextContainer
+from iamraw import VirtualChar
 from serializeraw.border import size_fromraw
 from serializeraw.border import size_toraw
 
@@ -33,31 +35,6 @@ def _load_pageobject(content: str):
 
 def _dump_pageobject(pageobject: PageObject):
     return [str(PageObject.__name__), pageobject.content]
-
-
-def _load_char(raw) -> Char:
-    if isinstance(raw, str):
-        # support legacy str-Char, remove later
-        # TODO: Remove with iamraw:2.0.0
-        raw = {'value': raw, 'size': None, 'rise': None}
-    value = raw['value']
-    size = raw['size']
-    rise = raw['rise']
-    result = Char(
-        rise=rise,
-        size=size,
-        value=value,
-    )
-    return result
-
-
-def _dump_char(value: Char) -> str:
-    raw = {
-        'value': value.value,
-        'size': value.size,
-        'rise': value.rise,
-    }
-    return raw
 
 
 def _load_page(content):
@@ -83,25 +60,81 @@ def _dump_page(page: Page):
 
 
 def _dump_line(line: Line) -> str:
-    return [Line.__class__.__name__, line.text]
+    assert len(line) >= 1
+
+    def create_style(start, end, size, rise):
+        style = ' '.join([
+            f'{start}',
+            f'{end}',
+            '%.2f' % size if size is not None else 'None',
+            '%.2f' % rise if rise is not None else 'None',
+        ])
+        return style
+
+    styles = []
+    start, cursize, currise = 0, line[0].size, line[0].rise
+    for end, character in enumerate(line[1:], 1):
+        if isinstance(character, VirtualChar):
+            continue
+        if cursize != character.size or currise != character.rise:
+            styles.append(create_style(
+                start,
+                end,
+                cursize,
+                currise,
+            ))
+            start, cursize, currise = end, character.size, character.rise
+    if start != len(line):
+        styles.append(create_style(
+            start,
+            len(line),
+            cursize,
+            currise,
+        ))
+    content = ''.join([item.value for item in line])
+
+    return [
+        content,
+        styles,
+    ]  # use list for a more human readable format
 
 
-def _load_line(line: str) -> Line:
+def _load_line(line) -> Line:
+    assert len(line) == 2, line
+
+    data, styles = line
     chars = []
-    for raw in line:
-        chars.append(_load_char(raw=raw))
+    for style in styles:
+        start, end, size, rise = style.split()
+        start, end = int(start), int(end)
+        if size == 'None':
+            size = None
+        if rise == 'None':
+            rise = None
+
+        for index in range(start, end):
+            # TODO: Unicodechar?
+            char = Char(
+                value=data[index],
+                size=float(size) if size is not None else None,
+                rise=float(rise) if rise is not None else None,
+            )
+            chars.append(char)
     return Line(chars=chars)
 
 
 def _dump_textcontainer(container: TextContainer):
+    assert isinstance(container, TextContainer)
     return [
-        str(container.__class__.__name__),
-        [item.text for item in container.lines]
-    ]
+        container.__class__.__name__,
+        [_dump_line(line) for line in container.lines],
+    ]  # use list for a more human readable format
 
 
 def _load_textcontainer(content) -> TextContainer:
-    lines = [_load_line(item) for item in content]
+    assert isinstance(content, list), type(content)
+    assert all([isinstance(item, list) for item in content]), str(content)
+    lines = [loadme(Line, item) for item in content]
     return TextContainer(lines=lines)
 
 
@@ -184,7 +217,6 @@ def loadme(structure, data):
 
 
 DUMP_LOAD = {
-    Char.__name__: (_dump_char, _load_char),
     Document.__name__: (_dump_document, _load_document),
     Line.__name__: (_dump_line, _load_line),
     Page.__name__: (_dump_page, _load_page),

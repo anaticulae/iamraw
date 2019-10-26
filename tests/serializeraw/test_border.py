@@ -26,7 +26,7 @@ def test_border_work(boxdata_from_pdf):  #pylint:disable=W0621
     assert len(boxdata_from_pdf) == 2
 
 
-def test_dump_and_load_page(boxdata_from_pdf):  #pylint:disable=W0621
+def test_border_dump_and_load_pageborder(boxdata_from_pdf):  #pylint:disable=W0621
     sizeandborders, _ = boxdata_from_pdf
 
     dumped = dump_pageborders(sizeandborders)
