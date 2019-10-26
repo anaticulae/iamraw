@@ -6,52 +6,42 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+import functools
 
-from functools import lru_cache
-
+import configo
 import utila
-from configo import CACHE_SMALL
-from utila import error
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import yaml
 
-from iamraw import Char
-from iamraw import Document
-from iamraw import Line
-from iamraw import Page
-from iamraw import PageObject
-from iamraw import TextContainer
-from iamraw import VirtualChar
+import iamraw
 from serializeraw.border import size_fromraw
 from serializeraw.border import size_toraw
 
 
 def _load_pageobject(content: str):
-    return PageObject(content=content)
+    return iamraw.PageObject(content=content)
 
 
-def _dump_pageobject(pageobject: PageObject):
-    return [str(PageObject.__name__), pageobject.content]
+def _dump_pageobject(pageobject: iamraw.PageObject):
+    return [str(iamraw.PageObject.__name__), pageobject.content]
 
 
 def _load_page(content):
     pagenumber = content['page']
     children = content['children']
 
-    page = Page(pagenumber)
+    page = iamraw.Page(pagenumber)
     for class_, item_content in children:
-        if class_ == TextContainer.__name__:
-            page.children.append(loadme(TextContainer, item_content))  # pylint:disable=E1101
+        if class_ == iamraw.TextContainer.__name__:
+            loaded = loadme(iamraw.TextContainer, item_content)
+            page.children.append(loaded)  # pylint:disable=E1101
 
-        if class_ == PageObject.__name__:
-            page.children.append(loadme(PageObject, item_content))  # pylint:disable=E1101
+        if class_ == iamraw.PageObject.__name__:
+            loaded = loadme(iamraw.PageObject, item_content)
+            page.children.append(loaded)  # pylint:disable=E1101
     return page
 
 
-def _dump_page(page: Page):
+def _dump_page(page: iamraw.Page):
     result = {
         'page': page.page,
         'children': [dumper(item) for item in page.children],
@@ -59,7 +49,7 @@ def _dump_page(page: Page):
     return result
 
 
-def _dump_line(line: Line) -> str:
+def _dump_line(line: iamraw.Line) -> str:
     assert len(line) >= 1
 
     def create_style(start, end, size, rise):
@@ -74,7 +64,7 @@ def _dump_line(line: Line) -> str:
     styles = []
     start, cursize, currise = 0, line[0].size, line[0].rise
     for end, character in enumerate(line[1:], 1):
-        if isinstance(character, VirtualChar):
+        if isinstance(character, iamraw.VirtualChar):
             continue
         if cursize != character.size or currise != character.rise:
             styles.append(create_style(
@@ -99,7 +89,7 @@ def _dump_line(line: Line) -> str:
     ]  # use list for a more human readable format
 
 
-def _load_line(line) -> Line:
+def _load_line(line) -> iamraw.Line:
     assert len(line) == 2, line
 
     data, styles = line
@@ -114,38 +104,38 @@ def _load_line(line) -> Line:
 
         for index in range(start, end):
             # TODO: Unicodechar?
-            char = Char(
+            char = iamraw.Char(
                 value=data[index],
                 size=float(size) if size is not None else None,
                 rise=float(rise) if rise is not None else None,
             )
             chars.append(char)
-    return Line(chars=chars)
+    return iamraw.Line(chars=chars)
 
 
-def _dump_textcontainer(container: TextContainer):
-    assert isinstance(container, TextContainer)
+def _dump_textcontainer(container: iamraw.TextContainer):
+    assert isinstance(container, iamraw.TextContainer)
     return [
         container.__class__.__name__,
         [_dump_line(line) for line in container.lines],
     ]  # use list for a more human readable format
 
 
-def _load_textcontainer(content) -> TextContainer:
+def _load_textcontainer(content) -> iamraw.TextContainer:
     assert isinstance(content, list), type(content)
     assert all([isinstance(item, list) for item in content]), str(content)
-    lines = [loadme(Line, item) for item in content]
-    return TextContainer(lines=lines)
+    lines = [loadme(iamraw.Line, item) for item in content]
+    return iamraw.TextContainer(lines=lines)
 
 
 def _load_document(content):
     dimension = size_fromraw(content['dimension'])
-    pages = [loadme(Page, item) for item in content['pages']]
-    result = Document(dimension=dimension, pages=pages)
+    pages = [loadme(iamraw.Page, item) for item in content['pages']]
+    result = iamraw.Document(dimension=dimension, pages=pages)
     return result
 
 
-def _dump_document(document: Document) -> dict:
+def _dump_document(document: iamraw.Document) -> dict:
     assert document
     assert document.dimension, str(document.dimension)
     result = {
@@ -155,15 +145,15 @@ def _dump_document(document: Document) -> dict:
     return result
 
 
-def dump_document(document: Document) -> str:
+def dump_document(document: iamraw.Document) -> str:
     """Convert to raw python to have more clear yaml output"""
-    assert isinstance(document, Document), type(document)
+    assert isinstance(document, iamraw.Document), type(document)
     raw = dumper(document)
-    return dump(raw)
+    return yaml.dump(raw)
 
 
-@lru_cache(CACHE_SMALL)
-def load_document(content: str, pages=None) -> Document:
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_document(content: str, pages=None) -> iamraw.Document:
     """Load document from raw-string or filepath.
 
     If document is loaded from file-path, the content is loaded and parsed
@@ -176,15 +166,15 @@ def load_document(content: str, pages=None) -> Document:
     Raises:
         ValueError if given path does not exists
     """
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
 
     def remove_skipped(loaded, pages):
         """Remove pages which are not part of todo list `pages`"""
         to_process = []
         for item in loaded['pages']:
             pagenumber = int(item['page'])
-            if should_skip(pagenumber, pages):
+            if utila.should_skip(pagenumber, pages):
                 continue
             to_process.append(item)
         loaded['pages'] = to_process
@@ -192,7 +182,7 @@ def load_document(content: str, pages=None) -> Document:
 
     loaded = remove_skipped(loaded, pages)
 
-    return loadme(Document, loaded)
+    return loadme(iamraw.Document, loaded)
 
 
 def dumper(content):
@@ -200,7 +190,7 @@ def dumper(content):
     try:
         dumpy, _ = DUMP_LOAD[key]
     except KeyError as msg:
-        error('Could not dump: %s' % msg)
+        utila.error('Could not dump: %s' % msg)
         return None
     else:
         return dumpy(content)
@@ -210,16 +200,16 @@ def loadme(structure, data):
     try:
         _, loady = DUMP_LOAD[structure.__name__]
     except KeyError as msg:
-        error('Could not load: %s' % msg)
+        utila.error('Could not load: %s' % msg)
         return None
     else:
         return loady(data)
 
 
 DUMP_LOAD = {
-    Document.__name__: (_dump_document, _load_document),
-    Line.__name__: (_dump_line, _load_line),
-    Page.__name__: (_dump_page, _load_page),
-    TextContainer.__name__: (_dump_textcontainer, _load_textcontainer),
-    PageObject.__name__: (_dump_pageobject, _load_pageobject),
+    iamraw.Document.__name__: (_dump_document, _load_document),
+    iamraw.Line.__name__: (_dump_line, _load_line),
+    iamraw.Page.__name__: (_dump_page, _load_page),
+    iamraw.TextContainer.__name__: (_dump_textcontainer, _load_textcontainer),
+    iamraw.PageObject.__name__: (_dump_pageobject, _load_pageobject),
 }
