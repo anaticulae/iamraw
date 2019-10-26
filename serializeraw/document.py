@@ -35,12 +35,29 @@ def _dump_pageobject(pageobject: PageObject):
     return [str(PageObject.__name__), pageobject.content]
 
 
-def _load_char(value) -> Char:
-    return Char(value=value)
+def _load_char(raw) -> Char:
+    if isinstance(raw, str):
+        # support legacy str-Char, remove later
+        # TODO: Remove with iamraw:2.0.0
+        raw = {'value': raw, 'size': None, 'rise': None}
+    value = raw['value']
+    size = raw['size']
+    rise = raw['rise']
+    result = Char(
+        rise=rise,
+        size=size,
+        value=value,
+    )
+    return result
 
 
 def _dump_char(value: Char) -> str:
-    return value.value
+    raw = {
+        'value': value.value,
+        'size': value.size,
+        'rise': value.rise,
+    }
+    return raw
 
 
 def _load_page(content):
@@ -71,8 +88,8 @@ def _dump_line(line: Line) -> str:
 
 def _load_line(line: str) -> Line:
     chars = []
-    for char in line:
-        chars.append(_load_char(value=char))
+    for raw in line:
+        chars.append(_load_char(raw=raw))
     return Line(chars=chars)
 
 
