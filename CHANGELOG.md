@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.10.2
+
+### Fix
+
+* fix document loader and serializer (c49c24939c5b)
+
 ## v1.10.1
 
 ### Fix
