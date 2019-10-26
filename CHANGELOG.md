@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.10.1
+
+### Fix
+
+* extend load and dump method with new data (d66509d1aced)
+
 ## v1.10.0
 
 ### Feature
