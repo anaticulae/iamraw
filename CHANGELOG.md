@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v1.11.0
+
+### Feature
+
+* add method to dump and load white pages (377960e6568e)
+* add split method to split `BoundingBox`es (64d8082aee7d)
+* add MultipleSection to store multiple DocumentSection on a page (b6ef1b0636e0)
+
+### Fix
+
+* fix area computation (91ae4efd4f6a)
+
+### Documentation
+
+* fix docs representation (b5a2695cdeac)
+
 ## v1.10.4
 
 ## v1.10.3
