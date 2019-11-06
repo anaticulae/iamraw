@@ -88,9 +88,9 @@ def area(bounding) -> float:
         size of rectangle
     """
     assert len(bounding) == 4, str(bounding)
-    height = math.fabs(bounding[2] - bounding[0])
-    width = math.fabs(bounding[1] - bounding[3])
-
+    height = math.fabs(bounding[3] - bounding[1])
+    width = math.fabs(bounding[2] - bounding[0])
+    assert height >= 0, width >= 0
     result = height * width
     result = utila.roundme(result)
     return result
