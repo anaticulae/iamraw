@@ -1,0 +1,31 @@
+release plan 1.11.0
+===================
+
+iamraw
+------
+
+Public API
+~~~~~~~~~~
+
+* [ ] make Document etc unique - avoid importing conflicts
+
+BoundingBox
+~~~~~~~~~~~
+
+* [ ] add split BoundingBox-y from `hey`
+
+serializeraw
+------------
+
+sections
+~~~~~~~~
+
+* [ ] refactor loader to access/patch items from outside to avoid patching
+serializeraw when introducing new AreaItem
+
+* [ ] add multiple section from hey project
+
+whitepages
+~~~~~~~~~~
+
+* [ ] move methods to dump and load whitepages

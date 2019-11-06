@@ -1,0 +1,10 @@
+release plan 1.10.0
+===================
+
+iamraw
+------
+
+BoundingBox
+~~~~~~~~~~~
+
+* [x] add method to determine size of BoundingBox
