@@ -26,6 +26,8 @@ from iamraw.bounding import PageBoundings
 from iamraw.bounding import PageBoundingsList
 from iamraw.bounding import area
 from iamraw.bounding import common_box
+from iamraw.bounding import split_x
+from iamraw.bounding import split_y
 # boxes
 from iamraw.boxes import Box
 from iamraw.boxes import HorizontalLine

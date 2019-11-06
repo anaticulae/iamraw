@@ -103,6 +103,62 @@ def common_box(items) -> BoundingBox:
     return BoundingBox.from_list([x0, y0, x1, y1])
 
 
+def split_y(
+        bounding: BoundingBox,
+        part: int,
+        parts: int,
+) -> BoundingBox:
+    """Split `bounding` in `parts`.
+
+    Args:
+        bounding: parent BoundingBox to split into `part`
+        part: number of sub-bounding from top to bottom
+        parts: number of chunks to split parent box
+    Returns:
+        sub-BoundingBox
+    """
+    assert parts >= 0, 'non positive parts'
+    assert part < parts, f'part:{part} < parts:{parts}'
+
+    step = (bounding.y1 - bounding.y0) / parts
+
+    result = BoundingBox(
+        bounding.x0,
+        bounding.y0 + step * part,
+        bounding.x1,
+        bounding.y0 + step * (part + 1),
+    )
+    return result
+
+
+def split_x(
+        bounding: BoundingBox,
+        part: int,
+        parts: int,
+) -> BoundingBox:
+    """Split `bounding` in `parts`.
+
+    Args:
+        bounding: parent BoundingBox to split into `part`
+        part: number of sub-bounding from top to bottom
+        parts: number of chunks to split parent box
+    Returns:
+        sub-BoundingBox
+    """
+    assert parts >= 0, 'non positive parts'
+    assert part < parts, f'part:{part} < parts:{parts}'
+
+    step = (bounding.x1 - bounding.x0) / parts
+
+    result = BoundingBox(
+        bounding.x0 + step * part,
+        bounding.y0,
+        bounding.x0 + step * (part + 1),
+        bounding.y1,
+    )
+    return result
+
+
 Boundings = typing.List[typing.Tuple[int, BoundingBox]]
 
 

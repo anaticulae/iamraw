@@ -12,7 +12,7 @@ Public API
 BoundingBox
 ~~~~~~~~~~~
 
-* [ ] add split BoundingBox-y from `hey`
+* [x] add split BoundingBox-y from `hey`
 
 serializeraw
 ------------

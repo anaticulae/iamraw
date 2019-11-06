@@ -19,3 +19,29 @@ import iamraw
 def test_bounding_determine_area(bounding, expected_area):
     area = iamraw.area(bounding)
     assert area == expected_area, f'{area} != {expected_area}'
+
+
+def test_bounding_split_x():
+    bounding = iamraw.BoundingBox(50, 50, 100, 100)
+    equal = iamraw.split_x(bounding, 0, 1)
+
+    assert equal == bounding
+
+    first = iamraw.split_x(bounding, 0, 2)
+    assert first == iamraw.BoundingBox(50, 50, 75, 100)
+
+    second = iamraw.split_x(bounding, 1, 2)
+    assert second == iamraw.BoundingBox(75, 50, 100, 100)
+
+
+def test_bounding_split_y():
+    bounding = iamraw.BoundingBox(50, 50, 100, 100)
+    equal = iamraw.split_y(bounding, 0, 1)
+
+    assert equal == bounding
+
+    first = iamraw.split_y(bounding, 0, 2)
+    assert first == iamraw.BoundingBox(50, 50, 100, 75)
+
+    second = iamraw.split_y(bounding, 1, 2)
+    assert second == iamraw.BoundingBox(50, 75, 100, 100)
