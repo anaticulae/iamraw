@@ -32,11 +32,12 @@ class BoundingBox:
     y1: float = utila.INF
 
     def __repr__(self):
-        raw = 'BoundingBox(x0=%.2f, y0=%.2f, x1=%.2f, y1=%.2f)'
-        return raw % (self.x0, self.y0, self.x1, self.y1)
+        result = (f'BoundingBox(x0={self.x0}, y0={self.y0}, '
+                  f'x1={self.x1}, y1={self.y1})')
+        return result
 
     def __str__(self):
-        return '%.2f %.2f %.2f %.2f' % (self.x0, self.y0, self.x1, self.y1)
+        return f'{self.x0} {self.y0} {self.x1} {self.y1}'
 
     def __getitem__(self, index):
         if index == 0:
@@ -47,7 +48,7 @@ class BoundingBox:
             return self.x1
         if index == 3:
             return self.y1
-        raise IndexError('index to hight %d > 3' % index)
+        raise IndexError(f'index out of range {index} > 3')
 
     def __len__(self):
         return 4
@@ -59,13 +60,13 @@ class BoundingBox:
         self.y0 = utila.roundme(self.y0)
         self.y1 = utila.roundme(self.y1)
         # ensure correct coordinate relation
-        assert self.x0 <= self.x1, '%.2f <= %.2f' % (self.x0, self.x1)
-        assert self.y0 <= self.y1, '%.2f <= %.2f' % (self.y0, self.y1)
+        assert self.x0 <= self.x1, f'{self.x0} <= {self.x1}'
+        assert self.y0 <= self.y1, f'{self.y0} <= {self.y1}'
 
     @classmethod
     def from_list(cls, data):
         """Create `BoundingBox` from list"""
-        assert len(data) == 4, 'data has wrong length %d, require 4' % len(data)
+        assert len(data) == 4, f'data has wrong length {len(data)}, require 4'
         return cls(x0=data[0], y0=data[1], x1=data[2], y1=data[3])
 
     @classmethod
@@ -73,8 +74,9 @@ class BoundingBox:
         """Create `BoundingBox` from raw data which contains 4 floats"""
         splitted = raw.split()
         length = len(splitted)
-        assert length == 4, 'wrong split length %d for "%s"' % (length, raw)
-        return cls.from_list([float(item) for item in splitted])
+        assert length == 4, f'wrong split length {length} for "{raw}"'
+        created = cls.from_list([float(item) for item in splitted])
+        return created
 
 
 def area(bounding) -> float:
@@ -83,9 +85,8 @@ def area(bounding) -> float:
     Args:
         bounding(BoundingBox/tuple): area to determine size of
     Returns:
-        size of bounds [ ]
+        size of rectangle
     """
-
     assert len(bounding) == 4, str(bounding)
     height = math.fabs(bounding[2] - bounding[0])
     width = math.fabs(bounding[1] - bounding[3])
@@ -103,7 +104,7 @@ def common_box(items) -> BoundingBox:
         y0 = min(y0, cy0)
         x1 = max(x1, cx1)
         y1 = max(y1, cy1)
-    return BoundingBox.from_list([x0, y0, x1, y1])
+    return BoundingBox(x0=x0, y0=y0, x1=x1, y1=y1)
 
 
 def split_y(
