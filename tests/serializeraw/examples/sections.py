@@ -15,9 +15,9 @@ from iamraw import Sections
 from iamraw.sections import PERCENT_100
 from iamraw.sections import Appendix
 from iamraw.sections import Chapter
-from iamraw.sections import Content
 from iamraw.sections import Index
 from iamraw.sections import Introduction
+from iamraw.sections import MainPart
 from iamraw.sections import Percentage
 from iamraw.sections import Position
 from iamraw.sections import Table
@@ -87,7 +87,7 @@ def _add_x(
 #pylint:disable=C0103
 add_table = partial(_add_x, constructor=Table)
 add_introduction = partial(_add_x, constructor=Introduction)
-add_content = partial(_add_x, constructor=Content)
+add_content = partial(_add_x, constructor=MainPart)
 add_appendix = partial(_add_x, constructor=Appendix)
 
 add_title = partial(_add_x, constructor=TitlePage)
@@ -98,7 +98,7 @@ add_text = partial(_add_x, constructor=Text)
 
 
 def add_chapter(
-        root: Content,
+        root: MainPart,
         pstart: float,
         pend: float,
         trust: Percentage = PERCENT_100,

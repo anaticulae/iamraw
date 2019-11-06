@@ -7,7 +7,7 @@ iamraw
 Public API
 ~~~~~~~~~~
 
-* [ ] make Document etc unique - avoid importing conflicts
+* [x] make Document etc. unique - avoid importing conflicts
 
 BoundingBox
 ~~~~~~~~~~~

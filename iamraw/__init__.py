@@ -83,13 +83,14 @@ from iamraw.page import PageSizeBorderList
 # sections
 from iamraw.sections import AreaItem
 from iamraw.sections import DocumentSection
+from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
 from iamraw.sections import Sections
 # text
 from iamraw.text import DOT
 from iamraw.text import ChapterText
-from iamraw.text import Content
 from iamraw.text import ContentType
+from iamraw.text import DocumentContent
 from iamraw.text import PageNumber
 from iamraw.text import Paragraph
 from iamraw.text import ParagraphContent

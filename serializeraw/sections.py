@@ -15,10 +15,10 @@ import yaml
 
 from iamraw.sections import Appendix
 from iamraw.sections import Chapter
-from iamraw.sections import Content
 from iamraw.sections import DocumentSection
 from iamraw.sections import Index
 from iamraw.sections import Introduction
+from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
 from iamraw.sections import Sections
 from iamraw.sections import Table
@@ -92,7 +92,7 @@ def generate_ctor():
     items = [
         Appendix,
         Chapter,
-        Content,
+        MainPart,
         DocumentSection,
         Index,
         Introduction,

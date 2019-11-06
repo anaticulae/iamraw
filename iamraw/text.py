@@ -25,22 +25,22 @@ class ContentType(Enum):
 
 
 @dataclass
-class Content:
+class DocumentContent:
     content: object
 
 
 @dataclass
-class Paragraph(Content):
+class Paragraph(DocumentContent):
     pass
 
 
 @dataclass
-class Undefined(Content):
+class Undefined(DocumentContent):
     container: int = field(default=-1)
     content: str = None
 
 
-ChapterText = List[Content]
+ChapterText = List[DocumentContent]
 
 PageNumber = int
 ParagraphContent = List[str]

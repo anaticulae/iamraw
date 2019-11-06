@@ -104,7 +104,7 @@ class Table(DocumentSection):
 
 
 @dataclasses.dataclass
-class Content(DocumentSection):
+class MainPart(DocumentSection):
     """The main content of a document, in the general, the largest area
     of document."""
 
