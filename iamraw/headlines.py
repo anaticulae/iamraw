@@ -6,18 +6,18 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-from dataclasses import dataclass
-from dataclasses import field
-from typing import List
+
+import dataclasses
+import typing
 
 
-@dataclass
+@dataclasses.dataclass
 class Headline:
     text: str
-    level: int = field(default=0)
-    rawlevel: str = field(default=None, compare=False)
-    page: int = field(default=-1)
-    container: int = field(default=None)
+    level: int = dataclasses.field(default=0)
+    rawlevel: str = dataclasses.field(default=None, compare=False)
+    page: int = dataclasses.field(default=-1)
+    container: int = dataclasses.field(default=None)
 
 
-PagesHeadlineList = List[List[Headline]]
+PagesHeadlineList = typing.List[typing.List[Headline]]

@@ -6,43 +6,42 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-from dataclasses import dataclass
-from dataclasses import field
-from enum import Enum
-from typing import List
-from typing import Tuple
+
+import dataclasses
+import enum
+import typing
 
 from iamraw.headlines import Headline
 
 DOT = '•'
 
 
-class ContentType(Enum):
+class ContentType(enum.Enum):
     UNDEFINED = 0
     PARAGRAPH = 1
     BOXED = 2
     LIST = 3
 
 
-@dataclass
+@dataclasses.dataclass
 class DocumentContent:
     content: object
 
 
-@dataclass
+@dataclasses.dataclass
 class Paragraph(DocumentContent):
     pass
 
 
-@dataclass
+@dataclasses.dataclass
 class Undefined(DocumentContent):
-    container: int = field(default=-1)
+    container: int = dataclasses.field(default=-1)
     content: str = None
 
 
-ChapterText = List[DocumentContent]
+ChapterText = typing.List[DocumentContent]
 
 PageNumber = int
-ParagraphContent = List[str]
-ParagraphItem = Tuple[Headline, ParagraphContent]
-Paragraphs = List[ParagraphItem]
+ParagraphContent = typing.List[str]
+ParagraphItem = typing.Tuple[Headline, ParagraphContent]
+Paragraphs = typing.List[ParagraphItem]
