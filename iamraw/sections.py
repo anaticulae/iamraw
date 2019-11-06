@@ -9,19 +9,15 @@
 
 import dataclasses
 import typing
-from dataclasses import dataclass
-from dataclasses import field
-from typing import List
-from typing import Tuple
 
 Page = int
 Percentage = float  # start of area [0.0 Pagestart, 100.0 Pageend]
-Position = Tuple[Page, Percentage]
+Position = typing.Tuple[Page, Percentage]
 
 PERCENT_100 = 1.0  # analysed by hand
 
 
-@dataclass
+@dataclasses.dataclass
 class AreaItem:
     """AreaItem is the smallest piece in document sections analysis
 
@@ -39,16 +35,17 @@ class AreaItem:
     trust: Percentage  # [0.0 100.0]
 
 
-@dataclass
+@dataclasses.dataclass
 class DocumentSection:
-    """A document is devided in different `DocumentSection`s. These areas have
-    different properties. To structure the content of a document, different
-    area are required. Eeach `DocumentSection` contains different `AreaItem`s."""
+    """A document is devided in different `DocumentSection`s. These
+    areas have different properties. To structure the content of a
+    document, different area are required. Eeach `DocumentSection`
+    contains different `AreaItem`s."""
 
     start: Position
     end: Position
-    trust: Percentage = field(default=0.0, compare=False)  # [0.0 100.0]
-    content: List[AreaItem] = field(default_factory=list)
+    trust: Percentage = dataclasses.field(default=0.0, compare=False)
+    content: typing.List[AreaItem] = dataclasses.field(default_factory=list)
 
     def __getitem__(self, index):
         return self.content[index]  #  pylint:disable=E1136
@@ -76,9 +73,10 @@ class MultipleSection:
         return len(self.content)
 
 
-@dataclass
+@dataclasses.dataclass
 class Sections:
-    content: List[DocumentSection] = field(default_factory=list)
+    content: typing.List[DocumentSection] = dataclasses.field(
+        default_factory=list)
 
     def __getitem__(self, index):
         return self.content[index]  #  pylint:disable=E1136
@@ -90,58 +88,58 @@ class Sections:
         self.content.append(item)  #  pylint:disable=E1101
 
 
-@dataclass
+@dataclasses.dataclass
 class Introduction(DocumentSection):
     """Title page, Eidesstattliche Erklaerung, Thank you, Copyright."""
 
 
-@dataclass
+@dataclasses.dataclass
 class Unknown(DocumentSection):
     pass
 
 
-@dataclass
+@dataclasses.dataclass
 class Table(DocumentSection):
     """Table of content, table of figure, shortcuts"""
 
 
-@dataclass
+@dataclasses.dataclass
 class Content(DocumentSection):
-    """The main content of a document, in the general, the largest area of
-    document."""
+    """The main content of a document, in the general, the largest area
+    of document."""
 
 
-@dataclass
+@dataclasses.dataclass
 class Appendix(DocumentSection):
     pass
 
 
-@dataclass
+@dataclasses.dataclass
 class WhitePage(AreaItem):
     pass
 
 
-@dataclass
+@dataclasses.dataclass
 class Index(AreaItem):
     pass
 
 
-@dataclass
+@dataclasses.dataclass
 class Text(AreaItem):
     pass
 
 
-@dataclass
+@dataclasses.dataclass
 class TableOfContent(AreaItem):
     pass
 
 
-@dataclass
+@dataclasses.dataclass
 class TitlePage(AreaItem):
     pass
 
 
-@dataclass
+@dataclasses.dataclass
 class Chapter(AreaItem):
     number: int = -1
     title: str = ''

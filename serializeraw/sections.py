@@ -7,13 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
+import functools
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
+import yaml
 
 from iamraw.sections import Appendix
 from iamraw.sections import Chapter
@@ -48,11 +46,11 @@ def dump_sections(sections: Sections) -> str:
         content = dump_item(page)
         content['content'] = [dump_item(item) for item in page.content]
         result.append(content)
-    dumped = dump(result)
+    dumped = yaml.dump(result)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
+@functools.lru_cache(configo.CACHE_SMALL)
 def load_sections(content: str) -> Sections:
     """Load sections from path or str
 
@@ -61,8 +59,8 @@ def load_sections(content: str) -> Sections:
     Return:
         loaded Sections
     """
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
 
     def load_item(item):
 
