@@ -21,6 +21,7 @@ from iamraw.sections import Content
 from iamraw.sections import DocumentSection
 from iamraw.sections import Index
 from iamraw.sections import Introduction
+from iamraw.sections import MultipleSection
 from iamraw.sections import Sections
 from iamraw.sections import Table
 from iamraw.sections import TableOfContent
@@ -97,6 +98,7 @@ def generate_ctor():
         DocumentSection,
         Index,
         Introduction,
+        MultipleSection,
         Sections,
         Table,
         TableOfContent,

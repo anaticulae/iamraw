@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import dataclasses
+import typing
 from dataclasses import dataclass
 from dataclasses import field
 from typing import List
@@ -47,6 +49,25 @@ class DocumentSection:
     end: Position
     trust: Percentage = field(default=0.0, compare=False)  # [0.0 100.0]
     content: List[AreaItem] = field(default_factory=list)
+
+    def __getitem__(self, index):
+        return self.content[index]  #  pylint:disable=E1136
+
+    def __len__(self):
+        return len(self.content)
+
+
+DocumentSections = typing.List[DocumentSection]
+
+
+@dataclasses.dataclass
+class MultipleSection:
+    """Store more than one DocumentSection on a single page."""
+
+    start: Position
+    end: Position
+    trust: Percentage = dataclasses.field(default=0.0, compare=False)
+    content: DocumentSections = dataclasses.field(default_factory=list)
 
     def __getitem__(self, index):
         return self.content[index]  #  pylint:disable=E1136
