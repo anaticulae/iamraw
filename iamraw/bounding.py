@@ -7,12 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 """
+.. code-block:: none
+
     x0,y0 ----------------|
     |                     |
     |    BoundingBox      |
     |                     |
     |-----------------x1,y1
 """
+
 import dataclasses
 import math
 import typing
