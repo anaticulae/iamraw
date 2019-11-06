@@ -56,33 +56,12 @@ def load_sections(content: str) -> Sections:
     """Load sections from path or str
 
     Args:
-        content(str):
+        content(str): path or yaml representation of `Sections`
     Return:
         loaded Sections
     """
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
-
-    def generate_ctor():
-        """Create table with name[constructor]"""
-        items = [
-            Appendix,
-            Chapter,
-            Content,
-            DocumentSection,
-            Index,
-            Introduction,
-            Sections,
-            Table,
-            TableOfContent,
-            Text,
-            TitlePage,
-            Unknown,
-            WhitePage,
-        ]
-        return {str(item.__name__): item for item in items}
-
-    _ctor = generate_ctor()
 
     def load_item(item):
 
@@ -99,7 +78,7 @@ def load_sections(content: str) -> Sections:
             if not key.startswith(SEPCIALFIELD)
         }
 
-        ctor = _ctor[item[CLASSNAME]]
+        ctor = CTOR[item[CLASSNAME]]
         result = ctor(**result)
         return result
 
@@ -107,3 +86,27 @@ def load_sections(content: str) -> Sections:
     for section in loaded:
         result.append(load_item(section))
     return result
+
+
+def generate_ctor():
+    """Create table with name[constructor]"""
+    items = [
+        Appendix,
+        Chapter,
+        Content,
+        DocumentSection,
+        Index,
+        Introduction,
+        Sections,
+        Table,
+        TableOfContent,
+        Text,
+        TitlePage,
+        Unknown,
+        WhitePage,
+    ]
+    return {str(item.__name__): item for item in items}
+
+
+# lookuptable with constructor to create objects out of raw information
+CTOR = generate_ctor()

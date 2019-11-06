@@ -20,7 +20,7 @@ serializeraw
 sections
 ~~~~~~~~
 
-* [ ] refactor loader to access/patch items from outside to avoid patching
+* [x] refactor loader to access/patch items from outside to avoid patching
 serializeraw when introducing new AreaItem
 
 * [ ] add multiple section from hey project
