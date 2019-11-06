@@ -28,4 +28,4 @@ serializeraw when introducing new AreaItem
 whitepages
 ~~~~~~~~~~
 
-* [ ] move methods to dump and load whitepages
+* [x] move methods to dump and load whitepages

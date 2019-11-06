@@ -114,6 +114,10 @@ from iamraw.titlepage import TitlePage
 from iamraw.toc import Section
 from iamraw.toc import Toc
 from iamraw.toc import create_toc
+# whitepage
+from iamraw.whitepage import PageContentWhitepage
+from iamraw.whitepage import PageContentWhitepages
+from iamraw.whitepage import WhitePage
 
 __version__ = '1.10.4'
 
