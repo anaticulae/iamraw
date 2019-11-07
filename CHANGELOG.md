@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.11.1
+
+### Feature
+
+* add `pages` selector to load defined pages (a46ffec03206)
+
+### Documentation
+
+* fix rst doc list (3624e8a71753)
+
 ## v1.11.0
 
 ### Feature
