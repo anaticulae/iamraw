@@ -51,11 +51,12 @@ def dump_sections(sections: Sections) -> str:
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_sections(content: str) -> Sections:
+def load_sections(content: str, pages: tuple = None) -> Sections:
     """Load sections from path or str
 
     Args:
         content(str): path or yaml representation of `Sections`
+        pages(tuple): tuple of page numbers to load - if none, load all
     Return:
         loaded Sections
     """
@@ -83,6 +84,10 @@ def load_sections(content: str) -> Sections:
 
     result = Sections()
     for section in loaded:
+        start, end = section['start'], section['end']
+        for page in range(start, end + 1):
+            if utila.should_skip(page, pages):
+                continue
         result.append(load_item(section))
     return result
 
@@ -92,10 +97,10 @@ def generate_ctor():
     items = [
         Appendix,
         Chapter,
-        MainPart,
         DocumentSection,
         Index,
         Introduction,
+        MainPart,
         MultipleSection,
         Sections,
         Table,
