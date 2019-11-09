@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.11.2
+
+### Fix
+
+* skip correct pages - load only parts of bigger sections (354cf956ea6a)
+
 ## v1.11.1
 
 ### Feature
