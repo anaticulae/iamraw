@@ -85,11 +85,40 @@ def load_sections(content: str, pages: tuple = None) -> Sections:
     result = Sections()
     for section in loaded:
         start, end = section['start'], section['end']
-        for page in range(start, end + 1):
-            if utila.should_skip(page, pages):
-                continue
-        result.append(load_item(section))
+        section_pages = range(start, end + 1)
+        inside = [
+            page for page in section_pages
+            if not utila.should_skip(page, pages)
+        ]
+        if not inside:
+            # no part of current section is inside
+            continue
+        if len(section_pages) == len(inside):
+            # every page of section is inside, add all
+            result.append(load_item(section))
+            continue
+        # some parts are inside, shrink section with reduced content
+        complete = load_item(section)
+        shrinked = shrink_section(complete, pages)
+        result.append(shrinked)
+
     return result
+
+
+def shrink_section(section, pages: tuple):
+    """Shrink content `section` to selected `pages`"""
+    section_pages = range(section.start, section.end + 1)
+    inside = [
+        page for page in section_pages if not utila.should_skip(page, pages)
+    ]
+    # adjust border to new border
+    section.start, section.end = min(inside), max(inside)
+    # shrink to new border
+    section.content = [
+        item for item in section.content
+        if item.start >= section.start and item.end <= section.end
+    ]
+    return section
 
 
 def generate_ctor():
