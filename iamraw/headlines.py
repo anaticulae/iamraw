@@ -19,6 +19,20 @@ class Headline:
     page: int = dataclasses.field(default=-1)
     container: int = dataclasses.field(default=None)
 
+    @property
+    def start(self):
+        try:
+            return self.container[0]  # pylint:disable=E1136
+        except TypeError:
+            return self.container
+
+    @property
+    def end(self):
+        try:
+            return self.container[1]  # pylint:disable=E1136
+        except TypeError:
+            return self.container
+
 
 Headlines = typing.List[Headline]
 PagesHeadlineList = typing.List[Headlines]
