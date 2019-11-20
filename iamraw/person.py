@@ -10,7 +10,6 @@ import enum
 
 
 class AcademicTitle(enum.Flag):
-    # TODO: MOVE TO IAMRAW
     NO_TITLE = enum.auto()
     STUDENT = enum.auto()  # author without academic title
     BSC = enum.auto()
