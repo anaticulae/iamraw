@@ -6,7 +6,19 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""Titlepage
+==========
 
+Definition
+----------
+
+* Institution - Institut
+* Department - Fakultaet
+* Institute - Institut
+* Field - Fachgebiet
+* Course of studies - Studiengang
+* Academic year - Studienjahr/Semester
+"""
 import collections
 import dataclasses
 import enum
@@ -55,14 +67,6 @@ Matrikel = collections.namedtuple('Matrikel', 'number intro raw')
 
 @dataclasses.dataclass  # pylint:disable=R0903
 class Institution:
-    """
-    Institution - Institut
-    Department - Fakultaet
-    Institute - Institut
-    Field - Fachgebiet
-    Course of studies - Studiengang
-    Academic year - Studienjahr/Semester
-    """
     courseofstudies: str = None
     department: str = None
     field: str = None
