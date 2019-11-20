@@ -83,6 +83,9 @@ from iamraw.list import PageList
 # pages
 from iamraw.page import PageSizeBorder
 from iamraw.page import PageSizeBorderList
+# person
+from iamraw.person import PROF_DR
+from iamraw.person import AcademicTitle
 # sections
 from iamraw.sections import AreaItem
 from iamraw.sections import DocumentSection

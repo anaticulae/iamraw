@@ -22,4 +22,4 @@ Headline
 Maintance
 ~~~~~~~~~
 
-* [ ] move some code from other packages
+* [x] move some code from other packages
