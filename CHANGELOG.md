@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.12.2
+
+### Feature
+
+* add start and end property to Headlines container (75d4801085da)
+
 ## v1.12.1
 
 ## v1.12.0
