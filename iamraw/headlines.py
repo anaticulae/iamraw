@@ -20,4 +20,5 @@ class Headline:
     container: int = dataclasses.field(default=None)
 
 
-PagesHeadlineList = typing.List[typing.List[Headline]]
+Headlines = typing.List[Headline]
+PagesHeadlineList = typing.List[Headlines]

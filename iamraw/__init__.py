@@ -71,6 +71,7 @@ from iamraw.headerfooter import PagesFooterInformation
 from iamraw.headerfooter import RawText
 # headlines
 from iamraw.headlines import Headline
+from iamraw.headlines import Headlines
 from iamraw.headlines import PagesHeadlineList
 # likelihood
 from iamraw.likelihood import Likelihood
