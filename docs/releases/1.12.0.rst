@@ -1,0 +1,25 @@
+release plan 1.12.0
+===================
+
+serializeraw
+------------
+
+Headline
+~~~~~~~~
+
+* [ ] support container-ranged headlines
+
+    .. code-block:: python
+
+        iamraw.Headline(
+            text='RestructuredText Tutorial',
+            level=2,
+            rawlevel='',
+            container=(0, 5),
+            page=6,
+        )
+
+Maintance
+~~~~~~~~~
+
+* [ ] move some code from other packages
