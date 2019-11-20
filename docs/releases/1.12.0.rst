@@ -7,7 +7,7 @@ serializeraw
 Headline
 ~~~~~~~~
 
-* [ ] support container-ranged headlines
+* [x] support container-ranged headlines
 
     .. code-block:: python
 

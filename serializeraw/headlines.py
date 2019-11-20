@@ -22,13 +22,18 @@ from iamraw import PagesHeadlineList
 def dump_headlines(headlines: PagesHeadlineList) -> str:
     raw = []
     for index, page in enumerate(headlines):
-        content = [{
-            'container': item.container,
-            'level': item.level,
-            'page': item.page,
-            'rawlevel': item.rawlevel,
-            'text': item.text,
-        } for item in page]
+        content = []
+        for item in page:
+            container = item.container
+            if isinstance(container, tuple):
+                container = ' '.join([str(item) for item in container])
+            content.append({
+                'container': container,
+                'level': item.level,
+                'page': item.page,
+                'rawlevel': item.rawlevel,
+                'text': item.text,
+            })
         if not content:
             # do not write empty pages
             continue
@@ -51,8 +56,16 @@ def load_headlines(content: str, pages=None) -> PagesHeadlineList:
             pagenumber = int(headline['page'])
             if should_skip(pagenumber, pages):
                 continue
+            try:
+                container = int(headline['container'])
+            except ValueError:
+                # support ranged container id
+                container = [
+                    int(index) for index in headline['container'].split()
+                ]
+                container = tuple(container)  # pylint:disable=R0204
             item = Headline(
-                container=int(headline['container']),
+                container=container,
                 level=int(headline['level']),
                 page=pagenumber,
                 rawlevel=headline['rawlevel'],

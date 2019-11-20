@@ -75,3 +75,39 @@ def test_headlines_dump_and_load_headlines():
 
     loaded = serializeraw.load_headlines(dumped, tuple(range(10)))
     assert len(loaded) == 2
+
+
+HEADLINE_CONTAINER_RANGE = [
+    [
+        iamraw.Headline(
+            text='CHAPTER 1',
+            level=1,
+            rawlevel='1',
+            container=(5, 9),
+            page=6,
+        ),
+        iamraw.Headline(
+            text='RestructuredText Tutorial',
+            level=2,
+            rawlevel='',
+            container=(0, 5),
+            page=6,
+        ),
+    ],
+    [
+        iamraw.Headline(
+            text='Text Tutorial',
+            level=2,
+            rawlevel='',
+            container=0,
+            page=6,
+        ),
+    ],
+]
+
+
+def test_headlines_dump_and_load_headlines_with_rangedcontainer():
+    dumped = serializeraw.dump_headlines(HEADLINE_CONTAINER_RANGE)
+    loaded = serializeraw.load_headlines(dumped)
+
+    assert loaded == HEADLINE_CONTAINER_RANGE
