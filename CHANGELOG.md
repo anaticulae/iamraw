@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v1.12.0
+
+### Feature
+
+* add AcademicTitle from `hey` project (d477b96b2e74)
+* add Headlines definition to public API (f5b31cff9ea7)
+* headline - add ranged container id (d465be4f04d4)
+
+### Documentation
+
+* move definition to top of module (669451b5b9db)
+
 ## v1.11.2
 
 ### Fix
