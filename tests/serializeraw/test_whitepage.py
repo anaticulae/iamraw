@@ -32,5 +32,13 @@ EXAMPLE = [
 def test_whitepage_dump_and_load():
     dumped = serializeraw.dump_whitepages(EXAMPLE)
     assert len(dumped) > 100, str(dumped)
-    loaded = serializeraw.load_whitepages(dumped, tuple(range(1, 30)))
-    assert loaded == EXAMPLE[1:]
+    loaded = serializeraw.load_whitepages(dumped)
+    assert loaded == EXAMPLE
+
+
+def test_whitepage_dump_and_load_pages():
+    """Test skipping pages."""
+    dumped = serializeraw.dump_whitepages(EXAMPLE)
+    assert len(dumped) > 100, str(dumped)
+    loaded = serializeraw.load_whitepages(dumped, tuple(range(5, 30)))
+    assert loaded == EXAMPLE[3:]
