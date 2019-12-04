@@ -6,8 +6,9 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================o
-"""
-Dump and load toc to yaml. Ensure loading from raw-string and file-path.
+"""Testing dump and load table of content to yaml.
+
+- Ensure loading from raw string and file path.
 """
 
 from os.path import join
@@ -23,12 +24,17 @@ from serializeraw.toc import load_toc
 from tests.serializeraw import TOC_YAML
 
 
-def create_section(level: int, title: str, parent) -> Section:
+def create_section(
+        level: int,
+        title: str,
+        parent: iamraw.toc.TocLink,
+) -> iamraw.Section:
     """Create section with no parents or children
 
     Args:
         level(int): level of hierarchy in toc - root(0) chapter(1) subchaper(2)
         title(str): title of level
+        parent: parent item of current `Section`.
     Returns:
         Section(level, str)
     """

@@ -18,8 +18,12 @@ from typing import Dict
 from typing import List
 
 
+class TocLink:
+    pass
+
+
 @dataclass
-class Section:
+class Section(TocLink):
     level: int
     title: str
     args: Dict[str, str] = field(default_factory=dict)
@@ -29,7 +33,7 @@ class Section:
 
 
 @dataclass
-class Toc:
+class Toc(TocLink):
     level: int = 0  # level must alsways be 0
     children: List[Section] = field(default_factory=list)
 

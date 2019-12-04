@@ -56,7 +56,8 @@ def load_text(
 
     Args:
         content(str): path to dumped text
-        headlines(List[List[Headline]]): list of page with list of headlines
+        headlines(PagesHeadlineList): list of page with list of headlines
+        pages(tuple): load all if None or load selected one.
     Returns:
         loaded text with replaced headlines
     """
