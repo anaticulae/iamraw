@@ -89,7 +89,7 @@ def create_toc(outlines: List[Section]):
                 title=item.title,
             )
             add_children(current, new_one)
-        current = new_one
+        current = new_one  # pylint:disable=redefined-variable-type
     return root
 
 

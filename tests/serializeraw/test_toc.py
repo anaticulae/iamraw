@@ -11,17 +11,14 @@
 - Ensure loading from raw string and file path.
 """
 
-from os.path import join
+import os
 
-from pytest import fixture
-from pytest import raises
-from utila import file_create
+import pytest
+import utila
 
-from iamraw import Section
-from iamraw import Toc
-from serializeraw.toc import dump_toc
-from serializeraw.toc import load_toc
-from tests.serializeraw import TOC_YAML
+import iamraw
+import serializeraw
+import tests.serializeraw
 
 
 def create_section(
@@ -38,13 +35,13 @@ def create_section(
     Returns:
         Section(level, str)
     """
-    return Section(level=level, title=title, parent=parent)
+    return iamraw.Section(level=level, title=title, parent=parent)
 
 
-@fixture
+@pytest.fixture
 def toc_example():
-    """Create table of content with 3 headlines"""
-    root = Toc()
+    """Create table of content with 3 headlines."""
+    root = iamraw.Toc()
 
     first = create_section(1, 'Kapitel 1', root)
     second = create_section(2, 'Kapitel 1.1', first)
@@ -58,15 +55,15 @@ def toc_example():
 
 
 def test_load_toc_from_path():
-    toc = load_toc(TOC_YAML)
+    toc = serializeraw.load_toc(tests.serializeraw.TOC_YAML)
     assert toc
 
 
 def test_dump_and_load_toc(toc_example):  # pylint:disable=W0621
-    """Serialize toc and load it afterwards"""
+    """Serialize toc and load it afterwards."""
     root = toc_example
-    content = dump_toc(root)
-    loaded = load_toc(content)
+    content = serializeraw.dump_toc(root)
+    loaded = serializeraw.load_toc(content)
     assert str(loaded) == str(root)
     assert loaded == root
 
@@ -74,22 +71,22 @@ def test_dump_and_load_toc(toc_example):  # pylint:disable=W0621
 def test_load_from_filepath(tmpdir, toc_example):  # pylint:disable=W0621
     """Compare loading from raw string and filepath."""
 
-    dumped = dump_toc(toc_example)
+    dumped = serializeraw.dump_toc(toc_example)
 
-    to_write = join(tmpdir, 'toc.yaml')
+    to_write = os.path.join(tmpdir, 'toc.yaml')
 
-    file_create(to_write, dumped)
+    utila.file_create(to_write, dumped)
 
-    from_file = load_toc(to_write)  # from path
-    from_raw = load_toc(dumped)  # from raw
+    from_file = serializeraw.load_toc(to_write)  # from path
+    from_raw = serializeraw.load_toc(dumped)  # from raw
 
     assert from_file == toc_example
     assert from_file == from_raw
 
 
 def test_load_non_existing_toc():
-    """Non existing resource leads to ValueError"""
+    """None existing resource leads to ValueError."""
     path = 'C:/iamthepath/toc.yaml'
 
-    with raises(ValueError):
-        load_toc(path)
+    with pytest.raises(ValueError):
+        serializeraw.load_toc(path)
