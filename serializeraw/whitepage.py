@@ -20,8 +20,10 @@ import iamraw
 def dump_whitepages(pages: iamraw.PageContentWhitepages) -> str:
     """Dump list of `PageContentWhitePage`"""
     result = {}
-    for item in pages:
-        result[item.page] = item.content.name if item.content else None
+    if isinstance(pages, list):
+        pages = {item.page: item for item in pages}
+    for page, value in pages.items():
+        result[page] = value.content.name if value.content else None
     dumped = yaml.dump(result)
     return dumped
 
