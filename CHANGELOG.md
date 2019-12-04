@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.12.3
+
+### Feature
+
+* extend interface documentation (6473e5c177c0)
+* add support dumping list and dict of Whitepages (bedbb5616c9e)
+
 ## v1.12.2
 
 ### Feature
