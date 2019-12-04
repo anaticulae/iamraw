@@ -31,11 +31,17 @@ class Section(TocLink):
     parent: Any = field(default=None, compare=False)
     children: List[Any] = field(default_factory=list)
 
+    def append(self, item):
+        self.children.append(item)  # pylint:disable=E1101
+
 
 @dataclass
 class Toc(TocLink):
     level: int = 0  # level must alsways be 0
     children: List[Section] = field(default_factory=list)
+
+    def append(self, item):
+        self.children.append(item)  # pylint:disable=E1101
 
 
 def create_toc(outlines: List[Section]):

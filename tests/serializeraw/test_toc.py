@@ -50,9 +50,9 @@ def toc_example():
     second = create_section(2, 'Kapitel 1.1', first)
     third = create_section(3, 'Kapitel 1.1.1', second)
 
-    root.children.append(first)
-    first.children.append(second)
-    second.children.append(third)
+    root.append(first)
+    first.append(second)
+    second.append(third)
 
     return root
 
