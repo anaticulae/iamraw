@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.12.4
+
+### Feature
+
+* add `raw` and `page` to Section (2ca652b36790)
+
+### Documentation
+
+* extend module description (8c84babecdb0)
+
 ## v1.12.3
 
 ### Feature
