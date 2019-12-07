@@ -6,47 +6,44 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
-"""Table of content.
+"""Table of content
+================
 
 Basic structure of get_outlines: (level, title, args, children)
 """
-
-from dataclasses import dataclass
-from dataclasses import field
-from typing import Any
-from typing import Dict
-from typing import List
+import dataclasses
+import typing
 
 
 class TocLink:
     pass
 
 
-@dataclass
+@dataclasses.dataclass
 class Section(TocLink):
     level: int
     title: str
     page: int = None
     raw: str = None
-    args: Dict[str, str] = field(default_factory=dict)
+    args: typing.Dict[str, str] = dataclasses.field(default_factory=dict)
     # compare = False to avoid recursive lookups
-    parent: Any = field(default=None, compare=False)
-    children: List[Any] = field(default_factory=list)
+    parent: typing.Any = dataclasses.field(default=None, compare=False)
+    children: typing.List[typing.Any] = dataclasses.field(default_factory=list)
 
     def append(self, item):
         self.children.append(item)  # pylint:disable=E1101
 
 
-@dataclass
+@dataclasses.dataclass
 class Toc(TocLink):
     level: int = 0  # level must alsways be 0
-    children: List[Section] = field(default_factory=list)
+    children: typing.List[Section] = dataclasses.field(default_factory=list)
 
     def append(self, item):
         self.children.append(item)  # pylint:disable=E1101
 
 
-def create_toc(outlines: List[Section]):
+def create_toc(outlines: typing.List[Section]):
     """Extract toc out of pdf-outlines
 
     The highest level is 0 the document root. Higher number level means more
