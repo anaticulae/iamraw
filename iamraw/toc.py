@@ -62,6 +62,8 @@ def create_toc(outlines: List[Section]):
             new_one = Section(
                 parent=current.parent,  # pylint:disable=E1101
                 level=item.level,
+                page=item.page,
+                raw=item.raw,
                 title=item.title,
             )
             add_children(current.parent, new_one)  # pylint:disable=E1101
@@ -72,6 +74,8 @@ def create_toc(outlines: List[Section]):
             new_one = Section(
                 parent=current,
                 level=item.level,
+                page=item.page,
+                raw=item.raw,
                 title=item.title,
             )
             add_children(current, new_one)
@@ -88,6 +92,8 @@ def create_toc(outlines: List[Section]):
             new_one = Section(
                 parent=current,
                 level=item.level,
+                page=item.page,
+                raw=item.raw,
                 title=item.title,
             )
             add_children(current, new_one)
