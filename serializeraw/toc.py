@@ -16,41 +16,38 @@ Public methods:
 
 """
 import contextlib
-from functools import lru_cache
+import functools
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
+import yaml
 
-from iamraw import Section
-from iamraw import Toc
+import iamraw
 
 
-def dump_toc(content: Toc) -> str:
+def dump_toc(content: iamraw.Toc) -> str:
     """Convert table of content to raw yaml representation."""
-    assert isinstance(content, Toc)
+    assert isinstance(content, iamraw.Toc)
     raw = _dump(content)
-    return dump(raw)
+    return yaml.dump(raw)
 
 
-@lru_cache(CACHE_SMALL)
-def load_toc(content: str) -> Toc:
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_toc(content: str) -> iamraw.Toc:
     """Load table of content from file or content
 
     Args:
         content(str): Content can be raw string or a file-path. If passing a
                       file-path, the file is loaded and parsed as a yaml file.
     Returns:
-        loaded Toc
+        loaded iamraw.Toc
     """
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
     return _load(loaded, parent=None)
 
 
-def _dump(current: Section):
+def _dump(current: iamraw.Section):
     """Convert to raw python to have more clear yaml output"""
     children = [_dump(item) for item in current.children]
     try:
@@ -61,7 +58,7 @@ def _dump(current: Section):
             'title': current.title,
         }
     except AttributeError:
-        # Toc ROOT node
+        # iamraw.Toc ROOT node
         result = {'level': 0}
 
     if children:
@@ -69,11 +66,11 @@ def _dump(current: Section):
     return result
 
 
-def _load(current: dict, parent: Section):
+def _load(current: dict, parent: iamraw.Section):
     """Load from raw python without complex objects"""
     assert isinstance(current, dict), type(current)
     try:
-        result = Section(
+        result = iamraw.Section(
             level=current['level'],
             title=current['title'],
             parent=parent,
@@ -83,7 +80,7 @@ def _load(current: dict, parent: Section):
         with contextlib.suppress(KeyError):
             result.page = current['page']
     except KeyError:
-        result = Toc()  # pylint:disable=redefined-variable-type
+        result = iamraw.Toc()  # pylint:disable=redefined-variable-type
 
     with contextlib.suppress(KeyError):
         # A leaf has no children
