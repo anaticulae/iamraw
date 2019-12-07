@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.12.5
+
+### Fix
+
+* add missing new parameter forwarding (ee3e1051e15a)
+
 ## v1.12.4
 
 ### Feature
