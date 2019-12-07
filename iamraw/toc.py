@@ -26,6 +26,8 @@ class TocLink:
 class Section(TocLink):
     level: int
     title: str
+    page: int = None
+    raw: str = None
     args: Dict[str, str] = field(default_factory=dict)
     # compare = False to avoid recursive lookups
     parent: Any = field(default=None, compare=False)

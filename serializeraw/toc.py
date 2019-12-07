@@ -6,9 +6,8 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-"""
-This module supports dumping and loading a table of content into yaml file
-format.
+"""This module supports dumping and loading a table of content into yaml
+file format.
 
 Public methods:
 
@@ -16,6 +15,7 @@ Public methods:
     load_yamp
 
 """
+import contextlib
 from functools import lru_cache
 
 from configo import CACHE_SMALL
@@ -54,7 +54,12 @@ def _dump(current: Section):
     """Convert to raw python to have more clear yaml output"""
     children = [_dump(item) for item in current.children]
     try:
-        result = {'level': current.level, 'title': current.title}
+        result = {
+            'level': current.level,
+            'page': current.page,
+            'raw': current.raw,
+            'title': current.title,
+        }
     except AttributeError:
         # Toc ROOT node
         result = {'level': 0}
@@ -73,12 +78,14 @@ def _load(current: dict, parent: Section):
             title=current['title'],
             parent=parent,
         )
+        with contextlib.suppress(KeyError):
+            result.raw = current['raw']
+        with contextlib.suppress(KeyError):
+            result.page = current['page']
     except KeyError:
-        result = Toc()
+        result = Toc()  # pylint:disable=redefined-variable-type
 
-    try:
-        result.children = [_load(item, result) for item in current['children']]
-    except KeyError:
+    with contextlib.suppress(KeyError):
         # A leaf has no children
-        pass
+        result.children = [_load(item, result) for item in current['children']]
     return result
