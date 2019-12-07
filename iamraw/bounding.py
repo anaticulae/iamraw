@@ -6,7 +6,12 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-"""
+"""Bounding
+========
+
+The BoundingBox describes a rectangle which contains the area of the
+described item which the box refers.
+
 .. code-block:: none
 
     x0,y0 ----------------|
