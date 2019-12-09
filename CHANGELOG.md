@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.12.6
+
+### Fix
+
+* support multiple sections (c14d32e8c207)
+
 ## v1.12.5
 
 ### Fix
