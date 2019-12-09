@@ -37,7 +37,11 @@ def dump_sections(sections: Sections) -> str:
 
     def dump_item(item):
         keys = [key for key in dir(item) if not key.startswith(SEPCIALFIELD)]
-        result = {key: item.__getattribute__(key) for key in keys}
+        result = {
+            key: item.__getattribute__(key)
+            if key != 'content' else [dump_item(it) for it in item.content]
+            for key in keys
+        }
         result[CLASSNAME] = item.__class__.__name__
         return result
 
