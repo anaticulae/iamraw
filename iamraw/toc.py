@@ -77,7 +77,7 @@ def create_toc(outlines: typing.List[Section]):
                 raw=item.raw,
                 title=item.title,
             )
-            add_children(current.parent, new_one)  # pylint:disable=E1101
+            current.parent.append(new_one)  # pylint:disable=E1101
         elif level > current.level:
             # The level of the item to add is higher than the current item in
             # table of content, therefore add the new one as a paranet of
@@ -89,7 +89,7 @@ def create_toc(outlines: typing.List[Section]):
                 raw=item.raw,
                 title=item.title,
             )
-            add_children(current, new_one)
+            current.append(new_one)
         else:
             # The level of the `new_one` is lower than the item in index. That
             # means that the distance of the item to add to the index is
@@ -107,11 +107,6 @@ def create_toc(outlines: typing.List[Section]):
                 raw=item.raw,
                 title=item.title,
             )
-            add_children(current, new_one)
+            current.append(new_one)
         current = new_one  # pylint:disable=redefined-variable-type
     return root
-
-
-def add_children(section: Section, item):
-    assert section, item
-    section.children.append(item)
