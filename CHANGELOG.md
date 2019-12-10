@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.12.7
+
+### Feature
+
+* extend interface of TocLink and rename to Mixin (336ace1e1105)
+
 ## v1.12.6
 
 ### Fix
