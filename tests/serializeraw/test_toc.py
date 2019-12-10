@@ -24,7 +24,7 @@ import tests.serializeraw
 def create_section(
         level: int,
         title: str,
-        parent: iamraw.toc.TocLink,
+        parent: iamraw.toc.TocLinkMixin,
 ) -> iamraw.Section:
     """Create section with no parents or children
 
@@ -90,3 +90,11 @@ def test_load_non_existing_toc():
 
     with pytest.raises(ValueError):
         serializeraw.load_toc(path)
+
+
+def test_toc_iterate_children(toc_example):  # pylint:disable=W0621
+    example = toc_example
+    for items in example:
+        assert items
+        for item in items:
+            assert item

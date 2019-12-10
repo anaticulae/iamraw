@@ -11,16 +11,24 @@
 
 Basic structure of get_outlines: (level, title, args, children)
 """
+import abc
 import dataclasses
 import typing
 
 
-class TocLink:
-    pass
+class TocLinkMixin(abc.ABC):
+
+    @abc.abstractmethod
+    def append(self, item):
+        """Append `item` as children."""
+
+    @abc.abstractmethod
+    def __getitem__(self, index):
+        """Access children at `index`"""
 
 
 @dataclasses.dataclass
-class Section(TocLink):
+class Section(TocLinkMixin):
     level: int
     title: str
     page: int = None
@@ -33,14 +41,20 @@ class Section(TocLink):
     def append(self, item):
         self.children.append(item)  # pylint:disable=E1101
 
+    def __getitem__(self, index):
+        return self.children[index]  # pylint:disable=E1136
+
 
 @dataclasses.dataclass
-class Toc(TocLink):
+class Toc(TocLinkMixin):
     level: int = 0  # level must alsways be 0
     children: typing.List[Section] = dataclasses.field(default_factory=list)
 
     def append(self, item):
         self.children.append(item)  # pylint:disable=E1101
+
+    def __getitem__(self, index):
+        return self.children[index]  # pylint:disable=E1136
 
 
 def create_toc(outlines: typing.List[Section]):
