@@ -34,7 +34,6 @@ def datafiles():
     return [('.', [
         'CHANGELOG.md',
         'README.md',
-        'TODO.md',
         'requirements.txt',
     ])]
 

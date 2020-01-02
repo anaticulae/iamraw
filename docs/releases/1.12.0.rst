@@ -23,3 +23,12 @@ Maintance
 ~~~~~~~~~
 
 * [x] move some code from other packages
+
+code
+----
+
+after
+~~~~~
+
+* Total coverage: 95.06%
+* Your code has been rated at 9.92/10

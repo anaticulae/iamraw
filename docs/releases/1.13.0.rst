@@ -1,0 +1,22 @@
+release plan 1.13.0
+===================
+
+iamraw
+------
+
+iamraw.document.Page
+~~~~~~~~~~~~~~~~~~~~
+
+* [ ] add some basic methods __len__, empty, etc. to ease using
+
+code
+----
+
+before
+~~~~~~
+
+* Total coverage: 95.06%
+* Your code has been rated at 9.92/10
+
+after
+~~~~~
