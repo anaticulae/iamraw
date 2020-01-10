@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.12.9
+
+### Feature
+
+* validate before dump/load to avoid broken data (a0f9a4421c84)
+* add method to validate list of <page,content> (db6cda00f23c)
+
+### Documentation
+
+* add general doc structure (e499a0e69015)
+
 ## v1.12.8
 
 ### Documentation
