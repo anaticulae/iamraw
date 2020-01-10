@@ -82,6 +82,8 @@ from serializeraw.titlepage import load_titlepage
 # toc
 from serializeraw.toc import dump_toc
 from serializeraw.toc import load_toc
+# utils
+from serializeraw.utils import validate
 # whitepage
 from serializeraw.whitepage import dump_whitepages
 from serializeraw.whitepage import load_whitepages
