@@ -66,6 +66,7 @@ from iamraw.headerfooter import HeaderInformation
 from iamraw.headerfooter import HeaderTitle
 from iamraw.headerfooter import MovingFooterInformation
 from iamraw.headerfooter import PageContentFooterHeader
+from iamraw.headerfooter import PageContentFooterHeaders
 from iamraw.headerfooter import PageInformation
 from iamraw.headerfooter import PagesFooterInformation
 from iamraw.headerfooter import RawText

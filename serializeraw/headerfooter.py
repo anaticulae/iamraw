@@ -15,9 +15,11 @@ import utila
 import yaml
 
 import iamraw
+import serializeraw
 
 
-def dump_headerfooter(pages) -> str:
+def dump_headerfooter(pages: iamraw.PageContentFooterHeaders) -> str:
+    serializeraw.validate(pages)
     result = []
     for page in pages:
         raw_header = _dump_header(page.header)
@@ -35,7 +37,7 @@ def dump_headerfooter(pages) -> str:
 def load_headerfooter(
         content: str,
         pages=None,
-) -> typing.List[iamraw.PageContentFooterHeader]:
+) -> iamraw.PageContentFooterHeaders:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.load(content, Loader=yaml.FullLoader)
 
@@ -56,6 +58,7 @@ def load_headerfooter(
             page=pagenumber,
         )
         result.append(footerheader)
+    serializeraw.validate(result)
     return result
 
 

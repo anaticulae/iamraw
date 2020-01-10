@@ -17,6 +17,8 @@ PageContentFooterHeader = collections.namedtuple(
     'header, footer, page',
 )
 
+PageContentFooterHeaders = typing.List[PageContentFooterHeader]
+
 
 @dataclasses.dataclass  # pylint:disable=R0903
 class PageInformation:

@@ -33,3 +33,12 @@ def test_footerheader_dump_and_load(example):
     dumped = serializeraw.dump_headerfooter(example)
     loaded = serializeraw.load_headerfooter(dumped)
     assert example == loaded
+
+
+def test_footerheader_dump_invalid_list():
+    duplication = []
+    duplication.extend(tests.serializeraw.examples.headerfooter.FOOTER_HEADER)
+    duplication.extend(tests.serializeraw.examples.headerfooter.FOOTER_HEADER)
+
+    with pytest.raises(ValueError):
+        serializeraw.dump_headerfooter(duplication)
