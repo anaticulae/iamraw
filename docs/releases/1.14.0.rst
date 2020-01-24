@@ -1,0 +1,20 @@
+.. _1_14_0:
+
+RP 1.14.0
+=========
+
+footnotes
+---------
+
+* [ ] FootRawNote to represent parsed FootNote
+
+* [ ] FootJudgedNote to represent Footnote after grammatical analysis
+
+code quality
+------------
+
+before
+~~~~~~
+
+* Total coverage: 94.42%
+* Your code has been rated: 9.94/10
