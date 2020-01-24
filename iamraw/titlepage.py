@@ -65,7 +65,7 @@ Person = collections.namedtuple('Person', 'title name firstname raw')
 Matrikel = collections.namedtuple('Matrikel', 'number intro raw')
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class Institution:
     courseofstudies: str = None
     department: str = None
@@ -74,7 +74,7 @@ class Institution:
     university: str = None
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class TitlePage:
     title: str = ''
     thesis: DocumentType = None

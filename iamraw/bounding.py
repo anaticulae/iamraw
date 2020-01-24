@@ -171,7 +171,7 @@ def split_x(
 Boundings = typing.List[typing.Tuple[int, BoundingBox]]
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class PageBoundings:
     # list of `BoundingBox`es on current `page`
     boundings: Boundings = dataclasses.field(default_factory=list)

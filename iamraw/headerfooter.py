@@ -22,13 +22,13 @@ PageContentFooterHeader = collections.namedtuple(
 PageContentFooterHeaders = typing.List[PageContentFooterHeader]
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class PageInformation:
     value: str = None
     raw: str = None
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class HeaderInformation:
     begin: float = None
     end: float = None
@@ -45,7 +45,7 @@ class HeaderInformation:
             self.end = max(self.end if self.end is not None else 0.0, end)
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class FooterInformation:
     begin: float = None
     end: float = None
@@ -62,7 +62,7 @@ class FooterInformation:
             self.end = max(self.end if self.end is not None else 0.0, end)
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class FootNote:
     number: int
     text: str
@@ -72,25 +72,25 @@ class FootNote:
     year: int = None
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class HeaderTitle:
     # XXX: Store location and font?
     title: str = None
     raw: str = None
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class HeaderImages:
     number: int = None
     location: BoundingBox = None
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class RawText:
     text: str = None
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class FixedHeaderInformation(HeaderInformation):
 
     title: HeaderTitle = None
@@ -108,12 +108,12 @@ class FixedHeaderInformation(HeaderInformation):
             raise ValueError(f'wrong data type: {item}')
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class FixedFooterInformation(FooterInformation):
     pass
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class MovingFooterInformation(FooterInformation):
     notes: typing.List[FootNote] = dataclasses.field(default_factory=list)
 
@@ -127,6 +127,6 @@ class MovingFooterInformation(FooterInformation):
         return len(self.notes)
 
 
-@dataclasses.dataclass  # pylint:disable=R0903
+@dataclasses.dataclass
 class PagesFooterInformation(FooterInformation):
     page_location: BoundingBox = None
