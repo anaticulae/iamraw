@@ -40,10 +40,9 @@ class Page:
         return ''.join(result)
 
     def __repr__(self):
-        result = 'Page[%d, %s]\n' % (self.page, self.dimension)
-        for item in self.children:  # pylint:disable=E1133
-            result += '  %s\n' % item
-        return result
+        result = f'Page(page={self.page}, dimension={self.dimension})\n'
+        content = ''.join([f'  {item}\n' for item in self.children])  # pylint:disable=E1133
+        return result + content
 
     def __getitem__(self, key):
         """Iterate over children in page"""
