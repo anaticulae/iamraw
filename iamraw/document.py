@@ -49,6 +49,15 @@ class Page:
         """Iterate over children in page"""
         return self.children[key]  # pylint:disable=E1136
 
+    def append(self, item):
+        self.children.append(item)  # pylint:disable=E1101
+
+    def __len__(self) -> int:
+        return len(self.children)
+
+    def empty(self) -> bool:
+        return len(self) == 0
+
 
 @dataclasses.dataclass
 class Document:

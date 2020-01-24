@@ -33,18 +33,18 @@ def _load_page(content):
     for class_, item_content in children:
         if class_ == iamraw.TextContainer.__name__:
             loaded = loadme(iamraw.TextContainer, item_content)
-            page.children.append(loaded)  # pylint:disable=E1101
+            page.append(loaded)
 
         if class_ == iamraw.PageObject.__name__:
             loaded = loadme(iamraw.PageObject, item_content)
-            page.children.append(loaded)  # pylint:disable=E1101
+            page.append(loaded)
     return page
 
 
 def _dump_page(page: iamraw.Page):
     result = {
         'page': page.page,
-        'children': [dumper(item) for item in page.children],
+        'children': [dumper(item) for item in page],
     }
     return result
 

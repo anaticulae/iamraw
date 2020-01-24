@@ -77,11 +77,11 @@ def simple_textcontainer():
 @fixture
 def simple_page(simple_textcontainer):  # pylint:disable=W0621
     page = Page()
-
-    # pylint:disable=E1101
-    page.children.append(simple_textcontainer)
-    page.children.append(simple_textcontainer)
-    page.children.append(simple_textcontainer)
+    assert page.empty()
+    page.append(simple_textcontainer)
+    page.append(simple_textcontainer)
+    page.append(simple_textcontainer)
+    assert len(page) == 3
 
     return page
 
@@ -102,7 +102,8 @@ def test_document_dump_and_load_page(simple_page):  # pylint:disable=W0621
 
     assert loaded.text == simple_page.text
 
-    for current, expected in zip(loaded.children, simple_page.children):
+    for current, expected in zip(loaded, simple_page):
         assert current == expected
+    assert len(loaded) == len(simple_page)
     assert loaded.children == simple_page.children
     assert loaded == simple_page

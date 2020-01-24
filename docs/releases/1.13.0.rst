@@ -7,7 +7,7 @@ iamraw
 iamraw.document.Page
 ~~~~~~~~~~~~~~~~~~~~
 
-* [ ] add some basic methods __len__, empty, etc. to ease using
+* [x] add some basic methods __len__, empty, etc. to ease using
 
 
 iamraw.headerfooter
