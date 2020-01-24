@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.14.0
+
+### Feature
+
+* split footnote into raw and logical note (b1f867786456)
+
 ## v1.13.0
 
 ### Feature
