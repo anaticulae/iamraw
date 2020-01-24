@@ -70,7 +70,7 @@ class FootNote:
 @dataclasses.dataclass
 class FootRawNote(FootNote):
     text: str
-    raw: str
+    raw: str = None
     style: list = dataclasses.field(default_factory=list)
 
 
