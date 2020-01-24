@@ -28,3 +28,6 @@ before
 
 after
 ~~~~~
+
+* Total coverage: 94.42%
+* Your code has been rated: 9.94/10
