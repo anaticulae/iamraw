@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v1.13.0
+
+### Feature
+
+* add method to increase area of footer and header (dcb65337c2c7)
+* add append method to header and footer information (23034d994ed0)
+* add basic methods to ease working with Page (47c72f030300)
+
 ## v1.12.12
 
 ## v1.12.11
