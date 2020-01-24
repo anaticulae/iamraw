@@ -107,3 +107,10 @@ def test_document_dump_and_load_page(simple_page):  # pylint:disable=W0621
     assert len(loaded) == len(simple_page)
     assert loaded.children == simple_page.children
     assert loaded == simple_page
+
+
+def test_document_page_repr():
+    """Ensure that repr works."""
+    page = Page()
+    raw = str(page)
+    assert 'page=0' in raw, raw
