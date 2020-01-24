@@ -6,9 +6,9 @@ RP 1.14.0
 footnotes
 ---------
 
-* [ ] FootRawNote to represent parsed FootNote
+* [x] FootRawNote to represent parsed FootNote
 
-* [ ] FootJudgedNote to represent Footnote after grammatical analysis
+* [x] FootJudgedNote to represent Footnote after grammatical analysis
 
 code quality
 ------------

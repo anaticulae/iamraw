@@ -62,30 +62,16 @@ def load_headerfooter(
 
 
 def dump_footnote(note):
-    raw = {
-        'number': note.number,
-        'text': note.text,
-        'raw': note.raw,
-    }
-    if note.author:
-        raw['author'] = note.author
-    if note.title:
-        raw['title'] = note.title
-    if note.year:
-        raw['year'] = note.year
+    raw = {key: value for key, value in vars(note).items() if value}
     return raw
 
 
 def load_footnote(raw: dict) -> iamraw.FootNote:
-    result = iamraw.FootNote(
-        number=raw['number'],
-        text=raw['text'],
-        raw=raw['raw'],
-        author=raw.get('author', None),
-        title=raw.get('title', None),
-        year=raw.get('year', None),
-    )
-    return result
+    with contextlib.suppress(TypeError):
+        return iamraw.FootRawNote(**raw)
+    with contextlib.suppress(TypeError):
+        return iamraw.FootJudgedNote(**raw)
+    raise ValueError(f'not supported: {raw}')
 
 
 def _dump_footer(footer):

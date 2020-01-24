@@ -10,7 +10,7 @@
 from iamraw import BoundingBox
 from iamraw import FixedFooterInformation
 from iamraw import FixedHeaderInformation
-from iamraw import FootNote
+from iamraw import FootRawNote
 from iamraw import HeaderTitle
 from iamraw import MovingFooterInformation
 from iamraw import PageContentFooterHeader
@@ -31,20 +31,16 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootNote(
+                FootRawNote(
                     number='1',
                     text='Personal Digital Assistant.',
                     raw='1Personal Digital Assistant.',
-                    author=None,
-                    title=None,
-                    year=None),
-                FootNote(
+                ),
+                FootRawNote(
                     number='2',
                     text='Operating System.',
                     raw='2Operating System.',
-                    author=None,
-                    title=None,
-                    year=None)
+                )
             ]),
         page=9,
     ),
@@ -55,27 +51,21 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootNote(
+                FootRawNote(
                     number='3',
                     text='Eclipse ist eine Gemeinschaft die sich mit ',
                     raw='3Eclipse ist eine Gemeinschaft die sich mit ',
-                    author=None,
-                    title=None,
-                    year=None),
-                FootNote(
+                ),
+                FootRawNote(
                     number='4',
                     text='Java Standard Edition',
                     raw='4Java Standard Edition',
-                    author=None,
-                    title=None,
-                    year=None),
-                FootNote(
+                ),
+                FootRawNote(
                     number='5',
                     text='Software Development Kit',
                     raw='5Software Development Kit',
-                    author=None,
-                    title=None,
-                    year=None)
+                )
             ]),
         page=10,
     ),
@@ -86,20 +76,16 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootNote(
+                FootRawNote(
                     number='6',
                     text='Virtual Machine',
                     raw='6Virtual Machine',
-                    author=None,
-                    title=None,
-                    year=None),
-                FootNote(
+                ),
+                FootRawNote(
                     number='7',
                     text='Application Programming Interface',
                     raw='7Application Programming Interface',
-                    author=None,
-                    title=None,
-                    year=None)
+                )
             ]),
         page=11,
     ),
@@ -110,13 +96,11 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootNote(
+                FootRawNote(
                     number='8',
                     text='Graphical User Interface',
                     raw='8Graphical User Interface',
-                    author=None,
-                    title=None,
-                    year=None)
+                )
             ]),
         page=12,
     ),
@@ -127,27 +111,21 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootNote(
+                FootRawNote(
                     number='21',
                     text='High Speed Packet Access',
                     raw='21High Speed Packet Access',
-                    author=None,
-                    title=None,
-                    year=None),
-                FootNote(
+                ),
+                FootRawNote(
                     number='22',
                     text='Orthogonal-Frequency-Division-Multiplexing',
                     raw='22Orthogonal-Frequency-Division-Multiplexing',
-                    author=None,
-                    title=None,
-                    year=None),
-                FootNote(
+                ),
+                FootRawNote(
                     number='23',
                     text='Multiple-Input-Multiple-Output',
                     raw='23Multiple-Input-Multiple-Output',
-                    author=None,
-                    title=None,
-                    year=None),
+                ),
             ]),
         page=18,
     ),
@@ -158,13 +136,11 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootNote(
+                FootRawNote(
                     number='24',
                     text='Industrial, scientific, medical',
                     raw='24Industrial, scientific, medical',
-                    author=None,
-                    title=None,
-                    year=None),
+                ),
             ]),
         page=19,
     ),

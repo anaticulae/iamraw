@@ -65,11 +65,21 @@ class FooterInformation:
 @dataclasses.dataclass
 class FootNote:
     number: int
+
+
+@dataclasses.dataclass
+class FootRawNote(FootNote):
     text: str
     raw: str
-    author: str = None
-    title: str = None
-    year: int = None
+    style: list = dataclasses.field(default_factory=list)
+
+
+@dataclasses.dataclass
+class FootJudgedNote(FootNote):
+    # author: str = None
+    # title: str = None
+    # year: int = None
+    features: list = dataclasses.field(default_factory=list)
 
 
 @dataclasses.dataclass
