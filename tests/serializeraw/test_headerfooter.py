@@ -52,3 +52,29 @@ def test_footerheader_movingfooterinformation():
     footer.append(note)
     assert len(footer) == 1
     assert footer[0] == note
+
+
+def test_footerheader_footer_extend():
+    footer = iamraw.MovingFooterInformation()
+    footer.extend(begin=0.2)
+    assert footer.begin == 0.2
+    footer.extend(begin=0.3)
+    assert footer.begin == 0.2
+
+    footer.extend(end=0.2)
+    assert footer.begin == 0.2
+    footer.extend(end=0.3)
+    assert footer.begin == 0.2
+
+
+def test_footerheader_header_extend():
+    footer = iamraw.HeaderInformation()
+    footer.extend(begin=0.2)
+    assert footer.begin == 0.2
+    footer.extend(begin=0.3)
+    assert footer.begin == 0.2
+
+    footer.extend(end=0.2)
+    assert footer.begin == 0.2
+    footer.extend(end=0.3)
+    assert footer.begin == 0.2
