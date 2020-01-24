@@ -107,7 +107,7 @@ def _dump_footer(footer):
     return raw
 
 
-def _load_footer(raw):
+def _load_footer(raw) -> iamraw.FooterInformation:
     if not raw:
         return None
     begin = raw['begin']
@@ -127,7 +127,7 @@ def _load_footer(raw):
     # try to export PagesFooterInformation
     with contextlib.suppress(KeyError):
         page_location = raw['page_location']
-        result = iamraw.PagesFooterInformation(
+        result = iamraw.PagesFooterInformation(  # pylint:disable=R0204
             begin=begin,
             end=end,
             page_location=page_location,
