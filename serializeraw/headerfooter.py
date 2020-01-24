@@ -8,7 +8,6 @@
 # =============================================================================
 import contextlib
 import functools
-import typing
 
 import configo
 import utila

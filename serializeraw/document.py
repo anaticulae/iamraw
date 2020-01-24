@@ -153,7 +153,7 @@ def dump_document(document: iamraw.Document) -> str:
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_document(content: str, pages=None) -> iamraw.Document:
+def load_document(content: str, pages: tuple = None) -> iamraw.Document:
     """Load document from raw-string or filepath.
 
     If document is loaded from file-path, the content is loaded and parsed
@@ -161,6 +161,7 @@ def load_document(content: str, pages=None) -> iamraw.Document:
 
     Args:
         content(str): raw-string or file-path
+        pages(tuple): select pages to process
     Returns:
         parsed Document
     Raises:

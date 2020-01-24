@@ -35,7 +35,7 @@ def dump_pageborders(sizeandborders: PageSizeBorderList) -> str:
 
 
 @lru_cache(CACHE_SMALL)
-def load_pageborders(content: str, pages=None) -> PageSizeBorderList:
+def load_pageborders(content: str, pages: tuple = None) -> PageSizeBorderList:
     """Load pdf page size and content border from raw data
 
     This method loads 2 lists with items for every single page. The first list
@@ -48,6 +48,7 @@ def load_pageborders(content: str, pages=None) -> PageSizeBorderList:
 
     Args:
         content(str): path or raw content to load
+        pages(tuple): select pages to load
     Returns:
         List[PageSize], List[Border]
     """
