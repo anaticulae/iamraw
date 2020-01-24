@@ -10,6 +10,8 @@ import collections
 import dataclasses
 import typing
 
+import utila
+
 from iamraw.bounding import BoundingBox
 
 PageContentFooterHeader = collections.namedtuple(
@@ -32,12 +34,32 @@ class HeaderInformation:
     end: float = None
     page: PageInformation = None
 
+    def extend(self, begin=None, end=None):
+        """Update area of HeaderInformation. Maximze area."""
+        if begin is not None:
+            self.begin = min(
+                self.begin if self.begin is not None else utila.INF,
+                begin,
+            )
+        if end is not None:
+            self.end = max(self.end if self.end is not None else 0.0, end)
+
 
 @dataclasses.dataclass  # pylint:disable=R0903
 class FooterInformation:
     begin: float = None
     end: float = None
     page: PageInformation = None
+
+    def extend(self, begin=None, end=None):
+        """Update area of FooterInformation. Maximze area."""
+        if begin is not None:
+            self.begin = min(
+                self.begin if self.begin is not None else utila.INF,
+                begin,
+            )
+        if end is not None:
+            self.end = max(self.end if self.end is not None else 0.0, end)
 
 
 @dataclasses.dataclass  # pylint:disable=R0903

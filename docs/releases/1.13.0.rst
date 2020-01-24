@@ -15,7 +15,7 @@ iamraw.headerfooter
 
 * [x] add append method - FixedHeaderInformation
 
-* [ ] add update method to update end of header/ max. add it to base class
+* [x] add update method to update end of header/ max. add it to base class
 
 code
 ----
