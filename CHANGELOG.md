@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.14.1
+
+### Fix
+
+* support FootRawNote without raw representation (f41c2dacd039)
+
 ## v1.14.0
 
 ### Feature
