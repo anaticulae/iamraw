@@ -9,6 +9,7 @@
 
 import pytest
 
+import iamraw
 import serializeraw
 import tests.serializeraw.examples.footnotes
 import tests.serializeraw.examples.headerfooter
@@ -42,3 +43,12 @@ def test_footerheader_dump_invalid_list():
 
     with pytest.raises(ValueError):
         serializeraw.dump_headerfooter(duplication)
+
+
+def test_footerheader_movingfooterinformation():
+    footer = iamraw.MovingFooterInformation()
+    note = iamraw.FootNote(1, 'hello', '1 hello')
+    assert not footer
+    footer.append(note)
+    assert len(footer) == 1
+    assert footer[0] == note

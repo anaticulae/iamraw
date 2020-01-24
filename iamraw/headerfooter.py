@@ -28,15 +28,15 @@ class PageInformation:
 
 @dataclasses.dataclass  # pylint:disable=R0903
 class HeaderInformation:
-    begin: float
-    end: float
+    begin: float = None
+    end: float = None
     page: PageInformation = None
 
 
 @dataclasses.dataclass  # pylint:disable=R0903
 class FooterInformation:
-    begin: float
-    end: float
+    begin: float = None
+    end: float = None
     page: PageInformation = None
 
 
@@ -77,6 +77,14 @@ class FixedHeaderInformation(HeaderInformation):
 
     images: typing.List[HeaderImages] = dataclasses.field(default_factory=list)
 
+    def append(self, item):
+        if isinstance(item, RawText):
+            self.undefined.append(item)  # pylint:disable=E1101
+        elif isinstance(item, HeaderImages):
+            self.images.append(item)  # pylint:disable=E1101
+        else:
+            raise ValueError(f'wrong data type: {item}')
+
 
 @dataclasses.dataclass  # pylint:disable=R0903
 class FixedFooterInformation(FooterInformation):
@@ -86,6 +94,15 @@ class FixedFooterInformation(FooterInformation):
 @dataclasses.dataclass  # pylint:disable=R0903
 class MovingFooterInformation(FooterInformation):
     notes: typing.List[FootNote] = dataclasses.field(default_factory=list)
+
+    def append(self, item):
+        self.notes.append(item)  # pylint:disable=E1101
+
+    def __getitem__(self, index):
+        return self.notes[index]  # pylint:disable=E1101,E1136
+
+    def __len__(self):
+        return len(self.notes)
 
 
 @dataclasses.dataclass  # pylint:disable=R0903

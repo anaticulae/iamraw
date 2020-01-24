@@ -13,7 +13,7 @@ iamraw.document.Page
 iamraw.headerfooter
 ~~~~~~~~~~~~~~~~~~~
 
-* [ ] add append method - FixedHeaderInformation
+* [x] add append method - FixedHeaderInformation
 
 * [ ] add update method to update end of header/ max. add it to base class
 
