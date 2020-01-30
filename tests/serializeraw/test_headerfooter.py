@@ -78,3 +78,21 @@ def test_footerheader_header_extend():
     assert footer.begin == 0.2
     footer.extend(end=0.3)
     assert footer.begin == 0.2
+
+
+def test_footerheader_footer_dump():
+    footer = iamraw.PagesFooterInformation(
+        page=iamraw.PageInformation(
+            value=1,
+            raw='-1-',
+        ))
+    footers = [
+        iamraw.PageContentFooterHeader(
+            header=None,
+            footer=footer,
+            page=1,
+        )
+    ]
+    dumped = serializeraw.dump_headerfooter(footers)
+    loaded = serializeraw.load_headerfooter(dumped)
+    assert loaded == footers, loaded

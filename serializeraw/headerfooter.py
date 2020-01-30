@@ -81,6 +81,9 @@ def _dump_footer(footer):
         'begin': footer.begin,
         'end': footer.end,
     }
+    if footer.page is not None:
+        raw['page_value'] = footer.page.value
+        raw['page_raw'] = footer.page.raw
 
     if isinstance(footer, iamraw.MovingFooterInformation):
         # dump footnotes
@@ -98,6 +101,13 @@ def _load_footer(raw) -> iamraw.FooterInformation:
         return None
     begin = raw['begin']
     end = raw['end']
+
+    page = None
+    with contextlib.suppress(KeyError):
+        page = iamraw.PageInformation(
+            value=raw['page_value'],
+            raw=raw['page_raw'],
+        )
 
     # try to export MovingFooterInformation
     with contextlib.suppress(KeyError):
@@ -118,6 +128,8 @@ def _load_footer(raw) -> iamraw.FooterInformation:
             end=end,
             page_location=page_location,
         )
+        if page is not None:
+            result.page = page
         return result
 
     # try to export FixedFooterInformation
@@ -125,6 +137,7 @@ def _load_footer(raw) -> iamraw.FooterInformation:
         begin=begin,
         end=end,
     )
+
     return result
 
 
