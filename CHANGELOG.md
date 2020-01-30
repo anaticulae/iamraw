@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.14.2
+
+### Feature
+
+* add dumping page number and page number raw of extract footer (cecd48b47cba)
+
 ## v1.14.1
 
 ### Fix
