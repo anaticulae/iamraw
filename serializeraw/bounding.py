@@ -46,9 +46,9 @@ def load_boundingboxes(content: str, pages=None) -> PageBoundingsList:
         pagenumber = int(page['page'])
         if should_skip(pagenumber, pages):
             continue
-        boundings = [[
+        boundings = [(
             item['item'],
-            [float(var) for var in item['box'].split()],
-        ] for item in page['content']]
+            tuple(float(var) for var in item['box'].split()),
+        ) for item in page['content']]
         result.append(PageBoundings(boundings=boundings, page=pagenumber))
     return result

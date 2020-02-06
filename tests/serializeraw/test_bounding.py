@@ -20,7 +20,7 @@ def test_bounding_dump_and_load_boundingbox(boxdata_from_pdf):  #pylint:disable=
     loaded = load_boundingboxes(dumped)
     assert loaded == boxes
 
-    loaded = load_boundingboxes(dumped, (0, 1, 2))
+    loaded = load_boundingboxes(dumped, pages=(0, 1, 2))
     assert len(loaded) == 3
 
 
