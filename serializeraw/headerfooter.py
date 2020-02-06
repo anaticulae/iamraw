@@ -91,7 +91,10 @@ def _dump_footer(footer):
         raw['notes'] = notes
 
     if isinstance(footer, iamraw.PagesFooterInformation):
-        raw['page_location'] = footer.page_location
+        if footer.page_location is not None:
+            raw['page_location'] = str(footer.page_location)
+        else:
+            raw['page_location'] = None
 
     return raw
 
@@ -123,6 +126,8 @@ def _load_footer(raw) -> iamraw.FooterInformation:
     # try to export PagesFooterInformation
     with contextlib.suppress(KeyError):
         page_location = raw['page_location']
+        if page_location is not None:
+            page_location = iamraw.BoundingBox.from_str(page_location)
         result = iamraw.PagesFooterInformation(  # pylint:disable=R0204
             begin=begin,
             end=end,
