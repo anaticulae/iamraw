@@ -1,0 +1,20 @@
+.. _1_15_0:
+
+RP 1.15.0
+=========
+
+* [ ] support multiple border for `hits`
+
+* [ ] devide in hits and border
+
+code quality
+------------
+
+before
+~~~~~~
+
+* Total coverage: 95.25%
+* Your code has been rated: 9.95/10
+
+after
+~~~~~
