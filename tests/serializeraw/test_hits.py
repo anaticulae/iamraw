@@ -7,21 +7,20 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from utila import file_read
+import utila
 
-from serializeraw import dump_hits
-from serializeraw import load_hits
-from tests.serializeraw import HITS_YAML
+import serializeraw
+import tests.serializeraw
 
 
 def test_load_and_dump_hits():
-    expected = file_read(HITS_YAML)
-    border, hits = load_hits(HITS_YAML)
+    expected = utila.file_read(tests.serializeraw.HITS_YAML)
+    border, hits = serializeraw.load_hits(tests.serializeraw.HITS_YAML)
     assert border, hits
 
-    dumped = dump_hits(border, hits)
+    dumped = serializeraw.dump_hits(border, hits)
     assert dumped == expected
 
-    loaded_border, loaded_hits = load_hits(dumped)
+    loaded_border, loaded_hits = serializeraw.load_hits(dumped)
     assert loaded_border == border
     assert loaded_hits == hits
