@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v1.15.0
+
+### Feature
+
+* add new datatype and new serialization format (15840ab415ee)
+* improve data structure (39b447fded62)
+* extend serialization of PageContentFooterHeader (e787addacfdf)
+
 ## v1.14.2
 
 ### Feature
