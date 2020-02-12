@@ -23,10 +23,10 @@ def dump_boundingboxes(boxes: iamraw.PageBoundingsList) -> str:
         item = {
             'page':
             page.page,
-            'content': [{
-                'item': index,
-                'box': '%.2f %.2f %.2f %.2f' % tuple(box)
-            } for index, box in page.boundings],
+            'content': [
+                '%d %.2f %.2f %.2f %.2f' % (index, *tuple(box))
+                for index, box in page.boundings
+            ],
         }
         simple.append(item)
     dumped = yaml.dump(simple)
@@ -42,10 +42,13 @@ def load_boundingboxes(content: str, pages=None) -> iamraw.PageBoundingsList:
         pagenumber = int(page['page'])
         if utila.should_skip(pagenumber, pages):
             continue
-        boundings = [(
-            item['item'],
-            tuple(float(var) for var in item['box'].split()),
-        ) for item in page['content']]
+        boundings = []
+        for item in page['content']:
+            key, position = item.split(maxsplit=1)
+            boundings.append((
+                int(key),
+                tuple(float(var) for var in position.split()),
+            ))
         result.append(
             iamraw.PageBoundings(
                 boundings=boundings,
