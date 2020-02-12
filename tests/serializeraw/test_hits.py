@@ -7,20 +7,38 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
-
+import iamraw
 import serializeraw
-import tests.serializeraw
+
+
+def example() -> iamraw.PageContentHits:
+    result = [
+        iamraw.PageContentHit(
+            page=5,
+            border=(72.00, 39.95, 540.00, 758.84),
+            hits=[
+                (81, (539.80, 411.42, 543.99, 706.05)),
+                (83, (75.98, 411.42, 543.99, 415.61)),
+                (132, (69.01, 441.64, 542.99, 458.58)),
+                (133, (68.81, 441.64, 68.81, 458.58)),
+                (134, (543.19, 441.64, 543.19, 458.58)),
+                (135, (68.61, 458.78, 543.39, 458.78)),
+            ],
+        ),
+        iamraw.PageContentHit(
+            page=7,
+            border=(78.00, 39.95, 540.00, 758.84),
+            hits=[
+                (145, (539.80, 411.42, 543.99, 706.05)),
+                (180, (75.98, 411.42, 543.99, 415.61)),
+            ],
+        ),
+    ]
+    return result
 
 
 def test_load_and_dump_hits():
-    expected = utila.file_read(tests.serializeraw.HITS_YAML)
-    border, hits = serializeraw.load_hits(tests.serializeraw.HITS_YAML)
-    assert border, hits
-
-    dumped = serializeraw.dump_hits(border, hits)
-    assert dumped == expected
-
-    loaded_border, loaded_hits = serializeraw.load_hits(dumped)
-    assert loaded_border == border
-    assert loaded_hits == hits
+    raw = example()
+    dumped = serializeraw.dump_hits(raw)
+    loaded = serializeraw.load_hits(dumped)
+    assert loaded == raw

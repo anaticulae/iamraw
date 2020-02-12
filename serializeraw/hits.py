@@ -13,38 +13,51 @@ import configo
 import utila
 import yaml
 
+import iamraw
 import serializeraw.border
 
 
-def dump_hits(border, content):
-    # content: page, index, current
-    result = [
-        '%d %d %.2f %.2f %.2f %.2f' % (page, index, *current)
-        for page, index, current in content
-    ]
-    raw = {
-        'border': '%.2f %.2f %.2f %.2f' % border,
-        'hits': result,
-    }
-    return yaml.dump(raw)
+def dump_hits(hits: iamraw.PageContentHits) -> str:
+    result = []
+    for page in hits:
+        # content:  index, current
+        hits = [
+            '%d %.2f %.2f %.2f %.2f' % (index, *current)
+            for index, current in page.hits
+        ]
+        raw = {
+            'border': '%.2f %.2f %.2f %.2f' % page.border,
+            'hits': hits,
+            'page': page.page
+        }
+        result.append(raw)
+    dumped = yaml.dump(result)
+    return dumped
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_hits(content, pages=None):
+def load_hits(content: str, pages: tuple = None) -> iamraw.PageContentHits:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.load(content, Loader=yaml.FullLoader)
 
-    border = serializeraw.border.border_fromraw(loaded['border'])
-    hits_raw = loaded['hits']
-
-    hits = []
-    for hit in hits_raw:
-        splitted = hit.split(' ', maxsplit=2)
-        page = int(splitted[0])
-        if utila.should_skip(page, pages):
+    result = []
+    for page in loaded:
+        pagenumber = int(page['page'])
+        if utila.should_skip(pagenumber, pages):
             continue
-        index = int(splitted[1])
-        box = serializeraw.border.border_fromraw(splitted[2])
 
-        hits.append((page, index, box))
-    return border, hits
+        border = serializeraw.border.border_fromraw(page['border'])
+        hits = []
+        for hit in page['hits']:
+            index, box = hit.split(' ', maxsplit=1)
+            index = int(index)
+            box = serializeraw.border.border_fromraw(box)
+            hits.append((index, box))
+
+        current = iamraw.PageContentHit(
+            page=pagenumber,
+            border=border,
+            hits=hits,
+        )
+        result.append(current)
+    return result

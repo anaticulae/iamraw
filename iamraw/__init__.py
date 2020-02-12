@@ -76,6 +76,9 @@ from iamraw.headerfooter import RawText
 from iamraw.headlines import Headline
 from iamraw.headlines import Headlines
 from iamraw.headlines import PagesHeadlineList
+# hits
+from iamraw.hits import PageContentHit
+from iamraw.hits import PageContentHits
 # likelihood
 from iamraw.likelihood import Likelihood
 from iamraw.likelihood import PageContentLikelihood

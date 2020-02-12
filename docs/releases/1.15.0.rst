@@ -3,9 +3,9 @@
 RP 1.15.0
 =========
 
-* [ ] support multiple border for `hits`
+* [x] support multiple border for `hits`
 
-* [ ] devide in hits and border
+* [x] devide in hits and border
 
 code quality
 ------------
