@@ -7,16 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
+import functools
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
+import yaml
 
-from serializeraw.border import border_fromraw
+import serializeraw.border
 
 
 def dump_hits(border, content):
@@ -29,25 +26,25 @@ def dump_hits(border, content):
         'border': '%.2f %.2f %.2f %.2f' % border,
         'hits': result,
     }
-    return dump(raw)
+    return yaml.dump(raw)
 
 
-@lru_cache(CACHE_SMALL)
+@functools.lru_cache(configo.CACHE_SMALL)
 def load_hits(content, pages=None):
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
 
-    border = border_fromraw(loaded['border'])
+    border = serializeraw.border.border_fromraw(loaded['border'])
     hits_raw = loaded['hits']
 
     hits = []
     for hit in hits_raw:
         splitted = hit.split(' ', maxsplit=2)
         page = int(splitted[0])
-        if should_skip(page, pages):
+        if utila.should_skip(page, pages):
             continue
         index = int(splitted[1])
-        box = border_fromraw(splitted[2])
+        box = serializeraw.border.border_fromraw(splitted[2])
 
         hits.append((page, index, box))
     return border, hits
