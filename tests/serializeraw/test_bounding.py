@@ -7,28 +7,28 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from iamraw import BoundingBox
-from serializeraw import dump_boundingboxes
-from serializeraw import load_boundingboxes
+import iamraw
+import serializeraw
 # pylint:disable=W0611
 from tests.serializeraw.fixtures import boxdata_from_pdf
 
 
 def test_bounding_dump_and_load_boundingbox(boxdata_from_pdf):  #pylint:disable=W0621
     _, boxes = boxdata_from_pdf
-    dumped = dump_boundingboxes(boxes)
-    loaded = load_boundingboxes(dumped)
+    dumped = serializeraw.dump_boundingboxes(boxes)
+    loaded = serializeraw.load_boundingboxes(dumped)
     assert loaded == boxes
 
-    loaded = load_boundingboxes(dumped, pages=(0, 1, 2))
+    loaded = serializeraw.load_boundingboxes(dumped, pages=(0, 1, 2))
     assert len(loaded) == 3
 
 
 def test_bounding_repr():
-    example = BoundingBox.from_str('1 2 3 4')
+    from iamraw import BoundingBox  # required for eval statement
+    example = iamraw.BoundingBox.from_str('1 2 3 4')
     assert eval(repr(example)) == example  # pylint:disable=eval-used
 
 
 def test_bounding_round_coordinate():
-    example = BoundingBox.from_str('1.033 2.22 3.555 4.4')
-    assert example == BoundingBox(1.03, 2.22, 3.56, 4.4)
+    example = iamraw.BoundingBox.from_str('1.033 2.22 3.555 4.4')
+    assert example == iamraw.BoundingBox(1.03, 2.22, 3.56, 4.4)

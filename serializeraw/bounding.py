@@ -7,23 +7,19 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
+import functools
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
+import yaml
 
-from iamraw import PageBoundings
-from iamraw import PageBoundingsList
+import iamraw
 
 
-def dump_boundingboxes(boxes: PageBoundingsList) -> str:
+def dump_boundingboxes(boxes: iamraw.PageBoundingsList) -> str:
     simple = []
     for page in boxes:
-        assert isinstance(page, PageBoundings), type(page)
+        assert isinstance(page, iamraw.PageBoundings), type(page)
         item = {
             'page':
             page.page,
@@ -33,22 +29,26 @@ def dump_boundingboxes(boxes: PageBoundingsList) -> str:
             } for index, box in page.boundings],
         }
         simple.append(item)
-    dumped = dump(simple)
+    dumped = yaml.dump(simple)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
-def load_boundingboxes(content: str, pages=None) -> PageBoundingsList:
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_boundingboxes(content: str, pages=None) -> iamraw.PageBoundingsList:
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if should_skip(pagenumber, pages):
+        if utila.should_skip(pagenumber, pages):
             continue
         boundings = [(
             item['item'],
             tuple(float(var) for var in item['box'].split()),
         ) for item in page['content']]
-        result.append(PageBoundings(boundings=boundings, page=pagenumber))
+        result.append(
+            iamraw.PageBoundings(
+                boundings=boundings,
+                page=pagenumber,
+            ))
     return result
