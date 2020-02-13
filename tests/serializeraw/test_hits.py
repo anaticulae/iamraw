@@ -15,7 +15,7 @@ def example() -> iamraw.PageContentHits:
     result = [
         iamraw.PageContentHit(
             page=5,
-            border=(72.00, 39.95, 540.00, 758.84),
+            border=iamraw.Border(72.00, 39.95, 540.00, 758.84),
             hits=[
                 (81, (539.80, 411.42, 543.99, 706.05)),
                 (83, (75.98, 411.42, 543.99, 415.61)),
@@ -27,7 +27,7 @@ def example() -> iamraw.PageContentHits:
         ),
         iamraw.PageContentHit(
             page=7,
-            border=(78.00, 39.95, 540.00, 758.84),
+            border=iamraw.Border(78.00, 39.95, 540.00, 758.84),
             hits=[
                 (145, (539.80, 411.42, 543.99, 706.05)),
                 (180, (75.98, 411.42, 543.99, 415.61)),

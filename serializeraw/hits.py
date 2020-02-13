@@ -51,7 +51,7 @@ def load_hits(content: str, pages: tuple = None) -> iamraw.PageContentHits:
         for hit in page['hits']:
             index, box = hit.split(' ', maxsplit=1)
             index = int(index)
-            box = serializeraw.border.border_fromraw(box)
+            box = tuple([float(var) for var in box.split()])
             hits.append((index, box))
 
         current = iamraw.PageContentHit(
