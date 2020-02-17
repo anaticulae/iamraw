@@ -84,6 +84,9 @@ class BoundingBox:
         return created
 
 
+BoundingBoxes = typing.List[BoundingBox]
+
+
 def area(bounding) -> float:
     """Determine area out of `BoundingBox` or `tuple(4)`
 
