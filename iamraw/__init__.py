@@ -84,6 +84,9 @@ from iamraw.hits import PageContentHits
 from iamraw.likelihood import Likelihood
 from iamraw.likelihood import PageContentLikelihood
 from iamraw.likelihood import PageContentLikelihoods
+# lines
+from iamraw.line import PageContentLine
+from iamraw.line import PageContentLines
 # list
 from iamraw.list import ListType
 from iamraw.list import PageList

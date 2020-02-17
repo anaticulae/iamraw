@@ -61,6 +61,9 @@ from serializeraw.hits import load_hits
 # likelihood
 from serializeraw.likelihood import dump_likelihood
 from serializeraw.likelihood import load_likelihood
+# lines
+from serializeraw.line import dump_lines
+from serializeraw.line import load_lines
 # list
 from serializeraw.list import dump_lists
 from serializeraw.list import load_lists
