@@ -102,6 +102,11 @@ from iamraw.sections import DocumentSection
 from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
 from iamraw.sections import Sections
+# table
+from iamraw.table import PageContentTableBounding
+from iamraw.table import PageContentTableBoundings
+from iamraw.table import TableBounding
+from iamraw.table import TableBoundings
 # text
 from iamraw.text import DOT
 from iamraw.text import ChapterText

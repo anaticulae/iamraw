@@ -73,6 +73,9 @@ from serializeraw.pagenumbers import load_pagenumbers
 # sections
 from serializeraw.sections import dump_sections
 from serializeraw.sections import load_sections
+# table
+from serializeraw.table import dump_tables
+from serializeraw.table import load_tables
 # text
 from serializeraw.text import dump_text
 from serializeraw.text import load_text
