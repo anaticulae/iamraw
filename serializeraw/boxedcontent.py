@@ -40,8 +40,7 @@ def dump_boxedcontent(boxed) -> str:
             single_collector = []  # crazy naming!
             for multiboxed in collected:
                 items = []
-                for index, item in enumerate(multiboxed):
-                    bounding, (boxid, _content) = item
+                for index, (bounding, (boxid, _content)) in enumerate(multiboxed): # yapf: disable
                     items.append({
                         'boxed_id':
                         '%d %d' % (boxid, index),
@@ -58,57 +57,56 @@ def dump_boxedcontent(boxed) -> str:
                 'headlineblocknumber': headlineblocknumber,
                 'content': single_collector,
             })
-
         raw.append({
             'page': page,
             'content': pageresult,
         })
-
-    dumped = dump(raw)
-    return dumped
+    return dump(raw)
 
 
 @lru_cache(CACHE_SMALL)
 def load_boxedcontent(content: str, pages=None):
-
-    def _parse_box_content(line: str):
-        """Returns:
-            bounding(BoundingBox):
-            undefined_index(int):
-            content(str):
-        """
-        splitted = line.split(maxsplit=5)
-        bounding = BoundingBox.from_str(' '.join(splitted[0:4]))
-        return (bounding, int(splitted[4]), splitted[5])
-
     content = from_raw_or_path(content, ftype='yaml')
     loaded = load(content, Loader=FullLoader)
     pagedict = defaultdict(list)
-    for line in loaded:
-        pagenumber = int(line['page'])
+    for page in loaded:
+        pagenumber = int(page['page'])
         if should_skip(pagenumber, pages):
             continue
-        for item in line['content']:
-            multiboxed = []
-            headlinenumber = item['headlinenumber']
-            headlineblocknumber = item['headlineblocknumber']
-            for single_collector in item['content']:
-                boxed = []
-                for multibox in single_collector:
-                    m_bounding = BoundingBox.from_str(multibox['bounding'])
-                    m_content = multibox['content']
-                    boxid, _ = [  # boxid, index
-                        int(item) for item in multibox['boxed_id'].split()
-                    ]
-                    m_content = [_parse_box_content(item) for item in m_content]
-                    boxed.append((m_bounding, (boxid, m_content)))
-                multiboxed.append(boxed)
-            pagedict[pagenumber].append((
-                headlinenumber,
-                headlineblocknumber,
-                multiboxed,
-            ))
+        content = page['content']
+        parsed = parse_boxed_page(content)
+        pagedict[pagenumber].extend(parsed)
     result = []
     for page, value in pagedict.items():
         result.append((page, value))
     return result
+
+
+def parse_boxed_page(content):
+    result = []
+    for item in content:
+        multiboxed = []
+        headlinenumber = item['headlinenumber']
+        headlineblocknumber = item['headlineblocknumber']
+        for single_collector in item['content']:
+            boxed = []
+            for multibox in single_collector:
+                m_bounding = BoundingBox.from_str(multibox['bounding'])
+                m_content = multibox['content']
+                boxid, _ = [  # boxid, index
+                    int(item) for item in multibox['boxed_id'].split()
+                ]
+                m_content = [parse_box_content(item) for item in m_content]
+                boxed.append((m_bounding, (boxid, m_content)))
+            multiboxed.append(boxed)
+        result.append((headlinenumber, headlineblocknumber, multiboxed))
+    return result
+
+
+def parse_box_content(line: str) -> tuple:
+    """Returns:
+        tuple of BoundingBox, undefined_index(int) and content(str)
+    """
+    splitted = line.split(maxsplit=5)
+    bounding = BoundingBox.from_str(' '.join(splitted[0:4]))
+    return (bounding, int(splitted[4]), splitted[5])
