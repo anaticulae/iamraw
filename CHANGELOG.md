@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v1.16.0
+
+### Feature
+
+* add data structure table and load and dumper (cdda340b54ac)
+* add line module with dumper and loader (ad3c5c39cb2d)
+* add BoundingBoxes to describe list of boxes (eba337f36a1b)
+
+### Fix
+
+* ensure that member have correct data type (09c5122cb202)
+
 ## v1.15.1
 
 ## v1.15.0
