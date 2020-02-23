@@ -156,3 +156,6 @@ class TextContainer(Boxed):
 
     def __getitem__(self, index):
         return self.lines[index]  # pylint:disable=E1136
+
+
+TextContainers = typing.List[TextContainer]

@@ -45,6 +45,7 @@ from iamraw.document import Page
 from iamraw.document import PageObject
 from iamraw.document import PageSize
 from iamraw.document import TextContainer
+from iamraw.document import TextContainers
 from iamraw.document import UnicodeChar
 from iamraw.document import VirtualChar
 # fonts
