@@ -11,8 +11,6 @@ import contextlib
 import dataclasses
 import typing
 
-import utila
-
 from iamraw.bounding import BoundingBox
 
 PageSize = collections.namedtuple('PageSize', 'width height')
@@ -32,12 +30,13 @@ class Page:
     children: typing.List[typing.Any] = dataclasses.field(default_factory=list)
 
     @property
-    def text(self):
-        result = []
+    def text(self) -> str:
+        textcontainer = []
         for item in self.children:  # pylint:disable=E1133
             with contextlib.suppress(AttributeError):
-                result.append(item.text)
-        return utila.NEWLINE.join(result)
+                textcontainer.append(item.text)
+        result = ''.join(textcontainer)
+        return result
 
     def __repr__(self):
         result = (f'\nPage(page={self.page}, dimension={self.dimension})\n'
@@ -69,12 +68,12 @@ class Document:
     pages: Pages = dataclasses.field(default_factory=list)
 
     @property
-    def text(self):
+    def text(self) -> str:
         """Return the raw text of the document separated by pages"""
         texts = []
         for page in self:
             texts.append(page.text)
-        result = utila.NEWLINE.join(texts)
+        result = ''.join(texts)
         return result
 
     def append(self, page):
@@ -155,7 +154,7 @@ class TextContainer(Boxed):
 
     @property
     def text(self) -> str:
-        result = utila.NEWLINE.join([item.text for item in self])
+        result = ''.join([item.text for item in self])
         return result
 
     def append(self, item):
