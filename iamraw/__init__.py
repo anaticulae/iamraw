@@ -41,8 +41,10 @@ from iamraw.document import Boxed
 from iamraw.document import Char
 from iamraw.document import Document
 from iamraw.document import Line
+from iamraw.document import Lines
 from iamraw.document import Page
 from iamraw.document import PageObject
+from iamraw.document import Pages
 from iamraw.document import PageSize
 from iamraw.document import TextContainer
 from iamraw.document import TextContainers

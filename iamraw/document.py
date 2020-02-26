@@ -58,18 +58,21 @@ class Page:
         return len(self) == 0
 
 
+Pages = typing.List[Page]
+
+
 @dataclasses.dataclass
 class Document:
     """A document describes a parsed PDF file. It is possbile to iterate over
     the different pages to inspect the parsed children."""
     dimension: PageSize = None
-    pages: typing.List[Page] = dataclasses.field(default_factory=list)
+    pages: Pages = dataclasses.field(default_factory=list)
 
     @property
     def text(self):
         """Return the raw text of the document separated by pages"""
         texts = []
-        for page in self.pages:  # pylint: disable=not-an-iterable
+        for page in self:
             texts.append(page.text)
         return ''.join(texts)
 
@@ -143,18 +146,21 @@ class Line(Boxed):
         return len(self.chars)
 
 
+Lines = typing.List[Line]
+
+
 @dataclasses.dataclass
 class TextContainer(Boxed):
-    lines: typing.List[Line] = dataclasses.field(default_factory=list)
+    lines: Lines = dataclasses.field(default_factory=list)
 
     @property
     def text(self):
         return ''.join([item.text for item in self.lines])  # pylint:disable=E1133
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.lines)
 
-    def __getitem__(self, index):
+    def __getitem__(self, index) -> Line:
         return self.lines[index]  # pylint:disable=E1136
 
 
