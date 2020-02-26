@@ -68,11 +68,6 @@ def simple_textcontainer():
     return container
 
 
-# TODO: define regex which ignores:
-# def simple_page(simple_textcontainer):  # pylint:disable=W0621
-# in general
-
-
 @fixture
 def simple_page(simple_textcontainer):  # pylint:disable=W0621
     page = Page()
