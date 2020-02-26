@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from pytest import fixture
-
 from iamraw import Char
 from iamraw import Line
 from iamraw import Page
@@ -22,6 +20,30 @@ from serializeraw.document import _load_line
 from serializeraw.document import _load_page
 from serializeraw.document import _load_textcontainer
 from tests.serializeraw import TEXT_YAML
+
+
+def line_from_str(line: str) -> Line:
+    result = Line()
+    result.chars = [Char(value=item) for item in line]
+    return result
+
+
+def simple_textcontainer():
+    container = TextContainer()
+    container.append(line_from_str('I am a beautiful Line'))
+    container.append(line_from_str('I am a more beautiful Line'))
+    container.append(line_from_str('I am a the most beautiful Line'))
+    return container
+
+
+def simple_page():
+    page = Page()
+    assert page.empty()
+    page.append(simple_textcontainer())
+    page.append(simple_textcontainer())
+    page.append(simple_textcontainer())
+    assert len(page) == 3
+    return page
 
 
 def test_load_document_from_path():
@@ -53,52 +75,27 @@ def test_load_and_dump_line():
     assert dumped == expected, dumped
 
 
-def line_from_str(line: str) -> Line:
-    result = Line()
-    result.chars = [Char(value=item) for item in line]
-    return result
-
-
-@fixture
-def simple_textcontainer():
-    container = TextContainer()
-    container.append(line_from_str('I am a beautiful Line'))
-    container.append(line_from_str('I am a more beautiful Line'))
-    container.append(line_from_str('I am a the most beautiful Line'))
-    return container
-
-
-@fixture
-def simple_page(simple_textcontainer):  # pylint:disable=W0621
-    page = Page()
-    assert page.empty()
-    page.append(simple_textcontainer)
-    page.append(simple_textcontainer)
-    page.append(simple_textcontainer)
-    assert len(page) == 3
-    return page
-
-
-def test_dump_and_load_textcontainer(simple_textcontainer):  # pylint:disable=W0621
-    container = simple_textcontainer
-
+def test_dump_and_load_textcontainer():
+    container = simple_textcontainer()
     _, dumped = _dump_textcontainer(container)
     loaded = _load_textcontainer(dumped)
 
     assert loaded == container
 
 
-def test_document_dump_and_load_page(simple_page):  # pylint:disable=W0621
-    dumped = _dump_page(simple_page)
+def test_document_dump_and_load_page():
+    expected = simple_page()
+    dumped = _dump_page(expected)
     loaded = _load_page(dumped)
 
-    assert loaded.text == simple_page.text
+    assert loaded.text == expected.text
 
-    for current, expected in zip(loaded, simple_page):
-        assert current == expected
-    assert len(loaded) == len(simple_page)
-    assert loaded.children == simple_page.children
-    assert loaded == simple_page
+    for current, required in zip(loaded, expected):
+        assert current == required
+
+    assert len(loaded) == len(expected)
+    assert loaded.children == expected.children
+    assert loaded == expected
 
 
 def test_document_page_repr():
