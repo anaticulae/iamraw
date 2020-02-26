@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v1.16.2
+
+### Feature
+
+* improve repr behavior (388ec796cfe8)
+* add method to add pages directly (b543bd499e24)
+* add append method to simplify code (15781c521afe)
+
 ## v1.16.1
 
 ### Feature
