@@ -35,9 +35,9 @@ def test_load_document_from_path():
 def test_load_dump_load_document():
     document = load_document(TEXT_YAML)
 
-    dupmed = dump_document(document)
+    dumped = dump_document(document)
+    second_load = load_document(dumped)
 
-    second_load = load_document(dupmed)
     assert document
     assert second_load == document
 
