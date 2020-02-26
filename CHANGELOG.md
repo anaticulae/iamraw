@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.16.1
+
+### Feature
+
+* add new typing information (d98b8bdad9dd)
+* add TextContainers typing information (518bb8493163)
+
+### Fix
+
+* handle newlines in document correctly (73c856a9bce8)
+
 ## v1.16.0
 
 ### Feature
