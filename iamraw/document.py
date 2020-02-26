@@ -40,9 +40,9 @@ class Page:
         return utila.NEWLINE.join(result)
 
     def __repr__(self):
-        result = f'Page(page={self.page}, dimension={self.dimension})\n'
-        content = ''.join([f'  {item}\n' for item in self.children])  # pylint:disable=E1133
-        return result + content
+        result = (f'\nPage(page={self.page}, dimension={self.dimension})\n'
+                  f'{self.text}')
+        return result
 
     def __getitem__(self, key):
         """Iterate over children in page"""
@@ -87,8 +87,8 @@ class Document:
     def __repr__(self):
         result = [f'Document: pages={len(self.pages)}']
         for page in self:
-            result += str(page)
-        result = utila.NEWLINE.join(result)  # pylint:disable=R0204
+            result.append(str(page))
+        result = ''.join(result)  # pylint:disable=R0204
         return result
 
     def __getitem__(self, key):
@@ -156,7 +156,6 @@ class TextContainer(Boxed):
     @property
     def text(self) -> str:
         result = utila.NEWLINE.join([item.text for item in self])
-        result = result
         return result
 
     def append(self, item):

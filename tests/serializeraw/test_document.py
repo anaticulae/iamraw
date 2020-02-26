@@ -8,6 +8,7 @@
 # =============================================================================
 
 from iamraw import Char
+from iamraw import Document
 from iamraw import Line
 from iamraw import Page
 from iamraw import TextContainer
@@ -44,6 +45,14 @@ def simple_page():
     page.append(simple_textcontainer())
     assert len(page) == 3
     return page
+
+
+def simple_document():
+    document = Document()
+    document.append(simple_page())
+    document.append(simple_page())
+    assert len(document) == 2
+    return document
 
 
 def test_load_document_from_path():
@@ -103,3 +112,9 @@ def test_document_page_repr():
     page = Page()
     raw = str(page)
     assert 'page=0' in raw, raw
+
+
+def test_document_document_repr():
+    document = simple_document()
+    raw = str(document)
+    assert 'Document: pages=2' in raw, raw
