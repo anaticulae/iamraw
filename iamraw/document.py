@@ -77,6 +77,9 @@ class Document:
         result = utila.NEWLINE.join(texts)
         return result
 
+    def append(self, page):
+        self.pages.append(page)  # pylint:disable=E1101
+
     def __len__(self):
         """Return pagecount of document"""
         return len(self.pages)
