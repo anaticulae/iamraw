@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.16.3
+
+### Feature
+
+* do not add any newline (74617c51d025)
+
 ## v1.16.2
 
 ### Feature
