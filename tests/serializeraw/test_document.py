@@ -62,10 +62,9 @@ def line_from_str(line: str) -> Line:
 @fixture
 def simple_textcontainer():
     container = TextContainer()
-    # pylint:disable=E1101
-    container.lines.append(line_from_str('I am a beautiful Line'))
-    container.lines.append(line_from_str('I am a more beautiful Line'))
-    container.lines.append(line_from_str('I am a the most beautiful Line'))
+    container.append(line_from_str('I am a beautiful Line'))
+    container.append(line_from_str('I am a more beautiful Line'))
+    container.append(line_from_str('I am a the most beautiful Line'))
     return container
 
 
@@ -82,7 +81,6 @@ def simple_page(simple_textcontainer):  # pylint:disable=W0621
     page.append(simple_textcontainer)
     page.append(simple_textcontainer)
     assert len(page) == 3
-
     return page
 
 
@@ -90,7 +88,6 @@ def test_dump_and_load_textcontainer(simple_textcontainer):  # pylint:disable=W0
     container = simple_textcontainer
 
     _, dumped = _dump_textcontainer(container)
-
     loaded = _load_textcontainer(dumped)
 
     assert loaded == container

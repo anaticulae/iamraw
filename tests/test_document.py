@@ -23,22 +23,19 @@ def line_from_str(line: str) -> Line:
 
 @fixture
 def textcontainer() -> TextContainer:
-    container: TextContainer = TextContainer()
-    append = container.lines.append  # pylint:disable=E1101
-    append(line_from_str('First'))
-    append(line_from_str('Second'))
-    append(line_from_str('Third Third Third'))
+    container = TextContainer()
+    for line in ['First', 'Second', 'Thrid Third Third']:
+        container.append(line_from_str(line))
     return container
 
 
 @fixture
 def page(textcontainer) -> Page:  # pylint:disable=W0621
-    page_ = Page()
-    append = page_.children.append  # pylint:disable=E1101
-    append(textcontainer)
-    append(textcontainer)
-    append(textcontainer)
-    return page_
+    result = Page()
+    result.append(textcontainer)
+    result.append(textcontainer)
+    result.append(textcontainer)
+    return result
 
 
 def test_page_text(page: Page):  # pylint:disable=W0621

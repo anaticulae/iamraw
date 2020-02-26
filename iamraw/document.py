@@ -156,11 +156,17 @@ class TextContainer(Boxed):
         result = result
         return result
 
-    def __len__(self) -> int:
-        return len(self.lines)
+    def append(self, item):
+        self.lines.append(item)  # pylint:disable=E1101
+
+    def __str__(self) -> str:
+        return self.text
 
     def __getitem__(self, index) -> Line:
         return self.lines[index]  # pylint:disable=E1136
+
+    def __len__(self) -> int:
+        return len(self.lines)
 
 
 TextContainers = typing.List[TextContainer]
