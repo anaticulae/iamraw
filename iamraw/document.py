@@ -36,8 +36,8 @@ class Page:
         result = []
         for item in self.children:  # pylint:disable=E1133
             with contextlib.suppress(AttributeError):
-                result += item.text
-        return ''.join(result)
+                result.append(item.text)
+        return utila.NEWLINE.join(result)
 
     def __repr__(self):
         result = f'Page(page={self.page}, dimension={self.dimension})\n'
@@ -74,17 +74,18 @@ class Document:
         texts = []
         for page in self:
             texts.append(page.text)
-        return ''.join(texts)
+        result = utila.NEWLINE.join(texts)
+        return result
 
     def __len__(self):
         """Return pagecount of document"""
         return len(self.pages)
 
     def __repr__(self):
-        result = 'Document: pages[%d]\n' % len(self.pages)
-
-        for page in self.pages:  # pylint: disable=not-an-iterable
-            result += str(page) + utila.NEWLINE
+        result = [f'Document: pages={len(self.pages)}']
+        for page in self:
+            result += str(page)
+        result = utila.NEWLINE.join(result)  # pylint:disable=R0204
         return result
 
     def __getitem__(self, key):
@@ -135,10 +136,6 @@ class Line(Boxed):
     def __str__(self):
         return self.text
 
-    def __repr__(self):
-        # remove newline
-        return str(self)[0:-1]
-
     def __getitem__(self, index):
         return self.chars[index]  # pylint:disable=E1136
 
@@ -154,8 +151,10 @@ class TextContainer(Boxed):
     lines: Lines = dataclasses.field(default_factory=list)
 
     @property
-    def text(self):
-        return ''.join([item.text for item in self.lines])  # pylint:disable=E1133
+    def text(self) -> str:
+        result = utila.NEWLINE.join([item.text for item in self])
+        result = result
+        return result
 
     def __len__(self) -> int:
         return len(self.lines)

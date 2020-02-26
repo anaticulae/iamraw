@@ -8,7 +8,6 @@
 # =============================================================================
 
 from pytest import fixture
-from utila import NEWLINE
 
 from iamraw.document import Char
 from iamraw.document import Document
@@ -18,9 +17,6 @@ from iamraw.document import TextContainer
 
 
 def line_from_str(line: str) -> Line:
-    # Line must ends with NEWLINE
-    if not line[-1] == NEWLINE:
-        line += NEWLINE
     chars = [Char(value=item) for item in line]
     return Line(chars=chars)
 
