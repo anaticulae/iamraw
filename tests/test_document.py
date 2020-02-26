@@ -16,16 +16,11 @@ from iamraw.document import Page
 from iamraw.document import TextContainer
 
 
-def line_from_str(line: str) -> Line:
-    chars = [Char(value=item) for item in line]
-    return Line(chars=chars)
-
-
 @fixture
 def textcontainer() -> TextContainer:
     container = TextContainer()
-    for line in ['First', 'Second', 'Thrid Third Third']:
-        container.append(line_from_str(line))
+    for line in ['First\n', 'Second\n', 'Thrid Third Third\n']:
+        container.append(Line(chars=[Char(value=item) for item in line]))
     return container
 
 

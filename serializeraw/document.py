@@ -50,7 +50,7 @@ def _dump_page(page: iamraw.Page):
 
 
 def _dump_line(line: iamraw.Line) -> str:
-    assert len(line) >= 1
+    assert len(line) >= 1, line
 
     def create_style(start, end, size, rise):
         style = ' '.join([
