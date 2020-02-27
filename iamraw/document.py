@@ -112,6 +112,9 @@ class Char(Boxed):
     No rise 0, superscripts greater than 0, subscript lower than 0."""
 
 
+Chars = typing.List[Char]
+
+
 @dataclasses.dataclass
 class UnicodeChar(Char):
     special: str = None

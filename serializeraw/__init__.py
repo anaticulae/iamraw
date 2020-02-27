@@ -47,6 +47,8 @@ from serializeraw.fonts import dump_font_content
 from serializeraw.fonts import dump_font_header
 from serializeraw.fonts import load_font_content
 from serializeraw.fonts import load_font_header
+# fontstore
+from serializeraw.fontstore import create_fontstore
 # headerfooter
 from serializeraw.headerfooter import dump_footnote
 from serializeraw.headerfooter import dump_headerfooter
@@ -79,6 +81,9 @@ from serializeraw.table import load_tables
 # text
 from serializeraw.text import dump_text
 from serializeraw.text import load_text
+# textnavigator
+from serializeraw.textnavigator.highnote import dump_highnotes
+from serializeraw.textnavigator.highnote import load_highnotes
 # textpostions
 from serializeraw.textposition import dump_textpositions
 from serializeraw.textposition import load_textpositions

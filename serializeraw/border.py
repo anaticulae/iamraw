@@ -19,8 +19,8 @@ from yaml import load
 
 from iamraw import Border
 from iamraw import PageSize
-from iamraw import PageSizeBorder
-from iamraw import PageSizeBorderList
+from iamraw.page import PageSizeBorder
+from iamraw.page import PageSizeBorderList
 
 
 # def dump_pageborders(size: List[PageSize], border: List[Border]) -> str:
