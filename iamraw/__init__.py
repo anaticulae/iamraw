@@ -9,6 +9,8 @@
 
 import os
 
+# path
+import iamraw.path as path
 # annotation
 from iamraw.annotation import Annotation
 from iamraw.annotation import HyperLink
