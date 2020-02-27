@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.17.1
+
+### Fix
+
+* add missing package import (441455201d58)
+
 ## v1.17.0
 
 ### Feature
