@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.16.4
+
+### Fix
+
+* ensure that 0 or '' is dumped (302c0894f126)
+
 ## v1.16.3
 
 ### Feature
