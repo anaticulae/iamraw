@@ -8,6 +8,8 @@
 # =============================================================================
 
 import iamraw
+import serializeraw
+import tests.serializeraw
 
 
 def test_fontstore_font_to_fontid():
@@ -28,3 +30,23 @@ def test_fontstore_font_to_fontid():
     assert store.font_to_fontid(f3) == hash(f3)
     assert store.font_to_fontid(f0) == hash(f0)
     assert store.font_to_fontid(f5) == hash(f5)
+
+
+def test_fontstore_from_path():
+    source = tests.serializeraw.RESTRUCTURED
+    loaded = serializeraw.create_fontstore_frompath(source)
+    assert loaded, loaded
+
+    shrunken = serializeraw.create_fontstore_frompath(source, pages=(0, 1, 2))
+    assert shrunken
+
+    assert loaded != shrunken
+
+
+def test_fontstore_font_access():
+    source = tests.serializeraw.RESTRUCTURED
+    loaded = serializeraw.create_fontstore_frompath(source)
+    fontid = loaded.fontid(0, 0, 0, 0)
+    font = loaded.font(0, 0, 0, 0)
+
+    assert loaded[fontid] == font
