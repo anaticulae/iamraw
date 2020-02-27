@@ -61,8 +61,8 @@ def load_headerfooter(
     return result
 
 
-def dump_footnote(note):
-    raw = {key: value for key, value in vars(note).items() if value}
+def dump_footnote(note: iamraw.FootNote):
+    raw = {key: value for key, value in vars(note).items() if value is not None}
     return raw
 
 
