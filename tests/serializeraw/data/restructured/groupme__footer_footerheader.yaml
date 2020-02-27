@@ -1,0 +1,68 @@
+- footer:
+    begin: 0.93
+    end: 1.0
+  header: null
+  page: 2
+- footer:
+    begin: 0.93
+    end: 1.0
+  header: null
+  page: 3
+- footer:
+    begin: 0.93
+    end: 1.0
+  header:
+    begin: 0.0
+    end: 0.07
+    page: null
+    title:
+      raw: The RestructuredText Book Documentation, Release 0.1
+      title: The RestructuredText Book Documentation, Release 0
+    undefined: []
+  page: 4
+- footer:
+    begin: 0.93
+    end: 1.0
+  header:
+    begin: 0.0
+    end: 0.07
+    page: null
+    title:
+      raw: The RestructuredText Book Documentation, Release 0.1
+      title: The RestructuredText Book Documentation, Release 0
+    undefined: []
+  page: 5
+- footer:
+    begin: 0.93
+    end: 1.0
+  header: null
+  page: 6
+- footer:
+    begin: 0.93
+    end: 1.0
+  header:
+    begin: 0.0
+    end: 0.07
+    page: null
+    title:
+      raw: The RestructuredText Book Documentation, Release 0.1
+      title: The RestructuredText Book Documentation, Release 0
+    undefined: []
+  page: 7
+- footer:
+    begin: 0.93
+    end: 1.0
+  header: null
+  page: 8
+- footer:
+    begin: 0.93
+    end: 1.0
+  header:
+    begin: 0.0
+    end: 0.07
+    page: null
+    title:
+      raw: The RestructuredText Book Documentation, Release 0.1
+      title: The RestructuredText Book Documentation, Release 0
+    undefined: []
+  page: 9

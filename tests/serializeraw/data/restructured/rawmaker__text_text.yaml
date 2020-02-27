@@ -1,0 +1,776 @@
+dimension: 612.00 792.00
+pages:
+- children:
+  - - TextContainer
+    - - - 'The RestructuredText Book
+
+          '
+        - - 0 26 24.79 0.00
+      - - 'Documentation
+
+          '
+        - - 0 14 24.79 0.00
+      - - 'Release 0.1
+
+          '
+        - - 0 12 17.22 0.00
+  - - TextContainer
+    - - - 'Daniel Greenfeld, Eric Holscher
+
+          '
+        - - 0 32 17.22 0.00
+  - - TextContainer
+    - - - 'Sep 27, 2017
+
+          '
+        - - 0 13 11.96 0.00
+  page: 0
+- children: []
+  page: 1
+- children:
+  - - TextContainer
+    - - - '1 RestructuredText Tutorial
+
+          '
+        - - 0 28 9.96 0.00
+  - - TextContainer
+    - - - '2 RestructuredText Guide
+
+          '
+        - - 0 25 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - 'Basics .
+
+          '
+        - - 0 9 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - 'Blockquotes
+
+          '
+        - - 0 12 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - 'Code: Block .
+
+          '
+        - - 0 14 9.96 0.00
+  - - TextContainer
+    - - - '2.1
+
+          '
+        - - 0 4 9.96 0.00
+      - - '2.2
+
+          '
+        - - 0 4 9.96 0.00
+      - - '2.3
+
+          '
+        - - 0 4 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '3 RestructuredText Customizations
+
+          '
+        - - 0 34 9.96 0.00
+  - - TextContainer
+    - - - '4 Sphinx Tutorial
+
+          '
+        - - 0 18 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - 'Step 1 .
+
+          '
+        - - 0 9 9.96 0.00
+      - - 'Step 2 .
+
+          '
+        - - 0 9 9.96 0.00
+  - - TextContainer
+    - - - '4.1
+
+          '
+        - - 0 4 9.96 0.00
+      - - '4.2
+
+          '
+        - - 0 4 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '5 Sphinx Guide
+
+          '
+        - - 0 15 9.96 0.00
+  - - TextContainer
+    - - - '6 Sphinx Customizations
+
+          '
+        - - 0 24 9.96 0.00
+  - - TextContainer
+    - - - '7 Testing your Documentation
+
+          '
+        - - 0 29 9.96 0.00
+  - - TextContainer
+    - - - '8 Indices and tables
+
+          '
+        - - 0 21 9.96 0.00
+  - - TextContainer
+    - - - 'Contents
+
+          '
+        - - 0 9 14.35 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+          .
+
+          '
+        - - 0 74 9.96 0.00
+      - - '.
+
+          '
+        - - 0 2 9.96 0.00
+      - - '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+          '
+        - - 0 72 9.96 0.00
+      - - '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+          .
+
+          '
+        - - 0 74 9.96 0.00
+  - - TextContainer
+    - - - '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+          .
+
+          '
+        - - 0 74 9.96 0.00
+      - - '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+          .
+
+          '
+        - - 0 74 9.96 0.00
+  - - TextContainer
+    - - - '3
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '5
+
+          '
+        - - 0 2 9.96 0.00
+      - - '5
+
+          '
+        - - 0 2 9.96 0.00
+      - - '6
+
+          '
+        - - 0 2 9.96 0.00
+      - - '6
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '7
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - '9
+
+          '
+        - - 0 2 9.96 0.00
+      - - '9
+
+          '
+        - - 0 2 9.96 0.00
+      - - '13
+
+          '
+        - - 0 3 9.96 0.00
+  - - TextContainer
+    - - - '15
+
+          '
+        - - 0 3 9.96 0.00
+  - - TextContainer
+    - - - '17
+
+          '
+        - - 0 3 9.96 0.00
+  - - TextContainer
+    - - - '19
+
+          '
+        - - 0 3 9.96 0.00
+  - - TextContainer
+    - - - '21
+
+          '
+        - - 0 3 9.96 0.00
+  - - TextContainer
+    - - - 'i
+
+          '
+        - - 0 2 9.96 0.00
+  page: 2
+- children:
+  - - TextContainer
+    - - - 'ii
+
+          '
+        - - 0 3 9.96 0.00
+  page: 3
+- children:
+  - - TextContainer
+    - - - 'The RestructuredText Book Documentation, Release 0.1
+
+          '
+        - - 0 53 9.96 0.00
+  - - TextContainer
+    - - - "RestructuredText (reST) is a markup language, it\u2019s name coming from\
+          \ that it\u2019s considered a revision and reinterpreta-\n"
+        - - 0 118 9.96 0.00
+      - - 'tion of two other markup languages, Setext and StructuredText.
+
+          '
+        - - 0 36 9.96 0.01
+          - 36 43 9.96 0.07
+          - 43 47 9.96 0.01
+          - 47 61 9.96 0.07
+          - 61 63 9.96 0.01
+      - - 'Source: https://en.wikipedia.org/wiki/Restructured_Text
+
+          '
+        - - 0 56 9.96 0.00
+      - - 'This is a syntax guide designed to provide very clear, understandable examples
+          and tutorials of RestructuredText usage.
+
+          '
+        - - 0 120 9.96 0.00
+      - - 'It borrows from several sources including:
+
+          '
+        - - 0 43 9.96 0.00
+  - - TextContainer
+    - - - "\u2022 https://en.wikipedia.org/wiki/Restructured_Text\n"
+        - - 0 50 9.96 0.00
+      - - "\u2022 http://docutils.sourceforge.net/docs/index.html\n"
+        - - 0 50 9.96 0.00
+      - - "\u2022 http://sphinx-doc.org/rest.html\n"
+        - - 0 34 9.96 0.00
+  - - TextContainer
+    - - - 'RestructuredText:
+
+          '
+        - - 0 18 9.96 0.00
+  - - TextContainer
+    - - - 'Contents
+
+          '
+        - - 0 9 9.96 0.00
+  - - TextContainer
+    - - - '1
+
+          '
+        - - 0 2 9.96 0.00
+  page: 4
+- children:
+  - - TextContainer
+    - - - 'The RestructuredText Book Documentation, Release 0.1
+
+          '
+        - - 0 53 9.96 0.00
+  - - TextContainer
+    - - - '2
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - 'Contents
+
+          '
+        - - 0 9 9.96 0.00
+  page: 5
+- children:
+  - - TextContainer
+    - - - 'CHAPTER 1
+
+          '
+        - - 0 8 14.35 2.22
+          - 8 10 24.79 0.00
+  - - TextContainer
+    - - - 'RestructuredText Tutorial
+
+          '
+        - - 0 26 14.35 0.00
+  - - TextContainer
+    - - - '3
+
+          '
+        - - 0 2 9.96 0.00
+  page: 6
+- children:
+  - - TextContainer
+    - - - 'The RestructuredText Book Documentation, Release 0.1
+
+          '
+        - - 0 53 9.96 0.00
+  - - TextContainer
+    - - - '4
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - 'Chapter 1. RestructuredText Tutorial
+
+          '
+        - - 0 37 9.96 0.00
+  page: 7
+- children:
+  - - TextContainer
+    - - - 'CHAPTER 2
+
+          '
+        - - 0 8 14.35 2.22
+          - 8 10 24.79 0.00
+  - - TextContainer
+    - - - 'RestructuredText Guide
+
+          '
+        - - 0 23 14.35 0.00
+  - - TextContainer
+    - - - 'Basics
+
+          '
+        - - 0 7 14.35 0.00
+  - - TextContainer
+    - - - 'Improving upon the pattern established at http://markdown-guide.readthedocs.org/en/latest/basics.html,
+          sections to
+
+          '
+        - - 0 115 9.96 0.00
+      - - 'add:
+
+          '
+        - - 0 5 9.96 0.00
+  - - TextContainer
+    - - - "\u2022 Code: Block\n"
+        - - 0 14 9.96 0.00
+      - - "\u2022 Code: Inline\n"
+        - - 0 15 9.96 0.00
+      - - "\u2022 Emphasis: Italics\n"
+        - - 0 20 9.96 0.00
+      - - "\u2022 Emphasis: Strong\n"
+        - - 0 19 9.96 0.00
+      - - "\u2022 Headers\n"
+        - - 0 10 9.96 0.00
+      - - "\u2022 Horizontal rules\n"
+        - - 0 19 9.96 0.00
+      - - "\u2022 Images: Inline\n"
+        - - 0 17 9.96 0.00
+      - - "\u2022 Line Return\n"
+        - - 0 14 9.96 0.00
+      - - "\u2022 Links: Inline\n"
+        - - 0 16 9.96 0.00
+      - - "\u2022 Links: Inline with title\n"
+        - - 0 27 9.96 0.00
+      - - "\u2022 Links: Reference\n"
+        - - 0 19 9.96 0.00
+      - - "\u2022 Lists: Simple\n"
+        - - 0 16 9.96 0.00
+      - - "\u2022 Lists: Nested\n"
+        - - 0 16 9.96 0.00
+      - - "\u2022 Paragraphs\n"
+        - - 0 13 9.96 0.00
+      - - "\u2022 Images: Reference\n"
+        - - 0 20 9.96 0.00
+  - - TextContainer
+    - - - '5
+
+          '
+        - - 0 2 9.96 0.00
+  page: 8
+- children:
+  - - TextContainer
+    - - - 'The RestructuredText Book Documentation, Release 0.1
+
+          '
+        - - 0 53 9.96 0.00
+  - - TextContainer
+    - - - 'Blockquotes
+
+          '
+        - - 0 12 14.35 0.00
+  - - TextContainer
+    - - - 'To enclose a segment of text in blockquotes, one must add a tab at the
+          start of a paragraph.
+
+          '
+        - - 0 93 9.96 0.00
+      - - 'RestructuredText:
+
+          '
+        - - 0 18 9.96 0.00
+  - - TextContainer
+    - - - 'This is normal text.
+
+          '
+        - - 0 21 8.97 0.00
+  - - TextContainer
+    - - - 'This is blockquoted text
+
+          '
+        - - 0 25 8.97 0.00
+  - - TextContainer
+    - - - 'This is another paragraph of blockquoted text.
+
+          '
+        - - 0 47 8.97 0.00
+  - - TextContainer
+    - - - 'This is a nested block of text.
+
+          '
+        - - 0 32 8.97 0.00
+  - - TextContainer
+    - - - 'Output:
+
+          '
+        - - 0 8 9.96 0.00
+  - - TextContainer
+    - - - '<p>This is normal text.</p>
+
+          '
+        - - 0 1 8.97 0.00
+          - 1 2 8.97 0.19
+          - 2 25 8.97 0.00
+          - 25 26 8.97 0.19
+          - 26 28 8.97 0.00
+      - - '<blockquote>
+
+          '
+        - - 0 1 8.97 -0.01
+          - 1 11 8.97 0.19
+          - 11 13 8.97 -0.01
+      - - '<div><p>This is blockquoted text</p>
+
+          '
+        - - 0 1 8.97 -0.01
+          - 1 4 8.97 0.19
+          - 4 6 8.97 -0.01
+          - 6 7 8.97 0.19
+          - 7 34 8.97 -0.01
+          - 34 35 8.97 0.19
+          - 35 37 8.97 -0.01
+      - - '<p>This is another paragraph of blockquoted text.</p>
+
+          '
+        - - 0 1 8.97 -0.01
+          - 1 2 8.97 0.19
+          - 2 51 8.97 -0.01
+          - 51 52 8.97 0.19
+          - 52 54 8.97 -0.01
+      - - '<blockquote>
+
+          '
+        - - 0 1 8.97 -0.01
+          - 1 11 8.97 0.19
+          - 11 13 8.97 -0.01
+      - - '<div>This is a nested block of text.</div></blockquote>
+
+          '
+        - - 0 1 8.97 0.00
+          - 1 4 8.97 0.19
+          - 4 38 8.97 0.00
+          - 38 41 8.97 0.19
+          - 41 44 8.97 0.00
+          - 44 54 8.97 0.19
+          - 54 56 8.97 0.00
+      - - '</div></blockquote>
+
+          '
+        - - 0 2 8.97 0.00
+          - 2 5 8.97 0.19
+          - 5 8 8.97 0.00
+          - 8 18 8.97 0.19
+          - 18 20 8.97 0.00
+      - - '</div>
+
+          '
+        - - 0 2 8.97 0.00
+          - 2 5 8.97 0.19
+          - 5 7 8.97 0.00
+  - - TextContainer
+    - - - 'Code: Block
+
+          '
+        - - 0 12 14.35 0.00
+  - - TextContainer
+    - - - 'TODO
+
+          '
+        - - 0 5 9.96 0.00
+  - - TextContainer
+    - - - '6
+
+          '
+        - - 0 2 9.96 0.00
+  - - TextContainer
+    - - - 'Chapter 2. RestructuredText Guide
+
+          '
+        - - 0 34 9.96 0.00
+  page: 9
