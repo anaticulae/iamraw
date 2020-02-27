@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v1.17.0
+
+### Feature
+
+* move textnavigator creator methods (3d65e03021b8)
+* move path from hey module (f37a73a66fbc)
+* textnavigator and fontstore from `hey` project (f47fe8a6b4ca)
+
 ## v1.16.4
 
 ### Fix
