@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.17.2
+
+### Feature
+
+* add texmex package to store text analysis methods (4ebd8ebddd69)
+* add method to create TextContainer/Line from string (5b9a4e6df4a1)
+
 ## v1.17.1
 
 ### Fix
