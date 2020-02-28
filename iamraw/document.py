@@ -11,6 +11,8 @@ import contextlib
 import dataclasses
 import typing
 
+import utila
+
 from iamraw.bounding import BoundingBox
 
 PageSize = collections.namedtuple('PageSize', 'width height')
@@ -147,6 +149,17 @@ class Line(Boxed):
     def __len__(self):
         return len(self.chars)
 
+    def append(self, char):
+        assert isinstance(char, Char), type(char)
+        self.chars.append(char)  # pylint:disable=E1101
+
+    @classmethod
+    def fromstr(cls, text):
+        result = cls()
+        for char in text:
+            result.append(Char(value=char))
+        return result
+
 
 Lines = typing.List[Line]
 
@@ -171,6 +184,15 @@ class TextContainer(Boxed):
 
     def __len__(self) -> int:
         return len(self.lines)
+
+    @classmethod
+    def fromstr(cls, text):
+        result = cls()
+        for line in text.splitlines():
+            # ensure that line ends with newline
+            line = line + utila.NEWLINE
+            result.append(Line.fromstr(line))
+        return result
 
 
 TextContainers = typing.List[TextContainer]
