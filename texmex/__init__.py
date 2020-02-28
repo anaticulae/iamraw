@@ -7,4 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+from texmex.iter import PageIter
+from texmex.iter import TextContainerIterator
 from texmex.iter import split_page
