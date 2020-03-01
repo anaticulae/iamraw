@@ -32,7 +32,7 @@ class TextContainerIterator:
 
 
 class PageIter:
-    # Contenxt Manager?
+
     def __init__(self, page):
         self.page = TextContainerIterator(page)
         self.container = 0
@@ -44,15 +44,14 @@ class PageIter:
         result = result % (self.container, self.line, self.char)
         return result
 
-    def next(self, container, line, char):
-        """Extract data between `current` iterator position `(self.container,
-        self.line, self.char)` and the passed `new` iterator position
-        `(container, line, char)`.
+    def next(self, container, line, char) -> str:
+        """Extract data between `current` iterator position
+        `(self.container, self.line, self.char)` and the passed `new`
+        iterator position `(container, line, char)`.
 
-        Args:
-            container
-            line
-            char
+        Raises:
+            ValueError: next step is on current iterator
+            ValueError: content can be provided cause iter stands on end
         Returns:
             content between current text iterator and passed new iterator
             if the new iterator is out of bounds a ValueError is raised.
