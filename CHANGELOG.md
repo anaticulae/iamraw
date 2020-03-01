@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.17.7
+
+### Fix
+
+* fix assert_list assetion (00f6f9af5813)
+
 ## v1.17.6
 
 ### Feature
