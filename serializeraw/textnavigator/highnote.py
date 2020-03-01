@@ -54,6 +54,7 @@ def dump_highnotes(pages) -> str:
 
 
 def assert_list(items, types):
+    # TODO: MOVE TO UTILA
     assert isinstance(items, list), type(items)
     verified = [isinstance(item, types) for item in items]
-    assert verified, str(verified)
+    assert all(verified), str(verified)
