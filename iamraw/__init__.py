@@ -149,8 +149,6 @@ from iamraw.textnavigator.style import TextStyle
 from iamraw.textnavigator.style import highnotes
 from iamraw.textnavigator.style import remove_highnotes
 from iamraw.textnavigator.style import style_without_highnotes
-from iamraw.textnavigator.utils import percent_from_pagesize
-from iamraw.textnavigator.utils import percent_to_pagesize
 from iamraw.textnavigator.utils import topbottom
 # textposition
 from iamraw.textposition import PageContentTextPosition

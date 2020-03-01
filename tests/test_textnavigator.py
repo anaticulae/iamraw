@@ -48,20 +48,6 @@ def test_before():  #pylint:disable=W0621
     assert len(result) == 1, before
 
 
-@pytest.mark.parametrize('size,percent,expected', [
-    (100.0, 1.0, 0),
-    (100.0, 0.0, 100),
-    (100.0, 0.75, 25),
-])
-def test_textnavigator_percent_to_page(size, percent, expected):
-    # TODO: MOVE TO DOCTEST
-    result = iamraw.percent_to_pagesize(
-        size,
-        percent,
-    )
-    assert result == expected
-
-
 #pylint:disable=W0621
 def test_fonts_navigator_to_bounds():
     navigator = tests.fixtures.textnavigator.navigator()
