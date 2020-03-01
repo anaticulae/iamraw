@@ -13,7 +13,7 @@ import configo
 import utila
 import yaml
 
-import iamraw
+import texmex
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
@@ -25,9 +25,9 @@ def load_highnotes(content: str, pages: tuple = None):
         pagenumber = int(pagecontent['page'])
         if utila.should_skip(pagenumber, pages):
             continue
-        page = iamraw.PageContentTextItems(page=pagenumber)
+        page = texmex.PageContentTextItems(page=pagenumber)
         page.content = [
-            iamraw.HighNote(
+            texmex.HighNote(
                 start=item['start'],
                 end=item['end'],
                 value=item['value'],
@@ -38,7 +38,7 @@ def load_highnotes(content: str, pages: tuple = None):
 
 
 def dump_highnotes(pages) -> str:
-    assert_list(pages, iamraw.PageContentTextItems)
+    assert_list(pages, texmex.PageContentTextItems)
     result = []
     for page in pages:
         raw = {'page': page.page}

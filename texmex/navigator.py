@@ -10,14 +10,9 @@ import typing
 
 import utila
 
-import iamraw.textnavigator.style
-import iamraw.textnavigator.utils
-from iamraw.border import Border
-from iamraw.bounding import BoundingBox
-from iamraw.bounding import BoundingBoxes
-from iamraw.document import Document
-from iamraw.document import PageSize
-from iamraw.fontstore import FontStore
+import iamraw
+import texmex.style
+import texmex.utils
 
 START = 0.0
 END = 1.0
@@ -58,8 +53,8 @@ class PageTextNavigator(NavigatorMixin):
     def insert(
             self,
             text: str,
-            style: iamraw.textnavigator.style.TextStyle,
-            bounding: BoundingBox,
+            style: texmex.style.TextStyle,
+            bounding: iamraw.BoundingBox,
     ):
         """Insert text element top to bottom and left to right.
 
@@ -91,7 +86,7 @@ class PageTextNavigator(NavigatorMixin):
             elif y0 <= pos.y0:
                 break
             position += 1
-        datum = iamraw.textnavigator.style.TextInfo(
+        datum = texmex.style.TextInfo(
             text=text,
             bounding=bounding,
             style=style,
@@ -140,7 +135,7 @@ class PageTextNavigator(NavigatorMixin):
             result.append(item.copy())
         return result
 
-    def __getitem__(self, index) -> iamraw.textnavigator.style.TextInfo:
+    def __getitem__(self, index) -> texmex.style.TextInfo:
         return self.data[index]
 
     def __len__(self) -> int:
@@ -152,7 +147,7 @@ class PageTextNavigator(NavigatorMixin):
 
     @property
     def dimension(self):
-        return PageSize(width=self.width, height=self.height)
+        return iamraw.PageSize(width=self.width, height=self.height)
 
     def before(self, height: float, width: float = END) -> list:
         """Determine elements on the top of the document
@@ -189,7 +184,7 @@ class PageTextNavigator(NavigatorMixin):
         top, bottom = result[0], result[-1] + 1
         return top, bottom
 
-    def find(self, location: BoundingBox):
+    def find(self, location: iamraw.BoundingBox):
         # TODO: VERY SLOW
         for item in self.data:
             if location == item.bounding:
@@ -206,7 +201,7 @@ class PageTextContentNavigator(NavigatorMixin):
     def __init__(
             self,
             textnavigator: PageTextNavigator,
-            content: Border,
+            content: iamraw.Border,
             *,
             validate_leftright: bool = True,
     ):
@@ -221,14 +216,14 @@ class PageTextContentNavigator(NavigatorMixin):
         msg = 'require `PageTextNavigator` got: %s' % type(textnavigator)
         assert isinstance(textnavigator, PageTextNavigator), msg
         msg = 'require `Border` got: %s' % type(content)
-        assert isinstance(content, Border), msg
-        pagesize = PageSize(
+        assert isinstance(content, iamraw.Border), msg
+        pagesize = iamraw.PageSize(
             width=textnavigator.width,
             height=textnavigator.height,
         )
         self.content = content
         assert content.bottom >= 100, str(content)  # ensure that are pixel
-        top, bottom = iamraw.textnavigator.utils.topbottom(pagesize, content)
+        top, bottom = texmex.utils.topbottom(pagesize, content)
         assert 0 <= top <= bottom <= 1.0, str(top) + str(bottom)
         self._page = textnavigator.page
 
@@ -278,16 +273,16 @@ PageTextContentNavigators = typing.List[PageTextContentNavigator]
 #     return result
 
 
-def navigator_to_bounds(navigator: PageTextNavigator) -> BoundingBoxes:
+def navigator_to_bounds(navigator: PageTextNavigator) -> iamraw.BoundingBoxes:
     """Extract list of `BoundingBox` from `PageTextNavigator`."""
     assert isinstance(navigator, NavigatorMixin), type(navigator)
     return [item.bounding for item in navigator]
 
 
 def create_pagetextnavigators(  # pylint:disable=R0914
-        text: Document,
+        text: iamraw.Document,
         text_positions,
-        fontstore: FontStore = None,
+        fontstore: iamraw.FontStore = None,
 ) -> PageTextNavigators:
     result = []
     for textposition in text_positions:
@@ -315,7 +310,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914
                             char_number,
                         )
                         char.font = fontid
-                style = iamraw.textnavigator.style.create_textstyle(line.chars)
+                style = texmex.style.create_textstyle(line.chars)
                 # TODO: Remove strip after container is fixed
                 if not line.text.strip():
                     # skip bad removed rawmaker extraction
@@ -391,7 +386,7 @@ def determine_border(headerfooter, sizeandborder, page: int):
         top = pagesize.height * headerfooter.header.end
     if headerfooter and headerfooter.footer:
         bottom = bottom * headerfooter.footer.begin
-    border = Border(
+    border = iamraw.Border(
         left=0,
         right=pagesize.width,  # TODO: INVESTIGATE HERE
         top=top,
@@ -403,21 +398,19 @@ def determine_border(headerfooter, sizeandborder, page: int):
 def create_pagetextnavigator_fromstr(content: str, fontsize=12.0):
     result = PageTextNavigator()
     for index, line in enumerate(content.splitlines()):
-        bounding = BoundingBox(
+        bounding = iamraw.BoundingBox(
             x0=50,
             y0=100 + index * 20,
             x1=200,
             y1=100 + (index + 1) * 20,
         )
-        content = [
-            iamraw.textnavigator.style.CharStyle(
-                0,
-                len(line),
-                fontsize,
-                0,
-            )
-        ]
-        style = iamraw.textnavigator.style.TextStyle(content=content)
+        content = [texmex.style.CharStyle(
+            0,
+            len(line),
+            fontsize,
+            0,
+        )]
+        style = texmex.style.TextStyle(content=content)
         result.insert(
             text=line,
             bounding=bounding,

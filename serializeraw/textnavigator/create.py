@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 import iamraw
+import texmex
 from serializeraw.border import load_pageborders
 from serializeraw.document import load_document
 from serializeraw.fontstore import create_fontstore_frompath
@@ -18,7 +19,7 @@ def create_pagetextnavigators_frompath(
         path: str,
         prefix='',
         pages=None,
-) -> iamraw.PageTextNavigators:
+) -> texmex.PageTextNavigators:
     """Load all resources from one `path` to create PageTextNavigator
     for the selected list of `pages` with an optional `prefix` in loaded
     items.
@@ -45,7 +46,7 @@ def create_pagetextnavigators_frompath(
         pages=pages,
     )
 
-    navigators = iamraw.create_pagetextnavigators(text, textposition, fontstore)
+    navigators = texmex.create_pagetextnavigators(text, textposition, fontstore)
     return navigators
 
 
@@ -54,7 +55,7 @@ def create_pagetextcontentnavigators_frompath(
         prefix: str = '',
         pages: tuple = None,
         validate_leftright: bool = True,
-) -> iamraw.PageTextContentNavigators:
+) -> texmex.PageTextContentNavigators:
     """Load `PageTextContentNavigators` from `path`.
 
     Args:
@@ -87,7 +88,7 @@ def create_pagetextcontentnavigators_frompath(
         pages=pages,
     )
 
-    result = iamraw.create_pagetextcontentnavigators(
+    result = texmex.create_pagetextcontentnavigators(
         navigators=navigators,
         headerfooter=headerfooter,
         sizeandborder=sizeandborder,

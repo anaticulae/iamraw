@@ -63,7 +63,6 @@ if __name__ == "__main__":
         ],
         packages=[
             'iamraw',
-            'iamraw.textnavigator',
             'serializeraw',
             'serializeraw.textnavigator',
             'texmex',

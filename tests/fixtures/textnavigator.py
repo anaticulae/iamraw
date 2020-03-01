@@ -8,6 +8,7 @@
 # =============================================================================
 
 import iamraw
+import texmex
 
 SAMPLE = [
     (8, iamraw.BoundingBox.from_str('130.91 668.55 540.00 704.02')),
@@ -27,9 +28,9 @@ def document_size(items):
     return (dimension[2], dimension[3])
 
 
-def navigator() -> iamraw.PageTextNavigator:
+def navigator() -> texmex.PageTextNavigator:
     dimension = document_size([item for _, item in SAMPLE])
-    result = iamraw.PageTextNavigator(dimension)
+    result = texmex.PageTextNavigator(dimension)
     for item, position in SAMPLE:
         result.insert(bounding=position, text=item, style=None)
     assert len(result) == len(SAMPLE)

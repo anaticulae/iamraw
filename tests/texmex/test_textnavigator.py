@@ -9,6 +9,7 @@
 
 import iamraw
 import tests.fixtures.textnavigator
+import texmex
 
 
 def test_insert_order():  #pylint:disable=W0621
@@ -49,12 +50,12 @@ def test_before():  #pylint:disable=W0621
 #pylint:disable=W0621
 def test_fonts_navigator_to_bounds():
     navigator = tests.fixtures.textnavigator.navigator()
-    result = iamraw.navigator_to_bounds(navigator)
+    result = texmex.navigator_to_bounds(navigator)
     assert all([isinstance(item, iamraw.BoundingBox) for item in result])
 
 
 def test_hey_navigator_find():
-    navigator = iamraw.PageTextNavigator()
+    navigator = texmex.PageTextNavigator()
     location = iamraw.BoundingBox.from_str('10.0 12.0 15 20')
     navigator.insert('me', bounding=location, style=None)
     location = iamraw.BoundingBox.from_str('100.0 120.0 150 200')

@@ -9,15 +9,14 @@
 
 import utila
 
-from iamraw import Border
-from iamraw import PageSize
+import iamraw
 
 
-def topbottom(size: PageSize, contentborder: Border):
+def topbottom(size: iamraw.PageSize, contentborder: iamraw.Border):
     """Determine percentage start of coordinate. The origin of the
     coordinate starts on the top left position.
 
-    >>> topbottom(PageSize(1024,768), Border(left=0, right=0, top=128, bottom=680))
+    >>> topbottom(iamraw.PageSize(1024,768), iamraw.Border(left=0, right=0, top=128, bottom=680))
     (0.1667, 0.8854)
     """
     top, bottom = contentborder.top, contentborder.bottom

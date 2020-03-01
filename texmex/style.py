@@ -12,8 +12,7 @@ import typing
 
 import utila
 
-from iamraw.bounding import BoundingBox
-from iamraw.document import Chars
+import iamraw
 
 
 @dataclasses.dataclass
@@ -87,7 +86,7 @@ class TextStyle:
 @dataclasses.dataclass
 class TextInfo:
     text: str
-    bounding: BoundingBox = None
+    bounding: iamraw.BoundingBox = None
     style: TextStyle = None
 
     def copy(self):
@@ -101,7 +100,7 @@ class TextInfo:
         return self.text + utila.NEWLINE
 
 
-def create_textstyle(chars: Chars) -> TextStyle:
+def create_textstyle(chars: iamraw.Chars) -> TextStyle:
     assert chars
     start, size, rise, font = 0, chars[0].size, chars[0].rise, chars[0].font
     result = []

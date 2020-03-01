@@ -129,27 +129,6 @@ from iamraw.text import ParagraphContent
 from iamraw.text import ParagraphItem
 from iamraw.text import Paragraphs
 from iamraw.text import Undefined
-# textnavigator
-from iamraw.textnavigator.navigator import PageTextContentNavigator
-from iamraw.textnavigator.navigator import PageTextContentNavigators
-from iamraw.textnavigator.navigator import PageTextNavigator
-from iamraw.textnavigator.navigator import PageTextNavigators
-from iamraw.textnavigator.navigator import create_pagetextcontentnavigators
-from iamraw.textnavigator.navigator import create_pagetextnavigator_fromstr
-from iamraw.textnavigator.navigator import create_pagetextnavigators
-from iamraw.textnavigator.navigator import fill_empty_navigators
-from iamraw.textnavigator.navigator import navigator_to_bounds
-from iamraw.textnavigator.style import CharStyle
-from iamraw.textnavigator.style import CharStyles
-from iamraw.textnavigator.style import HighNote
-from iamraw.textnavigator.style import HighNotes
-from iamraw.textnavigator.style import PageContentTextItems
-from iamraw.textnavigator.style import TextInfo
-from iamraw.textnavigator.style import TextStyle
-from iamraw.textnavigator.style import highnotes
-from iamraw.textnavigator.style import remove_highnotes
-from iamraw.textnavigator.style import style_without_highnotes
-from iamraw.textnavigator.utils import topbottom
 # textposition
 from iamraw.textposition import PageContentTextPosition
 from iamraw.textposition import PageContentTextPositions
