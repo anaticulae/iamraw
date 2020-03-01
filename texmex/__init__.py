@@ -12,6 +12,8 @@ from texmex.iter import PageIter
 from texmex.iter import TextContainerIterator
 from texmex.iter import split_page
 # navigator
+from texmex.navigator import END
+from texmex.navigator import START
 from texmex.navigator import NavigatorMixin
 from texmex.navigator import PageTextContentNavigator
 from texmex.navigator import PageTextContentNavigators
