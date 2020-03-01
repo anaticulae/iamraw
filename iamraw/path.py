@@ -12,23 +12,6 @@ import os
 import utila
 
 
-def pathconnector(
-        path: str,
-        runner: str,
-        filename: str,
-        prefix: str = '',
-) -> str:
-    # TODO: REMOVE AFTER UPGRADING
-    assert os.path.isdir(path), str(path)
-    prefix = f'{prefix}_' if prefix else ''
-    filename = f'{runner}__{prefix}{filename}.yaml'
-    result = os.path.join(path, filename)
-    return result
-
-
-utila.pathconnector = pathconnector
-
-
 def text(path: str, prefix: str = '') -> str:
     """Add text file name of `rawmaker` to given `path
 

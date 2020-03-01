@@ -33,8 +33,7 @@ def load_lines(content: str, pages: tuple = None) -> iamraw.PageContentLines:
             continue
         content = []
         for raw in page['content']:
-            # TODO: REPLACE WITH UTILA CODE
-            item = tuple(utila.roundme(float(var)) for var in raw.split())
+            item = utila.parse_tuple(raw, expected_length=4, typ=float)
             content.append(item)
         result.append(iamraw.PageContentLine(page=pagenumber, content=content))
     return result
