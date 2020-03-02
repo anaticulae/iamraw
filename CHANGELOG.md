@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.17.8
+
+### Feature
+
+* move missing code (c4a9c1d08e9b)
+
 ## v1.17.7
 
 ### Fix
