@@ -287,6 +287,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914
         text: iamraw.Document,
         text_positions,
         fontstore: iamraw.FontStore = None,
+        fill_empty: bool = True,
 ) -> PageTextNavigators:
     result = []
     for textposition in text_positions:
@@ -327,7 +328,8 @@ def create_pagetextnavigators(  # pylint:disable=R0914
             textid += 1
         result.append(navigator)
 
-    result = fill_empty_navigators(result, dimension=text.dimension)
+    if fill_empty:
+        result = fill_empty_navigators(result, dimension=text.dimension)
     return result
 
 
@@ -367,6 +369,7 @@ def create_pagetextcontentnavigators(
         validate_leftright: bool = True,
         pages: tuple = None,
 ) -> PageTextContentNavigators:
+    # TODO: require fill_empty?
     result = []
     for navigator in navigators:
         if utila.should_skip(navigator.page, pages):

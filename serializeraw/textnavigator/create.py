@@ -19,6 +19,8 @@ def create_pagetextnavigators_frompath(
         path: str,
         prefix='',
         pages=None,
+        *,
+        fill_empty: bool = True,
 ) -> texmex.PageTextNavigators:
     """Load all resources from one `path` to create PageTextNavigator
     for the selected list of `pages` with an optional `prefix` in loaded
@@ -28,6 +30,9 @@ def create_pagetextnavigators_frompath(
         path(str): Path to folder which contains all data to construct.
         prefix(str): Optional prefix to difference items in folder.
         pages(tuple): Tuple of pages to load.
+        fill_empty(bool): insert empty pages for pages without any saved
+                          data. Use `fill_empty=False` to avoid filling
+                          navgiators between pages=(0, 1, 4, 5).
     Returns:
         A list of selected PageTextNavigators.
 
@@ -45,8 +50,12 @@ def create_pagetextnavigators_frompath(
         prefix=prefix,
         pages=pages,
     )
-
-    navigators = texmex.create_pagetextnavigators(text, textposition, fontstore)
+    navigators = texmex.create_pagetextnavigators(
+        text,
+        textposition,
+        fontstore,
+        fill_empty=fill_empty,
+    )
     return navigators
 
 
@@ -54,6 +63,7 @@ def create_pagetextcontentnavigators_frompath(
         path: str,
         prefix: str = '',
         pages: tuple = None,
+        *,
         validate_leftright: bool = True,
 ) -> texmex.PageTextContentNavigators:
     """Load `PageTextContentNavigators` from `path`.
@@ -89,10 +99,10 @@ def create_pagetextcontentnavigators_frompath(
     )
 
     result = texmex.create_pagetextcontentnavigators(
-        navigators=navigators,
         headerfooter=headerfooter,
+        navigators=navigators,
+        pages=pages,
         sizeandborder=sizeandborder,
         validate_leftright=validate_leftright,
-        pages=pages,
     )
     return result
