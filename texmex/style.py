@@ -130,7 +130,10 @@ def create_textstyle(chars: iamraw.Chars) -> TextStyle:
 HIGHNOTE_MIN_RISE = 5.0  # TODO: HOLY NOTE
 
 
-def highnotes(info: TextInfo) -> HighNotes:
+def highnotes(
+        info: TextInfo,
+        highnote_rise_min: float = HIGHNOTE_MIN_RISE,
+) -> HighNotes:
     """Extract `HighNote`s out of text line. A highnote is a number
     which is a reference to an item defined in the footer.
 
@@ -139,13 +142,14 @@ def highnotes(info: TextInfo) -> HighNotes:
 
     Args:
         info(TextInfo): text line which can contain HightNote's
+        highnote_rise_min(float): required rise to be acceped as highnote
     Returns:
         list of parsed `HighNote`s
     """
     text = info.text
     result = []
     for style in info.style:
-        if style.rise <= HIGHNOTE_MIN_RISE:
+        if style.rise <= highnote_rise_min:
             continue
         value = text[style.start:style.end]
         try:

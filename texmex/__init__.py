@@ -25,8 +25,9 @@ from texmex.navigator import create_pagetextnavigators
 from texmex.navigator import determine_border
 from texmex.navigator import fill_empty_navigators
 from texmex.navigator import navigator_to_bounds
+from texmex.navigator import navigator_to_content
 # style
-from texmex.style import HIGHNOTE_MIN_RISE
+from texmex.style import HIGHNOTE_MIN_RISE  # TODO: REMOVE LATER
 from texmex.style import CharStyle
 from texmex.style import CharStyles
 from texmex.style import HighNote
@@ -38,5 +39,13 @@ from texmex.style import create_textstyle
 from texmex.style import highnotes
 from texmex.style import remove_highnotes
 from texmex.style import style_without_highnotes
+# text
+from texmex.text import FontOccurrence
+from texmex.text import FontOccurrences
+from texmex.text import FontSize
+from texmex.text import Occurrence
+from texmex.text import TextBounds
+from texmex.text import TextBoundsInfo
+from texmex.text import TextBoundsInfos
 # utils
 from texmex.utils import topbottom

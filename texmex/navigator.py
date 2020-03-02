@@ -11,8 +11,12 @@ import typing
 import utila
 
 import iamraw
+import texmex
 import texmex.style
+import texmex.text
 import texmex.utils
+from texmex.text import TextBoundsInfo
+from texmex.text import TextBoundsInfos
 
 START = 0.0
 END = 1.0
@@ -261,16 +265,16 @@ class PageTextContentNavigator(NavigatorMixin):
 PageTextNavigators = typing.List[PageTextNavigator]
 PageTextContentNavigators = typing.List[PageTextContentNavigator]
 
-# def navigator_to_content(navigator: PageTextNavigator,
-#               ) -> hey.textnavigator.TextBoundsList:
-#     result = []
-#     for item in navigator:
-#         info = hey.textnavigator.TextBoundsInfo(
-#             bounds=item.bounding,
-#             text=item.text,
-#         )
-#         result.append(info)
-#     return result
+
+def navigator_to_content(navigator: PageTextNavigator) -> TextBoundsInfos: #  yapf:disable
+    result = []
+    for item in navigator:
+        info = TextBoundsInfo(
+            bounds=item.bounding,
+            text=item.text,
+        )
+        result.append(info)
+    return result
 
 
 def navigator_to_bounds(navigator: PageTextNavigator) -> iamraw.BoundingBoxes:
