@@ -74,6 +74,7 @@ from iamraw.headerfooter import FixedHeaderInformation
 from iamraw.headerfooter import FooterInformation
 from iamraw.headerfooter import FootJudgedNote
 from iamraw.headerfooter import FootNote
+from iamraw.headerfooter import FootNotes
 from iamraw.headerfooter import FootRawNote
 from iamraw.headerfooter import HeaderImages
 from iamraw.headerfooter import HeaderInformation

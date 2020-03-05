@@ -82,6 +82,9 @@ class FootJudgedNote(FootNote):
     features: list = dataclasses.field(default_factory=list)
 
 
+FootNotes = typing.List[FootNote]
+
+
 @dataclasses.dataclass
 class HeaderTitle:
     # XXX: Store location and font?
