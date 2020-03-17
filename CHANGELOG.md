@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.18.0
+
+### Feature
+
+* skip empty text navigators (12a645a60097)
+* add datatype to describe list of FootNotes (43639ff0bafe)
+* number - add module to convert Roman to Arabic numbers (da681e8801c9)
+* add simple mechanism to sort words alphabetically (c49fe817d8ba)
+* add flag to avoid filling navigators with empty navigators (5f794480cb29)
+
 ## v1.17.8
 
 ### Feature
