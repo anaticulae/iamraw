@@ -375,6 +375,13 @@ def create_pagetextcontentnavigators(
         if utila.should_skip(navigator.page, pages):
             continue
         border = determine_border(headerfooter, sizeandborder, navigator.page)
+        if border is None:
+            # No page border available for text navigator, skip creation.
+            # Processing selective pages produces white page navgiators
+            # between content. For this white page navgiators, no page
+            # content information are available. Therefore we do not add
+            # this empty navgiator to list.
+            continue
         result.append(
             PageTextContentNavigator(
                 navigator,
@@ -386,7 +393,10 @@ def create_pagetextcontentnavigators(
 
 def determine_border(headerfooter, sizeandborder, page: int):
     """Determine contentborder out of footer and header information."""
-    pagesize = utila.select_page(sizeandborder, page).size
+    pagesize = utila.select_page(sizeandborder, page)
+    if pagesize is None:
+        return pagesize
+    pagesize = pagesize.size
     headerfooter = utila.select_page(headerfooter, page)
     top, bottom = 0, pagesize.height
     if headerfooter and headerfooter.header:
