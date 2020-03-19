@@ -28,6 +28,8 @@ def replace(*items):
 
     >>> replace('α', 'χ', '²', 'Abc')
     ['a', 'X', '2', 'Abc']
+    >>> replace('Hαχ²')
+    'HaX2'
     >>> replace('χ')
     'X'
     """
