@@ -10,7 +10,21 @@
 =====
 
 This module provides methods to work with german languages constructs.
+
+Sort alphabetical
+-----------------
+
+>>> items = [(0, 'Helm'), (5, 'Schelm'), (3, 'Gelm')]
+>>> sorted(items, key=lambda x: alphabetically(x[1]))
+[(3, 'Gelm'), (0, 'Helm'), (5, 'Schelm')]
+
+Nones are sorted to the end of the list.
+
+>>> sorted([(0, None), (3, 'Gelm')], key=lambda x: alphabetically(x[1]))
+[(3, 'Gelm'), (0, None)]
+
 """
+
 import contextlib
 
 
@@ -20,7 +34,7 @@ def sort(*items):
     >>> sort('Alpha', 'α', 'Gamma', 'beta')
     ['α', 'Alpha', 'beta', 'Gamma']
     """
-    return sorted(items, key=lambda x: replace(x).lower())
+    return sorted(items, key=alphabetically)
 
 
 def replace(*items):
@@ -46,3 +60,10 @@ def replace(*items):
     if len(result) == 1:
         return result[0]
     return result
+
+
+def alphabetically(item: str) -> str:
+    if item is None:
+        # sort at the end, use max value
+        return chr(0x10ffff)
+    return replace(item).lower()

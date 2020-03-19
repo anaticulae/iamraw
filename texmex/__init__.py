@@ -7,6 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+# alpha
+from texmex.alpha import alphabetically
+from texmex.alpha import replace as alpha_replace
+from texmex.alpha import sort as alpha_sort
 # iterator
 from texmex.iter import PageIter
 from texmex.iter import TextContainerIterator
