@@ -20,6 +20,7 @@ from iamraw.sections import Index
 from iamraw.sections import Introduction
 from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
+from iamraw.sections import NotImplementedItem
 from iamraw.sections import Sections
 from iamraw.sections import Table
 from iamraw.sections import TableOfContent
@@ -54,12 +55,18 @@ def dump_sections(sections: Sections) -> str:
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_sections(content: str, pages: tuple = None) -> Sections:
+def load_sections(
+        content: str,
+        pages: tuple = None,
+        onerror: callable = None,
+) -> Sections:
     """Load sections from path or str
 
     Args:
         content(str): path or yaml representation of `Sections`
         pages(tuple): tuple of page numbers to load - if none, load all
+        onerror(callable): if `CTOR` is not found, onerror is called for
+                           a second try.
     Return:
         loaded Sections
     """
@@ -81,8 +88,19 @@ def load_sections(content: str, pages: tuple = None) -> Sections:
             if not key.startswith(SEPCIALFIELD)
         }
 
-        ctor = CTOR[item[CLASSNAME]]
-        result = ctor(**result)
+        try:
+            ctor = CTOR[item[CLASSNAME]]
+        except KeyError:
+            ctor = None
+
+        if ctor is None and onerror:
+            # error handling
+            ctor = onerror(CLASSNAME)
+        if ctor is None:
+            result = NotImplementedItem(name=CLASSNAME)
+            utila.error(f'section `{CLASSNAME}` not supported - use default')
+        else:
+            result = ctor(**result)  # pylint:disable=not-a-mapping
         return result
 
     result = Sections()

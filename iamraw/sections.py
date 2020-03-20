@@ -143,3 +143,8 @@ class TitlePage(AreaItem):
 class Chapter(AreaItem):
     number: int = -1
     title: str = ''
+
+
+@dataclasses.dataclass
+class NotImplementedItem(AreaItem):
+    classname: str = None
