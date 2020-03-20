@@ -34,17 +34,7 @@ SEPCIALFIELD = '__'
 
 
 def dump_sections(sections: Sections) -> str:
-    """Convert `Sections` to raw data"""
-
-    def dump_item(item):
-        keys = [key for key in dir(item) if not key.startswith(SEPCIALFIELD)]
-        result = {
-            key: (item.__getattribute__(key) if key != 'content' else
-                  [dump_item(it) for it in item.content]) for key in keys
-        }
-        result[CLASSNAME] = item.__class__.__name__
-        return result
-
+    """Convert `Sections` to raw data."""
     result = []
     for page in sections:
         content = dump_item(page)
@@ -60,7 +50,7 @@ def load_sections(
         pages: tuple = None,
         onerror: callable = None,
 ) -> Sections:
-    """Load sections from path or str
+    """Load sections from path or str.
 
     Args:
         content(str): path or yaml representation of `Sections`
@@ -72,36 +62,6 @@ def load_sections(
     """
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.load(content, Loader=yaml.FullLoader)
-
-    def load_item(item):
-
-        def determine_type(item):
-            """Load items, in special a list entry"""
-            if isinstance(item, list):
-                # recursive call
-                return [load_item(single) for single in item]
-            return item
-
-        result = {
-            key: determine_type(item[key])
-            for key in item.keys()
-            if not key.startswith(SEPCIALFIELD)
-        }
-
-        try:
-            ctor = CTOR[item[CLASSNAME]]
-        except KeyError:
-            ctor = None
-
-        if ctor is None and onerror:
-            # error handling
-            ctor = onerror(CLASSNAME)
-        if ctor is None:
-            result = NotImplementedItem(name=CLASSNAME)
-            utila.error(f'section `{CLASSNAME}` not supported - use default')
-        else:
-            result = ctor(**result)  # pylint:disable=not-a-mapping
-        return result
 
     result = Sections()
     for section in loaded:
@@ -116,18 +76,57 @@ def load_sections(
             continue
         if len(section_pages) == len(inside):
             # every page of section is inside, add all
-            result.append(load_item(section))
+            result.append(load_item(section, onerror=onerror))
             continue
         # some parts are inside, shrink section with reduced content
-        complete = load_item(section)
+        complete = load_item(section, onerror=onerror)
         shrinked = shrink_section(complete, pages)
         result.append(shrinked)
+    return result
 
+
+def dump_item(item):
+    keys = [key for key in dir(item) if not key.startswith(SEPCIALFIELD)]
+    result = {
+        key: (item.__getattribute__(key)
+              if key != 'content' else [dump_item(it) for it in item.content])
+        for key in keys
+    }
+    result[CLASSNAME] = item.__class__.__name__
+    return result
+
+
+def load_item(item, onerror: callable = None):
+
+    def determine_type(item):
+        """Load items, in special a list entry."""
+        if isinstance(item, list):
+            # recursive call
+            return [load_item(single) for single in item]
+        return item
+
+    result = {
+        key: determine_type(item[key])
+        for key in item.keys()
+        if not key.startswith(SEPCIALFIELD)
+    }
+    try:
+        ctor = CTOR[item[CLASSNAME]]
+    except KeyError:
+        ctor = None
+    if ctor is None and onerror:
+        # error handling
+        ctor = onerror(CLASSNAME)
+    if ctor is None:
+        result = NotImplementedItem(name=CLASSNAME)
+        utila.error(f'section `{CLASSNAME}` not supported - use default')
+    else:
+        result = ctor(**result)  # pylint:disable=not-a-mapping
     return result
 
 
 def shrink_section(section, pages: tuple):
-    """Shrink content `section` to selected `pages`"""
+    """Shrink content `section` to selected `pages`."""
     section_pages = range(section.start, section.end + 1)
     inside = [
         page for page in section_pages if not utila.should_skip(page, pages)
@@ -143,7 +142,7 @@ def shrink_section(section, pages: tuple):
 
 
 def generate_ctor():
-    """Create table with name[constructor]"""
+    """Create table with name[constructor]."""
     items = [
         Appendix,
         Chapter,
