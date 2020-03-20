@@ -35,6 +35,9 @@ class AreaItem:
     trust: Percentage  # [0.0 100.0]
 
 
+AreaItems = typing.List[AreaItem]
+
+
 @dataclasses.dataclass
 class DocumentSection:
     """A document is devided in different `DocumentSection`s. These
@@ -45,7 +48,11 @@ class DocumentSection:
     start: Position
     end: Position
     trust: Percentage = dataclasses.field(default=0.0, compare=False)
-    content: typing.List[AreaItem] = dataclasses.field(default_factory=list)
+    content: AreaItems = dataclasses.field(default_factory=list)
+
+    def append(self, item: AreaItem):
+        assert isinstance(item, AreaItem), type(item)
+        self.content.append(item)  # pylint:disable=E1101
 
     def __getitem__(self, index):
         return self.content[index]  #  pylint:disable=E1136
@@ -75,8 +82,7 @@ class MultipleSection:
 
 @dataclasses.dataclass
 class Sections:
-    content: typing.List[DocumentSection] = dataclasses.field(
-        default_factory=list)
+    content: DocumentSections = dataclasses.field(default_factory=list)
 
     def __getitem__(self, index):
         return self.content[index]  #  pylint:disable=E1136
@@ -85,6 +91,7 @@ class Sections:
         return len(self.content)
 
     def append(self, item):
+        assert isinstance(item, DocumentSection), type(item)
         self.content.append(item)  #  pylint:disable=E1101
 
 

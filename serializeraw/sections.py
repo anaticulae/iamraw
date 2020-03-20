@@ -47,8 +47,8 @@ def dump_sections(sections: Sections) -> str:
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_sections(
         content: str,
-        pages: tuple = None,
         onerror: callable = None,
+        pages: tuple = None,
 ) -> Sections:
     """Load sections from path or str.
 
