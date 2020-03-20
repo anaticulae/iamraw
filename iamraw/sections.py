@@ -22,7 +22,7 @@ class AreaItem:
     """AreaItem is the smallest piece in document sections analysis
 
     Every `AreaItem` is constructed of smaller items, like text and/or
-    fixgures but this is not analysed here.
+    figures but this is not analysed here.
 
     Example:
         document = Sections
@@ -38,11 +38,23 @@ class AreaItem:
 AreaItems = typing.List[AreaItem]
 
 
+class SectionMixin:
+
+    def append(self, item):
+        raise NotImplementedError
+
+    def __getitem__(self, index):
+        raise NotImplementedError
+
+    def __len__(self):
+        raise NotImplementedError
+
+
 @dataclasses.dataclass
-class DocumentSection:
+class DocumentSection(SectionMixin):
     """A document is devided in different `DocumentSection`s. These
     areas have different properties. To structure the content of a
-    document, different area are required. Eeach `DocumentSection`
+    document, different areas are required. Eeach `DocumentSection`
     contains different `AreaItem`s."""
 
     start: Position
@@ -65,13 +77,17 @@ DocumentSections = typing.List[DocumentSection]
 
 
 @dataclasses.dataclass
-class MultipleSection:
+class MultipleSection(SectionMixin):
     """Store more than one DocumentSection on a single page."""
 
     start: Position
     end: Position
     trust: Percentage = dataclasses.field(default=0.0, compare=False)
     content: DocumentSections = dataclasses.field(default_factory=list)
+
+    def append(self, item):
+        assert isinstance(item, DocumentSections), type(item)
+        self.content.append(item)  #  pylint:disable=E1101
 
     def __getitem__(self, index):
         return self.content[index]  #  pylint:disable=E1136
@@ -82,17 +98,18 @@ class MultipleSection:
 
 @dataclasses.dataclass
 class Sections:
+
     content: DocumentSections = dataclasses.field(default_factory=list)
+
+    def append(self, item):
+        assert isinstance(item, SectionMixin), type(item)
+        self.content.append(item)  #  pylint:disable=E1101
 
     def __getitem__(self, index):
         return self.content[index]  #  pylint:disable=E1136
 
     def __len__(self):
         return len(self.content)
-
-    def append(self, item):
-        assert isinstance(item, DocumentSection), type(item)
-        self.content.append(item)  #  pylint:disable=E1101
 
 
 @dataclasses.dataclass
