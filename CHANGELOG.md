@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v1.18.1
+
+### Feature
+
+* extend interface to define default items/ctor (3078fb219a53)
+* extend sections interface (6c7ca8ee5946)
+* add default section and optional section constructor (96d5c633722a)
+* add key function to sort text alphabetically (683b544890cc)
+
+### Fix
+
+* improve interface definition (64750c2743e1)
+* do not dump methods/callable (753045406f3a)
+
 ## v1.18.0
 
 ### Feature
