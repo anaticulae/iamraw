@@ -103,7 +103,7 @@ def load_item(item, onerror: callable = None):
         """Load items, in special a list entry."""
         if isinstance(item, list):
             # recursive call
-            return [load_item(single) for single in item]
+            return [load_item(single, onerror=onerror) for single in item]
         return item
 
     result = {
@@ -111,16 +111,17 @@ def load_item(item, onerror: callable = None):
         for key in item.keys()
         if not key.startswith(SEPCIALFIELD)
     }
+    classname = item[CLASSNAME]
     try:
-        ctor = CTOR[item[CLASSNAME]]
+        ctor = CTOR[classname]
     except KeyError:
         ctor = None
     if ctor is None and onerror:
         # error handling
-        ctor = onerror(CLASSNAME)
+        ctor = onerror(classname)
     if ctor is None:
-        result = NotImplementedItem(name=CLASSNAME)
-        utila.error(f'section `{CLASSNAME}` not supported - use default')
+        result = NotImplementedItem(classname=classname, **result)
+        utila.error(f'section `{classname}` not supported - use default')
     else:
         result = ctor(**result)  # pylint:disable=not-a-mapping
     return result

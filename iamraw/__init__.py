@@ -113,6 +113,7 @@ from iamraw.sections import AreaItem
 from iamraw.sections import DocumentSection
 from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
+from iamraw.sections import NotImplementedItem
 from iamraw.sections import Sections
 # table
 from iamraw.table import PageContentTableBounding
