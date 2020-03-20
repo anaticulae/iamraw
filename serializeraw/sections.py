@@ -91,6 +91,7 @@ def dump_item(item):
         key: (item.__getattribute__(key)
               if key != 'content' else [dump_item(it) for it in item.content])
         for key in keys
+        if not callable(item.__getattribute__(key))
     }
     result[CLASSNAME] = item.__class__.__name__
     return result
