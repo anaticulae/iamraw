@@ -16,15 +16,15 @@
     scale: 8.93
     weight: BOLD
 - font:
-    name: NimbusRomNo9L
-    scale: 7.43
-- font:
-    name: NimbusRomNo9L
-    scale: 7.43
-    weight: LIGHT
-- font:
     name: NimbusSanL
     scale: 10.71
+    weight: LIGHT
+- font:
+    name: NimbusRomNo9L
+    scale: 7.43
+- font:
+    name: NimbusRomNo9L
+    scale: 7.43
     weight: LIGHT
 - font:
     name: NimbusSanL
