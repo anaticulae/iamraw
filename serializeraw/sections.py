@@ -13,15 +13,21 @@ import configo
 import utila
 import yaml
 
+from iamraw.sections import AbbreviationTable
 from iamraw.sections import Appendix
+from iamraw.sections import Bibliography
 from iamraw.sections import Chapter
 from iamraw.sections import DocumentSection
+from iamraw.sections import FigureTable
+from iamraw.sections import Glossary
 from iamraw.sections import Index
 from iamraw.sections import Introduction
+from iamraw.sections import LegalInformation
 from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
 from iamraw.sections import NotImplementedItem
 from iamraw.sections import Sections
+from iamraw.sections import SymbolTable
 from iamraw.sections import Table
 from iamraw.sections import TableOfContent
 from iamraw.sections import Text
@@ -145,15 +151,22 @@ def shrink_section(section, pages: tuple):
 
 def generate_ctor():
     """Create table with name[constructor]."""
+    # TODO: automate this
     items = [
+        AbbreviationTable,
         Appendix,
+        Bibliography,
         Chapter,
         DocumentSection,
+        FigureTable,
+        Glossary,
         Index,
         Introduction,
+        LegalInformation,
         MainPart,
         MultipleSection,
         Sections,
+        SymbolTable,
         Table,
         TableOfContent,
         Text,

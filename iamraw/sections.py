@@ -170,5 +170,35 @@ class Chapter(AreaItem):
 
 
 @dataclasses.dataclass
+class AbbreviationTable(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
+class Bibliography(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
+class LegalInformation(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
+class FigureTable(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
+class SymbolTable(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
+class Glossary(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
 class NotImplementedItem(AreaItem):
     classname: str = None
