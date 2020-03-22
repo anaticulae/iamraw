@@ -30,6 +30,7 @@ class TextBoundsInfo:
 
 
 TextBoundsInfos = typing.List[TextBoundsInfo]
+TextBoundsList = typing.List[TextBounds]
 
 FontSize = int
 Occurrence = float

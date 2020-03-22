@@ -7,11 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from collections import namedtuple
+import collections
+import typing
 
-from utila import error
+import utila
 
-Border = namedtuple('Border', 'left right top bottom')
+Border = collections.namedtuple('Border', 'left right top bottom')
+Borders = typing.List[Border]
 
 
 def validate(items) -> bool:
@@ -30,6 +32,6 @@ def validate(items) -> bool:
         for itemindex, check in enumerate(item):
             if check is not None and check < 0:
                 msg = 'invalid field(%d, %d): %r' % (index, itemindex, check)
-                error(msg)
+                utila.error(msg)
                 valid = False
     return valid

@@ -22,6 +22,7 @@ from iamraw.annotation import hyperlink_annotations
 from iamraw.annotation import pagelink_annotations
 # border
 from iamraw.border import Border
+from iamraw.border import Borders
 # bounding
 from iamraw.bounding import BoundingBox
 from iamraw.bounding import BoundingBoxes
