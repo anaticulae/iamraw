@@ -7,37 +7,31 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
-from functools import lru_cache
+import functools
 
+import configo
 import utila
-from configo import CACHE_SMALL
-from utila import debug
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import yaml
 
-from iamraw import Border
-from iamraw import PageSize
-from iamraw.page import PageSizeBorder
-from iamraw.page import PageSizeBorderList
+import iamraw
 
 
 # def dump_pageborders(size: List[PageSize], border: List[Border]) -> str:
-def dump_pageborders(sizeandborders: PageSizeBorderList) -> str:
+def dump_pageborders(sizeandborders: iamraw.PageSizeBorderList) -> str:
     page = [{
         'page': item.page,
         'size': size_toraw(item.size),
         'border': border_toraw(item.border),
     } for item in sizeandborders]
-    dumped = dump(page)
+    dumped = yaml.dump(page)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
-def load_pageborders(content: str, pages: tuple = None) -> PageSizeBorderList:
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_pageborders(
+        content: str,
+        pages: tuple = None,
+) -> iamraw.PageSizeBorderList:
     """Load pdf page size and content border from raw data
 
     This method loads 2 lists with items for every single page. The first list
@@ -54,54 +48,55 @@ def load_pageborders(content: str, pages: tuple = None) -> PageSizeBorderList:
     Returns:
         List[PageSize], List[Border]
     """
-    content = from_raw_or_path(
+    content = utila.from_raw_or_path(
         content,
         ftype='yaml',
         fname='rawmaker__border_pages',
     )
-    loaded = load(content, Loader=FullLoader)
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
     result = []
     for item in loaded:
         pagenumber = int(item['page'])
-        if should_skip(pagenumber, pages):
+        if utila.should_skip(pagenumber, pages):
             continue
         size = size_fromraw(item['size'])
         border = border_fromraw(item['border'])
-        result.append(PageSizeBorder(size=size, border=border, page=pagenumber))
+        result.append(
+            iamraw.PageSizeBorder(size=size, border=border, page=pagenumber))
     return result
 
 
-def size_toraw(size: PageSize) -> str:
-    assert isinstance(size, PageSize)
+def size_toraw(size: iamraw.PageSize) -> str:
+    assert isinstance(size, iamraw.PageSize)
     try:
         return '%.2f %.2f' % size  #(size.width, size.height)
     except TypeError as error:
-        debug('%s %r' % (error, size))
+        utila.debug('%s %r' % (error, size))
         return 'None'
 
 
-def size_fromraw(size: str) -> PageSize:
+def size_fromraw(size: str) -> iamraw.PageSize:
     assert isinstance(size, str)
     try:
-        return PageSize(*[float(var) for var in size.split()])
+        return iamraw.PageSize(*[float(var) for var in size.split()])
     except ValueError as error:
-        debug('%s %r' % (error, size))
-        return PageSize(None, None)
+        utila.debug('%s %r' % (error, size))
+        return iamraw.PageSize(None, None)
 
 
-def border_toraw(border: Border) -> str:
-    assert isinstance(border, Border)
+def border_toraw(border: iamraw.Border) -> str:
+    assert isinstance(border, iamraw.Border)
     try:
         return '%.2f %.2f %.2f %.2f' % border
     except TypeError as error:
-        debug('%s %r' % (error, border))
+        utila.debug('%s %r' % (error, border))
         return 'None'
 
 
-def border_fromraw(border: str) -> Border:
+def border_fromraw(border: str) -> iamraw.Border:
     assert isinstance(border, str)
     try:
-        return Border(*[float(var) for var in border.split()])
+        return iamraw.Border(*[float(var) for var in border.split()])
     except ValueError as error:
-        debug('%s %r' % (error, border))
-        return Border(None, None, None, None)
+        utila.debug('%s %r' % (error, border))
+        return iamraw.Border(None, None, None, None)
