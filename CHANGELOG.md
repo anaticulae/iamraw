@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v1.18.2
+
+### Feature
+
+* move code from hey project (8d0b5e7861f0)
+* add new typing information (8701a7f3d2af)
+* use new default loader feature (9f79acb2ba52)
+* extend default sections (eac9f91d2bb4)
+
 ## v1.18.1
 
 ### Feature
