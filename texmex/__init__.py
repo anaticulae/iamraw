@@ -11,6 +11,31 @@
 from texmex.alpha import alphabetically
 from texmex.alpha import replace as alpha_replace
 from texmex.alpha import sort as alpha_sort
+# group
+from texmex.group.fonts import bounds_to_textbounds
+from texmex.group.fonts import document_textdistance
+from texmex.group.fonts import document_textfeed
+from texmex.group.fonts import document_textsize
+from texmex.group.fonts import feeddistance
+from texmex.group.fonts import fontdistance
+from texmex.group.fonts import fontdistance_textbounds
+from texmex.group.fonts import textbounds
+from texmex.group.fonts import textsize
+from texmex.group.fonts import textsize_frompage
+from texmex.group.multiline import MultilineGroup
+from texmex.group.multiline import PageContentMultiLine
+from texmex.group.multiline import group_by_linedistance
+from texmex.group.multiline import group_linedistances
+from texmex.group.multiline import group_linedistances_complex
+from texmex.group.multiline import group_page_by_fontsize
+from texmex.group.multiline import group_page_by_size_distance
+from texmex.group.multiline import group_pages_by_fontsize
+from texmex.group.multiline import linedistance
+from texmex.group.multiline import linedistances
+from texmex.group.multiline import maxdistance
+from texmex.group.multiline import merge_content
+from texmex.group.multiline import merge_content_join
+from texmex.group.multiline import unite_groups
 # iterator
 from texmex.iter import PageIter
 from texmex.iter import TextContainerIterator

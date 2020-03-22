@@ -66,5 +66,6 @@ if __name__ == "__main__":
             'serializeraw',
             'serializeraw.textnavigator',
             'texmex',
+            'texmex.group',
         ],
     )
