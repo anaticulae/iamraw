@@ -52,7 +52,11 @@ def load_pageborders(content: str, pages: tuple = None) -> PageSizeBorderList:
     Returns:
         List[PageSize], List[Border]
     """
-    content = from_raw_or_path(content, ftype='yaml')
+    content = from_raw_or_path(
+        content,
+        ftype='yaml',
+        fname='rawmaker__border_pages',
+    )
     loaded = load(content, Loader=FullLoader)
     result = []
     for item in loaded:

@@ -88,7 +88,7 @@ def test_load_non_existing_toc():
     """None existing resource leads to ValueError."""
     path = 'C:/iamthepath/toc.yaml'
 
-    with pytest.raises(ValueError):
+    with pytest.raises(FileNotFoundError):
         serializeraw.load_toc(path)
 
 
