@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.18.4
+
+### Feature
+
+* add flag to disable logging (ac407fd498df)
+
 ## v1.18.3
 
 ## v1.18.2
