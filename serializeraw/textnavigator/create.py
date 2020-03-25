@@ -21,6 +21,7 @@ def create_pagetextnavigators_frompath(
         pages=None,
         *,
         fill_empty: bool = True,
+        logging: bool = True,
 ) -> texmex.PageTextNavigators:
     """Load all resources from one `path` to create PageTextNavigator
     for the selected list of `pages` with an optional `prefix` in loaded
@@ -33,6 +34,7 @@ def create_pagetextnavigators_frompath(
         fill_empty(bool): insert empty pages for pages without any saved
                           data. Use `fill_empty=False` to avoid filling
                           navgiators between pages=(0, 1, 4, 5).
+        logging(bool): log errors while creating fontstore
     Returns:
         A list of selected PageTextNavigators.
 
@@ -49,6 +51,7 @@ def create_pagetextnavigators_frompath(
         path,
         prefix=prefix,
         pages=pages,
+        logging=logging,
     )
     navigators = texmex.create_pagetextnavigators(
         text,
