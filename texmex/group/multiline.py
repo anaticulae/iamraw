@@ -150,7 +150,7 @@ def group_by_linedistance(page: PageContentMultiLine) -> PageContentMultiLine:
     flatten = utila.flatten(page)
     distances = linedistances(flatten)
     grouped = group_linedistances(distances)
-    content = unite_groups(page, grouped)
+    content = unite_groups(page.content, grouped)
     result = PageContentMultiLine(page=page.page, content=content)
     return result
 
