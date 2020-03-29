@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.18.7
+
+### Feature
+
+* add default path handler to simplify code (ea0e98faa591)
+
 ## v1.18.6
 
 ### Feature
