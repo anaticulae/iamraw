@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import functools
 
 import configo
@@ -13,8 +14,7 @@ import utila
 import yaml
 
 import iamraw
-from serializeraw.border import size_fromraw
-from serializeraw.border import size_toraw
+import serializeraw.border
 
 
 def dump_document(document: iamraw.Document) -> str:
@@ -174,7 +174,7 @@ def _load_textcontainer(content) -> iamraw.TextContainer:
 
 
 def _load_document(content):
-    dimension = size_fromraw(content['dimension'])
+    dimension = serializeraw.border.size_fromraw(content['dimension'])
     pages = [loadme(iamraw.Page, item) for item in content['pages']]
     result = iamraw.Document(dimension=dimension, pages=pages)
     return result
@@ -184,7 +184,7 @@ def _dump_document(document: iamraw.Document) -> dict:
     assert document
     assert document.dimension, str(document.dimension)
     result = {
-        'dimension': size_toraw(document.dimension),
+        'dimension': serializeraw.border.size_toraw(document.dimension),
         'pages': [dumper(item) for item in document.pages],
     }
     return result
