@@ -17,6 +17,51 @@ from serializeraw.border import size_fromraw
 from serializeraw.border import size_toraw
 
 
+def dump_document(document: iamraw.Document) -> str:
+    """Convert to raw python to have more clear yaml output"""
+    assert isinstance(document, iamraw.Document), type(document)
+    raw = dumper(document)
+    return yaml.dump(raw)
+
+
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_document(content: str, pages: tuple = None) -> iamraw.Document:
+    """Load document from raw-string or filepath.
+
+    If document is loaded from file-path, the content is loaded and parsed
+    afterwards as raw-string.
+
+    Args:
+        content(str): raw-string or file-path
+        pages(tuple): select pages to process
+    Returns:
+        parsed Document
+    Raises:
+        ValueError if given path does not exists
+    """
+    content = utila.from_raw_or_path(
+        content,
+        fname='rawmaker__text_text',
+        ftype='yaml',
+    )
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
+
+    def remove_skipped(loaded, pages):
+        """Remove pages which are not part of todo list `pages`"""
+        to_process = []
+        for item in loaded['pages']:
+            pagenumber = int(item['page'])
+            if utila.should_skip(pagenumber, pages):
+                continue
+            to_process.append(item)
+        loaded['pages'] = to_process
+        return loaded
+
+    loaded = remove_skipped(loaded, pages)
+
+    return loadme(iamraw.Document, loaded)
+
+
 def _load_pageobject(content: str):
     return iamraw.PageObject(content=content)
 
@@ -143,47 +188,6 @@ def _dump_document(document: iamraw.Document) -> dict:
         'pages': [dumper(item) for item in document.pages],
     }
     return result
-
-
-def dump_document(document: iamraw.Document) -> str:
-    """Convert to raw python to have more clear yaml output"""
-    assert isinstance(document, iamraw.Document), type(document)
-    raw = dumper(document)
-    return yaml.dump(raw)
-
-
-@functools.lru_cache(configo.CACHE_SMALL)
-def load_document(content: str, pages: tuple = None) -> iamraw.Document:
-    """Load document from raw-string or filepath.
-
-    If document is loaded from file-path, the content is loaded and parsed
-    afterwards as raw-string.
-
-    Args:
-        content(str): raw-string or file-path
-        pages(tuple): select pages to process
-    Returns:
-        parsed Document
-    Raises:
-        ValueError if given path does not exists
-    """
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
-
-    def remove_skipped(loaded, pages):
-        """Remove pages which are not part of todo list `pages`"""
-        to_process = []
-        for item in loaded['pages']:
-            pagenumber = int(item['page'])
-            if utila.should_skip(pagenumber, pages):
-                continue
-            to_process.append(item)
-        loaded['pages'] = to_process
-        return loaded
-
-    loaded = remove_skipped(loaded, pages)
-
-    return loadme(iamraw.Document, loaded)
 
 
 def dumper(content):

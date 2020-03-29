@@ -66,7 +66,10 @@ def dump_boxedcontent(boxed) -> str:
 
 @lru_cache(CACHE_SMALL)
 def load_boxedcontent(content: str, pages=None):
-    content = from_raw_or_path(content, ftype='yaml')
+    content = from_raw_or_path(
+        content,
+        ftype='yaml',
+    )
     loaded = load(content, Loader=FullLoader)
     pagedict = defaultdict(list)
     for page in loaded:

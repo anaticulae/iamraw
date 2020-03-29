@@ -35,7 +35,11 @@ def dump_boundingboxes(boxes: iamraw.PageBoundingsList) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_boundingboxes(content: str, pages=None) -> iamraw.PageBoundingsList:
-    content = utila.from_raw_or_path(content, ftype='yaml')
+    content = utila.from_raw_or_path(
+        content,
+        fname='rawmaker__border_boundingboxes',
+        ftype='yaml',
+    )
     loaded = yaml.load(content, Loader=yaml.FullLoader)
     result = []
     for page in loaded:

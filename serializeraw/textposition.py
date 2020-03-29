@@ -21,9 +21,29 @@ from iamraw import PageContentTextPosition
 from iamraw import PageContentTextPositions
 
 
+def dump_textpositions(items: PageContentTextPositions) -> str:
+    result = []
+    for page in items:
+        pagenumber = page.page
+        content = page.content
+        if not content:
+            continue
+        raw = ['%s %s' % (key, str(value)) for key, value in content.items()]
+        result.append({
+            'content': raw,
+            'page': pagenumber,
+        })
+    dumped = dump(result)
+    return dumped
+
+
 @lru_cache(CACHE_SMALL)
 def load_textpositions(content: str, pages=None) -> PageContentTextPositions:
-    content = from_raw_or_path(content, ftype='yaml')
+    content = from_raw_or_path(
+        content,
+        fname='rawmaker__text_positions',
+        ftype='yaml',
+    )
     loaded = load(content, Loader=FullLoader)
 
     result = []
@@ -45,19 +65,3 @@ def load_textpositions(content: str, pages=None) -> PageContentTextPositions:
         )
         result.append(textposition)
     return result
-
-
-def dump_textpositions(items: PageContentTextPositions) -> str:
-    result = []
-    for page in items:
-        pagenumber = page.page
-        content = page.content
-        if not content:
-            continue
-        raw = ['%s %s' % (key, str(value)) for key, value in content.items()]
-        result.append({
-            'content': raw,
-            'page': pagenumber,
-        })
-    dumped = dump(result)
-    return dumped

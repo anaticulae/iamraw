@@ -72,7 +72,11 @@ def load_annotations(content: str, pages=None) -> PageAnnotations:
     Returns:
         loaded PageAnnotations
     """
-    content = from_raw_or_path(content, ftype='yaml')
+    content = from_raw_or_path(
+        content,
+        fname='annotation_annotation',
+        ftype='yaml',
+    )
     loaded = load(content, Loader=FullLoader)
     result = []
     for page in loaded:

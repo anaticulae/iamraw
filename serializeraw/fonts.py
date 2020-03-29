@@ -64,7 +64,11 @@ def load_font_header(content):
     `default` value is used. If the value is `NONE` is it replaced by `None`.
     Third, if the state is defined the state is loaded.
     """
-    content = from_raw_or_path(content, ftype='yaml')
+    content = from_raw_or_path(
+        content,
+        fname='rawmaker__fonts_header',
+        ftype='yaml',
+    )
     loaded = load(content, Loader=FullLoader)
 
     fonts = []
@@ -113,7 +117,11 @@ def dump_font_content(pages: PageFontContents) -> str:
 
 @lru_cache(CACHE_SMALL)
 def load_font_content(content, pages=None):
-    content = from_raw_or_path(content, ftype='yaml')
+    content = from_raw_or_path(
+        content,
+        fname='rawmaker__fonts_content',
+        ftype='yaml',
+    )
     loaded = load(content, Loader=FullLoader)
     result = []
     for page in loaded:

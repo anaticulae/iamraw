@@ -58,7 +58,11 @@ def dump_horizontals(pages: PagesWithHorizontalList) -> str:
 
 @lru_cache(CACHE_SMALL)
 def load_boxes(content: str, pages=None) -> PagesWithBoxList:
-    content = from_raw_or_path(content, ftype='yaml')
+    content = from_raw_or_path(
+        content,
+        fname='rawmaker__boxes_boxes',
+        ftype='yaml',
+    )
     loaded = load(content, Loader=FullLoader)
 
     result = []
@@ -79,13 +83,17 @@ def load_boxes(content: str, pages=None) -> PagesWithBoxList:
 
 @lru_cache(CACHE_SMALL)
 def load_horizontals(content: str, pages=None) -> PagesWithHorizontalList:
+    content = from_raw_or_path(
+        content,
+        fname='rawmaker__boxes_horizontal',
+        ftype='yaml',
+    )
+    loaded = load(content, Loader=FullLoader)
 
     def create_box(item: str):
         converted = [float(splitted) for splitted in item.split()]
         return BoundingBox.from_list(converted)
 
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
