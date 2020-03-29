@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.18.6
+
+### Feature
+
+* fulfill Latin and Greek replacement table (0b4b084d394d)
+
+### Fix
+
+* access page content correctly (19ee83dd78c9)
+
 ## v1.18.5
 
 ## v1.18.4
