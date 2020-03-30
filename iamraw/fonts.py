@@ -7,13 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import collections
+import dataclasses
 import enum
 import typing
-from collections import namedtuple
-from dataclasses import dataclass
-from dataclasses import field
 
-PageFontContent = namedtuple('PageFontContent', 'content page')
+PageFontContent = collections.namedtuple('PageFontContent', 'content page')
 PageFontContents = typing.List[PageFontContent]
 
 
@@ -81,14 +80,14 @@ DEFAULT_STYLE = Style.NORMAL
 DEFAULT_STRETCH = Stretch.REGULAR
 
 
-@dataclass(unsafe_hash=True)
+@dataclasses.dataclass(unsafe_hash=True)
 class Font:
     # DVDJKK+NimbusSanL-Regu
     # JCUGNO+NimbusSanL-Bold
     # CQYGZP+NimbusSanL-BoldItal
     name: str
     scale: float  # NOTE: Remove scale?
-    weight: Weight = field(default=DEFAULT_WEIGHT)
-    style: Style = field(default=DEFAULT_STYLE)
-    stretch: Stretch = field(default=DEFAULT_STRETCH)
+    weight: Weight = dataclasses.field(default=DEFAULT_WEIGHT)
+    style: Style = dataclasses.field(default=DEFAULT_STYLE)
+    stretch: Stretch = dataclasses.field(default=DEFAULT_STRETCH)
     flags: tuple = None
