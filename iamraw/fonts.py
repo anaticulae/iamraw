@@ -17,6 +17,21 @@ PageFontContent = namedtuple('PageFontContent', 'content page')
 PageFontContents = typing.List[PageFontContent]
 
 
+class FontFlag(enum.Enum):
+    FixedPitch = 1
+    Serif = 2
+    Symbolic = 3
+    Script = 4
+    Nonsymbolic = 6
+    Italic = 7
+    # font does not contain any upper case letter - this is used for titles etc.
+    AllCap = 17
+    # contains uppercase and lowercase letters
+    SmallCap = 18
+    ForceBold = 19
+
+
+FontFlags = typing.Tuple[FontFlag]
 
 
 class Weight(enum.Enum):
@@ -76,3 +91,4 @@ class Font:
     weight: Weight = field(default=DEFAULT_WEIGHT)
     style: Style = field(default=DEFAULT_STYLE)
     stretch: Stretch = field(default=DEFAULT_STRETCH)
+    flags: tuple = None

@@ -59,6 +59,8 @@ from iamraw.fonts import DEFAULT_STRETCH
 from iamraw.fonts import DEFAULT_STYLE
 from iamraw.fonts import DEFAULT_WEIGHT
 from iamraw.fonts import Font
+from iamraw.fonts import FontFlag
+from iamraw.fonts import FontFlags
 from iamraw.fonts import PageFontContent
 from iamraw.fonts import PageFontContents
 from iamraw.fonts import Stretch
