@@ -43,10 +43,12 @@ from serializeraw.chapter import load_chapter
 from serializeraw.document import dump_document
 from serializeraw.document import load_document
 # fonts
+from serializeraw.fonts import convert_flags as load_flags
 from serializeraw.fonts import dump_font_content
 from serializeraw.fonts import dump_font_header
 from serializeraw.fonts import load_font_content
 from serializeraw.fonts import load_font_header
+from serializeraw.fonts import toflag as dump_flags
 # fontstore
 from serializeraw.fontstore import create_fontstore
 from serializeraw.fontstore import create_fontstore_frompath
