@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import contextlib
+import math
 from functools import lru_cache
 
 from configo import CACHE_SMALL
@@ -16,6 +18,7 @@ from yaml import FullLoader
 from yaml import dump
 from yaml import load
 
+import iamraw
 from iamraw import DEFAULT_STRETCH
 from iamraw import DEFAULT_STYLE
 from iamraw import DEFAULT_WEIGHT
@@ -37,6 +40,8 @@ def dump_font_header(fonts) -> str:
             del font['style']
         if font['weight'] == DEFAULT_WEIGHT.name:
             del font['weight']
+        if not font['flags']:
+            del font['flags']
 
     result = []
     for item in fonts:
@@ -47,6 +52,7 @@ def dump_font_header(fonts) -> str:
                 'stretch': item.stretch.name if item.stretch else 'NONE',
                 'style': item.style.name if item.style else 'NONE',
                 'weight': item.weight.name if item.weight else 'NONE',
+                'flags': toflag(item.flags) if item.flags else '',
             },
         }
         # do not store default value in yaml representation
@@ -87,6 +93,10 @@ def load_font_header(content):
         weight = parse(fontraw, Weight, DEFAULT_WEIGHT)
         stretch = parse(fontraw, Stretch, DEFAULT_STRETCH)
         style = parse(fontraw, Style, DEFAULT_STYLE)
+        flags = None
+        with contextlib.suppress(KeyError):
+            if fontraw['flags'] != 'NONE':
+                flags = convert_flags(fontraw['flags'])
 
         font = Font(
             name=fontraw['name'],
@@ -94,6 +104,7 @@ def load_font_header(content):
             stretch=stretch,
             style=style,
             weight=weight,
+            flags=flags,
         )
         fonts.append(font)
     return fonts
@@ -138,4 +149,47 @@ def load_font_content(content, pages=None):
         pagefonts = page['fonts']
         fonts = parse_font(pagefonts)
         result.append(PageFontContent(content=fonts, page=pagenumber))
+    return result
+
+
+def convert_flags(flag: int) -> iamraw.FontFlags:
+    """Parse font flag according to adobe pdf specification.
+
+    >>> convert_flags(3)
+    (<FontFlag.FixedPitch: 1>, <FontFlag.Serif: 2>)
+    >>> convert_flags(70)
+    (<FontFlag.Serif: 2>, <FontFlag.Symbolic: 3>, <FontFlag.Italic: 7>)
+    >>> convert_flags(35)
+    (<FontFlag.FixedPitch: 1>, <FontFlag.Serif: 2>, <FontFlag.Nonsymbolic: 6>)
+    >>> convert_flags(262176)
+    (<FontFlag.Nonsymbolic: 6>, <FontFlag.ForceBold: 19>)
+    """
+    assert flag >= 0, f'negative flag {flag}'
+    binary = format(flag, 'b')[::-1]  # reverse binary
+    result = []
+    for key in iamraw.FontFlag:
+        try:
+            index = key.value - 1
+            value = binary[index]
+        except IndexError:
+            continue
+        else:
+            if value == '1':
+                result.append(key)
+    result = sorted(result, key=lambda x: x.value)
+    if not result:
+        return None
+    return tuple(result)
+
+
+def toflag(items: iamraw.FontFlags) -> int:
+    """Convert tuple of `FontFlag`s to single flag.
+
+    >>> toflag((iamraw.FontFlag.Nonsymbolic, iamraw.FontFlag.ForceBold))
+    262176
+    """
+    result = 0
+    for item in items:
+        result += math.pow(2, item.value - 1)
+    result = int(result)
     return result

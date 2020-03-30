@@ -23,6 +23,8 @@ def test_group_pages_by_fontsize():
     navigators = serializeraw.create_pagetextnavigators_frompath(
         tests.serializeraw.RESTRUCTURED)
     result = texmex.group_pages_by_fontsize(navigators)
+    # remove empty page
+    result = [item for item in result if item]
     assert len(result) == 10, str(result)
 
 

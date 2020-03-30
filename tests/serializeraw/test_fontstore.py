@@ -16,6 +16,13 @@ import tests.serializeraw
 
 @pytest.fixture
 def restructured_fontstore() -> iamraw.FontStore:
+    """Loaded restructured FontStore.
+
+    Regenerate data due:
+
+        rawmaker -i power/power/repository/docu/restructuredtext.pdf
+        --pages=0:11 --char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3
+    """
     result = serializeraw.create_fontstore_frompath(
         tests.serializeraw.RESTRUCTURED)
     return result

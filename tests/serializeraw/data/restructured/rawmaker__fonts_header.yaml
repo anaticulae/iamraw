@@ -46,29 +46,3 @@
     name: NimbusMonL
     scale: 6.69
     weight: BOLD
-- font:
-    name: NimbusMonL
-    scale: 7.43
-    weight: LIGHT
-- font:
-    name: NimbusRomNo9L
-    scale: 7.43
-    style: ITALIC
-    weight: LIGHT
-- font:
-    name: NimbusMonL
-    scale: 7.43
-    weight: BOLD
-- font:
-    name: NimbusMonL
-    scale: 6.69
-    style: OBLIQUE
-    weight: LIGHT
-- font:
-    name: CMMI5
-    scale: 3.72
-    weight: LIGHT
-- font:
-    name: CMSY5
-    scale: 3.72
-    weight: LIGHT
