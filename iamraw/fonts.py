@@ -7,47 +7,48 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import enum
+import typing
 from collections import namedtuple
 from dataclasses import dataclass
 from dataclasses import field
-from enum import Enum
-from enum import auto
-from typing import List
 
 PageFontContent = namedtuple('PageFontContent', 'content page')
-PageFontContents = List[PageFontContent]
+PageFontContents = typing.List[PageFontContent]
 
 
-class Weight(Enum):
-    LIGHT = auto()
-    MEDIUM = auto()
-    BOLD = auto()
-    BLACK = auto()
 
 
-class Style(Enum):
-    NORMAL = auto()
-    ITALIC = auto()
-    OBLIQUE = auto()
+class Weight(enum.Enum):
+    LIGHT = enum.auto()
+    MEDIUM = enum.auto()
+    BOLD = enum.auto()
+    BLACK = enum.auto()
 
 
-class Stretch(Enum):
+class Style(enum.Enum):
+    NORMAL = enum.auto()
+    ITALIC = enum.auto()
+    OBLIQUE = enum.auto()
+
+
+class Stretch(enum.Enum):
     # PDF 32000-1:2008 - Table 122
-    ULTRACONDENSED = auto()
-    EXTRACONDENSED = auto()
+    ULTRACONDENSED = enum.auto()
+    EXTRACONDENSED = enum.auto()
 
-    CONDENSED = auto()
-    SEMICONDENSED = auto()
+    CONDENSED = enum.auto()
+    SEMICONDENSED = enum.auto()
 
-    NORMAL = auto()
-    REGULAR = auto()  #?
+    NORMAL = enum.auto()
+    REGULAR = enum.auto()  #?
 
-    SEMIEXPANDED = auto()
-    EXPANDED = auto()
+    SEMIEXPANDED = enum.auto()
+    EXPANDED = enum.auto()
 
-    EXTRAEXPANDED = auto()
-    ULTRAEXPANDED = auto()
-    EXTENDED = auto()  #?
+    EXTRAEXPANDED = enum.auto()
+    ULTRAEXPANDED = enum.auto()
+    EXTENDED = enum.auto()  #?
 
 
 def __repr__(self):
