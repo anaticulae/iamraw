@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.19.0
+
+### Feature
+
+* add parameter fontflag to describe style of printed font (a26e0dab4504)
+* add Enum to describe font flags (4dca7da0f824)
+
 ## v1.18.7
 
 ### Feature
