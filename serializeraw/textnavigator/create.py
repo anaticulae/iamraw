@@ -7,12 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 import iamraw
+import serializeraw.border
+import serializeraw.document
+import serializeraw.fontstore
+import serializeraw.headerfooter
+import serializeraw.textposition
 import texmex
-from serializeraw.border import load_pageborders
-from serializeraw.document import load_document
-from serializeraw.fontstore import create_fontstore_frompath
-from serializeraw.headerfooter import load_headerfooter
-from serializeraw.textposition import load_textpositions
 
 
 def create_pagetextnavigators_frompath(
@@ -45,11 +45,14 @@ def create_pagetextnavigators_frompath(
         separate instances.
     """
     text = iamraw.path.text(path, prefix=prefix)
-    text = load_document(text, pages=pages)
+    text = serializeraw.document.load_document(text, pages=pages)
 
     textposition = iamraw.path.textposition(path, prefix=prefix)
-    textposition = load_textpositions(textposition, pages=pages)
-    fontstore = create_fontstore_frompath(
+    textposition = serializeraw.textposition.load_textpositions(
+        textposition,
+        pages=pages,
+    )
+    fontstore = serializeraw.fontstore.create_fontstore_frompath(
         path,
         prefix=prefix,
         pages=pages,
@@ -94,7 +97,7 @@ def create_pagetextcontentnavigators_frompath(
     # TODO: ENABLE LATER
     # headerfooterpath = hey.path.headerfooters(path, prefix=prefix)
     headerfooterpath = iamraw.path.headerfooters(path)
-    headerfooter = load_headerfooter(
+    headerfooter = serializeraw.headerfooter.load_headerfooter(
         headerfooterpath,
         pages=pages,
     )
@@ -102,7 +105,7 @@ def create_pagetextcontentnavigators_frompath(
     # TODO: ENABLE LATER
     # sizeandborderpath = hey.path.sizeandborder(path, prefix=prefix)
     sizeandborderpath = iamraw.path.sizeandborder(path)
-    sizeandborder = load_pageborders(
+    sizeandborder = serializeraw.border.load_pageborders(
         sizeandborderpath,
         pages=pages,
     )
