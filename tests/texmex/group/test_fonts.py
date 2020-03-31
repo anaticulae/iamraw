@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import pytest
+
 import serializeraw
 import tests.serializeraw
 import texmex
@@ -46,3 +48,18 @@ def test_textsize_frompage():
     example = navigators()[0]
     result = texmex.textsize_frompage(example)
     assert result == 17.22, str(result)
+
+
+@pytest.mark.parametrize('mode, empty', [
+    (texmex.PageTextNavigatorMode.BOTH, False),
+    (texmex.PageTextNavigatorMode.VERTICAL, True),
+    (texmex.PageTextNavigatorMode.HORIZONTAL, False),
+])
+def test_navigator_filter_mode(mode, empty):
+    result = serializeraw.create_pagetextnavigators_frompath(
+        tests.serializeraw.RESTRUCTURED,
+        mode=mode,
+        pages=(0,),
+    )
+    first = result[0][:]
+    assert (not first) == empty, empty

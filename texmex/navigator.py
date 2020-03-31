@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+import enum
 import typing
 
 import utila
@@ -266,7 +267,7 @@ PageTextNavigators = typing.List[PageTextNavigator]
 PageTextContentNavigators = typing.List[PageTextContentNavigator]
 
 
-def navigator_to_content(navigator: PageTextNavigator) -> TextBoundsInfos: #  yapf:disable
+def navigator_to_content(navigator: PageTextNavigator) -> TextBoundsInfos:
     result = []
     for item in navigator:
         info = TextBoundsInfo(
@@ -283,11 +284,18 @@ def navigator_to_bounds(navigator: PageTextNavigator) -> iamraw.BoundingBoxes:
     return [item.bounding for item in navigator]
 
 
+class PageTextNavigatorMode(enum.Enum):
+    BOTH = enum.auto()
+    HORIZONTAL = enum.auto()
+    VERTICAL = enum.auto()
+
+
 def create_pagetextnavigators(  # pylint:disable=R0914
         text: iamraw.Document,
         text_positions,
         fontstore: iamraw.FontStore = None,
         fill_empty: bool = True,
+        mode=PageTextNavigatorMode.BOTH,
 ) -> PageTextNavigators:
     result = []
     for textposition in text_positions:
@@ -298,6 +306,9 @@ def create_pagetextnavigators(  # pylint:disable=R0914
         )
         textid = 0
         content = utila.select_page(text, page)
+        # remove horizontal or vertical text container
+        content = select_textcontainer(content, mode=mode)
+
         for item in content:
             try:
                 lines = item.lines
@@ -331,6 +342,25 @@ def create_pagetextnavigators(  # pylint:disable=R0914
     if fill_empty:
         result = fill_empty_navigators(result, dimension=text.dimension)
     return result
+
+
+def select_textcontainer(content, mode: PageTextNavigatorMode):
+    if not content:
+        return content
+
+    if mode == PageTextNavigatorMode.HORIZONTAL:
+        content = [
+            item for item in content if isinstance(item, iamraw.TextContainer)
+        ]
+        return content
+
+    if mode == PageTextNavigatorMode.VERTICAL:
+        content = [
+            item for item in content
+            if isinstance(item, iamraw.VerticalTextContainer)
+        ]
+        return content
+    return content
 
 
 def fill_empty_navigators(

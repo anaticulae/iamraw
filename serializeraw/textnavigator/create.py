@@ -19,6 +19,7 @@ def create_pagetextnavigators_frompath(
         path: str,
         prefix='',
         pages=None,
+        mode=texmex.PageTextNavigatorMode.BOTH,
         *,
         fill_empty: bool = True,
         logging: bool = True,
@@ -31,6 +32,7 @@ def create_pagetextnavigators_frompath(
         path(str): Path to folder which contains all data to construct.
         prefix(str): Optional prefix to difference items in folder.
         pages(tuple): Tuple of pages to load.
+        mode(PageTextNavigatorMode): select text container to skip
         fill_empty(bool): insert empty pages for pages without any saved
                           data. Use `fill_empty=False` to avoid filling
                           navgiators between pages=(0, 1, 4, 5).
@@ -58,6 +60,7 @@ def create_pagetextnavigators_frompath(
         textposition,
         fontstore,
         fill_empty=fill_empty,
+        mode=mode,
     )
     return navigators
 
@@ -66,6 +69,7 @@ def create_pagetextcontentnavigators_frompath(
         path: str,
         prefix: str = '',
         pages: tuple = None,
+        mode=texmex.PageTextNavigatorMode.BOTH,
         *,
         validate_leftright: bool = True,
 ) -> texmex.PageTextContentNavigators:
@@ -75,6 +79,7 @@ def create_pagetextcontentnavigators_frompath(
         path(str): `path` where loaded data is located in
         prefix(str): prefix loaded resources
         pages(tuple): selected pages
+        mode(PageTextNavigatorMode): select text container to skip
         validate_leftright(bool): do not check writing over ``content border``.
     Returns:
         List of loaded PageTextContentNavigators depending on `pages`.
@@ -83,6 +88,7 @@ def create_pagetextcontentnavigators_frompath(
         path=path,
         prefix=prefix,
         pages=pages,
+        mode=mode,
     )
 
     # TODO: ENABLE LATER

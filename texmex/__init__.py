@@ -47,6 +47,7 @@ from texmex.navigator import NavigatorMixin
 from texmex.navigator import PageTextContentNavigator
 from texmex.navigator import PageTextContentNavigators
 from texmex.navigator import PageTextNavigator
+from texmex.navigator import PageTextNavigatorMode
 from texmex.navigator import PageTextNavigators
 from texmex.navigator import create_pagetextcontentnavigators
 from texmex.navigator import create_pagetextnavigator_fromstr
