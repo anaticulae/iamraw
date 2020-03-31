@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.20.0
+
+### Feature
+
+* add vertical container to store vertical text chunks (bc4a9e976c93)
+
+### Fix
+
+* update to new font definition (d76a00c4062d)
+
 ## v1.19.1
 
 ### Feature
