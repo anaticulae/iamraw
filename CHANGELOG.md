@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.20.2
+
+### Fix
+
+* add missing VerticalText loader (3c173b3f25ba)
+
 ## v1.20.1
 
 ### Feature
