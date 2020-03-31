@@ -112,6 +112,7 @@ class Char(Boxed):
     """Adobe PDF/9.3.7; Shall specify the distance in unscaled text
     space units to move text the baseline up or down.
     No rise 0, superscripts greater than 0, subscript lower than 0."""
+    flags: int = None
 
 
 Chars = typing.List[Char]
@@ -196,3 +197,11 @@ class TextContainer(Boxed):
 
 
 TextContainers = typing.List[TextContainer]
+
+
+@dataclasses.dataclass
+class VerticalTextContainer(TextContainer):
+    pass
+
+
+VerticalTextContainers = typing.List[VerticalTextContainer]

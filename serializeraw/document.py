@@ -159,11 +159,12 @@ def _load_line(line) -> iamraw.Line:
 
 
 def _dump_textcontainer(container: iamraw.TextContainer):
-    assert isinstance(container, iamraw.TextContainer)
-    return [
+    assert isinstance(container, iamraw.TextContainer), type(container)
+    result = [
         container.__class__.__name__,
         [_dump_line(line) for line in container.lines],
     ]  # use list for a more human readable format
+    return result
 
 
 def _load_textcontainer(content) -> iamraw.TextContainer:
@@ -171,6 +172,13 @@ def _load_textcontainer(content) -> iamraw.TextContainer:
     assert all([isinstance(item, list) for item in content]), str(content)
     lines = [loadme(iamraw.Line, item) for item in content]
     return iamraw.TextContainer(lines=lines)
+
+
+def _load_verticaltextcontainer(content) -> iamraw.VerticalTextContainer:
+    content = _load_textcontainer(content)
+    # TODO: USE KEYWARGS **?
+    result = iamraw.VerticalTextContainer(lines=content.lines)
+    return result
 
 
 def _load_document(content):
@@ -216,5 +224,9 @@ DUMP_LOAD = {
     iamraw.Line.__name__: (_dump_line, _load_line),
     iamraw.Page.__name__: (_dump_page, _load_page),
     iamraw.TextContainer.__name__: (_dump_textcontainer, _load_textcontainer),
+    iamraw.VerticalTextContainer.__name__: (
+        _dump_textcontainer,
+        _load_verticaltextcontainer,
+    ),
     iamraw.PageObject.__name__: (_dump_pageobject, _load_pageobject),
 }

@@ -53,6 +53,8 @@ from iamraw.document import PageSize
 from iamraw.document import TextContainer
 from iamraw.document import TextContainers
 from iamraw.document import UnicodeChar
+from iamraw.document import VerticalTextContainer
+from iamraw.document import VerticalTextContainers
 from iamraw.document import VirtualChar
 # fonts
 from iamraw.fonts import DEFAULT_STRETCH
