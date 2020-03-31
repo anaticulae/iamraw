@@ -73,14 +73,15 @@ def _dump_pageobject(pageobject: iamraw.PageObject):
 def _load_page(content):
     pagenumber = content['page']
     children = content['children']
-
     page = iamraw.Page(pagenumber)
     for class_, item_content in children:
         if class_ == iamraw.TextContainer.__name__:
             loaded = loadme(iamraw.TextContainer, item_content)
             page.append(loaded)
-
-        if class_ == iamraw.PageObject.__name__:
+        elif class_ == iamraw.VerticalTextContainer.__name__:
+            loaded = loadme(iamraw.VerticalTextContainer, item_content)
+            page.append(loaded)
+        elif class_ == iamraw.PageObject.__name__:
             loaded = loadme(iamraw.PageObject, item_content)
             page.append(loaded)
     return page
