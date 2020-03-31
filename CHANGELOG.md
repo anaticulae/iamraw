@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.20.1
+
+### Feature
+
+* add flag to decide which text direction to select (60846bf9cef3)
+
 ## v1.20.0
 
 ### Feature
