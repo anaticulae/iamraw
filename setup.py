@@ -29,6 +29,11 @@ with open(join(ROOT, 'requirements.txt'), 'rt', encoding='utf-8') as fp:
         line for line in fp.readlines() if line and '#' not in line
     ]
 
+with open(join(ROOT, 'requirements.dev'), 'rt', encoding='utf-8') as fp:
+    TEST_REQUIRES = [
+        line for line in fp.readlines() if line and '#' not in line
+    ]
+
 
 def datafiles():
     return [('.', [
@@ -51,8 +56,7 @@ if __name__ == "__main__":
         long_description=README,
         name='iamraw',
         platforms='any',
-        setup_requires=[],
-        tests_require=[],
+        tests_require=TEST_REQUIRES,
         url='https://dev.package.checkitweg.de/iamraw',
         version=VERSION,
         zip_safe=False,  # create 'zip'-file if True. Don't do it!

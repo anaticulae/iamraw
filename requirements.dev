@@ -7,7 +7,4 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-PyYAML==5.1
-
-configo==0.5.11
-utila==1.16.4
+rawmaker==1.15.2
