@@ -32,6 +32,7 @@ FIRST_FONT = iamraw.Font(
     name='NimbusSanL',
     scale=18.5,
     weight=iamraw.Weight.BOLD,
+    flags=(iamraw.FontFlag.Symbolic,),
 )
 
 SECOND_FONT = iamraw.Font(
@@ -39,17 +40,20 @@ SECOND_FONT = iamraw.Font(
     scale=12.85,
     weight=iamraw.Weight.BOLD,
     style=iamraw.Style.ITALIC,
+    flags=(iamraw.FontFlag.Symbolic,),
 )
 THIRD_FONT = iamraw.Font(
     name='NimbusSanL',
     scale=12.85,
     weight=iamraw.Weight.BOLD,
+    flags=(iamraw.FontFlag.Symbolic,),
 )
 
 FORTH_FONT = iamraw.Font(
     name='NimbusSanL',
     scale=8.93,
     weight=iamraw.Weight.BOLD,
+    flags=(iamraw.FontFlag.Symbolic,),
 )
 
 FIFTH_FONT = iamraw.Font(
@@ -58,6 +62,7 @@ FIFTH_FONT = iamraw.Font(
     weight=iamraw.Weight.LIGHT,
     style=iamraw.Style.NORMAL,
     stretch=iamraw.Stretch.REGULAR,
+    flags=(iamraw.FontFlag.Symbolic,),
 )
 
 
@@ -79,12 +84,9 @@ def test_fontstore_access_font_id(
         char,
         expected,
 ):
-    expected_fontid = hash(expected)
     fontstore = restructured_fontstore
     fontid = fontstore.fontid(page, container, line, char)
-    if expected == iamraw.NO_FONT:
-        expected_fontid = iamraw.NO_FONT
-    assert fontid == expected_fontid
+    assert expected == fontstore[fontid]
 
 
 @pytest.mark.parametrize('page,container,line,char', [
@@ -116,6 +118,7 @@ def expected_result():
         weight=iamraw.Weight.LIGHT,
         style=iamraw.Style.NORMAL,
         stretch=iamraw.Stretch.REGULAR,
+        flags=(iamraw.FontFlag.Symbolic,),
     )
     bold = iamraw.Font(
         name='NimbusRomNo9L',
@@ -123,6 +126,7 @@ def expected_result():
         weight=iamraw.Weight.MEDIUM,
         style=iamraw.Style.NORMAL,
         stretch=iamraw.Stretch.REGULAR,
+        flags=(iamraw.FontFlag.Symbolic,),
     )
     expected = [
         iamraw.FontChunk(content=text[0:154], font=first),
@@ -136,10 +140,8 @@ def expected_result():
     return (text, page, expected)
 
 
-def test_fontstore_from_str(
-        restructured_fontstore: iamraw.FontStore,  # pylint:disable=W0621
-):
-    """Determine fonts via text input and start of text sequence"""
+def test_fontstore_from_str(restructured_fontstore: iamraw.FontStore):  # pylint:disable=W0621
+    """Determine fonts via text input and start of text sequence."""
     fontstore = restructured_fontstore
     (text, page, expected) = expected_result()
     result = fontstore.fromstr(page, 1, 0, text)
