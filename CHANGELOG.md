@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.20.3
+
+### Fix
+
+* solve linter warning (8ca78d6ee9f9)
+
 ## v1.20.2
 
 ### Fix
