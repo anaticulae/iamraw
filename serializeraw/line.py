@@ -23,9 +23,9 @@ def dump_lines(lines: iamraw.PageContentLines) -> str:
     return dumped
 
 
-def load_lines(content: str, pages: tuple = None) -> iamraw.PageContentLines:
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
+def load_lines(source: str, pages: tuple = None) -> iamraw.PageContentLines:
+    source = utila.from_raw_or_path(source, ftype='yaml')
+    loaded = yaml.load(source, Loader=yaml.FullLoader)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
