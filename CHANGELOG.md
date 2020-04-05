@@ -2,6 +2,8 @@
 
 Every noteable change is logged here.
 
+## v1.20.4
+
 ## v1.20.3
 
 ### Fix
