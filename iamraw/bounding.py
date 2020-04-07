@@ -28,7 +28,7 @@ import typing
 import utila
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(unsafe_hash=True)
 class BoundingBox:
 
     x0: float = -utila.INF

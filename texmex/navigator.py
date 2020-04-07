@@ -61,6 +61,7 @@ class PageTextNavigator(NavigatorMixin):
         self.page = page
         self.data = []
         self.width, self.height = size
+        self.finding = {}
 
     def insert(
             self,
@@ -104,6 +105,8 @@ class PageTextNavigator(NavigatorMixin):
             style=style,
         )
         self.data.insert(position, datum)
+        assert isinstance(bounding, iamraw.BoundingBox), type(position)
+        self.finding[bounding] = datum
 
     def between(
             self,
@@ -211,11 +214,11 @@ class PageTextNavigator(NavigatorMixin):
         return top, bottom
 
     def find(self, location: iamraw.BoundingBox):
-        # TODO: VERY SLOW
-        for item in self.data:
-            if location == item.bounding:
-                return item
-        raise ValueError(f'could not find {location}')
+        assert isinstance(location, iamraw.BoundingBox), type(location)
+        try:
+            return self.finding[location]
+        except KeyError as error:
+            raise ValueError(f'could not find {location}') from error
 
 
 def valid(item, inside, selector=SelectBounding.MAX):
