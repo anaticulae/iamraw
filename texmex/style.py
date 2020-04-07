@@ -92,7 +92,7 @@ class TextInfo:
     def copy(self):
         return TextInfo(
             text=self.text,
-            bounding=self.bounding,  # TODO: add item.bounding.copy()
+            bounding=self.bounding.copy() if self.bounding else None,
             style=self.style.copy() if self.style else None,
         )
 

@@ -83,6 +83,9 @@ class BoundingBox:
         created = cls.from_list([float(item) for item in splitted])
         return created
 
+    def copy(self):
+        return BoundingBox(x0=self.x0, y0=self.y0, x1=self.x1, y1=self.y1)
+
 
 BoundingBoxes = typing.List[BoundingBox]
 
