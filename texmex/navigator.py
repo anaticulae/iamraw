@@ -25,6 +25,13 @@ END = 1.0
 DISABLE_VALIDATION = END * 2
 
 
+class SelectBounding(enum.Enum):
+    MAX = enum.auto()
+    TOP = enum.auto()
+    BOTTOM = enum.auto()
+    AVG = enum.auto()
+
+
 class NavigatorMixin:
     pass
 
@@ -104,6 +111,7 @@ class PageTextNavigator(NavigatorMixin):
             bottom: float,
             left: float = START,
             right: float = END,
+            selector: SelectBounding = SelectBounding.MAX,
     ) -> list:
         """Return content between to and bottom and left to right in
         range [top(0.0), bottom(1.0)] and [left(0.0), right(1.0)].
@@ -126,16 +134,11 @@ class PageTextNavigator(NavigatorMixin):
         beforeleft = left * self.width
         afterright = right * self.width
 
+        inside = (before, after, beforeleft, afterright)
+
         result = []
         for item in self.data:
-            bounding = item.bounding
-            # before and after are pixel coordinates
-            if not before <= bounding.y0 <= bounding.y1 <= after:
-                continue
-            # TODO: ACTIVATE AFTER FIXING CONTENT BORDER OF MASTER_72
-            # THERE ARE SOME SPACES WHICH MOVES CONTENT OVER THE PAGES,
-            # THEREFORE 3.1. is ignored
-            if not beforeleft <= bounding.x0 <= bounding.x1 <= afterright:
+            if not valid(item.bounding, inside, selector=selector):
                 continue
             result.append(item.copy())
         return result
@@ -195,6 +198,19 @@ class PageTextNavigator(NavigatorMixin):
             if location == item.bounding:
                 return item
         raise ValueError(f'could not find {location}')
+
+
+def valid(bounding, inside, selector=SelectBounding.MAX):
+    (before, after, beforeleft, afterright) = inside
+    # before and after are pixel coordinates
+    if not before <= bounding.y0 <= bounding.y1 <= after:
+        return False
+    # TODO: ACTIVATE AFTER FIXING CONTENT BORDER OF MASTER_72
+    # THERE ARE SOME SPACES WHICH MOVES CONTENT OVER THE PAGES,
+    # THEREFORE 3.1. is ignored
+    if not beforeleft <= bounding.x0 <= bounding.x1 <= afterright:
+        return False
+    return True
 
 
 class PageTextContentNavigator(NavigatorMixin):
