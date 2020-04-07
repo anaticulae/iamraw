@@ -374,7 +374,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914
                     # skip bad removed rawmaker extraction
                     continue
                 navigator.insert(
-                    text=line.text,  #.strip(),
+                    text=line.text,
                     style=style,
                     bounding=bounding,
                 )
