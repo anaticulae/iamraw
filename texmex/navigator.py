@@ -121,6 +121,7 @@ class PageTextNavigator(NavigatorMixin):
             bottom(float): accepted content before bottom mark
             left(float): accepted content after left mark
             right(float): accepted content before right mark
+            selector: select different bounding checker
         Returns:
             list of `TextInfo`
         """
@@ -138,7 +139,7 @@ class PageTextNavigator(NavigatorMixin):
 
         result = []
         for item in self.data:
-            if not valid(item.bounding, inside, selector=selector):
+            if not valid(item, inside, selector=selector):
                 continue
             result.append(item.copy())
         return result
@@ -157,22 +158,39 @@ class PageTextNavigator(NavigatorMixin):
     def dimension(self):
         return iamraw.PageSize(width=self.width, height=self.height)
 
-    def before(self, height: float, width: float = END) -> list:
+    def before(
+            self,
+            height: float,
+            width: float = END,
+            selector: SelectBounding = SelectBounding.MAX,
+    ) -> list:
         """Determine elements on the top of the document
 
         Args:
             height(float[0.0,1.0]): 0.0 is top, 1.0 is bottom
             width: marker from left to right, return elements [0.0 width]
+            selector: select bounding check strategy
         Returns:
             list of `TextInfo`
         """
-        result = self.between(START, height, left=START, right=width)
+        result = self.between(
+            START,
+            height,
+            left=START,
+            right=width,
+            selector=selector,
+        )
         return result
 
-    def after(self, height, width=START):
+    def after(
+            self,
+            height,
+            width=START,
+            selector: SelectBounding = SelectBounding.MAX,
+    ):
         """Determine elements after `height` till the bottom of the
         page. Additonal shrink from left to right with `width`."""
-        result = self.between(height, END, width, END)
+        result = self.between(height, END, width, END, selector=selector)
         return result
 
     def offset(self, top: float, bottom: float) -> typing.Tuple[int, int]:
@@ -200,11 +218,19 @@ class PageTextNavigator(NavigatorMixin):
         raise ValueError(f'could not find {location}')
 
 
-def valid(bounding, inside, selector=SelectBounding.MAX):
+def valid(item, inside, selector=SelectBounding.MAX):
+    bounding = item.bounding
     (before, after, beforeleft, afterright) = inside
     # before and after are pixel coordinates
-    if not before <= bounding.y0 <= bounding.y1 <= after:
-        return False
+    if selector == SelectBounding.MAX:
+        if not before <= bounding.y0 <= bounding.y1 <= after:
+            return False
+    elif selector == SelectBounding.TOP:
+        if not before <= bounding.y0 <= after:
+            return False
+    elif selector == SelectBounding.BOTTOM:
+        if not before <= bounding.y1 <= after:
+            return False
     # TODO: ACTIVATE AFTER FIXING CONTENT BORDER OF MASTER_72
     # THERE ARE SOME SPACES WHICH MOVES CONTENT OVER THE PAGES,
     # THEREFORE 3.1. is ignored
