@@ -53,7 +53,26 @@ class BoundingBox:
             return self.x1
         if index == 3:
             return self.y1
-        raise IndexError(f'index out of range {index} > 3')
+        raise IndexError(f'index out of range: {index}>3')
+
+    def __setitem__(self, index, value):
+        """Set `value` depending on `index`.
+
+        >>> box = BoundingBox()
+        >>> box[1] = 10
+        >>> box.y0
+        10
+        """
+        if index == 0:
+            self.x0 = value
+        elif index == 1:
+            self.y0 = value
+        elif index == 2:
+            self.x1 = value
+        elif index == 3:
+            self.y1 = value
+        else:
+            raise IndexError(f'index out of range: {index}>3')
 
     def __len__(self):
         return 4
