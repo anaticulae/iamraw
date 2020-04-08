@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.21.1
+
+### Fix
+
+* add missing if statement (c5c523fd34ec)
+
 ## v1.21.0
 
 ### Feature
