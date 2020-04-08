@@ -31,6 +31,7 @@ class SelectBounding(enum.Enum):
     TOP = enum.auto()
     BOTTOM = enum.auto()
     MEAN = enum.auto()
+    TWO_THIRDS = enum.auto()
 
 
 class NavigatorMixin:
@@ -225,7 +226,7 @@ class PageTextNavigator(NavigatorMixin):
             raise ValueError(f'could not find {location}') from error
 
 
-def valid(item, inside, selector=SelectBounding.MAX):
+def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0911
     bounding = item.bounding
     (before, after, beforeleft, afterright) = inside
     # before and after are pixel coordinates
@@ -235,6 +236,10 @@ def valid(item, inside, selector=SelectBounding.MAX):
     elif selector == SelectBounding.MEAN:
         mean = bounding.y1 - item.bounding_mean
         if not before <= mean <= bounding.y1 <= after:
+            return False
+    elif selector == SelectBounding.TWO_THIRDS:
+        sixty = bounding.y1 - (bounding.y1 - bounding.y0) * 0.66
+        if not before <= sixty <= bounding.y1 <= after:
             return False
     elif selector == SelectBounding.TOP:
         if not before <= bounding.y0 <= after:
