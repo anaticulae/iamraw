@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v1.21.0
+
+### Feature
+
+* introduce mean field to describe alternative top border (3dc39fde61bd)
+* add copy method to solve todo (16a2d8fde286)
+* solve todo due introducing better data structure (34f48585344f)
+* add bounding selector strategy to PageTextNavigator (524f2df1e439)
+
 ## v1.20.6
 
 ## v1.20.5
