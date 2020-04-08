@@ -20,7 +20,6 @@ described item which the box refers.
     |                     |
     |-----------------x1,y1
 """
-
 import dataclasses
 import math
 import typing
