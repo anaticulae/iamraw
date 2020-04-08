@@ -68,6 +68,40 @@ def create_pagetextnavigators_frompath(
     return navigators
 
 
+def create_pagetextnavigators_fromfile(
+        text: str,
+        textpositions: str,
+        fontheader: str = None,
+        fontcontent: str = None,
+        pages=None,
+        mode=texmex.PageTextNavigatorMode.BOTH,
+        *,
+        fill_empty: bool = True,
+) -> texmex.PageTextNavigators:
+    text = serializeraw.document.load_document(
+        text,
+        pages=pages,
+    )
+    textpositions = serializeraw.textposition.load_textpositions(
+        textpositions,
+        pages=pages,
+    )
+    fontstore = None
+    if fontheader and fontcontent:
+        fontstore = serializeraw.fontstore.create_fontstore(
+            fontheader,
+            fontcontent,
+        )
+    navigators = texmex.create_pagetextnavigators(
+        text,
+        textpositions,
+        fontstore,
+        fill_empty=fill_empty,
+        mode=mode,
+    )
+    return navigators
+
+
 def create_pagetextcontentnavigators_frompath(
         path: str,
         prefix: str = '',

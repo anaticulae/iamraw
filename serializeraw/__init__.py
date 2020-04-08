@@ -87,6 +87,8 @@ from serializeraw.text import load_text
 from serializeraw.textnavigator.create import \
     create_pagetextcontentnavigators_frompath
 from serializeraw.textnavigator.create import \
+    create_pagetextnavigators_fromfile
+from serializeraw.textnavigator.create import \
     create_pagetextnavigators_frompath
 # textnavigator
 from serializeraw.textnavigator.highnote import dump_highnotes
