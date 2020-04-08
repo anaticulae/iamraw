@@ -49,6 +49,7 @@ from texmex.navigator import PageTextContentNavigators
 from texmex.navigator import PageTextNavigator
 from texmex.navigator import PageTextNavigatorMode
 from texmex.navigator import PageTextNavigators
+from texmex.navigator import SelectBounding
 from texmex.navigator import create_pagetextcontentnavigators
 from texmex.navigator import create_pagetextnavigator_fromstr
 from texmex.navigator import create_pagetextnavigators
