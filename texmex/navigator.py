@@ -232,7 +232,7 @@ def valid(item, inside, selector=SelectBounding.MAX):
     if selector == SelectBounding.MAX:
         if not before <= bounding.y0 <= bounding.y1 <= after:
             return False
-    if selector == SelectBounding.MEAN:
+    elif selector == SelectBounding.MEAN:
         mean = bounding.y1 - item.bounding_mean
         if not before <= mean <= bounding.y1 <= after:
             return False
