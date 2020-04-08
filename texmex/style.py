@@ -88,12 +88,14 @@ class TextInfo:
     text: str
     bounding: iamraw.BoundingBox = None
     style: TextStyle = None
+    bounding_mean: float = None
 
     def copy(self):
         return TextInfo(
-            text=self.text,
             bounding=self.bounding.copy() if self.bounding else None,
+            bounding_mean=self.bounding_mean,
             style=self.style.copy() if self.style else None,
+            text=self.text,
         )
 
     def __repr__(self):

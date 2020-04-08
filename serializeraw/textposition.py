@@ -28,7 +28,10 @@ def dump_textpositions(items: PageContentTextPositions) -> str:
         content = page.content
         if not content:
             continue
-        raw = ['%s %s' % (key, str(value)) for key, value in content.items()]
+        raw = [
+            '%s %s %s' % (key, str(bounding), str(mean))
+            for key, (bounding, mean) in content.items()
+        ]
         result.append({
             'content': raw,
             'page': pagenumber,
@@ -53,8 +56,10 @@ def load_textpositions(content: str, pages=None) -> PageContentTextPositions:
             continue
         pagedata = {}
         for item in page['content']:
-            key, position = item.split(maxsplit=1)
-            pagedata[int(key)] = BoundingBox.from_str(position)
+            key, data = item.split(maxsplit=1)
+            bounding, mean = data.rsplit(maxsplit=1)
+            mean = float(mean)
+            pagedata[int(key)] = (BoundingBox.from_str(bounding), mean)
 
         if not content:
             continue

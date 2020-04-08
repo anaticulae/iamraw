@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import enum
 import typing
 
@@ -68,6 +69,7 @@ class PageTextNavigator(NavigatorMixin):
             text: str,
             style: texmex.style.TextStyle,
             bounding: iamraw.BoundingBox,
+            bounding_mean: float = None,
     ):
         """Insert text element top to bottom and left to right.
 
@@ -75,6 +77,7 @@ class PageTextNavigator(NavigatorMixin):
             text(str): content of text chunk
             style: style for every character of `text`
             bounding(iamraw.BoundingBox): position and dimension of text area
+            bounding_mean: average distance from bottom line to char top
         """
         x0, y0, x1, y1 = bounding
 
@@ -100,9 +103,10 @@ class PageTextNavigator(NavigatorMixin):
                 break
             position += 1
         datum = texmex.style.TextInfo(
-            text=text,
             bounding=bounding,
+            bounding_mean=bounding_mean,
             style=style,
+            text=text,
         )
         self.data.insert(position, datum)
         assert isinstance(bounding, iamraw.BoundingBox), type(position)
@@ -227,6 +231,10 @@ def valid(item, inside, selector=SelectBounding.MAX):
     # before and after are pixel coordinates
     if selector == SelectBounding.MAX:
         if not before <= bounding.y0 <= bounding.y1 <= after:
+            return False
+    if selector == SelectBounding.AVG:
+        mean = bounding.y1 - item.bounding_mean
+        if not before <= mean <= bounding.y1 <= after:
             return False
     elif selector == SelectBounding.TOP:
         if not before <= bounding.y0 <= after:
@@ -359,7 +367,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914
                 lines = item.lines
             except AttributeError:
                 continue
-            pos = textposition.content[textid]
+            pos, mean = textposition.content[textid]
             for index, line in enumerate(lines):
                 bounding = iamraw.split_y(pos, index, len(lines))
                 if fontstore:
@@ -380,6 +388,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914
                     text=line.text,
                     style=style,
                     bounding=bounding,
+                    bounding_mean=mean,
                 )
             textid += 1
         result.append(navigator)

@@ -6,8 +6,12 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 from collections import namedtuple
 from typing import List
 
 PageContentTextPosition = namedtuple('PageContentTextPosition', 'content, page')
 PageContentTextPositions = List[PageContentTextPosition]
+
+TextPosition = namedtuple('TextPosition', 'bounding, mean')
+TextPositions = List[TextPosition]

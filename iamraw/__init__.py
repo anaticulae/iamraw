@@ -139,6 +139,8 @@ from iamraw.text import Undefined
 # textposition
 from iamraw.textposition import PageContentTextPosition
 from iamraw.textposition import PageContentTextPositions
+from iamraw.textposition import TextPosition
+from iamraw.textposition import TextPositions
 # title
 from iamraw.titlepage import THESIS
 from iamraw.titlepage import DocumentType
