@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v1.21.2
+
+### Feature
+
+* add further navigator accessing strategy (029453a35f0f)
+* add item assignment operation (4d43e0781ac7)
+* add method to create pagetextnavigator from file (e39627b1e215)
+* extend public API (79c1867af19f)
+
 ## v1.21.1
 
 ### Fix
