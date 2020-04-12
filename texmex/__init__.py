@@ -78,5 +78,6 @@ from texmex.text import Occurrence
 from texmex.text import TextBounds
 from texmex.text import TextBoundsInfo
 from texmex.text import TextBoundsInfos
+from texmex.text import count_textlines
 # utils
 from texmex.utils import topbottom

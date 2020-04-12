@@ -7,8 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import contextlib
 import dataclasses
 import typing
+
+import texmex
 
 
 @dataclasses.dataclass
@@ -36,3 +39,21 @@ FontSize = int
 Occurrence = float
 FontOccurrence = typing.Tuple[FontSize, Occurrence]
 FontOccurrences = typing.List[FontOccurrence]
+
+
+def count_textlines(page: 'texmex.NavigatorMixin', remove_empty=False) -> int:
+    """Iterate over `page`-content and extract textlines. If
+    `remove_empty` is True, all lines which contain nothing or spaces
+    will be ignored.
+    """
+    content = []
+    if isinstance(page, texmex.NavigatorMixin):
+        return len([item for item in page if item.text.strip()])
+
+    for item in page:
+        with contextlib.suppress(AttributeError):
+            content.extend([item.text for item in item.lines])
+
+    if remove_empty:
+        content = [item for item in content if item.strip()]
+    return len(content)
