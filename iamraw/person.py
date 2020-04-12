@@ -50,9 +50,10 @@ MATCHES = {
     'M.Sc.': AcademicTitle.MASTER,
     'Dr.-Ing.': AcademicTitle.DR,
     'Dr.': AcademicTitle.DR,
-    'Prof.': AcademicTitle.PROF,
-    r'\w+. ': AcademicTitle.DR,
+    # TODO: ADD GENERAL -/RULE?
+    'Prof.[-]{0,1}': AcademicTitle.PROF,
+    r'[a-zA-Z\-]+. ': AcademicTitle.DR,
     # see general pattern above
-    # 'Dr. rer. biol. hum.': Title.DR,
-    # 'Dr. med.': Title.DR,
+    # 'Dr. rer. biol. hum.': AcademicTitle.DR,
+    # 'Dr. med.': AcademicTitle.DR,
 }
