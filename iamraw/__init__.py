@@ -130,6 +130,8 @@ from iamraw.text import DOT
 from iamraw.text import ChapterText
 from iamraw.text import ContentType
 from iamraw.text import DocumentContent
+from iamraw.text import PageContentText
+from iamraw.text import PageContentTexts
 from iamraw.text import PageNumber
 from iamraw.text import Paragraph
 from iamraw.text import ParagraphContent

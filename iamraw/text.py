@@ -45,3 +45,6 @@ PageNumber = int
 ParagraphContent = typing.List[str]
 ParagraphItem = typing.Tuple[Headline, ParagraphContent]
 Paragraphs = typing.List[ParagraphItem]
+
+PageContentText = collections.namedtuple('PageContentText', 'page, content')
+PageContentTexts = typing.List[PageContentText]
