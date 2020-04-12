@@ -151,6 +151,7 @@ from iamraw.titlepage import Matrikel
 from iamraw.titlepage import Person
 from iamraw.titlepage import TitleDate
 from iamraw.titlepage import TitlePage
+from iamraw.titlepage import TitleThesisType
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import Toc

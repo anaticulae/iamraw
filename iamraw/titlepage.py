@@ -19,6 +19,7 @@ Definition
 * Course of studies - Studiengang
 * Academic year - Studienjahr/Semester
 """
+
 import collections
 import dataclasses
 import enum
@@ -83,3 +84,6 @@ class TitlePage:
     matrikel: Matrikel = None
     examiner: typing.List[Person] = dataclasses.field(default_factory=list)
     institution: Institution = None
+
+
+TitleThesisType = collections.namedtuple('TitleThesisType', 'typ, title raw')
