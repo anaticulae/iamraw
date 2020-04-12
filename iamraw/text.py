@@ -7,11 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import collections
 import dataclasses
 import enum
 import typing
 
-from iamraw.headlines import Headline
+import iamraw.headlines
 
 DOT = '•'
 
@@ -43,7 +44,7 @@ ChapterText = typing.List[DocumentContent]
 
 PageNumber = int
 ParagraphContent = typing.List[str]
-ParagraphItem = typing.Tuple[Headline, ParagraphContent]
+ParagraphItem = typing.Tuple[iamraw.headlines.Headline, ParagraphContent]
 Paragraphs = typing.List[ParagraphItem]
 
 PageContentText = collections.namedtuple('PageContentText', 'page, content')
