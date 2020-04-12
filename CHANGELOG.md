@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v1.22.0
+
+### Feature
+
+* move method to count text lines (23da6cd36e39)
+* add abbreviation table dumper and loader (56da7752d915)
+* move TitleThesisType (2125d62d2d7a)
+* add PageContentText (d2b38aa0f5f2)
+
 ## v1.21.3
 
 ## v1.21.2
