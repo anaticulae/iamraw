@@ -19,6 +19,11 @@ PYTHONHASHSEED:
 
 """
 
+# abbreviations
+from serializeraw.abbreviation import dump_abbreviation
+from serializeraw.abbreviation import dump_abbreviation_table
+from serializeraw.abbreviation import load_abbreviation
+from serializeraw.abbreviation import load_abbreviation_table
 # annotation
 from serializeraw.annotation import dump_annotations
 from serializeraw.annotation import load_annotations

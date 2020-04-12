@@ -11,6 +11,11 @@ import os
 
 # path
 import iamraw.path as path
+# abbreviation
+from iamraw.abbreviation import Abbreviation
+from iamraw.abbreviation import AbbreviationPosition
+from iamraw.abbreviation import AbbreviationResult
+from iamraw.abbreviation import Abbreviations
 # annotation
 from iamraw.annotation import Annotation
 from iamraw.annotation import HyperLink
