@@ -485,6 +485,7 @@ def determine_border(headerfooter, sizeandborder, page: int):
     pagesize = utila.select_page(sizeandborder, page)
     if pagesize is None:
         return pagesize
+    border = pagesize.border
     pagesize = pagesize.size
     headerfooter = utila.select_page(headerfooter, page)
     top, bottom = 0, pagesize.height
@@ -493,8 +494,8 @@ def determine_border(headerfooter, sizeandborder, page: int):
     if headerfooter and headerfooter.footer:
         bottom = bottom * headerfooter.footer.begin
     border = iamraw.Border(
-        left=0,
-        right=pagesize.width,  # TODO: INVESTIGATE HERE
+        left=border.left,
+        right=border.right,
         top=top,
         bottom=bottom,
     )
