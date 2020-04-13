@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.22.1
+
+### Feature
+
+* add method to store, load and dump text abbreviations (17c58e6c4a8c)
+
+### Fix
+
+* adjusted expected tuple length, add missing import (f0946f5fb460)
+* update person matching pattern (e5bcfb11d066)
+
 ## v1.22.0
 
 ### Feature
