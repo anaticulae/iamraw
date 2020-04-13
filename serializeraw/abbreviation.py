@@ -34,7 +34,11 @@ def load_abbreviation(raw: dict) -> iamraw.Abbreviation:
     with contextlib.suppress(KeyError):
         result.description = raw['description']
     with contextlib.suppress(KeyError):
-        page, sentence, word = utila.parse_tuple(raw['position'], typ=int)
+        page, sentence, word = utila.parse_tuple(
+            raw['position'],
+            length=3,
+            typ=int,
+        )
         result.position = iamraw.AbbreviationPosition(
             page=page,
             sentence=sentence,
