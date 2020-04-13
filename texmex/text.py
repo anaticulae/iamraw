@@ -16,10 +16,10 @@ import texmex
 
 @dataclasses.dataclass
 class TextBounds:
-    xdist: int
-    ydist: int
-    width: int
-    height: int
+    leftdist: float
+    rightdist: float
+    topdist: float
+    bottomdist: float
 
 
 @dataclasses.dataclass

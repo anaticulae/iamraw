@@ -15,8 +15,8 @@ import utila
 
 import iamraw
 import texmex
-from texmex.navigator import PageTextContentNavigators
 from texmex.navigator import PageTextNavigator
+from texmex.navigator import PageTextNavigators
 from texmex.text import FontOccurrences
 from texmex.text import TextBounds
 from texmex.text import TextBoundsInfos
@@ -77,16 +77,14 @@ def bounds_to_textbounds(
     Returns:
         computed `TextBounds`
     """
-    if contentborder is None:
-        contentborder = iamraw.Border(left=0, right=None, top=0, bottom=None)
+    assert contentborder, contentborder
     x0, y0, x1, y1 = bounds
-    xdist, ydist, width, height = (
+    return TextBounds(
         int(x0 - contentborder.left),
+        int(contentborder.right - x1),
         int(y0 - contentborder.top),
-        int(x1 - x0),
-        int(y1 - y0),
+        int(contentborder.bottom - y1),
     )
-    return TextBounds(xdist, ydist, width, height)
 
 
 def textbounds(
@@ -104,10 +102,7 @@ def textbounds(
     result = [
         texmex.TextBoundsInfo(
             text=item.text,
-            bounds=bounds_to_textbounds(
-                item.bounding,
-                contentborder,
-            ),
+            bounds=bounds_to_textbounds(item.bounding, contentborder),
         ) for item in navigator
     ]
     return result
@@ -136,20 +131,26 @@ def textsize_frompage(navigator: PageTextNavigator) -> float:
 
 
 def document_textfeed(
-        navigators: PageTextContentNavigators,
+        navigators: PageTextNavigators,
         count: int = 1,
+        left: bool = True,
 ) -> Ints:
-    assert count >= 1, 'require none negative count'
+    assert count >= 1, f'require none negative count, got: {count}'
     counter = collections.Counter()
     for navigator in navigators:
-        bounds = textbounds(navigator, navigator.content)
-        for item in bounds:
-            counter[item.bounds.xdist] += 1
+        for item in navigator:
+            if not item.text.strip():
+                continue
+            if left:
+                counter[item.bounding[0]] += 1
+            else:
+                right = navigator.width - item.bounding[2]
+                counter[right] += 1
     result = counter.most_common(count)
     result = [item for item, _ in result]
     if count == 1:
         return result[0]
-    return result
+    return result[0:count]
 
 
 def document_textsize(navigators) -> float:
@@ -175,19 +176,12 @@ def document_textdistance(navigators, borders: iamraw.Borders) -> int:
         bounds = textbounds(navigator, contentborder.border)
         # ignore empty content
         bounds = [item.bounds for item in bounds if len(item.text)]
-        ydist = [item.ydist for item in bounds]
-        height = [item.height for item in bounds]
-
-        for yfirst, ysecond, firstheight in zip(
-                ydist[:-1],
-                ydist[1:],
-                height[:-1],
-        ):
-            distance = ysecond - yfirst - firstheight
+        ydist = [item.topdist for item in bounds]
+        for yfirst, ysecond in zip(ydist[:-1], ydist[1:]):
+            distance = ysecond - yfirst
             result.append(distance)
     # TODO: is that right to have negative distances? see: example
     # howto_argparse.
-    result = [item for item in result if item > 0]
     try:
         return statistics.mode(result)
     except statistics.StatisticsError:

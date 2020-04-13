@@ -33,15 +33,17 @@ def test_document_textdistance():
     # TODO: INVESTIGATE LATER
     # This is not the right result. A change indicates that the algo
     # changed.
-    assert result == 6, str(result)
+    assert result == 18, str(result)
 
 
 def test_document_textfeed():
-    pagetextcontentnavigators = serializeraw.create_pagetextcontentnavigators_frompath(
+    nav = serializeraw.create_pagetextnavigators_frompath(
         tests.serializeraw.RESTRUCTURED)
-    textfeed = texmex.document_textfeed(pagetextcontentnavigators)
-    # TODO: HOLY VALUE, INVESTIGATGE LATER
-    assert textfeed == 72, str(textfeed)
+    leftfeed = texmex.document_textfeed(nav, left=True)
+    assert leftfeed == 72.0, str(leftfeed)
+    # distance of x1 to right page border
+    rightfeed = texmex.document_textfeed(nav, left=False)
+    assert rightfeed == 72.0, str(rightfeed)
 
 
 def test_textsize_frompage():
