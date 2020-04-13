@@ -46,3 +46,10 @@ class AbbreviationResult:
 
     def __len__(self):
         return len(self.abbreviations)
+
+
+ExtractedTextAbbreviation = collections.namedtuple(
+    'ExtractedTextAbbreviation',
+    'page, content',
+)
+ExtractedTextAbbreviations = typing.List[ExtractedTextAbbreviation]

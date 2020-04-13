@@ -16,6 +16,8 @@ from iamraw.abbreviation import Abbreviation
 from iamraw.abbreviation import AbbreviationPosition
 from iamraw.abbreviation import AbbreviationResult
 from iamraw.abbreviation import Abbreviations
+from iamraw.abbreviation import ExtractedTextAbbreviation
+from iamraw.abbreviation import ExtractedTextAbbreviations
 # annotation
 from iamraw.annotation import Annotation
 from iamraw.annotation import HyperLink

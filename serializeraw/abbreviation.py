@@ -60,3 +60,37 @@ def load_abbreviation_table(content: str,) -> iamraw.AbbreviationResult:
         loaded = load_abbreviation(item)
         result.append(loaded)
     return result
+
+
+def dump_text_abbreviations(items) -> str:
+    result = []
+    for page in items:
+        content = []
+        for item in page.content:
+            raw = dump_abbreviation(item)
+            content.append(raw)
+        if not content:
+            continue
+        result.append({'page': page.page, 'content': content})
+    dumped = yaml.dump(result)
+    return dumped
+
+
+def load_text_abbreviations(
+        content: str,
+        pages: tuple = None,
+) -> iamraw.ExtractedTextAbbreviations:
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
+    result = []
+    for page in loaded:
+        pagenumber = int(page['page'])
+        if utila.should_skip(pagenumber, pages):
+            continue
+        current = [load_abbreviation(item) for item in page['content']]
+        result.append(
+            iamraw.ExtractedTextAbbreviation(
+                page=pagenumber,
+                content=current,
+            ))
+    return result
