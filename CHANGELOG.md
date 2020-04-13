@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.22.2
+
+### Fix
+
+* change TextInfo to describe distances to page (efa02e5a24e6)
+* fix left and right border of pagecontentnavigator (8981feeee1a2)
+
 ## v1.22.1
 
 ### Feature
