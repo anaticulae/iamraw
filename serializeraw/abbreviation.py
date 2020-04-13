@@ -29,6 +29,12 @@ def dump_abbreviation(item) -> dict:
 
 
 def load_abbreviation(raw: dict) -> iamraw.Abbreviation:
+    """\
+    >>> load_abbreviation({'short' : 'ABC', 'position' : '10 5 0',\
+    'description' : 'alpha beta gum'}) # doctest: +NORMALIZE_WHITESPACE
+    Abbreviation(short='ABC', description='alpha beta gum',
+    position=AbbreviationPosition(page=10, sentence=5, word=0))
+    """
     assert isinstance(raw, dict), type(raw)
     result = iamraw.Abbreviation(short=raw['short'])
     with contextlib.suppress(KeyError):
