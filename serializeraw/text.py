@@ -7,21 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from typing import List
+import utila
+import yaml
 
-from utila import flatten
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
-
-from iamraw import ChapterText
-from iamraw import Headline
-from iamraw import PagesHeadlineList
+import iamraw
 
 
-def dump_text(text: List[ChapterText]) -> str:
+def dump_text(text: iamraw.ChapterTextList) -> str:
     raw = []
     index = 0
     for (page, content) in text:
@@ -43,15 +35,15 @@ def dump_text(text: List[ChapterText]) -> str:
             'page': page,
             'content': collector,
         })
-    dumped = dump(raw)
+    dumped = yaml.dump(raw)
     return dumped
 
 
 def load_text(
         content: str,
-        headlines: PagesHeadlineList,
+        headlines: iamraw.PagesHeadlineList = None,
         pages=None,
-) -> List[ChapterText]:
+) -> iamraw.ChapterTextList:
     """Load text and replace headline reference with current headline
 
     Args:
@@ -61,28 +53,29 @@ def load_text(
     Returns:
         loaded text with replaced headlines
     """
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
 
     # convert page index to global index
-    headlines = flatten(headlines)
+    headlines = utila.flatten(headlines)
 
     result = []
     for line in loaded:
         page, content = int(line['page']), line['content']
-        if should_skip(page, pages):
+        if utila.should_skip(page, pages):
             continue
         pagecontent = []
         for section in content:
             section_content, headline = section['content'], section['headline']
             headline = headlines[headline] if headlines is not None else None
             if headline is None:
-                headline = Headline(
+                headline = iamraw.Headline(
                     text=None,
                     level=None,
                     rawlevel=None,
                     page=page,
-                    container=section['fc'])
+                    container=section['fc'],
+                )
             pagecontent.append((headline, section_content))
 
         result.append((page, pagecontent))

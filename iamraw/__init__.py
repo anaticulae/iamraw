@@ -135,6 +135,7 @@ from iamraw.table import TableBoundings
 # text
 from iamraw.text import DOT
 from iamraw.text import ChapterText
+from iamraw.text import ChapterTextList
 from iamraw.text import ContentType
 from iamraw.text import DocumentContent
 from iamraw.text import PageContentText

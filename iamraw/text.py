@@ -41,6 +41,7 @@ class Undefined(DocumentContent):
 
 
 ChapterText = typing.List[DocumentContent]
+ChapterTextList = typing.List[ChapterText]
 
 PageNumber = int
 ParagraphContent = typing.List[str]
