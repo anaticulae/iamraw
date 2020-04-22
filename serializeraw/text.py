@@ -57,7 +57,7 @@ def load_text(
     loaded = yaml.load(content, Loader=yaml.FullLoader)
 
     # convert page index to global index
-    headlines = utila.flatten(headlines)
+    headlines = utila.flatten(headlines) if headlines is not None else None
 
     result = []
     for line in loaded:
@@ -67,7 +67,11 @@ def load_text(
         pagecontent = []
         for section in content:
             section_content, headline = section['content'], section['headline']
-            headline = headlines[headline] if headlines is not None else None
+            if headlines is not None and headline is not None:
+                # loaded `headlines` and selected `headline`
+                headline = headlines[headline]
+            else:
+                headline = None
             if headline is None:
                 headline = iamraw.Headline(
                     text=None,
