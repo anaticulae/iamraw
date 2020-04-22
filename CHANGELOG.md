@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.23.0
+
+### Feature
+
+* support loading text without headlines (196724f949cd)
+
+### Fix
+
+* ensure to handle None headlines correctly (a98d9f59c9e9)
+
 ## v1.22.3
 
 ## v1.22.2
