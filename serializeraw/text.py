@@ -75,7 +75,7 @@ def load_text(
         pagecontent = []
         for section in content:
             section_content, headline = section['content'], section['headline']
-            headline = headlines[headline] if headline is not None else None
+            headline = headlines[headline] if headlines is not None else None
             if headline is None:
                 headline = Headline(
                     text=None,
