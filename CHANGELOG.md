@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.23.1
+
+### Fix
+
+* harden text load against bad parsed headlines (9e9db240e069)
+
 ## v1.23.0
 
 ### Feature
