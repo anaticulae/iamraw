@@ -67,10 +67,13 @@ def load_text(
         pagecontent = []
         for section in content:
             section_content, headline = section['content'], section['headline']
-            if headlines is not None and headline is not None:
-                # loaded `headlines` and selected `headline`
+            try:
                 headline = headlines[headline]
-            else:
+            except (IndexError, TypeError):
+                if headline is not None:
+                    # None-Headline is expected on page start?
+                    msg = f'could not load headline: {headline} on page:{page}'
+                    utila.error(msg)
                 headline = None
             if headline is None:
                 headline = iamraw.Headline(
