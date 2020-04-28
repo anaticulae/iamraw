@@ -39,7 +39,11 @@ def dump_boxedcontent(boxed) -> str:
             single_collector = []  # crazy naming!
             for multiboxed in collected:
                 items = []
-                for index, (bounding, (boxid, _content)) in enumerate(multiboxed): # yapf: disable
+                for index, (bounding, (*boxid, _content)) in enumerate(multiboxed): # yapf: disable
+                    # TODO: REMOVE LATER
+                    if len(boxid) > 1:
+                        utila.error(f'invalid boxid: {boxid} page:{page} index: {index}') # yapf:disable
+                    boxid = boxid[0]
                     items.append({
                         'boxed_id':
                         '%d %d' % (boxid, index),
