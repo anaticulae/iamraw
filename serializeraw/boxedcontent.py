@@ -10,9 +10,8 @@
 from collections import defaultdict
 from functools import lru_cache
 
+import utila
 from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from utila import should_skip
 from yaml import FullLoader
 from yaml import dump
 from yaml import load
@@ -66,7 +65,7 @@ def dump_boxedcontent(boxed) -> str:
 
 @lru_cache(CACHE_SMALL)
 def load_boxedcontent(content: str, pages=None):
-    content = from_raw_or_path(
+    content = utila.from_raw_or_path(
         content,
         ftype='yaml',
     )
@@ -74,7 +73,7 @@ def load_boxedcontent(content: str, pages=None):
     pagedict = defaultdict(list)
     for page in loaded:
         pagenumber = int(page['page'])
-        if should_skip(pagenumber, pages):
+        if utila.should_skip(pagenumber, pages):
             continue
         content = page['content']
         parsed = parse_boxed_page(content)
