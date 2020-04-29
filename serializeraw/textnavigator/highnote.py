@@ -38,7 +38,7 @@ def load_highnotes(content: str, pages: tuple = None):
 
 
 def dump_highnotes(pages) -> str:
-    assert_list(pages, texmex.PageContentTextItems)
+    utila.assert_type_list(pages, texmex.PageContentTextItems)
     result = []
     for page in pages:
         raw = {'page': page.page}
@@ -51,10 +51,3 @@ def dump_highnotes(pages) -> str:
         result.append(raw)
     dumped = yaml.dump(result)
     return dumped
-
-
-def assert_list(items, types):
-    # TODO: MOVE TO UTILA
-    assert isinstance(items, list), type(items)
-    verified = [isinstance(item, types) for item in items]
-    assert all(verified), str(verified)

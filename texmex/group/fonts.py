@@ -9,7 +9,6 @@
 
 import collections
 import statistics
-import typing
 
 import utila
 
@@ -22,12 +21,8 @@ from texmex.text import TextBounds
 from texmex.text import TextBoundsInfos
 from texmex.text import TextBoundsList
 
-# TODO: MOVE TO UTILA
-Floats = typing.List[float]
-Ints = typing.List[int]
 
-
-def fontdistance(bounds: iamraw.BoundingBoxes) -> Floats:
+def fontdistance(bounds: iamraw.BoundingBoxes) -> utila.Floats:
     """Describes the difference between two content lines"""
     distance = [
         utila.roundme(second.y0 - first.y1)
@@ -36,7 +31,7 @@ def fontdistance(bounds: iamraw.BoundingBoxes) -> Floats:
     return distance
 
 
-def feeddistance(bounds: iamraw.BoundingBoxes) -> Floats:
+def feeddistance(bounds: iamraw.BoundingBoxes) -> utila.Floats:
     """The text feed describes the distance from the left content border to
     the first content. The feeddistance describes the difference of two
     items"""
@@ -47,7 +42,7 @@ def feeddistance(bounds: iamraw.BoundingBoxes) -> Floats:
     return distance
 
 
-def fontdistance_textbounds(bounds: TextBoundsList) -> Floats:
+def fontdistance_textbounds(bounds: TextBoundsList) -> utila.Floats:
     assert isinstance(bounds, list)
     assert all(isinstance(item, TextBounds) for item in bounds)
     distance = [
@@ -127,14 +122,14 @@ def textsize_frompage(navigator: PageTextNavigator) -> float:
             method=lambda x: x,  # do not filter anything
         )
         collected.extend(fontsizes)
-    return utila.modes(collected, minimize=True)
+    return utila.mode(collected, minimize=True)
 
 
 def document_textfeed(
         navigators: PageTextNavigators,
         count: int = 1,
         left: bool = True,
-) -> Ints:
+) -> utila.Ints:
     assert count >= 1, f'require none negative count, got: {count}'
     counter = collections.Counter()
     for navigator in navigators:
