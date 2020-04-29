@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.23.2
+
+### Fix
+
+* support loading invalid boxes (edd42eb35d9d)
+
 ## v1.23.1
 
 ### Fix
