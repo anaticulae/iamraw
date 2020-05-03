@@ -157,6 +157,7 @@ from iamraw.titlepage import DocumentType
 from iamraw.titlepage import Institution
 from iamraw.titlepage import Matrikel
 from iamraw.titlepage import Person
+from iamraw.titlepage import Persons
 from iamraw.titlepage import TitleDate
 from iamraw.titlepage import TitlePage
 from iamraw.titlepage import TitleThesisType

@@ -62,6 +62,7 @@ TitleDate = collections.namedtuple('TitleDate',
                                    'year month day location valid raw')
 
 Person = collections.namedtuple('Person', 'title name firstname raw')
+Persons = typing.List[Person]
 
 Matrikel = collections.namedtuple('Matrikel', 'number intro raw')
 
