@@ -108,7 +108,7 @@ def test_toc_empty():
 
 
 def assert_children(component: Section, count: int):
-    assert component
+    assert component is not None, component
     assert len(component.children) == count
 
 

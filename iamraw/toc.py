@@ -11,6 +11,7 @@
 
 Basic structure of get_outlines: (level, title, args, children)
 """
+
 import abc
 import dataclasses
 import typing
@@ -44,11 +45,17 @@ class Section(TocLinkMixin):
     def __getitem__(self, index):
         return self.children[index]  # pylint:disable=E1136
 
+    def __len__(self):
+        return len(self.children)
+
+
+SectionList = typing.List[Section]
+
 
 @dataclasses.dataclass
 class Toc(TocLinkMixin):
     level: int = 0  # level must alsways be 0
-    children: typing.List[Section] = dataclasses.field(default_factory=list)
+    children: SectionList = dataclasses.field(default_factory=list)
 
     def append(self, item):
         self.children.append(item)  # pylint:disable=E1101
@@ -56,12 +63,15 @@ class Toc(TocLinkMixin):
     def __getitem__(self, index):
         return self.children[index]  # pylint:disable=E1136
 
+    def __len__(self):
+        return len(self.children)
 
-def create_toc(outlines: typing.List[Section]):
-    """Extract toc out of pdf-outlines
 
-    The highest level is 0 the document root. Higher number level means more
-    distance to root.
+def create_toc(outlines: SectionList) -> Toc:
+    """Extract toc out of pdf-outlines.
+
+    The highest level is 0 the document root. Higher number level means
+    more distance to root.
     """
     root = Toc()
     current = root
