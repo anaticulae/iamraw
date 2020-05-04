@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.23.3
+
+### Feature
+
+* add sections type (56eef79eeeee)
+* add datatype of multiple persons (ed31ce8955ac)
+
 ## v1.23.2
 
 ### Fix
