@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.24.2
+
+### Fix
+
+* fix path to new rawmaker generator (83e6b0abc443)
+* replace with words code (c4c8de538eba)
+
 ## v1.24.1
 
 ### Fix
