@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.24.1
+
+### Fix
+
+* add missing dump/load of raw_location (2c03a0355d31)
+
 ## v1.24.0
 
 ### Feature
