@@ -30,7 +30,7 @@ def textposition(path: str, prefix: str = '') -> str:
 
 
 def toc(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'toc_toc', prefix)
+    return utila.pathconnector(path, 'rawmaker', 'outlines_outlines', prefix)
 
 
 def fontheader(path: str, prefix: str = '') -> str:
