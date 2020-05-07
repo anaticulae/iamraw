@@ -28,6 +28,9 @@ class TocLinkMixin(abc.ABC):
         """Access children at `index`"""
 
 
+TocLinkMixins = typing.List[TocLinkMixin]
+
+
 @dataclasses.dataclass
 class Section(TocLinkMixin):
     level: int
@@ -36,8 +39,8 @@ class Section(TocLinkMixin):
     raw: str = None
     args: typing.Dict[str, str] = dataclasses.field(default_factory=dict)
     # compare = False to avoid recursive lookups
-    parent: typing.Any = dataclasses.field(default=None, compare=False)
-    children: typing.List[typing.Any] = dataclasses.field(default_factory=list)
+    parent: TocLinkMixin = dataclasses.field(default=None, compare=False)
+    children: TocLinkMixins = dataclasses.field(default_factory=list)
 
     def append(self, item):
         self.children.append(item)  # pylint:disable=E1101
