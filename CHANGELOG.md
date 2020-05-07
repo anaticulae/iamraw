@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v1.24.0
+
+### Feature
+
+* introduce SectionRaw to store collecting information (7575b1d5263b)
+
+### Fix
+
+* fix default toc loading resource (6dab98115caf)
+* replace private variable access (cc9c1d13a2db)
+
 ## v1.23.4
 
 ## v1.23.3
