@@ -46,13 +46,13 @@ def fontdistance_textbounds(bounds: TextBoundsList) -> utila.Floats:
     assert isinstance(bounds, list)
     assert all(isinstance(item, TextBounds) for item in bounds)
     distance = [
-        utila.roundme(second.ydist - (first.ydist + first.height))
+        utila.roundme(first.bottomdist - second.bottomdist)
         for (first), (second) in zip(bounds[0:], bounds[1:])
     ]
     if bounds:
         # add distance from first content to page start
         # xdist, ydist(1), width, height, fontsize
-        distance.insert(0, bounds[0].ydist)
+        distance.insert(0, 0)
     distance.append(0)  # TODO: CHECK AGAIN
     return distance
 
@@ -168,20 +168,12 @@ def document_textdistance(navigators, borders: iamraw.Borders) -> int:
         if not navigator:
             # empty page
             continue
-        bounds = textbounds(navigator, contentborder.border)
+        bounds = texmex.textbounds(navigator, contentborder.border)
         # ignore empty content
         bounds = [item.bounds for item in bounds if len(item.text)]
-        ydist = [item.topdist for item in bounds]
+        ydist = [item.bottomdist for item in bounds]
         for yfirst, ysecond in zip(ydist[:-1], ydist[1:]):
-            distance = ysecond - yfirst
+            distance = yfirst - ysecond
             result.append(distance)
-    # TODO: is that right to have negative distances? see: example
-    # howto_argparse.
-    try:
-        return statistics.mode(result)
-    except statistics.StatisticsError:
-        # TODO: Multiply add distances as often as characters are in line?
-        # TODO: Handle equal count, see StatisticsError [12, 11, 12, 11, 148,
-        # 17, 4, 51, 129, 58, 8, 41]
-        # Raise StategyError and try again with different strategy
-        assert 0, 'not decided yet'
+    mode = utila.modes(result)
+    return mode
