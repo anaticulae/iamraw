@@ -115,6 +115,8 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
                 level=item.level,
                 page=item.page,
                 raw=item.raw if hasattr(item, 'raw') else '',
+                raw_location=item.raw_location
+                if hasattr(item, 'raw_location') else '',
                 title=item.title,
             )
             new_one = tosection(new_one) if remove_rawinfo else new_one
@@ -128,6 +130,8 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
                 level=item.level,
                 page=item.page,
                 raw=item.raw if hasattr(item, 'raw') else '',
+                raw_location=item.raw_location
+                if hasattr(item, 'raw_location') else '',
                 title=item.title,
             )
             new_one = tosection(new_one) if remove_rawinfo else new_one
@@ -147,6 +151,8 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
                 level=item.level,
                 page=item.page,
                 raw=item.raw if hasattr(item, 'raw') else '',
+                raw_location=item.raw_location
+                if hasattr(item, 'raw_location') else '',
                 title=item.title,
             )
             new_one = tosection(new_one) if remove_rawinfo else new_one
