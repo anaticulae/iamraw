@@ -164,8 +164,11 @@ from iamraw.titlepage import TitleThesisType
 # table of content
 from iamraw.toc import Section
 from iamraw.toc import SectionList
+from iamraw.toc import SectionRaw
 from iamraw.toc import Toc
 from iamraw.toc import create_toc
+from iamraw.toc import tosection
+from iamraw.toc import tosectionraw
 # whitepage
 from iamraw.whitepage import PageContentWhitepage
 from iamraw.whitepage import PageContentWhitepages

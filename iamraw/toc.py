@@ -33,10 +33,9 @@ TocLinkMixins = typing.List[TocLinkMixin]
 
 @dataclasses.dataclass
 class Section(TocLinkMixin):
-    level: int
-    title: str
+    level: int = None
+    title: str = None
     page: int = None
-    raw: str = None
     args: typing.Dict[str, str] = dataclasses.field(default_factory=dict)
     # compare = False to avoid recursive lookups
     parent: TocLinkMixin = dataclasses.field(default=None, compare=False)
@@ -50,6 +49,26 @@ class Section(TocLinkMixin):
 
     def __len__(self):
         return len(self.children)
+
+
+@dataclasses.dataclass
+class SectionRaw(Section):
+    # Extend Section with data where information was crafted
+    raw: str = None
+    raw_location: int = None
+
+
+def tosectionraw(item: Section) -> SectionRaw:
+    assert isinstance(item, Section), type(item)
+    return SectionRaw(**vars(item))
+
+
+def tosection(item: SectionRaw) -> Section:
+    assert isinstance(item, SectionRaw), type(item)
+    data = vars(item)
+    del data['raw']
+    del data['raw_location']
+    return Section(**data)
 
 
 SectionList = typing.List[Section]
@@ -70,38 +89,48 @@ class Toc(TocLinkMixin):
         return len(self.children)
 
 
-def create_toc(outlines: SectionList) -> Toc:
+def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
     """Extract toc out of pdf-outlines.
 
     The highest level is 0 the document root. Higher number level means
     more distance to root.
+
+    Args:
+        outlines: flat list to create toc
+        remove_rawinfo(bool): if True, do not store information where
+                              data was collected.
+    Returns:
+        Hierarchical table of content.
     """
     root = Toc()
     current = root
+
     for item in outlines:
         level = item.level
         if level == current.level:
             # Content is on the same level, therefore they have the same
             # parent together.
-            new_one = Section(
+            new_one = SectionRaw(
                 parent=current.parent,  # pylint:disable=E1101
                 level=item.level,
                 page=item.page,
-                raw=item.raw,
+                raw=item.raw if hasattr(item, 'raw') else '',
                 title=item.title,
             )
+            new_one = tosection(new_one) if remove_rawinfo else new_one
             current.parent.append(new_one)  # pylint:disable=E1101
         elif level > current.level:
             # The level of the item to add is higher than the current item in
             # table of content, therefore add the new one as a paranet of
             # current.
-            new_one = Section(
+            new_one = SectionRaw(
                 parent=current,
                 level=item.level,
                 page=item.page,
-                raw=item.raw,
+                raw=item.raw if hasattr(item, 'raw') else '',
                 title=item.title,
             )
+            new_one = tosection(new_one) if remove_rawinfo else new_one
             current.append(new_one)
         else:
             # The level of the `new_one` is lower than the item in index. That
@@ -113,13 +142,14 @@ def create_toc(outlines: SectionList) -> Toc:
             # and add item.
             while level <= current.level:
                 current = current.parent  # pylint:disable=E1101
-            new_one = Section(
+            new_one = SectionRaw(
                 parent=current,
                 level=item.level,
                 page=item.page,
-                raw=item.raw,
+                raw=item.raw if hasattr(item, 'raw') else '',
                 title=item.title,
             )
+            new_one = tosection(new_one) if remove_rawinfo else new_one
             current.append(new_one)
         current = new_one  # pylint:disable=redefined-variable-type
     return root

@@ -25,20 +25,21 @@ import yaml
 import iamraw
 
 
-def dump_toc(content: iamraw.Toc) -> str:
+def dump_toc(content: iamraw.Toc, dump_raw: bool = True) -> str:
     """Convert table of content to raw yaml representation."""
     assert isinstance(content, iamraw.Toc)
-    raw = _dump(content)
+    raw = _dump(content, dump_raw)
     return yaml.dump(raw)
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_toc(content: str) -> iamraw.Toc:
+def load_toc(content: str, load_raw: bool = True) -> iamraw.Toc:
     """Load table of content from file or content
 
     Args:
         content(str): Content can be raw string or a file-path. If passing a
                       file-path, the file is loaded and parsed as a yaml file.
+        load_raw(bool): Load additonal toc extraction information
     Returns:
         loaded iamraw.Toc
     """
@@ -48,19 +49,22 @@ def load_toc(content: str) -> iamraw.Toc:
         ftype='yaml',
     )
     loaded = yaml.load(content, Loader=yaml.FullLoader)
-    return _load(loaded, parent=None)
+    return _load(loaded, parent=None, load_raw=load_raw)
 
 
-def _dump(current: iamraw.Section):
+def _dump(current: iamraw.Section, dump_raw: bool):
     """Convert to raw python to have more clear yaml output"""
-    children = [_dump(item) for item in current.children]
+    children = [_dump(item, dump_raw) for item in current.children]
     try:
         result = {
             'level': current.level,
             'page': current.page,
-            'raw': current.raw,
             'title': current.title,
         }
+        with contextlib.suppress(AttributeError):
+            if dump_raw:
+                result['raw'] = current.raw
+                result['raw_location'] = current.raw_location
     except AttributeError:
         # iamraw.Toc ROOT node
         result = {'level': 0}
@@ -70,17 +74,20 @@ def _dump(current: iamraw.Section):
     return result
 
 
-def _load(current: dict, parent: iamraw.Section):
+def _load(current: dict, parent: iamraw.Section, load_raw: bool):
     """Load from raw python without complex objects"""
     assert isinstance(current, dict), type(current)
+    ctor = iamraw.SectionRaw if load_raw else iamraw.Section
     try:
-        result = iamraw.Section(
+        result = ctor(
+            parent=parent,
             level=current['level'],
             title=current['title'],
-            parent=parent,
         )
         with contextlib.suppress(KeyError):
-            result.raw = current['raw']
+            if load_raw:
+                result.raw = current['raw']
+                result.raw_location = current['raw_location']
         with contextlib.suppress(KeyError):
             result.page = current['page']
     except KeyError:
@@ -88,5 +95,7 @@ def _load(current: dict, parent: iamraw.Section):
 
     with contextlib.suppress(KeyError):
         # A leaf has no children
-        result.children = [_load(item, result) for item in current['children']]
+        result.children = [
+            _load(item, result, load_raw) for item in current['children']
+        ]
     return result
