@@ -167,6 +167,7 @@ from iamraw.toc import SectionList
 from iamraw.toc import SectionRaw
 from iamraw.toc import Toc
 from iamraw.toc import create_toc
+from iamraw.toc import merge_toc
 from iamraw.toc import tosection
 from iamraw.toc import tosectionraw
 # whitepage

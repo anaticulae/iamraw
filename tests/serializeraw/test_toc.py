@@ -66,6 +66,19 @@ def test_load_toc_from_path():
     assert toc
 
 
+EXPECTED = """\
+Kapitel 1
+    Kapitel 1.1
+        Kapitel 1.1.1"""
+
+
+def test_toc_str():
+    example = toc_example(dump_raw=True)
+    raw = str(example)
+    assert raw == EXPECTED
+    assert iamraw.merge_toc(example) == EXPECTED
+
+
 @pytest.mark.parametrize('dump_raw', [True, False])
 def test_dump_and_load_toc(dump_raw):  # pylint:disable=W0621
     """Serialize toc and load it afterwards."""
