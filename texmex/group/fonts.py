@@ -63,23 +63,27 @@ NONE_BORDER = iamraw.Border(None, None, None, None)
 def bounds_to_textbounds(
         bounds: iamraw.BoundingBox,
         contentborder: iamraw.Border = None,
+        digits: int = 1,
 ) -> TextBounds:
     """Compute distance to page `contentborder` and determine font size
 
     Args:
         bounds(iamraw.BoundingBox): BoundingBox of item
         contentborder(Border): the border of page content if None (0,0) is used
+        digits(int): accuracy of bounding component
     Returns:
         computed `TextBounds`
     """
     assert contentborder, contentborder
     x0, y0, x1, y1 = bounds
-    return TextBounds(
-        int(x0 - contentborder.left),
-        int(contentborder.right - x1),
-        int(y0 - contentborder.top),
-        int(contentborder.bottom - y1),
+    data = utila.roundme(
+        x0 - contentborder.left,
+        contentborder.right - x1,
+        y0 - contentborder.top,
+        contentborder.bottom - y1,
+        digits=digits,
     )
+    return TextBounds(*data)
 
 
 def textbounds(
@@ -161,7 +165,11 @@ def document_textsize(navigators) -> float:
     return statistics.mode(collected)
 
 
-def document_textdistance(navigators, borders: iamraw.Borders) -> int:
+def document_textdistance(
+        navigators,
+        borders: iamraw.Borders,
+        digits: int = 1,
+) -> int:
     """Determine the most common text distance"""
     result = []
     for _, (navigator, contentborder) in utila.sync_pages([navigators, borders]): # yapf:disable
@@ -175,5 +183,6 @@ def document_textdistance(navigators, borders: iamraw.Borders) -> int:
         for yfirst, ysecond in zip(ydist[:-1], ydist[1:]):
             distance = yfirst - ysecond
             result.append(distance)
+    result = utila.roundme(result, digits=digits, convert=False)  # pylint:disable=R0204
     mode = utila.modes(result)
     return mode

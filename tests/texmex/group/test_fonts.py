@@ -33,7 +33,7 @@ def test_document_textdistance():
     # TODO: INVESTIGATE LATER
     # This is not the right result. A change indicates that the algo
     # changed.
-    assert result == 18, str(result)
+    assert result == 17.9, str(result)
 
 
 def test_document_textfeed():
