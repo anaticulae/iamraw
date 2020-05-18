@@ -147,6 +147,9 @@ def document_textfeed(
                 counter[right] += 1
     result = counter.most_common(count)
     result = [item for item, _ in result]
+    if not result:
+        # no text data
+        return None
     if count == 1:
         return result[0]
     return result[0:count]
