@@ -46,6 +46,8 @@ from iamraw.boxes import PageContentBoxes
 from iamraw.boxes import PageContentHorizontals
 from iamraw.boxes import PagesWithBoxList
 from iamraw.boxes import PagesWithHorizontalList
+# date
+from iamraw.date import PDFDate
 # document
 from iamraw.document import Boxed
 from iamraw.document import Char
