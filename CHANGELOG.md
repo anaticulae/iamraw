@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v1.25.0
+
+### Feature
+
+* add parameter to define used accuracy to determine text size (16dc02a72429)
+* add data type to store and parse pdf dates (6e1fa97ec4b9)
+* extend public iamraw API (a3a35f154dae)
+* add method to convert `table of content` to string (a33cb894c0b9)
+
 ## v1.24.2
 
 ### Fix
