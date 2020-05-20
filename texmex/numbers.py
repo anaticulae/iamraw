@@ -31,12 +31,32 @@ NUMBERS = {
     'XXI': 21,
     'XXII': 22,
     'XXIII': 23,
+    'XXIV': 24,
+    'XXV': 25,
+    'XXVI': 26,
+    'XXVII': 27,
+    'XXVIII': 28,
+    'XXIX': 29,
+    'XXX': 30,
+    'XXXI': 31,
+    'XXXII': 32,
+    'XXXIII': 33,
+    'XXXIV': 34,
+    'XXXV': 35,
+    'XXXVI': 36,
+    'XXXVII': 37,
+    'XXXVIII': 38,
+    'XXXIX': 39,
+    'XL': 40,
 }
 
 EXCEPTION = {
     'VIIII': 9,
     'IIII': 4,
     'XIIII': 14,
+    'XXVIIII': 29,
+    'XXXIIII': 34,
+    'XXXVIIII': 39,
 }
 
 
