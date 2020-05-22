@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v1.25.1
+
+### Feature
+
+* extend supported Roman numbers (98891c096aab)
+
+### Fix
+
+* handle empty text feed correctly (67d01a7838dc)
+
 ## v1.25.0
 
 ### Feature
