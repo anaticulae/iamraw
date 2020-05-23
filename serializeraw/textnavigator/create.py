@@ -18,7 +18,7 @@ import texmex
 def create_pagetextnavigators_frompath(
         path: str,
         prefix='',
-        pages=None,
+        pages: tuple = None,
         mode=texmex.PageTextNavigatorMode.BOTH,
         *,
         fill_empty: bool = True,
@@ -73,7 +73,7 @@ def create_pagetextnavigators_fromfile(
         textpositions: str,
         fontheader: str = None,
         fontcontent: str = None,
-        pages=None,
+        pages: tuple = None,
         mode=texmex.PageTextNavigatorMode.BOTH,
         *,
         fill_empty: bool = True,
