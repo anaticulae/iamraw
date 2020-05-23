@@ -128,17 +128,13 @@ def create_pagetextcontentnavigators_frompath(
         mode=mode,
     )
 
-    # TODO: ENABLE LATER
-    # headerfooterpath = hey.path.headerfooters(path, prefix=prefix)
-    headerfooterpath = iamraw.path.headerfooters(path)
+    headerfooterpath = iamraw.path.headerfooters(path, prefix=prefix)
     headerfooter = serializeraw.headerfooter.load_headerfooter(
         headerfooterpath,
         pages=pages,
     )
 
-    # TODO: ENABLE LATER
-    # sizeandborderpath = hey.path.sizeandborder(path, prefix=prefix)
-    sizeandborderpath = iamraw.path.sizeandborder(path)
+    sizeandborderpath = iamraw.path.sizeandborder(path, prefix=prefix)
     sizeandborder = serializeraw.border.load_pageborders(
         sizeandborderpath,
         pages=pages,
