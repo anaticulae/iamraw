@@ -53,9 +53,8 @@ def load_abbreviation(raw: dict) -> iamraw.Abbreviation:
     return result
 
 
-def dump_abbreviation_table(result: iamraw.abbreviation.AbbreviationResult,
-                           ) -> str:
-    assert isinstance(result, iamraw.AbbreviationResult), type(result) # yapf:disable
+def dump_abbreviation_table(result: iamraw.abbreviation.AbbreviationResult) -> str: # yapf:disable
+    assert isinstance(result, iamraw.AbbreviationResult), type(result)
     raw = [dump_abbreviation(item) for item in result]
     dumped = yaml.dump(raw)
     return dumped
