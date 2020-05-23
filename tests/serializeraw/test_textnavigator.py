@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import iamraw.path
 import serializeraw
 import tests.serializeraw
 
@@ -25,3 +26,22 @@ def test_create_pagetextcontentnavigator_frompath():
     for page in loaded:
         for line in page:
             assert line.text
+
+
+def test_create_pagetextcontentnavigator_fromfile():
+    source = tests.serializeraw.RESTRUCTURED
+    text = iamraw.path.text(source)
+    textpositions = iamraw.path.textposition(source)
+    sizeandborderpath = iamraw.path.sizeandborder(source)
+    headerfooterpath = iamraw.path.headerfooters(source)
+    fontheader = iamraw.path.fontheader(source)
+    fontcontent = iamraw.path.fontcontent(source)
+    loaded = serializeraw.create_pagetextcontentnavigators_fromfile(
+        text,
+        textpositions,
+        sizeandborderpath,
+        headerfooterpath,
+        fontheader,
+        fontcontent,
+    )
+    assert len(loaded) == 11

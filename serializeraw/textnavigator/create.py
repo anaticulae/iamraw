@@ -152,3 +152,46 @@ def create_pagetextcontentnavigators_frompath(
         validate_leftright=validate_leftright,
     )
     return result
+
+
+def create_pagetextcontentnavigators_fromfile(
+        text: str,
+        textpositions: str,
+        sizeandborderpath: str,
+        headerfooterpath: str,
+        fontheader: str = None,
+        fontcontent: str = None,
+        pages: tuple = None,
+        mode=texmex.PageTextNavigatorMode.BOTH,
+        *,
+        fill_empty: bool = True,
+        validate_leftright: bool = True,
+):
+    navigators = create_pagetextnavigators_fromfile(
+        text,
+        textpositions,
+        fontheader,
+        fontcontent,
+        pages=pages,
+        mode=mode,
+        fill_empty=fill_empty,
+    )
+
+    headerfooter = serializeraw.headerfooter.load_headerfooter(
+        headerfooterpath,
+        pages=pages,
+    )
+
+    sizeandborder = serializeraw.border.load_pageborders(
+        sizeandborderpath,
+        pages=pages,
+    )
+
+    result = texmex.create_pagetextcontentnavigators(
+        headerfooter=headerfooter,
+        navigators=navigators,
+        pages=pages,
+        sizeandborder=sizeandborder,
+        validate_leftright=validate_leftright,
+    )
+    return result
