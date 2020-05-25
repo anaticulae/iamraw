@@ -62,10 +62,11 @@ def load_headlines(content: str, pages=None) -> PagesHeadlineList:
                 container = int(headline['container'])
             except ValueError:
                 # support ranged container id
-                container = [
-                    int(index) for index in headline['container'].split()
-                ]
-                container = tuple(container)  # pylint:disable=R0204
+                container = utila.parse_tuple(  # pylint:disable=R0204
+                    headline['container'],
+                    length=2,
+                    typ=int,
+                )
             level = headline['level']
             if level is not None:
                 level = int(level)

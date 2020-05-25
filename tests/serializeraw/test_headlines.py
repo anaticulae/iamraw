@@ -52,7 +52,7 @@ EXPECTED = [
             text='Blockquotes',
             level=3,
             rawlevel='',
-            container=1,
+            container=(10, 12),
             page=9,
         ),
         iamraw.Headline(
