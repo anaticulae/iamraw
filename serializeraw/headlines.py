@@ -7,21 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
+import functools
 
+import configo
 import utila
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import yaml
 
-from iamraw import Headline
-from iamraw import PagesHeadlineList
+import iamraw
 
 
-def dump_headlines(headlines: PagesHeadlineList) -> str:
+def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
     raw = []
     for index, page in enumerate(headlines):
         content = []
@@ -43,20 +38,20 @@ def dump_headlines(headlines: PagesHeadlineList) -> str:
             'chapter?': index,  # TODO: How to deal with empty chapter?
             'headlines': content,
         })
-    dumped = dump(raw)
+    dumped = yaml.safe_dump(raw)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
-def load_headlines(content: str, pages=None) -> PagesHeadlineList:
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_headlines(content: str, pages=None) -> iamraw.PagesHeadlineList:
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.safe_load(content)
     result = []
     for step in loaded:
         loadedstep = []
         for headline in step['headlines']:
             pagenumber = int(headline['page'])
-            if should_skip(pagenumber, pages):
+            if utila.should_skip(pagenumber, pages):
                 continue
             try:
                 container = int(headline['container'])
@@ -72,7 +67,7 @@ def load_headlines(content: str, pages=None) -> PagesHeadlineList:
                 level = int(level)
             else:
                 utila.error(f'headline level is None: {headline["text"]}')
-            item = Headline(
+            item = iamraw.Headline(
                 container=container,
                 level=level,
                 page=pagenumber,
