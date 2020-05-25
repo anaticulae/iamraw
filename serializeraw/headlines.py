@@ -6,8 +6,10 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 from functools import lru_cache
 
+import utila
 from configo import CACHE_SMALL
 from utila import from_raw_or_path
 from utila import should_skip
@@ -64,9 +66,14 @@ def load_headlines(content: str, pages=None) -> PagesHeadlineList:
                     int(index) for index in headline['container'].split()
                 ]
                 container = tuple(container)  # pylint:disable=R0204
+            level = headline['level']
+            if level is not None:
+                level = int(level)
+            else:
+                utila.error(f'headline level is None: {headline["text"]}')
             item = Headline(
                 container=container,
-                level=int(headline['level']),
+                level=level,
                 page=pagenumber,
                 rawlevel=headline['rawlevel'],
                 text=headline['text'],

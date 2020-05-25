@@ -57,7 +57,7 @@ EXPECTED = [
         ),
         iamraw.Headline(
             text='Code: Block',
-            level=3,
+            level=None,
             rawlevel='',
             container=10,
             page=9,
