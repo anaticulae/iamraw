@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v1.25.2
+
+### Feature
+
+* load None level headlines correctly (ab312d3113f7)
+* enable prefix path (4beb16db5933)
+* add method to create pagetextcontentnavigator from file (8d7ba7696493)
+
+### Documentation
+
+* extend interface documentation (431f761f07e2)
+
 ## v1.25.1
 
 ### Feature
