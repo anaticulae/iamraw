@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.25.3
+
+### Feature
+
+* introduce parameter to avoid double data generating (a94fe2b83655)
+
 ## v1.25.2
 
 ### Feature
