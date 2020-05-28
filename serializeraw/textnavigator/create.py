@@ -109,6 +109,7 @@ def create_pagetextcontentnavigators_frompath(
         mode=texmex.PageTextNavigatorMode.BOTH,
         *,
         validate_leftright: bool = True,
+        footer_sized_prefixed: bool = False,
 ) -> texmex.PageTextContentNavigators:
     """Load `PageTextContentNavigators` from `path`.
 
@@ -118,6 +119,8 @@ def create_pagetextcontentnavigators_frompath(
         pages(tuple): selected pages
         mode(PageTextNavigatorMode): select text container to skip
         validate_leftright(bool): do not check writing over ``content border``.
+        footer_sized_prefixed(bool): if True use prefixed data
+                                     if False use default data
     Returns:
         List of loaded PageTextContentNavigators depending on `pages`.
     """
@@ -127,6 +130,8 @@ def create_pagetextcontentnavigators_frompath(
         pages=pages,
         mode=mode,
     )
+    # do not generate general data twice
+    prefix = prefix if footer_sized_prefixed else ''
 
     headerfooterpath = iamraw.path.headerfooters(path, prefix=prefix)
     headerfooter = serializeraw.headerfooter.load_headerfooter(
