@@ -7,20 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
-from typing import List
+import functools
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
+import yaml
 
-from iamraw import PageList
+import iamraw
 
 
-def dump_lists(lists: List[str]) -> str:
+def dump_lists(lists: list) -> str:
     raw = []
     for (number, page) in lists:
         pageresult = []
@@ -38,18 +34,18 @@ def dump_lists(lists: List[str]) -> str:
                 'page': number,
                 'lists': pageresult,
             })
-    dumped = dump(raw)
+    dumped = yaml.dump(raw)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
-def load_lists(content: str, pages=None) -> List[str]:
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_lists(content: str, pages=None) -> utila.Strings:
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if should_skip(pagenumber, pages):
+        if utila.should_skip(pagenumber, pages):
             continue
         content = page['lists']
         newpage = []
@@ -58,7 +54,7 @@ def load_lists(content: str, pages=None) -> List[str]:
                 int(item) for item in listinstance['id'].split()
             ]
             area = [int(item) for item in listinstance['area'].split()]
-            instance = PageList(area=area)
+            instance = iamraw.PageList(area=area)
             for entree in listinstance['content']:
                 # See (Number, Item)
                 number, text = entree.split(maxsplit=1)
