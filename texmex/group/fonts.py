@@ -117,8 +117,7 @@ def textsize(occurrences: FontOccurrences) -> int:
     return size
 
 
-def textsize_frompage(navigator: PageTextNavigator) -> float:
-    assert isinstance(navigator, PageTextNavigator), type(navigator)
+def textsize_frompage(navigator: 'texmex.NavigatorMixin') -> float:
     collected = []
     for line in navigator:
         fontsizes = texmex.TextStyle.textsizes(
