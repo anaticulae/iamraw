@@ -23,25 +23,25 @@ def dump_lists(lists: list) -> str:
         for (paragraph, merged, content) in page:
             # Number, Item
             area = ' '.join([str(item) for item in content.area])
-            content = ['%s %s' % (number, item) for (number, item) in content]
+            content = [f'{number} {item}' for (number, item) in content]
             pageresult.append({
                 'area': area,
                 'content': content,
-                'id': '%d %d' % (paragraph, merged),
+                'id': f'{paragraph} {merged}',
             })
         if pageresult:
             raw.append({
                 'page': number,
                 'lists': pageresult,
             })
-    dumped = yaml.dump(raw)
+    dumped = yaml.safe_dump(raw)
     return dumped
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_lists(content: str, pages=None) -> utila.Strings:
     content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
+    loaded = yaml.safe_load(content)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
