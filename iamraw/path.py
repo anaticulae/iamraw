@@ -46,7 +46,12 @@ def sizeandborder(path: str, prefix: str = '') -> str:
 
 
 def horizontals(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'boxes_horizontal', prefix)
+    return utila.pathconnector(
+        path,
+        'rawmaker',
+        'horizontals_horizontals',
+        prefix,
+    )
 
 
 def boxed(path: str, prefix: str = '') -> str:
