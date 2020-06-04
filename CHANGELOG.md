@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.25.5
+
+### Fix
+
+* make interface less strict (566bf36c7d33)
+
 ## v1.25.4
 
 ## v1.25.3
