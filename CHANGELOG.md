@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.25.6
+
+### Fix
+
+* fix missing path renaming (5ee5b34343e4)
+
 ## v1.25.5
 
 ### Fix
