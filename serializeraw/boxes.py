@@ -85,7 +85,7 @@ def load_boxes(content: str, pages=None) -> PagesWithBoxList:
 def load_horizontals(content: str, pages=None) -> PagesWithHorizontalList:
     content = from_raw_or_path(
         content,
-        fname='rawmaker__boxes_horizontal',
+        fname='rawmaker__horizontals_horizontals',
         ftype='yaml',
     )
     loaded = load(content, Loader=FullLoader)
