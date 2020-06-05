@@ -61,8 +61,10 @@ THESIS = {
     },
 }
 
-TitleDate = collections.namedtuple('TitleDate',
-                                   'year month day location valid raw')
+TitleDate = collections.namedtuple(
+    'TitleDate',
+    'year month day location valid raw',
+)
 
 Person = collections.namedtuple('Person', 'title name firstname raw')
 Persons = typing.List[Person]
@@ -90,4 +92,4 @@ class TitlePage:
     institution: Institution = None
 
 
-TitleThesisType = collections.namedtuple('TitleThesisType', 'typ, title raw')
+TitleThesisType = collections.namedtuple('TitleThesisType', 'typ title raw')
