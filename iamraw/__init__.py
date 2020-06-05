@@ -27,6 +27,9 @@ from iamraw.annotation import PageAnnotations
 from iamraw.annotation import PageLink
 from iamraw.annotation import hyperlink_annotations
 from iamraw.annotation import pagelink_annotations
+# bib
+from iamraw.bibliography import BibliographyReference
+from iamraw.bibliography import BibliographyReferences
 # border
 from iamraw.border import Border
 from iamraw.border import Borders

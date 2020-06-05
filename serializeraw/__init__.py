@@ -29,6 +29,9 @@ from serializeraw.abbreviation import load_text_abbreviations
 # annotation
 from serializeraw.annotation import dump_annotations
 from serializeraw.annotation import load_annotations
+# bib
+from serializeraw.bibliography import dump_bibliography_reference
+from serializeraw.bibliography import load_bibliography_reference
 # border
 from serializeraw.border import dump_pageborders
 from serializeraw.border import load_pageborders
@@ -94,10 +97,14 @@ from serializeraw.table import load_tables
 # text
 from serializeraw.text import dump_text
 from serializeraw.text import load_text
-from serializeraw.textnavigator.create import create_pagetextcontentnavigators_fromfile
-from serializeraw.textnavigator.create import create_pagetextcontentnavigators_frompath
-from serializeraw.textnavigator.create import create_pagetextnavigators_fromfile
-from serializeraw.textnavigator.create import create_pagetextnavigators_frompath
+from serializeraw.textnavigator.create import \
+    create_pagetextcontentnavigators_fromfile
+from serializeraw.textnavigator.create import \
+    create_pagetextcontentnavigators_frompath
+from serializeraw.textnavigator.create import \
+    create_pagetextnavigators_fromfile
+from serializeraw.textnavigator.create import \
+    create_pagetextnavigators_frompath
 # textnavigator
 from serializeraw.textnavigator.highnote import dump_highnotes
 from serializeraw.textnavigator.highnote import load_highnotes
