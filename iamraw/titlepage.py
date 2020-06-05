@@ -92,4 +92,6 @@ class TitlePage:
     institution: Institution = None
 
 
+TitlePages = typing.List[TitlePage]
+
 TitleThesisType = collections.namedtuple('TitleThesisType', 'typ title raw')
