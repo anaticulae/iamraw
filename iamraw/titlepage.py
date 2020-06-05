@@ -38,6 +38,8 @@ class DocumentType(enum.Enum):
 THESIS = {
     DocumentType.STUDY: {
         'Komplexe Transferaufgabe',
+        'Projektarbeit',
+        'Projektpraktikum',
         'Studienarbeit',
     },
     DocumentType.BACHELOR: {
@@ -52,6 +54,7 @@ THESIS = {
         'Masterthesis',
     },
     DocumentType.DOCTOR: {
+        'Dissertation',
         'Doktor',
         'Doktorarbeit',
         'Promotion',
