@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v1.25.7
+
+### Feature
+
+* add data structure to store, dump and load bibliography (d6494f4802e1)
+* add datatype for multiple title pages (0682b765effd)
+* extend list of document types (c304fb9c58d2)
+
+### Fix
+
+* fix some style issues (bcd28e80def4)
+
 ## v1.25.6
 
 ### Fix
