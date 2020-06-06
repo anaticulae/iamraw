@@ -15,19 +15,26 @@ import typing
 @dataclasses.dataclass(unsafe_hash=True)
 class BibliographyReference:
 
+    title: str = None
     reference: str = None
+
     data: str = None
 
     page: int = None
     pageend: int = None
 
-    raw: str = None
-
-    title: str = None
     year: int = None
+    yearend: int = None
+
+    hyperlink: str = None
+
     # a,b,c... to differentiate item in the same year
     number: str = None
     authors: typing.List[str] = dataclasses.field(default_factory=list)
+
+    publisher: str = None
+
+    raw: str = None
 
     @classmethod
     def create(cls, author: str, title: str = '', year: int = 2000):
