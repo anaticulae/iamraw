@@ -109,6 +109,9 @@ from iamraw.headlines import PagesHeadlineList
 # hits
 from iamraw.hits import PageContentHit
 from iamraw.hits import PageContentHits
+# images
+from iamraw.images import ImageInformation
+from iamraw.images import ImageInformations
 # likelihood
 from iamraw.likelihood import Likelihood
 from iamraw.likelihood import PageContentLikelihood

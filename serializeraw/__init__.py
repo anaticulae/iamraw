@@ -76,6 +76,9 @@ from serializeraw.headlines import load_headlines
 # hits
 from serializeraw.hits import dump_hits
 from serializeraw.hits import load_hits
+# images
+from serializeraw.images import dump_image_info
+from serializeraw.images import load_image_info
 # likelihood
 from serializeraw.likelihood import dump_likelihood
 from serializeraw.likelihood import load_likelihood
