@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v1.25.8
+
+### Feature
+
+* add method to dump and load image information (c53d7c2e37e7)
+* add publisher, yearend, hyperlink entree (96771683bd31)
+
 ## v1.25.7
 
 ### Feature
