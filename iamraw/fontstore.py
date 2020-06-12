@@ -114,7 +114,11 @@ class FontStore:
         return len(self.pages)
 
     def __getitem__(self, index: int) -> iamraw.Font:
-        return self.header[index]
+        try:
+            return self.header[index]
+        except KeyError:
+            utila.error(f'could not find font: {index}')
+            return None
 
 
 class FontContentStore:
