@@ -6,14 +6,13 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-from dataclasses import dataclass
-from dataclasses import field
-from enum import Enum
-from typing import List
-from typing import Tuple
+
+import dataclasses
+import enum
+import typing
 
 
-class ListType(Enum):
+class ListType(enum.Enum):
     UNDEFINED = None
     AMBIGUOUS = '*1.+-'
     DOTTED = '*'
@@ -23,16 +22,20 @@ class ListType(Enum):
     MINUSED = '-'
 
 
-@dataclass
+ListItem = typing.Tuple[str, str]
+ListItems = typing.List[ListItem]
+
+
+@dataclasses.dataclass
 class PageList:
 
-    data: List[Tuple[str, str]] = field(default_factory=list)
-    area: List[int] = field(default_factory=list)
+    data: ListItems = dataclasses.field(default_factory=list)
+    area: typing.List[int] = dataclasses.field(default_factory=list)
 
     def append(self, title: str, level: str = None):
         self.data.append((level, title))  # pylint:disable=E1101
 
-    def __getitem__(self, index):
+    def __getitem__(self, index) -> ListItem:
         return self.data[index]  # pylint:disable=E1136
 
     def __len__(self):
