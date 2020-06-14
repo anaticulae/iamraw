@@ -7,13 +7,23 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import collections
 import functools
+import typing
 
 import configo
 import utila
 import yaml
 
 import iamraw
+
+PageContentList = collections.namedtuple('PageContentList', 'page, content')
+PageContentLists = typing.List[PageContentList]
+
+ExtractedList = collections.namedtuple(
+    'ExtractedList',
+    'paragraph, merged, instance',
+)
 
 
 def dump_lists(lists: list) -> str:
@@ -39,7 +49,7 @@ def dump_lists(lists: list) -> str:
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_lists(content: str, pages=None) -> utila.Strings:
+def load_lists(content: str, pages=None) -> PageContentLists:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.safe_load(content)
     result = []
@@ -58,10 +68,10 @@ def load_lists(content: str, pages=None) -> utila.Strings:
             for entree in listinstance['content']:
                 # See (Number, Item)
                 number, text = entree.split(maxsplit=1)
-                # # try to convert to int/float
+                # try to convert to int/float
                 if number.isdigit():  # all decimal digits and not empty
                     number = int(number)
                 instance.append(text, number)
-            newpage.append((paragraph, merged, instance))
-        result.append((pagenumber, newpage))
+            newpage.append(ExtractedList(paragraph, merged, instance))
+        result.append(PageContentList(pagenumber, newpage))
     return result
