@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import collections
 import dataclasses
 import enum
 import typing
@@ -31,6 +32,8 @@ class PageList:
 
     data: ListItems = dataclasses.field(default_factory=list)
     area: typing.List[int] = dataclasses.field(default_factory=list)
+    paragraph: int = None
+    merged: int = None
 
     def append(self, title: str, level: str = None):
         self.data.append((level, title))  # pylint:disable=E1101
@@ -43,3 +46,7 @@ class PageList:
 
     def ltype(self):  # pylint:disable=R0201
         return ListType.UNDEFINED
+
+
+PageContentList = collections.namedtuple('PageContentList', 'page, content')
+PageContentLists = typing.List[PageContentList]

@@ -121,6 +121,8 @@ from iamraw.line import PageContentLine
 from iamraw.line import PageContentLines
 # list
 from iamraw.list import ListType
+from iamraw.list import PageContentList
+from iamraw.list import PageContentLists
 from iamraw.list import PageList
 # pages
 from iamraw.page import PageSizeBorder

@@ -7,9 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import collections
 import functools
-import typing
 
 import configo
 import utila
@@ -17,31 +15,24 @@ import yaml
 
 import iamraw
 
-PageContentList = collections.namedtuple('PageContentList', 'page, content')
-PageContentLists = typing.List[PageContentList]
-
-ExtractedList = collections.namedtuple(
-    'ExtractedList',
-    'paragraph, merged, instance',
-)
-
 
 def dump_lists(lists: list) -> str:
     raw = []
-    for (number, page) in lists:
+    for (pagenumber, pagecontent) in lists:
+        pagenumber = int(pagenumber)
         pageresult = []
-        for (paragraph, merged, content) in page:
+        for lists_ in pagecontent:
             # Number, Item
-            area = ' '.join([str(item) for item in content.area])
-            content = [f'{number} {item}' for (number, item) in content]
+            area = ' '.join([str(item) for item in lists_.area])
+            content = [f'{pnumber} {item}' for (pnumber, item) in lists_.data]
             pageresult.append({
                 'area': area,
                 'content': content,
-                'id': f'{paragraph} {merged}',
+                'id': f'{lists_.paragraph} {lists_.merged}',
             })
         if pageresult:
             raw.append({
-                'page': number,
+                'page': pagenumber,
                 'lists': pageresult,
             })
     dumped = yaml.safe_dump(raw)
@@ -49,7 +40,7 @@ def dump_lists(lists: list) -> str:
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_lists(content: str, pages=None) -> PageContentLists:
+def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.safe_load(content)
     result = []
@@ -64,7 +55,11 @@ def load_lists(content: str, pages=None) -> PageContentLists:
                 int(item) for item in listinstance['id'].split()
             ]
             area = [int(item) for item in listinstance['area'].split()]
-            instance = iamraw.PageList(area=area)
+            instance = iamraw.PageList(
+                area=area,
+                paragraph=paragraph,
+                merged=merged,
+            )
             for entree in listinstance['content']:
                 # See (Number, Item)
                 number, text = entree.split(maxsplit=1)
@@ -72,6 +67,6 @@ def load_lists(content: str, pages=None) -> PageContentLists:
                 if number.isdigit():  # all decimal digits and not empty
                     number = int(number)
                 instance.append(text, number)
-            newpage.append(ExtractedList(paragraph, merged, instance))
-        result.append(PageContentList(pagenumber, newpage))
+            newpage.append(instance)
+        result.append(iamraw.PageContentList(page=pagenumber, content=newpage))
     return result

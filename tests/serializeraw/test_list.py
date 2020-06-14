@@ -7,16 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from serializeraw import dump_lists
-from serializeraw import load_lists
-from tests.serializeraw.examples.list import EXAMPLE
+import serializeraw
+import tests.serializeraw.examples.list
 
 
 def test_words_list_dump_and_load_lists():
-    result = EXAMPLE
+    dumped = serializeraw.dump_lists(tests.serializeraw.examples.list.EXAMPLE)
+    loaded = serializeraw.load_lists(dumped)
 
-    dumped = dump_lists(result)
-    loaded = load_lists(dumped)
-    assert loaded == result
-    loaded = load_lists(dumped, (8, 24))
+    assert loaded == tests.serializeraw.examples.list.EXAMPLE
+    loaded = serializeraw.load_lists(dumped, (8, 24))
     assert len(loaded) == 2
