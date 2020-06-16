@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v1.26.0
+
+### Feature
+
+* improve list representation (569262579085)
+* introduce data types to store PageListContent (564fc68b7485)
+* log font accessing error (14e584c0bf3b)
+
+### Documentation
+
+* extend interface documentation (1a0b8fd882cd)
+
 ## v1.25.8
 
 ### Feature
