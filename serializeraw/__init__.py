@@ -91,6 +91,9 @@ from serializeraw.list import load_lists
 # pagenumbers
 from serializeraw.pagenumbers import dump_pagenumbers
 from serializeraw.pagenumbers import load_pagenumbers
+# quotes
+from serializeraw.quote import dump_blockquotes
+from serializeraw.quote import load_blockquotes
 # sections
 from serializeraw.sections import dump_sections
 from serializeraw.sections import load_sections

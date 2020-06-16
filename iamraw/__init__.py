@@ -130,6 +130,9 @@ from iamraw.page import PageSizeBorderList
 # person
 from iamraw.person import PROF_DR
 from iamraw.person import AcademicTitle
+# quote
+from iamraw.quote import PageContentBlockQuotes
+from iamraw.quote import PageContentBlockQuotesList
 # sections
 from iamraw.sections import AreaItem
 from iamraw.sections import DocumentSection
