@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.27.0
+
+### Feature
+
+* add method to dump, load and store block quotes (9fc2c7b5d5e2)
+
 ## v1.26.0
 
 ### Feature
