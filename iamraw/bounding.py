@@ -204,3 +204,15 @@ class PageBoundings:
 
 
 PageBoundingsList = typing.List[PageBoundings]
+
+
+def between(bounding, ymin, ymax):
+    """\
+    >>> between(BoundingBox(15, 15, 40, 40), 15, 40)
+    True
+    >>> between(BoundingBox(15, 15, 40, 40), 20, 40)
+    False
+    """
+    top = ymin <= bounding.y0 <= ymax
+    bottom = ymin <= bounding.y1 <= ymax
+    return top and bottom
