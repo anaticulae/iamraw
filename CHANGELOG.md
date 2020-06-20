@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.28.0
+
+### Feature
+
+* add between method to check that BoundingBox is in range (853e7d8906af)
+
 ## v1.27.2
 
 ## v1.27.1
