@@ -86,6 +86,11 @@ from iamraw.fontstore import FontChunk
 from iamraw.fontstore import FontChunks
 from iamraw.fontstore import FontContentStore
 from iamraw.fontstore import FontStore
+# formula
+from iamraw.formula import Formula
+from iamraw.formula import Formulas
+from iamraw.formula import PageContentFormula
+from iamraw.formula import PageContentFormulas
 # headerfooter
 from iamraw.headerfooter import FixedFooterInformation
 from iamraw.headerfooter import FixedHeaderInformation
