@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.29.0
+
+### Feature
+
+* add method to store, dump and load formulas (a66a44367de6)
+
 ## v1.28.0
 
 ### Feature
