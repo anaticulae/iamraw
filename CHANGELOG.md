@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.30.0
+
+### Feature
+
+* add images information loader (187db4111d5a)
+
 ## v1.29.0
 
 ### Feature
