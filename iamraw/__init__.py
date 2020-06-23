@@ -118,6 +118,8 @@ from iamraw.hits import PageContentHits
 # images
 from iamraw.images import ImageInformation
 from iamraw.images import ImageInformations
+from iamraw.images import PageContentImageInfo
+from iamraw.images import PageContentImageInfos
 # likelihood
 from iamraw.likelihood import Likelihood
 from iamraw.likelihood import PageContentLikelihood

@@ -7,8 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import collections
 import dataclasses
 import typing
+
+PageContentImageInfo = collections.namedtuple(
+    'PageContentImageInfo',
+    'content page',
+)
+PageContentImageInfos = typing.List[PageContentImageInfo]
 
 
 @dataclasses.dataclass

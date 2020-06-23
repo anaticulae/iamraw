@@ -7,7 +7,9 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import collections
 import functools
+import os
 
 import utila
 import yaml
@@ -50,3 +52,27 @@ def load_image_info(content: str) -> iamraw.ImageInformation:
             continue
         setattr(parsed, key, value)
     return parsed
+
+
+def load_image_informations_frompath(
+        path: str,
+        pages: tuple = None,
+) -> iamraw.PageContentImageInfos:
+    if not os.path.exists(path):
+        return []
+
+    files = utila.file_list(path, include='yaml')
+
+    collected = collections.defaultdict(list)
+    for item in files:
+        source = os.path.join(path, item)
+        loaded = load_image_info(source)
+        if utila.should_skip(loaded.page, pages):
+            continue
+        collected[loaded.page].append(loaded)
+    result = [
+        iamraw.PageContentImageInfo(page=key, content=value)
+        for key, value in collected.items()
+    ]
+    result.sort(key=lambda x: x.page)
+    return result
