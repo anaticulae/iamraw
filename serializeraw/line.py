@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import utila
 import yaml
 
@@ -16,6 +17,9 @@ def dump_lines(lines: iamraw.PageContentLines) -> str:
     lines = sorted(lines, key=lambda x: x.page)
     result = []
     for page in lines:
+        if not page.content:
+            # skip empty page
+            continue
         content = ['%.2f %.2f %.2f %.2f' % item for item in page.content]
         raw = {'page': page.page, 'content': content}
         result.append(raw)
