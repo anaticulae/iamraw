@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.30.1
+
+### Feature
+
+* skip empty page dumping (ee350310479c)
+
 ## v1.30.0
 
 ### Feature
