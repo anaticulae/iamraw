@@ -55,6 +55,9 @@ from serializeraw.date import date_str
 # document
 from serializeraw.document import dump_document
 from serializeraw.document import load_document
+# figures
+from serializeraw.figure import dump_figures
+from serializeraw.figure import load_figures
 # fonts
 from serializeraw.fonts import convert_flags as load_flags
 from serializeraw.fonts import dump_font_content

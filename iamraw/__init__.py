@@ -69,6 +69,9 @@ from iamraw.document import UnicodeChar
 from iamraw.document import VerticalTextContainer
 from iamraw.document import VerticalTextContainers
 from iamraw.document import VirtualChar
+# figures
+from iamraw.figure import Figure
+from iamraw.figure import Figures
 # fonts
 from iamraw.fonts import DEFAULT_STRETCH
 from iamraw.fonts import DEFAULT_STYLE
