@@ -46,6 +46,9 @@ from serializeraw.boxes import dump_boxes
 from serializeraw.boxes import dump_horizontals
 from serializeraw.boxes import load_boxes
 from serializeraw.boxes import load_horizontals
+# caption
+from serializeraw.caption import dump_captions
+from serializeraw.caption import load_captions
 # chapter
 from serializeraw.chapter import dump_chapter
 from serializeraw.chapter import load_chapter

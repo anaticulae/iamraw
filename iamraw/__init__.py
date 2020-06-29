@@ -50,6 +50,11 @@ from iamraw.boxes import PageContentBoxes
 from iamraw.boxes import PageContentHorizontals
 from iamraw.boxes import PagesWithBoxList
 from iamraw.boxes import PagesWithHorizontalList
+# captions
+from iamraw.caption import Caption
+from iamraw.caption import Captions
+from iamraw.caption import PageContentCaption
+from iamraw.caption import PageContentCaptions
 # date
 from iamraw.date import PDFDate
 # document
