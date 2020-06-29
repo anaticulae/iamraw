@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.31.0
+
+### Feature
+
+* add method to dump, load and store figures (172b4cc8e6b6)
+
 ## v1.30.1
 
 ### Feature
