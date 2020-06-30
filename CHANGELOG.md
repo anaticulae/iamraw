@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v1.31.1
+
+### Feature
+
+* move caption dump, load and store methods (c37aff69e795)
+
 ## v1.31.0
 
 ### Feature
