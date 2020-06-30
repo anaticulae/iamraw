@@ -60,9 +60,7 @@ def load_image_informations_frompath(
 ) -> iamraw.PageContentImageInfos:
     if not os.path.exists(path):
         return []
-
     files = utila.file_list(path, include='yaml')
-
     collected = collections.defaultdict(list)
     for item in files:
         source = os.path.join(path, item)
