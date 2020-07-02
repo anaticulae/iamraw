@@ -72,7 +72,8 @@ class TextStyle:
     @classmethod
     def textsizes(cls, item: 'TextStyle', method=max):
         assert isinstance(item, cls), type(item)
-        result = [char.size for char in item.content]
+        result = [[char.size] * (char.end - char.start) for char in item.content] # yapf:disable
+        result = utila.flatten(result)
         return method(result)
 
     @classmethod
