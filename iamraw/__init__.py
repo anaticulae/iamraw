@@ -57,6 +57,11 @@ from iamraw.caption import PageContentCaption
 from iamraw.caption import PageContentCaptions
 # date
 from iamraw.date import PDFDate
+# distance
+from iamraw.distance import AreaDistance
+from iamraw.distance import AreaDistances
+from iamraw.distance import PageContentAreaDistance
+from iamraw.distance import PageContentAreaDistances
 # document
 from iamraw.document import Boxed
 from iamraw.document import Char

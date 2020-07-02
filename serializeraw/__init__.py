@@ -55,6 +55,9 @@ from serializeraw.chapter import load_chapter
 # date
 from serializeraw.date import date_fromstr
 from serializeraw.date import date_str
+# distance
+from serializeraw.distance import dump_distance
+from serializeraw.distance import load_distance
 # document
 from serializeraw.document import dump_document
 from serializeraw.document import load_document
