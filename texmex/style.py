@@ -92,12 +92,13 @@ class TextInfo:
     bounding_mean: float = None
 
     def copy(self):
-        return TextInfo(
+        result = TextInfo(
             bounding=self.bounding.copy() if self.bounding else None,
             bounding_mean=self.bounding_mean,
             style=self.style.copy() if self.style else None,
             text=self.text,
         )
+        return result
 
     def __repr__(self):
         return self.text + utila.NEWLINE
