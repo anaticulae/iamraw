@@ -156,10 +156,12 @@ from iamraw.quote import PageContentBlockQuotes
 from iamraw.quote import PageContentBlockQuotesList
 # sections
 from iamraw.sections import AreaItem
+from iamraw.sections import AreaItems
 from iamraw.sections import DocumentSection
 from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
 from iamraw.sections import NotImplementedItem
+from iamraw.sections import SectionMixin
 from iamraw.sections import Sections
 # table
 from iamraw.table import PageContentTableBounding
