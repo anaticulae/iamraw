@@ -71,12 +71,7 @@ def load_sections(
 
     result = Sections()
     for section in loaded:
-        start, end = section['start'], section['end']
-        section_pages = range(start, end + 1)
-        inside = [
-            page for page in section_pages
-            if not utila.should_skip(page, pages)
-        ]
+        inside, section_pages = inside_section(section, pages)
         if not inside:
             # no part of current section is inside
             continue
@@ -89,6 +84,30 @@ def load_sections(
         shrinked = shrink_section(complete, pages)
         result.append(shrinked)
     return result
+
+
+def inside_section(section: dict, pages: tuple) -> list:
+    """\
+    # selective page inside
+    >>> inside_section({'start' : 0, 'end': 4}, pages=(3, 4, 5))
+    ([3], (0, 1, 2, 3))
+
+    # single page selected
+    >>> inside_section({'start' : 2, 'end': 2}, pages=(1, 2, 3, 4))
+    ([2], (2,))
+
+    # no page inside
+    >>> inside_section({'start' : 2, 'end': 10}, pages=(12, 13, 14))
+    ([], (2, 3, 4, 5, 6, 7, 8, 9))
+    """
+    start, end = section['start'], section['end']
+    if start == end:
+        end = end + 1
+    section_pages = tuple(range(start, end))
+    inside = [
+        page for page in section_pages if not utila.should_skip(page, pages)
+    ]
+    return inside, section_pages
 
 
 def dump_item(item):
