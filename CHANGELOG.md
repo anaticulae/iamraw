@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v2.0.0
+
+### Feature
+
+* replace text structure with more complex from words project (6ddaf6f98331)
+* extend public API (3489c5b6d08d)
+* inform about asserting data type (3c57ba2eaf44)
+* move methods to store, load and dump distance from groupme (25545f8d1821)
+
+### Fix
+
+* ensure to handle section content border correctly (88f1178446e5)
+* add number of char when determining text style statistics (b104c8da7ba6)
+
 ## v1.31.3
 
 ## v1.31.2
