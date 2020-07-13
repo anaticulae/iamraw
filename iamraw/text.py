@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import collections
 import dataclasses
 import enum
 import typing
@@ -48,5 +47,38 @@ ParagraphContent = typing.List[str]
 ParagraphItem = typing.Tuple[iamraw.headlines.Headline, ParagraphContent]
 Paragraphs = typing.List[ParagraphItem]
 
-PageContentText = collections.namedtuple('PageContentText', 'page, content')
+
+@dataclasses.dataclass
+class PageContentText:
+    page: int = None
+    content: list = None
+
+
 PageContentTexts = typing.List[PageContentText]
+
+
+@dataclasses.dataclass
+class HeadlineWithContent:
+    # TODO: DO WE REQUIRE THIS?
+    text: str = None
+    content: typing.List[str] = dataclasses.field(default_factory=list)
+
+
+@dataclasses.dataclass
+class TextSection:
+    headline: str = None
+    content: typing.List = dataclasses.field(default_factory=list)
+    pages: typing.List = dataclasses.field(default_factory=list)
+
+    def __getitem__(self, index):
+        # TODO: support tuple unpacking, remove later
+        if index > 1:
+            raise IndexError
+        return self.headline if index == 0 else self.content
+
+    def __eq__(self, value):
+        # TODO: support tuple unpacking, remove later
+        return self[0] == value[0] and self[1] == value[1]
+
+
+TextSections = typing.List[TextSection]

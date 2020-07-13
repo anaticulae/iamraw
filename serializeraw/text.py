@@ -13,12 +13,12 @@ import yaml
 import iamraw
 
 
-def dump_text(text: iamraw.ChapterTextList) -> str:
+def dump_text(text: iamraw.PageContentTexts) -> str:
     raw = []
     index = 0
-    for (page, content) in text:
-        collector = []
-        for headline, headline_content in content:
+    for item in text:
+        collected = []
+        for headline, headline_content in item.content:
             current = {
                 # placeholder headline
                 'headline': None,
@@ -30,10 +30,10 @@ def dump_text(text: iamraw.ChapterTextList) -> str:
                 index += 1
             for oneline in headline_content:
                 current['content'].append(oneline)
-            collector.append(current)
+            collected.append(current)
         raw.append({
-            'page': page,
-            'content': collector,
+            'page': item.page,
+            'content': collected,
         })
     dumped = yaml.dump(raw)
     return dumped
@@ -43,7 +43,7 @@ def load_text(
         content: str,
         headlines: iamraw.PagesHeadlineList = None,
         pages=None,
-) -> iamraw.ChapterTextList:
+) -> iamraw.PageContentTexts:
     """Load text and replace headline reference with current headline
 
     Args:
@@ -66,24 +66,41 @@ def load_text(
             continue
         pagecontent = []
         for section in content:
-            section_content, headline = section['content'], section['headline']
-            try:
-                headline = headlines[headline]
-            except (IndexError, TypeError):
-                if headline is not None:
-                    # None-Headline is expected on page start?
-                    msg = f'could not load headline: {headline} on page:{page}'
-                    utila.error(msg)
-                headline = None
-            if headline is None:
-                headline = iamraw.Headline(
-                    text=None,
-                    level=None,
-                    rawlevel=None,
-                    page=page,
-                    container=section['fc'],
-                )
-            pagecontent.append((headline, section_content))
-
-        result.append((page, pagecontent))
+            section_content = section['content']
+            headline = select_headline(headlines, section, page)
+            pagecontent.append(
+                iamraw.TextSection(
+                    headline=headline,
+                    content=section_content,
+                    pages=[page] * len(section_content),
+                ))
+        result.append(iamraw.PageContentText(
+            page=page,
+            content=pagecontent,
+        ))
     return result
+
+
+def select_headline(
+        headlines,
+        section,
+        page,
+) -> iamraw.Headline:
+    headline_selected = section['headline']
+    try:
+        headline_selected = headlines[headline_selected]
+    except (IndexError, TypeError):
+        if headline_selected is not None:
+            # None-Headline is expected on page start?
+            msg = f'could not load headline: {headline_selected} on page:{page}'
+            utila.error(msg)
+        headline_selected = None
+    if headline_selected is None:
+        headline_selected = iamraw.Headline(
+            text=None,
+            level=None,
+            rawlevel=None,
+            page=page,
+            container=section['fc'],
+        )
+    return headline_selected
