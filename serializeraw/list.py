@@ -24,7 +24,10 @@ def dump_lists(lists: list) -> str:
         for lists_ in pagecontent:
             # Number, Item
             area = ' '.join([str(item) for item in lists_.area])
-            content = [f'{pnumber} {item}' for (pnumber, item) in lists_.data]
+            content = []
+            for pnumber, item in lists_.data:
+                assert item, f'page: {pagenumber}; {pnumber} empty list content'
+                content.append(f'{pnumber} {item}')
             pageresult.append({
                 'area': area,
                 'content': content,
@@ -62,7 +65,12 @@ def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
             )
             for entree in listinstance['content']:
                 # See (Number, Item)
-                number, text = entree.split(maxsplit=1)
+                try:
+                    number, text = entree.split(maxsplit=1)
+                except ValueError:
+                    utila.error('could not load list properly '
+                                f'on page {pagenumber}: {entree}')
+                    number, text = '', entree
                 # try to convert to int/float
                 if number.isdigit():  # all decimal digits and not empty
                     number = int(number)
