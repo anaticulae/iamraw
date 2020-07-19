@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v2.1.0
+
+### Feature
+
+* add data structure to store raw formulas (db3b5f44b3ee)
+
+### Fix
+
+* ensure to dump valid lists (ddddd080760b)
+
 ## v2.0.0
 
 ### Feature
