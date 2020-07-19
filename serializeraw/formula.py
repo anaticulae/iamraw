@@ -34,3 +34,24 @@ def load_formulas(
         item for item in loaded if not utila.should_skip(item.page, pages)
     ]
     return result
+
+
+def dump_rawformulas(pages: iamraw.PageContentRawFormulas) -> str:
+    # remove empty pages
+    result = [item for item in pages if item.content]
+    # convert
+    dumped = yaml.dump(result)
+    return dumped
+
+
+def load_rawformulas(
+        content: str,
+        pages: tuple = None,
+) -> iamraw.PageContentRawFormulas:
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
+
+    result = [
+        item for item in loaded if not utila.should_skip(item.page, pages)
+    ]
+    return result

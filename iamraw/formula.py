@@ -11,6 +11,8 @@ import collections
 import dataclasses
 import typing
 
+import utila
+
 PageContentFormula = collections.namedtuple(
     'PageContentFormula',
     'content page',
@@ -29,3 +31,51 @@ class Formula:
 
 
 Formulas = typing.List[Formula]
+
+PageContentRawFormula = collections.namedtuple(
+    'PageContentRawFormula',
+    'content page',
+)
+
+PageContentRawFormulas = typing.List[PageContentRawFormula]
+
+
+@dataclasses.dataclass
+class MathChar:
+    bounding: tuple = None
+    size: float = None
+    value: str = None
+
+
+MathChars = typing.List[MathChar]
+
+
+@dataclasses.dataclass
+class FormulaRaw:
+
+    page: int = None
+    content: MathChars = dataclasses.field(default_factory=list)
+
+    def append(self, item):
+        self.content.append(item)  # pylint:disable=E1101
+
+    def __getitem__(self, index):
+        return self.content[index]  # pylint:disable=E1136
+
+    @property
+    def bounding(self) -> tuple:
+        boundings = [item.bounding for item in self.content]  # pylint:disable=E1133
+        result = max_bounding(boundings)
+        return result
+
+
+def max_bounding(boundings: list) -> tuple:
+    # TODO: MOVE TO UTILA
+    x0 = utila.mins([item[0] for item in boundings])
+    y0 = utila.mins([item[1] for item in boundings])
+    x1 = utila.maxs([item[2] for item in boundings])
+    y1 = utila.maxs([item[3] for item in boundings])
+    return (x0, y0, x1, y1)
+
+
+FormulasRaw = typing.List[FormulaRaw]

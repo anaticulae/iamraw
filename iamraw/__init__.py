@@ -101,9 +101,15 @@ from iamraw.fontstore import FontContentStore
 from iamraw.fontstore import FontStore
 # formula
 from iamraw.formula import Formula
+from iamraw.formula import FormulaRaw
 from iamraw.formula import Formulas
+from iamraw.formula import FormulasRaw
+from iamraw.formula import MathChar
+from iamraw.formula import MathChars
 from iamraw.formula import PageContentFormula
 from iamraw.formula import PageContentFormulas
+from iamraw.formula import PageContentRawFormula
+from iamraw.formula import PageContentRawFormulas
 # headerfooter
 from iamraw.headerfooter import FixedFooterInformation
 from iamraw.headerfooter import FixedHeaderInformation
