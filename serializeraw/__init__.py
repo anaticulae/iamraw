@@ -111,6 +111,9 @@ from serializeraw.quote import load_blockquotes
 # sections
 from serializeraw.sections import dump_sections
 from serializeraw.sections import load_sections
+# style
+from serializeraw.style import dump_doctextstyle
+from serializeraw.style import load_doctextstyle
 # table
 from serializeraw.table import dump_tables
 from serializeraw.table import load_tables

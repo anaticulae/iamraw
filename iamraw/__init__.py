@@ -169,6 +169,12 @@ from iamraw.sections import MultipleSection
 from iamraw.sections import NotImplementedItem
 from iamraw.sections import SectionMixin
 from iamraw.sections import Sections
+# style
+from iamraw.style import DocTextStyle
+from iamraw.style import PageTextProperties
+from iamraw.style import PageTextPropertiesList
+from iamraw.style import TextProperties
+from iamraw.style import TextProperty
 # table
 from iamraw.table import PageContentTableBounding
 from iamraw.table import PageContentTableBoundings
