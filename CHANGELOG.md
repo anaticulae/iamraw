@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.2.0
+
+### Feature
+
+* move method to dump, load and store doctextstyle (68f0dfeb0325)
+
 ## v2.1.0
 
 ### Feature
