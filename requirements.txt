@@ -9,5 +9,5 @@
 
 PyYAML==5.1
 
-configo==0.6.18
-utila==2.5.0
+configo==0.7.1
+utila==2.6.0
