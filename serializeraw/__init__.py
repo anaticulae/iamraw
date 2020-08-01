@@ -76,9 +76,10 @@ from serializeraw.fontstore import create_fontstore
 from serializeraw.fontstore import create_fontstore_frompath
 # formula
 from serializeraw.formula import dump_formulas
-from serializeraw.formula import dump_rawformulas
 from serializeraw.formula import load_formulas
-from serializeraw.formula import load_rawformulas
+# formularaw
+from serializeraw.formularaw import dump_rawformulas
+from serializeraw.formularaw import load_rawformulas
 # headerfooter
 from serializeraw.headerfooter import dump_footnote
 from serializeraw.headerfooter import dump_headerfooter
