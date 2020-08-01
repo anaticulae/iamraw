@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v2.3.0
+
+### Feature
+
+* add path method for extracted images and formulas (d1f674467a44)
+* improve readability of raw formula serializer (4184931e513d)
+
+### Documentation
+
+* add formula dump and load test (752271d57182)
+
 ## v2.2.0
 
 ### Feature
