@@ -7,21 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
+import functools
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
+import yaml
 
-from iamraw import BoundingBox
-from iamraw import PageContentTextPosition
-from iamraw import PageContentTextPositions
+import iamraw
 
 
-def dump_textpositions(items: PageContentTextPositions) -> str:
+def dump_textpositions(items: iamraw.PageContentTextPositions) -> str:
     result = []
     for page in items:
         pagenumber = page.page
@@ -36,35 +31,35 @@ def dump_textpositions(items: PageContentTextPositions) -> str:
             'content': raw,
             'page': pagenumber,
         })
-    dumped = dump(result)
+    dumped = yaml.dump(result)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
-def load_textpositions(content: str, pages=None) -> PageContentTextPositions:
-    content = from_raw_or_path(
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_textpositions(
+        content: str,
+        pages=None,
+) -> iamraw.PageContentTextPositions:
+    content = utila.from_raw_or_path(
         content,
         fname='rawmaker__text_positions',
         ftype='yaml',
     )
-    loaded = load(content, Loader=FullLoader)
-
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if should_skip(pagenumber, pages):
+        if utila.should_skip(pagenumber, pages):
             continue
         pagedata = {}
         for item in page['content']:
             key, data = item.split(maxsplit=1)
             bounding, mean = data.rsplit(maxsplit=1)
             mean = float(mean)
-            pagedata[int(key)] = (BoundingBox.from_str(bounding), mean)
-
+            pagedata[int(key)] = (iamraw.BoundingBox.from_str(bounding), mean)
         if not content:
             continue
-
-        textposition = PageContentTextPosition(
+        textposition = iamraw.PageContentTextPosition(
             content=pagedata,
             page=pagenumber,
         )
