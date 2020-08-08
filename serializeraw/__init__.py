@@ -19,6 +19,8 @@ PYTHONHASHSEED:
 
 """
 
+# patch yaml dump method
+import serializeraw.__patch__
 # abbreviations
 from serializeraw.abbreviation import dump_abbreviation
 from serializeraw.abbreviation import dump_abbreviation_table
