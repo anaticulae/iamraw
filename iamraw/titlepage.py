@@ -90,6 +90,8 @@ class TitlePage:
     matrikel: Matrikel = None
     examiner: typing.List[Person] = dataclasses.field(default_factory=list)
     institution: Institution = None
+    # page in pdf location to signal if first page was skipped
+    pageraw: int = None
 
 
 TitlePages = typing.List[TitlePage]
