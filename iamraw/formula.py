@@ -70,7 +70,6 @@ class FormulaRaw:
 
 
 def max_bounding(boundings: list) -> tuple:
-    # TODO: MOVE TO UTILA
     x0 = utila.mins([item[0] for item in boundings])
     y0 = utila.mins([item[1] for item in boundings])
     x1 = utila.maxs([item[2] for item in boundings])
