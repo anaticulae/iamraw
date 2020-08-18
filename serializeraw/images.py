@@ -18,7 +18,7 @@ import iamraw
 
 
 def dump_image_info(info: iamraw.ImageInformation) -> str:
-    assert isinstance(info, iamraw.ImageInformation)
+    assert isinstance(info, iamraw.ImageInformation), type(info)
     result = {}
     if info.height is not None:
         result['height'] = info.height
