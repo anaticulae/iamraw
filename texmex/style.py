@@ -49,6 +49,7 @@ HighNotes = typing.List[HighNote]
 @dataclasses.dataclass
 class TextStyle:
     content: CharStyles = dataclasses.field(default_factory=list)
+    rotation: float = 0.0
 
     def __post_init__(self):
         if not self.content:

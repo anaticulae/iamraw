@@ -348,7 +348,7 @@ class PageTextNavigatorMode(enum.Enum):
     VERTICAL = enum.auto()
 
 
-def create_pagetextnavigators(  # pylint:disable=R0914
+def create_pagetextnavigators(  # pylint:disable=R0914,R1260
         text: iamraw.Document,
         text_positions,
         fontstore: iamraw.FontStore = None,
@@ -385,6 +385,8 @@ def create_pagetextnavigators(  # pylint:disable=R0914
                         )
                         char.font = fontid
                 style = texmex.style.create_textstyle(line.chars)
+                if isinstance(item, iamraw.VerticalTextContainer):
+                    style.rotation = 1.0
                 # TODO: Remove strip after container is fixed
                 if not line.text.strip():
                     # skip bad removed rawmaker extraction
