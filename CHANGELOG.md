@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v2.4.0
+
+### Feature
+
+* add rotation to signal rotated text/chars (ab04e0d1a9af)
+* complain about wrongly used data type (200f81b0b53d)
+* add location of parsing source (efd8ba2927a8)
+* increase readability of yaml files (f92b6bfb0358)
+
 ## v2.3.0
 
 ### Feature
