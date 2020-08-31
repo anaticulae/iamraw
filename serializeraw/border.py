@@ -100,3 +100,32 @@ def border_fromraw(border: str) -> iamraw.Border:
     except ValueError as error:
         utila.debug('%s %r' % (error, border))
         return iamraw.Border(None, None, None, None)
+
+
+def load_leftright_border(path: str, pages: tuple = None) -> dict:
+    raw = utila.from_raw_or_path(
+        path,
+        ftype='yaml',
+        fname='groupme__border_leftright',
+    )
+    loaded = yaml.safe_load(raw)
+    lookup = {}
+    for line in loaded:
+        page, border = line.split(maxsplit=1)
+        page = int(page)
+        border = utila.parse_tuple(border, length=4)
+        if utila.should_skip(page, pages):
+            continue
+        # content = utila.parse_tuple(border)
+        lookup[page] = border
+    return lookup
+
+
+def dump_leftright_border(result: list) -> str:
+    """Convert a list of page borders(items) to yaml.
+
+    item = (pagenumber, left, right, top, bottom)
+    """
+    result = [utila.from_tuple(item) for item in result]
+    dumped = yaml.safe_dump(result)
+    return dumped

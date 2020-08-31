@@ -35,7 +35,9 @@ from serializeraw.annotation import load_annotations
 from serializeraw.bibliography import dump_bibliography_reference
 from serializeraw.bibliography import load_bibliography_reference
 # border
+from serializeraw.border import dump_leftright_border
 from serializeraw.border import dump_pageborders
+from serializeraw.border import load_leftright_border
 from serializeraw.border import load_pageborders
 # bounding
 from serializeraw.bounding import dump_boundingboxes
