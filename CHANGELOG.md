@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v2.4.2
+
+### Feature
+
+* add method to dump and load leftright page border (007fcf0f6cea)
+
 ## v2.4.1
 
 ## v2.4.0
