@@ -190,6 +190,16 @@ class FigureTable(AreaItem):
 
 
 @dataclasses.dataclass
+class TableTable(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
+class Abstract(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
 class SymbolTable(AreaItem):
     pass
 

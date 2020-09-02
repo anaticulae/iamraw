@@ -14,6 +14,7 @@ import utila
 import yaml
 
 from iamraw.sections import AbbreviationTable
+from iamraw.sections import Abstract
 from iamraw.sections import Appendix
 from iamraw.sections import Bibliography
 from iamraw.sections import Chapter
@@ -30,6 +31,7 @@ from iamraw.sections import Sections
 from iamraw.sections import SymbolTable
 from iamraw.sections import Table
 from iamraw.sections import TableOfContent
+from iamraw.sections import TableTable
 from iamraw.sections import Text
 from iamraw.sections import TitlePage
 from iamraw.sections import Unknown
@@ -173,6 +175,7 @@ def generate_ctor():
     # TODO: automate this
     items = [
         AbbreviationTable,
+        Abstract,
         Appendix,
         Bibliography,
         Chapter,
@@ -188,6 +191,7 @@ def generate_ctor():
         SymbolTable,
         Table,
         TableOfContent,
+        TableTable,
         Text,
         TitlePage,
         Unknown,
