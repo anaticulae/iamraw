@@ -77,3 +77,19 @@ def images(path: str, prefix: str = '') -> str:
 
 def formula(path: str, prefix: str = '') -> str:
     return utila.pathconnector(path, 'rawmaker', 'formula_formula', prefix)
+
+
+def figure_caption(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'caption', 'figure_caption', prefix)
+
+
+def image_caption(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'caption', 'image_caption', prefix)
+
+
+def table_caption(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'caption', 'table_caption', prefix)
+
+
+def general_cation(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'caption', 'general_general', prefix)
