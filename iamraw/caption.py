@@ -26,3 +26,32 @@ PageContentCaption = collections.namedtuple(
     'page content',
 )
 PageContentCaptions = typing.List[PageContentCaption]
+
+
+def pagecaptions_toraw(pagecaptions: PageContentCaptions) -> list:
+    result = []
+    for item in pagecaptions:
+        pagecontent = item.content
+        if not pagecontent:
+            continue
+        collected = [caption_toraw(it) for it in pagecontent]
+        result.append({
+            'page': item.page,
+            'captions': collected,
+        })
+    return result
+
+
+def caption_toraw(caption: Caption) -> dict:
+    """\
+    >>> caption_toraw(Caption(line=3, lineend=5, raw='I am a caption'))
+    {'line': 3, 'raw': 'I am a caption', 'lineend': 5}
+    """
+    assert caption.line is not None
+    result = {
+        'line': caption.line,
+        'raw': caption.raw,
+    }
+    if caption.lineend is not None:
+        result['lineend'] = caption.lineend
+    return result
