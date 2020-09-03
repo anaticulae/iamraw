@@ -55,7 +55,7 @@ PageContentMultiLines = typing.List[PageContentMultiLine]
 
 
 @dataclasses.dataclass
-class MultilineGroup():
+class MultilineGroup:
     """Group of following text lines with equal properties.
 
     Public Attributes:
@@ -65,6 +65,7 @@ class MultilineGroup():
     text: list = dataclasses.field(default_factory=list)
     size: float = None
     firstid: int = None
+    bounding: tuple = None
 
     def append(self, item):
         self.text.append(item)  # pylint:disable=E1101
@@ -316,13 +317,25 @@ def group_page_by_size_distance(content: PageTextNavigator):
         # TODO: make container more pythonic
         size = groupcontent[0].style.content[0].size
         firstid = group[0]
+        bounding = rectangle_single([item.bounding for item in groupcontent])
         result.append(
             MultilineGroup(
-                text=groupcontent,
-                size=size,
+                bounding=bounding,
                 firstid=firstid,
+                size=size,
+                text=groupcontent,
             ))
     return result
+
+
+def rectangle_single(items: list) -> tuple:
+    # TODO: REPLACE WITH UTILA CODE
+    assert items, 'no rectangles given'
+    x0 = utila.mins(item[0] for item in items)
+    x1 = utila.maxs(item[2] for item in items)
+    y0 = utila.mins(item[1] for item in items)
+    y1 = utila.maxs(item[3] for item in items)
+    return x0, y0, x1, y1
 
 
 def gradient(items):
