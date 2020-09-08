@@ -12,9 +12,8 @@ import iamraw
 
 def test_headline_start_end():
     ranged = iamraw.Headline(
-        text='RestructuredText Tutorial',
+        title='RestructuredText Tutorial',
         level=2,
-        rawlevel='',
         container=(1, 5),
         page=6,
     )
@@ -22,9 +21,8 @@ def test_headline_start_end():
     assert ranged.end == 5
 
     not_ranged = iamraw.Headline(
-        text='RestructuredText Tutorial',
+        title='RestructuredText Tutorial',
         level=2,
-        rawlevel='',
         container=3,
         page=6,
     )

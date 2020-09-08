@@ -18,12 +18,12 @@ EXAMPLE = [
         6,
         [
             (Headline(
-                text='CHAPTER 1', level=1, rawlevel=None, page=6, container=0),
-             []),
+                title='CHAPTER 1', level=1, raw_level=None, page=6,
+                container=0), []),
             (Headline(
-                text='RestructuredText Tutorial',
+                title='RestructuredText Tutorial',
                 level=2,
-                rawlevel=None,
+                raw_level=None,
                 page=6,
                 container=1), []),
         ],
@@ -32,16 +32,16 @@ EXAMPLE = [
         8,
         [
             (Headline(
-                text='CHAPTER 2', level=1, rawlevel=None, page=8, container=0),
-             []),
+                title='CHAPTER 2', level=1, raw_level=None, page=8,
+                container=0), []),
             (Headline(
-                text='RestructuredText Guide',
+                title='RestructuredText Guide',
                 level=2,
-                rawlevel=None,
+                raw_level=None,
                 page=8,
                 container=1), []),
             (Headline(
-                text='Basics', level=3, rawlevel=None, page=8, container=2
+                title='Basics', level=3, raw_level=None, page=8, container=2
             ), [
                 'Improving upon the pattern established at http://markdown-guide.readthedocs.org/en/latest/basics.html, sections to add:',
                 '0l', '0l', '0l', '0l', '0l', '0l', '0l', '0l', '0l', '0l',
@@ -53,9 +53,9 @@ EXAMPLE = [
         9,
         [
             (Headline(
-                text='Blockquotes',
+                title='Blockquotes',
                 level=3,
-                rawlevel=None,
+                raw_level=None,
                 page=9,
                 container=1,
             ), [
@@ -63,9 +63,9 @@ EXAMPLE = [
                 'RestructuredText:', '1b', '1b', '1b', '1b', 'Output:', '0b'
             ]),
             (Headline(
-                text='Code: Block',
+                title='Code: Block',
                 level=3,
-                rawlevel=None,
+                raw_level=None,
                 page=9,
                 container=10), ['TODO']),
         ],
@@ -74,12 +74,15 @@ EXAMPLE = [
         10,
         [
             (Headline(
-                text='CHAPTER 3', level=1, rawlevel=None, page=10, container=0),
-             []),
+                title='CHAPTER 3',
+                level=1,
+                raw_level=None,
+                page=10,
+                container=0), []),
             (Headline(
-                text='RestructuredText Customizations',
+                title='RestructuredText Customizations',
                 level=2,
-                rawlevel=None,
+                raw_level=None,
                 page=10,
                 container=1), ['Sphinx:']),
         ],
@@ -88,21 +91,24 @@ EXAMPLE = [
         12,
         [
             (Headline(
-                text='CHAPTER 4', level=1, rawlevel=None, page=12, container=0),
-             []),
+                title='CHAPTER 4',
+                level=1,
+                raw_level=None,
+                page=12,
+                container=0), []),
             (Headline(
-                text='Sphinx Tutorial',
+                title='Sphinx Tutorial',
                 level=2,
-                rawlevel=None,
+                raw_level=None,
                 page=12,
                 container=1), []),
             (Headline(
-                text='Step 1', level=3, rawlevel=None, page=12, container=2),
+                title='Step 1', level=3, raw_level=None, page=12, container=2),
              []),
             (Headline(
-                text='Getting Set Up',
+                title='Getting Set Up',
                 level=3,
-                rawlevel=None,
+                raw_level=None,
                 page=12,
                 container=3
             ), [
@@ -127,7 +133,7 @@ EXAMPLE = [
         13,
         [
             (Headline(
-                text=None, level=None, rawlevel=None, page=13, container=0
+                title=None, level=None, raw_level=None, page=13, container=0
             ), [
                 'Getting Started',
                 'Now you are ready to creating documentation.',
@@ -168,9 +174,9 @@ EXAMPLE = [
         14,
         [
             (Headline(
-                text='Documenting a Project',
+                title='Documenting a Project',
                 level=3,
-                rawlevel=None,
+                raw_level=None,
                 page=14,
                 container=1
             ), [
@@ -201,7 +207,7 @@ EXAMPLE = [
         15,
         [(
             Headline(
-                text=None, level=None, rawlevel=None, page=15, container=0),
+                title=None, level=None, raw_level=None, page=15, container=0),
             [
                 '2b',
                 '2b',
@@ -234,9 +240,9 @@ EXAMPLE = [
             ],
         ),
          (Headline(
-             text='Aside: Other formats',
+             title='Aside: Other formats',
              level=3,
-             rawlevel=None,
+             raw_level=None,
              page=15,
              container=21), [])],
     ),
@@ -244,7 +250,7 @@ EXAMPLE = [
         16,
         [
             (Headline(
-                text=None, level=None, rawlevel=None, page=16, container=0
+                title=None, level=None, raw_level=None, page=16, container=0
             ), [
                 'Make a manpage',
                 'The beauty of Sphinx is that it can output in multiple formats, not just HTML.',
@@ -263,12 +269,12 @@ EXAMPLE = [
                 'Youll notice that it included the documents in the order that your TOC Tree was defined.'
             ]),
             (Headline(
-                text='Step 2', level=3, rawlevel=None, page=16, container=12),
+                title='Step 2', level=3, raw_level=None, page=16, container=12),
              []),
             (Headline(
-                text='Referencing Code',
+                title='Referencing Code',
                 level=3,
-                rawlevel=None,
+                raw_level=None,
                 page=16,
                 container=13
             ), [
@@ -284,7 +290,7 @@ EXAMPLE = [
         17,
         [
             (Headline(
-                text=None, level=None, rawlevel=None, page=17, container=0),
+                title=None, level=None, raw_level=None, page=17, container=0),
              ['0b', '0b', '0b', '0b', '0b', '0b', '0b', '0b', '0b', '0b']),
         ],
     ),
@@ -292,12 +298,15 @@ EXAMPLE = [
         18,
         [
             (Headline(
-                text='CHAPTER 5', level=1, rawlevel=None, page=18, container=0),
-             []),
+                title='CHAPTER 5',
+                level=1,
+                raw_level=None,
+                page=18,
+                container=0), []),
             (Headline(
-                text='Sphinx Guide',
+                title='Sphinx Guide',
                 level=2,
-                rawlevel=None,
+                raw_level=None,
                 page=18,
                 container=1), []),
         ],
@@ -306,12 +315,15 @@ EXAMPLE = [
         20,
         [
             (Headline(
-                text='CHAPTER 6', level=1, rawlevel=None, page=20, container=0),
-             []),
+                title='CHAPTER 6',
+                level=1,
+                raw_level=None,
+                page=20,
+                container=0), []),
             (Headline(
-                text='Sphinx Customizations',
+                title='Sphinx Customizations',
                 level=2,
-                rawlevel=None,
+                raw_level=None,
                 page=20,
                 container=1), ['Utilities:']),
         ],
@@ -320,12 +332,15 @@ EXAMPLE = [
         22,
         [
             (Headline(
-                text='CHAPTER 7', level=1, rawlevel=None, page=22, container=0),
-             []),
+                title='CHAPTER 7',
+                level=1,
+                raw_level=None,
+                page=22,
+                container=0), []),
             (Headline(
-                text='Testing your Documentation',
+                title='Testing your Documentation',
                 level=2,
-                rawlevel=None,
+                raw_level=None,
                 page=22,
                 container=1
             ), [
@@ -340,12 +355,15 @@ EXAMPLE = [
         24,
         [
             (Headline(
-                text='CHAPTER 8', level=1, rawlevel=None, page=24, container=0),
-             []),
+                title='CHAPTER 8',
+                level=1,
+                raw_level=None,
+                page=24,
+                container=0), []),
             (Headline(
-                text='Indices and tables',
+                title='Indices and tables',
                 level=2,
-                rawlevel=None,
+                raw_level=None,
                 page=24,
                 container=1), ['2l', '2l', '2l']),
         ],
@@ -354,111 +372,118 @@ EXAMPLE = [
 
 HEADLINES = [
     [
-        Headline(text='CHAPTER 1', level=1, rawlevel=None, page=6, container=0),
         Headline(
-            text='RestructuredText Tutorial',
+            title='CHAPTER 1', level=1, raw_level=None, page=6, container=0),
+        Headline(
+            title='RestructuredText Tutorial',
             level=2,
-            rawlevel=None,
+            raw_level=None,
             page=6,
             container=1)
     ],
     [
-        Headline(text='CHAPTER 2', level=1, rawlevel=None, page=8, container=0),
         Headline(
-            text='RestructuredText Guide',
+            title='CHAPTER 2', level=1, raw_level=None, page=8, container=0),
+        Headline(
+            title='RestructuredText Guide',
             level=2,
-            rawlevel=None,
+            raw_level=None,
             page=8,
             container=1),
-        Headline(text='Basics', level=3, rawlevel=None, page=8, container=2)
+        Headline(title='Basics', level=3, raw_level=None, page=8, container=2)
     ],
     [
         Headline(
-            text='Blockquotes', level=3, rawlevel=None, page=9, container=1),
+            title='Blockquotes', level=3, raw_level=None, page=9, container=1),
         Headline(
-            text='Code: Block', level=3, rawlevel=None, page=9, container=10)
+            title='Code: Block', level=3, raw_level=None, page=9, container=10)
     ],
     [
         Headline(
-            text='CHAPTER 3', level=1, rawlevel=None, page=10, container=0),
+            title='CHAPTER 3', level=1, raw_level=None, page=10, container=0),
         Headline(
-            text='RestructuredText Customizations',
+            title='RestructuredText Customizations',
             level=2,
-            rawlevel=None,
+            raw_level=None,
             page=10,
             container=1)
     ],
     [
         Headline(
-            text='CHAPTER 4', level=1, rawlevel=None, page=12, container=0),
+            title='CHAPTER 4', level=1, raw_level=None, page=12, container=0),
         Headline(
-            text='Sphinx Tutorial',
+            title='Sphinx Tutorial',
             level=2,
-            rawlevel=None,
+            raw_level=None,
             page=12,
             container=1),
-        Headline(text='Step 1', level=3, rawlevel=None, page=12, container=2),
+        Headline(title='Step 1', level=3, raw_level=None, page=12, container=2),
         Headline(
-            text='Getting Set Up', level=3, rawlevel=None, page=12, container=3)
+            title='Getting Set Up',
+            level=3,
+            raw_level=None,
+            page=12,
+            container=3)
     ],
     [
         Headline(
-            text='Documenting a Project',
+            title='Documenting a Project',
             level=3,
-            rawlevel=None,
+            raw_level=None,
             page=14,
             container=1)
     ],
     [
         Headline(
-            text='Aside: Other formats',
+            title='Aside: Other formats',
             level=3,
-            rawlevel=None,
+            raw_level=None,
             page=15,
             container=21)
     ],
     [
-        Headline(text='Step 2', level=3, rawlevel=None, page=16, container=12),
         Headline(
-            text='Referencing Code',
+            title='Step 2', level=3, raw_level=None, page=16, container=12),
+        Headline(
+            title='Referencing Code',
             level=3,
-            rawlevel=None,
+            raw_level=None,
             page=16,
             container=13)
     ],
     [
         Headline(
-            text='CHAPTER 5', level=1, rawlevel=None, page=18, container=0),
+            title='CHAPTER 5', level=1, raw_level=None, page=18, container=0),
         Headline(
-            text='Sphinx Guide', level=2, rawlevel=None, page=18, container=1)
+            title='Sphinx Guide', level=2, raw_level=None, page=18, container=1)
     ],
     [
         Headline(
-            text='CHAPTER 6', level=1, rawlevel=None, page=20, container=0),
+            title='CHAPTER 6', level=1, raw_level=None, page=20, container=0),
         Headline(
-            text='Sphinx Customizations',
+            title='Sphinx Customizations',
             level=2,
-            rawlevel=None,
+            raw_level=None,
             page=20,
             container=1)
     ],
     [
         Headline(
-            text='CHAPTER 7', level=1, rawlevel=None, page=22, container=0),
+            title='CHAPTER 7', level=1, raw_level=None, page=22, container=0),
         Headline(
-            text='Testing your Documentation',
+            title='Testing your Documentation',
             level=2,
-            rawlevel=None,
+            raw_level=None,
             page=22,
             container=1)
     ],
     [
         Headline(
-            text='CHAPTER 8', level=1, rawlevel=None, page=24, container=0),
+            title='CHAPTER 8', level=1, raw_level=None, page=24, container=0),
         Headline(
-            text='Indices and tables',
+            title='Indices and tables',
             level=2,
-            rawlevel=None,
+            raw_level=None,
             page=24,
             container=1)
     ],
