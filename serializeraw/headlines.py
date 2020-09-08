@@ -28,8 +28,8 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
                 'container': container,
                 'level': item.level,
                 'page': item.page,
-                'rawlevel': item.rawlevel,
-                'text': item.text,
+                'raw_level': item.raw_level,
+                'title': item.title,
             })
         if not content:
             # do not write empty pages
@@ -66,13 +66,13 @@ def load_headlines(content: str, pages=None) -> iamraw.PagesHeadlineList:
             if level is not None:
                 level = int(level)
             else:
-                utila.error(f'headline level is None: {headline["text"]}')
+                utila.error(f'headline level is None: {headline["title"]}')
             item = iamraw.Headline(
                 container=container,
                 level=level,
                 page=pagenumber,
-                rawlevel=headline['rawlevel'],
-                text=headline['text'],
+                raw_level=headline['raw_level'],
+                title=headline['title'],
             )
             loadedstep.append(item)
         if loadedstep:

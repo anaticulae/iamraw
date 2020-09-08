@@ -25,7 +25,7 @@ def dump_text(text: iamraw.PageContentTexts) -> str:
                 'fc': headline.container,
                 'content': [],
             }
-            if headline.text is not None:
+            if headline.title is not None:
                 current['headline'] = index
                 index += 1
             for oneline in headline_content:
@@ -97,9 +97,9 @@ def select_headline(
         headline_selected = None
     if headline_selected is None:
         headline_selected = iamraw.Headline(
-            text=None,
+            title=None,
             level=None,
-            rawlevel=None,
+            raw_level=None,
             page=page,
             container=section['fc'],
         )

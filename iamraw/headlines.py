@@ -14,9 +14,10 @@ import typing
 
 @dataclasses.dataclass
 class Headline:
-    text: str
+    title: str
     level: int = dataclasses.field(default=0)
-    rawlevel: str = dataclasses.field(default=None, compare=False)
+    raw: str = dataclasses.field(default=None)
+    raw_level: str = dataclasses.field(default=None, compare=False)
     page: int = dataclasses.field(default=-1)
     container: int = dataclasses.field(default=None)
 
