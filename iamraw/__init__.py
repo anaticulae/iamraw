@@ -82,6 +82,16 @@ from iamraw.document import VirtualChar
 # figures
 from iamraw.figure import Figure
 from iamraw.figure import Figures
+# findings
+from iamraw.findings import BoundingLocation
+from iamraw.findings import Finding
+from iamraw.findings import FindingLevel
+from iamraw.findings import Findings
+from iamraw.findings import Location
+from iamraw.findings import PageFinding
+from iamraw.findings import PageFindings
+from iamraw.findings import RangedLocation
+from iamraw.findings import select_findings
 # fonts
 from iamraw.fonts import DEFAULT_STRETCH
 from iamraw.fonts import DEFAULT_STYLE
@@ -170,6 +180,12 @@ from iamraw.sections import MultipleSection
 from iamraw.sections import NotImplementedItem
 from iamraw.sections import SectionMixin
 from iamraw.sections import Sections
+# solution
+from iamraw.solution import Doctails
+from iamraw.solution import ProblemStatus
+from iamraw.solution import Solution
+from iamraw.solution import Text
+from iamraw.solution import Web
 # style
 from iamraw.style import DocTextStyle
 from iamraw.style import PageTextProperties

@@ -68,6 +68,9 @@ from serializeraw.document import load_document
 # figures
 from serializeraw.figure import dump_figures
 from serializeraw.figure import load_figures
+# findings
+from serializeraw.findings import dump_findings
+from serializeraw.findings import load_findings
 # fonts
 from serializeraw.fonts import convert_flags as load_flags
 from serializeraw.fonts import dump_font_content
