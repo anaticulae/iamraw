@@ -6,6 +6,13 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""Person
+======
+
+>>> assert AcademicTitle.STUDENT < AcademicTitle.PROF
+>>> assert AcademicTitle.DR < AcademicTitle.PROF
+>>> assert AcademicTitle.DR < PROF_DR
+"""
 
 import enum
 
@@ -30,6 +37,11 @@ class AcademicTitle(enum.Flag):
 
     @staticmethod
     def fromstring(value):
+        """\
+        >>> AcademicTitle.fromstring('M.Sc.')
+        <AcademicTitle.MASTER: ...>
+        """
+        # TODO: DECOUPLE FROM AcademicTitle and use regex matches also
         try:
             return MATCHES[value]
         except KeyError:
