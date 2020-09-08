@@ -15,8 +15,7 @@ import iamraw
 
 def dump_blockquotes(blockquotes: iamraw.PageContentBlockQuotesList) -> str:
     converted = [(page.page, page.content) for page in blockquotes]
-    # TODO: REPLACE HOLY VALUE
-    dumped = yaml.safe_dump(converted, width=200)
+    dumped = yaml.safe_dump(converted)
     return dumped
 
 
