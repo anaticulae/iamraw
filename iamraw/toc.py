@@ -109,7 +109,6 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
     """
     root = Toc()
     current = root
-
     for item in outlines:
         level = item.level
         if level == current.level:
@@ -119,9 +118,8 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
                 parent=current.parent,  # pylint:disable=E1101
                 level=item.level,
                 page=item.page,
-                raw=item.raw if hasattr(item, 'raw') else '',
-                raw_location=item.raw_location
-                if hasattr(item, 'raw_location') else '',
+                raw=getattr(item, 'raw', ''),
+                raw_location=getattr(item, 'raw_location', ''),
                 title=item.title,
             )
             new_one = tosection(new_one) if remove_rawinfo else new_one
@@ -134,9 +132,8 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
                 parent=current,
                 level=item.level,
                 page=item.page,
-                raw=item.raw if hasattr(item, 'raw') else '',
-                raw_location=item.raw_location
-                if hasattr(item, 'raw_location') else '',
+                raw=getattr(item, 'raw', ''),
+                raw_location=getattr(item, 'raw_location', ''),
                 title=item.title,
             )
             new_one = tosection(new_one) if remove_rawinfo else new_one
@@ -155,9 +152,8 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
                 parent=current,
                 level=item.level,
                 page=item.page,
-                raw=item.raw if hasattr(item, 'raw') else '',
-                raw_location=item.raw_location
-                if hasattr(item, 'raw_location') else '',
+                raw=getattr(item, 'raw', ''),
+                raw_location=getattr(item, 'raw_location', ''),
                 title=item.title,
             )
             new_one = tosection(new_one) if remove_rawinfo else new_one
