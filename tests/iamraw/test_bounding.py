@@ -45,3 +45,20 @@ def test_bounding_split_y():
 
     second = iamraw.split_y(bounding, 1, 2)
     assert second == iamraw.BoundingBox(50, 75, 100, 100)
+
+
+def test_bounding_location_from_str():
+    example = 'b(123.5;100.0;500.0;500.0)p5'
+    parsed = iamraw.BoundingLocation.fromstr(example)
+
+    assert parsed.value == (123.5, 100.0, 500.0, 500.0), parsed.value
+
+
+def test_bounding_location_dump_load():
+    example = iamraw.BoundingLocation.fromtuple(
+        (5.0, 10.0, 50.0, 50.0),
+        page=36,
+    )
+    dumped = str(example)
+    loaded = iamraw.BoundingLocation.fromstr(dumped)
+    assert loaded == example
