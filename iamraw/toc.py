@@ -37,7 +37,7 @@ TocLinkMixins = typing.List[TocLinkMixin]
 class Section(TocLinkMixin):
     level: int = None
     title: str = None
-    page: int = None
+    page: int = None  # pdf representation
     args: typing.Dict[str, str] = dataclasses.field(default_factory=dict)
     # compare = False to avoid recursive lookups
     parent: TocLinkMixin = dataclasses.field(default=None, compare=False)
@@ -58,6 +58,8 @@ class SectionRaw(Section):
     # Extend Section with data where information was crafted
     raw: str = None
     raw_location: int = None
+    raw_level: str = None
+    raw_page: str = None
 
 
 def tosectionraw(item: Section) -> SectionRaw:
@@ -69,7 +71,9 @@ def tosection(item: SectionRaw) -> Section:
     assert isinstance(item, SectionRaw), type(item)
     data = vars(item)
     del data['raw']
+    del data['raw_level']
     del data['raw_location']
+    del data['raw_page']
     return Section(**data)
 
 
@@ -119,7 +123,9 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
                 level=item.level,
                 page=item.page,
                 raw=getattr(item, 'raw', ''),
+                raw_level=getattr(item, 'raw_level', ''),
                 raw_location=getattr(item, 'raw_location', ''),
+                raw_page=getattr(item, 'raw_page', ''),
                 title=item.title,
             )
             new_one = tosection(new_one) if remove_rawinfo else new_one
@@ -133,7 +139,9 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
                 level=item.level,
                 page=item.page,
                 raw=getattr(item, 'raw', ''),
+                raw_level=getattr(item, 'raw_level', ''),
                 raw_location=getattr(item, 'raw_location', ''),
+                raw_page=getattr(item, 'raw_page', ''),
                 title=item.title,
             )
             new_one = tosection(new_one) if remove_rawinfo else new_one
@@ -153,7 +161,9 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
                 level=item.level,
                 page=item.page,
                 raw=getattr(item, 'raw', ''),
+                raw_level=getattr(item, 'raw_level', ''),
                 raw_location=getattr(item, 'raw_location', ''),
+                raw_page=getattr(item, 'raw_page', ''),
                 title=item.title,
             )
             new_one = tosection(new_one) if remove_rawinfo else new_one
