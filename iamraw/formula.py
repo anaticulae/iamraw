@@ -65,16 +65,8 @@ class FormulaRaw:
     @property
     def bounding(self) -> tuple:
         boundings = [item.bounding for item in self.content]  # pylint:disable=E1133
-        result = max_bounding(boundings)
+        result = utila.rectangle_max(boundings)
         return result
-
-
-def max_bounding(boundings: list) -> tuple:
-    x0 = utila.mins([item[0] for item in boundings])
-    y0 = utila.mins([item[1] for item in boundings])
-    x1 = utila.maxs([item[2] for item in boundings])
-    y1 = utila.maxs([item[3] for item in boundings])
-    return (x0, y0, x1, y1)
 
 
 FormulasRaw = typing.List[FormulaRaw]

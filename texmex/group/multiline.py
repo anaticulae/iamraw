@@ -317,7 +317,7 @@ def group_page_by_size_distance(content: PageTextNavigator):
         # TODO: make container more pythonic
         size = groupcontent[0].style.content[0].size
         firstid = group[0]
-        bounding = rectangle_single([item.bounding for item in groupcontent])
+        bounding = utila.rectangle_max([item.bounding for item in groupcontent])
         result.append(
             MultilineGroup(
                 bounding=bounding,
@@ -326,16 +326,6 @@ def group_page_by_size_distance(content: PageTextNavigator):
                 text=groupcontent,
             ))
     return result
-
-
-def rectangle_single(items: list) -> tuple:
-    # TODO: REPLACE WITH UTILA CODE
-    assert items, 'no rectangles given'
-    x0 = utila.mins(item[0] for item in items)
-    x1 = utila.maxs(item[2] for item in items)
-    y0 = utila.mins(item[1] for item in items)
-    y1 = utila.maxs(item[3] for item in items)
-    return x0, y0, x1, y1
 
 
 def gradient(items):
