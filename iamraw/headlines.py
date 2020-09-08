@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import contextlib
 import dataclasses
 import typing
 
@@ -21,17 +22,15 @@ class Headline:
 
     @property
     def start(self):
-        try:
+        with contextlib.suppress(TypeError):
             return self.container[0]  # pylint:disable=E1136
-        except TypeError:
-            return self.container
+        return self.container
 
     @property
     def end(self):
-        try:
+        with contextlib.suppress(TypeError):
             return self.container[1]  # pylint:disable=E1136
-        except TypeError:
-            return self.container
+        return self.container
 
 
 Headlines = typing.List[Headline]
