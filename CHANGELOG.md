@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v3.0.0
+
+### Feature
+
+* add method to convert headlines to toc (4ff739e135b6)
+* rename text to title and introduce more raw_ fields (55369d63e59e)
+* add raw_ representation to enable comparing more data (414e2b537c3c)
+* add bounding to MultilineGroup (56d2d571f80d)
+* add methods to convert caption to raw (06113436ff5f)
+* add paths for `caption` package (c676e796db11)
+* add Abstract and TableTable objects (17fc2297c786)
+
 ## v2.4.2
 
 ### Feature
