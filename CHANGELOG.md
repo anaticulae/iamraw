@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v3.1.1
+
+### Fix
+
+* extend missing API externalization (58d558ca6cb1)
+
 ## v3.1.0
 
 ### Feature
