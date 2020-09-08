@@ -24,10 +24,8 @@ def test_titlepage_dump_and_load_titlepage():
             True,
             'Berlin den 28.10.2019',
         ),
-        author=iamraw.Person('Prof.', 'Mullur', 'John', 'Prof. John Mullur'))
-
+        author=iamraw.Person('Prof.', 'Mullur', 'John', 'Prof. John Mullur'),
+    )
     dumped = serializeraw.dump_titlepage(titlepage)
-
     loaded = serializeraw.load_titlepage(dumped)
-
     assert loaded == titlepage
