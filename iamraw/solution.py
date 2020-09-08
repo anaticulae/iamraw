@@ -28,7 +28,6 @@ class Solution:
 
 
 Solutions = typing.List[Solution]
-Validators = typing.List[callable]
 
 
 @dataclasses.dataclass(unsafe_hash=True)  # pylint:disable=R0903
