@@ -11,6 +11,11 @@ import contextlib
 import dataclasses
 import typing
 
+import utila
+
+import iamraw
+import iamraw.toc
+
 
 @dataclasses.dataclass
 class Headline:
@@ -36,3 +41,16 @@ class Headline:
 
 Headlines = typing.List[Headline]
 PagesHeadlineList = typing.List[Headlines]
+
+
+def headlines_totoc(
+        headlines: PagesHeadlineList,
+        remove_rawinfo: bool = False,
+) -> 'iamraw.Toc':
+    try:
+        flat = utila.flatten(headlines)
+    except TypeError:
+        # list is already flat
+        flat = headlines
+    result = iamraw.toc.create_toc(flat, remove_rawinfo=remove_rawinfo)
+    return result

@@ -28,3 +28,26 @@ def test_headline_start_end():
     )
     assert not_ranged.start == 3
     assert not_ranged.end == 3
+
+
+def example() -> iamraw.PagesHeadlineList:
+    # yapf:disable
+    result = [
+        iamraw.Headline(level=1, raw_level='1.', title='Einleitung'),
+        iamraw.Headline(level=2, raw_level='1.1', title='Motivation'),
+        iamraw.Headline(level=2, raw_level='1.2', title='Zielsetzung und Aufbau der Arbeit'),
+        iamraw.Headline(level=1, raw_level='2.', title='Grundlagen eingebetteter Systeme'),
+    ]
+    # yapf:enable
+    return result
+
+
+def test_headlines_totoc():
+    headlines = example()
+    toc = iamraw.headlines_totoc(headlines)
+    expected = """\
+Einleitung
+    Motivation
+    Zielsetzung und Aufbau der Arbeit
+Grundlagen eingebetteter Systeme"""
+    assert str(toc) == expected
