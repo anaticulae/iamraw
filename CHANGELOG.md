@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v3.1.0
+
+### Feature
+
+* move findings serializer/data from protocol (b14220f63ce5)
+
 ## v3.0.0
 
 ### Feature
