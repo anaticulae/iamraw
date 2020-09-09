@@ -21,6 +21,7 @@ class PageTextProperties:
     ypos: float = None
     left: float = None
     right: float = None
+    page: int = None
 
 
 @dataclasses.dataclass(unsafe_hash=True)
@@ -35,6 +36,7 @@ class TextProperty:
     bottom: float = None
     left: float = None
     right: float = None
+    page: int = None
 
 
 PageTextPropertiesList = typing.List[PageTextProperties]
