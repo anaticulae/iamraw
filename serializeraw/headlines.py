@@ -28,6 +28,7 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
                 'container': container,
                 'level': item.level,
                 'page': item.page,
+                'raw': item.raw,
                 'raw_level': item.raw_level,
                 'title': item.title,
             })
@@ -71,6 +72,7 @@ def load_headlines(content: str, pages=None) -> iamraw.PagesHeadlineList:
                 container=container,
                 level=level,
                 page=pagenumber,
+                raw=headline['raw'],
                 raw_level=headline['raw_level'],
                 title=headline['title'],
             )
