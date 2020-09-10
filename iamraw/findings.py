@@ -47,7 +47,14 @@ class Location:
             return f'p{self.page}'
         return f'{self.shortcut}{value}p{self.page}'
 
-    PATTERN = re.compile(r'((?P<shortcut>[a-z]+)(?P<value>\d+))?p(?P<page>\d+)')
+    PATTERN = re.compile(
+        r"""(
+             ((?P<shortcut>[a-z]+)(?P<value>-{0,1}\d+))
+             ?p(?P<page>-{0,1}\d+)                        # page can be negative
+            )
+         """,
+        re.VERBOSE,
+    )
 
     @classmethod
     def fromstr(cls, raw: str):
@@ -67,6 +74,12 @@ class Location:
 
     @classmethod
     def from_page(cls, page: int):
+        """\
+        >>> Location.from_page(10)
+        Location(page=10, shortcut='p', value=None)
+        >>> Location.from_page(-1)
+        Location(page=-1, shortcut='p', value=None)
+        """
         assert page >= SUMMARY, str(page)
         return cls.fromstr(f'p{page}')
 
