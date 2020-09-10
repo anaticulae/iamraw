@@ -23,7 +23,7 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
         for item in page:
             container = item.container
             if isinstance(container, tuple):
-                container = ' '.join([str(item) for item in container])
+                container = utila.from_tuple(container)
             content.append({
                 'container': container,
                 'level': item.level,
