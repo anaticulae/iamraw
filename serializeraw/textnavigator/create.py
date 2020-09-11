@@ -45,10 +45,10 @@ def create_pagetextnavigators_frompath(
         separate instances.
     """
     text = iamraw.path.text(path, prefix=prefix)
-    text = serializeraw.document.load_document(text, pages=pages)
+    text = serializeraw.load_document(text, pages=pages)
 
     textposition = iamraw.path.textposition(path, prefix=prefix)
-    textposition = serializeraw.textposition.load_textpositions(
+    textposition = serializeraw.load_textpositions(
         textposition,
         pages=pages,
     )
@@ -78,11 +78,11 @@ def create_pagetextnavigators_fromfile(
         *,
         fill_empty: bool = True,
 ) -> texmex.PageTextNavigators:
-    text = serializeraw.document.load_document(
+    text = serializeraw.load_document(
         text,
         pages=pages,
     )
-    textpositions = serializeraw.textposition.load_textpositions(
+    textpositions = serializeraw.load_textpositions(
         textpositions,
         pages=pages,
     )
