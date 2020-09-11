@@ -110,6 +110,9 @@ from serializeraw.line import load_lines
 # list
 from serializeraw.list import dump_lists
 from serializeraw.list import load_lists
+# magic
+from serializeraw.magic import dump_types
+from serializeraw.magic import load_types
 # pagenumbers
 from serializeraw.pagenumbers import dump_pagenumbers
 from serializeraw.pagenumbers import load_pagenumbers

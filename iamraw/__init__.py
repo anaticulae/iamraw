@@ -162,6 +162,10 @@ from iamraw.list import ListType
 from iamraw.list import PageContentList
 from iamraw.list import PageContentLists
 from iamraw.list import PageList
+# magic
+from iamraw.magic import PageContentContentType
+from iamraw.magic import PageContentContentTypes
+from iamraw.magic import PageContentType
 # pages
 from iamraw.page import PageSizeBorder
 from iamraw.page import PageSizeBorderList
