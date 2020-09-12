@@ -71,6 +71,11 @@ class DocTextStyle:
     h3_after: float = None
     h3_family: int = None
 
+    h4_size: float = None
+    h4_before: float = None
+    h4_after: float = None
+    h4_family: int = None
+
     pagenumber_size: float = None
     pagenumber_family: int = None
 
