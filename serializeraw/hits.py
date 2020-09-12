@@ -54,8 +54,7 @@ def load_hits(content: str, pages: tuple = None) -> iamraw.PageContentHits:
         hits = []
         for hit in page['hits']:
             index, box = hit.split(' ', maxsplit=1)
-            index = int(index)
-            box = tuple([float(var) for var in box.split()])
+            index, box = int(index), utila.parse_tuple(box)
             hits.append((index, box))
 
         current = iamraw.PageContentHit(
