@@ -32,6 +32,10 @@ class CharStyle:
             size=self.size,
         )
 
+    @property
+    def width(self):
+        return self.end - self.start
+
 
 CharStyles = typing.List[CharStyle]
 
