@@ -37,7 +37,11 @@ def dump_hits(hits: iamraw.PageContentHits) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_hits(content: str, pages: tuple = None) -> iamraw.PageContentHits:
-    content = utila.from_raw_or_path(content, ftype='yaml')
+    content = utila.from_raw_or_path(
+        content,
+        ftype='yaml',
+        fname='border_detection',
+    )
     loaded = yaml.load(content, Loader=yaml.FullLoader)
 
     result = []
