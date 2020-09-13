@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v3.2.0
+
+### Feature
+
+* add method to determine section path (0d8ca172455a)
+* add width property to CharStyle (6a65cb9feb34)
+* add level 4 docstyle fields (8a069e333410)
+* add default name to load border hits (94af0dc6452c)
+* move data structure/loader from hey project (b17200b10e97)
+* extend pattern to support negative page numbers (51be24ecdd1b)
+* add missing raw field to headline dumper (ee82d10f52d3)
+* add page attribute to TextProperty (f2ce67a5fc61)
+
 ## v3.1.1
 
 ### Fix
