@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import collections
 import contextlib
 import dataclasses
@@ -16,6 +17,7 @@ import utila
 from iamraw.bounding import BoundingBox
 
 PageSize = collections.namedtuple('PageSize', 'width height')
+PageSizes = typing.List[PageSize]
 
 
 @dataclasses.dataclass

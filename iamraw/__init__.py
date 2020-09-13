@@ -73,6 +73,7 @@ from iamraw.document import Page
 from iamraw.document import PageObject
 from iamraw.document import Pages
 from iamraw.document import PageSize
+from iamraw.document import PageSizes
 from iamraw.document import TextContainer
 from iamraw.document import TextContainers
 from iamraw.document import UnicodeChar
