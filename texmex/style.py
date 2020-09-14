@@ -75,7 +75,8 @@ class TextStyle:
         return TextStyle.textsizes(self)
 
     @classmethod
-    def textsizes(cls, item: 'TextStyle', method=max):
+    def textsizes(cls, item: 'TextStyle', method=utila.mode):
+        # detect most common font size(s)
         assert isinstance(item, cls), type(item)
         result = [[char.size] * (char.end - char.start) for char in item.content] # yapf:disable
         result = utila.flatten(result)
