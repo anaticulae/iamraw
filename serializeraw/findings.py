@@ -43,5 +43,6 @@ def dump_findings(findings: list) -> str:
         message = f'template is not fully replaced:\n{description}'
         # ensure that the user could not see any not fully replaced templates
         assert utila.istemplate_replaced(item.solution.description), message
+        assert isinstance(item.number, int) or item.number is None
     dumped = yaml.dump(findings)
     return dumped

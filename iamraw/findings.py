@@ -267,6 +267,9 @@ class Finding:  # pylint:disable=R0903
     confidence: float = None
     active: bool = False
 
+    def __post_init__(self):
+        assert isinstance(self.number, int) or self.number is None
+
 
 Findings = typing.List[Finding]
 
