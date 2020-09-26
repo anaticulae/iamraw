@@ -20,8 +20,8 @@ described item which the box refers.
     |                     |
     |-----------------x1,y1
 """
+
 import dataclasses
-import math
 import typing
 
 import utila
@@ -106,34 +106,6 @@ class BoundingBox:
 
 
 BoundingBoxes = typing.List[BoundingBox]
-
-
-def area(bounding) -> float:
-    """Determine area out of `BoundingBox` or `tuple(4)`
-
-    Args:
-        bounding(BoundingBox/tuple): area to determine size of
-    Returns:
-        size of rectangle
-    """
-    assert len(bounding) == 4, str(bounding)
-    height = math.fabs(bounding[3] - bounding[1])
-    width = math.fabs(bounding[2] - bounding[0])
-    assert height >= 0, width >= 0
-    result = height * width
-    result = utila.roundme(result)
-    return result
-
-
-def common_box(items) -> BoundingBox:
-    """Determine largest box which contains the border of all `items`"""
-    x0, y0, x1, y1 = utila.INF, utila.INF, -utila.INF, -utila.INF
-    for (cx0, cy0, cx1, cy1) in items:
-        x0 = min(x0, cx0)
-        y0 = min(y0, cy0)
-        x1 = max(x1, cx1)
-        y1 = max(y1, cy1)
-    return BoundingBox(x0=x0, y0=y0, x1=x1, y1=y1)
 
 
 def split_y(

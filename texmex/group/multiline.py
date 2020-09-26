@@ -29,7 +29,6 @@ import typing
 import configo
 import utila
 
-import iamraw
 import texmex
 from texmex.group.fonts import feeddistance
 from texmex.group.fonts import fontdistance
@@ -454,7 +453,7 @@ def merge_content(  # pylint:disable=R0914
         merged[-1].append(uindex[index])
         # merged items together and save them as last item
         result[-1] = (
-            iamraw.common_box([member_location, merger_location]),
+            utila.rectangle_max([member_location, merger_location]),
             member_content,
         )
 

@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import utila
+
 import iamraw
 import texmex
 
@@ -24,7 +26,7 @@ SAMPLE = [
 
 
 def document_size(items):
-    dimension = iamraw.common_box(items)
+    dimension = utila.rectangle_max(items)
     return (dimension[2], dimension[3])
 
 
