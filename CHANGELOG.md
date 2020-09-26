@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.0.0
+
+### Feature
+
+* ensure that number is represented as int (6763bbb64504)
+* introduce datatype to represent list of PageSize (774cfd564413)
+
+### Fix
+
+* select the most common item as font size of textstyle (8260bc1204e2)
+
 ## v3.2.0
 
 ### Feature
