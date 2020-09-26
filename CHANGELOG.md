@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.0.1
+
+### Feature
+
+* add dumping BoundingBox and tuple as location (1ac82ebd559a)
+
 ## v4.0.0
 
 ### Feature
