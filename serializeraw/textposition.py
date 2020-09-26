@@ -24,7 +24,7 @@ def dump_textpositions(items: iamraw.PageContentTextPositions) -> str:
         if not content:
             continue
         raw = [
-            '%s %s %s' % (key, str(bounding), str(mean))
+            f'{key} {raw_bounding(bounding)} {mean}'
             for key, (bounding, mean) in content.items()
         ]
         result.append({
@@ -65,3 +65,12 @@ def load_textpositions(
         )
         result.append(textposition)
     return result
+
+
+def raw_bounding(bounding) -> str:
+    """Convert BoundingBox or tuple to str representation."""
+    if isinstance(bounding, tuple):
+        assert len(bounding) == 4
+        return utila.from_tuple(bounding)
+    # iamraw.BoundingBox
+    return str(bounding)
