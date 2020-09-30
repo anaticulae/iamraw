@@ -112,6 +112,9 @@ class Sections:
         return len(self.content)
 
 
+SectionsList = typing.List[Sections]
+
+
 @dataclasses.dataclass
 class Introduction(DocumentSection):
     """Title page, Eidesstattliche Erklaerung, Thank you, Copyright."""

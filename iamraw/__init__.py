@@ -183,6 +183,7 @@ from iamraw.sections import MultipleSection
 from iamraw.sections import NotImplementedItem
 from iamraw.sections import SectionMixin
 from iamraw.sections import Sections
+from iamraw.sections import SectionsList
 # solution
 from iamraw.solution import Doctails
 from iamraw.solution import ProblemStatus
