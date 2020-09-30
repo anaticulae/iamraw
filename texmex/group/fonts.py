@@ -14,12 +14,8 @@ import utila
 
 import iamraw
 import texmex
-from texmex.navigator import PageTextNavigator
-from texmex.navigator import PageTextNavigators
-from texmex.text import FontOccurrences
-from texmex.text import TextBounds
-from texmex.text import TextBoundsInfos
-from texmex.text import TextBoundsList
+import texmex.navigator
+import texmex.text
 
 
 def fontdistance(bounds: iamraw.BoundingBoxes) -> utila.Floats:
@@ -42,9 +38,9 @@ def feeddistance(bounds: iamraw.BoundingBoxes) -> utila.Floats:
     return distance
 
 
-def fontdistance_textbounds(bounds: TextBoundsList) -> utila.Floats:
+def fontdistance_textbounds(bounds: texmex.text.TextBoundsList) -> utila.Floats:
     assert isinstance(bounds, list)
-    assert all(isinstance(item, TextBounds) for item in bounds)
+    assert all(isinstance(item, texmex.text.TextBounds) for item in bounds)
     distance = [
         utila.roundme(first.bottomdist - second.bottomdist)
         for (first), (second) in zip(bounds[0:], bounds[1:])
@@ -64,7 +60,7 @@ def bounds_to_textbounds(
         bounds: iamraw.BoundingBox,
         contentborder: iamraw.Border = None,
         digits: int = 1,
-) -> TextBounds:
+) -> texmex.text.TextBounds:
     """Compute distance to page `contentborder` and determine font size
 
     Args:
@@ -83,13 +79,13 @@ def bounds_to_textbounds(
         contentborder.bottom - y1,
         digits=digits,
     )
-    return TextBounds(*data)
+    return texmex.text.TextBounds(*data)
 
 
 def textbounds(
-        navigator: PageTextNavigator,
+        navigator: texmex.navigator.PageTextNavigator,
         contentborder: iamraw.Border,
-) -> TextBoundsInfos:
+) -> texmex.text.TextBoundsInfos:
     assert isinstance(navigator, texmex.NavigatorMixin), type(navigator)
 
     # ensure that order of items has no effect
@@ -107,7 +103,7 @@ def textbounds(
     return result
 
 
-def textsize(occurrences: FontOccurrences) -> int:
+def textsize(occurrences: texmex.text.FontOccurrences) -> int:
     """Compute size of text"""
     mostly = sorted(occurrences, key=lambda item: item[1], reverse=True)
     if not mostly:
@@ -129,7 +125,7 @@ def textsize_frompage(navigator: 'texmex.NavigatorMixin') -> float:
 
 
 def document_textfeed(
-        navigators: PageTextNavigators,
+        navigators: texmex.navigator.PageTextNavigators,
         count: int = 1,
         left: bool = True,
 ) -> utila.Ints:
