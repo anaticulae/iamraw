@@ -14,6 +14,7 @@ from texmex.alpha import sort as alpha_sort
 # group
 from texmex.group.fonts import bounds_to_textbounds
 from texmex.group.fonts import document_textdistance
+from texmex.group.fonts import document_textdistance_from_contentnavigators
 from texmex.group.fonts import document_textfeed
 from texmex.group.fonts import document_textsize
 from texmex.group.fonts import feeddistance

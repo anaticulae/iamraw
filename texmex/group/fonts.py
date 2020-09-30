@@ -188,3 +188,25 @@ def document_textdistance(
     result = utila.roundme(result, digits=digits, convert=False)  # pylint:disable=R0204
     mode = utila.modes(result)
     return mode
+
+
+def document_textdistance_from_contentnavigators(
+        navigators: 'texmex.PageTextContentNavigators',
+        digits: int = 1,
+) -> float:
+    """Determine the most common text distance"""
+    result = []
+    for navigator in navigators:
+        if not navigator:
+            # empty page
+            continue
+        bounds = texmex.textbounds(navigator, navigator.content)
+        # ignore empty content
+        bounds = [item.bounds for item in bounds if item.text.strip()]
+        ydist = [item.bottomdist for item in bounds]
+        for yfirst, ysecond in zip(ydist[:-1], ydist[1:]):
+            distance = yfirst - ysecond
+            result.append(distance)
+    result = utila.roundme(result, digits=digits, convert=False)  # pylint:disable=R0204
+    mode = utila.modes(result)
+    return mode

@@ -36,6 +36,13 @@ def test_document_textdistance():
     assert result == 17.9, str(result)
 
 
+def test_document_textdistance_from_contentnavigators():
+    source = tests.serializeraw.RESTRUCTURED
+    data = serializeraw.create_pagetextcontentnavigators_frompath(source)
+    result = texmex.document_textdistance_from_contentnavigators(data)
+    assert result == 17.9, str(result)
+
+
 def test_document_textfeed():
     nav = serializeraw.create_pagetextnavigators_frompath(
         tests.serializeraw.RESTRUCTURED)
