@@ -30,7 +30,10 @@ FontChunks = typing.List[FontChunk]
 class FontStore:
 
     def __init__(self, header, pages):
-        assert header, pages
+        if not header:
+            utila.error('empty font header')
+        if not pages:
+            utila.error('empty font footer/pages')
         self.header = {hash(item): item for item in header}
         self.pages = {page.page: page.content for page in pages}
 
