@@ -17,6 +17,9 @@ class Caption:
     line: int = None
     lineend: int = None
     raw: str = None
+    # 0 top, 1 right, 2 bottom, 3 left
+    position: float = None
+    # TODO: ADD BOUNDING?
 
 
 Captions = typing.List[Caption]
@@ -54,4 +57,6 @@ def caption_toraw(caption: Caption) -> dict:
     }
     if caption.lineend is not None:
         result['lineend'] = caption.lineend
+    if caption.position is not None:
+        result['position'] = caption.position
     return result
