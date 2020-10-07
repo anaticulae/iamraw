@@ -68,16 +68,21 @@ def test_footerheader_footer_extend():
 
 
 def test_footerheader_header_extend():
-    footer = iamraw.HeaderInformation()
-    footer.extend(begin=0.2)
-    assert footer.begin == 0.2
-    footer.extend(begin=0.3)
-    assert footer.begin == 0.2
+    header = iamraw.HeaderInformation()
+    header.extend(begin=0.2)
+    assert header.begin == 0.2
+    header.extend(begin=0.3)
+    assert header.begin == 0.2
 
-    footer.extend(end=0.2)
-    assert footer.begin == 0.2
-    footer.extend(end=0.3)
-    assert footer.begin == 0.2
+    header.extend(end=0.2)
+    assert header.begin == 0.2
+    header.extend(end=0.3)
+    assert header.end == 0.3
+    header.extend(end=0.2)
+    assert header.end == 0.3
+    header.extend(end=0.5)
+    assert header.end == 0.5
+    assert header.begin == 0.2
 
 
 def test_footerheader_footer_dump():

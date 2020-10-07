@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import collections
 import dataclasses
 import typing
@@ -37,12 +38,12 @@ class HeaderInformation:
     def extend(self, begin=None, end=None):
         """Update area of HeaderInformation. Maximze area."""
         if begin is not None:
-            self.begin = min(
+            self.begin = min((
                 self.begin if self.begin is not None else utila.INF,
                 begin,
-            )
+            ))
         if end is not None:
-            self.end = max(self.end if self.end is not None else 0.0, end)
+            self.end = max((self.end if self.end is not None else 0.0, end))
 
 
 @dataclasses.dataclass
