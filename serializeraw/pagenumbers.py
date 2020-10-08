@@ -46,7 +46,11 @@ def dump_pagenumbers(items) -> str:
 
 @lru_cache(CACHE_SMALL)
 def load_pagenumbers(content: str, pages=None):
-    content = from_raw_or_path(content, ftype='yaml')
+    content = from_raw_or_path(
+        content,
+        fname='groupme__pagenumbers_pagenumbers',
+        ftype='yaml',
+    )
     loaded = load(content, Loader=FullLoader)
 
     def to_int(item):
