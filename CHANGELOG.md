@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.1.0
+
+### Feature
+
+* add default file name to page number loader (443f38505a52)
+* add field `position` to store location of caption (49c0ea17753d)
+* log error if no font information is provided (4cf888f98d77)
+* add SectionsList data type (14af976c2756)
+* add method to determine textdistance from content navigator (6d687b12ab48)
+
 ## v4.0.1
 
 ### Feature
