@@ -7,17 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from contextlib import suppress
-from functools import lru_cache
+import contextlib
+import functools
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
+import yaml
 
-from iamraw import BoundingBox
+import iamraw
 
 
 def dump_pagenumbers(items) -> str:
@@ -40,21 +37,21 @@ def dump_pagenumbers(items) -> str:
             'left': raw(left),
             'right': raw(right),
         }
-    dumped = dump(result)
+    dumped = yaml.dump(result)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
+@functools.lru_cache(configo.CACHE_SMALL)
 def load_pagenumbers(content: str, pages=None):
-    content = from_raw_or_path(
+    content = utila.from_raw_or_path(
         content,
         fname='groupme__pagenumbers_pagenumbers',
         ftype='yaml',
     )
-    loaded = load(content, Loader=FullLoader)
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
 
     def to_int(item):
-        with suppress(ValueError):
+        with contextlib.suppress(ValueError):
             return int(item)
         return item
 
@@ -62,13 +59,13 @@ def load_pagenumbers(content: str, pages=None):
         result = []
         for item in content:
             pagenumber = to_int(item['pdfpage'])
-            if should_skip(pagenumber, pages):
+            if utila.should_skip(pagenumber, pages):
                 continue
-            box = BoundingBox.from_str(item['bounding'])
+            box = iamraw.BoundingBox.from_str(item['bounding'])
             detected = to_int(item['detected'])
             result.append((pagenumber, box, detected))
         return result
 
-    with suppress(TypeError):
+    with contextlib.suppress(TypeError):
         return fromraw(loaded, pages)
     return fromraw(loaded['left'], pages), fromraw(loaded['right'], pages)
