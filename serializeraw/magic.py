@@ -17,7 +17,11 @@ def load_types(
         content: str,
         pages: tuple = None,
 ) -> iamraw.PageContentContentTypes:
-    content = utila.from_raw_or_path(content, ftype='yaml')
+    content = utila.from_raw_or_path(
+        content,
+        fname='magic__content_content',
+        ftype='yaml',
+    )
     loaded = yaml.safe_load(content)
 
     result = []
