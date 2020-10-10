@@ -97,3 +97,7 @@ def general_cation(path: str, prefix: str = '') -> str:
 
 def sections_(path: str, prefix: str = '') -> str:
     return utila.pathconnector(path, 'sections', 'section_result', prefix)
+
+
+def magic_content(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'magic', 'content_content', prefix)
