@@ -12,8 +12,8 @@ import serializeraw
 
 FINDINGS = [
     iamraw.Finding(number=10),
-    iamraw.Finding(number=11),
-    iamraw.Finding(number=12),
+    iamraw.Finding(number=11, location=iamraw.Location(page=5)),
+    iamraw.Finding(number=12, location=iamraw.Location(page=5)),
 ]
 
 
@@ -21,3 +21,9 @@ def test_dump_and_load_findings():
     dumped = serializeraw.dump_findings(FINDINGS)
     loaded = serializeraw.load_findings(dumped)
     assert loaded == FINDINGS
+
+
+def test_select_pages():
+    dumped = serializeraw.dump_findings(FINDINGS)
+    loaded = serializeraw.load_findings(dumped, pages=5)
+    assert len(loaded) == 2

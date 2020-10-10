@@ -13,12 +13,17 @@ import yaml
 import iamraw
 
 
-def load_findings(path: str, msgids: set = None) -> iamraw.Findings:
+def load_findings(
+        path: str,
+        msgids: set = None,
+        pages: tuple = None,
+) -> iamraw.Findings:
     """Load list of `Finding`s which was produced by linter
 
     Args:
         path(str): path to file with lists of `Finding`
         msgids(set): set of selected Findings; if msgids is None, select all
+        pages(tuple): accepted pages
     Returns:
         list of Finding
     Raises:
@@ -27,8 +32,25 @@ def load_findings(path: str, msgids: set = None) -> iamraw.Findings:
     loaded = utila.yaml_from_raw_or_path(path, safe=False)
     assert isinstance(loaded, list), type(loaded)
     assert all([isinstance(item, iamraw.Finding) for item in loaded]), str(loaded) # yapf:disable
+    loaded = select_pages(loaded, pages)
     result = iamraw.select_findings(loaded, msgids)
     return result
+
+
+def select_pages(findings, pages: tuple = None) -> list:
+    if not pages:
+        return findings
+    selected = []
+    for finding in findings:
+        try:
+            skip = utila.should_skip(finding.location.page, pages)
+            if skip:
+                continue
+        except AttributeError:
+            continue
+        else:
+            selected.append(finding)
+    return selected
 
 
 def dump_findings(findings: list) -> str:
