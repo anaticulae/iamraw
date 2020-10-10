@@ -68,5 +68,9 @@ class FormulaRaw:
         result = utila.rectangle_max(boundings)
         return result
 
+    def __str__(self) -> str:
+        raw = ''.join([item.value.strip() for item in self.content])  # pylint:disable=E1133
+        return f'FormulaRaw({raw})'
+
 
 FormulasRaw = typing.List[FormulaRaw]
