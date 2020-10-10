@@ -10,13 +10,14 @@
 import iamraw
 import serializeraw
 
+FINDINGS = [
+    iamraw.Finding(number=10),
+    iamraw.Finding(number=11),
+    iamraw.Finding(number=12),
+]
+
 
 def test_dump_and_load_findings():
-    findings = [
-        iamraw.Finding(number=10),
-        iamraw.Finding(number=11),
-        iamraw.Finding(number=12),
-    ]
-    dumped = serializeraw.dump_findings(findings)
+    dumped = serializeraw.dump_findings(FINDINGS)
     loaded = serializeraw.load_findings(dumped)
-    assert loaded == findings
+    assert loaded == FINDINGS
