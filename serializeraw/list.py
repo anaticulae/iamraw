@@ -22,8 +22,7 @@ def dump_lists(lists: list) -> str:
         pagenumber = int(pagenumber)
         pageresult = []
         for lists_ in pagecontent:
-            # Number, Item
-            area = ' '.join([str(item) for item in lists_.area])
+            area = dump_area(lists_.area)
             content = []
             for pnumber, item in lists_.data:
                 assert item, f'page: {pagenumber}; {pnumber} empty list content'
@@ -61,7 +60,7 @@ def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
             paragraph, merged = [
                 int(item) for item in listinstance['id'].split()
             ]
-            area = [int(item) for item in listinstance['area'].split()]
+            area = load_area(listinstance['area'])
             instance = iamraw.PageList(
                 area=area,
                 paragraph=paragraph,
@@ -82,3 +81,29 @@ def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
             newpage.append(instance)
         result.append(iamraw.PageContentList(page=pagenumber, content=newpage))
     return result
+
+
+def dump_area(area) -> str:
+    """\
+    >>> dump_area([(17, 18, 19), (0, 1, 2, 3), (0, 1, 2, 3)])
+    '17 18 19|0 1 2 3|0 1 2 3'
+    >>> dump_area([0, 1, 2, 3])
+    '0 1 2 3'
+    """
+    area = area if isinstance(area[0], tuple) else [area]
+    splitted = [utila.from_tuple(item) for item in area]
+    raw = '|'.join(splitted)
+    return raw
+
+
+def load_area(raw: str) -> list:
+    """\
+    >>> load_area('17 18 19|0 1 2 3|0 1 2 3')
+    [(17, 18, 19), (0, 1, 2, 3), (0, 1, 2, 3)]
+    >>> load_area('0 1 2 3')
+    [0, 1, 2, 3]
+    """
+    splitted = raw.split('|')
+    if len(splitted) == 1:
+        return [int(item) for item in splitted[0].split()]
+    return [tuple(load_area(item)) for item in splitted]
