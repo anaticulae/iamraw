@@ -133,11 +133,12 @@ from serializeraw.table import load_tables
 # text
 from serializeraw.text import dump_text
 from serializeraw.text import load_text
+# textnavigator
 from serializeraw.textnavigator.create import create_pagetextcontentnavigators_fromfile
 from serializeraw.textnavigator.create import create_pagetextcontentnavigators_frompath
 from serializeraw.textnavigator.create import create_pagetextnavigators_fromfile
 from serializeraw.textnavigator.create import create_pagetextnavigators_frompath
-# textnavigator
+from serializeraw.textnavigator.filter import remove_magic
 from serializeraw.textnavigator.highnote import dump_highnotes
 from serializeraw.textnavigator.highnote import load_highnotes
 # textpostions
