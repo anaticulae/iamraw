@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v4.2.0
+
+### Feature
+
+* extend list serializer to handle multiple list pages (b92e45fc9591)
+* add default file name for list loader (252ecc3df033)
+* add method to remove selected magic data from ptcn (7392ed71bbbb)
+* add str method to ease debugging (bbe64a5cfef3)
+* add method to determine path to magic result (47c8c5bb0d1d)
+* add default magic file name to magic loader (bc65ee28b840)
+* add option to load findings by page number (c9bd945bd2c8)
+
 ## v4.1.0
 
 ### Feature
