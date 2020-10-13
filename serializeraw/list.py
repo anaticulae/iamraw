@@ -44,7 +44,11 @@ def dump_lists(lists: list) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
-    content = utila.from_raw_or_path(content, ftype='yaml')
+    content = utila.from_raw_or_path(
+        content,
+        fname='words__list_list',
+        ftype='yaml',
+    )
     loaded = yaml.safe_load(content)
     result = []
     for page in loaded:
