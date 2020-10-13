@@ -28,6 +28,6 @@ def test_dump_and_load_magic():
             ],
         )
     ]
-    dumped = serializeraw.dump_types(data)
-    loaded = serializeraw.load_types(dumped)
+    dumped = serializeraw.dump_magic_types(data)
+    loaded = serializeraw.load_magic_types(dumped)
     assert loaded == data

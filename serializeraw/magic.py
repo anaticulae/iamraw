@@ -13,7 +13,7 @@ import yaml
 import iamraw
 
 
-def load_types(
+def load_magic_types(
         content: str,
         pages: tuple = None,
 ) -> iamraw.PageContentContentTypes:
@@ -33,12 +33,18 @@ def load_types(
     return result
 
 
-def dump_types(items: iamraw.PageContentContentTypes) -> str:
+load_types = load_magic_types  # pylint:disable=C0103
+
+
+def dump_magic_types(items: iamraw.PageContentContentTypes) -> str:
     result = [(page, types_tostr(content)) for page, content in items]
     # remove empty pages:
     result = [item for item in result if item[1]]
     dumped = yaml.safe_dump(result, width=200)
     return dumped
+
+
+dump_types = dump_magic_types  # pylint:disable=C0103
 
 
 def types_fromstr(content: list) -> list:
