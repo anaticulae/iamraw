@@ -526,3 +526,32 @@ def create_pagetextnavigator_fromstr(content: str, fontsize=12.0):
             style=style,
         )
     return result
+
+
+def single(navigators: 'texmex.PageTextNavigators') -> 'texmex.PageTextNavigator': # yapf:disable
+    """Merge more than one pagenavigators to a single huge navigator to
+    detect multi page lists."""
+    if not navigators:
+        return None
+    if navigators[0]:
+        header = navigators[0][0].bounding[1]  # y0
+    else:
+        # starts on empty page without any content and no header
+        header = 0
+    y0 = header
+    result = []
+    for page in navigators:
+        offset = y0 - header
+        for item in page:
+            # avoid side effects to other content
+            item = item.copy()
+            item.bounding.y0 = utila.roundme(item.bounding.y0 + offset)
+            item.bounding.y1 = utila.roundme(item.bounding.y1 + offset)
+            result.append(item)
+        footer = page.content.bottom
+        y0 += footer - header
+
+    navigator = texmex.PageTextNavigator()
+    navigator.data = result
+    navigator.page = navigators[0].page
+    return navigator
