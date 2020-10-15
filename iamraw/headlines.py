@@ -25,6 +25,7 @@ class Headline:
     raw_level: str = dataclasses.field(default=None, compare=False)
     page: int = dataclasses.field(default=-1)
     container: int = dataclasses.field(default=None)
+    decoration: int = dataclasses.field(default=None)
 
     @property
     def start(self):

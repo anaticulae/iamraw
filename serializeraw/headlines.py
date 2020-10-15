@@ -31,6 +31,7 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
                 'raw': item.raw,
                 'raw_level': item.raw_level,
                 'title': item.title,
+                'decoration': item.decoration,
             })
         if not content:
             # do not write empty pages
@@ -75,6 +76,7 @@ def load_headlines(content: str, pages=None) -> iamraw.PagesHeadlineList:
                 raw=headline['raw'],
                 raw_level=headline['raw_level'],
                 title=headline['title'],
+                decoration=headline.get('decoration', None),
             )
             loadedstep.append(item)
         if loadedstep:
