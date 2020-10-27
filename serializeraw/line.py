@@ -28,7 +28,11 @@ def dump_lines(lines: iamraw.PageContentLines) -> str:
 
 
 def load_lines(source: str, pages: tuple = None) -> iamraw.PageContentLines:
-    source = utila.from_raw_or_path(source, ftype='yaml')
+    source = utila.from_raw_or_path(
+        source,
+        fname='rawmaker__line_line',
+        ftype='yaml',
+    )
     loaded = yaml.load(source, Loader=yaml.FullLoader)
     result = []
     for page in loaded:
