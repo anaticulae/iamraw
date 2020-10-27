@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.3.0
+
+### Feature
+
+* add decoration field and update serializer (7d73fa8b3127)
+* add `single` method to merge textpagenavigators (099486ec81e8)
+
 ## v4.2.0
 
 ### Feature
