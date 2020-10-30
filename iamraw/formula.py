@@ -56,6 +56,9 @@ class FormulaRaw:
     page: int = None
     content: MathChars = dataclasses.field(default_factory=list)
 
+    def __post_init__(self):
+        assert len(self.sizes) == len(self.raw), f'{len(self.sizes)} == {len(self.raw)}' # yapf:disable
+
     def append(self, item):
         self.content.append(item)  # pylint:disable=E1101
 
@@ -71,6 +74,11 @@ class FormulaRaw:
     @property
     def raw(self) -> str:
         result = ''.join([item.value.strip() for item in self.content])  # pylint:disable=E1133
+        return result
+
+    @property
+    def sizes(self) -> utila.Floats:
+        result = [item.size for item in self.content]  # pylint:disable=E1133
         return result
 
     def __str__(self) -> str:
