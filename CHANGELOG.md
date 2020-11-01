@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v4.4.0
+
+### Feature
+
+* ensure that math characters are correctly (5a100e5bb7ca)
+* add raw property (590d8cbd2893)
+* add default load file name (37d50e98fde1)
+* add default file name (fe3349180863)
+
 ## v4.3.0
 
 ### Feature
