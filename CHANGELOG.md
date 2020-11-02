@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.4.1
+
+### Fix
+
+* decrease the level of error to inform instead of abort (900b0f5c5773)
+
 ## v4.4.0
 
 ### Feature
