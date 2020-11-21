@@ -27,6 +27,7 @@ class BibliographyReference:
     yearend: int = None
 
     hyperlink: str = None
+    accessed: str = None
 
     # a,b,c... to differentiate item in the same year
     number: str = None
