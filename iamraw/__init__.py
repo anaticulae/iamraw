@@ -144,6 +144,9 @@ from iamraw.headlines import headlines_totoc
 # hits
 from iamraw.hits import PageContentHit
 from iamraw.hits import PageContentHits
+# href
+from iamraw.href import ExtractedHyperLink
+from iamraw.href import ExtractedHyperLinks
 # images
 from iamraw.images import ImageInformation
 from iamraw.images import ImageInformations
