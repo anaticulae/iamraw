@@ -62,6 +62,9 @@ from serializeraw.date import date_str
 # distance
 from serializeraw.distance import dump_distance
 from serializeraw.distance import load_distance
+# docref
+from serializeraw.docref import dump_docref
+from serializeraw.docref import load_docref
 # document
 from serializeraw.document import dump_document
 from serializeraw.document import load_document

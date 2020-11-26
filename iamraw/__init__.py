@@ -60,6 +60,9 @@ from iamraw.distance import AreaDistance
 from iamraw.distance import AreaDistances
 from iamraw.distance import PageContentAreaDistance
 from iamraw.distance import PageContentAreaDistances
+# docref
+from iamraw.docref import DocRef
+from iamraw.docref import DocRefs
 # document
 from iamraw.document import Boxed
 from iamraw.document import Char
