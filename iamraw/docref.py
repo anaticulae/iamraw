@@ -17,5 +17,8 @@ class DocRef:
     sentence: int
     marked: list = dataclasses.field(default=list)
 
+    def __getitem__(self, index):
+        return (self.page, self.sentence, self.marked)[index]
+
 
 DocRefs = typing.List[DocRef]
