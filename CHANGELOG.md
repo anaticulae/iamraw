@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v4.5.0
+
+### Feature
+
+* make object subscriptable (0bc7e8a2ebfc)
+* add method to dump and store docref's (467c60d70b75)
+* add data structure to store extracted hyperlinks (04ef41d197ea)
+* add accessed field to bib ref (4a1a3bd8b836)
+
 ## v4.4.2
 
 ## v4.4.1
