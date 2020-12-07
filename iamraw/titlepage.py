@@ -25,6 +25,8 @@ import dataclasses
 import enum
 import typing
 
+import iamraw
+
 
 class DocumentType(enum.Enum):
     NONE = enum.auto()
@@ -66,9 +68,6 @@ TitleDate = collections.namedtuple(
     'year month day location valid raw',
 )
 
-Person = collections.namedtuple('Person', 'title name firstname raw')
-Persons = typing.List[Person]
-
 Matrikel = collections.namedtuple('Matrikel', 'number intro raw')
 
 
@@ -86,9 +85,9 @@ class TitlePage:
     title: str = ''
     thesis: DocumentType = None
     date: TitleDate = None
-    author: Person = None
+    author: iamraw.Person = None
     matrikel: Matrikel = None
-    examiner: typing.List[Person] = dataclasses.field(default_factory=list)
+    examiner: iamraw.Persons = dataclasses.field(default_factory=list)
     institution: Institution = None
     # page in pdf location to signal if first page was skipped
     pageraw: int = None

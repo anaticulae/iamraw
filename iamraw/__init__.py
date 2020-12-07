@@ -174,6 +174,9 @@ from iamraw.magic import PageContentType
 # pages
 from iamraw.page import PageSizeBorder
 from iamraw.page import PageSizeBorderList
+# person
+from iamraw.person import Person
+from iamraw.person import Persons
 # quote
 from iamraw.quote import PageContentBlockQuotes
 from iamraw.quote import PageContentBlockQuotesList
@@ -235,8 +238,6 @@ from iamraw.titlepage import THESIS
 from iamraw.titlepage import DocumentType
 from iamraw.titlepage import Institution
 from iamraw.titlepage import Matrikel
-from iamraw.titlepage import Person
-from iamraw.titlepage import Persons
 from iamraw.titlepage import TitleDate
 from iamraw.titlepage import TitlePage
 from iamraw.titlepage import TitlePages
