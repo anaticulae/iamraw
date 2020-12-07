@@ -174,9 +174,6 @@ from iamraw.magic import PageContentType
 # pages
 from iamraw.page import PageSizeBorder
 from iamraw.page import PageSizeBorderList
-# person
-from iamraw.person import PROF_DR
-from iamraw.person import AcademicTitle
 # quote
 from iamraw.quote import PageContentBlockQuotes
 from iamraw.quote import PageContentBlockQuotesList
@@ -230,6 +227,9 @@ from iamraw.textposition import PageContentTextPosition
 from iamraw.textposition import PageContentTextPositions
 from iamraw.textposition import TextPosition
 from iamraw.textposition import TextPositions
+# title
+from iamraw.title import PROF_DR
+from iamraw.title import AcademicTitle
 # title
 from iamraw.titlepage import THESIS
 from iamraw.titlepage import DocumentType
