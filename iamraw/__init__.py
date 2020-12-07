@@ -175,6 +175,7 @@ from iamraw.magic import PageContentType
 from iamraw.page import PageSizeBorder
 from iamraw.page import PageSizeBorderList
 # person
+from iamraw.person import NoPerson
 from iamraw.person import Person
 from iamraw.person import Persons
 # quote

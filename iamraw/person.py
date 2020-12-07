@@ -7,8 +7,24 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import collections
+import dataclasses
 import typing
 
-Person = collections.namedtuple('Person', 'title name firstname raw')
+
+@dataclasses.dataclass
+class Person:
+    name: str = None
+    firstname: str = None
+    title: str = None
+    confidence: float = None
+    raw: str = None
+
+
+@dataclasses.dataclass
+class NoPerson:
+    """Negative result of person parsing."""
+    confidence: float = None
+    raw: str = None
+
+
 Persons = typing.List[Person]
