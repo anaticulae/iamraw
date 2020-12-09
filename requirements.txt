@@ -10,4 +10,4 @@
 PyYAML==5.1
 
 configo==0.8.6
-utila==2.15.0
+utila==2.16.0
