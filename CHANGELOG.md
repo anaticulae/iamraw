@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.6.0
+
+### Feature
+
+* introduce negative person parsing result (6d07156d1b87)
+
 ## v4.5.0
 
 ### Feature
