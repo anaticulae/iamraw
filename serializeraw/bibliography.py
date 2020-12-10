@@ -24,16 +24,12 @@ def dump_bibliography_reference(references: iamraw.BibliographyReferences) -> st
 
 
 def load_bibliography_reference(content: str) -> iamraw.BibliographyReferences:
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.safe_load(content)
-
+    loaded = utila.yaml_from_raw_or_path(content, safe=True)
     result = []
     for page in loaded:
         result.append([iamraw.BibliographyReference(**item) for item in page])
-
     for page in result:
         for item in page:
             # TODO: IS TUPLE SO IMPORTANT HERE?
             item.authors = [tuple(item) for item in item.authors]
-
     return result
