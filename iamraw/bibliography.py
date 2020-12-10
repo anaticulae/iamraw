@@ -36,6 +36,7 @@ class BibliographyReference:
     publisher: str = None
 
     raw: str = None
+    raw_pdfpage: int = None
 
     @classmethod
     def create(cls, author: str, title: str = '', year: int = 2000):
