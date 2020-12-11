@@ -35,7 +35,7 @@ class BibliographyReference:
 
     publisher: str = None
 
-    raw: str = None
+    raw: str = dataclasses.field(default=None, compare=False)
     raw_pdfpage: int = None
 
     @classmethod
