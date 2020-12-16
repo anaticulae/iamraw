@@ -46,7 +46,11 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_headlines(content: str, pages=None) -> iamraw.PagesHeadlineList:
-    content = utila.from_raw_or_path(content, ftype='yaml')
+    content = utila.from_raw_or_path(
+        content,
+        fname='words__headlines_headlines',
+        ftype='yaml',
+    )
     loaded = yaml.safe_load(content)
     result = []
     for step in loaded:
