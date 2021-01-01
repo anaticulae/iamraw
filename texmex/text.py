@@ -11,6 +11,8 @@ import contextlib
 import dataclasses
 import typing
 
+import utila
+
 import texmex
 
 
@@ -57,3 +59,16 @@ def count_textlines(page: 'texmex.NavigatorMixin', remove_empty=False) -> int:
     if remove_empty:
         content = [item for item in content if item.strip()]
     return len(content)
+
+
+def connect_text(items) -> str:
+    with contextlib.suppress(AttributeError, TypeError):
+        items = [item.text for item in items]
+    items = [item.replace(utila.NEWLINE, ' ').strip() for item in items]
+    # replace trennung
+    items = [
+        item[0:-1] if item[-1] in ('-', chr(173)) else item for item in items
+    ]
+    raw = ''.join(items)
+    raw = raw.replace(utila.NEWLINE, ' ')
+    return raw
