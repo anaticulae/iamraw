@@ -59,8 +59,8 @@ class FormulaRaw:
     def __post_init__(self):
         # assert len(self.sizes) == len(self.raw), f'{len(self.sizes)} == {len(self.raw)}' # yapf:disable
         if len(self.sizes) != len(self.raw):
-            utila.error(f'{len(self.sizes)} == {len(self.raw)}')
-            utila.error('XXXX'+utila.fix_encoding(self.raw)+'XXXX')
+            utila.debug(f'{len(self.sizes)} == {len(self.raw)}')
+            utila.debug('XXXX'+utila.fix_encoding(self.raw)+'XXXX')
 
     def append(self, item):
         self.content.append(item)  # pylint:disable=E1101
