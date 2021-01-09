@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v4.7.0
+
+### Feature
+
+* increase required logging level (264314763877)
+* add default loading file names (9c9c568739b3)
+* do not compare raw content of bib ref (2c490d1296dc)
+* add raw_pdfpage item to describe where references is detected (a7b508d032af)
+
 ## v4.6.0
 
 ### Feature
