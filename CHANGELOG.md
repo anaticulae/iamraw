@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.8.0
+
+### Feature
+
+* add general page content loader (64f508f2bed4)
+
+### Documentation
+
+* Happy New Year! (7540138dea64)
+
 ## v4.7.0
 
 ### Feature
