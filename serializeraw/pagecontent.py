@@ -27,8 +27,9 @@ def load_pagecontent(
         content: str,
         pages: tuple = None,
         pageloader: callable = None,
+        fname: str = None,
 ) -> iamraw.PageContents:
-    content = utila.from_raw_or_path(content, ftype='yaml')
+    content = utila.from_raw_or_path(content, ftype='yaml', fname=fname)
     loaded = yaml.safe_load(content)
     pageloader = pageloader if pageloader else lambda x: x
     result = []
