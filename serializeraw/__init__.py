@@ -121,6 +121,9 @@ from serializeraw.magic import dump_magic_types
 from serializeraw.magic import dump_types
 from serializeraw.magic import load_magic_types
 from serializeraw.magic import load_types
+# content
+from serializeraw.pagecontent import dump_pagecontent
+from serializeraw.pagecontent import load_pagecontent
 # pagenumbers
 from serializeraw.pagenumbers import dump_pagenumbers
 from serializeraw.pagenumbers import load_pagenumbers
