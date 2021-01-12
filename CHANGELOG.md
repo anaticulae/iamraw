@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.9.0
+
+### Feature
+
+* add method to dump and load `word spaces` (893f43397a56)
+* add option to define default file name (c9a6d436061e)
+
 ## v4.8.0
 
 ### Feature
