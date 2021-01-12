@@ -164,3 +164,6 @@ from serializeraw.utils import validate
 # whitepage
 from serializeraw.whitepage import dump_whitepages
 from serializeraw.whitepage import load_whitepages
+# wordspace
+from serializeraw.wordspace import dump_wspaces
+from serializeraw.wordspace import load_wspaces
