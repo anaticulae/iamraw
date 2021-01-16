@@ -35,3 +35,28 @@ def load_blockquotes(
                 content=pagecontent,
             ))
     return result
+
+
+def dump_quotations(quotations) -> str:
+    result = []
+    for page, index, sentence in quotations:
+        result.append(f'{page} {index} {sentence}')
+    dumped = yaml.dump(result)
+    return dumped
+
+
+def load_quotations(
+        content: str,
+        pages: tuple = None,
+) -> iamraw.ExtractedQuotations:
+    content = utila.from_raw_or_path(content, ftype='yaml')
+    loaded = yaml.load(content, Loader=yaml.FullLoader)
+    result = []
+    for item in loaded:
+        page, index, sentence = item.split(maxsplit=2)
+        page = int(page)
+        if utila.should_skip(page, pages):
+            continue
+        index = int(index)
+        result.append(iamraw.ExtractedQuotation(page, index, sentence))
+    return result

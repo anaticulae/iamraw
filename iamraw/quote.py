@@ -15,3 +15,10 @@ PageContentBlockQuotes = collections.namedtuple(
     'content, page',
 )
 PageContentBlockQuotesList = typing.List[PageContentBlockQuotes]
+
+ExtractedQuotation = collections.namedtuple(
+    'ExtractedQuotation',
+    'page, index, sentence',
+)
+
+ExtractedQuotations = typing.List[ExtractedQuotation]

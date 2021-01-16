@@ -182,6 +182,8 @@ from iamraw.person import NoPerson
 from iamraw.person import Person
 from iamraw.person import Persons
 # quote
+from iamraw.quote import ExtractedQuotation
+from iamraw.quote import ExtractedQuotations
 from iamraw.quote import PageContentBlockQuotes
 from iamraw.quote import PageContentBlockQuotesList
 # sections
