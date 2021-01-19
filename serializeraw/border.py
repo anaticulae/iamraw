@@ -62,7 +62,11 @@ def load_pageborders(
         size = size_fromraw(item['size'])
         border = border_fromraw(item['border'])
         result.append(
-            iamraw.PageSizeBorder(size=size, border=border, page=pagenumber))
+            iamraw.PageSizeBorder(
+                size=size,
+                border=border,
+                page=pagenumber,
+            ))
     return result
 
 
@@ -72,7 +76,7 @@ def size_toraw(size: iamraw.PageSize) -> str:
         return '%.2f %.2f' % size  #(size.width, size.height)
     except TypeError as error:
         utila.debug('%s %r' % (error, size))
-        return 'None'
+    return 'None'
 
 
 def size_fromraw(size: str) -> iamraw.PageSize:
@@ -81,7 +85,7 @@ def size_fromraw(size: str) -> iamraw.PageSize:
         return iamraw.PageSize(*[float(var) for var in size.split()])
     except ValueError as error:
         utila.debug('%s %r' % (error, size))
-        return iamraw.PageSize(None, None)
+    return iamraw.PageSize(None, None)
 
 
 def border_toraw(border: iamraw.Border) -> str:
@@ -90,7 +94,7 @@ def border_toraw(border: iamraw.Border) -> str:
         return '%.2f %.2f %.2f %.2f' % border
     except TypeError as error:
         utila.debug('%s %r' % (error, border))
-        return 'None'
+    return 'None'
 
 
 def border_fromraw(border: str) -> iamraw.Border:
@@ -99,7 +103,7 @@ def border_fromraw(border: str) -> iamraw.Border:
         return iamraw.Border(*[float(var) for var in border.split()])
     except ValueError as error:
         utila.debug('%s %r' % (error, border))
-        return iamraw.Border(None, None, None, None)
+    return iamraw.Border(None, None, None, None)
 
 
 def load_leftright_border(path: str, pages: tuple = None) -> dict:
