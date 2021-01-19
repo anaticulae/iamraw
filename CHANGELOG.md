@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.10.0
+
+### Feature
+
+* enable complex author parsing (864ee932a3af)
+* add data structure and serializer for extract quote (1251ed81a68a)
+
 ## v4.9.0
 
 ### Feature
