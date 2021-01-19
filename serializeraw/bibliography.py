@@ -30,6 +30,10 @@ def load_bibliography_reference(content: str) -> iamraw.BibliographyReferences:
         result.append([iamraw.BibliographyReference(**item) for item in page])
     for page in result:
         for item in page:
+            # parse complex authors correctly
             # TODO: IS TUPLE SO IMPORTANT HERE?
-            item.authors = [tuple(item) for item in item.authors]
+            item.authors = [
+                author if isinstance(author, dict) else tuple(author)
+                for author in item.authors
+            ]
     return result
