@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.10.3
+
+### Feature
+
+* skip comparing raw and confidence field (c2317cdc395f)
+
 ## v4.10.2
 
 ### Fix
