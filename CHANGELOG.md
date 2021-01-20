@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.10.2
+
+### Fix
+
+* fix author access label (a4d0a08cf128)
+
 ## v4.10.1
 
 ### Feature
