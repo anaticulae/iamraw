@@ -16,8 +16,8 @@ class Person:
     name: str = None
     firstname: str = None
     title: str = None
-    confidence: float = None
-    raw: str = None
+    confidence: float = dataclasses.field(default=None, compare=False)
+    raw: str = dataclasses.field(default=None, compare=False)
 
 
 @dataclasses.dataclass
