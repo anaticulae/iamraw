@@ -23,3 +23,8 @@ def test_bibliography_dump_load():
     dumped = serializeraw.dump_bibliography_reference(EXAMPLE)
     loaded = serializeraw.load_bibliography_reference(dumped)
     assert loaded == EXAMPLE
+
+
+def test_bibliography_author():
+    author = iamraw.BibliographyReference.create('Fahrendholz Konrad')
+    assert author.author == 'Fahrendholz'

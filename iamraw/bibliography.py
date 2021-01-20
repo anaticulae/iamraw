@@ -11,6 +11,8 @@ import contextlib
 import dataclasses
 import typing
 
+import iamraw
+
 
 @dataclasses.dataclass(unsafe_hash=True)
 class BibliographyReference:
@@ -40,7 +42,8 @@ class BibliographyReference:
 
     @classmethod
     def create(cls, author: str, title: str = '', year: int = 2000):
-        author = tuple(author.split(' ', maxsplit=1))
+        author = author.split(' ', maxsplit=1)
+        author = iamraw.Person(name=author[0], firstname=author[1])
         with contextlib.suppress(TypeError):
             year = int(year)
         return cls(authors=[author], title=title, year=year)
@@ -48,8 +51,10 @@ class BibliographyReference:
     @property
     def author(self) -> str:
         """Return family of first author."""
-        with contextlib.suppress(IndexError):
-            return self.authors[0][0]  # pylint:disable=E1136
+        with contextlib.suppress(IndexError, AttributeError):
+            # IndexError: No author parsed
+            # AttributeError: NoPerson parsed
+            return self.authors[0].name  # pylint:disable=E1136
         return None
 
 
