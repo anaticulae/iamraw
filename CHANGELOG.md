@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.10.1
+
+### Feature
+
+* bib loader, use person and noperson instead of dict (e8439a01cec7)
+
 ## v4.10.0
 
 ### Feature
