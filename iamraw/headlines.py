@@ -47,11 +47,19 @@ PagesHeadlineList = typing.List[Headlines]
 def headlines_totoc(
         headlines: PagesHeadlineList,
         remove_rawinfo: bool = False,
+        level_default: int = 1,
 ) -> 'iamraw.Toc':
     try:
         flat = utila.flatten(headlines)
     except TypeError:
         # list is already flat
         flat = headlines
+    if level_default is not None:
+        # disable default level by setting None
+        # ??? NOT POSSIBLE CAUSE OF CREATE_TOC ???
+        for item in flat:
+            if item.level is None:
+                # TODO: THINK ABOUT THIS
+                item.level = level_default
     result = iamraw.toc.create_toc(flat, remove_rawinfo=remove_rawinfo)
     return result
