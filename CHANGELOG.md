@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.11.0
+
+### Feature
+
+* precise academic shortcut (e5d4f036cde7)
+* add default file name (ad3b1713bbe5)
+* add default level to overwrite None (02acd7e6e66b)
+
 ## v4.10.3
 
 ### Feature
