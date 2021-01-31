@@ -64,7 +64,8 @@ MATCHES = {
     'Dr.': AcademicTitle.DR,
     # TODO: ADD GENERAL -/RULE?
     'Prof.[-]{0,1}': AcademicTitle.PROF,
-    r'[a-zA-Z\-]+. ': AcademicTitle.DR,
+    # minimum two chapters to distinguish from first names
+    r'[a-zA-Z\-]{2,}. ': AcademicTitle.DR,
     # see general pattern above
     # 'Dr. rer. biol. hum.': AcademicTitle.DR,
     # 'Dr. med.': AcademicTitle.DR,
