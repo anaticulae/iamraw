@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.11.1
+
+### Fix
+
+* extend master title pattern (c7aeb6f81f76)
+
 ## v4.11.0
 
 ### Feature
