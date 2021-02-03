@@ -51,6 +51,21 @@ class AcademicTitle(enum.Flag):
     def keys():
         return [item for item in MATCHES]
 
+    @staticmethod
+    def merges(items) -> 'iamraw.AcademicTitle':
+        """\
+        >>> AcademicTitle.merges((AcademicTitle.PROF, AcademicTitle.DR))
+        <AcademicTitle.PROF|DR: 96>
+        """
+        if not items:
+            return None
+        result = items[0]
+        for item in items:
+            if not item:
+                continue
+            result |= item
+        return result
+
 
 PROF_DR = AcademicTitle.PROF | AcademicTitle.DR
 
