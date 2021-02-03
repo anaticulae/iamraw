@@ -56,8 +56,8 @@ PROF_DR = AcademicTitle.PROF | AcademicTitle.DR
 
 MATCHES = {
     'B.Sc.': AcademicTitle.BSC,
+    'Dipl.(-| )Ing.': AcademicTitle.MASTER,
     r'Dipl.-\w+': AcademicTitle.MASTER,
-    'Dipl. Ing.': AcademicTitle.MASTER,
     'M.A.': AcademicTitle.MASTER,
     'M.Sc.': AcademicTitle.MASTER,
     'Dr.-Ing.': AcademicTitle.DR,
