@@ -81,12 +81,10 @@ class PageTextNavigator(NavigatorMixin):
             bounding_mean: average distance from bottom line to char top
         """
         x0, y0, x1, y1 = bounding
-
-        assert 0 <= x0 <= x1, f'0<={x0}<={x1}'
-        assert 0 <= y0 <= y1, f'0<={y0}<={y1}'
+        assert x0 <= x1, f'{x0}<={x1}; {bounding}'
+        assert y0 <= y1, f'{y0}<={y1}; {bounding}'
         # TODO: Substract border to move starting text to (0,0)?. If not,
         # x1 is sometimes higher than self.width.
-
         if (x1 - x0) > self.width:
             utila.error(f'page: {self.page} width: {x1-x0} < {self.width}')
         # assert (x1 - x0) < self.width, f'{x1-x0} < {self.width}'
