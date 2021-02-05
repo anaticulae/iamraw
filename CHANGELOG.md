@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.11.2
+
+### Feature
+
+* move function to merge different AcademicTitle's (c6c508d702d1)
+
+### Fix
+
+* enable content outside pages (7a324e1dee3f)
+
 ## v4.11.1
 
 ### Fix
