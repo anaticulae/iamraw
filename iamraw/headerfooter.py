@@ -107,11 +107,8 @@ class RawText:
 
 @dataclasses.dataclass
 class FixedHeaderInformation(HeaderInformation):
-
     title: HeaderTitle = None
-
     undefined: typing.List[RawText] = dataclasses.field(default_factory=list)
-
     images: typing.List[HeaderImages] = dataclasses.field(default_factory=list)
 
     def append(self, item):
@@ -130,7 +127,7 @@ class FixedFooterInformation(FooterInformation):
 
 @dataclasses.dataclass
 class MovingFooterInformation(FooterInformation):
-    notes: typing.List[FootNote] = dataclasses.field(default_factory=list)
+    notes: FootNotes = dataclasses.field(default_factory=list)
 
     def append(self, item):
         self.notes.append(item)  # pylint:disable=E1101
