@@ -66,11 +66,12 @@ class FooterInformation:
 @dataclasses.dataclass
 class FootNote:
     number: int
+    page: int = -1
 
 
 @dataclasses.dataclass
 class FootRawNote(FootNote):
-    text: str
+    text: str = None
     raw: str = None
     style: list = dataclasses.field(default_factory=list)
 
