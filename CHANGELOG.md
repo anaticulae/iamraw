@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.11.4
+
+### Feature
+
+* add footnotes loader (8e2a0e01ddb3)
+
 ## v4.11.3
 
 ### Feature
