@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.11.3
+
+### Feature
+
+* add page information (7c1b4407b03f)
+
 ## v4.11.2
 
 ### Feature

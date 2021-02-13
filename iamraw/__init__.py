@@ -264,6 +264,6 @@ from iamraw.whitepage import PageContentWhitepage
 from iamraw.whitepage import PageContentWhitepages
 from iamraw.whitepage import WhitePage
 
-__version__ = '4.11.2'
+__version__ = '4.11.3'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
