@@ -84,6 +84,8 @@ from serializeraw.fonts import toflag as dump_flags
 # fontstore
 from serializeraw.fontstore import create_fontstore
 from serializeraw.fontstore import create_fontstore_frompath
+# footnotes
+from serializeraw.footnotes import load_footnotes
 # formula
 from serializeraw.formula import dump_formulas
 from serializeraw.formula import load_formulas

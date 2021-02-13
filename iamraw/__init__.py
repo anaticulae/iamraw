@@ -111,6 +111,9 @@ from iamraw.fontstore import FontChunk
 from iamraw.fontstore import FontChunks
 from iamraw.fontstore import FontContentStore
 from iamraw.fontstore import FontStore
+# footnotes
+from iamraw.footnotes import PageContentFootnote
+from iamraw.footnotes import PageContentFootnotes
 # formula
 from iamraw.formula import Formula
 from iamraw.formula import FormulaRaw
