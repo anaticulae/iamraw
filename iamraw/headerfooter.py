@@ -67,6 +67,7 @@ class FooterInformation:
 class FootNote:
     number: int
     page: int = -1
+    bounding: tuple = None
 
 
 @dataclasses.dataclass
