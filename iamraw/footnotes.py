@@ -12,6 +12,6 @@ import typing
 
 PageContentFootnote = collections.namedtuple(
     'PageContentFootnotes',
-    'content, page',
+    'content, page, yrange',
 )
 PageContentFootnotes = typing.List[PageContentFootnote]

@@ -30,6 +30,11 @@ def load_footnotes(
         except AttributeError:
             continue
         assert selected
-        notes = iamraw.PageContentFootnote(content=selected, page=item.page)
+        yrange = (item.footer.begin, item.footer.end)
+        notes = iamraw.PageContentFootnote(
+            content=selected,
+            page=item.page,
+            yrange=yrange,
+        )
         result.append(notes)
     return result
