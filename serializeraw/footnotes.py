@@ -24,16 +24,16 @@ def load_footnotes(
     content = utila.from_raw_or_path(content, fname=fname)
     loaded = serializeraw.load_headerfooter(content, pages=pages)
     result = []
-    for item in loaded:
+    for page in loaded:
         try:
-            selected = item.footer.notes
+            selected = page.footer.notes
         except AttributeError:
             continue
         assert selected
-        yrange = (item.footer.begin, item.footer.end)
+        yrange = (page.footer.begin, page.footer.end)
         notes = iamraw.PageContentFootnote(
             content=selected,
-            page=item.page,
+            page=page.page,
             yrange=yrange,
         )
         result.append(notes)
