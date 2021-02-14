@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.12.0
+
+### Feature
+
+* add yrange of content (0ea5dd8c0011)
+
 ## v4.11.4
 
 ### Feature
