@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.12.1
+
+### Feature
+
+* add bounding to FootNote (a2aa971a9808)
+
+### Fix
+
+* round footer range (807bf428063c)
+
 ## v4.12.0
 
 ### Feature
