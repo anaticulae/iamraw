@@ -30,7 +30,7 @@ def load_footnotes(
         except AttributeError:
             continue
         assert selected
-        yrange = (page.footer.begin, page.footer.end)
+        yrange = utila.roundme((page.footer.begin, page.footer.end))
         notes = iamraw.PageContentFootnote(
             content=selected,
             page=page.page,
