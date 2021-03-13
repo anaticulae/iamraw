@@ -48,12 +48,10 @@ def load_pageborders(
     Returns:
         List[PageSize], List[Border]
     """
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
-        ftype='yaml',
         fname='rawmaker__border_pages',
     )
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
     result = []
     for item in loaded:
         pagenumber = int(item['page'])
