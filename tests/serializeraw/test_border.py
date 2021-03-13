@@ -7,19 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
-from pytest import mark
+import pytest
 
+import iamraw
+import iamraw.border
 import serializeraw
-from iamraw import Border
-from iamraw import PageSize
-from iamraw.border import validate
-from serializeraw import dump_pageborders
-from serializeraw import load_pageborders
-from serializeraw.border import border_fromraw
-from serializeraw.border import border_toraw
-from serializeraw.border import size_fromraw
-from serializeraw.border import size_toraw
+import serializeraw.border
 
 
 def test_border_work(boxdata_from_pdf):
@@ -29,32 +22,33 @@ def test_border_work(boxdata_from_pdf):
 def test_border_dump_and_load_pageborder(boxdata_from_pdf):
     sizeandborders, _ = boxdata_from_pdf
 
-    dumped = dump_pageborders(sizeandborders)
+    dumped = serializeraw.dump_pageborders(sizeandborders)
 
-    loaded_sizeandborders = load_pageborders(dumped)
+    loaded_sizeandborders = serializeraw.load_pageborders(dumped)
     assert loaded_sizeandborders == sizeandborders
 
-    loaded_sizeandborders = load_pageborders(dumped, pages=(1, 2, 3))
+    loaded_sizeandborders = serializeraw.load_pageborders(
+        dumped, pages=(1, 2, 3))
     assert len(loaded_sizeandborders) == 3
 
 
-@mark.parametrize('size', [
-    PageSize(10.5, 5.0),
-    PageSize(1, 1),
-    PageSize(None, None),
+@pytest.mark.parametrize('size', [
+    iamraw.PageSize(10.5, 5.0),
+    iamraw.PageSize(1, 1),
+    iamraw.PageSize(None, None),
 ])
 def test_convert_size(size):
-    raw = size_toraw(size)
-    assert size_fromraw(raw) == size
+    raw = serializeraw.border.size_toraw(size)
+    assert serializeraw.border.size_fromraw(raw) == size
 
 
-@mark.parametrize('border', [
-    Border(1, 2, 3, 4),
-    Border(None, None, None, None),
+@pytest.mark.parametrize('border', [
+    iamraw.Border(1, 2, 3, 4),
+    iamraw.Border(None, None, None, None),
 ])
 def test_convert_border(border):
-    raw = border_toraw(border)
-    assert border_fromraw(raw) == border
+    raw = serializeraw.border.border_toraw(border)
+    assert serializeraw.border.border_fromraw(raw) == border
 
 
 def test_border_validate_border_and_pages(boxdata_from_pdf):
@@ -63,11 +57,11 @@ def test_border_validate_border_and_pages(boxdata_from_pdf):
     size = [item.size for item in sizeandborder]
     border = [item.border for item in sizeandborder]
 
-    valid_size = validate(size)
-    valid_border = validate(border)
+    valid_size = iamraw.border.validate(size)
+    valid_border = iamraw.border.validate(border)
 
-    invalid_border = Border(-1, 0, 100, 200)
-    valid = validate(invalid_border)
+    invalid_border = iamraw.Border(-1, 0, 100, 200)
+    valid = iamraw.border.validate(invalid_border)
 
     assert valid_size
     assert valid_border
