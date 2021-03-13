@@ -218,7 +218,6 @@ from iamraw.table import PageContentTableBoundings
 from iamraw.table import TableBounding
 from iamraw.table import TableBoundings
 # text
-from iamraw.text import DOT
 from iamraw.text import ChapterText
 from iamraw.text import ChapterTextList
 from iamraw.text import ContentType

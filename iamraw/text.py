@@ -13,8 +13,6 @@ import typing
 
 import iamraw.headlines
 
-DOT = '•'
-
 
 class ContentType(enum.Enum):
     # TODO: REMOVE, USE PageContentType instead!

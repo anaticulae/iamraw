@@ -11,6 +11,8 @@
 from texmex.alpha import alphabetically
 from texmex.alpha import replace as alpha_replace
 from texmex.alpha import sort as alpha_sort
+# character
+from texmex.character import DOT
 # group
 from texmex.group.fonts import bounds_to_textbounds
 from texmex.group.fonts import document_textdistance
