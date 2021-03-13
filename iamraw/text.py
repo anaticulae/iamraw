@@ -17,6 +17,7 @@ DOT = '•'
 
 
 class ContentType(enum.Enum):
+    # TODO: REMOVE, USE PageContentType instead!
     UNDEFINED = 0
     PARAGRAPH = 1
     BOXED = 2
