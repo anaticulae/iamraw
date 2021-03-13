@@ -27,4 +27,5 @@ class PageContentType(enum.Enum):
     CAPTION = enum.auto()
     TABLE = enum.auto()
     FIGURE = enum.auto()
+    BOXED = enum.auto()
     UNDEFINED = -1
