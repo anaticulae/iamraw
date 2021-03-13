@@ -104,21 +104,18 @@ def border_fromraw(border: str) -> iamraw.Border:
     return iamraw.Border(None, None, None, None)
 
 
-def load_leftright_border(path: str, pages: tuple = None) -> dict:
-    raw = utila.from_raw_or_path(
-        path,
-        ftype='yaml',
+def load_leftright_border(content: str, pages: tuple = None) -> dict:
+    loaded = utila.yaml_from_raw_or_path(
+        content,
         fname='groupme__border_leftright',
     )
-    loaded = yaml.safe_load(raw)
     lookup = {}
     for line in loaded:
         page, border = line.split(maxsplit=1)
         page = int(page)
-        border = utila.parse_tuple(border, length=4)
         if utila.should_skip(page, pages):
             continue
-        # content = utila.parse_tuple(border)
+        border = utila.parse_tuple(border, length=4)
         lookup[page] = border
     return lookup
 
