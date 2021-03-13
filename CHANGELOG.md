@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.13.0
+
+### Feature
+
+* move dot to separate module, extend documentation (f73896a287c8)
+* add Boxed data type (ec272d01ac88)
+
 ## v4.12.1
 
 ### Feature
