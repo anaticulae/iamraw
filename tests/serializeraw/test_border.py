@@ -7,8 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import utila
 from pytest import mark
 
+import serializeraw
 from iamraw import Border
 from iamraw import PageSize
 from iamraw.border import validate
@@ -73,3 +75,16 @@ def test_border_validate_border_and_pages(boxdata_from_pdf):
     assert valid_size
     assert valid_border
     assert not valid
+
+
+def test_dump_load_leftright_border():
+    borders = [
+        (0, 10, 10, 20, 20),
+        (2, 0, 0, 50, 50),
+        (3, 0, 0, 50, 50),
+        (2, -15, -15, 50, 50),
+    ]
+    expected = {page: tuple(border) for page, *border in borders}
+    dumped = serializeraw.dump_leftright_border(borders)
+    loaded = serializeraw.load_leftright_border(dumped)
+    assert loaded == expected
