@@ -20,15 +20,13 @@ from serializeraw.border import border_fromraw
 from serializeraw.border import border_toraw
 from serializeraw.border import size_fromraw
 from serializeraw.border import size_toraw
-# pylint:disable=W0611
-from tests.serializeraw.fixtures import boxdata_from_pdf
 
 
-def test_border_work(boxdata_from_pdf):  #pylint:disable=W0621
+def test_border_work(boxdata_from_pdf):
     assert len(boxdata_from_pdf) == 2
 
 
-def test_border_dump_and_load_pageborder(boxdata_from_pdf):  #pylint:disable=W0621
+def test_border_dump_and_load_pageborder(boxdata_from_pdf):
     sizeandborders, _ = boxdata_from_pdf
 
     dumped = dump_pageborders(sizeandborders)
@@ -59,7 +57,6 @@ def test_convert_border(border):
     assert border_fromraw(raw) == border
 
 
-#pylint:disable=W0621
 def test_border_validate_border_and_pages(boxdata_from_pdf):
     sizeandborder, _ = boxdata_from_pdf
 
