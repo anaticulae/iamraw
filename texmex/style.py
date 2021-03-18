@@ -77,8 +77,18 @@ class TextStyle:
     def __len__(self):
         return len(self.content)
 
-    def textsize(self):
+    def textsize(self) -> float:
         return TextStyle.textsizes(self)
+
+    @property
+    def fontid(self) -> int:
+        return TextStyle.fontids(self)
+
+    @classmethod
+    def fontids(cls, item: 'TextStyle', method=utila.mode):
+        result = [[char.font] * char.char_count for char in item.content]
+        result = utila.flatten(result)
+        return method(result)
 
     @classmethod
     def textsizes(cls, item: 'TextStyle', method=utila.mode):
