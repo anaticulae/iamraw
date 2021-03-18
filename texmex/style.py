@@ -34,7 +34,13 @@ class CharStyle:
 
     @property
     def width(self):
+        """Number of chars which hold this style."""
         return self.end - self.start
+
+    @property
+    def char_count(self):
+        """Number of chars which hold this style."""
+        return self.width
 
 
 CharStyles = typing.List[CharStyle]
@@ -78,7 +84,7 @@ class TextStyle:
     def textsizes(cls, item: 'TextStyle', method=utila.mode):
         # detect most common font size(s)
         assert isinstance(item, cls), type(item)
-        result = [[char.size] * (char.end - char.start) for char in item.content] # yapf:disable
+        result = [[char.size] * char.char_count for char in item.content]
         result = utila.flatten(result)
         return method(result)
 
