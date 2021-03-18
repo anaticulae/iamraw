@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.14.0
+
+### Feature
+
+* add method to determine most common fontid (2c07608bd6df)
+* add method to count number of included character (390016c88266)
+
 ## v4.13.0
 
 ### Feature
