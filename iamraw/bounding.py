@@ -174,6 +174,14 @@ class PageBoundings:
     # current page number
     page: int = 0
 
+    def __getitem__(self, index):
+        # page, content
+        if index == 0:
+            return self.page
+        if index == 1:
+            return self.boundings
+        raise IndexError(f'invalid index: {index}')
+
 
 PageBoundingsList = typing.List[PageBoundings]
 
