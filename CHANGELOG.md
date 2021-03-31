@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.14.1
+
+### Feature
+
+* make TextInfo hash-able (9b507c095fe7)
+* add tuple unpacking (ab33a827b883)
+
 ## v4.14.0
 
 ### Feature
