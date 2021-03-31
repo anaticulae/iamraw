@@ -108,6 +108,12 @@ class TextStyle:
 
 @dataclasses.dataclass
 class TextInfo:
+    """\
+    ensure that hashing is possible:
+
+    >>> hash(TextInfo('This is content', style=TextStyle())) is not None
+    True
+    """
     text: str
     bounding: iamraw.BoundingBox = None
     style: TextStyle = None
@@ -124,6 +130,10 @@ class TextInfo:
 
     def __repr__(self):
         return self.text + utila.NEWLINE
+
+    def __hash__(self):
+        return hash(self.text) + hash(str(self.style)) + hash(
+            str(self.bounding))
 
 
 def create_textstyle(chars: iamraw.Chars) -> TextStyle:
