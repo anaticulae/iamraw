@@ -190,7 +190,6 @@ def _load_document(content):
 
 
 def _dump_document(document: iamraw.Document) -> dict:
-    assert document
     assert document.dimension, str(document.dimension)
     result = {
         'dimension': serializeraw.border.size_toraw(document.dimension),

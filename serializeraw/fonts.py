@@ -111,7 +111,6 @@ def load_font_header(content):
 
 
 def dump_font_content(pages: PageFontContents) -> str:
-    assert pages
     result = []
     for page in pages:
         items = []
