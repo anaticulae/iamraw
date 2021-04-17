@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.14.2
+
+### Fix
+
+* allow dumping empty elements (2f063424d362)
+
 ## v4.14.1
 
 ### Feature
