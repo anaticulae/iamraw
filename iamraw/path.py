@@ -101,3 +101,27 @@ def sections_(path: str, prefix: str = '') -> str:
 
 def magic_content(path: str, prefix: str = '') -> str:
     return utila.pathconnector(path, 'magic', 'content_content', prefix)
+
+
+def words_headlines(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'words', 'headlines_headlines', prefix)
+
+
+def words_headlines_oneline(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'words', 'headlines_oneline', prefix)
+
+
+def words_text(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'words', 'text_text', prefix)
+
+
+def words_word(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'words', 'word_result', prefix)
+
+
+def words_lists(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'words', 'list_list', prefix)
+
+
+def words_links(path: str, prefix: str = '') -> str:
+    return utila.pathconnector(path, 'words', 'links_links', prefix)
