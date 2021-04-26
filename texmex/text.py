@@ -9,9 +9,8 @@
 
 import contextlib
 import dataclasses
+import re
 import typing
-
-import utila
 
 import texmex
 
@@ -61,14 +60,35 @@ def count_textlines(page: 'texmex.NavigatorMixin', remove_empty=False) -> int:
     return len(content)
 
 
-def connect_text(items) -> str:
+def connect_text(
+        items,
+        merge_divis: bool = True,
+        normalize_newline: bool = True,
+        normalize_spaces: bool = False,
+) -> str:
+    r"""\
+    >>> connect_text(['Dieser Satz ent-\n', 'hält eine Trennung.'], merge_divis=True)
+    'Dieser Satz enthält eine Trennung.'
+    >>> connect_text(['Der Stadtteil Berlin-\n', 'Neuköln liegt im Süden von Berlin.'])
+    'Der Stadtteil Berlin-Neuköln liegt im Süden von Berlin.'
+    >>> connect_text(['Das  sind   eindeutig zu   viele Trennungen.'], normalize_spaces=True)
+    'Das sind eindeutig zu viele Trennungen.'
+    >>> connect_text(['Special Char' + chr(173) + '\n', 'sol hier'])
+    'Special Charsol hier'
+    >>> connect_text([''])
+    ''
+    """
+    # prepare input data
     with contextlib.suppress(AttributeError, TypeError):
         items = [item.text for item in items]
-    items = [item.replace(utila.NEWLINE, ' ').strip() for item in items]
-    # replace trennung
-    items = [
-        item[0:-1] if item[-1] in ('-', chr(173)) else item for item in items
-    ]
-    raw = ''.join(items)
-    raw = raw.replace(utila.NEWLINE, ' ')
-    return raw
+    text = ''.join(items)
+    if merge_divis:
+        # Ensure that divis of following UpperCase-Word is not merged
+        # TODO: IMPORVE REGEX
+        text = re.sub(r'[-\xad]\n(?P<data>[a-zäöü])', r'\g<data>', text)
+        text = re.sub(r'[-\xad]\n(?P<data>[A-ZÄÖÜ])', r'-\g<data>', text)
+    if normalize_newline:
+        text = text.replace('\n', ' ')
+    if normalize_spaces:
+        text = re.sub(r'\s+', ' ', text)
+    return text
