@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.14.3
+
+### Feature
+
+* improve text connector (16ce09f6f66c)
+* move words path result methods (7d6050f48463)
+
 ## v4.14.2
 
 ### Fix
