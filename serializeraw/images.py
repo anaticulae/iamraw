@@ -54,7 +54,7 @@ def load_image_info(content: str) -> iamraw.ImageInformation:
     return parsed
 
 
-def load_image_informations_frompath(
+def load_image_infos_frompath(
         path: str,
         pages: tuple = None,
 ) -> iamraw.PageContentImageInfos:
@@ -74,3 +74,6 @@ def load_image_informations_frompath(
     ]
     result.sort(key=lambda x: x.page)
     return result
+
+
+load_image_informations_frompath = load_image_infos_frompath  # pylint:disable=C0103
