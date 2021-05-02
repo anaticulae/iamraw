@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.15.0
+
+### Feature
+
+* add option to dump None position (d7ec631fbdea)
+* add image info loader to public API (cb23b761a56e)
+
 ## v4.14.3
 
 ### Feature
