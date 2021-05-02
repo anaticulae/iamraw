@@ -16,6 +16,10 @@ import iamraw
 
 
 def dump_abbreviation(item) -> dict:
+    """\
+    >>> dump_abbreviation(iamraw.Abbreviation(position=iamraw.AbbreviationPosition(page=20)))
+    {'short': None, 'position': '20 None None'}
+    """
     assert isinstance(item, iamraw.Abbreviation), type(item)
     position = item.position
     raw = {
@@ -34,6 +38,9 @@ def load_abbreviation(raw: dict) -> iamraw.Abbreviation:
     'description' : 'alpha beta gum'}) # doctest: +NORMALIZE_WHITESPACE
     Abbreviation(short='ABC', description='alpha beta gum',
     position=AbbreviationPosition(page=10, sentence=5, word=0))
+
+    >>> load_abbreviation({'short': None, 'position': '20 None None'})
+    Abbreviation(short=None, description=None, position=AbbreviationPosition(page=20, sentence=None, word=None))
     """
     assert isinstance(raw, dict), type(raw)
     result = iamraw.Abbreviation(short=raw['short'])
@@ -44,6 +51,7 @@ def load_abbreviation(raw: dict) -> iamraw.Abbreviation:
             raw['position'],
             length=3,
             typ=int,
+            none=True,
         )
         result.position = iamraw.AbbreviationPosition(
             page=page,
