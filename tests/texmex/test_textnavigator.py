@@ -57,3 +57,7 @@ def test_hey_navigator_find():
 
     located = navigator.find(location)
     assert located.text == 'hello'
+
+
+def test_textnavigator_before(navigator):
+    assert navigator.between(0, 0.5)

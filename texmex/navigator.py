@@ -35,7 +35,80 @@ class SelectBounding(enum.Enum):
 
 
 class NavigatorMixin:
-    pass
+
+    def between(
+            self,
+            top: float,
+            bottom: float,
+            left: float = START,
+            right: float = END,
+            selector: SelectBounding = SelectBounding.MAX,
+    ) -> list:
+        """Return content between to and bottom and left to right in
+        range [top(0.0), bottom(1.0)] and [left(0.0), right(1.0)].
+
+        Args:
+            top(float): accepted content after top mark
+            bottom(float): accepted content before bottom mark
+            left(float): accepted content after left mark
+            right(float): accepted content before right mark
+            selector: select different bounding checker
+        Returns:
+            list of `TextInfo`
+        """
+        assert START <= top <= bottom <= END, (
+            f'{START}<={top}<={bottom}<={END}')
+        assert START <= left <= right <= DISABLE_VALIDATION, (
+            f'{START}<={left}<={right}<={DISABLE_VALIDATION}')
+
+        before = top * self.height
+        after = bottom * self.height
+        beforeleft = left * self.width
+        afterright = right * self.width
+
+        inside = (before, after, beforeleft, afterright)
+
+        result = []
+        for item in self.data:
+            if not valid(item, inside, selector=selector):
+                continue
+            result.append(item.copy())
+        return result
+
+    def before(
+            self,
+            height: float,
+            width: float = END,
+            selector: SelectBounding = SelectBounding.MAX,
+    ) -> list:
+        """Determine elements on the top of the document
+
+        Args:
+            height(float[0.0,1.0]): 0.0 is top, 1.0 is bottom
+            width: marker from left to right, return elements [0.0 width]
+            selector: select bounding check strategy
+        Returns:
+            list of `TextInfo`
+        """
+        result = self.between(
+            START,
+            height,
+            left=START,
+            right=width,
+            selector=selector,
+        )
+        return result
+
+    def after(
+            self,
+            height,
+            width=START,
+            selector: SelectBounding = SelectBounding.MAX,
+    ):
+        """Determine elements after `height` till the bottom of the
+        page. Additonal shrink from left to right with `width`."""
+        result = self.between(height, END, width, END, selector=selector)
+        return result
 
 
 class PageTextNavigator(NavigatorMixin):
@@ -111,45 +184,6 @@ class PageTextNavigator(NavigatorMixin):
         assert isinstance(bounding, iamraw.BoundingBox), type(position)
         self.finding[bounding] = datum
 
-    def between(
-            self,
-            top: float,
-            bottom: float,
-            left: float = START,
-            right: float = END,
-            selector: SelectBounding = SelectBounding.MAX,
-    ) -> list:
-        """Return content between to and bottom and left to right in
-        range [top(0.0), bottom(1.0)] and [left(0.0), right(1.0)].
-
-        Args:
-            top(float): accepted content after top mark
-            bottom(float): accepted content before bottom mark
-            left(float): accepted content after left mark
-            right(float): accepted content before right mark
-            selector: select different bounding checker
-        Returns:
-            list of `TextInfo`
-        """
-        assert START <= top <= bottom <= END, (
-            f'{START}<={top}<={bottom}<={END}')
-        assert START <= left <= right <= DISABLE_VALIDATION, (
-            f'{START}<={left}<={right}<={DISABLE_VALIDATION}')
-
-        before = top * self.height
-        after = bottom * self.height
-        beforeleft = left * self.width
-        afterright = right * self.width
-
-        inside = (before, after, beforeleft, afterright)
-
-        result = []
-        for item in self.data:
-            if not valid(item, inside, selector=selector):
-                continue
-            result.append(item.copy())
-        return result
-
     def __getitem__(self, index) -> texmex.style.TextInfo:
         return self.data[index]
 
@@ -163,41 +197,6 @@ class PageTextNavigator(NavigatorMixin):
     @property
     def dimension(self):
         return iamraw.PageSize(width=self.width, height=self.height)
-
-    def before(
-            self,
-            height: float,
-            width: float = END,
-            selector: SelectBounding = SelectBounding.MAX,
-    ) -> list:
-        """Determine elements on the top of the document
-
-        Args:
-            height(float[0.0,1.0]): 0.0 is top, 1.0 is bottom
-            width: marker from left to right, return elements [0.0 width]
-            selector: select bounding check strategy
-        Returns:
-            list of `TextInfo`
-        """
-        result = self.between(
-            START,
-            height,
-            left=START,
-            right=width,
-            selector=selector,
-        )
-        return result
-
-    def after(
-            self,
-            height,
-            width=START,
-            selector: SelectBounding = SelectBounding.MAX,
-    ):
-        """Determine elements after `height` till the bottom of the
-        page. Additonal shrink from left to right with `width`."""
-        result = self.between(height, END, width, END, selector=selector)
-        return result
 
     def offset(self, top: float, bottom: float) -> typing.Tuple[int, int]:
         """Determine the range of content index which represents the
@@ -222,35 +221,6 @@ class PageTextNavigator(NavigatorMixin):
             return self.finding[location]
         except KeyError as error:
             raise ValueError(f'could not find {location}') from error
-
-
-def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0911
-    bounding = item.bounding
-    (before, after, beforeleft, afterright) = inside
-    # before and after are pixel coordinates
-    if selector == SelectBounding.MAX:
-        if not before <= bounding.y0 <= bounding.y1 <= after:
-            return False
-    elif selector == SelectBounding.MEAN:
-        mean = bounding.y1 - item.bounding_mean
-        if not before <= mean <= bounding.y1 <= after:
-            return False
-    elif selector == SelectBounding.TWO_THIRDS:
-        sixty = bounding.y1 - (bounding.y1 - bounding.y0) * 0.66
-        if not before <= sixty <= bounding.y1 <= after:
-            return False
-    elif selector == SelectBounding.TOP:
-        if not before <= bounding.y0 <= after:
-            return False
-    elif selector == SelectBounding.BOTTOM:
-        if not before <= bounding.y1 <= after:
-            return False
-    # TODO: ACTIVATE AFTER FIXING CONTENT BORDER OF MASTER_72
-    # THERE ARE SOME SPACES WHICH MOVES CONTENT OVER THE PAGES,
-    # THEREFORE 3.1. is ignored
-    if not beforeleft <= bounding.x0 <= bounding.x1 <= afterright:
-        return False
-    return True
 
 
 class PageTextContentNavigator(NavigatorMixin):
@@ -321,6 +291,35 @@ class PageTextContentNavigator(NavigatorMixin):
 
 PageTextNavigators = typing.List[PageTextNavigator]
 PageTextContentNavigators = typing.List[PageTextContentNavigator]
+
+
+def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0911
+    bounding = item.bounding
+    (before, after, beforeleft, afterright) = inside
+    # before and after are pixel coordinates
+    if selector == SelectBounding.MAX:
+        if not before <= bounding.y0 <= bounding.y1 <= after:
+            return False
+    elif selector == SelectBounding.MEAN:
+        mean = bounding.y1 - item.bounding_mean
+        if not before <= mean <= bounding.y1 <= after:
+            return False
+    elif selector == SelectBounding.TWO_THIRDS:
+        sixty = bounding.y1 - (bounding.y1 - bounding.y0) * 0.66
+        if not before <= sixty <= bounding.y1 <= after:
+            return False
+    elif selector == SelectBounding.TOP:
+        if not before <= bounding.y0 <= after:
+            return False
+    elif selector == SelectBounding.BOTTOM:
+        if not before <= bounding.y1 <= after:
+            return False
+    # TODO: ACTIVATE AFTER FIXING CONTENT BORDER OF MASTER_72
+    # THERE ARE SOME SPACES WHICH MOVES CONTENT OVER THE PAGES,
+    # THEREFORE 3.1. is ignored
+    if not beforeleft <= bounding.x0 <= bounding.x1 <= afterright:
+        return False
+    return True
 
 
 def navigator_to_content(navigator: PageTextNavigator) -> TextBoundsInfos:
