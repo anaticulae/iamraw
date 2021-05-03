@@ -56,10 +56,8 @@ class NavigatorMixin:
         Returns:
             list of `TextInfo`
         """
-        assert START <= top <= bottom <= END, (
-            f'{START}<={top}<={bottom}<={END}')
-        assert START <= left <= right <= DISABLE_VALIDATION, (
-            f'{START}<={left}<={right}<={DISABLE_VALIDATION}')
+        assert START <= top <= bottom <= END, f'{START}<={top}<={bottom}<={END}'
+        assert START <= left <= right <= DISABLE_VALIDATION, f'{START}<={left}<={right}<={DISABLE_VALIDATION}'
 
         before = top * self.height
         after = bottom * self.height
