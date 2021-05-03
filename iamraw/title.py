@@ -70,6 +70,7 @@ class AcademicTitle(enum.Flag):
 PROF_DR = AcademicTitle.PROF | AcademicTitle.DR
 
 MATCHES = {
+    'Prof.[-]{0,1} ?Dr.[-]? ?Ing.': PROF_DR,
     'B.Sc.': AcademicTitle.BSC,
     'Dipl.(-| )Ing.': AcademicTitle.MASTER,
     r'Dipl.-\w+': AcademicTitle.MASTER,
@@ -85,3 +86,6 @@ MATCHES = {
     # 'Dr. rer. biol. hum.': AcademicTitle.DR,
     # 'Dr. med.': AcademicTitle.DR,
 }
+
+NO_ESCAPE = not any('[ ]' in item or r'\.' in item for item in MATCHES)
+assert NO_ESCAPE, 'escaping white spaces/dots is not required'
