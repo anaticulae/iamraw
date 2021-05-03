@@ -36,6 +36,10 @@ class SelectBounding(enum.Enum):
 
 class NavigatorMixin:
 
+    def __init__(self, pagesize: tuple):
+        # TODO: REFACTOR LATER
+        self.pagesize = pagesize
+
     def between(
             self,
             top: float,
@@ -62,10 +66,10 @@ class NavigatorMixin:
         if not self.data:
             return []
 
-        before = top * self.height
-        after = bottom * self.height
-        beforeleft = left * self.width
-        afterright = right * self.width
+        before = top * self.pagesize[1]
+        after = bottom * self.pagesize[1]
+        beforeleft = left * self.pagesize[0]
+        afterright = right * self.pagesize[0]
 
         inside = (before, after, beforeleft, afterright)
 
@@ -132,6 +136,7 @@ class PageTextNavigator(NavigatorMixin):
             A4: 210 x 297 mm, 8.26 x 11.69 inch, 595 x 842pt
                                                  612 x 792pt
         """
+        super().__init__(pagesize=size if size else (612.0, 792.0))
         if size is None:
             size = (612.0, 792.0)
         self.page = page
@@ -245,6 +250,7 @@ class PageTextContentNavigator(NavigatorMixin):
             content: distance from page border which defines start of content.
             validate_leftright(bool): do not check left right coordinate.
         """
+        super().__init__(pagesize=(textnavigator.width, textnavigator.height))
         msg = 'require `PageTextNavigator` got: %s' % type(textnavigator)
         assert isinstance(textnavigator, PageTextNavigator), msg
         msg = 'require `Border` got: %s' % type(content)
