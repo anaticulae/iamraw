@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.17.0
+
+### Feature
+
+* add separate page dimension (279f2998f901)
+* add default footer path (5d31d69d6cf4)
+
+### Fix
+
+* skip empty page (2a9fd34f084c)
+
 ## v4.16.0
 
 ### Feature
