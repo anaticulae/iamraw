@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.17.1
+
+### Feature
+
+* add another prof-dr-matching rule (93678fc55e9e)
+
 ## v4.17.0
 
 ### Feature
