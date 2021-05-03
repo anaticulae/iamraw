@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.16.0
+
+### Feature
+
+* enable between, after, before for ptn (0b77ed0d1bab)
+
 ## v4.15.0
 
 ### Feature
