@@ -8,12 +8,10 @@
 # =============================================================================
 
 import iamraw
-import tests.fixtures.textnavigator
 import texmex
 
 
-def test_insert_order():  #pylint:disable=W0621
-    navigator = tests.fixtures.textnavigator.navigator()
+def test_insert_order(navigator):
     for before, after in zip(navigator[:-1], navigator[1:]):
         before = before.bounding
         after = after.bounding
@@ -27,8 +25,7 @@ def test_insert_order():  #pylint:disable=W0621
     assert current_order == list(range(len(navigator))), current_order
 
 
-def test_after():  #pylint:disable=W0621
-    navigator = tests.fixtures.textnavigator.navigator()
+def test_after(navigator):
     # Bottom footer
     after = 0.8  # from 80% to 100%
     # greater than 563
@@ -37,8 +34,7 @@ def test_after():  #pylint:disable=W0621
     assert len(result) == 4, result
 
 
-def test_before():  #pylint:disable=W0621
-    navigator = tests.fixtures.textnavigator.navigator()
+def test_before(navigator):
     # Top footer
     # smaller than 158.4
     before = 0.2  # from 20% to 0%
@@ -47,9 +43,7 @@ def test_before():  #pylint:disable=W0621
     assert len(result) == 1, before
 
 
-#pylint:disable=W0621
-def test_fonts_navigator_to_bounds():
-    navigator = tests.fixtures.textnavigator.navigator()
+def test_fonts_navigator_to_bounds(navigator):
     result = texmex.navigator_to_bounds(navigator)
     assert all([isinstance(item, iamraw.BoundingBox) for item in result])
 

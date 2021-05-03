@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-# pylint:disable=W0611
-from tests.serializeraw.fixtures import boxdata_from_pdf
+from tests.fixtures.textnavigator import navigator  # pylint:disable=W0611
+from tests.serializeraw.fixtures import boxdata_from_pdf  # pylint:disable=W0611
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name

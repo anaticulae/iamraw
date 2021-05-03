@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import pytest
 import utila
 
 import iamraw
@@ -30,6 +31,7 @@ def document_size(items):
     return (dimension[2], dimension[3])
 
 
+@pytest.fixture
 def navigator() -> texmex.PageTextNavigator:
     dimension = document_size([item for _, item in SAMPLE])
     result = texmex.PageTextNavigator(dimension)
