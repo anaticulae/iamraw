@@ -9,6 +9,8 @@
 
 import utila
 
+connect = utila.pathconnector  # pylint:disable=C0103
+
 
 def text(path: str, prefix: str = '') -> str:
     """Add text file name of `rawmaker` to given `path
@@ -22,106 +24,96 @@ def text(path: str, prefix: str = '') -> str:
     Returns:
         comined path
     """
-    return utila.pathconnector(path, 'rawmaker', 'text_text', prefix)
+    return connect(path, 'rawmaker', 'text_text', prefix)
 
 
 def textposition(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'text_positions', prefix)
+    return connect(path, 'rawmaker', 'text_positions', prefix)
 
 
 def toc(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'outlines_outlines', prefix)
+    return connect(path, 'rawmaker', 'outlines_outlines', prefix)
 
 
 def fontheader(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'fonts_header', prefix)
+    return connect(path, 'rawmaker', 'fonts_header', prefix)
 
 
 def fontcontent(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'fonts_content', prefix)
+    return connect(path, 'rawmaker', 'fonts_content', prefix)
 
 
 def sizeandborder(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'border_pages', prefix)
+    return connect(path, 'rawmaker', 'border_pages', prefix)
 
 
 def horizontals(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
-        path,
-        'rawmaker',
-        'horizontals_horizontals',
-        prefix,
-    )
+    return connect(path, 'rawmaker', 'horizontals_horizontals', prefix)
 
 
 def boxed(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'boxes_boxes', prefix)
+    return connect(path, 'rawmaker', 'boxes_boxes', prefix)
 
 
 def line(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'line_line', prefix)
+    return connect(path, 'rawmaker', 'line_line', prefix)
 
 
 def headerfooters(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(
-        path,
-        'groupme',
-        'footer_footerheader',
-        prefix,
-    )
+    return connect(path, 'groupme', 'footer_footerheader', prefix)
 
 
 def images(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'images_images', prefix)
+    return connect(path, 'rawmaker', 'images_images', prefix)
 
 
 def formula(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'rawmaker', 'formula_formula', prefix)
+    return connect(path, 'rawmaker', 'formula_formula', prefix)
 
 
 def figure_caption(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'caption', 'figure_caption', prefix)
+    return connect(path, 'caption', 'figure_caption', prefix)
 
 
 def image_caption(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'caption', 'image_caption', prefix)
+    return connect(path, 'caption', 'image_caption', prefix)
 
 
 def table_caption(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'caption', 'table_caption', prefix)
+    return connect(path, 'caption', 'table_caption', prefix)
 
 
 def general_cation(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'caption', 'general_general', prefix)
+    return connect(path, 'caption', 'general_general', prefix)
 
 
 def sections_(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'sections', 'section_result', prefix)
+    return connect(path, 'sections', 'section_result', prefix)
 
 
 def magic_content(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'magic', 'content_content', prefix)
+    return connect(path, 'magic', 'content_content', prefix)
 
 
 def words_headlines(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'words', 'headlines_headlines', prefix)
+    return connect(path, 'words', 'headlines_headlines', prefix)
 
 
 def words_headlines_oneline(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'words', 'headlines_oneline', prefix)
+    return connect(path, 'words', 'headlines_oneline', prefix)
 
 
 def words_text(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'words', 'text_text', prefix)
+    return connect(path, 'words', 'text_text', prefix)
 
 
 def words_word(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'words', 'word_result', prefix)
+    return connect(path, 'words', 'word_result', prefix)
 
 
 def words_lists(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'words', 'list_list', prefix)
+    return connect(path, 'words', 'list_list', prefix)
 
 
 def words_links(path: str, prefix: str = '') -> str:
-    return utila.pathconnector(path, 'words', 'links_links', prefix)
+    return connect(path, 'words', 'links_links', prefix)
