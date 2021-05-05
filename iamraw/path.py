@@ -31,7 +31,7 @@ def textposition(path: str, prefix: str = '') -> str:
     return connect(path, 'rawmaker', 'text_positions', prefix)
 
 
-def toc(path: str, prefix: str = '') -> str:
+def outlines(path: str, prefix: str = '') -> str:
     return connect(path, 'rawmaker', 'outlines_outlines', prefix)
 
 
@@ -59,16 +59,20 @@ def line(path: str, prefix: str = '') -> str:
     return connect(path, 'rawmaker', 'line_line', prefix)
 
 
-def headerfooters(path: str, prefix: str = '') -> str:
-    return connect(path, 'groupme', 'footer_footerheader', prefix)
-
-
 def images(path: str, prefix: str = '') -> str:
     return connect(path, 'rawmaker', 'images_images', prefix)
 
 
 def formula(path: str, prefix: str = '') -> str:
     return connect(path, 'rawmaker', 'formula_formula', prefix)
+
+
+def headerfooters(path: str, prefix: str = '') -> str:
+    return connect(path, 'groupme', 'footer_footerheader', prefix)
+
+
+def toc(path: str, prefix: str = '') -> str:
+    return connect(path, 'groupme', 'toc_toc', prefix)
 
 
 def figure_caption(path: str, prefix: str = '') -> str:
