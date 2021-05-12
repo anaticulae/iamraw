@@ -20,7 +20,6 @@ Definition
 * Academic year - Studienjahr/Semester
 """
 
-import collections
 import dataclasses
 import enum
 import typing
@@ -63,12 +62,22 @@ THESIS = {
     },
 }
 
-TitleDate = collections.namedtuple(
-    'TitleDate',
-    'year month day location valid raw',
-)
 
-Matrikel = collections.namedtuple('Matrikel', 'number intro raw')
+@dataclasses.dataclass
+class TitleDate:
+    year: int = None
+    month: int = None
+    day: int = None
+    location: str = None
+    valid: bool = False
+    raw: str = None
+
+
+@dataclasses.dataclass
+class Matrikel:
+    number: int = None
+    intro: str = None
+    raw: str = None
 
 
 @dataclasses.dataclass
@@ -95,4 +104,9 @@ class TitlePage:
 
 TitlePages = typing.List[TitlePage]
 
-TitleThesisType = collections.namedtuple('TitleThesisType', 'typ title raw')
+
+@dataclasses.dataclass
+class TitleThesisType:
+    typ: str = None
+    title: str = None
+    raw: str = None
