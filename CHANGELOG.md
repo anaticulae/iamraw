@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.17.2
+
+### Feature
+
+* convert to dataclass (ce95dee6e353)
+* add outlines path (1126d36ccdac)
+
 ## v4.17.1
 
 ### Feature
