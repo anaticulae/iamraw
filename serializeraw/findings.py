@@ -31,7 +31,7 @@ def load_findings(
     """
     loaded = utila.yaml_from_raw_or_path(path, safe=False)
     assert isinstance(loaded, list), type(loaded)
-    assert all([isinstance(item, iamraw.Finding) for item in loaded]), str(loaded) # yapf:disable
+    assert all(isinstance(item, iamraw.Finding) for item in loaded), str(loaded)
     loaded = select_pages(loaded, pages)
     result = iamraw.select_findings(loaded, msgids)
     return result

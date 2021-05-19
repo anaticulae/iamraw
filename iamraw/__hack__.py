@@ -33,4 +33,4 @@ def register_class(item):
     yaml.add_constructor(name, dataclass_constructor_sequence)
 
 
-[register_class(getattr(iamraw, name)) for name in dir(iamraw)]
+[register_class(getattr(iamraw, name)) for name in dir(iamraw)]  # pylint:disable=expression-not-assigned

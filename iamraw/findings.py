@@ -17,6 +17,15 @@ import utila
 
 SUMMARY = -1
 
+LOCATION_PATTERN = re.compile(
+    r"""(
+         ((?P<shortcut>[a-z]+)(?P<value>-{0,1}\d+))
+         ?p(?P<page>-{0,1}\d+)                        # page can be negative
+        )
+     """,
+    re.VERBOSE,
+)
+
 
 @dataclasses.dataclass(unsafe_hash=True)
 class Location:
@@ -47,20 +56,11 @@ class Location:
             return f'p{self.page}'
         return f'{self.shortcut}{value}p{self.page}'
 
-    PATTERN = re.compile(
-        r"""(
-             ((?P<shortcut>[a-z]+)(?P<value>-{0,1}\d+))
-             ?p(?P<page>-{0,1}\d+)                        # page can be negative
-            )
-         """,
-        re.VERBOSE,
-    )
-
     @classmethod
     def fromstr(cls, raw: str):
         if not raw:
             return None
-        matched = re.match(Location.PATTERN, raw)
+        matched = re.match(LOCATION_PATTERN, raw)
         if not matched:
             return None
 
@@ -104,6 +104,21 @@ class Location:
 
 SUMMARY_LOCATION = Location.from_page(SUMMARY)
 
+RANGEDLOCATION_PATTERN = re.compile(
+    r"""
+    (p(?P<page>\d+)(_(?P<page_end>\d+))?[~]?)?
+    (l(?P<line>\d+)(_(?P<line_end>\d+))?[~]?)?
+    (t(?P<token>\d+)(_(?P<token_end>\d+))?[~]?)?
+    (c(?P<char>\d+)(_(?P<char_end>\d+))?)?
+    """,
+    re.VERBOSE,
+)
+
+RANGEDLOCATION_KEYS = [
+    'page', 'page_end', 'line', 'line_end', 'token', 'token_end', 'char',
+    'char_end'
+]
+
 
 @dataclasses.dataclass(unsafe_hash=True)
 class RangedLocation:
@@ -133,23 +148,13 @@ class RangedLocation:
     char: int = None
     char_end: int = None
 
-    PATTERN = re.compile(r'(p(?P<page>\d+)(_(?P<page_end>\d+))?[~]?)?'
-                         r'(l(?P<line>\d+)(_(?P<line_end>\d+))?[~]?)?'
-                         r'(t(?P<token>\d+)(_(?P<token_end>\d+))?[~]?)?'
-                         r'(c(?P<char>\d+)(_(?P<char_end>\d+))?)?')
-
-    KEYS = [
-        'page', 'page_end', 'line', 'line_end', 'token', 'token_end', 'char',
-        'char_end'
-    ]
-
     @classmethod
     def fromstr(cls, raw: str):
-        matched = re.match(RangedLocation.PATTERN, raw)
+        matched = re.match(RANGEDLOCATION_PATTERN, raw)
         if not matched:
             return None
         result = RangedLocation()
-        for item in RangedLocation.KEYS:
+        for item in RANGEDLOCATION_KEYS:
             with contextlib.suppress(TypeError):
                 setattr(result, item, int(matched[item]))
         return result
@@ -174,7 +179,7 @@ class RangedLocation:
 
     def __repr__(self):
         values = [
-            f'{key}={getattr(self, key)}' for key in RangedLocation.KEYS
+            f'{key}={getattr(self, key)}' for key in RANGEDLOCATION_KEYS
             if getattr(self, key) is not None
         ]
         values = ', '.join(values)
@@ -183,6 +188,9 @@ class RangedLocation:
     @property
     def shortcut(self):
         return 'r'
+
+
+BOUNDINGLOCATION_PATTERN = r'(?P<shortcut>b)\((?P<tuple>((\d+\.\d+;{0,1}){4}))\)p(?P<page>\d+)'
 
 
 @dataclasses.dataclass(unsafe_hash=True)
@@ -201,8 +209,6 @@ class BoundingLocation:
     shortcut: str = None
     value: tuple = None
 
-    PATTERN = r'(?P<shortcut>b)\((?P<tuple>((\d+\.\d+;{0,1}){4}))\)p(?P<page>\d+)'
-
     def __str__(self) -> str:
         joined = ';'.join([str(item) for item in self.value])  # pylint:disable=E1133
         raw = f'b({joined})p{self.page}'
@@ -211,10 +217,9 @@ class BoundingLocation:
     @classmethod
     def fromstr(cls, raw: str):
         assert raw, 'require input'
-        matched = re.match(BoundingLocation.PATTERN, raw)
+        matched = re.match(BOUNDINGLOCATION_PATTERN, raw)
         if not matched:
             return None
-
         page, shortcut, value = int(matched['page']), 'b', None
         value = matched['tuple'].split(';')
         value = utila.roundme([float(item) for item in value])

@@ -45,7 +45,7 @@ def test_before(navigator):
 
 def test_fonts_navigator_to_bounds(navigator):
     result = texmex.navigator_to_bounds(navigator)
-    assert all([isinstance(item, iamraw.BoundingBox) for item in result])
+    assert all(isinstance(item, iamraw.BoundingBox) for item in result)
 
 
 def test_hey_navigator_find():

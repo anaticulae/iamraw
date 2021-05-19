@@ -170,7 +170,7 @@ def _dump_textcontainer(container: iamraw.TextContainer):
 
 def _load_textcontainer(content) -> iamraw.TextContainer:
     assert isinstance(content, list), type(content)
-    assert all([isinstance(item, list) for item in content]), str(content)
+    assert all(isinstance(item, list) for item in content), str(content)
     lines = [loadme(iamraw.Line, item) for item in content]
     return iamraw.TextContainer(lines=lines)
 

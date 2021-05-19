@@ -68,8 +68,7 @@ class FontStore:
                         continue
                     return cur_font
                 continue
-            else:
-                continue
+            continue
         return NO_FONT
 
     @functools.lru_cache()
@@ -189,5 +188,5 @@ class FontContentStore:
     def __getitem__(self, index: int) -> iamraw.Font:
         try:
             return self.store[index]
-        except (KeyError, TypeError):
-            raise IndexError('Invalid font index: %r' % index)
+        except (KeyError, TypeError) as error:
+            raise IndexError('Invalid font index: %r' % index) from error

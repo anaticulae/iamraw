@@ -421,10 +421,8 @@ def merge_content(  # pylint:disable=R0914
     if not text:
         # Nothing to merge
         return []
-
     # ensure input
-    assert all([isinstance(item, TextBoundsInfo) for item in text]), str(text)
-
+    assert all(isinstance(item, TextBoundsInfo) for item in text), str(text)
     uindex = list(range(len(text))) if uindex is None else uindex
     bounds = [item.bounds for item in text]
     font_distance = fontdistance(bounds)

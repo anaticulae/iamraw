@@ -49,7 +49,7 @@ class AcademicTitle(enum.Flag):
 
     @staticmethod
     def keys():
-        return [item for item in MATCHES]
+        return list(MATCHES)
 
     @staticmethod
     def merges(items) -> 'iamraw.AcademicTitle':

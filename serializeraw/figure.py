@@ -76,7 +76,7 @@ def _load_figure(path: str) -> iamraw.Figure:
 
 
 def _load_image_raw(path: str) -> 'PIL.Image.Image':
-    import PIL.Image
+    import PIL.Image  # pylint:disable=import-outside-toplevel
     try:
         image = PIL.Image.open(path)
         image.load()

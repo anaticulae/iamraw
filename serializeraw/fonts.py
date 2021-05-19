@@ -142,7 +142,7 @@ def load_font_content(content, pages=None):
         def parse_font(pagefonts):
             item = []
             for fontraw in pagefonts:
-                item.append(tuple([int(item) for item in fontraw.split()]))
+                item.append(tuple(int(item) for item in fontraw.split()))
             return item
 
         pagefonts = page['fonts']

@@ -44,7 +44,7 @@ class PageIter:
         result = result % (self.container, self.line, self.char)
         return result
 
-    def next(self, container, line, char) -> str:
+    def next_item(self, container, line, char) -> str:
         """Extract data between `current` iterator position
         `(self.container, self.line, self.char)` and the passed `new`
         iterator position `(container, line, char)`.
@@ -106,7 +106,7 @@ class PageIter:
     def finish(self):
         # TODO Dirty hack!
         try:
-            return self.next(len(self.page), 0, 0)
+            return self.next_item(len(self.page), 0, 0)
         except ValueError:
             return ''
 
@@ -133,7 +133,7 @@ def split_page(
         List of selected text chunks.
     """
     pageiter = PageIter(page=page)
-    result = [pageiter.next(*item) for item in positions]
+    result = [pageiter.next_item(*item) for item in positions]
     if not append_unvisited:
         return result
     finish = pageiter.finish().strip()

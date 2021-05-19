@@ -121,7 +121,7 @@ def expected_result():
         stretch=iamraw.Stretch.REGULAR,
         flags=(iamraw.FontFlag.SYMBOLIC,),
     )
-    bold = iamraw.Font(
+    bold = iamraw.Font(  # pylint:disable=W0612
         name='NimbusRomNo9L',
         scale=7.43,
         weight=iamraw.Weight.MEDIUM,

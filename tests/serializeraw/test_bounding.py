@@ -24,7 +24,8 @@ def test_bounding_dump_and_load_boundingbox(boxdata_from_pdf):  #pylint:disable=
 
 
 def test_bounding_repr():
-    from iamraw import BoundingBox  # required for eval statement
+    # required for eval statement
+    from iamraw import BoundingBox  # pylint:disable=C0415
     example = iamraw.BoundingBox.from_str('1 2 3 4')
     assert eval(repr(example)) == example  # pylint:disable=eval-used
 
