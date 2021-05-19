@@ -26,7 +26,7 @@ class Abbreviation:
     position: AbbreviationPosition = None
 
     def __lt__(self, item):
-        import texmex.alpha
+        import texmex.alpha  # pylint:disable=import-outside-toplevel
         return (texmex.alpha.replace(self.short).lower() <=
                 texmex.alpha.replace(item.short).lower())
 

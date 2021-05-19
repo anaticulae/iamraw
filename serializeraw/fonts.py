@@ -155,13 +155,13 @@ def convert_flags(flag: int) -> iamraw.FontFlags:
     """Parse font flag according to adobe pdf specification.
 
     >>> convert_flags(3)
-    (<FontFlag.FixedPitch: 1>, <FontFlag.Serif: 2>)
+    (<FontFlag.FIXEDPITCH: 1>, <FontFlag.SERIF: 2>)
     >>> convert_flags(70)
-    (<FontFlag.Serif: 2>, <FontFlag.Symbolic: 3>, <FontFlag.Italic: 7>)
+    (<FontFlag.SERIF: 2>, <FontFlag.SYMBOLIC: 3>, <FontFlag.ITALIC: 7>)
     >>> convert_flags(35)
-    (<FontFlag.FixedPitch: 1>, <FontFlag.Serif: 2>, <FontFlag.Nonsymbolic: 6>)
+    (<FontFlag.FIXEDPITCH: 1>, <FontFlag.SERIF: 2>, <FontFlag.NONSYMBOLIC: 6>)
     >>> convert_flags(262176)
-    (<FontFlag.Nonsymbolic: 6>, <FontFlag.ForceBold: 19>)
+    (<FontFlag.NONSYMBOLIC: 6>, <FontFlag.FORCEBOLD: 19>)
     """
     assert flag >= 0, f'negative flag {flag}'
     binary = format(flag, 'b')[::-1]  # reverse binary
@@ -184,7 +184,7 @@ def convert_flags(flag: int) -> iamraw.FontFlags:
 def toflag(items: iamraw.FontFlags) -> int:
     """Convert tuple of `FontFlag`s to single flag.
 
-    >>> toflag((iamraw.FontFlag.Nonsymbolic, iamraw.FontFlag.ForceBold))
+    >>> toflag((iamraw.FontFlag.NONSYMBOLIC, iamraw.FontFlag.FORCEBOLD))
     262176
     """
     result = 0

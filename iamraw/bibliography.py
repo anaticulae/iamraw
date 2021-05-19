@@ -15,7 +15,7 @@ import iamraw
 
 
 @dataclasses.dataclass(unsafe_hash=True)
-class BibliographyReference:
+class BibliographyReference:  # pylint:disable=R0902
 
     title: str = None
     reference: str = None

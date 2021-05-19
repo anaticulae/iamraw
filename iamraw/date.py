@@ -11,7 +11,7 @@ import dataclasses
 
 
 @dataclasses.dataclass
-class PDFDate:
+class PDFDate:  # pylint:disable=R0902
     year: int = None
     month: int = None
     day: int = None

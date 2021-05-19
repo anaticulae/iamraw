@@ -32,7 +32,7 @@ FIRST_FONT = iamraw.Font(
     name='NimbusSanL',
     scale=18.5,
     weight=iamraw.Weight.BOLD,
-    flags=(iamraw.FontFlag.Symbolic,),
+    flags=(iamraw.FontFlag.SYMBOLIC,),
 )
 
 SECOND_FONT = iamraw.Font(
@@ -40,20 +40,20 @@ SECOND_FONT = iamraw.Font(
     scale=12.85,
     weight=iamraw.Weight.BOLD,
     style=iamraw.Style.ITALIC,
-    flags=(iamraw.FontFlag.Symbolic,),
+    flags=(iamraw.FontFlag.SYMBOLIC,),
 )
 THIRD_FONT = iamraw.Font(
     name='NimbusSanL',
     scale=12.85,
     weight=iamraw.Weight.BOLD,
-    flags=(iamraw.FontFlag.Symbolic,),
+    flags=(iamraw.FontFlag.SYMBOLIC,),
 )
 
 FORTH_FONT = iamraw.Font(
     name='NimbusSanL',
     scale=8.93,
     weight=iamraw.Weight.BOLD,
-    flags=(iamraw.FontFlag.Symbolic,),
+    flags=(iamraw.FontFlag.SYMBOLIC,),
 )
 
 FIFTH_FONT = iamraw.Font(
@@ -62,7 +62,7 @@ FIFTH_FONT = iamraw.Font(
     weight=iamraw.Weight.LIGHT,
     style=iamraw.Style.NORMAL,
     stretch=iamraw.Stretch.REGULAR,
-    flags=(iamraw.FontFlag.Symbolic,),
+    flags=(iamraw.FontFlag.SYMBOLIC,),
 )
 
 
@@ -118,7 +118,7 @@ def expected_result():
         weight=iamraw.Weight.LIGHT,
         style=iamraw.Style.NORMAL,
         stretch=iamraw.Stretch.REGULAR,
-        flags=(iamraw.FontFlag.Symbolic,),
+        flags=(iamraw.FontFlag.SYMBOLIC,),
     )
     bold = iamraw.Font(
         name='NimbusRomNo9L',
@@ -126,7 +126,7 @@ def expected_result():
         weight=iamraw.Weight.MEDIUM,
         style=iamraw.Style.NORMAL,
         stretch=iamraw.Stretch.REGULAR,
-        flags=(iamraw.FontFlag.Symbolic,),
+        flags=(iamraw.FontFlag.SYMBOLIC,),
     )
     expected = [
         iamraw.FontChunk(content=text[0:154], font=first),

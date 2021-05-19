@@ -9,7 +9,6 @@
 """Hack to fix bug after upgrading yaml. YAML is not able anymore to
 serialize dataclasses correctly."""
 
-
 import yaml
 
 import iamraw

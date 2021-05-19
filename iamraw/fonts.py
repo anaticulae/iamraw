@@ -17,17 +17,17 @@ PageFontContents = typing.List[PageFontContent]
 
 
 class FontFlag(enum.Enum):
-    FixedPitch = 1
-    Serif = 2
-    Symbolic = 3
-    Script = 4
-    Nonsymbolic = 6
-    Italic = 7
+    FIXEDPITCH = 1
+    SERIF = 2
+    SYMBOLIC = 3
+    SCRIPT = 4
+    NONSYMBOLIC = 6
+    ITALIC = 7
     # font does not contain any upper case letter - this is used for titles etc.
-    AllCap = 17
+    ALLCAP = 17
     # contains uppercase and lowercase letters
-    SmallCap = 18
-    ForceBold = 19
+    SMALLCAP = 18
+    FORCEBOLD = 19
 
 
 FontFlags = typing.Tuple[FontFlag]
