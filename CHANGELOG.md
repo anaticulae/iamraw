@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.17.3
+
+### Fix
+
+* adjust test to different layout parsing (18ff89440055)
+
 ## v4.17.2
 
 ### Feature
