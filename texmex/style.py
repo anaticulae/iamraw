@@ -132,8 +132,8 @@ class TextInfo:
         return self.text + utila.NEWLINE
 
     def __hash__(self):
-        return hash(self.text) + hash(str(self.style)) + hash(
-            str(self.bounding))
+        return hash(self.text) + hash(str(self.style)) + hash(str(
+            self.bounding))
 
 
 def create_textstyle(chars: iamraw.Chars) -> TextStyle:
@@ -167,8 +167,8 @@ HIGHNOTE_MIN_RISE = 5.0  # TODO: HOLY NOTE
 
 
 def highnotes(
-        info: TextInfo,
-        highnote_rise_min: float = HIGHNOTE_MIN_RISE,
+    info: TextInfo,
+    highnote_rise_min: float = HIGHNOTE_MIN_RISE,
 ) -> HighNotes:
     """Extract `HighNote`s out of text line. A highnote is a number
     which is a reference to an item defined in the footer.
@@ -222,8 +222,8 @@ def remove_highnotes(info: TextInfo) -> str:
 
 
 def style_without_highnotes(
-        info: TextInfo,
-        merge: bool = False,
+    info: TextInfo,
+    merge: bool = False,
 ) -> TextStyle:
     notes = highnotes(info)
     tuplenotes = {(note.start, note.end) for note in notes}

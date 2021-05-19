@@ -14,8 +14,8 @@ import iamraw
 
 
 def load_magic_types(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.PageContentContentTypes:
     content = utila.from_raw_or_path(
         content,

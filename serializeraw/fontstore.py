@@ -17,9 +17,9 @@ from serializeraw.fonts import load_font_header
 
 
 def create_fontstore(
-        header: str,
-        content: str,
-        pages: tuple = None,
+    header: str,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.FontStore:
     """Load FontStore from `header`-path and `content`-path
 
@@ -39,10 +39,10 @@ def create_fontstore(
 
 
 def create_fontstore_frompath(
-        path: str,
-        prefix: str = '',
-        pages: tuple = None,
-        logging: bool = True,
+    path: str,
+    prefix: str = '',
+    pages: tuple = None,
+    logging: bool = True,
 ) -> iamraw.FontStore:
     header = iamraw.path.fontheader(path, prefix=prefix)
     content = iamraw.path.fontcontent(path, prefix=prefix)

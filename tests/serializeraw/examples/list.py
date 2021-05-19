@@ -53,7 +53,8 @@ EXAMPLE = [
                 paragraph=0,
                 merged=0,
             ),
-        ]),
+        ],
+    ),
     iamraw.PageContentList(
         page=24,
         content=[

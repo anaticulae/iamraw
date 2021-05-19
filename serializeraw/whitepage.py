@@ -30,8 +30,8 @@ def dump_whitepages(pages: iamraw.PageContentWhitepages) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_whitepages(
-        content: str,
-        pages=None,
+    content: str,
+    pages=None,
 ) -> typing.List[iamraw.WhitePage]:
     """Load whitepages from `content`. Content can be a path or loaded
     text data.

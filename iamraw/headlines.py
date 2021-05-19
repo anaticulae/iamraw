@@ -45,9 +45,9 @@ PagesHeadlineList = typing.List[Headlines]
 
 
 def headlines_totoc(
-        headlines: PagesHeadlineList,
-        remove_rawinfo: bool = False,
-        level_default: int = 1,
+    headlines: PagesHeadlineList,
+    remove_rawinfo: bool = False,
+    level_default: int = 1,
 ) -> 'iamraw.Toc':
     try:
         flat = utila.flatten(headlines)

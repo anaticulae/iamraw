@@ -29,8 +29,8 @@ def dump_pageborders(sizeandborders: iamraw.PageSizeBorderList) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_pageborders(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.PageSizeBorderList:
     """Load pdf page size and content border from raw data
 

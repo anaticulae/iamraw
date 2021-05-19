@@ -82,8 +82,8 @@ class MultilineGroup:
 
 
 def group_pages_by_fontsize(
-        pagetextnavigators: PageTextNavigators,
-        sizediff: float = 0.0,
+    pagetextnavigators: PageTextNavigators,
+    sizediff: float = 0.0,
 ) -> PageContentMultiLines:
     """Iterate thru different pages of `pagetextnavigators` and extract
     `MultilineGroups`s of the same font size.
@@ -103,8 +103,8 @@ def group_pages_by_fontsize(
 
 
 def group_page_by_fontsize(
-        pagetextnavigator: PageTextNavigator,
-        sizediff: float = 0.0,
+    pagetextnavigator: PageTextNavigator,
+    sizediff: float = 0.0,
 ) -> PageContentMultiLine:
     """Group text lines by `sizediff`.
 
@@ -175,8 +175,8 @@ def linedistances(pagetextnavigator, noneatend=True):
 
 
 def group_linedistances(
-        items: typing.List[float],
-        maxdiff: float = 0.0,
+    items: typing.List[float],
+    maxdiff: float = 0.0,
 ) -> typing.List[int]:
     """Group items and return for every group with at least 2 members at
     list of indexes.
@@ -255,9 +255,9 @@ def maxdistance(size: float):
 
 
 def group_linedistances_complex(
-        content: PageTextNavigator,
-        max_sizediff: float = MAX_SIZEDIFF,
-        max_distance: callable = maxdistance,
+    content: PageTextNavigator,
+    max_sizediff: float = MAX_SIZEDIFF,
+    max_distance: callable = maxdistance,
 ) -> typing.List[int]:
     """Group lines by sizes and distances of text chunks.
 
@@ -398,10 +398,10 @@ MAX_MERGE_HORIZONTALY = configo.HV_FLOAT_PLUS(default=14.0).value
 
 
 def merge_content(  # pylint:disable=R0914
-        text: TextBoundsInfos,
-        max_x_merge=MAX_MERGE_HORIZONTALY,
-        max_y_merge=MAX_MERGE_DISTANCE,
-        uindex=None,
+    text: TextBoundsInfos,
+    max_x_merge=MAX_MERGE_HORIZONTALY,
+    max_y_merge=MAX_MERGE_DISTANCE,
+    uindex=None,
 ) -> TextBoundsInfos:
     """Merge content blocks to create greater content blocks depending on
     merge strategy.

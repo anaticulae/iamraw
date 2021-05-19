@@ -17,15 +17,22 @@ EXAMPLE = [
     iamraw.PageContentText(
         6,
         [
-            (Headline(
-                title='CHAPTER 1', level=1, raw_level=None, page=6,
-                container=0), []),
-            (Headline(
-                title='RestructuredText Tutorial',
-                level=2,
-                raw_level=None,
-                page=6,
-                container=1), []),
+            (
+                Headline(title='CHAPTER 1',
+                         level=1,
+                         raw_level=None,
+                         page=6,
+                         container=0),
+                [],
+            ),
+            (
+                Headline(title='RestructuredText Tutorial',
+                         level=2,
+                         raw_level=None,
+                         page=6,
+                         container=1),
+                [],
+            ),
         ],
     ),
     iamraw.PageContentText(
@@ -34,12 +41,14 @@ EXAMPLE = [
             (Headline(
                 title='CHAPTER 2', level=1, raw_level=None, page=8,
                 container=0), []),
-            (Headline(
-                title='RestructuredText Guide',
-                level=2,
-                raw_level=None,
-                page=8,
-                container=1), []),
+            (
+                Headline(title='RestructuredText Guide',
+                         level=2,
+                         raw_level=None,
+                         page=8,
+                         container=1),
+                [],
+            ),
             (Headline(
                 title='Basics', level=3, raw_level=None, page=8, container=2
             ), [
@@ -62,49 +71,44 @@ EXAMPLE = [
                 'To enclose a segment of text in blockquotes, one must add a tab at the start of a paragraph.',
                 'RestructuredText:', '1b', '1b', '1b', '1b', 'Output:', '0b'
             ]),
-            (Headline(
-                title='Code: Block',
-                level=3,
-                raw_level=None,
-                page=9,
-                container=10), ['TODO']),
+            (Headline(title='Code: Block',
+                      level=3,
+                      raw_level=None,
+                      page=9,
+                      container=10), ['TODO']),
         ],
     ),
     iamraw.PageContentText(
         10,
         [
-            (Headline(
-                title='CHAPTER 3',
-                level=1,
-                raw_level=None,
-                page=10,
-                container=0), []),
-            (Headline(
-                title='RestructuredText Customizations',
-                level=2,
-                raw_level=None,
-                page=10,
-                container=1), ['Sphinx:']),
+            (Headline(title='CHAPTER 3',
+                      level=1,
+                      raw_level=None,
+                      page=10,
+                      container=0), []),
+            (Headline(title='RestructuredText Customizations',
+                      level=2,
+                      raw_level=None,
+                      page=10,
+                      container=1), ['Sphinx:']),
         ],
     ),
     iamraw.PageContentText(
         12,
         [
+            (Headline(title='CHAPTER 4',
+                      level=1,
+                      raw_level=None,
+                      page=12,
+                      container=0), []),
+            (Headline(title='Sphinx Tutorial',
+                      level=2,
+                      raw_level=None,
+                      page=12,
+                      container=1), []),
             (Headline(
-                title='CHAPTER 4',
-                level=1,
-                raw_level=None,
-                page=12,
-                container=0), []),
-            (Headline(
-                title='Sphinx Tutorial',
-                level=2,
-                raw_level=None,
-                page=12,
-                container=1), []),
-            (Headline(
-                title='Step 1', level=3, raw_level=None, page=12, container=2),
-             []),
+                title='Step 1', level=3, raw_level=None, page=12,
+                container=2), []),
             (Headline(
                 title='Getting Set Up',
                 level=3,
@@ -239,12 +243,11 @@ EXAMPLE = [
                 'If you open up your index.html, you should see the basic structure of your docs from the included toctree directive.',
             ],
         ),
-         (Headline(
-             title='Aside: Other formats',
-             level=3,
-             raw_level=None,
-             page=15,
-             container=21), [])],
+         (Headline(title='Aside: Other formats',
+                   level=3,
+                   raw_level=None,
+                   page=15,
+                   container=21), [])],
     ),
     iamraw.PageContentText(
         16,
@@ -269,8 +272,8 @@ EXAMPLE = [
                 'Youll notice that it included the documents in the order that your TOC Tree was defined.'
             ]),
             (Headline(
-                title='Step 2', level=3, raw_level=None, page=16, container=12),
-             []),
+                title='Step 2', level=3, raw_level=None, page=16,
+                container=12), []),
             (Headline(
                 title='Referencing Code',
                 level=3,
@@ -297,18 +300,16 @@ EXAMPLE = [
     iamraw.PageContentText(
         18,
         [
-            (Headline(
-                title='CHAPTER 5',
-                level=1,
-                raw_level=None,
-                page=18,
-                container=0), []),
-            (Headline(
-                title='Sphinx Guide',
-                level=2,
-                raw_level=None,
-                page=18,
-                container=1), []),
+            (Headline(title='CHAPTER 5',
+                      level=1,
+                      raw_level=None,
+                      page=18,
+                      container=0), []),
+            (Headline(title='Sphinx Guide',
+                      level=2,
+                      raw_level=None,
+                      page=18,
+                      container=1), []),
         ],
     ),
     iamraw.PageContentText(
@@ -319,30 +320,34 @@ EXAMPLE = [
                 level=1,
                 raw_level=None,
                 page=20,
-                container=0), []),
+                container=0,
+            ), []),
             (Headline(
                 title='Sphinx Customizations',
                 level=2,
                 raw_level=None,
                 page=20,
-                container=1), ['Utilities:']),
+                container=1,
+            ), ['Utilities:']),
         ],
     ),
     iamraw.PageContentText(
         22,
         [
-            (Headline(
-                title='CHAPTER 7',
-                level=1,
-                raw_level=None,
-                page=22,
-                container=0), []),
+            (
+                Headline(title='CHAPTER 7',
+                         level=1,
+                         raw_level=None,
+                         page=22,
+                         container=0),
+                [],
+            ),
             (Headline(
                 title='Testing your Documentation',
                 level=2,
                 raw_level=None,
                 page=22,
-                container=1
+                container=1,
             ), [
                 'If you want to confirm that your docs build successfully, you add this to your tox.ini file:',
                 '0b', '0b', '0b', '0b', '0b', '0b', '0b', '0b', '0b', '0b',
@@ -354,137 +359,157 @@ EXAMPLE = [
     iamraw.PageContentText(
         24,
         [
-            (Headline(
-                title='CHAPTER 8',
-                level=1,
-                raw_level=None,
-                page=24,
-                container=0), []),
-            (Headline(
-                title='Indices and tables',
-                level=2,
-                raw_level=None,
-                page=24,
-                container=1), ['2l', '2l', '2l']),
+            (Headline(title='CHAPTER 8',
+                      level=1,
+                      raw_level=None,
+                      page=24,
+                      container=0), []),
+            (Headline(title='Indices and tables',
+                      level=2,
+                      raw_level=None,
+                      page=24,
+                      container=1), ['2l', '2l', '2l']),
         ],
     ),
 ]
 
 HEADLINES = [
     [
-        Headline(
-            title='CHAPTER 1', level=1, raw_level=None, page=6, container=0),
-        Headline(
-            title='RestructuredText Tutorial',
-            level=2,
-            raw_level=None,
-            page=6,
-            container=1)
+        Headline(title='CHAPTER 1',
+                 level=1,
+                 raw_level=None,
+                 page=6,
+                 container=0),
+        Headline(title='RestructuredText Tutorial',
+                 level=2,
+                 raw_level=None,
+                 page=6,
+                 container=1)
     ],
     [
-        Headline(
-            title='CHAPTER 2', level=1, raw_level=None, page=8, container=0),
-        Headline(
-            title='RestructuredText Guide',
-            level=2,
-            raw_level=None,
-            page=8,
-            container=1),
+        Headline(title='CHAPTER 2',
+                 level=1,
+                 raw_level=None,
+                 page=8,
+                 container=0),
+        Headline(title='RestructuredText Guide',
+                 level=2,
+                 raw_level=None,
+                 page=8,
+                 container=1),
         Headline(title='Basics', level=3, raw_level=None, page=8, container=2)
     ],
     [
-        Headline(
-            title='Blockquotes', level=3, raw_level=None, page=9, container=1),
-        Headline(
-            title='Code: Block', level=3, raw_level=None, page=9, container=10)
+        Headline(title='Blockquotes',
+                 level=3,
+                 raw_level=None,
+                 page=9,
+                 container=1),
+        Headline(title='Code: Block',
+                 level=3,
+                 raw_level=None,
+                 page=9,
+                 container=10)
     ],
     [
-        Headline(
-            title='CHAPTER 3', level=1, raw_level=None, page=10, container=0),
-        Headline(
-            title='RestructuredText Customizations',
-            level=2,
-            raw_level=None,
-            page=10,
-            container=1)
+        Headline(title='CHAPTER 3',
+                 level=1,
+                 raw_level=None,
+                 page=10,
+                 container=0),
+        Headline(title='RestructuredText Customizations',
+                 level=2,
+                 raw_level=None,
+                 page=10,
+                 container=1)
     ],
     [
-        Headline(
-            title='CHAPTER 4', level=1, raw_level=None, page=12, container=0),
-        Headline(
-            title='Sphinx Tutorial',
-            level=2,
-            raw_level=None,
-            page=12,
-            container=1),
+        Headline(title='CHAPTER 4',
+                 level=1,
+                 raw_level=None,
+                 page=12,
+                 container=0),
+        Headline(title='Sphinx Tutorial',
+                 level=2,
+                 raw_level=None,
+                 page=12,
+                 container=1),
         Headline(title='Step 1', level=3, raw_level=None, page=12, container=2),
-        Headline(
-            title='Getting Set Up',
-            level=3,
-            raw_level=None,
-            page=12,
-            container=3)
+        Headline(title='Getting Set Up',
+                 level=3,
+                 raw_level=None,
+                 page=12,
+                 container=3)
     ],
     [
-        Headline(
-            title='Documenting a Project',
-            level=3,
-            raw_level=None,
-            page=14,
-            container=1)
+        Headline(title='Documenting a Project',
+                 level=3,
+                 raw_level=None,
+                 page=14,
+                 container=1)
     ],
     [
-        Headline(
-            title='Aside: Other formats',
-            level=3,
-            raw_level=None,
-            page=15,
-            container=21)
+        Headline(title='Aside: Other formats',
+                 level=3,
+                 raw_level=None,
+                 page=15,
+                 container=21)
     ],
     [
-        Headline(
-            title='Step 2', level=3, raw_level=None, page=16, container=12),
-        Headline(
-            title='Referencing Code',
-            level=3,
-            raw_level=None,
-            page=16,
-            container=13)
+        Headline(title='Step 2', level=3, raw_level=None, page=16,
+                 container=12),
+        Headline(title='Referencing Code',
+                 level=3,
+                 raw_level=None,
+                 page=16,
+                 container=13)
     ],
     [
-        Headline(
-            title='CHAPTER 5', level=1, raw_level=None, page=18, container=0),
-        Headline(
-            title='Sphinx Guide', level=2, raw_level=None, page=18, container=1)
+        Headline(title='CHAPTER 5',
+                 level=1,
+                 raw_level=None,
+                 page=18,
+                 container=0),
+        Headline(title='Sphinx Guide',
+                 level=2,
+                 raw_level=None,
+                 page=18,
+                 container=1)
     ],
     [
-        Headline(
-            title='CHAPTER 6', level=1, raw_level=None, page=20, container=0),
-        Headline(
-            title='Sphinx Customizations',
-            level=2,
-            raw_level=None,
-            page=20,
-            container=1)
+        Headline(title='CHAPTER 6',
+                 level=1,
+                 raw_level=None,
+                 page=20,
+                 container=0),
+        Headline(title='Sphinx Customizations',
+                 level=2,
+                 raw_level=None,
+                 page=20,
+                 container=1)
     ],
     [
-        Headline(
-            title='CHAPTER 7', level=1, raw_level=None, page=22, container=0),
-        Headline(
-            title='Testing your Documentation',
-            level=2,
-            raw_level=None,
-            page=22,
-            container=1)
+        Headline(title='CHAPTER 7',
+                 level=1,
+                 raw_level=None,
+                 page=22,
+                 container=0),
+        Headline(title='Testing your Documentation',
+                 level=2,
+                 raw_level=None,
+                 page=22,
+                 container=1)
     ],
     [
-        Headline(
-            title='CHAPTER 8', level=1, raw_level=None, page=24, container=0),
-        Headline(
-            title='Indices and tables',
-            level=2,
-            raw_level=None,
-            page=24,
-            container=1)
+        Headline(title='CHAPTER 8',
+                 level=1,
+                 raw_level=None,
+                 page=24,
+                 container=0),
+        Headline(title='Indices and tables',
+                 level=2,
+                 raw_level=None,
+                 page=24,
+                 container=1)
     ],
 ]

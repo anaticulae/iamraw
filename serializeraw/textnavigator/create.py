@@ -16,13 +16,13 @@ import texmex
 
 
 def create_pagetextnavigators_frompath(
-        path: str,
-        prefix='',
-        pages: tuple = None,
-        mode=texmex.PageTextNavigatorMode.BOTH,
-        *,
-        fill_empty: bool = True,
-        logging: bool = True,
+    path: str,
+    prefix='',
+    pages: tuple = None,
+    mode=texmex.PageTextNavigatorMode.BOTH,
+    *,
+    fill_empty: bool = True,
+    logging: bool = True,
 ) -> texmex.PageTextNavigators:
     """Load all resources from one `path` to create PageTextNavigator
     for the selected list of `pages` with an optional `prefix` in loaded
@@ -69,14 +69,14 @@ def create_pagetextnavigators_frompath(
 
 
 def create_pagetextnavigators_fromfile(
-        text: str,
-        textpositions: str,
-        fontheader: str = None,
-        fontcontent: str = None,
-        pages: tuple = None,
-        mode=texmex.PageTextNavigatorMode.BOTH,
-        *,
-        fill_empty: bool = True,
+    text: str,
+    textpositions: str,
+    fontheader: str = None,
+    fontcontent: str = None,
+    pages: tuple = None,
+    mode=texmex.PageTextNavigatorMode.BOTH,
+    *,
+    fill_empty: bool = True,
 ) -> texmex.PageTextNavigators:
     text = serializeraw.load_document(
         text,
@@ -103,13 +103,13 @@ def create_pagetextnavigators_fromfile(
 
 
 def create_pagetextcontentnavigators_frompath(
-        path: str,
-        prefix: str = '',
-        pages: tuple = None,
-        mode=texmex.PageTextNavigatorMode.BOTH,
-        *,
-        validate_leftright: bool = True,
-        footer_sized_prefixed: bool = False,
+    path: str,
+    prefix: str = '',
+    pages: tuple = None,
+    mode=texmex.PageTextNavigatorMode.BOTH,
+    *,
+    validate_leftright: bool = True,
+    footer_sized_prefixed: bool = False,
 ) -> texmex.PageTextContentNavigators:
     """Load `PageTextContentNavigators` from `path`.
 
@@ -156,17 +156,17 @@ def create_pagetextcontentnavigators_frompath(
 
 
 def create_pagetextcontentnavigators_fromfile(
-        text: str,
-        textpositions: str,
-        sizeandborderpath: str,
-        headerfooterpath: str,
-        fontheader: str = None,
-        fontcontent: str = None,
-        pages: tuple = None,
-        mode=texmex.PageTextNavigatorMode.BOTH,
-        *,
-        fill_empty: bool = True,
-        validate_leftright: bool = True,
+    text: str,
+    textpositions: str,
+    sizeandborderpath: str,
+    headerfooterpath: str,
+    fontheader: str = None,
+    fontcontent: str = None,
+    pages: tuple = None,
+    mode=texmex.PageTextNavigatorMode.BOTH,
+    *,
+    fill_empty: bool = True,
+    validate_leftright: bool = True,
 ):
     navigators = create_pagetextnavigators_fromfile(
         text,

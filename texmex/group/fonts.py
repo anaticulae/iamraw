@@ -57,9 +57,9 @@ NONE_BORDER = iamraw.Border(None, None, None, None)
 
 
 def bounds_to_textbounds(
-        bounds: iamraw.BoundingBox,
-        contentborder: iamraw.Border = None,
-        digits: int = 1,
+    bounds: iamraw.BoundingBox,
+    contentborder: iamraw.Border = None,
+    digits: int = 1,
 ) -> texmex.text.TextBounds:
     """Compute distance to page `contentborder` and determine font size
 
@@ -83,8 +83,8 @@ def bounds_to_textbounds(
 
 
 def textbounds(
-        navigator: texmex.navigator.PageTextNavigator,
-        contentborder: iamraw.Border,
+    navigator: texmex.navigator.PageTextNavigator,
+    contentborder: iamraw.Border,
 ) -> texmex.text.TextBoundsInfos:
     assert isinstance(navigator, texmex.NavigatorMixin), type(navigator)
 
@@ -125,9 +125,9 @@ def textsize_frompage(navigator: 'texmex.NavigatorMixin') -> float:
 
 
 def document_textfeed(
-        navigators: texmex.navigator.PageTextNavigators,
-        count: int = 1,
-        left: bool = True,
+    navigators: texmex.navigator.PageTextNavigators,
+    count: int = 1,
+    left: bool = True,
 ) -> utila.Ints:
     assert count >= 1, f'require none negative count, got: {count}'
     counter = collections.Counter()
@@ -164,9 +164,9 @@ def document_textsize(navigators) -> float:
 
 
 def document_textdistance(
-        navigators,
-        borders: iamraw.Borders,
-        digits: int = 1,
+    navigators,
+    borders: iamraw.Borders,
+    digits: int = 1,
 ) -> int:
     """Determine the most common text distance"""
     data = [
@@ -183,8 +183,8 @@ def document_textdistance(
 
 
 def document_textdistance_from_contentnavigators(
-        navigators: 'texmex.PageTextContentNavigators',
-        digits: int = 1,
+    navigators: 'texmex.PageTextContentNavigators',
+    digits: int = 1,
 ) -> float:
     """Determine the most common text distance"""
     result = []

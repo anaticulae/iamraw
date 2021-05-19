@@ -40,9 +40,9 @@ def dump_text(text: iamraw.PageContentTexts) -> str:
 
 
 def load_text(
-        content: str,
-        headlines: iamraw.PagesHeadlineList = None,
-        pages=None,
+    content: str,
+    headlines: iamraw.PagesHeadlineList = None,
+    pages=None,
 ) -> iamraw.PageContentTexts:
     """Load text and replace headline reference with current headline
 
@@ -86,9 +86,9 @@ def load_text(
 
 
 def select_headline(
-        headlines,
-        section,
-        page,
+    headlines,
+    section,
+    page,
 ) -> iamraw.Headline:
     headline_selected = section['headline']
     try:

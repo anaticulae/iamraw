@@ -85,13 +85,15 @@ def load_annotations(content: str, pages=None) -> PageAnnotations:
             continue
         pagelinks = [
             PageLink(
-                goal=item['goto'], bounds=BoundingBox.from_str(item['bounds']))
-            for item in page['data'][0]
+                goal=item['goto'],
+                bounds=BoundingBox.from_str(item['bounds']),
+            ) for item in page['data'][0]
         ]
         hyperlinks = [
             HyperLink(
-                goal=item['href'], bounds=BoundingBox.from_str(item['bounds']))
-            for item in page['data'][1]
+                goal=item['href'],
+                bounds=BoundingBox.from_str(item['bounds']),
+            ) for item in page['data'][1]
         ]
         result.append(PageAnnotation(
             pagelinks,

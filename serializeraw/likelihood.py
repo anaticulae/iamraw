@@ -46,9 +46,9 @@ def dump_likelihood(likelihoods: iamraw.PageContentLikelihoods) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_likelihood(
-        content: str,
-        singlevalue: bool = True,
-        pages: tuple = None,
+    content: str,
+    singlevalue: bool = True,
+    pages: tuple = None,
 ) -> iamraw.PageContentLikelihoods:
     """Load list of likelihoods from single `content`
 

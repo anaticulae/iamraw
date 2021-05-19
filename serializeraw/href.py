@@ -24,8 +24,8 @@ def dump_hyperlinks(links: iamraw.ExtractedHyperLinks) -> str:
 
 
 def load_hyperlinks(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.ExtractedHyperLinks:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.safe_load(content)

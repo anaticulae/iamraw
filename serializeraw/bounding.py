@@ -22,7 +22,7 @@ def dump_boundingboxes(boxes: iamraw.PageBoundingsList) -> str:
         assert isinstance(page, iamraw.PageBoundings), type(page)
         item = {
             'page':
-            page.page,
+                page.page,
             'content': [
                 '%d %.2f %.2f %.2f %.2f' % (index, *tuple(box))
                 for index, box in page.boundings

@@ -77,12 +77,12 @@ FIFTH_FONT = iamraw.Font(
     (2, 0, 0, 7, FIFTH_FONT),
 ])
 def test_fontstore_access_font_id(
-        restructured_fontstore: iamraw.FontStore,  # pylint:disable=W0621
-        page,
-        container,
-        line,
-        char,
-        expected,
+    restructured_fontstore: iamraw.FontStore,  # pylint:disable=W0621
+    page,
+    container,
+    line,
+    char,
+    expected,
 ):
     fontstore = restructured_fontstore
     fontid = fontstore.fontid(page, container, line, char)
@@ -96,11 +96,11 @@ def test_fontstore_access_font_id(
     (1, 0, 0, 0),
 ])
 def test_fontstore_access_out_of_bounds(
-        restructured_fontstore: iamraw.FontStore,  # pylint:disable=W0621
-        page,
-        container,
-        line,
-        char,
+    restructured_fontstore: iamraw.FontStore,  # pylint:disable=W0621
+    page,
+    container,
+    line,
+    char,
 ):
     """Notes: (1,0,0,0): empty page"""
     fontstore = restructured_fontstore

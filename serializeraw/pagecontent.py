@@ -14,8 +14,8 @@ import iamraw
 
 
 def dump_pagecontent(
-        pages: iamraw.PageContents,
-        pagedumper: callable = None,
+    pages: iamraw.PageContents,
+    pagedumper: callable = None,
 ) -> str:
     pagedumper = pagedumper if pagedumper else lambda x: x
     converted = [(page.page, pagedumper(page.content)) for page in pages]
@@ -24,10 +24,10 @@ def dump_pagecontent(
 
 
 def load_pagecontent(
-        content: str,
-        pages: tuple = None,
-        pageloader: callable = None,
-        fname: str = None,
+    content: str,
+    pages: tuple = None,
+    pageloader: callable = None,
+    fname: str = None,
 ) -> iamraw.PageContents:
     content = utila.from_raw_or_path(content, ftype='yaml', fname=fname)
     loaded = yaml.safe_load(content)

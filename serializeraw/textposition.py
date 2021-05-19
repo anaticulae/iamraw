@@ -37,8 +37,8 @@ def dump_textpositions(items: iamraw.PageContentTextPositions) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_textpositions(
-        content: str,
-        pages=None,
+    content: str,
+    pages=None,
 ) -> iamraw.PageContentTextPositions:
     content = utila.from_raw_or_path(
         content,

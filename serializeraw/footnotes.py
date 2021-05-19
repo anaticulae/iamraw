@@ -14,9 +14,9 @@ import serializeraw
 
 
 def load_footnotes(
-        content: str,
-        prefix: str = '',
-        pages: tuple = None,
+    content: str,
+    prefix: str = '',
+    pages: tuple = None,
 ) -> iamraw.PageContentFootnotes:
     fname = 'groupme__footer_footerheader'
     if prefix:

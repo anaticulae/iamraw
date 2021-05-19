@@ -41,12 +41,12 @@ class NavigatorMixin:
         self.pagesize = pagesize
 
     def between(
-            self,
-            top: float,
-            bottom: float,
-            left: float = START,
-            right: float = END,
-            selector: SelectBounding = SelectBounding.MAX,
+        self,
+        top: float,
+        bottom: float,
+        left: float = START,
+        right: float = END,
+        selector: SelectBounding = SelectBounding.MAX,
     ) -> list:
         """Return content between to and bottom and left to right in
         range [top(0.0), bottom(1.0)] and [left(0.0), right(1.0)].
@@ -81,10 +81,10 @@ class NavigatorMixin:
         return result
 
     def before(
-            self,
-            height: float,
-            width: float = END,
-            selector: SelectBounding = SelectBounding.MAX,
+        self,
+        height: float,
+        width: float = END,
+        selector: SelectBounding = SelectBounding.MAX,
     ) -> list:
         """Determine elements on the top of the document
 
@@ -105,10 +105,10 @@ class NavigatorMixin:
         return result
 
     def after(
-            self,
-            height,
-            width=START,
-            selector: SelectBounding = SelectBounding.MAX,
+        self,
+        height,
+        width=START,
+        selector: SelectBounding = SelectBounding.MAX,
     ):
         """Determine elements after `height` till the bottom of the
         page. Additonal shrink from left to right with `width`."""
@@ -145,11 +145,11 @@ class PageTextNavigator(NavigatorMixin):
         self.finding = {}
 
     def insert(
-            self,
-            text: str,
-            style: texmex.style.TextStyle,
-            bounding: iamraw.BoundingBox,
-            bounding_mean: float = None,
+        self,
+        text: str,
+        style: texmex.style.TextStyle,
+        bounding: iamraw.BoundingBox,
+        bounding_mean: float = None,
     ):
         """Insert text element top to bottom and left to right.
 
@@ -236,11 +236,11 @@ class PageTextContentNavigator(NavigatorMixin):
     """
 
     def __init__(
-            self,
-            textnavigator: PageTextNavigator,
-            content: iamraw.Border,
-            *,
-            validate_leftright: bool = True,
+        self,
+        textnavigator: PageTextNavigator,
+        content: iamraw.Border,
+        *,
+        validate_leftright: bool = True,
     ):
         """Navigate throw text content, ignore footer and header
 
@@ -353,11 +353,11 @@ class PageTextNavigatorMode(enum.Enum):
 
 
 def create_pagetextnavigators(  # pylint:disable=R0914,R1260
-        text: iamraw.Document,
-        text_positions,
-        fontstore: iamraw.FontStore = None,
-        fill_empty: bool = True,
-        mode=PageTextNavigatorMode.BOTH,
+    text: iamraw.Document,
+    text_positions,
+    fontstore: iamraw.FontStore = None,
+    fill_empty: bool = True,
+    mode=PageTextNavigatorMode.BOTH,
 ) -> PageTextNavigators:
     result = []
     for textposition in text_positions:
@@ -429,8 +429,8 @@ def select_textcontainer(content, mode: PageTextNavigatorMode):
 
 
 def fill_empty_navigators(
-        navigators: PageTextNavigators,
-        dimension: iamraw.PageSize,
+    navigators: PageTextNavigators,
+    dimension: iamraw.PageSize,
 ) -> PageTextNavigators:
     """Some documents contain white pages. White pages contain no
     text and therefore no text_positions. The document [CONTENT,
@@ -458,11 +458,11 @@ def fill_empty_navigators(
 
 
 def create_pagetextcontentnavigators(
-        navigators,
-        headerfooter,
-        sizeandborder,
-        validate_leftright: bool = True,
-        pages: tuple = None,
+    navigators,
+    headerfooter,
+    sizeandborder,
+    validate_leftright: bool = True,
+    pages: tuple = None,
 ) -> PageTextContentNavigators:
     # TODO: require fill_empty?
     result = []

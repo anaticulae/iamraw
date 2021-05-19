@@ -112,10 +112,10 @@ class PageIter:
 
 
 def split_page(
-        page: iamraw.Page,
-        positions: typing.List,
-        *,
-        append_unvisited: bool = True,
+    page: iamraw.Page,
+    positions: typing.List,
+    *,
+    append_unvisited: bool = True,
 ) -> Strs:
     """Split page into chunks given by `positions`. The source of these
     positions can be rawmaker with font-extractor.

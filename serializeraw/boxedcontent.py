@@ -46,9 +46,9 @@ def dump_boxedcontent(boxed) -> str:
                     boxid = boxid[0]
                     items.append({
                         'boxed_id':
-                        '%d %d' % (boxid, index),
+                            '%d %d' % (boxid, index),
                         'bounding':
-                        str(bounding),
+                            str(bounding),
                         'content': [
                             '%s %d %s' % (str(bounding), uindex, contentitem)
                             for (bounding, uindex, contentitem) in _content

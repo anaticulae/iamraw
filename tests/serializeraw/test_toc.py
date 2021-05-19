@@ -23,10 +23,10 @@ import tests.serializeraw
 
 
 def create_section(
-        level: int,
-        title: str,
-        parent: iamraw.toc.TocLinkMixin,
-        raw: bool = False,
+    level: int,
+    title: str,
+    parent: iamraw.toc.TocLinkMixin,
+    raw: bool = False,
 ) -> iamraw.Section:
     """Create section with no parents or children
 

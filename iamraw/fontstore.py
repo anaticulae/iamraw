@@ -38,21 +38,21 @@ class FontStore:
         self.pages = {page.page: page.content for page in pages}
 
     def font(
-            self,
-            number: int,
-            container: int,
-            line: int,
-            char: int,
+        self,
+        number: int,
+        container: int,
+        line: int,
+        char: int,
     ) -> int:
         fontid = self.fontid(number, container, line, char)
         return self[fontid]
 
     def fontid(
-            self,
-            number: int,
-            container: int,
-            line: int,
-            char: int,
+        self,
+        number: int,
+        container: int,
+        line: int,
+        char: int,
     ) -> int:
         # TODO: linear complexity!
         page = self.pages[number]
@@ -82,11 +82,11 @@ class FontStore:
             return NO_FONT
 
     def fromstr(
-            self,
-            page: int,
-            container: int,
-            line: int,
-            text: str,
+        self,
+        page: int,
+        container: int,
+        line: int,
+        text: str,
     ) -> FontChunks:
         assert isinstance(text, str), type(text)
         result = []
@@ -127,10 +127,10 @@ class FontStore:
 class FontContentStore:
 
     def __init__(
-            self,
-            store: FontStore,
-            navigator: 'PageTextContentNavigator',
-            page: int,
+        self,
+        store: FontStore,
+        navigator: 'PageTextContentNavigator',
+        page: int,
     ):
         assert store, navigator
         # assert isinstance(navigator, PageTextContentNavigator)
@@ -141,10 +141,10 @@ class FontContentStore:
         self.page = page
 
     def fontid(
-            self,
-            container: int,
-            line: int,
-            char: int,
+        self,
+        container: int,
+        line: int,
+        char: int,
     ) -> int:
         """Determine fontid based on location. The container index
         starts with zero. The containerid is relative to the start of
@@ -169,10 +169,10 @@ class FontContentStore:
         return fontid
 
     def fromstr(
-            self,
-            container: int,
-            line: int,
-            text: str,
+        self,
+        container: int,
+        line: int,
+        text: str,
     ) -> FontChunks:
         current_container = self.off_start + container
         result = self.store.fromstr(

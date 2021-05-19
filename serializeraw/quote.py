@@ -20,8 +20,8 @@ def dump_blockquotes(blockquotes: iamraw.PageContentBlockQuotesList) -> str:
 
 
 def load_blockquotes(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.PageContentBlockQuotesList:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.safe_load(content)
@@ -46,8 +46,8 @@ def dump_quotations(quotations) -> str:
 
 
 def load_quotations(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.ExtractedQuotations:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.load(content, Loader=yaml.FullLoader)

@@ -109,9 +109,9 @@ BoundingBoxes = typing.List[BoundingBox]
 
 
 def split_y(
-        bounding: BoundingBox,
-        part: int,
-        parts: int,
+    bounding: BoundingBox,
+    part: int,
+    parts: int,
 ) -> BoundingBox:
     """Split `bounding` in `parts`.
 
@@ -137,9 +137,9 @@ def split_y(
 
 
 def split_x(
-        bounding: BoundingBox,
-        part: int,
-        parts: int,
+    bounding: BoundingBox,
+    part: int,
+    parts: int,
 ) -> BoundingBox:
     """Split `bounding` in `parts`.
 

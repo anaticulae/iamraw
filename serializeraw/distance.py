@@ -27,8 +27,8 @@ def dump_distance(items: iamraw.PageContentAreaDistances) -> str:
 
 
 def load_distance(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.PageContentAreaDistances:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.safe_load(content)

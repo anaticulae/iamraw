@@ -22,8 +22,8 @@ def dump_formulas(pages: iamraw.PageContentFormula) -> str:
 
 
 def load_formulas(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.PageContentFormula:
     content = utila.from_raw_or_path(
         content,

@@ -41,7 +41,8 @@ FOOTER_HEADER = [
                     text='Operating System.',
                     raw='2Operating System.',
                 )
-            ]),
+            ],
+        ),
         page=9,
     ),
     PageContentFooterHeader(
@@ -66,7 +67,8 @@ FOOTER_HEADER = [
                     text='Software Development Kit',
                     raw='5Software Development Kit',
                 )
-            ]),
+            ],
+        ),
         page=10,
     ),
     PageContentFooterHeader(
@@ -86,7 +88,8 @@ FOOTER_HEADER = [
                     text='Application Programming Interface',
                     raw='7Application Programming Interface',
                 )
-            ]),
+            ],
+        ),
         page=11,
     ),
     PageContentFooterHeader(
@@ -101,7 +104,8 @@ FOOTER_HEADER = [
                     text='Graphical User Interface',
                     raw='8Graphical User Interface',
                 )
-            ]),
+            ],
+        ),
         page=12,
     ),
     PageContentFooterHeader(
@@ -126,7 +130,8 @@ FOOTER_HEADER = [
                     text='Multiple-Input-Multiple-Output',
                     raw='23Multiple-Input-Multiple-Output',
                 ),
-            ]),
+            ],
+        ),
         page=18,
     ),
     PageContentFooterHeader(
@@ -141,7 +146,8 @@ FOOTER_HEADER = [
                     text='Industrial, scientific, medical',
                     raw='24Industrial, scientific, medical',
                 ),
-            ]),
+            ],
+        ),
         page=19,
     ),
 ]
@@ -154,9 +160,11 @@ SECOND = [
             page=PageInformation(value='ii', raw='ii'),
             title=None,
             undefined=[RawText(text='INHALTSVERZEICHNIS')],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=2),
+        page=2,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -164,9 +172,11 @@ SECOND = [
             page=PageInformation(value='iii', raw='iii'),
             title=None,
             undefined=[RawText(text='INHALTSVERZEICHNIS')],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=3),
+        page=3,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -174,32 +184,37 @@ SECOND = [
             page=PageInformation(value='iv', raw='iv'),
             title=None,
             undefined=[RawText(text='INHALTSVERZEICHNIS')],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=4),
+        page=4,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='2', raw='2'),
-            title=HeaderTitle(
-                title='MOTIVATION UND ZIELSETZUNG',
-                raw='1.1. MOTIVATION UND ZIELSETZUNG'),
+            title=HeaderTitle(title='MOTIVATION UND ZIELSETZUNG',
+                              raw='1.1. MOTIVATION UND ZIELSETZUNG'),
             undefined=[],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=6),
+        page=6,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='3', raw='3'),
-            title=HeaderTitle(
-                title='AUFBAU DER ARBEIT', raw='1.2. AUFBAU DER ARBEIT'),
+            title=HeaderTitle(title='AUFBAU DER ARBEIT',
+                              raw='1.2. AUFBAU DER ARBEIT'),
             undefined=[],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=7),
+        page=7,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -207,9 +222,11 @@ SECOND = [
             page=PageInformation(value='5', raw='5'),
             title=HeaderTitle(title='SMARTPHONES', raw='2.1. SMARTPHONES'),
             undefined=[],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=9),
+        page=9,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -217,9 +234,11 @@ SECOND = [
             page=PageInformation(value='9', raw='9'),
             title=HeaderTitle(title='SMARTPHONES', raw='2.1. SMARTPHONES'),
             undefined=[],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=13),
+        page=13,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -227,33 +246,37 @@ SECOND = [
             page=PageInformation(value='10', raw='10'),
             title=HeaderTitle(title='SMARTPHONES', raw='2.1. SMARTPHONES'),
             undefined=[],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=14),
+        page=14,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='11', raw='11'),
-            title=HeaderTitle(
-                title='DRAHTLOSE KOMMUNIKATIONSTECHNOLOGIEN',
-                raw='2.2. DRAHTLOSE KOMMUNIKATIONSTECHNOLOGIEN'),
+            title=HeaderTitle(title='DRAHTLOSE KOMMUNIKATIONSTECHNOLOGIEN',
+                              raw='2.2. DRAHTLOSE KOMMUNIKATIONSTECHNOLOGIEN'),
             undefined=[],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=15),
+        page=15,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='12', raw='12'),
-            title=HeaderTitle(
-                title='DRAHTLOSE KOMMUNIKATIONSTECHNOLOGIEN',
-                raw='2.2. DRAHTLOSE KOMMUNIKATIONSTECHNOLOGIEN'),
+            title=HeaderTitle(title='DRAHTLOSE KOMMUNIKATIONSTECHNOLOGIEN',
+                              raw='2.2. DRAHTLOSE KOMMUNIKATIONSTECHNOLOGIEN'),
             undefined=[],
-            images=[]),
+            images=[],
+        ),
         footer=None,
-        page=16),
+        page=16,
+    ),
 ]
 THIRD = [
     PageContentFooterHeader(
@@ -262,45 +285,65 @@ THIRD = [
             begin=0.95,
             end=1.0,
             page=None,
-            page_location=BoundingBox(
-                x0=291.77, y0=797.35, x1=307.96, y1=806.35)),
-        page=1),
+            page_location=BoundingBox(x0=291.77,
+                                      y0=797.35,
+                                      x1=307.96,
+                                      y1=806.35),
+        ),
+        page=1,
+    ),
     PageContentFooterHeader(
         header=None,
         footer=PagesFooterInformation(
             begin=0.95,
             end=1.0,
             page=None,
-            page_location=BoundingBox(
-                x0=291.77, y0=797.35, x1=307.96, y1=806.35)),
-        page=2),
+            page_location=BoundingBox(x0=291.77,
+                                      y0=797.35,
+                                      x1=307.96,
+                                      y1=806.35),
+        ),
+        page=2,
+    ),
     PageContentFooterHeader(
         header=None,
         footer=PagesFooterInformation(
             begin=0.95,
             end=1.0,
             page=None,
-            page_location=BoundingBox(
-                x0=291.77, y0=797.35, x1=307.96, y1=806.35)),
-        page=6),
+            page_location=BoundingBox(x0=291.77,
+                                      y0=797.35,
+                                      x1=307.96,
+                                      y1=806.35),
+        ),
+        page=6,
+    ),
     PageContentFooterHeader(
         header=None,
         footer=PagesFooterInformation(
             begin=0.95,
             end=1.0,
             page=None,
-            page_location=BoundingBox(
-                x0=291.77, y0=797.35, x1=307.96, y1=806.35)),
-        page=7),
+            page_location=BoundingBox(x0=291.77,
+                                      y0=797.35,
+                                      x1=307.96,
+                                      y1=806.35),
+        ),
+        page=7,
+    ),
     PageContentFooterHeader(
         header=None,
         footer=PagesFooterInformation(
             begin=0.95,
             end=1.0,
             page=None,
-            page_location=BoundingBox(
-                x0=291.77, y0=797.35, x1=307.96, y1=806.35)),
-        page=8),
+            page_location=BoundingBox(x0=291.77,
+                                      y0=797.35,
+                                      x1=307.96,
+                                      y1=806.35),
+        ),
+        page=8,
+    ),
 ]
 
 FOURTH = [
@@ -308,11 +351,28 @@ FOURTH = [
     PageContentFooterHeader(
         header=None,
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=2),
+        page=2,
+    ),
     PageContentFooterHeader(
         header=None,
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=3),
+        page=3,
+    ),
+    PageContentFooterHeader(
+        header=FixedHeaderInformation(
+            begin=0.0,
+            end=0.07,
+            page=None,
+            title=None,
+            undefined=[
+                RawText(
+                    text='The RestructuredText Book Documentation, Release 0.1'
+                ),
+            ],
+            images=[]),
+        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        page=4,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -325,24 +385,13 @@ FOURTH = [
             ],
             images=[]),
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=4),
-    PageContentFooterHeader(
-        header=FixedHeaderInformation(
-            begin=0.0,
-            end=0.07,
-            page=None,
-            title=None,
-            undefined=[
-                RawText(
-                    text='The RestructuredText Book Documentation, Release 0.1')
-            ],
-            images=[]),
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=5),
+        page=5,
+    ),
     PageContentFooterHeader(
         header=None,
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=6),
+        page=6,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -351,15 +400,18 @@ FOURTH = [
             title=None,
             undefined=[
                 RawText(
-                    text='The RestructuredText Book Documentation, Release 0.1')
+                    text='The RestructuredText Book Documentation, Release 0.1'
+                ),
             ],
             images=[]),
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=7),
+        page=7,
+    ),
     PageContentFooterHeader(
         header=None,
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=8),
+        page=8,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -368,15 +420,18 @@ FOURTH = [
             title=None,
             undefined=[
                 RawText(
-                    text='The RestructuredText Book Documentation, Release 0.1')
+                    text='The RestructuredText Book Documentation, Release 0.1'
+                ),
             ],
             images=[]),
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=9),
+        page=9,
+    ),
     PageContentFooterHeader(
         header=None,
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=10),
+        page=10,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -385,15 +440,18 @@ FOURTH = [
             title=None,
             undefined=[
                 RawText(
-                    text='The RestructuredText Book Documentation, Release 0.1')
+                    text='The RestructuredText Book Documentation, Release 0.1'
+                ),
             ],
             images=[]),
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=11),
+        page=11,
+    ),
     PageContentFooterHeader(
         header=None,
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=12),
+        page=12,
+    ),
     PageContentFooterHeader(
         header=FixedHeaderInformation(
             begin=0.0,
@@ -402,9 +460,11 @@ FOURTH = [
             title=None,
             undefined=[
                 RawText(
-                    text='The RestructuredText Book Documentation, Release 0.1')
+                    text='The RestructuredText Book Documentation, Release 0.1'
+                ),
             ],
             images=[]),
         footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
-        page=13),
+        page=13,
+    ),
 ]

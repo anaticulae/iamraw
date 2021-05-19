@@ -29,18 +29,18 @@ EXAMPLE = [
     ),
     PageAnnotation(
         [
-            PageLink(
-                goal='chapter*.1',
-                bounds=BoundingBox(x0=49.40, y0=571.64, x1=137.22, y1=580.50),
-                typ=Link.INTERNAL),
-            PageLink(
-                goal='chapter.1',
-                bounds=BoundingBox(x0=49.40, y0=549.72, x1=147.44, y1=558.59),
-                typ=Link.INTERNAL),
-            PageLink(
-                goal='section.1.1',
-                bounds=BoundingBox(x0=64.34, y0=535.83, x1=146.54, y1=546.62),
-                typ=Link.INTERNAL),
+            PageLink(goal='chapter*.1',
+                     bounds=BoundingBox(
+                         x0=49.40, y0=571.64, x1=137.22, y1=580.50),
+                     typ=Link.INTERNAL),
+            PageLink(goal='chapter.1',
+                     bounds=BoundingBox(
+                         x0=49.40, y0=549.72, x1=147.44, y1=558.59),
+                     typ=Link.INTERNAL),
+            PageLink(goal='section.1.1',
+                     bounds=BoundingBox(
+                         x0=64.34, y0=535.83, x1=146.54, y1=546.62),
+                     typ=Link.INTERNAL),
         ],
         [],
         page=3  # we do not need `full` ascending pages

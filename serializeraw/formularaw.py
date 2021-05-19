@@ -47,8 +47,8 @@ def dump_rawformulas(pages: iamraw.PageContentRawFormulas) -> str:
 
 
 def load_rawformulas(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.PageContentRawFormulas:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.load(content, Loader=yaml.FullLoader)

@@ -27,8 +27,8 @@ def test_border_dump_and_load_pageborder(boxdata_from_pdf):
     loaded_sizeandborders = serializeraw.load_pageborders(dumped)
     assert loaded_sizeandborders == sizeandborders
 
-    loaded_sizeandborders = serializeraw.load_pageborders(
-        dumped, pages=(1, 2, 3))
+    loaded_sizeandborders = serializeraw.load_pageborders(dumped,
+                                                          pages=(1, 2, 3))
     assert len(loaded_sizeandborders) == 3
 
 

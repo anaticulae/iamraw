@@ -35,8 +35,8 @@ def dump_headerfooter(pages: iamraw.PageContentFooterHeaders) -> str:
 
 @functools.lru_cache(maxsize=configo.CACHE_SMALL)
 def load_headerfooter(
-        content: str,
-        pages=None,
+    content: str,
+    pages=None,
 ) -> iamraw.PageContentFooterHeaders:
     content = utila.from_raw_or_path(
         content,

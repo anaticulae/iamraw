@@ -98,8 +98,8 @@ def dump_text_abbreviations(items) -> str:
 
 
 def load_text_abbreviations(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.ExtractedTextAbbreviations:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.load(content, Loader=yaml.FullLoader)

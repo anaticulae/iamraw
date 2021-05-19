@@ -55,8 +55,8 @@ def load_image_info(content: str) -> iamraw.ImageInformation:
 
 
 def load_image_infos_frompath(
-        path: str,
-        pages: tuple = None,
+    path: str,
+    pages: tuple = None,
 ) -> iamraw.PageContentImageInfos:
     if not os.path.exists(path):
         return []

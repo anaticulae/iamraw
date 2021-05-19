@@ -14,9 +14,9 @@ import iamraw
 
 
 def load_findings(
-        path: str,
-        msgids: set = None,
-        pages: tuple = None,
+    path: str,
+    msgids: set = None,
+    pages: tuple = None,
 ) -> iamraw.Findings:
     """Load list of `Finding`s which was produced by linter
 

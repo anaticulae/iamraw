@@ -61,10 +61,10 @@ def count_textlines(page: 'texmex.NavigatorMixin', remove_empty=False) -> int:
 
 
 def connect_text(
-        items,
-        merge_divis: bool = True,
-        normalize_newline: bool = True,
-        normalize_spaces: bool = False,
+    items,
+    merge_divis: bool = True,
+    normalize_newline: bool = True,
+    normalize_spaces: bool = False,
 ) -> str:
     r"""\
     >>> connect_text(['Dieser Satz ent-\n', 'hält eine Trennung.'], merge_divis=True)

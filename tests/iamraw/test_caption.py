@@ -25,7 +25,8 @@ def test_pagecaptions_toraw():
                     line=10,
                     raw='This is my second caption',
                 ),
-            ]),
+            ],
+        ),
         iamraw.PageContentCaption(
             page=8,
             content=[
@@ -33,13 +34,14 @@ def test_pagecaptions_toraw():
                     line=6,
                     raw='This is my third caption',
                 ),
-            ])
+            ],
+        )
     ]
     raw = iamraw.caption.pagecaptions_toraw(pagecaptions)
     expected = [
         {
             'page':
-            5,
+                5,
             'captions': [
                 {
                     'line': 3,
@@ -54,12 +56,10 @@ def test_pagecaptions_toraw():
         },
         {
             'page': 8,
-            'captions': [
-                {
-                    'line': 6,
-                    'raw': 'This is my third caption'
-                },
-            ]
+            'captions': [{
+                'line': 6,
+                'raw': 'This is my third caption'
+            },]
         },
     ]
     assert raw == expected

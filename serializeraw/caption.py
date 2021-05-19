@@ -22,8 +22,8 @@ def dump_captions(items: iamraw.PageContentCaptions) -> str:
 
 
 def load_captions(
-        content: str,
-        pages: tuple = None,
+    content: str,
+    pages: tuple = None,
 ) -> iamraw.PageContentCaptions:
     content = utila.from_raw_or_path(content, ftype='yaml')
     loaded = yaml.load(content, Loader=yaml.FullLoader)

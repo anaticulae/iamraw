@@ -86,12 +86,12 @@ def test_footerheader_header_extend():
 
 
 def test_footerheader_footer_dump():
-    footer = iamraw.PagesFooterInformation(
-        page_location=iamraw.BoundingBox(10, 20, 50, 60),
-        page=iamraw.PageInformation(
-            value=1,
-            raw='-1-',
-        ))
+    footer = iamraw.PagesFooterInformation(page_location=iamraw.BoundingBox(
+        10, 20, 50, 60),
+                                           page=iamraw.PageInformation(
+                                               value=1,
+                                               raw='-1-',
+                                           ))
     footers = [
         iamraw.PageContentFooterHeader(
             header=None,
