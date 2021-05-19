@@ -269,3 +269,5 @@ from iamraw.whitepage import WhitePage
 __version__ = '4.17.2'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+import iamraw.__hack__  # isort:skip
