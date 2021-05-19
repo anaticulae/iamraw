@@ -11,6 +11,8 @@ import collections
 import dataclasses
 import typing
 
+import utila
+
 
 @dataclasses.dataclass
 class AbbreviationPosition:
@@ -26,9 +28,7 @@ class Abbreviation:
     position: AbbreviationPosition = None
 
     def __lt__(self, item):
-        import texmex.alpha  # pylint:disable=import-outside-toplevel
-        return (texmex.alpha.replace(self.short).lower() <=
-                texmex.alpha.replace(item.short).lower())
+        return utila.alphabetically(self.short) <= utila.alphabetically(item.short) # yapf:disable
 
 
 Abbreviations = typing.List[Abbreviation]
