@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.17.5
+
+### Fix
+
+* ensure that hack is loaded correctly (b3532edffcd2)
+
 ## v4.17.4
 
 ## v4.17.3
