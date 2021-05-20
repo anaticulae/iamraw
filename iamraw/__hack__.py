@@ -12,7 +12,6 @@ serialize dataclasses correctly."""
 import yaml
 
 import iamraw
-import texmex
 
 
 def register_class(item):
@@ -34,5 +33,8 @@ def register_class(item):
     yaml.add_constructor(name, dataclass_constructor_sequence)
 
 
-[register_class(getattr(iamraw, name)) for name in dir(iamraw)]  # pylint:disable=expression-not-assigned
-[register_class(getattr(texmex, name)) for name in dir(texmex)]  # pylint:disable=expression-not-assigned
+def register_hack(package):
+    [register_class(getattr(package, name)) for name in dir(package)]  # pylint:disable=expression-not-assigned
+
+
+register_hack(iamraw)

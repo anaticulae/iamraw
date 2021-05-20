@@ -172,3 +172,7 @@ from serializeraw.whitepage import load_whitepages
 # wordspace
 from serializeraw.wordspace import dump_wspaces
 from serializeraw.wordspace import load_wspaces
+
+import iamraw.__hack__  # isort:skip
+
+iamraw.__hack__.register_hack(serializeraw)
