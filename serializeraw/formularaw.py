@@ -50,15 +50,15 @@ def load_rawformulas(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentRawFormulas:
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
+    loaded = utila.yaml_from_raw_or_path(
+        content,
+        safe=False,
+    )
 
     loaded = [load_formula(item) for item in loaded]
-
     selected = [
         item for item in loaded if not utila.should_skip(item.page, pages)
     ]
-
     result = [
         iamraw.PageContentRawFormula(page=page, content=list(content))
         for page, content in itertools.groupby(selected, key=lambda x: x.page)

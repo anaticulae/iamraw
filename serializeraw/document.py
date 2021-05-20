@@ -39,12 +39,11 @@ def load_document(content: str, pages: tuple = None) -> iamraw.Document:
     Raises:
         ValueError if given path does not exists
     """
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname='rawmaker__text_text',
-        ftype='yaml',
+        safe=False,
     )
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
 
     def remove_skipped(loaded, pages):
         """Remove pages which are not part of todo list `pages`"""

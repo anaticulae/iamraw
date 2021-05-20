@@ -38,13 +38,11 @@ def load_headerfooter(
     content: str,
     pages=None,
 ) -> iamraw.PageContentFooterHeaders:
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname='groupme__footer_footerheader',
-        ftype='yaml',
+        safe=False,
     )
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
-
     result = []
     for item in loaded:
         pagenumber = item['page']

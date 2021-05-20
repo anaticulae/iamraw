@@ -42,9 +42,10 @@ def load_whitepages(
     Returns:
         list of loaded `WhitePage` type
     """
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
-
+    loaded = utila.yaml_from_raw_or_path(
+        content,
+        safe=False,
+    )
     result = []
     for pagenumber, whitepage in loaded.items():
         if utila.should_skip(pagenumber, pages):

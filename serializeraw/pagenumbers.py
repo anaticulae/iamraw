@@ -43,12 +43,11 @@ def dump_pagenumbers(items) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_pagenumbers(content: str, pages=None):
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname='groupme__pagenumbers_pagenumbers',
-        ftype='yaml',
+        safe=False,
     )
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
 
     def to_int(item):
         with contextlib.suppress(ValueError):

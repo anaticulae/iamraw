@@ -40,12 +40,11 @@ def load_textpositions(
     content: str,
     pages=None,
 ) -> iamraw.PageContentTextPositions:
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname='rawmaker__text_positions',
-        ftype='yaml',
+        safe=False,
     )
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])

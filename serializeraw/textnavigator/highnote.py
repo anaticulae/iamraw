@@ -18,8 +18,10 @@ import texmex
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_highnotes(content: str, pages: tuple = None):
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
+    loaded = utila.yaml_from_raw_or_path(
+        content,
+        safe=False,
+    )
     result = []
     for pagecontent in loaded:
         pagenumber = int(pagecontent['page'])

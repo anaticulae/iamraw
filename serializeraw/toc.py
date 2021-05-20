@@ -43,12 +43,11 @@ def load_toc(content: str, load_raw: bool = True) -> iamraw.Toc:
     Returns:
         loaded iamraw.Toc
     """
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname='groupme__toc_toc',
-        ftype='yaml',
+        safe=False,
     )
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
     return _load(loaded, parent=None, load_raw=load_raw)
 
 

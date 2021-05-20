@@ -53,16 +53,13 @@ def load_text(
     Returns:
         loaded text with replaced headlines
     """
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname='words__text_text',
-        ftype='yaml',
+        safe=False,
     )
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
-
     # convert page index to global index
     headlines = utila.flatten(headlines) if headlines is not None else None
-
     result = []
     for line in loaded:
         page, content = int(line['page']), line['content']

@@ -68,9 +68,10 @@ def load_sections(
     Return:
         loaded Sections
     """
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
-
+    loaded = utila.yaml_from_raw_or_path(
+        content,
+        safe=False,
+    )
     result = Sections()
     for section in loaded:
         inside, section_pages = inside_section(section, pages)

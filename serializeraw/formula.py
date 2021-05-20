@@ -25,12 +25,11 @@ def load_formulas(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentFormula:
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
-        ftype='yaml',
         fname='detector__formula_detected',
+        safe=False,
     )
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
 
     result = [
         item for item in loaded if not utila.should_skip(item.page, pages)

@@ -31,8 +31,10 @@ def load_tables(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentTableBoundings:
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.load(content, Loader=yaml.FullLoader)
+    loaded = utila.yaml_from_raw_or_path(
+        content,
+        safe=False,
+    )
     result = []
     for page in loaded:
         number = int(page['page'])
