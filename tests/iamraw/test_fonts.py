@@ -21,6 +21,6 @@ def test_fonts_repr():
         'iamraw': iamraw,
         'iamraw.fonts': iamraw.fonts,
     }
-    created = eval(str(expected), required)  # pylint:disable=eval-used
+    created = eval(str(expected), required)  # pylint:disable=eval-used # nosec
 
     assert created == expected
