@@ -20,9 +20,10 @@ pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 PACKAGE = 'iamraw'
 power.setup(iamraw.ROOT)
 
-WORKER = 1
+WORKER = 2
 RESOURCES = [
     (power.DOCU27_PDF, None),
+    (power.DOCU07_PDF, None),
 ]
 
 
@@ -32,7 +33,7 @@ def pytest_sessionstart():
 
 
 def extract(resources):
-    todo = "--border --text --fonts --horizontals --line -j4"
+    todo = "--border --text --fonts --horizontals --toc --line -j4"
     layout = "--char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3"
     todo = [(f'rawmaker -i {source} -o {power.link(source)} '
              f'--pages={utila.simplify_pages(pages)} {todo} {layout} && '
