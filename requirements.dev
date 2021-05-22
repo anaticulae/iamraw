@@ -12,3 +12,5 @@ groupme==0.9.0
 
 power==1.4.6
 genex==0.8.0
+
+utilatest==0.5.3
