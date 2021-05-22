@@ -6,10 +6,23 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""Hack to fix bug after upgrading yaml. YAML is not able anymore to
+serialize dataclasses correctly."""
 
 import functools
 
 import yaml
+import yaml.constructor
+
+yaml.constructor.FullConstructor.add_multi_constructor(
+    'tag:yaml.org,2002:python/object:',
+    yaml.constructor.FullConstructor.construct_python_object,
+)
+
+yaml.constructor.FullConstructor.add_multi_constructor(
+    'tag:yaml.org,2002:python/object/apply:',
+    yaml.constructor.FullConstructor.construct_python_object_apply,
+)
 
 YAML_WIDTH = 256
 

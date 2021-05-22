@@ -83,7 +83,3 @@ from texmex.text import connect_text
 from texmex.text import count_textlines
 # utils
 from texmex.utils import topbottom
-
-import iamraw.__hack__  # isort:skip
-
-iamraw.__hack__.register_hack(texmex)
