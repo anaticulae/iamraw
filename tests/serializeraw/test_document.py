@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
+
 from iamraw import Char
 from iamraw import Document
 from iamraw import Line
@@ -20,7 +22,6 @@ from serializeraw.document import _dump_textcontainer
 from serializeraw.document import _load_line
 from serializeraw.document import _load_page
 from serializeraw.document import _load_textcontainer
-from tests.serializeraw import TEXT_YAML
 
 
 def simple_textcontainer():
@@ -53,15 +54,15 @@ def simple_document():
 
 
 def test_load_document_from_path():
-    document = load_document(TEXT_YAML)
+    document = load_document(power.link(power.DOCU07_PDF))
     assert document
 
-    document = load_document(TEXT_YAML, (1, 2))
+    document = load_document(power.link(power.DOCU07_PDF), (1, 2))
     assert len(document) == 2
 
 
 def test_load_dump_load_document():
-    document = load_document(TEXT_YAML)
+    document = load_document(power.link(power.DOCU07_PDF))
 
     dumped = dump_document(document)
     second_load = load_document(dumped)

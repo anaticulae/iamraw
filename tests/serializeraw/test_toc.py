@@ -14,12 +14,12 @@
 import functools
 import os
 
+import power
 import pytest
 import utila
 
 import iamraw
 import serializeraw
-import tests.serializeraw
 
 
 def create_section(
@@ -62,7 +62,7 @@ def toc_example(dump_raw: bool = False):
 
 
 def test_load_toc_from_path():
-    toc = serializeraw.load_toc(tests.serializeraw.TOC_YAML)
+    toc = serializeraw.load_toc(power.link(power.DOCU07_PDF))
     assert toc
 
 
