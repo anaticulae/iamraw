@@ -45,4 +45,4 @@ def test_create_pagetextcontentnavigator_fromfile():
         fontheader,
         fontcontent,
     )
-    assert len(loaded) == 11
+    assert len(loaded) == 27

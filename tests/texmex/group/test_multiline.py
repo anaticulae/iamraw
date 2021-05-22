@@ -26,7 +26,8 @@ def test_group_pages_by_fontsize():
     result = texmex.group_pages_by_fontsize(navigators)
     # remove empty page
     result = [item for item in result if item]
-    assert len(result) == 10, str(result)
+    # one white page
+    assert len(result) == 26, str(result)
 
 
 def test_multiline_unite_groups():
