@@ -6,6 +6,7 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
 import os
 from os.path import exists
 from os.path import join
@@ -23,14 +24,11 @@ assert exists(TEXT_YAML), TEXT_YAML
 TOC_YAML = join(DATA, 'toc.yaml')
 assert exists(TOC_YAML), TOC_YAML
 
-RESTRUCTURED = os.path.join(DATA, 'restructured')
-
 RESOURCES = [
     TEST,
     DATA,
     TEXT_YAML,
     TOC_YAML,
-    RESTRUCTURED,
 ]
 
 for item in RESOURCES:

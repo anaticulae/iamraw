@@ -7,14 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
+
 import iamraw.path
 import serializeraw
-import tests.serializeraw
 
 
 def test_create_pagetextnavigator_frompath():
     loaded = serializeraw.create_pagetextnavigators_frompath(
-        tests.serializeraw.RESTRUCTURED)
+        power.link(power.DOCU27_PDF))
     for page in loaded:
         for line in page:
             assert line.text
@@ -22,14 +23,14 @@ def test_create_pagetextnavigator_frompath():
 
 def test_create_pagetextcontentnavigator_frompath():
     loaded = serializeraw.create_pagetextcontentnavigators_frompath(
-        tests.serializeraw.RESTRUCTURED)
+        power.link(power.DOCU27_PDF))
     for page in loaded:
         for line in page:
             assert line.text
 
 
 def test_create_pagetextcontentnavigator_fromfile():
-    source = tests.serializeraw.RESTRUCTURED
+    source = power.link(power.DOCU27_PDF)
     text = iamraw.path.text(source)
     textpositions = iamraw.path.textposition(source)
     sizeandborderpath = iamraw.path.sizeandborder(source)

@@ -7,16 +7,16 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
 import pytest
 
 import serializeraw
-import tests.serializeraw
 import texmex
 
 
 def navigators():
     result = serializeraw.create_pagetextnavigators_frompath(
-        tests.serializeraw.RESTRUCTURED)
+        power.link(power.DOCU27_PDF))
     return result
 
 
@@ -28,7 +28,7 @@ def test_document_textsize():
 
 def test_document_textdistance():
     example = navigators()
-    borders = serializeraw.load_pageborders(tests.serializeraw.RESTRUCTURED)
+    borders = serializeraw.load_pageborders(power.link(power.DOCU27_PDF))
     result = texmex.document_textdistance(example, borders)
     # TODO: INVESTIGATE LATER
     # This is not the right result. A change indicates that the algo
@@ -37,7 +37,7 @@ def test_document_textdistance():
 
 
 def test_document_textdistance_from_contentnavigators():
-    source = tests.serializeraw.RESTRUCTURED
+    source = power.link(power.DOCU27_PDF)
     data = serializeraw.create_pagetextcontentnavigators_frompath(source)
     result = texmex.document_textdistance_from_contentnavigators(data)
     assert result == 17.9, str(result)
@@ -45,7 +45,7 @@ def test_document_textdistance_from_contentnavigators():
 
 def test_document_textfeed():
     nav = serializeraw.create_pagetextnavigators_frompath(
-        tests.serializeraw.RESTRUCTURED)
+        power.link(power.DOCU27_PDF))
     leftfeed = texmex.document_textfeed(nav, left=True)
     assert leftfeed == 72.0, str(leftfeed)
     # distance of x1 to right page border
@@ -66,7 +66,7 @@ def test_textsize_frompage():
 ])
 def test_navigator_filter_mode(mode, empty):
     result = serializeraw.create_pagetextnavigators_frompath(
-        tests.serializeraw.RESTRUCTURED,
+        power.link(power.DOCU27_PDF),
         mode=mode,
         pages=(0,),
     )

@@ -7,11 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
 import pytest
 
 import iamraw
 import serializeraw
-import tests.serializeraw
 
 
 @pytest.fixture
@@ -23,8 +23,8 @@ def restructured_fontstore() -> iamraw.FontStore:
         rawmaker -i power/power/repository/docu/restructuredtext.pdf
         --pages=0:11 --char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3
     """
-    result = serializeraw.create_fontstore_frompath(
-        tests.serializeraw.RESTRUCTURED)
+    result = serializeraw.create_fontstore_frompath(power.link(
+        power.DOCU27_PDF))
     return result
 
 
@@ -173,8 +173,8 @@ def test_fontstore_font_to_fontid():
 
 
 def test_fontstore_font_access():
-    loaded = serializeraw.create_fontstore_frompath(
-        tests.serializeraw.RESTRUCTURED)
+    loaded = serializeraw.create_fontstore_frompath(power.link(
+        power.DOCU27_PDF))
     fontid = loaded.fontid(0, 0, 0, 0)
     font = loaded.font(0, 0, 0, 0)
     assert loaded[fontid] == font

@@ -7,21 +7,22 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
+
 import serializeraw
-import tests.serializeraw
 import texmex
 
 
 def test_group_page_by_size_distance():
     navigator = serializeraw.create_pagetextnavigators_frompath(
-        tests.serializeraw.RESTRUCTURED)[0]
+        power.link(power.DOCU27_PDF))[0]
     result = texmex.group_page_by_size_distance(navigator)
     assert len(result) == 4, str(result)
 
 
 def test_group_pages_by_fontsize():
     navigators = serializeraw.create_pagetextnavigators_frompath(
-        tests.serializeraw.RESTRUCTURED)
+        power.link(power.DOCU27_PDF))
     result = texmex.group_pages_by_fontsize(navigators)
     # remove empty page
     result = [item for item in result if item]
