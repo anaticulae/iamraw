@@ -7,7 +7,36 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
+import pytest
+import utila
+
+import iamraw
 from tests.fixtures.textnavigator import navigator  # pylint:disable=W0611
 from tests.serializeraw.fixtures import boxdata_from_pdf  # pylint:disable=W0611
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
+
+PACKAGE = 'iamraw'
+power.setup(iamraw.ROOT)
+
+WORKER = 1
+RESOURCES = [
+    (power.DOCU27_PDF, None),
+]
+
+
+@pytest.mark.usefixtures('session')
+def pytest_sessionstart():
+    power.run()
+
+
+def extract(resources):
+    todo = "--border --text --fonts --horizontals --line -j4"
+    layout = "--char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3"
+    todo = [(f'rawmaker -i {source} -o {power.link(source)} '
+             f'--pages={utila.simplify_pages(pages)} {todo} {layout} && '
+             f'groupme -i {power.link(source)} -o {power.link(source)} '
+             '--footer --pagenumbers') for source, pages in resources]
+    completed = utila.run_parallel(todo, worker=WORKER)
+    assert completed == utila.SUCCESS
