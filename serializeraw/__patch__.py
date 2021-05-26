@@ -18,10 +18,13 @@ yaml.constructor.FullConstructor.add_multi_constructor(
     'tag:yaml.org,2002:python/object:',
     yaml.constructor.FullConstructor.construct_python_object,
 )
-
 yaml.constructor.FullConstructor.add_multi_constructor(
     'tag:yaml.org,2002:python/object/apply:',
     yaml.constructor.FullConstructor.construct_python_object_apply,
+)
+yaml.constructor.FullConstructor.add_multi_constructor(
+    'tag:yaml.org,2002:python/object/new:',
+    yaml.constructor.FullConstructor.construct_python_object_new,
 )
 
 YAML_WIDTH = 256
