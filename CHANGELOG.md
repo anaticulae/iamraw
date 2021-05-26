@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.17.7
+
+### Fix
+
+* add missing new yaml ctor (ba3ef1b430b9)
+
 ## v4.17.6
 
 ## v4.17.5
