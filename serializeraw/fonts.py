@@ -8,37 +8,25 @@
 # =============================================================================
 
 import contextlib
+import functools
 import math
-from functools import lru_cache
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
+import yaml
 
 import iamraw
-from iamraw import DEFAULT_STRETCH
-from iamraw import DEFAULT_STYLE
-from iamraw import DEFAULT_WEIGHT
-from iamraw import Font
-from iamraw import PageFontContent
-from iamraw import PageFontContents
-from iamraw import Stretch
-from iamraw import Style
-from iamraw import Weight
 
 
 def dump_font_header(fonts) -> str:
     """Write font header to raw string representation"""
 
     def remove_default_value(font):
-        if font['stretch'] == DEFAULT_STRETCH.name:
+        if font['stretch'] == iamraw.DEFAULT_STRETCH.name:
             del font['stretch']
-        if font['style'] == DEFAULT_STYLE.name:
+        if font['style'] == iamraw.DEFAULT_STYLE.name:
             del font['style']
-        if font['weight'] == DEFAULT_WEIGHT.name:
+        if font['weight'] == iamraw.DEFAULT_WEIGHT.name:
             del font['weight']
         if not font['flags']:
             del font['flags']
@@ -58,11 +46,11 @@ def dump_font_header(fonts) -> str:
         # do not store default value in yaml representation
         remove_default_value(raw['font'])
         result.append(raw)
-    dumped = dump(result)
+    dumped = yaml.dump(result)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
+@functools.lru_cache(configo.CACHE_SMALL)
 def load_font_header(content):
     """Load font header from raw string representation.
 
@@ -70,13 +58,10 @@ def load_font_header(content):
     `default` value is used. If the value is `NONE` is it replaced by `None`.
     Third, if the state is defined the state is loaded.
     """
-    content = from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname='rawmaker__fonts_header',
-        ftype='yaml',
     )
-    loaded = load(content, Loader=FullLoader)
-
     fonts = []
     for item in loaded:
         fontraw = item['font']
@@ -90,15 +75,15 @@ def load_font_header(content):
             except KeyError:
                 return default
 
-        weight = parse(fontraw, Weight, DEFAULT_WEIGHT)
-        stretch = parse(fontraw, Stretch, DEFAULT_STRETCH)
-        style = parse(fontraw, Style, DEFAULT_STYLE)
+        weight = parse(fontraw, iamraw.Weight, iamraw.DEFAULT_WEIGHT)
+        stretch = parse(fontraw, iamraw.Stretch, iamraw.DEFAULT_STRETCH)
+        style = parse(fontraw, iamraw.Style, iamraw.DEFAULT_STYLE)
         flags = None
         with contextlib.suppress(KeyError):
             if fontraw['flags'] != 'NONE':
                 flags = convert_flags(fontraw['flags'])
 
-        font = Font(
+        font = iamraw.Font(
             name=fontraw['name'],
             scale=fontraw['scale'],
             stretch=stretch,
@@ -110,7 +95,7 @@ def load_font_header(content):
     return fonts
 
 
-def dump_font_content(pages: PageFontContents) -> str:
+def dump_font_content(pages: iamraw.PageFontContents) -> str:
     result = []
     for page in pages:
         items = []
@@ -121,22 +106,20 @@ def dump_font_content(pages: PageFontContents) -> str:
             'page': page.page,
             'fonts': items,
         })
-    dumped = dump(result)
+    dumped = yaml.dump(result)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
+@functools.lru_cache(configo.CACHE_SMALL)
 def load_font_content(content, pages=None):
-    content = from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname='rawmaker__fonts_content',
-        ftype='yaml',
     )
-    loaded = load(content, Loader=FullLoader)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if should_skip(pagenumber, pages):
+        if utila.should_skip(pagenumber, pages):
             continue
 
         def parse_font(pagefonts):
@@ -147,7 +130,7 @@ def load_font_content(content, pages=None):
 
         pagefonts = page['fonts']
         fonts = parse_font(pagefonts)
-        result.append(PageFontContent(content=fonts, page=pagenumber))
+        result.append(iamraw.PageFontContent(content=fonts, page=pagenumber))
     return result
 
 
