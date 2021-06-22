@@ -121,3 +121,19 @@ def words_lists(path: str, prefix: str = '') -> str:
 
 def words_links(path: str, prefix: str = '') -> str:
     return connect(path, 'words', 'links_links', prefix)
+
+
+def wspace(path: str, prefix: str = '') -> str:
+    return connect(path, 'spacestation', 'wspace_wspace', prefix)
+
+
+def wword(path: str, prefix: str = '') -> str:
+    return connect(path, 'spacestation', 'wspace_words', prefix)
+
+
+def document_chardist(path: str, prefix: str = '') -> str:
+    return connect(path, 'spacestation', 'chardist_chardist', prefix)
+
+
+def document_worddist(path: str, prefix: str = '') -> str:
+    return connect(path, 'spacestation', 'worddist_worddist', prefix)
