@@ -138,6 +138,15 @@ from serializeraw.quote import load_quotations
 # sections
 from serializeraw.sections import dump_sections
 from serializeraw.sections import load_sections
+# spacestation
+from serializeraw.spacestation import dump_document_chardist
+from serializeraw.spacestation import dump_document_worddist
+from serializeraw.spacestation import dump_wspaces
+from serializeraw.spacestation import dump_wwords
+from serializeraw.spacestation import load_document_chardist
+from serializeraw.spacestation import load_document_worddist
+from serializeraw.spacestation import load_wspaces
+from serializeraw.spacestation import load_wwords
 # style
 from serializeraw.style import dump_doctextstyle
 from serializeraw.style import load_doctextstyle
@@ -169,6 +178,3 @@ from serializeraw.utils import validate
 # whitepage
 from serializeraw.whitepage import dump_whitepages
 from serializeraw.whitepage import load_whitepages
-# wordspace
-from serializeraw.wordspace import dump_wspaces
-from serializeraw.wordspace import load_wspaces

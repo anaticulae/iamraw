@@ -206,6 +206,9 @@ from iamraw.solution import Solution
 from iamraw.solution import Solutions
 from iamraw.solution import Text
 from iamraw.solution import Web
+# spacestation
+from iamraw.spacestation import DocumentCharDist
+from iamraw.spacestation import DocumentWordDist
 # style
 from iamraw.style import DocTextStyle
 from iamraw.style import PageTextProperties
