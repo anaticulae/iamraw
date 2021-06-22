@@ -130,6 +130,9 @@ from serializeraw.pagecontent import load_pagecontent
 # pagenumbers
 from serializeraw.pagenumbers import dump_pagenumbers
 from serializeraw.pagenumbers import load_pagenumbers
+# pdfinfo
+from serializeraw.pdfinfo import dump_pdfinfo
+from serializeraw.pdfinfo import load_pdfinfo
 # quotes
 from serializeraw.quote import dump_blockquotes
 from serializeraw.quote import dump_quotations
