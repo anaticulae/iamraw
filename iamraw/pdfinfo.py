@@ -33,3 +33,15 @@ class PDFInfo:
     generator: PDFGenerator = None
     version: PDFVersion = None
     meta: dict = None
+
+
+@dataclasses.dataclass
+class PDFDate:  # pylint:disable=R0902
+    year: int = None
+    month: int = None
+    day: int = None
+    hour: int = None
+    minute: int = None
+    second: int = None
+    utc_hour: int = None
+    utc_minute: int = None

@@ -56,9 +56,6 @@ from serializeraw.caption import load_captions
 # chapter
 from serializeraw.chapter import dump_chapter
 from serializeraw.chapter import load_chapter
-# date
-from serializeraw.date import date_fromstr
-from serializeraw.date import date_str
 # distance
 from serializeraw.distance import dump_distance
 from serializeraw.distance import load_distance
@@ -131,6 +128,8 @@ from serializeraw.pagecontent import load_pagecontent
 from serializeraw.pagenumbers import dump_pagenumbers
 from serializeraw.pagenumbers import load_pagenumbers
 # pdfinfo
+from serializeraw.pdfinfo import date_fromstr
+from serializeraw.pdfinfo import date_str
 from serializeraw.pdfinfo import dump_pdfinfo
 from serializeraw.pdfinfo import load_pdfinfo
 # quotes

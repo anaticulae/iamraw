@@ -53,8 +53,6 @@ from iamraw.caption import Caption
 from iamraw.caption import Captions
 from iamraw.caption import PageContentCaption
 from iamraw.caption import PageContentCaptions
-# date
-from iamraw.date import PDFDate
 # distance
 from iamraw.distance import AreaDistance
 from iamraw.distance import AreaDistances
@@ -181,6 +179,7 @@ from iamraw.page import PageSizeBorderList
 from iamraw.pagecontent import PageContent
 from iamraw.pagecontent import PageContents
 # pdf
+from iamraw.pdfinfo import PDFDate
 from iamraw.pdfinfo import PDFGenerator
 from iamraw.pdfinfo import PDFInfo
 from iamraw.pdfinfo import PDFVersion
