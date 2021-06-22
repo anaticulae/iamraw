@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.19.0
+
+### Feature
+
+* move PDFInfo from rawmaker (2bb2c426fab9)
+
 ## v4.18.0
 
 ### Feature
