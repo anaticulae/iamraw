@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.18.0
+
+### Feature
+
+* add spacestation paths (4b94f3b5ea79)
+* move spacestation serialize and data structure (97a6c0139b1a)
+
 ## v4.17.7
 
 ### Fix
