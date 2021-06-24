@@ -180,3 +180,8 @@ from serializeraw.utils import validate
 # whitepage
 from serializeraw.whitepage import dump_whitepages
 from serializeraw.whitepage import load_whitepages
+
+ptcn_fromfile = create_pagetextcontentnavigators_fromfile  # pylint:disable=C0103
+ptcn_frompath = create_pagetextcontentnavigators_frompath  # pylint:disable=C0103
+ptn_fromfile = create_pagetextnavigators_fromfile  # pylint:disable=C0103
+ptn_frompath = create_pagetextnavigators_frompath  # pylint:disable=C0103
