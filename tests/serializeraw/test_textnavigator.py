@@ -8,11 +8,13 @@
 # =============================================================================
 
 import power
+import utilatest
 
 import iamraw.path
 import serializeraw
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_create_pagetextnavigator_frompath():
     loaded = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.DOCU27_PDF))
@@ -21,6 +23,7 @@ def test_create_pagetextnavigator_frompath():
             assert line.text
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_create_pagetextcontentnavigator_frompath():
     loaded = serializeraw.create_pagetextcontentnavigators_frompath(
         power.link(power.DOCU27_PDF))
@@ -29,6 +32,7 @@ def test_create_pagetextcontentnavigator_frompath():
             assert line.text
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_create_pagetextcontentnavigator_fromfile():
     source = power.link(power.DOCU27_PDF)
     text = iamraw.path.text(source)

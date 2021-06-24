@@ -9,6 +9,7 @@
 
 import power
 import pytest
+import utilatest
 
 import iamraw
 import serializeraw
@@ -23,6 +24,7 @@ def restructured_fontstore() -> iamraw.FontStore:
         rawmaker -i power/power/repository/docu/restructuredtext.pdf
         --pages=0:11 --char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3
     """
+    utilatest.fixture_requires(power.DOCU27_PDF)
     result = serializeraw.create_fontstore_frompath(power.link(
         power.DOCU27_PDF))
     return result
@@ -172,6 +174,7 @@ def test_fontstore_font_to_fontid():
     assert store.font_to_fontid(f5) == hash(f5)
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_fontstore_font_access():
     loaded = serializeraw.create_fontstore_frompath(power.link(
         power.DOCU27_PDF))

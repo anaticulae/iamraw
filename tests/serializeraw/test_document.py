@@ -8,6 +8,7 @@
 # =============================================================================
 
 import power
+import utilatest
 
 from iamraw import Char
 from iamraw import Document
@@ -53,6 +54,7 @@ def simple_document():
     return document
 
 
+@utilatest.requires(power.DOCU07_PDF)
 def test_load_document_from_path():
     document = load_document(power.link(power.DOCU07_PDF))
     assert document
@@ -61,6 +63,7 @@ def test_load_document_from_path():
     assert len(document) == 2
 
 
+@utilatest.requires(power.DOCU07_PDF)
 def test_load_dump_load_document():
     document = load_document(power.link(power.DOCU07_PDF))
 

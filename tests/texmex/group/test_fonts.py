@@ -9,12 +9,14 @@
 
 import power
 import pytest
+import utilatest
 
 import serializeraw
 import texmex
 
 
 def navigators():
+    utilatest.fixture_requires(power.DOCU27_PDF)
     result = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.DOCU27_PDF))
     return result
@@ -26,6 +28,7 @@ def test_document_textsize():
     assert size == 9.96, str(size)
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_document_textdistance():
     example = navigators()
     borders = serializeraw.load_pageborders(power.link(power.DOCU27_PDF))
@@ -36,6 +39,7 @@ def test_document_textdistance():
     assert result == 17.9, str(result)
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_document_textdistance_from_contentnavigators():
     source = power.link(power.DOCU27_PDF)
     data = serializeraw.create_pagetextcontentnavigators_frompath(source)
@@ -43,6 +47,7 @@ def test_document_textdistance_from_contentnavigators():
     assert result == 17.9, str(result)
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_document_textfeed():
     nav = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.DOCU27_PDF))
@@ -64,6 +69,7 @@ def test_textsize_frompage():
     (texmex.PageTextNavigatorMode.VERTICAL, True),
     (texmex.PageTextNavigatorMode.HORIZONTAL, False),
 ])
+@utilatest.requires(power.DOCU27_PDF)
 def test_navigator_filter_mode(mode, empty):
     result = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.DOCU27_PDF),

@@ -8,11 +8,13 @@
 # =============================================================================
 
 import power
+import utilatest
 
 import serializeraw
 import texmex
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_group_page_by_size_distance():
     navigator = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.DOCU27_PDF))[0]
@@ -20,6 +22,7 @@ def test_group_page_by_size_distance():
     assert len(result) == 4, str(result)
 
 
+@utilatest.requires(power.DOCU27_PDF)
 def test_group_pages_by_fontsize():
     navigators = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.DOCU27_PDF))
