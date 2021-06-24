@@ -16,8 +16,7 @@ import serializeraw
 
 @utilatest.requires(power.DOCU27_PDF)
 def test_create_pagetextnavigator_frompath():
-    loaded = serializeraw.create_pagetextnavigators_frompath(
-        power.link(power.DOCU27_PDF))
+    loaded = serializeraw.ptn_frompath(power.link(power.DOCU27_PDF))
     for page in loaded:
         for line in page:
             assert line.text
@@ -25,8 +24,7 @@ def test_create_pagetextnavigator_frompath():
 
 @utilatest.requires(power.DOCU27_PDF)
 def test_create_pagetextcontentnavigator_frompath():
-    loaded = serializeraw.create_pagetextcontentnavigators_frompath(
-        power.link(power.DOCU27_PDF))
+    loaded = serializeraw.ptcn_frompath(power.link(power.DOCU27_PDF))
     for page in loaded:
         for line in page:
             assert line.text
