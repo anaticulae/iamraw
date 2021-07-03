@@ -61,6 +61,12 @@ class SectionRaw(Section):
     raw_level: str = None
     raw_page: str = None
 
+    def __str__(self):
+        result = (
+            f'SectionRaw(raw="{self.raw}", raw_location={self.raw_location}, '
+            f'raw_level="{self.raw_level}", raw_page="{self.raw_page}")')
+        return result
+
 
 def tosectionraw(item: Section) -> SectionRaw:
     assert isinstance(item, Section), type(item)
