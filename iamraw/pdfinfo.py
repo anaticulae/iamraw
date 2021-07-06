@@ -35,6 +35,9 @@ class PDFInfo:
     meta: dict = None
 
 
+InvalidPDF = object()
+
+
 @dataclasses.dataclass
 class PDFDate:  # pylint:disable=R0902
     year: int = None

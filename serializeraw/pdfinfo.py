@@ -40,6 +40,8 @@ def load_pdfinfo(path: str) -> iamraw.PDFInfo:
         path,
         fname='pdfinfo',
     )
+    if loaded == {}:
+        return iamraw.InvalidPDF
     loaded['version'] = iamraw.PDFVersion(
         loaded['version']['major'],
         loaded['version']['minor'],
