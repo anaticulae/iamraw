@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.20.0
+
+### Feature
+
+* add option to load invalid pdf info (8b25e3b37a94)
+* add SectionRaw str converter (f4d1a59e90c6)
+* add navigator shortcuts (e69ccddb9e65)
+
 ## v4.19.0
 
 ### Feature
