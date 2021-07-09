@@ -14,6 +14,7 @@ import utila
 import yaml
 
 import iamraw
+import serializeraw
 
 
 def dump_boundingboxes(boxes: iamraw.PageBoundingsList) -> str:
@@ -30,11 +31,17 @@ def dump_boundingboxes(boxes: iamraw.PageBoundingsList) -> str:
         }
         simple.append(item)
     dumped = yaml.dump(simple)
+    dumped = serializeraw.dump_yamlpages(dumped)
     return dumped
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_boundingboxes(content: str, pages=None) -> iamraw.PageBoundingsList:
+    content = serializeraw.load_yamlpages(
+        content,
+        pages=pages,
+        fname='rawmaker__border_boundingboxes',
+    )
     loaded = utila.yaml_from_raw_or_path(
         content,
         fname='rawmaker__border_boundingboxes',
