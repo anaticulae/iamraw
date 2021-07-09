@@ -104,12 +104,14 @@ def load_yamlpages(path: str, pages: tuple = None) -> str:
     return result
 
 
-SEPARATOR = r'^-[ ]\w+\:'
-
-
 def write_yamlpages(path: str):
     utila.exists_assert(path)
     content = utila.file_read(path)
+    result = dump_yamlpages(content)
+    utila.file_replace(path, result)
+
+
+def dump_yamlpages(content: str) -> str:
     isyamlpages = content.startswith(HEADER)
     assert not isyamlpages
     header, static, dynamic = split_content(content)
@@ -117,7 +119,7 @@ def write_yamlpages(path: str):
     bottom = f'{static}\n{dynamic}'
     top = f'{HEADER}{len(header)}:{len(static)}\n{header}\n'
     result = f'{top}{bottom}'
-    utila.file_replace(path, result)
+    return result
 
 
 def split_content(content: str) -> tuple:
@@ -141,6 +143,9 @@ def split_content(content: str) -> tuple:
     dynamic = [tail[start:end] for _, start, end in header]
     dynamic: str = utila.NEWLINE.join(dynamic)
     return header, static, dynamic
+
+
+SEPARATOR = r'^-[ ]\w+\:'
 
 
 def create_header(tail: str) -> YAMLPages:

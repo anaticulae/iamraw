@@ -181,6 +181,7 @@ from serializeraw.utils import validate
 from serializeraw.whitepage import dump_whitepages
 from serializeraw.whitepage import load_whitepages
 # yamlpages
+from serializeraw.yamlpages import dump_yamlpages
 from serializeraw.yamlpages import load_yamlpages
 from serializeraw.yamlpages import write_yamlpages
 
