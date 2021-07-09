@@ -14,6 +14,7 @@ import utila
 import yaml
 
 import iamraw
+import serializeraw
 
 
 def dump_textpositions(items: iamraw.PageContentTextPositions) -> str:
@@ -32,6 +33,7 @@ def dump_textpositions(items: iamraw.PageContentTextPositions) -> str:
             'page': pagenumber,
         })
     dumped = yaml.dump(result)
+    dumped = serializeraw.dump_yamlpages(dumped)
     return dumped
 
 
@@ -40,9 +42,15 @@ def load_textpositions(
     content: str,
     pages=None,
 ) -> iamraw.PageContentTextPositions:
+    fname = 'rawmaker__text_positions'
+    content = serializeraw.load_yamlpages(
+        content,
+        pages=pages,
+        fname=fname,
+    )
     loaded = utila.yaml_from_raw_or_path(
         content,
-        fname='rawmaker__text_positions',
+        fname=fname,
         safe=False,
     )
     result = []
