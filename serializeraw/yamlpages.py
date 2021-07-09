@@ -68,12 +68,6 @@ class YAMLPages:
         result = utila.NEWLINE.join(wrapped)
         return result
 
-    def __getitem__(self, page):
-        try:
-            return page, self.content[page][0], self.content[page][1]
-        except KeyError as error:
-            raise StopIteration from error
-
 
 def isyamlpage(path: str) -> bool:
     # TODO: USE ONLY LIMTED BITS AFTER UPGRADING UTILA
@@ -126,21 +120,28 @@ def split_content(content: str) -> tuple:
     loaded = utila.yaml_from_raw_or_path(content)
     static = {}
     dynamic = {}
-    for key, value in loaded.items():
-        if isinstance(value, list):
-            dynamic[key] = value
-        else:
-            static[key] = value
-    static: str = yaml.dump(static) if static else ''
-    assert len(dynamic) <= 1, 'could not write more than one dynamic'
+    islist = isinstance(loaded, list)
+    if islist:
+        dynamic = loaded
+    else:
+        for key, value in loaded.items():
+            if isinstance(value, list):
+                dynamic[key] = value
+            else:
+                static[key] = value
+        static: str = yaml.dump(static) if static else ''
+        assert len(dynamic) <= 1, 'could not write more than one dynamic'
     dynamic: str = yaml.dump(dynamic) if dynamic else ''
-    head, tail = dynamic.split('\n', maxsplit=1)
+    if islist:
+        head, tail = '', dynamic
+    else:
+        head, tail = dynamic.split('\n', maxsplit=1)
     header = create_header(tail)
     if static:
-        static = f'{static.strip()}\n{head}'
+        static = f'{static.strip()}\n{head}'.strip()
     else:
         static = f'{head}'
-    dynamic = [tail[start:end] for _, start, end in header]
+    dynamic = [tail[start:end] for page, (start, end) in header.content.items()]
     dynamic: str = utila.NEWLINE.join(dynamic)
     return header, static, dynamic
 
@@ -157,7 +158,8 @@ def create_header(tail: str) -> YAMLPages:
         current = start
     collected.append((current, len(tail)))
     header = YAMLPages()
-    for page, (start, end) in enumerate(collected):
+    for start, end in collected:
+        page = getpage(tail[start:end])
         header.addpage(page, start, end)
     return header
 
@@ -175,3 +177,10 @@ def parse_header(content: str, pages: tuple = None) -> YAMLPages:
             continue
         result.addpage(page, start, end)
     return result
+
+
+def getpage(content: str) -> int:
+    loaded = utila.yaml_from_raw_or_path(content)
+    if isinstance(loaded, list):
+        loaded = loaded[0]
+    return loaded['page']
