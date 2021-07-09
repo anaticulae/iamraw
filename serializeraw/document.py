@@ -21,7 +21,8 @@ def dump_document(document: iamraw.Document) -> str:
     """Convert to raw python to have more clear yaml output"""
     assert isinstance(document, iamraw.Document), type(document)
     raw = dumper(document)
-    return yaml.dump(raw)
+    dumped = yaml.dump(raw)
+    return dumped
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
