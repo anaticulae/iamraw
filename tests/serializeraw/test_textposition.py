@@ -38,7 +38,7 @@ EXAMPLE = [
 ]
 
 
-def test_textpositions_dump_and_load_texpositions():
+def test_textpositions_dump_and_load():
     dumped = dump_textpositions(EXAMPLE)
     loaded = load_textpositions(dumped)
     assert loaded == EXAMPLE
