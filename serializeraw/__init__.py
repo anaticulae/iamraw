@@ -180,6 +180,9 @@ from serializeraw.utils import validate
 # whitepage
 from serializeraw.whitepage import dump_whitepages
 from serializeraw.whitepage import load_whitepages
+# yamlpages
+from serializeraw.yamlpages import load_yamlpages
+from serializeraw.yamlpages import write_yamlpages
 
 ptcn_fromfile = create_pagetextcontentnavigators_fromfile  # pylint:disable=C0103
 ptcn_frompath = create_pagetextcontentnavigators_frompath  # pylint:disable=C0103
