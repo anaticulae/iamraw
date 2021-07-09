@@ -10,7 +10,7 @@
 rawmaker==2.19.1
 groupme==0.12.0
 
-power==1.5.0
-genex==0.10.0
+power==1.6.0
+genex==0.11.1
 
 utilatest==0.7.1
