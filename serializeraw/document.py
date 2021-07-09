@@ -14,19 +14,26 @@ import utila
 import yaml
 
 import iamraw
+import serializeraw
 import serializeraw.border
 
 
-def dump_document(document: iamraw.Document) -> str:
+def dump_document(document: iamraw.Document, fast: bool = True) -> str:
     """Convert to raw python to have more clear yaml output"""
     assert isinstance(document, iamraw.Document), type(document)
     raw = dumper(document)
     dumped = yaml.dump(raw)
+    if fast:
+        dumped = serializeraw.dump_yamlpages(dumped)
     return dumped
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_document(content: str, pages: tuple = None) -> iamraw.Document:
+def load_document(
+    content: str,
+    pages: tuple = None,
+    fast: bool = True,
+) -> iamraw.Document:
     """Load document from raw-string or filepath.
 
     If document is loaded from file-path, the content is loaded and parsed
@@ -35,11 +42,18 @@ def load_document(content: str, pages: tuple = None) -> iamraw.Document:
     Args:
         content(str): raw-string or file-path
         pages(tuple): select pages to process
+        fast(bool): use yamlpages
     Returns:
         parsed Document
     Raises:
         ValueError if given path does not exists
     """
+    if fast:
+        content = serializeraw.load_yamlpages(
+            content,
+            pages=pages,
+            fname='rawmaker__text_text',
+        )
     loaded = utila.yaml_from_raw_or_path(
         content,
         fname='rawmaker__text_text',

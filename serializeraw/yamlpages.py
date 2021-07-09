@@ -81,8 +81,8 @@ def isyamlpage(path: str) -> bool:
     return header.startswith(HEADER)
 
 
-def load_yamlpages(path: str, pages: tuple = None) -> str:
-    content = utila.file_read(path)
+def load_yamlpages(content: str, pages: tuple = None, fname=None) -> str:
+    content = utila.from_raw_or_path(content, fname=fname)
     isyamlpages = content.startswith(HEADER)
     if not isyamlpages:
         return content

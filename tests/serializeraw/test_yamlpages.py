@@ -24,6 +24,11 @@ def test_yamlpages_write(testdir):
         destination=testdir.tmpdir,
         pattern=filename,
     )
+    dumped = serializeraw.dump_document(
+        serializeraw.load_document(filename),
+        fast=False,
+    )
+    utila.file_replace(filename, dumped)
     serializeraw.write_yamlpages(filename)
     loaded = serializeraw.load_yamlpages(filename, pages=10)
     yaml = utila.yaml_from_raw_or_path(loaded)
@@ -44,22 +49,21 @@ def test_yamlpages_compare_speed(testdir, capsys):
         destination=testdir.tmpdir,
         pattern=filename,
     )
-    serializeraw.write_yamlpages(filename)
-    no_optimization = os.path.join(source, filename)
-
+    dumped = serializeraw.dump_document(
+        serializeraw.load_document(filename),
+        fast=False,
+    )
+    utila.file_replace(filename, dumped)
+    with utila.profile('slow'):
+        slow = serializeraw.load_document(filename, pages=10, fast=False)
+    fast = os.path.join(source, filename)
     with utila.profile('fast'):
-        loaded = serializeraw.load_yamlpages(filename, pages=10)
-        fast = loaded = serializeraw.load_document(loaded)
-    assert fast
-    assert len(fast) == 1
-
-    with utila.profile('no_optimization'):
-        slow = serializeraw.load_document(no_optimization, pages=10)
+        fast = serializeraw.load_document(fast, pages=10, fast=True)
     assert fast == slow
-
+    # compare speed
     log = utilatest.stdout(capsys)
     times = utila.parse_floats(log)
-    assert times[0] < times[1], str(times)
+    assert times[1] < times[0], str(times)
 
 
 def test_yamlpages_load(testdir):
