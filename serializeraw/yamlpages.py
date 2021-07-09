@@ -16,8 +16,8 @@ whole yaml document.
 Header:
 
 ```
-@YAMLPAGES:HEADERSIZE:FIXEDCONTENT
-0/0/100 1/101/200 3/201/400
+# YAMLPAGES:HEADERSIZE:FIXEDCONTENT
+# 0/0/100 1/101/200 3/201/400
 ```
 
 Content:
@@ -30,7 +30,7 @@ Example:
 >>> for page in range(10):
 ...     yamlpages.addpage(page, page*100+(1 if page else 0), (page+1)*100)
 >>> yamlpages.header(width=80)
-'0/0/100 1/101/200 2/201/300 3/301/400 4/401/500 5/501/600 6/601/700 7/701/800\n8/801/900 9/901/1000'
+'# 0/0/100 1/101/200 2/201/300 3/301/400 4/401/500 5/501/600 6/601/700 7/701/800\n# 8/801/900 9/901/1000'
 """
 
 import dataclasses
@@ -44,7 +44,7 @@ import serializeraw.__patch__
 
 YAML_WIDTH = serializeraw.__patch__.YAML_WIDTH
 
-HEADER = '@YAMLPAGES:'
+HEADER = '# YAMLPAGES:'
 
 
 @dataclasses.dataclass
@@ -65,7 +65,7 @@ class YAMLPages:
         ]
         joined = ' '.join(raw)
         wrapped = textwrap.wrap(joined, width=width)
-        result = utila.NEWLINE.join(wrapped)
+        result = '# ' + '\n# '.join(wrapped)
         return result
 
 
@@ -165,6 +165,7 @@ def create_header(tail: str) -> YAMLPages:
 
 
 def parse_header(content: str, pages: tuple = None) -> YAMLPages:
+    content = content.replace('# ', '')
     result = YAMLPages()
     for item in content.split():
         page, start, end = utila.parse_tuple(
