@@ -54,6 +54,10 @@ def load_textpositions(
         safe=False,
     )
     result = []
+    if not loaded:
+        # if yamlpages selected no content, it is possible that loaded is
+        # None.
+        return result
     for page in loaded:
         pagenumber = int(page['page'])
         if utila.should_skip(pagenumber, pages):

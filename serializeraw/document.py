@@ -62,6 +62,11 @@ def load_document(
 
     def remove_skipped(loaded, pages):
         """Remove pages which are not part of todo list `pages`"""
+        if not loaded['pages']:
+            # if yamlpages selected no content, it is possible that
+            # loaded['pages] is None.
+            loaded['pages'] = []
+            return loaded
         to_process = []
         for item in loaded['pages']:
             pagenumber = int(item['page'])

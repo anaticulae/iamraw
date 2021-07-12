@@ -159,7 +159,12 @@ def create_header(tail: str) -> YAMLPages:
     collected.append((current, len(tail)))
     header = YAMLPages()
     for start, end in collected:
-        page = getpage(tail[start:end])
+        # TODO: STRIP CONTENT HERE AFTER CLARIFING TODO BELOW
+        content = tail[start:end]
+        if not content.strip():
+            # TODO: WHY CAN THIS HAPPEN? NO DYNAMIC CONTENT?
+            continue
+        page = getpage(content)
         header.addpage(page, start, end)
     return header
 
