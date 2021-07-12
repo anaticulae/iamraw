@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v4.21.0
+
+### Feature
+
+* make valid yaml header (203e77c59da3)
+* use yamlpages fast loader/writer (d17cb31afc06)
+* use fast yaml loader and writer (b1dded930d34)
+* add single list as yamlpages loader/writer (1e9f29554ca1)
+* use improved dumper/loader (75adcc08d24d)
+* add method to dump yamlpages to str (eec1806ac6e1)
+* add improved yaml loader and writer (c2ccfc1ecc1d)
+
+### Fix
+
+* skip empty content (371fdeb69e27)
+
 ## v4.20.0
 
 ### Feature
