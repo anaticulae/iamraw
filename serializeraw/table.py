@@ -18,8 +18,8 @@ def dump_tables(pages: iamraw.PageContentTableBoundings) -> str:
     result = []
     for page in pages:
         content = [{
-            'lines': ['%.2f %.2f %.2f %.2f' % line for line in item.lines],
-            'bounding': '%.2f %.2f %.2f %.2f' % item.bounding,
+            'lines': [tupleraw(line) for line in item.lines],
+            'bounding': tupleraw(item.bounding),
         } for item in page.content]
         raw = {'page': page.page, 'content': content}
         result.append(raw)
@@ -51,3 +51,14 @@ def load_tables(
             item.append(parsed)
         result.append(item)
     return result
+
+
+def tupleraw(item) -> str:
+    """\
+    >>> tupleraw(iamraw.BoundingBox.from_str('10.22 50.33 20 60'))
+    '10.22 50.33 20.0 60.0'
+    >>> tupleraw((10.22, 50.33, 20.0, 60.0))
+    '10.22 50.33 20.0 60.0'
+    """
+    item = utila.roundme(*item, digits=2, convert=False)
+    return utila.from_tuple(item)
