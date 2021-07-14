@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.21.1
+
+### Feature
+
+* add support for BoundingBox and tuple (8d0ae7ce6e92)
+
 ## v4.21.0
 
 ### Feature
