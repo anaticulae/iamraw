@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.22.0
+
+### Feature
+
+* add method to load and dump content bounding box (499c48a39027)
+* add ContentBoundingBox (737efd652660)
+* add option to pass page numbers as int (ea7fa18e029e)
+
 ## v4.21.1
 
 ### Feature
