@@ -48,7 +48,7 @@ class NavigatorMixin:
         right: float = END,
         selector: SelectBounding = SelectBounding.MAX,
     ) -> list:
-        """Return content between to and bottom and left to right in
+        """Return content between top and bottom and left to right in
         range [top(0.0), bottom(1.0)] and [left(0.0), right(1.0)].
 
         Args:
@@ -62,17 +62,16 @@ class NavigatorMixin:
         """
         assert START <= top <= bottom <= END, f'{START}<={top}<={bottom}<={END}'
         assert START <= left <= right <= DISABLE_VALIDATION, f'{START}<={left}<={right}<={DISABLE_VALIDATION}'
-
         if not self.data:
+            # empty page
             return []
-
+        # valid rectangle with possible content
         before = top * self.pagesize[1]
         after = bottom * self.pagesize[1]
         beforeleft = left * self.pagesize[0]
         afterright = right * self.pagesize[0]
-
         inside = (before, after, beforeleft, afterright)
-
+        # collect valid content
         result = []
         for item in self.data:
             if not valid(item, inside, selector=selector):
