@@ -45,9 +45,11 @@ def create_pagetextnavigators_frompath(
         rawmaker__oneline_text_text.yaml with `oneline` as prefix to
         separate instances.
     """
+    # convert page to tuple, if required
+    pages = (pages,) if isinstance(pages, int) else pages
+    # prepare path
     text = iamraw.path.text(path, prefix=prefix)
     text = serializeraw.load_document(text, pages=pages)
-
     textposition = iamraw.path.textposition(path, prefix=prefix)
     textposition = serializeraw.load_textpositions(
         textposition,
@@ -79,6 +81,8 @@ def create_pagetextnavigators_fromfile(
     *,
     fill_empty: bool = True,
 ) -> texmex.PageTextNavigators:
+    # convert page to tuple, if required
+    pages = (pages,) if isinstance(pages, int) else pages
     text = serializeraw.load_document(
         text,
         pages=pages,
@@ -125,6 +129,8 @@ def create_pagetextcontentnavigators_frompath(
     Returns:
         List of loaded PageTextContentNavigators depending on `pages`.
     """
+    # convert page to tuple, if required
+    pages = (pages,) if isinstance(pages, int) else pages
     navigators = create_pagetextnavigators_frompath(
         path=path,
         prefix=prefix,
@@ -169,6 +175,8 @@ def create_pagetextcontentnavigators_fromfile(
     fill_empty: bool = True,
     validate_leftright: bool = True,
 ):
+    # convert page to tuple, if required
+    pages = (pages,) if isinstance(pages, int) else pages
     navigators = create_pagetextnavigators_fromfile(
         text,
         textpositions,
