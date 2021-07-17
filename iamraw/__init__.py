@@ -53,6 +53,9 @@ from iamraw.caption import Caption
 from iamraw.caption import Captions
 from iamraw.caption import PageContentCaption
 from iamraw.caption import PageContentCaptions
+# content
+from iamraw.content import ContentBoundingBox
+from iamraw.content import ContentBoundingBoxes
 # distance
 from iamraw.distance import AreaDistance
 from iamraw.distance import AreaDistances
