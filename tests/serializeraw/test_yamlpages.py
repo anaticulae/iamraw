@@ -54,11 +54,12 @@ def test_yamlpages_compare_speed(testdir, capsys):
         fast=False,
     )
     utila.file_replace(filename, dumped)
-    with utila.profile('slow'):
-        slow = serializeraw.load_document(filename, pages=10, fast=False)
-    fast = os.path.join(source, filename)
-    with utila.profile('fast'):
-        fast = serializeraw.load_document(fast, pages=10, fast=True)
+    with utila.level_temp(utila.Level.DEBUG):
+        with utila.profile('slow'):
+            slow = serializeraw.load_document(filename, pages=10, fast=False)
+        fast = os.path.join(source, filename)
+        with utila.profile('fast'):
+            fast = serializeraw.load_document(fast, pages=10, fast=True)
     assert fast == slow
     # compare speed
     log = utilatest.stdout(capsys)
