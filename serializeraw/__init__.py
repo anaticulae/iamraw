@@ -56,6 +56,9 @@ from serializeraw.caption import load_captions
 # chapter
 from serializeraw.chapter import dump_chapter
 from serializeraw.chapter import load_chapter
+# content
+from serializeraw.content import dump_contentboundingbox
+from serializeraw.content import load_contentboundingbox
 # distance
 from serializeraw.distance import dump_distance
 from serializeraw.distance import load_distance
