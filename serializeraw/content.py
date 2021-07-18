@@ -13,7 +13,7 @@ import yaml
 import iamraw
 
 
-def dump_contentboundingbox(boxes: iamraw.ContentBoundingBox) -> str:
+def dump_contentboundingbox(boxes: iamraw.ContentBoundingBoxes) -> str:
     converted = [(page.page, page[0], page[1]) for page in boxes]
     dumped = yaml.safe_dump(converted)
     return dumped
@@ -22,7 +22,7 @@ def dump_contentboundingbox(boxes: iamraw.ContentBoundingBox) -> str:
 def load_contentboundingbox(
     content: str,
     pages: tuple = None,
-) -> iamraw.PageContentBlockQuotesList:
+) -> iamraw.ContentBoundingBoxes:
     content = utila.from_raw_or_path(
         content,
         fname='groupme__content_content',
