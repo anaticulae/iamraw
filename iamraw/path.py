@@ -137,3 +137,12 @@ def document_chardist(path: str, prefix: str = '') -> str:
 
 def document_worddist(path: str, prefix: str = '') -> str:
     return connect(path, 'spacestation', 'worddist_worddist', prefix)
+
+
+def tablero_result(path: str, prefix: str = '') -> str:
+    """Path to extraction result of tablero --decide step.
+
+    >>> tablero_result('/data/resources')
+    '/data/resources/tablero__decide_decide.yaml'
+    """
+    return connect(path, 'tablero', 'decide_decide', prefix)
