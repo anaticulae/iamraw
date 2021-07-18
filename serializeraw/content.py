@@ -14,7 +14,7 @@ import iamraw
 
 
 def dump_contentboundingbox(boxes: iamraw.ContentBoundingBoxes) -> str:
-    converted = [(page.page, page[0], page[1]) for page in boxes]
+    converted = [(page.page, page.top, page.bottom) for page in boxes]
     dumped = yaml.safe_dump(converted)
     return dumped
 
