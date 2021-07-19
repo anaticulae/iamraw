@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.22.1
+
+### Feature
+
+* add tablero result path (a4286f6c954e)
+
+### Documentation
+
+* adjust interface documentation (a1f746a6975c)
+
 ## v4.22.0
 
 ### Feature
