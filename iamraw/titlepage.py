@@ -33,6 +33,7 @@ class DocumentType(enum.Enum):
     BACHELOR = enum.auto()
     MASTER = enum.auto()
     DOCTOR = enum.auto()
+    HABIL = enum.auto()
     BOOK = enum.auto()
 
 
@@ -59,6 +60,10 @@ THESIS = {
         'Doktor',
         'Doktorarbeit',
         'Promotion',
+    },
+    DocumentType.HABIL: {
+        'Habilitation',
+        'Habilitationsschrift',
     },
 }
 
