@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.22.2
+
+### Feature
+
+* add CiteContent to define content of CitePart (48c8b9cedf0f)
+* add CitePart data type (ef6784dd014b)
+* add habil doc data type (73b396c1dccb)
+
 ## v4.22.1
 
 ### Feature
