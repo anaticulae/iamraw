@@ -133,7 +133,16 @@ class Table(DocumentSection):
 @dataclasses.dataclass
 class MainPart(DocumentSection):
     """The main content of a document, in the general, the largest area
-    of document."""
+    of document.
+    """
+
+
+@dataclasses.dataclass
+class CitePart(DocumentSection):
+    """The CitePart can contain other documents which where already published.
+
+    There are paper and other stuff in cumulative thesis.
+    """
 
 
 @dataclasses.dataclass

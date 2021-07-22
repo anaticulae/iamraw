@@ -199,6 +199,7 @@ from iamraw.quote import PageContentBlockQuotesList
 # sections
 from iamraw.sections import AreaItem
 from iamraw.sections import AreaItems
+from iamraw.sections import CitePart
 from iamraw.sections import DocumentSection
 from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
