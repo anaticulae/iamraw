@@ -222,5 +222,10 @@ class Glossary(AreaItem):
 
 
 @dataclasses.dataclass
+class CiteContent(AreaItem):
+    """General content in `CitePart`."""
+
+
+@dataclasses.dataclass
 class NotImplementedItem(AreaItem):
     classname: str = None
