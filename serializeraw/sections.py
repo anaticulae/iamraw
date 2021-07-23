@@ -18,6 +18,8 @@ from iamraw.sections import Abstract
 from iamraw.sections import Appendix
 from iamraw.sections import Bibliography
 from iamraw.sections import Chapter
+from iamraw.sections import CiteContent
+from iamraw.sections import CitePart
 from iamraw.sections import DocumentSection
 from iamraw.sections import FigureTable
 from iamraw.sections import Glossary
@@ -180,6 +182,8 @@ def generate_ctor():
         Appendix,
         Bibliography,
         Chapter,
+        CiteContent,
+        CitePart,
         DocumentSection,
         FigureTable,
         Glossary,
