@@ -72,6 +72,7 @@ def load_sections(
     """
     loaded = utila.yaml_from_raw_or_path(
         content,
+        fname='sections__section_result',
         safe=False,
     )
     result = Sections()
