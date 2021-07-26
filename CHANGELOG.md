@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.22.3
+
+### Feature
+
+* add default sections file name (a521248c4cfd)
+
+### Fix
+
+* add missing classes to serializer (fa7b1858ade0)
+
 ## v4.22.2
 
 ### Feature
