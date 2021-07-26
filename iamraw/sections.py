@@ -222,6 +222,11 @@ class Glossary(AreaItem):
 
 
 @dataclasses.dataclass
+class Acknowledgments(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
 class CiteContent(AreaItem):
     """General content in `CitePart`."""
 

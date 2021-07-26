@@ -15,6 +15,7 @@ import yaml
 
 from iamraw.sections import AbbreviationTable
 from iamraw.sections import Abstract
+from iamraw.sections import Acknowledgments
 from iamraw.sections import Appendix
 from iamraw.sections import Bibliography
 from iamraw.sections import Chapter
@@ -180,6 +181,7 @@ def generate_ctor():
     items = [
         AbbreviationTable,
         Abstract,
+        Acknowledgments,
         Appendix,
         Bibliography,
         Chapter,
