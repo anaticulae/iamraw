@@ -76,10 +76,10 @@ MATCHES = {
     r'Dipl.-\w+': AcademicTitle.MASTER,
     'M.A.': AcademicTitle.MASTER,
     'M.Sc.': AcademicTitle.MASTER,
-    'Dr.-Ing.': AcademicTitle.DR,
-    'Dr.': AcademicTitle.DR,
+    'Dr.-Ing. ?(E.h.)?': AcademicTitle.DR,
+    'Dr. ?(sc.)? ?(tech.)? ?(h.c.)?': AcademicTitle.DR,
     # TODO: ADD GENERAL -/RULE?
-    'Prof.[-]{0,1}': AcademicTitle.PROF,
+    'Prof.[-]{0,1} ?(em.)?': AcademicTitle.PROF,
     # minimum two chapters to distinguish from first names
     r'[a-zA-Z\-]{2,}. ': AcademicTitle.DR,
     # see general pattern above
