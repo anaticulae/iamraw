@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.23.0
+
+### Feature
+
+* improve title pattern (4c245f6d57da)
+* add acknowledgments section (9f9ea3f269c5)
+
 ## v4.22.3
 
 ### Feature
