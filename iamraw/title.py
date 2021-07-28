@@ -70,14 +70,13 @@ class AcademicTitle(enum.Flag):
 PROF_DR = AcademicTitle.PROF | AcademicTitle.DR
 
 MATCHES = {
-    'Prof.[-]{0,1} ?Dr.[-]? ?Ing.': PROF_DR,
+    'Prof.[-]{0,1} ?Dr.(-| )?Ing.': PROF_DR,
     'B.Sc.': AcademicTitle.BSC,
     'Dipl.(-| )Ing.': AcademicTitle.MASTER,
     r'Dipl.-\w+': AcademicTitle.MASTER,
     'M.A.': AcademicTitle.MASTER,
     'M.Sc.': AcademicTitle.MASTER,
-    'Dr.-Ing. ?(E.h.)?': AcademicTitle.DR,
-    'Dr. ?(sc.)? ?(tech.)? ?(h.c.)?': AcademicTitle.DR,
+    'Dr.(-| )?(Ing.)?( ?(sc.|tech.|h.c.|E.h.)){0,5}': AcademicTitle.DR,
     # TODO: ADD GENERAL -/RULE?
     'Prof.[-]{0,1} ?(em.)?': AcademicTitle.PROF,
     # minimum two chapters to distinguish from first names
