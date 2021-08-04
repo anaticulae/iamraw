@@ -68,7 +68,7 @@ def dump_footnote(note: iamraw.FootNote):
     assert note.number is not None, note
     with contextlib.suppress(AttributeError):
         assert note.text, note
-    raw = {key: value for key, value in vars(note).items() if value is not None}
+    raw = utila.simplify(note)
     return raw
 
 
