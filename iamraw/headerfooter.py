@@ -70,6 +70,9 @@ class FootNote:
     bounding: tuple = None
 
 
+FootNotes = typing.List[FootNote]
+
+
 @dataclasses.dataclass
 class FootRawNote(FootNote):
     text: str = None
@@ -83,9 +86,6 @@ class FootJudgedNote(FootNote):
     # title: str = None
     # year: int = None
     features: list = dataclasses.field(default_factory=list)
-
-
-FootNotes = typing.List[FootNote]
 
 
 @dataclasses.dataclass
