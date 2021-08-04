@@ -10,6 +10,7 @@
 from iamraw import BoundingBox
 from iamraw import FixedFooterInformation
 from iamraw import FixedHeaderInformation
+from iamraw import FootNoteMerged
 from iamraw import FootRawNote
 from iamraw import HeaderTitle
 from iamraw import MovingFooterInformation
@@ -120,16 +121,18 @@ FOOTER_HEADER = [
                     text='High Speed Packet Access',
                     raw='21High Speed Packet Access',
                 ),
-                FootRawNote(
-                    number='22',
-                    text='Orthogonal-Frequency-Division-Multiplexing',
-                    raw='22Orthogonal-Frequency-Division-Multiplexing',
-                ),
-                FootRawNote(
-                    number='23',
-                    text='Multiple-Input-Multiple-Output',
-                    raw='23Multiple-Input-Multiple-Output',
-                ),
+                FootNoteMerged(notes=[
+                    FootRawNote(
+                        number='22',
+                        text='Orthogonal-Frequency-Division-Multiplexing',
+                        raw='22Orthogonal-Frequency-Division-Multiplexing',
+                    ),
+                    FootRawNote(
+                        number='23',
+                        text='Multiple-Input-Multiple-Output',
+                        raw='23Multiple-Input-Multiple-Output',
+                    ),
+                ]),
             ],
         ),
         page=18,

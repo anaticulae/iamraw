@@ -24,7 +24,6 @@ def dump_headerfooter(pages: iamraw.PageContentFooterHeaders) -> str:
     for page in pages:
         raw_header = _dump_header(page.header)
         raw_footer = _dump_footer(page.footer)
-
         result.append({
             'page': page.page,
             'header': raw_header,
@@ -77,6 +76,10 @@ def load_footnote(raw: dict) -> iamraw.FootNote:
         return iamraw.FootRawNote(**raw)
     with contextlib.suppress(TypeError):
         return iamraw.FootJudgedNote(**raw)
+    with contextlib.suppress(TypeError):
+        merged = iamraw.FootNoteMerged(**raw)
+        merged.notes = [load_footnote(item) for item in merged.notes]
+        return merged
     raise ValueError(f'not supported: {raw}')
 
 

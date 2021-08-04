@@ -8,12 +8,12 @@
 # =============================================================================
 
 import pytest
+import utila
 
 import iamraw
 import serializeraw
 import tests.serializeraw.examples.footnotes
 import tests.serializeraw.examples.headerfooter
-import utila
 
 
 def test_footnotes_dump_and_load():
@@ -33,6 +33,7 @@ def test_footnotes_dump_and_load():
 ])
 def test_footerheader_dump_and_load(example):
     dumped = serializeraw.dump_headerfooter(example)
+    assert '!!python/object' not in dumped, 'we do not want yaml-bib here'
     loaded = serializeraw.load_headerfooter(dumped)
     assert example == loaded
 
