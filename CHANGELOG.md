@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.24.0
+
+### Feature
+
+* make FooteNoteMerged serialize able (fef6142365da)
+* add FootNote which contain multiple Notes (a7ff36964094)
+* use improved converter (a4f87a91a865)
+
 ## v4.23.0
 
 ### Feature
