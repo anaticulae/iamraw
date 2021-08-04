@@ -65,7 +65,7 @@ class FooterInformation:
 
 @dataclasses.dataclass
 class FootNote:
-    number: int
+    number: int = -1
     page: int = -1
     bounding: tuple = None
 
@@ -78,6 +78,17 @@ class FootRawNote(FootNote):
     text: str = None
     raw: str = None
     style: list = dataclasses.field(default_factory=list)
+
+
+@dataclasses.dataclass
+class FootNoteMerged(FootNote):
+    """Merge multiple footnote over multiple pages."""
+    notes: FootNotes = dataclasses.field(default_factory=list)
+
+    @property
+    def text(self):
+        result = utila.normalize_text(self.notes, normalize_spaces=True)
+        return result
 
 
 @dataclasses.dataclass
