@@ -13,6 +13,7 @@ import iamraw
 import serializeraw
 import tests.serializeraw.examples.footnotes
 import tests.serializeraw.examples.headerfooter
+import utila
 
 
 def test_footnotes_dump_and_load():
@@ -104,3 +105,36 @@ def test_footerheader_footer_dump():
     assert '!!python/object' not in dumped, 'we do not want yaml-bib here'
     loaded = serializeraw.load_headerfooter(dumped)
     assert loaded == footers, loaded
+
+
+def test_dump_mergednote():
+    data = iamraw.PageContentFooterHeader(
+        header=None,
+        footer=iamraw.MovingFooterInformation(
+            begin=0.76,
+            end=1.0,
+            page=None,
+            notes=[
+                iamraw.FootRawNote(
+                    number='3',
+                    text='Eclipse ist eine Gemeinschaft die sich mit ',
+                    raw='3Eclipse ist eine Gemeinschaft die sich mit ',
+                ),
+                iamraw.FootRawNote(
+                    number='4',
+                    text='Java Standard Edition',
+                    raw='4Java Standard Edition',
+                ),
+                iamraw.FootRawNote(
+                    number='5',
+                    text='Software Development Kit',
+                    raw='5Software Development Kit',
+                )
+            ],
+        ),
+        page=10,
+    )
+    before = hash(str(data))
+    dumped = utila.simplify(data)
+    assert dumped
+    assert hash(str(data)) == before, 'data changed due simplify'
