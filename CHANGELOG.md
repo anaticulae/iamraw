@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.24.1
+
+### Fix
+
+* enable loading note/number style (5e32d75c7134)
+
 ## v4.24.0
 
 ### Feature
