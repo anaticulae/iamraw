@@ -16,6 +16,7 @@ import yaml
 
 import iamraw
 import serializeraw
+import texmex
 
 
 def dump_headerfooter(pages: iamraw.PageContentFooterHeaders) -> str:
@@ -73,7 +74,16 @@ def dump_footnote(note: iamraw.FootNote):
 
 def load_footnote(raw: dict) -> iamraw.FootNote:
     with contextlib.suppress(TypeError):
-        return iamraw.FootRawNote(**raw)
+        rawnote = iamraw.FootRawNote(**raw)
+        if rawnote.style and len(rawnote.style) == 2:
+            # style=(number.style, note.style),
+            number = texmex.CharStyle(**rawnote.style[0])
+            rawnote.style[1]['content'] = [
+                texmex.CharStyle(**item) for item in rawnote.style[1]['content']
+            ]
+            note = texmex.TextStyle(**(rawnote.style[1]))
+            rawnote.style = (number, note)
+        return rawnote
     with contextlib.suppress(TypeError):
         return iamraw.FootJudgedNote(**raw)
     with contextlib.suppress(TypeError):
