@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.24.2
+
+### Feature
+
+* make fontstore comparable (42267a33929c)
+
 ## v4.24.1
 
 ### Fix
