@@ -30,10 +30,12 @@ def create_fontstore(
     Returns:
         created FontStore
     """
-
     fonts = load_font_header(header)
     pages = load_font_content(content, pages=pages)
-
+    if pages:
+        # remove non required fonts
+        valid = {item[3] for item in utila.flatten_content(pages)}
+        fonts = [font for font in fonts if hash(font) in valid]
     result = iamraw.FontStore(fonts, pages)
     return result
 
