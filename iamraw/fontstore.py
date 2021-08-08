@@ -27,7 +27,11 @@ class FontChunk:
 FontChunks = typing.List[FontChunk]
 
 
+@dataclasses.dataclass
 class FontStore:
+
+    header: dict = dataclasses.field(default_factory=dict)
+    pages: dict = dataclasses.field(default_factory=dict)
 
     def __init__(self, header, pages):
         if not header:
@@ -121,6 +125,9 @@ class FontStore:
         except KeyError:
             utila.error(f'could not find font: {index}')
             return None
+
+    def __hash__(self):
+        return hash(str(self))
 
 
 class FontContentStore:
