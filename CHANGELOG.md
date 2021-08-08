@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.24.3
+
+### Feature
+
+* add selective font header loading (352acccb440c)
+
 ## v4.24.2
 
 ### Feature
