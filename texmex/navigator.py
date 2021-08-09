@@ -169,7 +169,6 @@ class PageTextNavigator(NavigatorMixin):
         if (y1 - y0) > self.height:
             utila.error(f'page: {self.page} height: {y1-y0} < {self.height}')
         # assert (y1 - y0) < self.height, f'{y1-y0} < {self.height}'
-
         position = 0
         for item in self.data:
             pos = item.bounding
@@ -209,7 +208,6 @@ class PageTextNavigator(NavigatorMixin):
         assert START <= top <= bottom <= END
         after = bottom * self.height
         before = top * self.height  # greater than
-
         result = []
         for index, item in enumerate(self.data):
             # before and after are pixel coordinates
