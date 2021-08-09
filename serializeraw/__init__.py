@@ -192,3 +192,4 @@ ptcn_fromfile = create_pagetextcontentnavigators_fromfile  # pylint:disable=C010
 ptcn_frompath = create_pagetextcontentnavigators_frompath  # pylint:disable=C0103
 ptn_fromfile = create_pagetextnavigators_fromfile  # pylint:disable=C0103
 ptn_frompath = create_pagetextnavigators_frompath  # pylint:disable=C0103
+fs_frompath = create_fontstore_frompath  # pylint:disable=C0103
