@@ -34,8 +34,8 @@ def document_size(items):
 @pytest.fixture
 def navigator() -> texmex.PageTextNavigator:
     dimension = document_size([item for _, item in SAMPLE])
-    result = texmex.PageTextNavigator(dimension)
+    result = texmex.PageTextNavigator(pagesize=dimension)
     for item, position in SAMPLE:
-        result.insert(bounding=position, text=item, style=None)
+        result.insert(bounding=position, text=str(item), style=None)
     assert len(result) == len(SAMPLE)
     return result

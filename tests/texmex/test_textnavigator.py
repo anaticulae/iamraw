@@ -18,9 +18,7 @@ def test_insert_order(navigator):
         assert before.y0 <= after.y0
         if before.y0 == after.y0:
             assert before.x0 <= after.x0
-
-    current_order = [item.text for item in navigator]
-
+    current_order = [int(item.text) for item in navigator]
     # items are sorted in ascending
     assert current_order == list(range(len(navigator))), current_order
 
