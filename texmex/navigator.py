@@ -149,6 +149,7 @@ class PageTextNavigator(NavigatorMixin):
         bounding: iamraw.BoundingBox,
         bounding_mean: float = None,
         line: int = 0,
+        sort: bool = True,
     ):
         """Insert text element top to bottom and left to right.
 
@@ -158,10 +159,10 @@ class PageTextNavigator(NavigatorMixin):
             bounding(iamraw.BoundingBox): position and dimension of text area
             bounding_mean: average distance from bottom line to char top
             line(int): position in parsed container
+            sort(bool): if True, insert bounding dependent
         """
         utila.asserts(text, str)
         utila.asserts(bounding, iamraw.BoundingBox)
-        position = self.insert_position(bounding)
         datum = texmex.style.TextInfo(
             bounding=bounding,
             bounding_mean=bounding_mean,
@@ -169,7 +170,11 @@ class PageTextNavigator(NavigatorMixin):
             text=text,
             line=line,
         )
-        self.data.insert(position, datum)
+        if sort:
+            position = self.insert_position(bounding)
+            self.data.insert(position, datum)
+        else:
+            self.data.append(datum)
         self.fast[bounding] = datum
 
     def insert_position(self, bounding) -> int:
@@ -367,6 +372,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
     fontstore: iamraw.FontStore = None,
     fill_empty: bool = True,
     mode=PageTextNavigatorMode.BOTH,
+    sort: bool = True,
 ) -> PageTextNavigators:
     result = []
     for textposition in text_positions:
@@ -409,6 +415,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
                     bounding=bounding,
                     bounding_mean=mean,
                     line=index,
+                    sort=sort,
                 )
             textid += 1
         result.append(navigator)
