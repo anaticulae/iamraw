@@ -158,6 +158,19 @@ class PageTextNavigator(NavigatorMixin):
             bounding(iamraw.BoundingBox): position and dimension of text area
             bounding_mean: average distance from bottom line to char top
         """
+        position = self.insert_position(bounding)
+        datum = texmex.style.TextInfo(
+            bounding=bounding,
+            bounding_mean=bounding_mean,
+            style=style,
+            text=text,
+        )
+        self.data.insert(position, datum)
+        assert isinstance(bounding, iamraw.BoundingBox), type(position)
+        self.finding[bounding] = datum
+
+    def insert_position(self, bounding) -> int:
+        """Determine position in data list to insert Textinfo."""
         x0, y0, x1, y1 = bounding
         assert x0 <= x1, f'{x0}<={x1}; {bounding}'
         assert y0 <= y1, f'{y0}<={y1}; {bounding}'
@@ -178,15 +191,7 @@ class PageTextNavigator(NavigatorMixin):
             elif y0 <= pos.y0:
                 break
             position += 1
-        datum = texmex.style.TextInfo(
-            bounding=bounding,
-            bounding_mean=bounding_mean,
-            style=style,
-            text=text,
-        )
-        self.data.insert(position, datum)
-        assert isinstance(bounding, iamraw.BoundingBox), type(position)
-        self.finding[bounding] = datum
+        return position
 
     def __getitem__(self, index) -> texmex.style.TextInfo:
         return self.data[index]
