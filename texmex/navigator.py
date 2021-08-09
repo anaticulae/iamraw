@@ -149,6 +149,7 @@ class PageTextNavigator(NavigatorMixin):
         style: texmex.style.TextStyle,
         bounding: iamraw.BoundingBox,
         bounding_mean: float = None,
+        line: int = 0,
     ):
         """Insert text element top to bottom and left to right.
 
@@ -157,6 +158,7 @@ class PageTextNavigator(NavigatorMixin):
             style: style for every character of `text`
             bounding(iamraw.BoundingBox): position and dimension of text area
             bounding_mean: average distance from bottom line to char top
+            line(int): position in parsed container
         """
         utila.asserts(bounding, iamraw.BoundingBox)
         position = self.insert_position(bounding)
@@ -165,6 +167,7 @@ class PageTextNavigator(NavigatorMixin):
             bounding_mean=bounding_mean,
             style=style,
             text=text,
+            line=line,
         )
         self.data.insert(position, datum)
         self.finding[bounding] = datum
@@ -266,10 +269,9 @@ class PageTextContentNavigator(NavigatorMixin):
         top, bottom = texmex.utils.topbottom(pagesize, content)
         assert 0 <= top <= bottom <= 1.0, str(top) + str(bottom)
         self._page = textnavigator.page
-
         # disable validation if required
         right = END if validate_leftright else DISABLE_VALIDATION
-
+        # fill content navigator
         self.data = textnavigator.between(top, bottom, right=right)
         self._offset = textnavigator.offset(top, bottom)
 
@@ -372,7 +374,6 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
         content = utila.select_page(text, page)
         # remove horizontal or vertical text container
         content = select_textcontainer(content, mode=mode)
-
         for item in content:
             try:
                 lines = item.lines
@@ -402,6 +403,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
                     style=style,
                     bounding=bounding,
                     bounding_mean=mean,
+                    line=index,
                 )
             textid += 1
         result.append(navigator)
