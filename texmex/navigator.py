@@ -158,6 +158,7 @@ class PageTextNavigator(NavigatorMixin):
             bounding(iamraw.BoundingBox): position and dimension of text area
             bounding_mean: average distance from bottom line to char top
         """
+        utila.asserts(bounding, iamraw.BoundingBox)
         position = self.insert_position(bounding)
         datum = texmex.style.TextInfo(
             bounding=bounding,
@@ -166,7 +167,6 @@ class PageTextNavigator(NavigatorMixin):
             text=text,
         )
         self.data.insert(position, datum)
-        assert isinstance(bounding, iamraw.BoundingBox), type(position)
         self.finding[bounding] = datum
 
     def insert_position(self, bounding) -> int:
