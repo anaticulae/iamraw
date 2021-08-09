@@ -29,6 +29,18 @@ import utila
 
 @dataclasses.dataclass(unsafe_hash=True)
 class BoundingBox:
+    """\
+    Let's start with an simple rectangle/box:
+
+    >>> BoundingBox(10.5, 13.2, 23.33, 30.0)
+    BoundingBox(x0=10.5, y0=13.2, x1=23.33, y1=30.0)
+
+    Ensure that hashing works properly:
+    >>> assert hash(BoundingBox(x0=10.5, y0=13.2, x1=23.33, y1=30.0))
+
+    Ensure that comparing works:
+    >>> assert BoundingBox(10.5, 13.2, 23.33, 30.0) == BoundingBox(10.5, 13.2, 23.33, 30.0)
+    """
 
     x0: float = -utila.INF
     y0: float = -utila.INF
