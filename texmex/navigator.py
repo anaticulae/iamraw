@@ -135,7 +135,8 @@ class PageTextNavigator(NavigatorMixin):
     width: float = None
     height: float = None
     data: list = dataclasses.field(default_factory=list)
-    finding: dict = dataclasses.field(default_factory=dict)
+    # access textual element by BoundingBox
+    fast: dict = dataclasses.field(default_factory=dict)
 
     def __init__(self, size=None, page=-1):
         """Initialize PageTextNavigator with maximal `size`
@@ -154,7 +155,7 @@ class PageTextNavigator(NavigatorMixin):
         self.page = page
         self.data = []
         self.width, self.height = size
-        self.finding = {}
+        self.fast = {}
 
     def insert(
         self,
@@ -183,7 +184,7 @@ class PageTextNavigator(NavigatorMixin):
             line=line,
         )
         self.data.insert(position, datum)
-        self.finding[bounding] = datum
+        self.fast[bounding] = datum
 
     def insert_position(self, bounding) -> int:
         """Determine position in data list to insert Textinfo."""
@@ -242,7 +243,7 @@ class PageTextNavigator(NavigatorMixin):
     def find(self, location: iamraw.BoundingBox):
         assert isinstance(location, iamraw.BoundingBox), type(location)
         try:
-            return self.finding[location]
+            return self.fast[location]
         except KeyError as error:
             raise ValueError(f'could not find {location}') from error
 
