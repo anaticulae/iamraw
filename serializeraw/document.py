@@ -116,16 +116,6 @@ def _dump_page(page: iamraw.Page):
 
 def _dump_line(line: iamraw.Line) -> str:
     assert len(line) >= 1, line
-
-    def create_style(start, end, size, rise):
-        style = ' '.join([
-            f'{start}',
-            f'{end}',
-            '%.2f' % size if size is not None else 'None',
-            '%.2f' % rise if rise is not None else 'None',
-        ])
-        return style
-
     styles = []
     start, cursize, currise = 0, line[0].size, line[0].rise
     for end, character in enumerate(line[1:], 1):
@@ -147,11 +137,22 @@ def _dump_line(line: iamraw.Line) -> str:
             currise,
         ))
     content = ''.join([item.value for item in line])
-
-    return [
+    # use list for a more human readable format
+    result = [
         content,
         styles,
-    ]  # use list for a more human readable format
+    ]
+    return result
+
+
+def create_style(start, end, size, rise):
+    style = ' '.join((
+        f'{start}',
+        f'{end}',
+        '%.2f' % size if size is not None else 'None',
+        '%.2f' % rise if rise is not None else 'None',
+    ))
+    return style
 
 
 def _load_line(line) -> iamraw.Line:
@@ -238,14 +239,13 @@ def loadme(structure, data):
         return loady(data)
 
 
+# yapf:disable
 DUMP_LOAD = {
     iamraw.Document.__name__: (_dump_document, _load_document),
     iamraw.Line.__name__: (_dump_line, _load_line),
     iamraw.Page.__name__: (_dump_page, _load_page),
     iamraw.TextContainer.__name__: (_dump_textcontainer, _load_textcontainer),
-    iamraw.VerticalTextContainer.__name__: (
-        _dump_textcontainer,
-        _load_verticaltextcontainer,
-    ),
+    iamraw.VerticalTextContainer.__name__: (_dump_textcontainer, _load_verticaltextcontainer),
     iamraw.PageObject.__name__: (_dump_pageobject, _load_pageobject),
 }
+# yapf:enable
