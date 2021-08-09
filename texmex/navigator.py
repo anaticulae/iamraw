@@ -35,11 +35,18 @@ class SelectBounding(enum.Enum):
     TWO_THIRDS = enum.auto()
 
 
+@dataclasses.dataclass
 class NavigatorMixin:
-
-    def __init__(self, pagesize: tuple):
-        # TODO: REFACTOR LATER
-        self.pagesize = pagesize
+    """\
+    Args:
+        page(int): page number of Navigator-instance
+        pagesize(tuple): maximal width/height of Navigator
+    Sizes:
+        A4: 210 x 297 mm, 8.26 x 11.69 inch, 595 x 842pt
+                                             612 x 792pt
+    """
+    page: int = -1
+    pagesize: tuple = (612.0, 792.0)
 
     def between(
         self,
@@ -116,7 +123,7 @@ class NavigatorMixin:
         return result
 
 
-@dataclasses.dataclass(unsafe_hash=True)
+@dataclasses.dataclass
 class PageTextNavigator(NavigatorMixin):
     """The PageTextNavigator eases to navigate through the textual
     content of a Page. The text is processed from top to down and left
@@ -131,31 +138,9 @@ class PageTextNavigator(NavigatorMixin):
     >>> assert PageTextNavigator(page=10) != PageTextNavigator()
     """
 
-    page: int = None
-    width: float = None
-    height: float = None
-    data: list = dataclasses.field(default_factory=list)
+    data: typing.List = dataclasses.field(default_factory=list)
     # access textual element by BoundingBox
-    fast: dict = dataclasses.field(default_factory=dict)
-
-    def __init__(self, size=None, page=-1):
-        """Initialize PageTextNavigator with maximal `size`
-
-        Args:
-            size(tuple): maximal width/height of PageTextNavigator
-            page(int): page number of PageTextNavigator-instance
-
-        Sizes:
-            A4: 210 x 297 mm, 8.26 x 11.69 inch, 595 x 842pt
-                                                 612 x 792pt
-        """
-        super().__init__(pagesize=size if size else (612.0, 792.0))
-        if size is None:
-            size = (612.0, 792.0)
-        self.page = page
-        self.data = []
-        self.width, self.height = size
-        self.fast = {}
+    fast: typing.Dict = dataclasses.field(default_factory=dict)
 
     def insert(
         self,
@@ -174,6 +159,7 @@ class PageTextNavigator(NavigatorMixin):
             bounding_mean: average distance from bottom line to char top
             line(int): position in parsed container
         """
+        utila.asserts(text, str)
         utila.asserts(bounding, iamraw.BoundingBox)
         position = self.insert_position(bounding)
         datum = texmex.style.TextInfo(
@@ -222,7 +208,15 @@ class PageTextNavigator(NavigatorMixin):
 
     @property
     def dimension(self):
-        return iamraw.PageSize(width=self.width, height=self.height)
+        return iamraw.PageSize(*self.pagesize)
+
+    @property
+    def width(self):
+        return self.pagesize[0]
+
+    @property
+    def height(self):
+        return self.pagesize[1]
 
     def offset(self, top: float, bottom: float) -> typing.Tuple[int, int]:
         """Determine the range of content index which represents the
@@ -248,6 +242,7 @@ class PageTextNavigator(NavigatorMixin):
             raise ValueError(f'could not find {location}') from error
 
 
+@dataclasses.dataclass
 class PageTextContentNavigator(NavigatorMixin):
     """Iterate over page content without footer and header.
 
@@ -282,7 +277,7 @@ class PageTextContentNavigator(NavigatorMixin):
         assert content.bottom >= 100, str(content)  # ensure that are pixel
         top, bottom = texmex.utils.topbottom(pagesize, content)
         assert 0 <= top <= bottom <= 1.0, str(top) + str(bottom)
-        self._page = textnavigator.page
+        self.page = textnavigator.page
         # disable validation if required
         right = END if validate_leftright else DISABLE_VALIDATION
         # fill content navigator
@@ -292,10 +287,6 @@ class PageTextContentNavigator(NavigatorMixin):
     @property
     def offset(self):
         return self._offset
-
-    @property
-    def page(self):
-        return self._page
 
     @property
     def width(self):
@@ -381,7 +372,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
     for textposition in text_positions:
         page = textposition.page
         navigator = PageTextNavigator(
-            size=text.dimension,
+            pagesize=text.dimension,
             page=page,
         )
         textid = 0
@@ -467,7 +458,7 @@ def fill_empty_navigators(
         # fill empty
         while filled[-1].page + 1 < item.page:
             navigator = PageTextNavigator(
-                size=dimension,
+                pagesize=dimension,
                 page=filled[-1].page + 1,
             )
             filled.append(navigator)
