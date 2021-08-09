@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import dataclasses
 import enum
 import typing
 
@@ -115,6 +116,7 @@ class NavigatorMixin:
         return result
 
 
+@dataclasses.dataclass(unsafe_hash=True)
 class PageTextNavigator(NavigatorMixin):
     """The PageTextNavigator eases to navigate through the textual
     content of a Page. The text is processed from top to down and left
@@ -122,7 +124,18 @@ class PageTextNavigator(NavigatorMixin):
 
     To fill navigator with content use `insert`. Acessing the data is
     possible trough `between`, `before`, `after` or __getitem__.
+
+    Make Navigator compareable.
+
+    >>> assert PageTextNavigator() == PageTextNavigator()
+    >>> assert PageTextNavigator(page=10) != PageTextNavigator()
     """
+
+    page: int = None
+    width: float = None
+    height: float = None
+    data: list = dataclasses.field(default_factory=list)
+    finding: dict = dataclasses.field(default_factory=dict)
 
     def __init__(self, size=None, page=-1):
         """Initialize PageTextNavigator with maximal `size`
