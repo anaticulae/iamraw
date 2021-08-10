@@ -2,6 +2,21 @@
 
 Every noteable change is logged here.
 
+## v4.25.0
+
+### Feature
+
+* add method to remove lines from ptn (fd6f98aea0ce)
+* add loader shortcut (44bb251bda8f)
+* add option to disable bounding check while inserting (848d19759df3)
+* use dataclass as PageTextNavigator (d0edeacc6ed7)
+* makes ptn comparable (e78c86d3f29d)
+* add container id to rebuild parsed container (5e4155a2d4f2)
+
+### Documentation
+
+* extend docs to ensure that hashing and comparing works (ef20d8f9dfdb)
+
 ## v4.24.3
 
 ### Feature
