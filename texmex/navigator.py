@@ -246,6 +246,12 @@ class PageTextNavigator(NavigatorMixin):
         except KeyError as error:
             raise ValueError(f'could not find {location}') from error
 
+    def remove(self, line):
+        """Remove `line` out of navigator."""
+        bounding = line.bounding
+        self.data.remove(line)
+        del self.fast[bounding]
+
 
 @dataclasses.dataclass
 class PageTextContentNavigator(NavigatorMixin):
