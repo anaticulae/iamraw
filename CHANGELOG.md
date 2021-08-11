@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.25.1
+
+### Fix
+
+* handle empty font flag (47350b4a8f1e)
+
 ## v4.25.0
 
 ### Feature
