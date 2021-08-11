@@ -145,6 +145,7 @@ def convert_flags(flag: int) -> iamraw.FontFlags:
     (<FontFlag.FIXEDPITCH: 1>, <FontFlag.SERIF: 2>, <FontFlag.NONSYMBOLIC: 6>)
     >>> convert_flags(262176)
     (<FontFlag.NONSYMBOLIC: 6>, <FontFlag.FORCEBOLD: 19>)
+    >>> assert convert_flags(0) is None
     """
     assert flag >= 0, f'negative flag {flag}'
     binary = format(flag, 'b')[::-1]  # reverse binary
@@ -169,7 +170,11 @@ def toflag(items: iamraw.FontFlags) -> int:
 
     >>> toflag((iamraw.FontFlag.NONSYMBOLIC, iamraw.FontFlag.FORCEBOLD))
     262176
+    >>> toflag([]) + toflag(None)
+    0
     """
+    if not items:
+        return 0
     result = 0
     for item in items:
         result += math.pow(2, item.value - 1)
