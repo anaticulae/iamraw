@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.25.2
+
+### Feature
+
+* add prefix to adjust default path (4fd4287e6814)
+* add prefix option to horizontals loader (3128542c74e9)
+* add default path (f34ef74145dc)
+
 ## v4.25.1
 
 ### Fix
