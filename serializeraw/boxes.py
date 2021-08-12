@@ -10,12 +10,9 @@
 from functools import lru_cache
 from typing import Iterable
 
+import utila
 from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
 from yaml import dump
-from yaml import load
 
 from iamraw import BoundingBox
 from iamraw import Box
@@ -58,17 +55,14 @@ def dump_horizontals(pages: PagesWithHorizontalList) -> str:
 
 @lru_cache(CACHE_SMALL)
 def load_boxes(content: str, pages=None) -> PagesWithBoxList:
-    content = from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname='rawmaker__boxes_boxes',
-        ftype='yaml',
     )
-    loaded = load(content, Loader=FullLoader)
-
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if should_skip(pagenumber, pages):
+        if utila.should_skip(pagenumber, pages):
             continue
         box = [
             Box(box=BoundingBox.from_list(
@@ -89,24 +83,18 @@ def load_horizontals(
 ) -> PagesWithHorizontalList:
     if prefix:
         prefix = f'{prefix}_'
-    content = from_raw_or_path(
+    loaded = utila.yaml_from_raw_or_path(
         content,
         fname=f'rawmaker__{prefix}horizontals_horizontals',
-        ftype='yaml',
     )
-    loaded = load(content, Loader=FullLoader)
-
-    def create_box(item: str):
-        converted = [float(splitted) for splitted in item.split()]
-        return BoundingBox.from_list(converted)
-
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if should_skip(pagenumber, pages):
+        if utila.should_skip(pagenumber, pages):
             continue
         horizontals = [
-            HorizontalLine(box=create_box(item)) for item in page['horizontals']
+            HorizontalLine(box=BoundingBox(*utila.parse_tuple(item)))
+            for item in page['horizontals']
         ]
         item = PageContentHorizontals(content=horizontals, page=pagenumber)
         result.append(item)
