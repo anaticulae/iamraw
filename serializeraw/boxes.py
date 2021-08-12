@@ -81,8 +81,7 @@ def load_horizontals(
     pages=None,
     prefix='',
 ) -> PagesWithHorizontalList:
-    if prefix:
-        prefix = f'{prefix}_'
+    prefix = f'{prefix}_' if prefix else ''
     loaded = utila.yaml_from_raw_or_path(
         content,
         fname=f'rawmaker__{prefix}horizontals_horizontals',

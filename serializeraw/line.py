@@ -27,10 +27,15 @@ def dump_lines(lines: iamraw.PageContentLines) -> str:
     return dumped
 
 
-def load_lines(source: str, pages: tuple = None) -> iamraw.PageContentLines:
+def load_lines(
+    source: str,
+    pages: tuple = None,
+    prefix: str = '',
+) -> iamraw.PageContentLines:
+    prefix = f'{prefix}_' if prefix else ''
     loaded = utila.yaml_from_raw_or_path(
         source,
-        fname='rawmaker__line_line',
+        fname=f'rawmaker__{prefix}line_line',
         safe=False,
     )
     result = []
