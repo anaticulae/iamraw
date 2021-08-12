@@ -82,10 +82,16 @@ def load_boxes(content: str, pages=None) -> PagesWithBoxList:
 
 
 @lru_cache(CACHE_SMALL)
-def load_horizontals(content: str, pages=None) -> PagesWithHorizontalList:
+def load_horizontals(
+    content: str,
+    pages=None,
+    prefix='',
+) -> PagesWithHorizontalList:
+    if prefix:
+        prefix = f'{prefix}_'
     content = from_raw_or_path(
         content,
-        fname='rawmaker__horizontals_horizontals',
+        fname=f'rawmaker__{prefix}horizontals_horizontals',
         ftype='yaml',
     )
     loaded = load(content, Loader=FullLoader)
