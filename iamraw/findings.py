@@ -209,7 +209,7 @@ class BoundingLocation:
     value: tuple = None
 
     def __str__(self) -> str:
-        joined = ';'.join([str(item) for item in self.value])  # pylint:disable=E1133
+        joined = utila.from_tuple(self.value, separator=';')
         raw = f'b({joined})p{self.page}'
         return raw
 
@@ -220,9 +220,7 @@ class BoundingLocation:
         if not matched:
             return None
         page, shortcut, value = int(matched['page']), 'b', None
-        value = matched['tuple'].split(';')
-        value = utila.roundme([float(item) for item in value])
-        value = tuple(value)
+        value = utila.parse_tuple(matched['tuple'], separator=';')
         shortcut = matched['shortcut']
         result = cls(page=page, shortcut=shortcut, value=value)
         return result
