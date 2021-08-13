@@ -192,7 +192,7 @@ class RangedLocation:
 
 BOUNDINGLOCATION_PATTERN = r"""
     (?P<shortcut>b)
-    \((?P<tuple>((-?\d+\.\d+;{0,1}){4}))\)
+    \((?P<tuple>((-?\d+\.\d+;{0,1}){4,}))\)
     p(?P<page>\d+)
     (l(?P<line>\d+))?
 """
@@ -213,6 +213,7 @@ class BoundingLocation:
     """
     page: int = -1
     shortcut: str = None
+    # use a multiple of 4 to render more than one rectangle
     value: tuple = None
     line: int = None
 
@@ -230,7 +231,7 @@ class BoundingLocation:
         if not matched:
             return None
         page, shortcut, value = int(matched['page']), 'b', None
-        value = utila.parse_tuple(matched['tuple'], separator=';')
+        value = utila.parse_tuple(matched['tuple'], separator=';', length=None)
         shortcut = matched['shortcut']
         result = cls(page=page, shortcut=shortcut, value=value)
         with contextlib.suppress(KeyError, TypeError):
