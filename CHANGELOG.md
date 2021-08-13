@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.25.3
+
+### Feature
+
+* use multiple of 4 to render multiple rectangle (4352977234b1)
+* add optional line number to BoundingLocation (92eab3d414f6)
+
+### Documentation
+
+* improve documentation (2f56033518eb)
+
 ## v4.25.2
 
 ### Feature
