@@ -195,15 +195,14 @@ BOUNDINGLOCATION_PATTERN = r'(?P<shortcut>b)\((?P<tuple>((\d+\.\d+;{0,1}){4}))\)
 
 @dataclasses.dataclass(unsafe_hash=True)
 class BoundingLocation:
-    """The location defines the object on which the Finding belongs to.
-    Defines rectangle which can be highlighted in further presentation
-    steps. The rectangle is the simplest highlighting method.
+    """The BoundingLocation defines the object on which the Finding
+    belongs to. This rectangle can be highlighted in further
+    presentation steps.
 
-    .. code-block :: none
+    The rectangle is the simplest highlighting method.
 
-        Examples for location:
-
-        bounding    b(137.0;145.0;123.0;232.0)p5
+    >>> BoundingLocation.fromstr('b(137.0;145.0;123.0;232.0)p5')
+    BoundingLocation(page=5, shortcut='b', value=(137.0, 145.0, 123.0, 232.0))
     """
     page: int = -1
     shortcut: str = None
