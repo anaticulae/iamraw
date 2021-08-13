@@ -190,7 +190,12 @@ class RangedLocation:
         return 'r'
 
 
-BOUNDINGLOCATION_PATTERN = r'(?P<shortcut>b)\((?P<tuple>((\d+\.\d+;{0,1}){4}))\)p(?P<page>\d+)'
+BOUNDINGLOCATION_PATTERN = r"""
+    (?P<shortcut>b)
+    \((?P<tuple>((-?\d+\.\d+;{0,1}){4}))\)
+    p(?P<page>\d+)
+    (l(?P<line>\d+))?
+"""
 
 
 @dataclasses.dataclass(unsafe_hash=True)
@@ -202,32 +207,39 @@ class BoundingLocation:
     The rectangle is the simplest highlighting method.
 
     >>> BoundingLocation.fromstr('b(137.0;145.0;123.0;232.0)p5')
-    BoundingLocation(page=5, shortcut='b', value=(137.0, 145.0, 123.0, 232.0))
+    BoundingLocation(page=5, shortcut='b', value=(137.0, 145.0, 123.0, 232.0), line=None)
+    >>> BoundingLocation.fromstr('b(137.0;-145.0;123.0;-232.0)p5l10')
+    BoundingLocation(page=5, shortcut='b', value=(137.0, -145.0, 123.0, -232.0), line=10)
     """
     page: int = -1
     shortcut: str = None
     value: tuple = None
+    line: int = None
 
     def __str__(self) -> str:
         joined = utila.from_tuple(self.value, separator=';')
         raw = f'b({joined})p{self.page}'
+        if self.line is not None:
+            raw += f'l{self.line}'
         return raw
 
     @classmethod
     def fromstr(cls, raw: str):
         assert raw, 'require input'
-        matched = re.match(BOUNDINGLOCATION_PATTERN, raw)
+        matched = re.match(BOUNDINGLOCATION_PATTERN, raw, flags=re.X)
         if not matched:
             return None
         page, shortcut, value = int(matched['page']), 'b', None
         value = utila.parse_tuple(matched['tuple'], separator=';')
         shortcut = matched['shortcut']
         result = cls(page=page, shortcut=shortcut, value=value)
+        with contextlib.suppress(KeyError, TypeError):
+            result.line = int(matched['line'])
         return result
 
     @classmethod
-    def fromtuple(cls, bounding: tuple, page: int):
-        return cls(shortcut='b', page=page, value=bounding)
+    def fromtuple(cls, bounding: tuple, page: int, line: int = None):
+        return cls(shortcut='b', page=page, value=bounding, line=line)
 
 
 class FindingLevel(enum.Enum):
