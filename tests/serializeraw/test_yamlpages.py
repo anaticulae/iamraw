@@ -17,7 +17,7 @@ import serializeraw
 
 
 def test_yamlpages_write(testdir):
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     filename = 'rawmaker__text_text.yaml'
     utila.copy_content(
         source,
@@ -42,7 +42,7 @@ def test_yamlpages_write(testdir):
 
 
 def test_yamlpages_compare_speed(testdir, capsys):
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     filename = 'rawmaker__text_text.yaml'
     utila.copy_content(
         source,
@@ -69,7 +69,7 @@ def test_yamlpages_compare_speed(testdir, capsys):
 
 def test_yamlpages_load(testdir):
     """Do not fail on raw yaml sources."""
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     filename = 'rawmaker__text_text.yaml'
     utila.copy_content(source, dest=testdir.tmpdir, pattern=filename)
     loaded = serializeraw.load_yamlpages(filename, pages=10)

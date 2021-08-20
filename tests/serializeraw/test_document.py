@@ -54,18 +54,18 @@ def simple_document():
     return document
 
 
-@utilatest.requires(power.DOCU07_PDF)
+@utilatest.requires(power.DOCU007_PDF)
 def test_load_document_from_path():
-    document = load_document(power.link(power.DOCU07_PDF))
+    document = load_document(power.link(power.DOCU007_PDF))
     assert document
 
-    document = load_document(power.link(power.DOCU07_PDF), (1, 2))
+    document = load_document(power.link(power.DOCU007_PDF), (1, 2))
     assert len(document) == 2
 
 
-@utilatest.requires(power.DOCU07_PDF)
+@utilatest.requires(power.DOCU007_PDF)
 def test_load_dump_load_document():
-    document = load_document(power.link(power.DOCU07_PDF))
+    document = load_document(power.link(power.DOCU007_PDF))
 
     dumped = dump_document(document)
     second_load = load_document(dumped)

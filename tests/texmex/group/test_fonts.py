@@ -16,8 +16,8 @@ import texmex
 
 
 def navigators():
-    utilatest.fixture_requires(power.DOCU27_PDF)
-    result = serializeraw.ptn_frompath(power.link(power.DOCU27_PDF))
+    utilatest.fixture_requires(power.DOCU027_PDF)
+    result = serializeraw.ptn_frompath(power.link(power.DOCU027_PDF))
     return result
 
 
@@ -27,10 +27,10 @@ def test_document_textsize():
     assert size == 9.96, str(size)
 
 
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_document_textdistance():
     example = navigators()
-    borders = serializeraw.load_pageborders(power.link(power.DOCU27_PDF))
+    borders = serializeraw.load_pageborders(power.link(power.DOCU027_PDF))
     result = texmex.document_textdistance(example, borders)
     # TODO: INVESTIGATE LATER
     # This is not the right result. A change indicates that the algo
@@ -38,17 +38,17 @@ def test_document_textdistance():
     assert result == 17.9, str(result)
 
 
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_document_textdistance_from_contentnavigators():
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     data = serializeraw.create_pagetextcontentnavigators_frompath(source)
     result = texmex.document_textdistance_from_contentnavigators(data)
     assert result == 17.9, str(result)
 
 
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_document_textfeed():
-    nav = serializeraw.ptn_frompath(power.link(power.DOCU27_PDF))
+    nav = serializeraw.ptn_frompath(power.link(power.DOCU027_PDF))
     leftfeed = texmex.document_textfeed(nav, left=True)
     assert leftfeed == 72.0, str(leftfeed)
     # distance of x1 to right page border
@@ -67,10 +67,10 @@ def test_textsize_frompage():
     (texmex.PageTextNavigatorMode.VERTICAL, True),
     (texmex.PageTextNavigatorMode.HORIZONTAL, False),
 ])
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_navigator_filter_mode(mode, empty):
     result = serializeraw.create_pagetextnavigators_frompath(
-        power.link(power.DOCU27_PDF),
+        power.link(power.DOCU027_PDF),
         mode=mode,
         pages=(0,),
     )

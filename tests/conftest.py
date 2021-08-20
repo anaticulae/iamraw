@@ -21,8 +21,8 @@ PACKAGE = 'iamraw'
 power.setup(iamraw.ROOT)
 
 RESOURCES = [
-    (power.DOCU27_PDF, None),
-    (power.DOCU07_PDF, None),
+    (power.DOCU027_PDF, None),
+    (power.DOCU007_PDF, None),
 ]
 
 

@@ -14,25 +14,25 @@ import iamraw.path
 import serializeraw
 
 
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_create_pagetextnavigator_frompath():
-    loaded = serializeraw.ptn_frompath(power.link(power.DOCU27_PDF))
+    loaded = serializeraw.ptn_frompath(power.link(power.DOCU027_PDF))
     for page in loaded:
         for line in page:
             assert line.text
 
 
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_create_pagetextcontentnavigator_frompath():
-    loaded = serializeraw.ptcn_frompath(power.link(power.DOCU27_PDF))
+    loaded = serializeraw.ptcn_frompath(power.link(power.DOCU027_PDF))
     for page in loaded:
         for line in page:
             assert line.text
 
 
-@utilatest.requires(power.DOCU27_PDF)
+@utilatest.requires(power.DOCU027_PDF)
 def test_create_pagetextcontentnavigator_fromfile():
-    source = power.link(power.DOCU27_PDF)
+    source = power.link(power.DOCU027_PDF)
     text = iamraw.path.text(source)
     textpositions = iamraw.path.textposition(source)
     sizeandborderpath = iamraw.path.sizeandborder(source)

@@ -62,9 +62,9 @@ def toc_example(dump_raw: bool = False):
     return root
 
 
-@utilatest.requires(power.DOCU07_PDF)
+@utilatest.requires(power.DOCU007_PDF)
 def test_load_toc_from_path():
-    toc = serializeraw.load_toc(power.link(power.DOCU07_PDF))
+    toc = serializeraw.load_toc(power.link(power.DOCU007_PDF))
     assert toc
 
 
