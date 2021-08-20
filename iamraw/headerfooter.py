@@ -90,6 +90,11 @@ class FootNoteMerged(FootNote):
         result = utila.normalize_text(self.notes, normalize_spaces=True)
         return result
 
+    @property
+    def style(self):
+        result = utila.flatten((item.style for item in self.notes))
+        return result
+
 
 @dataclasses.dataclass
 class FootJudgedNote(FootNote):
