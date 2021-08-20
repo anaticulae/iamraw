@@ -43,8 +43,9 @@ FontOccurrences = typing.List[FontOccurrence]
 
 
 def count_textlines(page: 'texmex.NavigatorMixin', remove_empty=False) -> int:
-    """Iterate over `page`-content and extract textlines. If
-    `remove_empty` is True, all lines which contain nothing or spaces
+    """Iterate over `page`-content and extract textlines.
+
+    If `remove_empty` is True, all lines which contain nothing or spaces
     will be ignored.
     """
     content = []
