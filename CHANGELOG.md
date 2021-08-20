@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.25.4
+
+### Feature
+
+* add style property to FootNoteMerged (4d154a130962)
+
 ## v4.25.3
 
 ### Feature
