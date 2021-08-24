@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import texmex  # pylint:disable=import-self
 # alignment
 from texmex.alignment import TextAlignment
 from texmex.alignment import TextAlignments
