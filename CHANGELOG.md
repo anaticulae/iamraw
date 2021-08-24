@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.26.0
+
+### Feature
+
+* add text alignment Enum (3d51be113f35)
+
+### Fix
+
+* remove senseless import (b61edef185e8)
+
 ## v4.25.4
 
 ### Feature
