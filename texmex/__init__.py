@@ -8,6 +8,9 @@
 # =============================================================================
 
 import texmex  # pylint:disable=import-self
+# alignment
+from texmex.alignment import TextAlignment
+from texmex.alignment import TextAlignments
 # character
 from texmex.character import DOT
 # group
