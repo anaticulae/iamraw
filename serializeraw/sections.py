@@ -95,15 +95,15 @@ def load_sections(
 
 def inside_section(section: dict, pages: tuple) -> list:
     """\
-    # selective page inside
+    selective page inside
     >>> inside_section({'start' : 0, 'end': 4}, pages=(3, 4, 5))
     ([3], (0, 1, 2, 3))
 
-    # single page selected
+    single page selected
     >>> inside_section({'start' : 2, 'end': 2}, pages=(1, 2, 3, 4))
     ([2], (2,))
 
-    # no page inside
+    no page inside
     >>> inside_section({'start' : 2, 'end': 10}, pages=(12, 13, 14))
     ([], (2, 3, 4, 5, 6, 7, 8, 9))
     """
