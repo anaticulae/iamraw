@@ -13,38 +13,13 @@ import configo
 import utila
 import yaml
 
-from iamraw.sections import AbbreviationTable
-from iamraw.sections import Abstract
-from iamraw.sections import Acknowledgments
-from iamraw.sections import Appendix
-from iamraw.sections import Bibliography
-from iamraw.sections import Chapter
-from iamraw.sections import CiteContent
-from iamraw.sections import CitePart
-from iamraw.sections import DocumentSection
-from iamraw.sections import FigureTable
-from iamraw.sections import Glossary
-from iamraw.sections import Index
-from iamraw.sections import Introduction
-from iamraw.sections import LegalInformation
-from iamraw.sections import MainPart
-from iamraw.sections import MultipleSection
-from iamraw.sections import NotImplementedItem
-from iamraw.sections import Sections
-from iamraw.sections import SymbolTable
-from iamraw.sections import Table
-from iamraw.sections import TableOfContent
-from iamraw.sections import TableTable
-from iamraw.sections import Text
-from iamraw.sections import TitlePage
-from iamraw.sections import Unknown
-from iamraw.sections import WhitePage
+import iamraw.sections
 
 CLASSNAME = '__class__'
 SEPCIALFIELD = '__'
 
 
-def dump_sections(sections: Sections) -> str:
+def dump_sections(sections: iamraw.sections.Sections) -> str:
     """Convert `Sections` to raw data."""
     result = []
     for page in sections:
@@ -60,7 +35,7 @@ def load_sections(
     content: str,
     onerror: callable = None,
     pages: tuple = None,
-) -> Sections:
+) -> iamraw.sections.Sections:
     """Load sections from path or str.
 
     Args:
@@ -76,7 +51,7 @@ def load_sections(
         fname='sections__section_result',
         safe=False,
     )
-    result = Sections()
+    result = iamraw.sections.Sections()
     for section in loaded:
         inside, section_pages = inside_section(section, pages)
         if not inside:
@@ -152,7 +127,10 @@ def load_item(item, onerror: callable = None):
         # error handling
         ctor = onerror(classname)
     if ctor is None:
-        result = NotImplementedItem(classname=classname, **result)
+        result = iamraw.sections.NotImplementedItem(
+            classname=classname,
+            **result,
+        )
         utila.error(f'section `{classname}` not supported - use default')
     else:
         result = ctor(**result)  # pylint:disable=not-a-mapping
@@ -175,38 +153,6 @@ def shrink_section(section, pages: tuple):
     return section
 
 
-def generate_ctor():
-    """Create table with name[constructor]."""
-    # TODO: automate this
-    items = [
-        AbbreviationTable,
-        Abstract,
-        Acknowledgments,
-        Appendix,
-        Bibliography,
-        Chapter,
-        CiteContent,
-        CitePart,
-        DocumentSection,
-        FigureTable,
-        Glossary,
-        Index,
-        Introduction,
-        LegalInformation,
-        MainPart,
-        MultipleSection,
-        Sections,
-        SymbolTable,
-        Table,
-        TableOfContent,
-        TableTable,
-        Text,
-        TitlePage,
-        Unknown,
-        WhitePage,
-    ]
-    return {str(item.__name__): item for item in items}
-
-
+# Create table with name[constructor].
 # lookuptable with constructor to create objects out of raw information
-CTOR = generate_ctor()
+CTOR = utila.name_classes(utila.collect_classes(iamraw.sections))
