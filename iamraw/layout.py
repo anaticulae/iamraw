@@ -12,6 +12,7 @@
 """
 
 import enum
+import typing
 
 
 class Layout(enum.Flag):
@@ -25,3 +26,6 @@ class Layout(enum.Flag):
     DOUBLECOLUMN = enum.auto()
     # no information extractable
     UNDEFINED = enum.auto()
+
+
+Layouts = typing.List[Layout]
