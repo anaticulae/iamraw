@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.27.0
+
+### Feature
+
+* define page layout information (a742573324e7)
+
 ## v4.26.0
 
 ### Feature
