@@ -160,6 +160,8 @@ from iamraw.images import ImageInformation
 from iamraw.images import ImageInformations
 from iamraw.images import PageContentImageInfo
 from iamraw.images import PageContentImageInfos
+# layout
+from iamraw.layout import Layout
 # likelihood
 from iamraw.likelihood import Likelihood
 from iamraw.likelihood import PageContentLikelihood
