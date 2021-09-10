@@ -16,6 +16,8 @@ class Person:
     name: str = None
     firstname: str = None
     title: str = None
+    ebd: bool = False
+    """Name and Firstname is parsed from other source"""
     confidence: float = dataclasses.field(default=None, compare=False)
     raw: str = dataclasses.field(default=None, compare=False)
 
