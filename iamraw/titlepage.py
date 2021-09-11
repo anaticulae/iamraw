@@ -29,17 +29,17 @@ import iamraw
 
 class DocumentType(enum.Enum):
     NONE = enum.auto()
-    STUDY = enum.auto()
+    HOMEWORK = enum.auto()
     BACHELOR = enum.auto()
     MASTER = enum.auto()
-    DOCTOR = enum.auto()
+    DISS = enum.auto()
     HABIL = enum.auto()
     BOOK = enum.auto()
     PAPER = enum.auto()
 
 
 THESIS = {
-    DocumentType.STUDY: {
+    DocumentType.HOMEWORK: {
         'Komplexe Transferaufgabe',
         'Projektarbeit',
         'Projektpraktikum',
@@ -56,7 +56,7 @@ THESIS = {
         'Masterarbeit',
         'Masterthesis',
     },
-    DocumentType.DOCTOR: {
+    DocumentType.DISS: {
         'Dissertation',
         'Doktor',
         'Doktorarbeit',
