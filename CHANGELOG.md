@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v4.28.0
+
+### Feature
+
+* add paper as DocumentType (349114402487)
+* clarify headlines converter (5ee94ce7cd42)
+* add ebd flag (9a818807abcc)
+* add list of pages layouts (5f5f2e1ee45f)
+
 ## v4.27.0
 
 ### Feature
