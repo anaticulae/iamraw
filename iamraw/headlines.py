@@ -49,17 +49,23 @@ def headlines_totoc(
     remove_rawinfo: bool = False,
     level_default: int = 1,
 ) -> 'iamraw.Toc':
+    """Convert headlines to toc-structure. Use level_default=None to
+    skip setting default level.
+
+    Hint: Converting to toc requires a None-Level for every item.
+    """
     try:
         flat = utila.flatten(headlines)
     except TypeError:
         # list is already flat
         flat = headlines
+    # disable default level by setting None
     if level_default is not None:
-        # disable default level by setting None
-        # ??? NOT POSSIBLE CAUSE OF CREATE_TOC ???
         for item in flat:
+            # set default level if level is None
             if item.level is None:
-                # TODO: THINK ABOUT THIS
                 item.level = level_default
+    for item in flat:
+        assert item.level is not None, str(item)
     result = iamraw.toc.create_toc(flat, remove_rawinfo=remove_rawinfo)
     return result
