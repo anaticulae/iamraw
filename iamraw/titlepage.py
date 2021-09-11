@@ -35,6 +35,7 @@ class DocumentType(enum.Enum):
     DOCTOR = enum.auto()
     HABIL = enum.auto()
     BOOK = enum.auto()
+    PAPER = enum.auto()
 
 
 THESIS = {
