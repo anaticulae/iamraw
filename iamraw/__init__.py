@@ -201,18 +201,24 @@ from iamraw.quote import ExtractedQuotations
 from iamraw.quote import PageContentBlockQuotes
 from iamraw.quote import PageContentBlockQuotesList
 # sections
+from iamraw.sections import AbbreviationTable
+from iamraw.sections import Abstract
 from iamraw.sections import AreaItem
 from iamraw.sections import AreaItems
+from iamraw.sections import Bibliography
 from iamraw.sections import CiteContent
 from iamraw.sections import CitePart
 from iamraw.sections import CodeTable
 from iamraw.sections import DocumentSection
+from iamraw.sections import FigureTable
 from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
 from iamraw.sections import NotImplementedItem
 from iamraw.sections import SectionMixin
 from iamraw.sections import Sections
 from iamraw.sections import SectionsList
+from iamraw.sections import TableOfContent
+from iamraw.sections import TableTable
 # solution
 from iamraw.solution import Doctails
 from iamraw.solution import ProblemStatus
