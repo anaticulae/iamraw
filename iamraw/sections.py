@@ -207,6 +207,11 @@ class TableTable(AreaItem):
 
 
 @dataclasses.dataclass
+class CodeTable(AreaItem):
+    pass
+
+
+@dataclasses.dataclass
 class Abstract(AreaItem):
     pass
 
