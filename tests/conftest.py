@@ -21,8 +21,8 @@ PACKAGE = 'iamraw'
 power.setup(iamraw.ROOT)
 
 RESOURCES = [
-    (power.DOCU027_PDF, None),
-    (power.DOCU007_PDF, None),
+    power.DOCU027_PDF,
+    power.DOCU007_PDF,
 ]
 
 
@@ -36,4 +36,8 @@ def extract(resources):
         files=resources,
         destination=power.generated(),
         groupme=True,
+        formulero=False,
+        tablero=False,
+        rawmaker_cleanup=False,
+        pages=':',
     )
