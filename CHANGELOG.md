@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.29.0
+
+### Feature
+
+* add option to insert horizontal lines (9e43c8664744)
+* ease importing section types (aebc71171e34)
+* add codetable (eb86a2fca6e1)
+
 ## v4.28.1
 
 ### Feature
