@@ -499,12 +499,12 @@ def create_pagetextcontentnavigators(
             # content information are available. Therefore we do not add
             # this empty navgiator to list.
             continue
-        result.append(
-            PageTextContentNavigator(
-                navigator,
-                border,
-                validate_leftright=validate_leftright,
-            ))
+        current = PageTextContentNavigator(
+            navigator,
+            border,
+            validate_leftright=validate_leftright,
+        )
+        result.append(current)
     return result
 
 
