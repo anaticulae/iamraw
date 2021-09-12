@@ -483,6 +483,7 @@ def create_pagetextcontentnavigators(
     navigators,
     headerfooter,
     sizeandborder,
+    horizontals: iamraw.PagesWithHorizontalList = None,
     validate_leftright: bool = True,
     pages: tuple = None,
 ) -> PageTextContentNavigators:
@@ -499,6 +500,8 @@ def create_pagetextcontentnavigators(
             # content information are available. Therefore we do not add
             # this empty navgiator to list.
             continue
+        if horizontals:
+            insert_horizontals(navigator, horizontals)
         current = PageTextContentNavigator(
             navigator,
             border,
@@ -506,6 +509,17 @@ def create_pagetextcontentnavigators(
         )
         result.append(current)
     return result
+
+
+HORIZONTAL = '<<<<<<<<<<<<<<<<<<<<HORIZONTAL>>>>>>>>>>>>>>>>>>>>'
+
+
+def insert_horizontals(ptn: 'texmex.PageTextNavigator', horizontals):
+    selected = utila.select_content(horizontals, ptn.page)
+    if not selected:
+        return
+    for horizontal in selected:  # iamraw.HorizontalLine
+        ptn.insert(text=HORIZONTAL, style=None, bounding=horizontal.box)
 
 
 def determine_border(headerfooter, sizeandborder, page: int):

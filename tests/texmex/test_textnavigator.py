@@ -7,7 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
+import utila
+
 import iamraw
+import serializeraw
 import texmex
 
 
@@ -59,3 +63,18 @@ def test_hey_navigator_find():
 
 def test_textnavigator_before(navigator):
     assert navigator.between(0, 0.5)
+
+
+def test_textnavigator_inserthorizontals():
+    source = power.link(power.DOCU027_PDF)
+    ptn = serializeraw.ptcn_frompath(
+        source,
+        horizontals=True,
+        pages=utila.ranged_tuple(0, 5),
+    )
+    counted = 0
+    for page in ptn:
+        for line in page:
+            if line.text == texmex.HORIZONTAL:
+                counted += 1
+    assert counted == 3

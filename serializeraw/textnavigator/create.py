@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
+
 import iamraw
 import serializeraw.border
 import serializeraw.document
@@ -118,6 +120,7 @@ def create_pagetextcontentnavigators_frompath(
     *,
     validate_leftright: bool = True,
     footer_sized_prefixed: bool = False,
+    horizontals: bool = False,
 ) -> texmex.PageTextContentNavigators:
     """Load `PageTextContentNavigators` from `path`.
 
@@ -129,6 +132,7 @@ def create_pagetextcontentnavigators_frompath(
         validate_leftright(bool): do not check writing over ``content border``.
         footer_sized_prefixed(bool): if True use prefixed data
                                      if False use default data
+        horizontals(bool): insert horizontals if given
     Returns:
         List of loaded PageTextContentNavigators depending on `pages`.
     """
@@ -154,6 +158,15 @@ def create_pagetextcontentnavigators_frompath(
         sizeandborderpath,
         pages=pages,
     )
+    if horizontals:
+        horizontals = iamraw.path.horizontals(path, prefix=prefix)
+        if os.path.exists(horizontals):
+            horizontals = serializeraw.load_horizontals(
+                horizontals,
+                pages=pages,
+            )
+        else:
+            horizontals = None
 
     result = texmex.create_pagetextcontentnavigators(
         headerfooter=headerfooter,
@@ -161,6 +174,7 @@ def create_pagetextcontentnavigators_frompath(
         pages=pages,
         sizeandborder=sizeandborder,
         validate_leftright=validate_leftright,
+        horizontals=horizontals,
     )
     return result
 
