@@ -325,6 +325,22 @@ def insert_position(bounding: tuple, data: list) -> int:
     return position
 
 
+def insert_position_middle(bounding: tuple, data: list) -> int:
+    """This strategy produces better results when inserting horizontal
+    lines and is more accurat for this case."""
+    x0, y0 = int(bounding[0]), (bounding[1] + bounding[3]) // 2
+    position = 0
+    for item in data:
+        pos = item.bounding
+        if (pos.y0 + pos.y1) // 2 == y0:
+            if x0 <= int(pos.x0):
+                break
+        elif y0 <= (pos.y0 + pos.y1) // 2:
+            break
+        position += 1
+    return position
+
+
 def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0911
     bounding = item.bounding
     (before, after, beforeleft, afterright) = inside
@@ -524,7 +540,12 @@ def insert_horizontals(ptn: 'texmex.PageTextNavigator', horizontals):
     if not selected:
         return
     for horizontal in selected:  # iamraw.HorizontalLine
-        ptn.insert(text=HORIZONTAL, style=None, bounding=horizontal.box)
+        ptn.insert(
+            text=HORIZONTAL,
+            style=None,
+            bounding=horizontal.box,
+            sort=insert_position_middle,
+        )
 
 
 def determine_border(headerfooter, sizeandborder, page: int):
@@ -595,7 +616,7 @@ def single(navigators: 'texmex.PageTextNavigators') -> 'texmex.PageTextNavigator
             result.append(item)
         footer = page.content.bottom
         y0 += footer - header
-
+    # create result
     navigator = texmex.PageTextNavigator()
     navigator.data = result
     navigator.page = navigators[0].page
