@@ -160,7 +160,7 @@ class PageTextNavigator(NavigatorMixin):
             sort(bool): if True, insert bounding dependent
         """
         utila.asserts(text, str)
-        utila.asserts(bounding, iamraw.BoundingBox)
+        self.assert_bounding(bounding)
         datum = texmex.style.TextInfo(
             bounding=bounding,
             bounding_mean=bounding_mean,
@@ -177,17 +177,7 @@ class PageTextNavigator(NavigatorMixin):
 
     def insert_position(self, bounding) -> int:
         """Determine position in data list to insert Textinfo."""
-        x0, y0, x1, y1 = bounding
-        assert x0 <= x1, f'{x0}<={x1}; {bounding}'
-        assert y0 <= y1, f'{y0}<={y1}; {bounding}'
-        # TODO: Substract border to move starting text to (0,0)?. If not,
-        # x1 is sometimes higher than self.width.
-        if (x1 - x0) > self.width:
-            utila.error(f'page: {self.page} width: {x1-x0} < {self.width}')
-        # assert (x1 - x0) < self.width, f'{x1-x0} < {self.width}'
-        if (y1 - y0) > self.height:
-            utila.error(f'page: {self.page} height: {y1-y0} < {self.height}')
-        # assert (y1 - y0) < self.height, f'{y1-y0} < {self.height}'
+        x0, y0 = bounding[0], bounding[1]
         position = 0
         for item in self.data:
             pos = item.bounding
@@ -249,6 +239,19 @@ class PageTextNavigator(NavigatorMixin):
         bounding = line.bounding
         self.data.remove(line)
         del self.fast[bounding]
+
+    def assert_bounding(self, bounding):
+        x0, y0, x1, y1 = bounding
+        assert x0 <= x1, f'{x0}<={x1}; {bounding}'
+        assert y0 <= y1, f'{y0}<={y1}; {bounding}'
+        # TODO: Substract border to move starting text to (0,0)?. If not,
+        # x1 is sometimes higher than self.width.
+        if (x1 - x0) > self.width:
+            utila.error(f'page: {self.page} width: {x1-x0} < {self.width}')
+        # assert (x1 - x0) < self.width, f'{x1-x0} < {self.width}'
+        if (y1 - y0) > self.height:
+            utila.error(f'page: {self.page} height: {y1-y0} < {self.height}')
+        # assert (y1 - y0) < self.height, f'{y1-y0} < {self.height}'
 
 
 @dataclasses.dataclass
