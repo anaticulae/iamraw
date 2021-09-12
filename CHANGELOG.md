@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.30.0
+
+### Feature
+
+* use middle strategy to insert horizontal lines (e4930981cc9f)
+
 ## v4.29.0
 
 ### Feature
