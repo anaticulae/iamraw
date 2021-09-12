@@ -147,7 +147,7 @@ class PageTextNavigator(NavigatorMixin):
         bounding: iamraw.BoundingBox,
         bounding_mean: float = None,
         line: int = 0,
-        sort: bool = True,
+        sort: callable = True,
     ):
         """Insert text element top to bottom and left to right.
 
@@ -157,7 +157,7 @@ class PageTextNavigator(NavigatorMixin):
             bounding(iamraw.BoundingBox): position and dimension of text area
             bounding_mean: average distance from bottom line to char top
             line(int): position in parsed container
-            sort(bool): if True, insert bounding dependent
+            sort(strategy): if True, insert bounding dependent
         """
         utila.asserts(text, str)
         self.assert_bounding(bounding)
@@ -169,25 +169,14 @@ class PageTextNavigator(NavigatorMixin):
             line=line,
         )
         if sort:
-            position = self.insert_position(bounding)
+            if isinstance(sort, bool):
+                # use default inserting position
+                sort = insert_position
+            position = sort(bounding=bounding, data=self.data)
             self.data.insert(position, datum)
         else:
             self.data.append(datum)
         self.fast[bounding] = datum
-
-    def insert_position(self, bounding) -> int:
-        """Determine position in data list to insert Textinfo."""
-        x0, y0 = bounding[0], bounding[1]
-        position = 0
-        for item in self.data:
-            pos = item.bounding
-            if int(pos.y0) == int(y0):
-                if int(x0) <= int(pos.x0):
-                    break
-            elif y0 <= pos.y0:
-                break
-            position += 1
-        return position
 
     def __getitem__(self, index) -> texmex.style.TextInfo:
         return self.data[index]
@@ -319,6 +308,21 @@ class PageTextContentNavigator(NavigatorMixin):
 
 PageTextNavigators = typing.List[PageTextNavigator]
 PageTextContentNavigators = typing.List[PageTextContentNavigator]
+
+
+def insert_position(bounding: tuple, data: list) -> int:
+    """Determine position in data list to insert Textinfo."""
+    x0, y0 = int(bounding[0]), int(bounding[1])
+    position = 0
+    for item in data:
+        pos = item.bounding
+        if int(pos.y0) == y0:
+            if x0 <= int(pos.x0):
+                break
+        elif y0 <= pos.y0:
+            break
+        position += 1
+    return position
 
 
 def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0911
