@@ -18,8 +18,6 @@ import texmex
 import texmex.style
 import texmex.text
 import texmex.utils
-from texmex.text import TextBoundsInfo
-from texmex.text import TextBoundsInfos
 
 START = 0.0
 END = 1.0
@@ -349,10 +347,10 @@ def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0
     return True
 
 
-def navigator_to_content(navigator: PageTextNavigator) -> TextBoundsInfos:
+def navigator_to_content(navigator: PageTextNavigator) -> texmex.text.TextBoundsInfos:  # yapf:disable
     result = []
     for item in navigator:
-        info = TextBoundsInfo(
+        info = texmex.text.TextBoundsInfo(
             bounds=item.bounding,
             text=item.text,
         )
