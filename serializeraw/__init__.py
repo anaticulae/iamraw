@@ -56,6 +56,9 @@ from serializeraw.caption import load_captions
 # chapter
 from serializeraw.chapter import dump_chapter
 from serializeraw.chapter import load_chapter
+# code
+from serializeraw.code import dump_codes
+from serializeraw.code import load_codes
 # content
 from serializeraw.content import dump_contentboundingbox
 from serializeraw.content import load_contentboundingbox

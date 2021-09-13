@@ -53,6 +53,11 @@ from iamraw.caption import Caption
 from iamraw.caption import Captions
 from iamraw.caption import PageContentCaption
 from iamraw.caption import PageContentCaptions
+# code
+from iamraw.code import PageContentCode
+from iamraw.code import PageContentCodes
+from iamraw.code import PeaceOfCode
+from iamraw.code import PeaceOfCodes
 # content
 from iamraw.content import ContentBoundingBox
 from iamraw.content import ContentBoundingBoxes
