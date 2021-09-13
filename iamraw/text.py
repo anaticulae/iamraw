@@ -73,7 +73,7 @@ class TextSection:
         # TODO: support tuple unpacking, remove later
         if index > 1:
             raise IndexError
-        return self.headline if index == 0 else self.content
+        return self.headline if not index else self.content
 
     def __eq__(self, value):
         # TODO: support tuple unpacking, remove later

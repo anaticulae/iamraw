@@ -67,7 +67,7 @@ class PageIter:
         ]):
             raise ValueError('iter stands on goal %d %d' % (container, line))
 
-        if self.char > 0 and char == 0:
+        if self.char > 0 and char == 0:  # pylint:disable=C2001
             # text iterator is not on the line start
             if self.container < container or self.line < line:
                 # fill the rest of the current line and goto next lien

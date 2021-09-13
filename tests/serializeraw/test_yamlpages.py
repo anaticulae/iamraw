@@ -37,7 +37,7 @@ def test_yamlpages_write(testdir):
     # double page test
     loaded = serializeraw.load_yamlpages(filename, pages=(0, 11))
     yaml = utila.yaml_from_raw_or_path(loaded)
-    assert yaml['pages'][0]['page'] == 0
+    assert yaml['pages'][0]['page'] == 0  # pylint:disable=C2001
     assert yaml['pages'][1]['page'] == 11
 
 

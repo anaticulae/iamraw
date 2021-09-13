@@ -18,7 +18,7 @@ class ContentBoundingBox:
     bottom: float
 
     def __getitem__(self, index):
-        if index == 0:
+        if index == 0:  # pylint:disable=C2001
             return self.top
         if index == 1:
             return self.bottom

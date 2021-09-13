@@ -56,7 +56,7 @@ class BoundingBox:
         return f'{self.x0} {self.y0} {self.x1} {self.y1}'
 
     def __getitem__(self, index):
-        if index == 0:
+        if index == 0:  # pylint:disable=C2001
             return self.x0
         if index == 1:
             return self.y0
@@ -74,7 +74,7 @@ class BoundingBox:
         >>> box.y0
         10
         """
-        if index == 0:
+        if index == 0:  # pylint:disable=C2001
             self.x0 = value
         elif index == 1:
             self.y0 = value
@@ -188,7 +188,7 @@ class PageBoundings:
 
     def __getitem__(self, index):
         # page, content
-        if index == 0:
+        if index == 0:  # pylint:disable=C2001
             return self.page
         if index == 1:
             return self.boundings

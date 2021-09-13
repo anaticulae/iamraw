@@ -58,7 +58,7 @@ class Page:
         return len(self.children)
 
     def empty(self) -> bool:
-        return len(self) == 0
+        return not self.children
 
 
 Pages = typing.List[Page]

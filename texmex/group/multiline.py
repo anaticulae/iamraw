@@ -223,7 +223,7 @@ def group_linedistances(
     # TODO: THIS APPROACH DOES NOT WORK RIGHT NOW
     for index, diff in enumerate(grad, start=0):
         diff = diff if math.fabs(diff) > maxdiff else 0
-        if diff == 0:
+        if diff == 0:  # pylint:disable=C2001
             current.append(index)
         # TODO: THINK ABOUT DIFF<0 and DIFF>0
         if diff < 0.0:
