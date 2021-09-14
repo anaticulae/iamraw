@@ -159,7 +159,10 @@ def create_pagetextcontentnavigators_frompath(
         pages=pages,
     )
     if horizontals:
-        horizontals = iamraw.path.horizontals(path, prefix=prefix)
+        horizontals = iamraw.path.horizontals(
+            path,
+            prefix=prefix,
+        )
         if os.path.exists(horizontals):
             horizontals = serializeraw.load_horizontals(
                 horizontals,
@@ -186,6 +189,7 @@ def create_pagetextcontentnavigators_fromfile(
     headerfooterpath: str,
     fontheader: str = None,
     fontcontent: str = None,
+    horizontals: str = None,
     pages: tuple = None,
     mode=texmex.PageTextNavigatorMode.BOTH,
     *,
@@ -212,12 +216,18 @@ def create_pagetextcontentnavigators_fromfile(
         sizeandborderpath,
         pages=pages,
     )
-
+    if horizontals:
+        horizontals = serializeraw.load_horizontals(
+            horizontals,
+            pages=pages,
+        )
+    # prepare result
     result = texmex.create_pagetextcontentnavigators(
         headerfooter=headerfooter,
         navigators=navigators,
         pages=pages,
         sizeandborder=sizeandborder,
         validate_leftright=validate_leftright,
+        horizontals=horizontals,
     )
     return result
