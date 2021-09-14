@@ -9,12 +9,10 @@
 
 import os
 
+import utila
+
 import iamraw
-import serializeraw.border
-import serializeraw.document
-import serializeraw.fontstore
-import serializeraw.headerfooter
-import serializeraw.textposition
+import serializeraw
 import texmex
 
 
@@ -50,7 +48,7 @@ def create_pagetextnavigators_frompath(
         separate instances.
     """
     # convert page to tuple, if required
-    pages = (pages,) if isinstance(pages, int) else pages
+    pages = utila.ensure_tuple(pages)
     # prepare path
     text = iamraw.path.text(path, prefix=prefix)
     text = serializeraw.load_document(text, pages=pages)
@@ -59,7 +57,7 @@ def create_pagetextnavigators_frompath(
         textposition,
         pages=pages,
     )
-    fontstore = serializeraw.fontstore.create_fontstore_frompath(
+    fontstore = serializeraw.create_fontstore_frompath(
         path,
         prefix=prefix,
         pages=pages,
@@ -87,7 +85,7 @@ def create_pagetextnavigators_fromfile(
     fill_empty: bool = True,
 ) -> texmex.PageTextNavigators:
     # convert page to tuple, if required
-    pages = (pages,) if isinstance(pages, int) else pages
+    pages = utila.ensure_tuple(pages)
     text = serializeraw.load_document(
         text,
         pages=pages,
@@ -98,7 +96,7 @@ def create_pagetextnavigators_fromfile(
     )
     fontstore = None
     if fontheader and fontcontent:
-        fontstore = serializeraw.fontstore.create_fontstore(
+        fontstore = serializeraw.create_fontstore(
             fontheader,
             fontcontent,
         )
@@ -137,7 +135,7 @@ def create_pagetextcontentnavigators_frompath(
         List of loaded PageTextContentNavigators depending on `pages`.
     """
     # convert page to tuple, if required
-    pages = (pages,) if isinstance(pages, int) else pages
+    pages = utila.ensure_tuple(pages)
     navigators = create_pagetextnavigators_frompath(
         path=path,
         prefix=prefix,
@@ -146,15 +144,17 @@ def create_pagetextcontentnavigators_frompath(
     )
     # do not generate general data twice
     prefix = prefix if footer_sized_prefixed else ''
-
+    # determine paths
     headerfooterpath = iamraw.path.headerfooters(path, prefix=prefix)
-    headerfooter = serializeraw.headerfooter.load_headerfooter(
+    headerfooter = serializeraw.load_headerfooter(
         headerfooterpath,
         pages=pages,
     )
-
-    sizeandborderpath = iamraw.path.sizeandborder(path, prefix=prefix)
-    sizeandborder = serializeraw.border.load_pageborders(
+    sizeandborderpath = iamraw.path.sizeandborder(
+        path,
+        prefix=prefix,
+    )
+    sizeandborder = serializeraw.load_pageborders(
         sizeandborderpath,
         pages=pages,
     )
@@ -193,7 +193,7 @@ def create_pagetextcontentnavigators_fromfile(
     validate_leftright: bool = True,
 ):
     # convert page to tuple, if required
-    pages = (pages,) if isinstance(pages, int) else pages
+    pages = utila.ensure_tuple(pages)
     navigators = create_pagetextnavigators_fromfile(
         text,
         textpositions,
@@ -203,13 +203,12 @@ def create_pagetextcontentnavigators_fromfile(
         mode=mode,
         fill_empty=fill_empty,
     )
-
-    headerfooter = serializeraw.headerfooter.load_headerfooter(
+    # load header, footer, pageborder
+    headerfooter = serializeraw.load_headerfooter(
         headerfooterpath,
         pages=pages,
     )
-
-    sizeandborder = serializeraw.border.load_pageborders(
+    sizeandborder = serializeraw.load_pageborders(
         sizeandborderpath,
         pages=pages,
     )
