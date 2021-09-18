@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.31.1
+
+### Feature
+
+* add attribute to store code bounding (cf89dc20772e)
+
 ## v4.31.0
 
 ### Feature
