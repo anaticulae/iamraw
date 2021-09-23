@@ -66,6 +66,8 @@ from iamraw.distance import AreaDistance
 from iamraw.distance import AreaDistances
 from iamraw.distance import PageContentAreaDistance
 from iamraw.distance import PageContentAreaDistances
+# docinfo
+from iamraw.docinfo import DocumentType
 # docref
 from iamraw.docref import DocRef
 from iamraw.docref import DocRefs
@@ -273,7 +275,6 @@ from iamraw.title import PROF_DR
 from iamraw.title import AcademicTitle
 # title
 from iamraw.titlepage import THESIS
-from iamraw.titlepage import DocumentType
 from iamraw.titlepage import Institution
 from iamraw.titlepage import Matrikel
 from iamraw.titlepage import TitleDate

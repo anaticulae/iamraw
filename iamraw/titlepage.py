@@ -21,48 +21,35 @@ Definition
 """
 
 import dataclasses
-import enum
 import typing
 
 import iamraw
 
-
-class DocumentType(enum.Enum):
-    NONE = enum.auto()
-    HOMEWORK = enum.auto()
-    BACHELOR = enum.auto()
-    MASTER = enum.auto()
-    DISS = enum.auto()
-    HABIL = enum.auto()
-    BOOK = enum.auto()
-    PAPER = enum.auto()
-
-
 THESIS = {
-    DocumentType.HOMEWORK: {
+    iamraw.DocumentType.HOMEWORK: {
         'Komplexe Transferaufgabe',
         'Projektarbeit',
         'Projektpraktikum',
         'Studienarbeit',
     },
-    DocumentType.BACHELOR: {
+    iamraw.DocumentType.BACHELOR: {
         'Bachelor',
         'Bachelorarbeit',
         'Bachelorthesis',
     },
-    DocumentType.MASTER: {
+    iamraw.DocumentType.MASTER: {
         'Diplomarbeit',
         'Master',
         'Masterarbeit',
         'Masterthesis',
     },
-    DocumentType.DISS: {
+    iamraw.DocumentType.DISS: {
         'Dissertation',
         'Doktor',
         'Doktorarbeit',
         'Promotion',
     },
-    DocumentType.HABIL: {
+    iamraw.DocumentType.HABIL: {
         'Habilitation',
         'Habilitationsschrift',
     },
@@ -98,7 +85,7 @@ class Institution:
 @dataclasses.dataclass
 class TitlePage:
     title: str = ''
-    thesis: DocumentType = None
+    thesis: iamraw.DocumentType = None
     date: TitleDate = None
     author: iamraw.Person = None
     matrikel: Matrikel = None
