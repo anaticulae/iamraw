@@ -41,6 +41,7 @@ class DocInfo:
     doctype: DocumentType = None
     generator: Generator = None
     sections: 'SectionLookup' = None
+    """Skip findings which do not pass sections check."""
 
 
 class SectionLookup:
