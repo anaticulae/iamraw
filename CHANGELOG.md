@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.32.0
+
+### Feature
+
+* add PartOfDoc datatype (a931e1666a50)
+
 ## v4.31.1
 
 ### Feature
