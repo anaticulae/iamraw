@@ -219,6 +219,8 @@ from iamraw.sections import FigureTable
 from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
 from iamraw.sections import NotImplementedItem
+from iamraw.sections import PartOfDocMixin
+from iamraw.sections import PartsOfDoc
 from iamraw.sections import SectionMixin
 from iamraw.sections import Sections
 from iamraw.sections import SectionsList

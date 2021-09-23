@@ -19,8 +19,15 @@ Position = typing.Tuple[Page, Percentage]
 PERCENT_100 = 1.0  # analysed by hand
 
 
+class PartOfDocMixin:
+    pass
+
+
+PartsOfDoc = typing.Iterable[PartOfDocMixin]
+
+
 @dataclasses.dataclass
-class AreaItem:
+class AreaItem(PartOfDocMixin):
     """AreaItem is the smallest piece in document sections analysis
 
     Every `AreaItem` is constructed of smaller items, like text and/or
@@ -40,7 +47,7 @@ class AreaItem:
 AreaItems = typing.List[AreaItem]
 
 
-class SectionMixin:
+class SectionMixin(PartOfDocMixin):
 
     def append(self, item):
         raise NotImplementedError
