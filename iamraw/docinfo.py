@@ -19,3 +19,9 @@ class DocumentType(enum.Enum):
     HABIL = enum.auto()
     BOOK = enum.auto()
     PAPER = enum.auto()
+
+
+class Generator(enum.Enum):
+    BASE = enum.auto()
+    LATEX = enum.auto()
+    MSWORD = enum.auto()
