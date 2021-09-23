@@ -72,3 +72,33 @@ def test_dump_and_load_sections_onerror():
     assert dumped, str(dumped)
     loaded = serializeraw.load_sections(dumped, onerror=wrapper)
     assert loaded == section, str(loaded)
+
+
+def test_section_lookup(restructured_sections_manual):
+    data = restructured_sections_manual
+    lookup = iamraw.SectionLookup(data)
+    collected = lookup.current(20)
+    assert collected.start == 20
+
+
+def test_section_lookup_call(restructured_sections_manual):
+    data = restructured_sections_manual
+    lookup = iamraw.SectionLookup(data)
+    # only
+    assert lookup(
+        iamraw.Location.from_page(20),  # CHAPTER
+        only={iamraw.sections.Chapter},
+    )
+    assert not lookup(
+        iamraw.Location.from_page(1),  # WHITEPAGE
+        only={iamraw.sections.Chapter},
+    )
+    # skip
+    assert not lookup(
+        iamraw.Location.from_page(20),  # CHAPTER
+        skip={iamraw.sections.Chapter},
+    )
+    assert lookup(
+        iamraw.Location.from_page(1),  # WHITEPAGE
+        skip={iamraw.sections.Chapter},
+    )

@@ -33,3 +33,33 @@ class DocInfo:
     pages: int = None
     doctype: DocumentType = None
     generator: Generator = None
+    sections: 'SectionLookup' = None
+
+
+class SectionLookup:
+
+    def __init__(self, sections: 'iamraw.Sections'):
+        self.sections = sections
+
+    def __call__(self, location: 'iamraw.Location', only=None, skip=None):
+        """Return False if section is excluded via only or skip definition."""
+        page = location.page
+        selected = self.current(page)
+        assert selected is not None
+        classes = selected.__class__
+        if skip and classes in skip:
+            return False
+        if only and classes not in only:
+            return False
+        return True
+
+    def current(self, page: int):
+        # TODO: USE IMPROVE SELECTOR, REDUCE LINEAR EFFORT
+        for section in self.sections:
+            if not section.start <= page <= section.end:
+                continue
+            for item in section:
+                if not item.start <= page <= item.end:
+                    continue
+                return item
+        return None
