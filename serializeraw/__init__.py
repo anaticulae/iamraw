@@ -65,6 +65,10 @@ from serializeraw.content import load_contentboundingbox
 # distance
 from serializeraw.distance import dump_distance
 from serializeraw.distance import load_distance
+# docinfo
+from serializeraw.docinfo import create_docinfo
+from serializeraw.docinfo import dump_docinfo
+from serializeraw.docinfo import load_docinfo
 # docref
 from serializeraw.docref import dump_docref
 from serializeraw.docref import load_docref
