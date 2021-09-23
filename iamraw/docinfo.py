@@ -23,7 +23,7 @@ class DocumentType(enum.Enum):
 
 
 class Generator(enum.Enum):
-    BASE = enum.auto()
+    UNDEFINED = enum.auto()
     LATEX = enum.auto()
     MSWORD = enum.auto()
 
