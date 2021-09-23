@@ -9,7 +9,7 @@
 """\
 >>> import iamraw, serializeraw
 >>> info = iamraw.PDFInfo(pages=10,
-...                       generator=iamraw.PDFGenerator.MSWORD,
+...                       generator=iamraw.Generator.MSWORD,
 ...                       version=iamraw.PDFVersion(1,7))
 >>> dumped = serializeraw.dump_pdfinfo(info, ext='yaml')
 >>> loaded = serializeraw.load_pdfinfo(dumped)
@@ -46,7 +46,7 @@ def load_pdfinfo(path: str) -> iamraw.PDFInfo:
         loaded['version']['major'],
         loaded['version']['minor'],
     )
-    loaded['generator'] = iamraw.PDFGenerator[loaded['generator'].upper()]
+    loaded['generator'] = iamraw.Generator[loaded['generator'].upper()]
     result = iamraw.PDFInfo(**loaded)
     return result
 

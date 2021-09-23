@@ -27,6 +27,13 @@ class Generator(enum.Enum):
     LATEX = enum.auto()
     MSWORD = enum.auto()
 
+    def __str__(self):
+        """\
+        >>> str(Generator.MSWORD)
+        'msword'
+        """
+        return str(self.name).lower()
+
 
 @dataclasses.dataclass
 class DocInfo:

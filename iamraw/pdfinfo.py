@@ -9,28 +9,16 @@
 
 import collections
 import dataclasses
-import enum
+
+import iamraw
 
 PDFVersion = collections.namedtuple('PDFVersion', 'major minor')
-
-
-class PDFGenerator(enum.Enum):
-    UNDEFINED = enum.auto()
-    LATEX = enum.auto()
-    MSWORD = enum.auto()
-
-    def __str__(self):
-        """\
-        >>> str(PDFGenerator.MSWORD)
-        'msword'
-        """
-        return str(self.name).lower()
 
 
 @dataclasses.dataclass
 class PDFInfo:
     pages: int = None
-    generator: PDFGenerator = None
+    generator: iamraw.Generator = None
     version: PDFVersion = None
     meta: dict = None
 

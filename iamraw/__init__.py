@@ -198,7 +198,6 @@ from iamraw.pagecontent import PageContents
 # pdf
 from iamraw.pdfinfo import InvalidPDF
 from iamraw.pdfinfo import PDFDate
-from iamraw.pdfinfo import PDFGenerator
 from iamraw.pdfinfo import PDFInfo
 from iamraw.pdfinfo import PDFVersion
 # person
