@@ -10,6 +10,8 @@
 import dataclasses
 import typing
 
+import utila
+
 Page = int
 Percentage = float  # start of area [0.0 Pagestart, 100.0 Pageend]
 Position = typing.Tuple[Page, Percentage]
@@ -101,8 +103,8 @@ class Sections:
 
     content: DocumentSections = dataclasses.field(default_factory=list)
 
-    def append(self, item):
-        assert isinstance(item, SectionMixin), type(item)
+    def append(self, item: SectionMixin):
+        utila.asserts(item, SectionMixin)
         self.content.append(item)  #  pylint:disable=E1101
 
     def __getitem__(self, index):
