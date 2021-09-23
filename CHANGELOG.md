@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.33.0
+
+### Feature
+
+* add method to load and dump docinfo (00e49c1425e2)
+* unite Generator doc type (d0392577bcdc)
+* rename base to undefined (0d6d143d9316)
+* add sections lookup (1ee20ecac774)
+* add docinfo class (e5a08a87cb5f)
+* move document generator from protocol (7708084d40b9)
+
 ## v4.32.0
 
 ### Feature
