@@ -13,6 +13,7 @@ import pytest
 
 import iamraw
 from tests.fixtures.textnavigator import navigator  # pylint:disable=W0611
+from tests.serializeraw.examples.sections import restructured_sections_manual  # pylint:disable=W0611
 from tests.serializeraw.fixtures import boxdata_from_pdf  # pylint:disable=W0611
 
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name

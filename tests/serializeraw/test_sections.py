@@ -8,32 +8,24 @@
 # =============================================================================
 
 import iamraw
-from serializeraw import dump_sections
-from serializeraw import load_sections
-# pylint:disable=W0611
-from tests.serializeraw.examples.sections import restructured_sections_manual
+import serializeraw
 
 
-def test_dump_and_load_sections(
-        restructured_sections_manual,  # pylint:disable=W0621
-):
+def test_dump_and_load_sections(restructured_sections_manual):
     data = restructured_sections_manual
-    dumped = dump_sections(data)
+    dumped = serializeraw.dump_sections(data)
     assert dumped
-
-    loaded = load_sections(dumped)
+    loaded = serializeraw.load_sections(dumped)
     assert loaded
-
     assert loaded == data
 
 
-def test_dump_and_load_sections_pages(restructured_sections_manual):  # pylint:disable=W0621
+def test_dump_and_load_sections_pages(restructured_sections_manual):
     """Test loading some pages with shrinked section container"""
     data = restructured_sections_manual
-    dumped = dump_sections(data)
+    dumped = serializeraw.dump_sections(data)
     assert dumped
-
-    loaded = load_sections(dumped, pages=(2, 3))
+    loaded = serializeraw.load_sections(dumped, pages=(2, 3))
     document_section = loaded[0]
     assert document_section.start == 2
     assert document_section.end == 3
@@ -67,16 +59,16 @@ def example():
 
 def test_dump_and_load_sections_notimplemented():
     section, _ = example()
-    dumped = dump_sections(section)
+    dumped = serializeraw.dump_sections(section)
     assert dumped, str(dumped)
     # do not use `replacement` loader, use default NotImplementedItem
-    loaded = load_sections(dumped, onerror=None)
+    loaded = serializeraw.load_sections(dumped, onerror=None)
     assert len(loaded) == len(section), str(loaded)
 
 
 def test_dump_and_load_sections_onerror():
     section, wrapper = example()
-    dumped = dump_sections(section)
+    dumped = serializeraw.dump_sections(section)
     assert dumped, str(dumped)
-    loaded = load_sections(dumped, onerror=wrapper)
+    loaded = serializeraw.load_sections(dumped, onerror=wrapper)
     assert loaded == section, str(loaded)
