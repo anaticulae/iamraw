@@ -53,7 +53,9 @@ class SectionLookup:
         """Return False if section is excluded via only or skip definition."""
         page = location.page
         selected = self.current(page)
-        assert selected is not None
+        if selected is None:
+            # page -1 for overview for example, do not skip this
+            return True
         classes = selected.__class__
         if skip and classes in skip:
             return False
