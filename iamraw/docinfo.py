@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import dataclasses
 import enum
 
 
@@ -25,3 +26,10 @@ class Generator(enum.Enum):
     BASE = enum.auto()
     LATEX = enum.auto()
     MSWORD = enum.auto()
+
+
+@dataclasses.dataclass
+class DocInfo:
+    pages: int = None
+    doctype: DocumentType = None
+    generator: Generator = None

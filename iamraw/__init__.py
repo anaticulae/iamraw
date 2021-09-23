@@ -67,6 +67,7 @@ from iamraw.distance import AreaDistances
 from iamraw.distance import PageContentAreaDistance
 from iamraw.distance import PageContentAreaDistances
 # docinfo
+from iamraw.docinfo import DocInfo
 from iamraw.docinfo import DocumentType
 from iamraw.docinfo import Generator
 # docref
