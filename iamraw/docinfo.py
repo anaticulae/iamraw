@@ -40,6 +40,7 @@ class DocInfo:
     pages: int = None
     doctype: DocumentType = None
     generator: Generator = None
+    lang: 'Language' = None
     sections: 'SectionLookup' = None
     """Skip findings which do not pass sections check."""
 
