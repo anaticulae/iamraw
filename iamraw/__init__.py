@@ -170,6 +170,9 @@ from iamraw.images import ImageInformation
 from iamraw.images import ImageInformations
 from iamraw.images import PageContentImageInfo
 from iamraw.images import PageContentImageInfos
+# lang
+from iamraw.lang import Language
+from iamraw.lang import simplelang
 # layout
 from iamraw.layout import Layout
 from iamraw.layout import Layouts
