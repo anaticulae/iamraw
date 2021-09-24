@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.33.1
+
+### Fix
+
+* change expected behavior (74ddb391cd1a)
+
+### Documentation
+
+* move comment from protocol (91a60cbe13d6)
+
 ## v4.33.0
 
 ### Feature
