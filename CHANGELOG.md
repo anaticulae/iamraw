@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.33.2
+
+### Feature
+
+* add attribute language (608f788b196e)
+* add Enum to describe used language (503085581275)
+
+### Fix
+
+* do not use pdfinfo if file does not exist (bd9df60b2b76)
+
 ## v4.33.1
 
 ### Fix
