@@ -36,10 +36,9 @@ def create_docinfo(
 ) -> 'iamraw.SectionLookup':
     sections = serializeraw.load_sections(content=sections, pages=pages)
     lookup = iamraw.SectionLookup(sections=sections)
+    result = iamraw.DocInfo(sections=lookup)
     if utila.exists(pdfinfo):
         pdfinfo = serializeraw.load_pdfinfo(pdfinfo)
-    result = iamraw.DocInfo(sections=lookup)
-    if pdfinfo:
         result.pages = pdfinfo.pages
         result.generator = pdfinfo.generator
     return result
