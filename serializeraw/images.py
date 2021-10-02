@@ -77,3 +77,21 @@ def load_image_infos_frompath(
 
 
 load_image_informations_frompath = load_image_infos_frompath  # pylint:disable=C0103
+
+
+def load_image_infos_fromfiles(
+    files: str,
+    pages: tuple = None,
+) -> iamraw.PageContentImageInfos:
+    collected = collections.defaultdict(list)
+    for source in files:
+        loaded = load_image_info(source)
+        if utila.should_skip(loaded.page, pages):
+            continue
+        collected[loaded.page].append(loaded)
+    result = [
+        iamraw.PageContentImageInfo(page=key, content=content)
+        for key, content in collected.items()
+    ]
+    result.sort(key=lambda x: x.page)
+    return result

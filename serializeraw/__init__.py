@@ -116,6 +116,7 @@ from serializeraw.href import load_hyperlinks
 # images
 from serializeraw.images import dump_image_info
 from serializeraw.images import load_image_info
+from serializeraw.images import load_image_infos_fromfiles
 from serializeraw.images import load_image_infos_frompath
 # likelihood
 from serializeraw.likelihood import dump_likelihood
