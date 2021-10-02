@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.33.3
+
+### Feature
+
+* move image info loader method (4e070763b91e)
+
 ## v4.33.2
 
 ### Feature
