@@ -60,6 +60,7 @@ def load_image_info(content: str) -> iamraw.ImageInformation:
 def load_image_infos_frompath(
     path: str,
     pages: tuple = None,
+    skip_hidden: bool = False,
 ) -> iamraw.PageContentImageInfos:
     if not os.path.exists(path):
         return []
@@ -70,6 +71,7 @@ def load_image_infos_frompath(
     result = load_image_infos_fromfiles(
         files=files,
         pages=pages,
+        skip_hidden=skip_hidden,
     )
     return result
 
@@ -80,11 +82,14 @@ load_image_informations_frompath = load_image_infos_frompath  # pylint:disable=C
 def load_image_infos_fromfiles(
     files: str,
     pages: tuple = None,
+    skip_hidden: bool = False,
 ) -> iamraw.PageContentImageInfos:
     collected = collections.defaultdict(list)
     for source in files:
         loaded = load_image_info(source)
         if utila.should_skip(loaded.page, pages):
+            continue
+        if skip_hidden and loaded.hidden:
             continue
         collected[loaded.page].append(loaded)
     result = [
