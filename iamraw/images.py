@@ -25,6 +25,8 @@ class ImageInformation:
     page: int = None
     dpi: tuple = None
     bounding: tuple = None
+    hidden: bool = False
+    """Disable image to avoid further processing."""
 
 
 ImageInformations = typing.List[ImageInformation]
