@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.34.0
+
+### Feature
+
+* add parameter to skip hidden images (738c41eb860b)
+* add hidden flag to hide images (34bc3838e2fd)
+
 ## v4.33.3
 
 ### Feature
