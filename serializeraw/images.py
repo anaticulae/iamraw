@@ -60,19 +60,14 @@ def load_image_infos_frompath(
 ) -> iamraw.PageContentImageInfos:
     if not os.path.exists(path):
         return []
-    files = utila.file_list(path, include='yaml')
-    collected = collections.defaultdict(list)
-    for item in files:
-        source = os.path.join(path, item)
-        loaded = load_image_info(source)
-        if utila.should_skip(loaded.page, pages):
-            continue
-        collected[loaded.page].append(loaded)
-    result = [
-        iamraw.PageContentImageInfo(page=key, content=value)
-        for key, value in collected.items()
+    files = [
+        os.path.join(path, item)
+        for item in utila.file_list(path, include='yaml')
     ]
-    result.sort(key=lambda x: x.page)
+    result = load_image_infos_fromfiles(
+        files=files,
+        pages=pages,
+    )
     return result
 
 
