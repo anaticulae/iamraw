@@ -53,6 +53,9 @@ def load_image_info(content: str) -> iamraw.ImageInformation:
             value = typ(loaded[key])
         except KeyError:
             continue
+        except TypeError:
+            utila.error(f'invalid load_image_info: {loaded}')
+            return None
         setattr(parsed, key, value)
     return parsed
 
@@ -87,6 +90,8 @@ def load_image_infos_fromfiles(
     collected = collections.defaultdict(list)
     for source in files:
         loaded = load_image_info(source)
+        if not loaded:
+            continue
         if utila.should_skip(loaded.page, pages):
             continue
         if skip_hidden and loaded.hidden:
