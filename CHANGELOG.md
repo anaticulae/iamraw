@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.34.1
+
+### Fix
+
+* skip invalid image information (9538e12daaa4)
+
 ## v4.34.0
 
 ### Feature
