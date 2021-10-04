@@ -37,8 +37,7 @@ def dump_image_info(info: iamraw.ImageInformation) -> str:
 
 
 def load_image_info(content: str) -> iamraw.ImageInformation:
-    source = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.safe_load(source)
+    loaded = utila.yaml_from_raw_or_path(content)
     parsed = iamraw.ImageInformation()
     loader = [
         ('page', int),
