@@ -63,6 +63,7 @@ def load_image_infos_frompath(
     path: str,
     pages: tuple = None,
     skip_hidden: bool = False,
+    path_append: bool = False,
 ) -> iamraw.PageContentImageInfos:
     if not os.path.exists(path):
         return []
@@ -74,6 +75,7 @@ def load_image_infos_frompath(
         files=files,
         pages=pages,
         skip_hidden=skip_hidden,
+        path_append=path_append,
     )
     return result
 
