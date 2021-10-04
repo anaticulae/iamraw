@@ -86,6 +86,7 @@ def load_image_infos_fromfiles(
     files: str,
     pages: tuple = None,
     skip_hidden: bool = False,
+    path_append: bool = False,
 ) -> iamraw.PageContentImageInfos:
     collected = collections.defaultdict(list)
     for source in files:
@@ -96,7 +97,10 @@ def load_image_infos_fromfiles(
             continue
         if skip_hidden and loaded.hidden:
             continue
-        collected[loaded.page].append(loaded)
+        if path_append:
+            collected[loaded.page].append((loaded, source))
+        else:
+            collected[loaded.page].append(loaded)
     result = [
         iamraw.PageContentImageInfo(page=key, content=content)
         for key, content in collected.items()
