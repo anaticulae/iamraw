@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.34.2
+
+### Feature
+
+* add path append flag (0ca917de65c1)
+
 ## v4.34.1
 
 ### Fix
