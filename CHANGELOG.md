@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.35.0
+
+### Feature
+
+* add image content hash from file name (d7924a24df60)
+* add path append flag (27013e95f05d)
+* add attribute to store image hash value (84a00c40dc6d)
+
 ## v4.34.2
 
 ### Feature
