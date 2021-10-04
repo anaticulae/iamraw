@@ -98,6 +98,9 @@ def load_image_infos_fromfiles(
             continue
         if skip_hidden and loaded.hidden:
             continue
+        # add image content hash
+        hashedimage = utila.file_name(source)
+        loaded.hashedimage = hashedimage
         if path_append:
             collected[loaded.page].append((loaded, source))
         else:
