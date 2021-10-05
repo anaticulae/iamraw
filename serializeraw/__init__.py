@@ -81,6 +81,8 @@ from serializeraw.figure import load_figures
 # findings
 from serializeraw.findings import dump_findings
 from serializeraw.findings import load_findings
+from serializeraw.findings import load_grouped
+from serializeraw.findings import write_grouped
 # fonts
 from serializeraw.fonts import convert_flags as load_flags
 from serializeraw.fonts import dump_font_content

@@ -11,7 +11,7 @@ import iamraw
 import serializeraw
 
 FINDINGS = [
-    iamraw.Finding(number=10),
+    iamraw.Finding(number=10, location=iamraw.Location(page=3)),
     iamraw.Finding(number=11, location=iamraw.Location(page=5)),
     iamraw.Finding(number=12, location=iamraw.Location(page=5)),
 ]
@@ -26,4 +26,10 @@ def test_dump_and_load_findings():
 def test_select_pages():
     dumped = serializeraw.dump_findings(FINDINGS)
     loaded = serializeraw.load_findings(dumped, pages=5)
+    assert len(loaded) == 2
+
+
+def test_write_load_grouped(testdir):
+    serializeraw.write_grouped(FINDINGS, dest=testdir.tmpdir)
+    loaded = serializeraw.load_grouped(testdir.tmpdir)
     assert len(loaded) == 2
