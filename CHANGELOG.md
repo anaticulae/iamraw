@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.36.0
+
+### Feature
+
+* move method to store and serialize WebConfig (92a92d44b0dc)
+* move method to write and load grouped findings (6f2c6272f14f)
+
 ## v4.35.0
 
 ### Feature
