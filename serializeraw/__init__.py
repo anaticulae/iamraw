@@ -190,6 +190,9 @@ from serializeraw.toc import dump_toc
 from serializeraw.toc import load_toc
 # utils
 from serializeraw.utils import validate
+# webconfig
+from serializeraw.webconfig import dump_webconfig
+from serializeraw.webconfig import load_webconfig
 # whitepage
 from serializeraw.whitepage import dump_whitepages
 from serializeraw.whitepage import load_whitepages

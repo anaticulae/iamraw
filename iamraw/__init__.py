@@ -297,6 +297,8 @@ from iamraw.toc import create_toc
 from iamraw.toc import merge_toc
 from iamraw.toc import tosection
 from iamraw.toc import tosectionraw
+# webconfig
+from iamraw.webconfig import WebConfig
 # whitepage
 from iamraw.whitepage import PageContentWhitepage
 from iamraw.whitepage import PageContentWhitepages
