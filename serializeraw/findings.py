@@ -149,6 +149,41 @@ def load_fast_findings(source: str, page: int) -> iamraw.PageFinding:
     return iamraw.PageFinding(page=page, content=findings)
 
 
+def findings_from_path(
+    path: str,
+    worker: int = 10,
+    useronly: bool = True,
+    msgid: set = None,
+) -> iamraw.PageFindings:
+    """Load Findings from `path` directory and group them by page as
+    `PageFindings`."""
+    assert os.path.isdir(path), str(path)
+    files = utila.file_list(path, include='yaml', recursive=True)
+    if useronly:
+        files = [
+            item for item in files if utila.file_name(item).endswith('_user')
+        ]
+    paths = [os.path.join(path, item) for item in files]
+    # limit worker by max file count
+    worker = utila.mins(worker, len(files))
+    # ensure to have at least one worker when collection now file
+    worker = utila.maxs(1, worker)
+    # yaml parsing is cpu bound, therefore we need a process pool instead
+    # of thread pool.
+    executor = utila.select_executor()
+    with executor(max_workers=worker) as executor:
+        todo = {executor.submit(load_findings, path): path for path in paths}
+        findings = []
+        for job in concurrent.futures.as_completed(todo):
+            data = job.result()
+            findings.extend(data)
+    if msgid:
+        # select findings by msgid
+        findings = iamraw.select_findings(findings, msgid=msgid)
+    result = bypage(findings)
+    return result
+
+
 def fname(page: int) -> str:
     """\
     >>> fname(-5)

@@ -80,6 +80,7 @@ from serializeraw.figure import dump_figures
 from serializeraw.figure import load_figures
 # findings
 from serializeraw.findings import dump_findings
+from serializeraw.findings import findings_from_path
 from serializeraw.findings import load_findings
 from serializeraw.findings import load_grouped
 from serializeraw.findings import write_grouped
