@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.36.1
+
+### Feature
+
+* add method to load findings from path (92f507f64ffd)
+
 ## v4.36.0
 
 ### Feature
