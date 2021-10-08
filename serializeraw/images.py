@@ -28,6 +28,8 @@ def dump_image_info(info: iamraw.ImageInformation) -> str:
         result['page'] = info.page
     if info.hidden:
         result['hidden'] = info.hidden
+    if info.figure:
+        result['figure'] = info.figure
     if info.bounding:
         result['bounding'] = utila.from_tuple(info.bounding)
     if info.dpi:
@@ -44,6 +46,7 @@ def load_image_info(content: str) -> iamraw.ImageInformation:
         ('width', float),
         ('height', float),
         ('hidden', utila.str2bool),
+        ('figure', utila.str2bool),
         ('dpi', functools.partial(utila.parse_tuple, length=2)),
         ('bounding', functools.partial(utila.parse_tuple, length=4)),
     ]

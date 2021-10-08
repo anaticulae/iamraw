@@ -33,6 +33,7 @@ class ImageInformation:
     dpi: tuple = None
     bounding: tuple = None
     hashedimage: str = dataclasses.field(default=None, hash=None, compare=False)
+    figure: bool = False
     hidden: bool = False
     """Disable image to avoid further processing."""
 
