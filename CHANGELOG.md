@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.36.2
+
+### Feature
+
+* add figure flag (079d75c55510)
+
 ## v4.36.1
 
 ### Feature
