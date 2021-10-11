@@ -158,13 +158,20 @@ def findings_from_path(
 ) -> iamraw.PageFindings:
     """Load Findings from `path` directory and group them by page as
     `PageFindings`."""
-    assert os.path.isdir(path), str(path)
-    files = utila.file_list(
-        path,
-        absolute=True,
-        include='yaml',
-        recursive=True,
-    )
+    if not utila.iterable(path):
+        path = (path,)
+    assert all(os.path.isdir(item) for item in path)
+    # load findings from multiple directories
+    files = [
+        utila.file_list(
+            item,
+            absolute=True,
+            include='yaml',
+            recursive=True,
+        ) for item in path
+    ]
+    # resolve multiple directory tree
+    files = utila.flatten(files)
     if useronly:
         files = [
             item for item in files if utila.file_name(item).endswith('_user')
