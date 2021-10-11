@@ -159,12 +159,16 @@ def findings_from_path(
     """Load Findings from `path` directory and group them by page as
     `PageFindings`."""
     assert os.path.isdir(path), str(path)
-    files = utila.file_list(path, include='yaml', recursive=True)
+    files = utila.file_list(
+        path,
+        absolute=True,
+        include='yaml',
+        recursive=True,
+    )
     if useronly:
         files = [
             item for item in files if utila.file_name(item).endswith('_user')
         ]
-    paths = [os.path.join(path, item) for item in files]
     # limit worker by max file count
     worker = utila.mins(worker, len(files))
     # ensure to have at least one worker when collection now file
@@ -175,7 +179,7 @@ def findings_from_path(
     with executor(max_workers=worker) as executor:
         todo = {
             executor.submit(load_findings, path, msgid, pages): path
-            for path in paths
+            for path in files
         }
         findings = []
         for job in concurrent.futures.as_completed(todo):
