@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.37.0
+
+### Feature
+
+* load findings from multiple directories (b7c60e22a933)
+* add parameter to load findings by pages (898b8606b933)
+
 ## v4.36.2
 
 ### Feature
