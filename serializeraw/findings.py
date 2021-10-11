@@ -154,6 +154,7 @@ def findings_from_path(
     worker: int = 10,
     useronly: bool = True,
     msgid: set = None,
+    pages: tuple = None,
 ) -> iamraw.PageFindings:
     """Load Findings from `path` directory and group them by page as
     `PageFindings`."""
@@ -172,14 +173,14 @@ def findings_from_path(
     # of thread pool.
     executor = utila.select_executor()
     with executor(max_workers=worker) as executor:
-        todo = {executor.submit(load_findings, path): path for path in paths}
+        todo = {
+            executor.submit(load_findings, path, msgid, pages): path
+            for path in paths
+        }
         findings = []
         for job in concurrent.futures.as_completed(todo):
             data = job.result()
             findings.extend(data)
-    if msgid:
-        # select findings by msgid
-        findings = iamraw.select_findings(findings, msgid=msgid)
     result = bypage(findings)
     return result
 
