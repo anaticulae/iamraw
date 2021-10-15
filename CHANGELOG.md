@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.37.1
+
+### Fix
+
+* use a more stable hash algorithm (413555b19b98)
+
 ## v4.37.0
 
 ### Feature
