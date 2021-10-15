@@ -12,6 +12,8 @@ import dataclasses
 import enum
 import typing
 
+import utila
+
 PageFontContent = collections.namedtuple('PageFontContent', 'content page')
 PageFontContents = typing.List[PageFontContent]
 
@@ -80,7 +82,7 @@ DEFAULT_STYLE = Style.NORMAL
 DEFAULT_STRETCH = Stretch.REGULAR
 
 
-@dataclasses.dataclass(unsafe_hash=True)
+@dataclasses.dataclass
 class Font:
     # DVDJKK+NimbusSanL-Regu
     # JCUGNO+NimbusSanL-Bold
@@ -91,3 +93,9 @@ class Font:
     style: Style = dataclasses.field(default=DEFAULT_STYLE)
     stretch: Stretch = dataclasses.field(default=DEFAULT_STRETCH)
     flags: tuple = None
+
+    def __hash__(self):
+        # TODO: VERIFY THIS
+        raw = bytes(str(self), 'utf8')
+        hashed = utila.binhash(raw)
+        return hashed
