@@ -56,3 +56,17 @@ ExtractedTextAbbreviation = collections.namedtuple(
     'page, content',
 )
 ExtractedTextAbbreviations = typing.List[ExtractedTextAbbreviation]
+
+
+@dataclasses.dataclass
+class AbbreviationList:
+    data: set = dataclasses.field(default_factory=set)
+
+    def append(self, item):
+        self.data.add(item)  # pylint:disable=E1101
+
+    def __contains__(self, item):
+        return item in self.data  # pylint:disable=unsupported-membership-test
+
+
+AbbreviationLists = typing.List[AbbreviationList]

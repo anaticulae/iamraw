@@ -13,6 +13,8 @@ import os
 import iamraw.path as path
 # abbreviation
 from iamraw.abbreviation import Abbreviation
+from iamraw.abbreviation import AbbreviationList
+from iamraw.abbreviation import AbbreviationLists
 from iamraw.abbreviation import AbbreviationPosition
 from iamraw.abbreviation import AbbreviationResult
 from iamraw.abbreviation import Abbreviations
