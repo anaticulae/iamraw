@@ -28,7 +28,9 @@ class Abbreviation:
     position: AbbreviationPosition = None
 
     def __lt__(self, item):
-        return utila.alphabetically(self.short) <= utila.alphabetically(item.short) # yapf:disable
+        if utila.alphabetically(self.short) <= utila.alphabetically(item.short):
+            return True
+        return False
 
 
 Abbreviations = typing.List[Abbreviation]
