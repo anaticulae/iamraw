@@ -393,8 +393,8 @@ def unite_groups(content, indexs):
 
 
 # Merge lines with lower distance to one text chunk.
-MAX_MERGE_DISTANCE = configo.HV_FLOAT_PLUS(default=3.55).value
-MAX_MERGE_HORIZONTALY = configo.HV_FLOAT_PLUS(default=14.0).value
+MAX_MERGE_DISTANCE = configo.HV_FLOAT_PLUS(default=3.55)
+MAX_MERGE_HORIZONTALY = configo.HV_FLOAT_PLUS(default=14.0)
 
 
 def merge_content(  # pylint:disable=R0914
