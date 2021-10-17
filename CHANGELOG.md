@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.38.0
+
+### Feature
+
+* add abbreviation lookup (f39226fae817)
+* add abbreviation list (c0901bc322e4)
+
+### Fix
+
+* use updated holy values (02e86926feaa)
+
 ## v4.37.1
 
 ### Fix
