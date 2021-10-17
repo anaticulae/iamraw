@@ -70,3 +70,26 @@ class AbbreviationList:
 
 
 AbbreviationLists = typing.List[AbbreviationList]
+
+
+@dataclasses.dataclass
+class AbbreviationListLookup:
+    table: AbbreviationList = dataclasses.field(default=AbbreviationList)
+    other: AbbreviationLists = dataclasses.field(default_factory=list)
+
+    def __contains__(self, item):
+        if item in self.table:
+            return True
+        if self.other:
+            for table in self.other:
+                if item in table:
+                    return True
+        return False
+
+    @classmethod
+    def fromparsed(cls, parsed=None, other=None):
+        assert parsed or other, 'empty input'
+        if parsed is None:
+            parsed = AbbreviationList()
+        lookup = cls(table=parsed, other=other)
+        return lookup
