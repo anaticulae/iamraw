@@ -53,7 +53,7 @@ def dump_findings(findings: list) -> str:
             continue
         message = f'template is not fully replaced:\n{description}'
         # ensure that the user could not see any not fully replaced templates
-        assert utila.istemplate_replaced(item.solution.description), message
+        assert istemplate_replaced(item.solution.description), message
         assert isinstance(item.number, int) or item.number is None
     dumped = yaml.dump(findings)
     return dumped
@@ -225,3 +225,27 @@ def pagenumber(page: str, none: bool = True) -> int:
         # handle error case
         return None
     raise ValueError(f'could not convert to int: {page}')
+
+
+NOT_REPLACED = utila.compiles(r"""
+\{\{[\w\_]*\}\}
+""")
+
+
+def istemplate_replaced(text: str) -> bool:
+    """Check if some pattern `{% %}` is not replaced.
+
+    >>> istemplate_replaced('hello')
+    True
+    >>> istemplate_replaced('%}')
+    False
+    >>> istemplate_replaced('{{myname_is_helm}}')
+    False
+    """
+    if '{%' in text:
+        return False
+    if '%}' in text:
+        return False
+    if NOT_REPLACED.search(text):
+        return False
+    return True
