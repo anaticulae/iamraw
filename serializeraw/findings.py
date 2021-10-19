@@ -242,6 +242,8 @@ def istemplate_replaced(text: str) -> bool:
     >>> istemplate_replaced('{{myname_is_helm}}')
     False
     """
+    if not text:
+        return True
     if '{%' in text:
         return False
     if '%}' in text:
