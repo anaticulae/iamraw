@@ -48,13 +48,12 @@ def create_fontstore_frompath(
 ) -> iamraw.FontStore:
     header = iamraw.path.fontheader(path, prefix=prefix)
     content = iamraw.path.fontcontent(path, prefix=prefix)
-
     if not os.path.exists(header):
         if logging:
-            utila.error(f'fontstore: {header} does not exists')
+            utila.debug(f'fontstore: {header} does not exists')
         return None
     if not os.path.exists(content):
         if logging:
-            utila.error(f'fontstore: {content} does not exists')
+            utila.debug(f'fontstore: {content} does not exists')
         return None
     return create_fontstore(header, content, pages)
