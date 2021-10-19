@@ -241,6 +241,8 @@ def istemplate_replaced(text: str) -> bool:
     False
     >>> istemplate_replaced('{{myname_is_helm}}')
     False
+    >>> istemplate_replaced('<configo.holyvalue.data.HolyValue object at 0x00000260AEA64220>,')
+    False
     """
     if not text:
         return True
@@ -249,5 +251,7 @@ def istemplate_replaced(text: str) -> bool:
     if '%}' in text:
         return False
     if NOT_REPLACED.search(text):
+        return False
+    if 'HolyValue object at' in text:
         return False
     return True
