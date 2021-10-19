@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.38.1
+
+### Feature
+
+* extends replacement check for jinja templates (f4fa0a1cba4f)
+
 ## v4.38.0
 
 ### Feature
