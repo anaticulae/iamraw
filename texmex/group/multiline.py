@@ -240,18 +240,22 @@ def group_linedistances(
     return result
 
 
-MAX_SIZEDIFF = 1.0  # TODO:HOLY VALUE
+MAX_SIZEDIFF = configo.HV_FLOAT_PLUS(default=1.0)
+
+DISTANCE_MAX = configo.HolyTable(
+    items=(
+        (0, 22.0),
+        (12.0, 22.0),
+        (14.5, 30.0),
+        (15.96, 35.0),
+        (16.0, 50.0),
+    ),
+    strategy=utila.Strategy.UPPER,
+)
 
 
-def maxdistance(size: float):
-    # TODO: HOLY VALUE. Support table as holy value
-    if size <= 12.0:
-        return 22.0
-    if size <= 14.5:
-        return 30
-    if size <= 15.96:
-        return 35
-    return 50.0
+def maxdistance(fontsize: float) -> float:
+    return DISTANCE_MAX(fontsize)
 
 
 def group_linedistances_complex(

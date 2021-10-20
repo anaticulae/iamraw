@@ -10,6 +10,7 @@
 import dataclasses
 import typing
 
+import configo
 import utila
 
 import iamraw
@@ -165,7 +166,7 @@ def create_textstyle(chars: iamraw.Chars) -> TextStyle:
     return TextStyle(content=result)
 
 
-HIGHNOTE_MIN_RISE = 5.0  # TODO: HOLY NOTE
+HIGHNOTE_MIN_RISE = configo.HV_FLOAT_PLUS(default=5.0)
 
 
 def highnotes(
