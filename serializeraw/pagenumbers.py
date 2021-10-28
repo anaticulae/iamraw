@@ -43,7 +43,7 @@ def dump_pagenumbers(items) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_pagenumbers(content: str, pages=None):
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='groupme__pagenumbers_pagenumbers',
         safe=False,

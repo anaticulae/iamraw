@@ -53,7 +53,7 @@ def load_text(
     Returns:
         loaded text with replaced headlines
     """
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='words__text_text',
         safe=False,

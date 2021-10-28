@@ -22,7 +22,7 @@ def dump_titlepage(titlepage: iamraw.TitlePage) -> str:
 
 
 def load_titlepage(content: str) -> iamraw.TitlePage:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         safe=False,
     )

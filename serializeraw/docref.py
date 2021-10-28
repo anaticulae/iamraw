@@ -29,7 +29,7 @@ PATTERN = re.compile(r'\d+[ ]\d+')
 
 
 def load_docref(content: str, pages: tuple = None) -> iamraw.DocRefs:
-    loaded = utila.yaml_from_raw_or_path(content)
+    loaded = utila.yaml_load(content)
     result = []
     for raw in loaded:
         page, sentence, marked = raw.split(maxsplit=2)

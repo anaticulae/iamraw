@@ -33,7 +33,7 @@ def load_lines(
     prefix: str = '',
 ) -> iamraw.PageContentLines:
     prefix = f'{prefix}_' if prefix else ''
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         source,
         fname=f'rawmaker__{prefix}line_line',
         safe=False,

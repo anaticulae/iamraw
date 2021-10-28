@@ -36,7 +36,7 @@ def dump_pdfinfo(info: iamraw.PDFInfo, ext: str = 'json') -> str:
 
 
 def load_pdfinfo(path: str) -> iamraw.PDFInfo:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         path,
         fname='pdfinfo',
     )

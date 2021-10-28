@@ -48,7 +48,7 @@ def load_pageborders(
     Returns:
         List[PageSize], List[Border]
     """
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='rawmaker__border_pages',
     )
@@ -105,7 +105,7 @@ def border_fromraw(border: str) -> iamraw.Border:
 
 
 def load_leftright_border(content: str, pages: tuple = None) -> dict:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='groupme__border_leftright',
     )

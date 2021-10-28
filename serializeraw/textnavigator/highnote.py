@@ -18,7 +18,7 @@ import texmex
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_highnotes(content: str, pages: tuple = None):
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         safe=False,
     )

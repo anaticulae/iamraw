@@ -34,7 +34,7 @@ def load_findings(
     Raises:
         Assertion: if file is corrupt
     """
-    loaded = utila.yaml_from_raw_or_path(path, safe=False)
+    loaded = utila.yaml_load(path, safe=False)
     assert isinstance(loaded, list), type(loaded)
     assert all(isinstance(item, iamraw.Finding) for item in loaded), str(loaded)
     loaded = select_pages(loaded, pages)

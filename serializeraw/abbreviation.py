@@ -68,8 +68,8 @@ def dump_abbreviation_table(result: iamraw.abbreviation.AbbreviationResult) -> s
     return dumped
 
 
-def load_abbreviation_table(content: str,) -> iamraw.AbbreviationResult:
-    loaded = utila.yaml_from_raw_or_path(
+def load_abbreviation_table(content: str) -> iamraw.AbbreviationResult:
+    loaded = utila.yaml_load(
         content,
         fname='groupme__abbreviation_abbreviation',
         safe=False,
@@ -99,7 +99,7 @@ def load_text_abbreviations(
     content: str,
     pages: tuple = None,
 ) -> iamraw.ExtractedTextAbbreviations:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         safe=False,
     )

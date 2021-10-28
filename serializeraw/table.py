@@ -31,7 +31,7 @@ def load_tables(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentTableBoundings:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='tablero__decide_decide',
         safe=False,

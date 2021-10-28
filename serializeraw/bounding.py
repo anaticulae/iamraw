@@ -42,7 +42,7 @@ def load_boundingboxes(content: str, pages=None) -> iamraw.PageBoundingsList:
         pages=pages,
         fname='rawmaker__border_boundingboxes',
     )
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='rawmaker__border_boundingboxes',
         safe=False,

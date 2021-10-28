@@ -54,7 +54,7 @@ def load_document(
             pages=pages,
             fname='rawmaker__text_text',
         )
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='rawmaker__text_text',
         safe=False,

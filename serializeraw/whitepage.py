@@ -42,7 +42,7 @@ def load_whitepages(
     Returns:
         list of loaded `WhitePage` type
     """
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         safe=False,
     )

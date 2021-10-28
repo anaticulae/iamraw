@@ -60,7 +60,7 @@ def load_likelihood(
     Returns:
         List of loaded likelihood.
     """
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         safe=False,
     )

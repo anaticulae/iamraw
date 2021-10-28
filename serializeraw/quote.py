@@ -49,7 +49,7 @@ def load_quotations(
     content: str,
     pages: tuple = None,
 ) -> iamraw.ExtractedQuotations:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         safe=False,
     )

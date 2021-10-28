@@ -55,7 +55,7 @@ def dump_horizontals(pages: PagesWithHorizontalList) -> str:
 
 @lru_cache(CACHE_SMALL)
 def load_boxes(content: str, pages=None) -> PagesWithBoxList:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='rawmaker__boxes_boxes',
     )
@@ -82,7 +82,7 @@ def load_horizontals(
     prefix='',
 ) -> PagesWithHorizontalList:
     prefix = f'{prefix}_' if prefix else ''
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname=f'rawmaker__{prefix}horizontals_horizontals',
     )

@@ -16,7 +16,7 @@ import serializeraw
 
 def load_docinfo(path: str, pages: tuple = None) -> iamraw.DocInfo:  # pylint:disable=W0613
     # TODO: USE PAGES SELECTOR
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         path,
         fname='sections__docinfo_docinfo',
         safe=False,

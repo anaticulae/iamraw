@@ -46,7 +46,7 @@ def load_sections(
     Return:
         loaded Sections
     """
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='sections__section_result',
         safe=False,

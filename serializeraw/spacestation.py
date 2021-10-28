@@ -91,7 +91,7 @@ def dump_document_chardist(item: iamraw.DocumentCharDist) -> str:
 
 
 def load_document_chardist(path: str) -> iamraw.DocumentCharDist:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         path,
         fname='spacestation__chardist_chardist',
         safe=True,
@@ -107,7 +107,7 @@ def dump_document_worddist(item: iamraw.DocumentWordDist) -> str:
 
 
 def load_document_worddist(path: str) -> iamraw.DocumentWordDist:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         path,
         fname='spacestation__worddist_worddist',
         safe=True,

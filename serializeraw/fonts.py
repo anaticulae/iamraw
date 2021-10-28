@@ -58,7 +58,7 @@ def load_font_header(content):
     `default` value is used. If the value is `NONE` is it replaced by `None`.
     Third, if the state is defined the state is loaded.
     """
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='rawmaker__fonts_header',
     )
@@ -112,7 +112,7 @@ def dump_font_content(pages: iamraw.PageFontContents) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_font_content(content, pages=None):
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='rawmaker__fonts_content',
     )

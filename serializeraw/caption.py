@@ -25,7 +25,7 @@ def load_captions(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentCaptions:
-    loaded = utila.yaml_from_raw_or_path(content, safe=False)
+    loaded = utila.yaml_load(content, safe=False)
     result = []
     for page in loaded:
         if utila.should_skip(page.page, pages):

@@ -117,7 +117,7 @@ def dump_yamlpages(content: str) -> str:
 
 
 def split_content(content: str) -> tuple:
-    loaded = utila.yaml_from_raw_or_path(content)
+    loaded = utila.yaml_load(content)
     static = {}
     dynamic = {}
     islist = isinstance(loaded, list)
@@ -186,7 +186,7 @@ def parse_header(content: str, pages: tuple = None) -> YAMLPages:
 
 
 def getpage(content: str) -> int:
-    loaded = utila.yaml_from_raw_or_path(content)
+    loaded = utila.yaml_load(content)
     if isinstance(loaded, list):
         loaded = loaded[0]
     return loaded['page']

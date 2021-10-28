@@ -31,12 +31,12 @@ def test_yamlpages_write(testdir):
     utila.file_replace(filename, dumped)
     serializeraw.write_yamlpages(filename)
     loaded = serializeraw.load_yamlpages(filename, pages=10)
-    yaml = utila.yaml_from_raw_or_path(loaded)
+    yaml = utila.yaml_load(loaded)
     assert yaml['dimension']
     assert yaml['pages'][0]['page'] == 10
     # double page test
     loaded = serializeraw.load_yamlpages(filename, pages=(0, 11))
-    yaml = utila.yaml_from_raw_or_path(loaded)
+    yaml = utila.yaml_load(loaded)
     assert yaml['pages'][0]['page'] == 0  # pylint:disable=C2001
     assert yaml['pages'][1]['page'] == 11
 

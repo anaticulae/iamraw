@@ -25,7 +25,7 @@ def load_formulas(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentFormula:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='detector__formula_detected',
         safe=False,

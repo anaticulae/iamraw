@@ -38,7 +38,7 @@ def load_headerfooter(
     content: str,
     pages=None,
 ) -> iamraw.PageContentFooterHeaders:
-    loaded = utila.yaml_from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='groupme__footer_footerheader',
         safe=False,
