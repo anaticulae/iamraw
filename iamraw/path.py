@@ -146,3 +146,7 @@ def tablero_result(path: str, prefix: str = '') -> str:
     '/data/resources/tablero__decide_decide.yaml'
     """
     return connect(path, 'tablero', 'decide_decide', prefix)
+
+
+def codero_result(path: str, prefix: str = '') -> str:
+    return connect(path, 'codero', 'result_result', prefix)
