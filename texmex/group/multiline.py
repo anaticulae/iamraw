@@ -240,7 +240,7 @@ def group_linedistances(
     return result
 
 
-MAX_SIZEDIFF = configo.HV_FLOAT_PLUS(default=1.0)
+SIZEDIFF_MAX = configo.HV_FLOAT_PLUS(default=1.0)
 
 DISTANCE_MAX = configo.HolyTable(
     items=(
@@ -260,7 +260,7 @@ def maxdistance(fontsize: float) -> float:
 
 def group_linedistances_complex(
     content: PageTextNavigator,
-    max_sizediff: float = MAX_SIZEDIFF,
+    max_sizediff: float = SIZEDIFF_MAX,
     max_distance: callable = maxdistance,
 ) -> typing.List[int]:
     """Group lines by sizes and distances of text chunks.
@@ -397,14 +397,14 @@ def unite_groups(content, indexs):
 
 
 # Merge lines with lower distance to one text chunk.
-MAX_MERGE_DISTANCE = configo.HV_FLOAT_PLUS(default=3.55)
-MAX_MERGE_HORIZONTALY = configo.HV_FLOAT_PLUS(default=14.0)
+MERGE_DISTANCE_MAX = configo.HV_FLOAT_PLUS(default=3.55)
+MERGE_HORIZONTALY_MAX = configo.HV_FLOAT_PLUS(default=14.0)
 
 
 def merge_content(  # pylint:disable=R0914
     text: TextBoundsInfos,
-    max_x_merge=MAX_MERGE_HORIZONTALY,
-    max_y_merge=MAX_MERGE_DISTANCE,
+    max_x_merge=MERGE_HORIZONTALY_MAX,
+    max_y_merge=MERGE_DISTANCE_MAX,
     uindex=None,
 ) -> TextBoundsInfos:
     """Merge content blocks to create greater content blocks depending on
@@ -447,7 +447,6 @@ def merge_content(  # pylint:disable=R0914
             result.append((current_bounds, [current_text]))
             merged.append([uindex[index]])
             continue
-
         # Merge me
         member_location, member_content = result[-1]
         merger_location, merger_content = text[index].bounds, text[index].text
@@ -458,7 +457,6 @@ def merge_content(  # pylint:disable=R0914
             utila.rectangle_max([member_location, merger_location]),
             member_content,
         )
-
     result = [TextBoundsInfo(
         text=item[1],
         bounds=item[0],

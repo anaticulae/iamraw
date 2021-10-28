@@ -62,7 +62,7 @@ from texmex.navigator import navigator_to_bounds
 from texmex.navigator import navigator_to_content
 from texmex.navigator import single
 # style
-from texmex.style import HIGHNOTE_MIN_RISE  # TODO: REMOVE LATER
+from texmex.style import HIGHNOTE_RISE_MIN
 from texmex.style import CharStyle
 from texmex.style import CharStyles
 from texmex.style import HighNote
@@ -86,3 +86,6 @@ from texmex.text import connect_text
 from texmex.text import count_textlines
 # utils
 from texmex.utils import topbottom
+
+# TODO: REMOVE LATER
+HIGHNOTE_MIN_RISE = HIGHNOTE_RISE_MIN

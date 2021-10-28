@@ -166,18 +166,18 @@ def create_textstyle(chars: iamraw.Chars) -> TextStyle:
     return TextStyle(content=result)
 
 
-HIGHNOTE_MIN_RISE = configo.HV_FLOAT_PLUS(default=5.0)
+HIGHNOTE_RISE_MIN = configo.HV_FLOAT_PLUS(default=5.0)
 
 
 def highnotes(
     info: TextInfo,
-    highnote_rise_min: float = HIGHNOTE_MIN_RISE,
+    highnote_rise_min: float = HIGHNOTE_RISE_MIN,
 ) -> HighNotes:
     """Extract `HighNote`s out of text line. A highnote is a number
     which is a reference to an item defined in the footer.
 
     A HighNote is a number which has a text rise higher than
-    `HIGHNOTE_MIN_RISE`.
+    `HIGHNOTE_RISE_MIN`.
 
     Args:
         info(TextInfo): text line which can contain HightNote's
