@@ -15,9 +15,53 @@ import iamraw
 def dump_codes(items: iamraw.PageContentCodes) -> str:
     # remove empty pages
     items = [item for item in items if item.content]
+    raw = [dump_page(item) for item in items]
     # convert to yaml
-    dumped = utila.yaml_dump(items, safe=False)
+    dumped = utila.yaml_dump(raw)
     return dumped
+
+
+def dump_page(page: iamraw.PageContentCode) -> dict:
+    content = [
+        dict(
+            caption=utila.from_tuple(code.caption) if code.caption else set(),
+            caption_bounding=[
+                utila.from_tuple(item) for item in code.caption_bounding
+            ],
+            tokens=utila.from_tuple(code.tokens) if code.tokens else set(),
+            tokens_bounding=[
+                utila.from_tuple(item) for item in code.tokens_bounding
+            ],
+        ) for code in page.content
+    ]
+    result = dict(content=content, page=page.page)
+    return result
+
+
+def load_page(page) -> iamraw.PageContentCode:
+    pagenr = int(page['page'])
+    content = [
+        iamraw.PeaceOfCode(
+            caption=set(
+                utila.parse_tuple(
+                    code['caption'],
+                    length=None,
+                    typ=int,
+                )) if code['caption'] else set(),
+            caption_bounding=[
+                utila.parse_tuple(item) for item in code['caption_bounding']
+            ],
+            tokens=set(utila.parse_tuple(
+                code['tokens'],
+                length=None,
+                typ=int,
+            )) if code['tokens'] else set(),
+            tokens_bounding=[
+                utila.parse_tuple(item) for item in code['tokens_bounding']
+            ],
+        ) for code in page['content']
+    ]
+    return iamraw.PageContentCode(content=content, page=pagenr)
 
 
 def load_codes(
@@ -31,7 +75,8 @@ def load_codes(
     )
     result = []
     for page in loaded:
-        if utila.should_skip(page.page, pages):
+        if utila.should_skip(page['page'], pages):
             continue
-        result.append(page)
+        content = load_page(page)
+        result.append(content)
     return result
