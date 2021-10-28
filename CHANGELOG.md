@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v4.39.0
+
+### Feature
+
+* add default codes loader (2d1488e4ca21)
+* add codero result path (ee168ce444d2)
+* use real holy values (8068ec649a76)
+* detect Holy Value as non replaced variable (32e8f12b4ccc)
+
+### Fix
+
+* decrease debugging level (8122db65cd83)
+* do not fail on passing None (70533348a8db)
+
 ## v4.38.1
 
 ### Feature
