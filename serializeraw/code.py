@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 
@@ -17,7 +16,7 @@ def dump_codes(items: iamraw.PageContentCodes) -> str:
     # remove empty pages
     items = [item for item in items if item.content]
     # convert to yaml
-    dumped = yaml.dump(items)
+    dumped = utila.yaml_dump(items, safe=False)
     return dumped
 
 
@@ -25,7 +24,11 @@ def load_codes(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentCodes:
-    loaded = utila.yaml_from_raw_or_path(content, safe=False)
+    loaded = utila.yaml_load(
+        content,
+        fname='codero__result_result',
+        safe=False,
+    )
     result = []
     for page in loaded:
         if utila.should_skip(page.page, pages):
