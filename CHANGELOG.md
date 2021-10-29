@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.39.1
+
+### Feature
+
+* use plain old data (1a05e115761e)
+
 ## v4.39.0
 
 ### Feature
