@@ -24,11 +24,11 @@ def dump_codes(items: iamraw.PageContentCodes) -> str:
 def dump_page(page: iamraw.PageContentCode) -> dict:
     content = [
         dict(
-            caption=utila.from_tuple(code.caption) if code.caption else set(),
+            caption=utila.from_tuple(code.caption) if code.caption else tuple(),
             caption_bounding=[
                 utila.from_tuple(item) for item in code.caption_bounding
             ],
-            tokens=utila.from_tuple(code.tokens) if code.tokens else set(),
+            tokens=utila.from_tuple(code.tokens) if code.tokens else tuple(),
             tokens_bounding=[
                 utila.from_tuple(item) for item in code.tokens_bounding
             ],
@@ -42,20 +42,19 @@ def load_page(page) -> iamraw.PageContentCode:
     pagenr = int(page['page'])
     content = [
         iamraw.PeaceOfCode(
-            caption=set(
-                utila.parse_tuple(
-                    code['caption'],
-                    length=None,
-                    typ=int,
-                )) if code['caption'] else set(),
+            caption=utila.parse_tuple(
+                code['caption'],
+                length=None,
+                typ=int,
+            ) if code['caption'] else tuple(),
             caption_bounding=[
                 utila.parse_tuple(item) for item in code['caption_bounding']
             ],
-            tokens=set(utila.parse_tuple(
+            tokens=utila.parse_tuple(
                 code['tokens'],
                 length=None,
                 typ=int,
-            )) if code['tokens'] else set(),
+            ) if code['tokens'] else tuple(),
             tokens_bounding=[
                 utila.parse_tuple(item) for item in code['tokens_bounding']
             ],

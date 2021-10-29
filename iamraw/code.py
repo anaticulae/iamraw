@@ -20,8 +20,8 @@ PageContentCodes = typing.List[PageContentCode]
 
 @dataclasses.dataclass
 class PeaceOfCode:
-    caption: typing.Set[int] = dataclasses.field(default_factory=set)
-    tokens: typing.Set[int] = dataclasses.field(default_factory=set)
+    caption: typing.Tuple[int] = dataclasses.field(default_factory=tuple)
+    tokens: typing.Tuple[int] = dataclasses.field(default_factory=tuple)
     tokens_bounding: list = dataclasses.field(default_factory=list)
     caption_bounding: list = dataclasses.field(default_factory=list)
 

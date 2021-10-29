@@ -15,8 +15,8 @@ CONTENT = [
         page=10,
         content=[
             iamraw.PeaceOfCode(
-                caption={10, 11},
-                tokens={6, 7, 8, 9},
+                caption=(10, 11),
+                tokens=(6, 7, 8, 9),
                 tokens_bounding=[
                     (10.0, 12.0, 30.0, 40.0),
                     (10.2, 16.0, 30.0, 42.0),
