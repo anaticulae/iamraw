@@ -27,11 +27,14 @@ def dump_lists(lists: list) -> str:
             for pnumber, item in list_single.data:
                 assert item, f'page: {pagenumber}; {pnumber} empty list content'
                 content.append(f'{pnumber} {item}')
-            pageresult.append({
-                'area': area,
-                'content': content,
-                'id': f'{list_single.paragraph} {list_single.merged}',
-            })
+            item = dict(
+                area=area,
+                content=content,
+                id=f'{list_single.paragraph} {list_single.merged}',
+            )
+            if list_single.area_length:
+                item['area_length'] = dump_area(list_single.area_length)
+            pageresult.append(item)
         if pageresult:
             raw.append({
                 'page': pagenumber,
@@ -42,7 +45,7 @@ def dump_lists(lists: list) -> str:
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
+def load_lists(content: str, pages=None) -> iamraw.PageContentLists:  # pylint:disable=R0914
     content = utila.from_raw_or_path(
         content,
         fname='words__list_list',
@@ -61,8 +64,10 @@ def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
                 int(item) for item in listinstance['id'].split()
             ]
             area = load_area(listinstance['area'])
+            area_length = load_area(listinstance.get('area_length', ''))
             instance = iamraw.PageList(
                 area=area,
+                area_length=area_length,
                 paragraph=paragraph,
                 merged=merged,
             )
