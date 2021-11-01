@@ -44,43 +44,47 @@ def dump_lists(lists: list) -> str:
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_lists(content: str, pages=None) -> iamraw.PageContentLists:  # pylint:disable=R0914
+def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
     loaded = utila.yaml_load(content, fname='words__list_list')
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
         if utila.should_skip(pagenumber, pages):
             continue
-        content = page['lists']
-        newpage = []
-        for listinstance in content:
-            area = load_area(listinstance['area'])
-            area_length = load_area(listinstance.get('area_length', ''))
-            paragraph, merged = utila.parse_tuple(
-                listinstance['id'],
-                length=2,
-                typ=int,
-            )
-            instance = iamraw.PageList(
-                area=area,
-                area_length=area_length,
-                paragraph=paragraph,
-                merged=merged,
-            )
-            for entree in listinstance['content']:
-                # See (Number, Item)
-                try:
-                    number, text = entree.split(maxsplit=1)
-                except ValueError:
-                    utila.error('could not load list properly '
-                                f'on page {pagenumber}: {entree}')
-                    number, text = '', entree
-                # try to convert to int/float
-                if number.isdigit():  # all decimal digits and not empty
-                    number = int(number)
-                instance.append(text, number)
-            newpage.append(instance)
-        result.append(iamraw.PageContentList(page=pagenumber, content=newpage))
+        lists = []
+        for listinstance in page['lists']:
+            instance = load_list_instance(listinstance)
+            lists.append(instance)
+        result.append(iamraw.PageContentList(page=pagenumber, content=lists))
+    return result
+
+
+def load_list_instance(raw: dict) -> iamraw.PageList:
+    area = load_area(raw['area'])
+    area_length = load_area(raw.get('area_length', ''))
+    paragraph, merged = utila.parse_tuple(
+        raw['id'],
+        length=2,
+        typ=int,
+    )
+    result = iamraw.PageList(
+        area=area,
+        area_length=area_length,
+        paragraph=paragraph,
+        merged=merged,
+    )
+    for entree in raw['content']:
+        # See (Number, Item)
+        try:
+            number, text = entree.split(maxsplit=1)
+        except ValueError:
+            utila.error('could not load list properly '
+                        f'on raw {raw}: {entree}')
+            number, text = '', entree
+        # try to convert to int/float
+        if number.isdigit():  # all decimal digits and not empty
+            number = int(number)
+        result.append(text, number)
     return result
 
 
