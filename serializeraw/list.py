@@ -11,7 +11,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 
@@ -40,18 +39,13 @@ def dump_lists(lists: list) -> str:
                 'page': pagenumber,
                 'lists': pageresult,
             })
-    dumped = yaml.safe_dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_lists(content: str, pages=None) -> iamraw.PageContentLists:  # pylint:disable=R0914
-    content = utila.from_raw_or_path(
-        content,
-        fname='words__list_list',
-        ftype='yaml',
-    )
-    loaded = yaml.safe_load(content)
+    loaded = utila.yaml_load(content, fname='words__list_list')
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
@@ -60,11 +54,13 @@ def load_lists(content: str, pages=None) -> iamraw.PageContentLists:  # pylint:d
         content = page['lists']
         newpage = []
         for listinstance in content:
-            paragraph, merged = [
-                int(item) for item in listinstance['id'].split()
-            ]
             area = load_area(listinstance['area'])
             area_length = load_area(listinstance.get('area_length', ''))
+            paragraph, merged = utila.parse_tuple(
+                listinstance['id'],
+                length=2,
+                typ=int,
+            )
             instance = iamraw.PageList(
                 area=area,
                 area_length=area_length,
