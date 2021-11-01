@@ -21,16 +21,16 @@ def dump_lists(lists: list) -> str:
     for (pagenumber, pagecontent) in lists:
         pagenumber = int(pagenumber)
         pageresult = []
-        for lists_ in pagecontent:
-            area = dump_area(lists_.area)
+        for list_single in pagecontent:
+            area = dump_area(list_single.area)
             content = []
-            for pnumber, item in lists_.data:
+            for pnumber, item in list_single.data:
                 assert item, f'page: {pagenumber}; {pnumber} empty list content'
                 content.append(f'{pnumber} {item}')
             pageresult.append({
                 'area': area,
                 'content': content,
-                'id': f'{lists_.paragraph} {lists_.merged}',
+                'id': f'{list_single.paragraph} {list_single.merged}',
             })
         if pageresult:
             raw.append({
