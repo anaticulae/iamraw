@@ -24,6 +24,8 @@ def dump_lists(lists: list) -> str:
             area = dump_area(list_single.area)
             content = []
             for pnumber, item in list_single.data:
+                if not item:
+                    utila.error(list_single)
                 assert item, f'page: {pagenumber}; {pnumber} empty list content'
                 content.append(f'{pnumber} {item}')
             item = dict(
