@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.40.0
+
+### Feature
+
+* extend debugging information (482de255ad21)
+* add attribute to store groups of list item length (4942ca0082ff)
+
 ## v4.39.1
 
 ### Feature
