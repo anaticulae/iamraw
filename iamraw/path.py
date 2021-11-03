@@ -75,20 +75,40 @@ def toc(path: str, prefix: str = '') -> str:
     return connect(path, 'groupme', 'toc_toc', prefix)
 
 
-def figure_caption(path: str, prefix: str = '') -> str:
+def caption_figure(path: str, prefix: str = '') -> str:
     return connect(path, 'caption', 'figure_caption', prefix)
 
 
-def image_caption(path: str, prefix: str = '') -> str:
+figure_caption = caption_figure
+
+
+def caption_image(path: str, prefix: str = '') -> str:
     return connect(path, 'caption', 'image_caption', prefix)
 
 
-def table_caption(path: str, prefix: str = '') -> str:
+image_caption = caption_image
+
+
+def caption_table(path: str, prefix: str = '') -> str:
     return connect(path, 'caption', 'table_caption', prefix)
 
 
-def general_cation(path: str, prefix: str = '') -> str:
+def caption_code(path: str, prefix: str = '') -> str:
+    return connect(path, 'caption', 'code_code', prefix)
+
+
+table_caption = caption_table
+
+
+def caption_general(path: str, prefix: str = '') -> str:
     return connect(path, 'caption', 'general_general', prefix)
+
+
+general_cation = caption_general
+
+
+def caption_result(path: str, prefix: str = '') -> str:
+    return connect(path, 'caption', 'result_result', prefix)
 
 
 def sections_(path: str, prefix: str = '') -> str:
