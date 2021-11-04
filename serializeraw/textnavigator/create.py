@@ -50,18 +50,11 @@ def create_pagetextnavigators_frompath(
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
     # prepare path
-    text = iamraw.path.text(path, prefix=prefix)
-    textpositions = iamraw.path.textposition(path, prefix=prefix)
-    fontheader = iamraw.path.fontheader(path, prefix=prefix)
-    fontcontent = iamraw.path.fontcontent(path, prefix=prefix)
-    if not utila.exists(fontheader):
-        if logging:
-            utila.debug(f'fontstore: {fontheader} does not exists')
-        fontheader = None
-    if not utila.exists(fontcontent):
-        if logging:
-            utila.debug(f'fontstore: {fontcontent} does not exists')
-        fontcontent = None
+    text, textpositions, fontheader, fontcontent = ptn_path(
+        path,
+        prefix,
+        logging,
+    )
     # load data
     navigators = create_pagetextnavigators_fromfile(
         text=text,
@@ -89,14 +82,8 @@ def create_pagetextnavigators_fromfile(
 ) -> texmex.PageTextNavigators:
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
-    text = serializeraw.load_document(
-        text,
-        pages=pages,
-    )
-    textpositions = serializeraw.load_textpositions(
-        textpositions,
-        pages=pages,
-    )
+    text = serializeraw.load_document(text, pages=pages)
+    textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
     fontstore = None
     if fontheader and fontcontent:
         fontstore = serializeraw.create_fontstore(
@@ -112,6 +99,22 @@ def create_pagetextnavigators_fromfile(
         sort=sort,
     )
     return navigators
+
+
+def ptn_path(path: str, prefix: str = '', logging: bool = False):
+    text = iamraw.path.text(path, prefix=prefix)
+    textpositions = iamraw.path.textposition(path, prefix=prefix)
+    fontheader = iamraw.path.fontheader(path, prefix=prefix)
+    fontcontent = iamraw.path.fontcontent(path, prefix=prefix)
+    if not utila.exists(fontheader):
+        if logging:
+            utila.debug(f'fontstore: {fontheader} does not exists')
+        fontheader = None
+    if not utila.exists(fontcontent):
+        if logging:
+            utila.debug(f'fontstore: {fontcontent} does not exists')
+        fontcontent = None
+    return text, textpositions, fontheader, fontcontent
 
 
 def create_pagetextcontentnavigators_frompath(
@@ -140,48 +143,31 @@ def create_pagetextcontentnavigators_frompath(
     """
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
-    navigators = create_pagetextnavigators_frompath(
-        path=path,
-        prefix=prefix,
-        pages=pages,
-        mode=mode,
-    )
+    # prepare path
+    text, textpositions, fontheader, fontcontent = ptn_path(path, prefix)
     # do not generate general data twice
     prefix = prefix if footer_sized_prefixed else ''
     # determine paths
     headerfooterpath = iamraw.path.headerfooters(path, prefix=prefix)
-    headerfooter = serializeraw.load_headerfooter(
-        headerfooterpath,
-        pages=pages,
-    )
-    sizeandborderpath = iamraw.path.sizeandborder(
-        path,
-        prefix=prefix,
-    )
-    sizeandborder = serializeraw.load_pageborders(
-        sizeandborderpath,
-        pages=pages,
-    )
+    sizeandborderpath = iamraw.path.sizeandborder(path, prefix=prefix)
     if horizontals:
-        horizontals = iamraw.path.horizontals(
-            path,
-            prefix=prefix,
-        )
-        if os.path.exists(horizontals):
-            horizontals = serializeraw.load_horizontals(
-                horizontals,
-                pages=pages,
-            )
-        else:
+        horizontals = iamraw.path.horizontals(path, prefix=prefix)
+        if not os.path.exists(horizontals):
             horizontals = None
-
-    result = texmex.create_pagetextcontentnavigators(
-        headerfooter=headerfooter,
-        navigators=navigators,
-        pages=pages,
-        sizeandborder=sizeandborder,
-        validate_leftright=validate_leftright,
+    else:
+        horizontals = None
+    # create
+    result = create_pagetextcontentnavigators_fromfile(
+        text=text,
+        textpositions=textpositions,
+        sizeandborderpath=sizeandborderpath,
+        headerfooterpath=headerfooterpath,
+        fontheader=fontheader,
+        fontcontent=fontcontent,
         horizontals=horizontals,
+        pages=pages,
+        mode=mode,
+        validate_leftright=validate_leftright,
     )
     return result
 
