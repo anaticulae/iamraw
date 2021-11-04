@@ -180,6 +180,9 @@ from serializeraw.textnavigator.create import create_pagetextnavigators_frompath
 from serializeraw.textnavigator.filter import remove_magic
 from serializeraw.textnavigator.highnote import dump_highnotes
 from serializeraw.textnavigator.highnote import load_highnotes
+# translations
+from serializeraw.textnavigator.translation import dump_translations
+from serializeraw.textnavigator.translation import load_translations
 # textpostions
 from serializeraw.textposition import dump_textpositions
 from serializeraw.textposition import load_textpositions
