@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.41.0
+
+### Feature
+
+* add method to dump and load translation (38b5f6d3ecf9)
+* add translation to transform navigator indexes (920fc01253b6)
+* add backup parameter to use baml sources (a8870040f781)
+* add option to change path file type (a667436e3a77)
+* introduce caption result and caption code (86f8d8b84a69)
+
 ## v4.40.0
 
 ### Feature
