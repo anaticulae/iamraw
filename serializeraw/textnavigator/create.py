@@ -51,25 +51,27 @@ def create_pagetextnavigators_frompath(
     pages = utila.ensure_tuple(pages)
     # prepare path
     text = iamraw.path.text(path, prefix=prefix)
-    text = serializeraw.load_document(text, pages=pages)
-    textposition = iamraw.path.textposition(path, prefix=prefix)
-    textposition = serializeraw.load_textpositions(
-        textposition,
-        pages=pages,
-    )
-    fontstore = serializeraw.create_fontstore_frompath(
-        path,
-        prefix=prefix,
-        pages=pages,
-        logging=logging,
-    )
-    navigators = texmex.create_pagetextnavigators(
-        text,
-        textposition,
-        fontstore,
+    textpositions = iamraw.path.textposition(path, prefix=prefix)
+    fontheader = iamraw.path.fontheader(path, prefix=prefix)
+    fontcontent = iamraw.path.fontcontent(path, prefix=prefix)
+    if not utila.exists(fontheader):
+        if logging:
+            utila.debug(f'fontstore: {fontheader} does not exists')
+        fontheader = None
+    if not utila.exists(fontcontent):
+        if logging:
+            utila.debug(f'fontstore: {fontcontent} does not exists')
+        fontcontent = None
+    # load data
+    navigators = create_pagetextnavigators_fromfile(
+        text=text,
+        textpositions=textpositions,
+        fontheader=fontheader,
+        fontcontent=fontcontent,
         fill_empty=fill_empty,
         mode=mode,
         sort=sort,
+        pages=pages,
     )
     return navigators
 
@@ -83,6 +85,7 @@ def create_pagetextnavigators_fromfile(
     mode=texmex.PageTextNavigatorMode.BOTH,
     *,
     fill_empty: bool = True,
+    sort: bool = True,
 ) -> texmex.PageTextNavigators:
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
@@ -106,6 +109,7 @@ def create_pagetextnavigators_fromfile(
         fontstore,
         fill_empty=fill_empty,
         mode=mode,
+        sort=sort,
     )
     return navigators
 
