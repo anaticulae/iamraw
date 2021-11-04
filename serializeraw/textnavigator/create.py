@@ -32,12 +32,12 @@ def create_pagetextnavigators_frompath(
 
     Args:
         path(str): Path to folder which contains all data to construct.
-        prefix(str): Optional prefix to difference items in folder.
+        prefix(str): Optional prefix to differentiate items in folder.
         pages(tuple): Tuple of pages to load.
         mode(PageTextNavigatorMode): select text container to skip
         fill_empty(bool): insert empty pages for pages without any saved
                           data. Use `fill_empty=False` to avoid filling
-                          navgiators between pages=(0, 1, 4, 5).
+                          navigators between pages=(0, 1, 4, 5).
         logging(bool): log errors while creating fontstore
         sort(bool): if False, do not check insert bounding position
     Returns:
