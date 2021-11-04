@@ -22,6 +22,7 @@ def create_pagetextnavigators_frompath(
     pages: tuple = None,
     mode=texmex.PageTextNavigatorMode.BOTH,
     *,
+    backup: bool = False,
     fill_empty: bool = True,
     logging: bool = True,
     sort: bool = True,
@@ -35,6 +36,7 @@ def create_pagetextnavigators_frompath(
         prefix(str): Optional prefix to differentiate items in folder.
         pages(tuple): Tuple of pages to load.
         mode(PageTextNavigatorMode): select text container to skip
+        backup(bool): If True use baml instead of yaml as ftype
         fill_empty(bool): insert empty pages for pages without any saved
                           data. Use `fill_empty=False` to avoid filling
                           navigators between pages=(0, 1, 4, 5).
@@ -53,7 +55,8 @@ def create_pagetextnavigators_frompath(
     text, textpositions, fontheader, fontcontent = ptn_path(
         path,
         prefix,
-        logging,
+        logging=logging,
+        backup=backup,
     )
     # load data
     navigators = create_pagetextnavigators_fromfile(
@@ -101,11 +104,18 @@ def create_pagetextnavigators_fromfile(
     return navigators
 
 
-def ptn_path(path: str, prefix: str = '', logging: bool = False):
-    text = iamraw.path.text(path, prefix=prefix)
-    textpositions = iamraw.path.textposition(path, prefix=prefix)
-    fontheader = iamraw.path.fontheader(path, prefix=prefix)
-    fontcontent = iamraw.path.fontcontent(path, prefix=prefix)
+def ptn_path(
+    path: str,
+    prefix: str = '',
+    *,
+    logging: bool = False,
+    backup: bool = False,
+):
+    ftype = 'baml' if backup else 'yaml'
+    text = iamraw.path.text(path, prefix=prefix, ftype=ftype)
+    textpositions = iamraw.path.textposition(path, prefix=prefix, ftype=ftype)
+    fontheader = iamraw.path.fontheader(path, prefix=prefix, ftype=ftype)
+    fontcontent = iamraw.path.fontcontent(path, prefix=prefix, ftype=ftype)
     if not utila.exists(fontheader):
         if logging:
             utila.debug(f'fontstore: {fontheader} does not exists')
@@ -123,6 +133,7 @@ def create_pagetextcontentnavigators_frompath(
     pages: tuple = None,
     mode=texmex.PageTextNavigatorMode.BOTH,
     *,
+    backup: bool = False,
     validate_leftright: bool = True,
     footer_sized_prefixed: bool = False,
     horizontals: bool = False,
@@ -134,6 +145,7 @@ def create_pagetextcontentnavigators_frompath(
         prefix(str): prefix loaded resources
         pages(tuple): selected pages
         mode(PageTextNavigatorMode): select text container to skip
+        backup(bool): If True use baml instead of yaml as ftype
         validate_leftright(bool): do not check writing over ``content border``.
         footer_sized_prefixed(bool): if True use prefixed data
                                      if False use default data
@@ -144,7 +156,11 @@ def create_pagetextcontentnavigators_frompath(
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
     # prepare path
-    text, textpositions, fontheader, fontcontent = ptn_path(path, prefix)
+    text, textpositions, fontheader, fontcontent = ptn_path(
+        path,
+        prefix,
+        backup=backup,
+    )
     # do not generate general data twice
     prefix = prefix if footer_sized_prefixed else ''
     # determine paths
