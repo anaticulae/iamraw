@@ -34,3 +34,18 @@ class Translation:
 
 
 Translations = typing.List[Translation]
+
+
+class TranslationLookup:
+
+    def __init__(self, translations: Translations = None):
+        if translations:
+            self.translations = {page.page: page for page in translations}
+        else:
+            self.translations = {}
+
+    def __call__(self, page, dest):
+        try:
+            return self.translations[page](dest)
+        except KeyError:
+            return dest

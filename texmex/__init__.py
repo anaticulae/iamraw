@@ -86,6 +86,7 @@ from texmex.text import connect_text
 from texmex.text import count_textlines
 # translation
 from texmex.translation import Translation
+from texmex.translation import TranslationLookup
 from texmex.translation import Translations
 # utils
 from texmex.utils import topbottom
