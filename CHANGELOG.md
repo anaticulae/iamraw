@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.41.1
+
+### Feature
+
+* add translation lookup (5484023e8c73)
+
 ## v4.41.0
 
 ### Feature
