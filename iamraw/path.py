@@ -136,6 +136,10 @@ def words_word(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'words', 'word_result', prefix, ftype=ftype)
 
 
+def words_sentences(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'words', 'sentences_sentences', prefix, ftype=ftype)
+
+
 def words_lists(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'words', 'list_list', prefix, ftype=ftype)
 
