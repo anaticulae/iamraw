@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.41.2
+
+### Feature
+
+* add sentences path determiner (8a8a5c8223cc)
+
+### Fix
+
+* do not fail on empty list item (ab24d807b46e)
+
 ## v4.41.1
 
 ### Feature
