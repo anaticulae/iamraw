@@ -24,7 +24,10 @@ def dump_bibliography_reference(references: iamraw.BibliographyReferences) -> st
 
 
 def load_bibliography_reference(content: str) -> iamraw.BibliographyReferences:
-    loaded = utila.yaml_load(content, safe=True)
+    loaded = utila.yaml_load(
+        content,
+        fname='detector__bibliography_detected',
+    )
     result = []
     for page in loaded:
         result.append([iamraw.BibliographyReference(**item) for item in page])
