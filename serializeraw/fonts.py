@@ -41,6 +41,7 @@ def dump_font_header(fonts) -> str:
                 'style': item.style.name if item.style else 'NONE',
                 'weight': item.weight.name if item.weight else 'NONE',
                 'flags': toflag(item.flags) if item.flags else '',
+                'pdfref': item.pdfref,
             },
         }
         # do not store default value in yaml representation
@@ -90,6 +91,7 @@ def load_font_header(content):
             style=style,
             weight=weight,
             flags=flags,
+            pdfref=fontraw['pdfref'],
         )
         fonts.append(font)
     return fonts

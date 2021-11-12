@@ -87,14 +87,20 @@ class Font:
     # DVDJKK+NimbusSanL-Regu
     # JCUGNO+NimbusSanL-Bold
     # CQYGZP+NimbusSanL-BoldItal
-    name: str
-    scale: float  # NOTE: Remove scale?
+    pdfref: str = None
+    name: str = dataclasses.field(default=None, compare=False, hash=False, repr=False)  # yapf:disable
+    scale: float = None  # NOTE: Remove scale?
     weight: Weight = dataclasses.field(default=DEFAULT_WEIGHT)
     style: Style = dataclasses.field(default=DEFAULT_STYLE)
     stretch: Stretch = dataclasses.field(default=DEFAULT_STRETCH)
     flags: tuple = None
+    """Reference used in pdf document."""
 
     def __hash__(self):
+        """\
+        font name is not part of hash value
+        >>> assert hash(Font(name='abc')) ==  hash(Font(name=''))
+        """
         # TODO: VERIFY THIS
         raw = bytes(str(self), 'utf8')
         hashed = utila.binhash(raw)
