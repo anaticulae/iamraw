@@ -55,6 +55,8 @@ class FormulaRaw:
 
     page: int = None
     content: MathChars = dataclasses.field(default_factory=list)
+    label: str = None
+    """Store reference to formula."""
 
     def __post_init__(self):
         # assert len(self.sizes) == len(self.raw), f'{len(self.sizes)} == {len(self.raw)}' # yapf:disable
@@ -77,6 +79,8 @@ class FormulaRaw:
     @property
     def raw(self) -> str:
         result = ''.join([item.value.strip() for item in self.content])  # pylint:disable=E1133
+        if self.label:
+            result = f'{self.label}:{result}'
         return result
 
     @property

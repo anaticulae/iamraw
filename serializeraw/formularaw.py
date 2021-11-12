@@ -77,6 +77,8 @@ def dump_formula(formula: iamraw.FormulaRaw) -> dict:
         'sizes': sizes,
         'page': formula.page,
     }
+    if formula.label:
+        raw['label'] = formula.label
     return raw
 
 
@@ -86,7 +88,7 @@ def load_formula(formula: dict) -> iamraw.FormulaRaw:
     sizes = utila.parse_tuple(formula['sizes'], length=length)
     boundings = [utila.parse_tuple(item) for item in formula['boundings']]
     page = int(formula['page'])
-
+    label = formula.get('label', None)
     content = []
     for char, size, bounding in zip(text, sizes, boundings):
         content.append(
@@ -95,5 +97,5 @@ def load_formula(formula: dict) -> iamraw.FormulaRaw:
                 bounding=bounding,
                 size=size,
             ))
-    result = iamraw.FormulaRaw(page=page, content=content)
+    result = iamraw.FormulaRaw(page=page, content=content, label=label)
     return result
