@@ -68,6 +68,10 @@ def load_rawformulas(
 
 
 def dump_formula(formula: iamraw.FormulaRaw) -> dict:
+    """\
+    >>> dump_formula(iamraw.FormulaRaw(label='(10.3)', label_bounding=(10.2, 50.0, 100.0, 133.33)))
+    {...'label': '(10.3)', 'label_bounding': '10.2 50.0 100.0 133.33'}
+    """
     text = ''.join(item.value for item in formula.content)
     boundings = [utila.from_tuple(item.bounding) for item in formula.content]
     sizes = utila.from_tuple([item.size for item in formula.content])
@@ -79,6 +83,8 @@ def dump_formula(formula: iamraw.FormulaRaw) -> dict:
     }
     if formula.label:
         raw['label'] = formula.label
+    if formula.label_bounding:
+        raw['label_bounding'] = utila.from_tuple(formula.label_bounding)
     return raw
 
 
@@ -89,6 +95,9 @@ def load_formula(formula: dict) -> iamraw.FormulaRaw:
     boundings = [utila.parse_tuple(item) for item in formula['boundings']]
     page = int(formula['page'])
     label = formula.get('label', None)
+    label_bounding = formula.get('label_bounding', None)
+    if label_bounding:
+        label_bounding = utila.parse_tuple(label_bounding)
     content = []
     for char, size, bounding in zip(text, sizes, boundings):
         content.append(
@@ -97,5 +106,10 @@ def load_formula(formula: dict) -> iamraw.FormulaRaw:
                 bounding=bounding,
                 size=size,
             ))
-    result = iamraw.FormulaRaw(page=page, content=content, label=label)
+    result = iamraw.FormulaRaw(
+        page=page,
+        content=content,
+        label=label,
+        label_bounding=label_bounding,
+    )
     return result

@@ -56,6 +56,7 @@ class FormulaRaw:
     page: int = None
     content: MathChars = dataclasses.field(default_factory=list)
     label: str = None
+    label_bounding: tuple = None
     """Store reference to formula."""
 
     def __post_init__(self):
@@ -73,6 +74,8 @@ class FormulaRaw:
     @property
     def bounding(self) -> tuple:
         boundings = [item.bounding for item in self.content]  # pylint:disable=E1133
+        if self.label_bounding:
+            boundings.append(self.label_bounding)
         result = utila.rectangle_max(boundings)
         return result
 
