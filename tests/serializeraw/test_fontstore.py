@@ -31,6 +31,7 @@ def restructured_fontstore() -> iamraw.FontStore:
 
 
 FIRST_FONT = iamraw.Font(
+    pdfref='WLXADN+NimbusSanL-Bold',
     name='NimbusSanL',
     scale=18.5,
     weight=iamraw.Weight.BOLD,
@@ -38,6 +39,7 @@ FIRST_FONT = iamraw.Font(
 )
 
 SECOND_FONT = iamraw.Font(
+    pdfref='AJOVIH+NimbusSanL-BoldItal',
     name='NimbusSanL',
     scale=12.85,
     weight=iamraw.Weight.BOLD,
@@ -45,6 +47,7 @@ SECOND_FONT = iamraw.Font(
     flags=(iamraw.FontFlag.SYMBOLIC,),
 )
 THIRD_FONT = iamraw.Font(
+    pdfref='WLXADN+NimbusSanL-Bold',
     name='NimbusSanL',
     scale=12.85,
     weight=iamraw.Weight.BOLD,
@@ -52,6 +55,7 @@ THIRD_FONT = iamraw.Font(
 )
 
 FORTH_FONT = iamraw.Font(
+    pdfref='WLXADN+NimbusSanL-Bold',
     name='NimbusSanL',
     scale=8.93,
     weight=iamraw.Weight.BOLD,
@@ -59,6 +63,7 @@ FORTH_FONT = iamraw.Font(
 )
 
 FIFTH_FONT = iamraw.Font(
+    pdfref='WNIDNY+NimbusSanL-Regu',
     name='NimbusSanL',
     scale=10.71,
     weight=iamraw.Weight.LIGHT,
@@ -116,6 +121,7 @@ def expected_result():
     # \ntion of'
     # ' two other markup languages, Setext and StructuredText.')
     first = iamraw.Font(
+        pdfref='OUYNTX+NimbusRomNo9L-Regu',
         name='NimbusRomNo9L',
         scale=7.43,
         weight=iamraw.Weight.LIGHT,

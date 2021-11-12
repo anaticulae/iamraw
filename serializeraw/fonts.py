@@ -91,7 +91,7 @@ def load_font_header(content):
             style=style,
             weight=weight,
             flags=flags,
-            pdfref=fontraw['pdfref'],
+            pdfref=fontraw.get('pdfref', None),
         )
         fonts.append(font)
     return fonts
