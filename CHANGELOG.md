@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.42.0
+
+### Feature
+
+* add label bounding attribute (1e48de436d5c)
+* add label attribute (ea936f75208c)
+
 ## v4.41.3
 
 ### Feature
