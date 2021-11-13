@@ -261,6 +261,7 @@ from iamraw.table import TableBoundings
 from iamraw.text import ChapterText
 from iamraw.text import ChapterTextList
 from iamraw.text import ContentType
+from iamraw.text import DFormula
 from iamraw.text import DocumentContent
 from iamraw.text import HeadlineWithContent
 from iamraw.text import PageContentText

@@ -38,6 +38,11 @@ class Undefined(DocumentContent):
     content: str = None
 
 
+@dataclasses.dataclass
+class DFormula(DocumentContent):
+    number: int = dataclasses.field(default=-1)
+
+
 ChapterText = typing.List[DocumentContent]
 ChapterTextList = typing.List[ChapterText]
 
