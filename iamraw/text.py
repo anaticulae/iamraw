@@ -25,6 +25,7 @@ class ContentType(enum.Enum):
 @dataclasses.dataclass
 class DocumentContent:
     content: object
+    bounding: tuple = dataclasses.field(default=None)
 
 
 @dataclasses.dataclass
