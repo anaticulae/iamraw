@@ -316,10 +316,10 @@ def insert_position(bounding: tuple, data: list) -> int:
     position = 0
     for item in data:
         pos = item.bounding
-        if int(pos.y0) == y0:
-            if x0 <= int(pos.x0):
+        if int(pos[1]) == y0:
+            if x0 <= int(pos[0]):
                 break
-        elif y0 <= pos.y0:  # pylint:disable=R5601
+        elif y0 <= pos[1]:  # pylint:disable=R5601
             break
         position += 1
     return position
