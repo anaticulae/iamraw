@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.43.1
+
+### Feature
+
+* support tuple as bounding (2834b5350094)
+* add bounding data type (822649fb321a)
+* add formula page line data type (85118a31a332)
+
 ## v4.43.0
 
 ### Feature
