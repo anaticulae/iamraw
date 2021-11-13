@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.43.0
+
+### Feature
+
+* add pdf font raw name (99ad6c3d696d)
+
 ## v4.42.0
 
 ### Feature
