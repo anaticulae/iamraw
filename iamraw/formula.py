@@ -94,5 +94,8 @@ class FormulaRaw:
     def __str__(self) -> str:
         return f'FormulaRaw({self.raw})'
 
+    def __repr__(self):
+        return str(self)
+
 
 FormulasRaw = typing.List[FormulaRaw]
