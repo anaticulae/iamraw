@@ -38,9 +38,7 @@ def dump_rawformulas(pages: iamraw.PageContentRawFormulas) -> str:
     # remove empty pages
     result = [item.content for item in pages if item.content]
     result = utila.flatten(result)
-
     raw = [dump_formula(item) for item in result]
-
     # convert
     dumped = yaml.dump(raw)
     return dumped
@@ -54,7 +52,6 @@ def load_rawformulas(
         content,
         safe=False,
     )
-
     loaded = [load_formula(item) for item in loaded]
     selected = [
         item for item in loaded if not utila.should_skip(item.page, pages)
@@ -63,7 +60,6 @@ def load_rawformulas(
         iamraw.PageContentRawFormula(page=page, content=list(content))
         for page, content in itertools.groupby(selected, key=lambda x: x.page)
     ]
-
     return result
 
 
