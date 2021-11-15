@@ -58,6 +58,8 @@ def load_text(
         fname='words__text_text',
         safe=False,
     )
+    if headlines is None:
+        utila.debug('load_text without any given headlines')
     # convert page index to global index
     headlines = utila.flatten(headlines) if headlines is not None else None
     result = []
@@ -68,7 +70,11 @@ def load_text(
         pagecontent = []
         for section in content:
             section_content = section['content']
-            headline = select_headline(headlines, section, page)
+            if headlines:
+                # do not
+                headline = select_headline(headlines, section, page)
+            else:
+                headline = None
             pagecontent.append(
                 iamraw.TextSection(
                     headline=headline,
