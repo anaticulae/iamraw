@@ -41,6 +41,7 @@ TextAdvices = typing.List[TextAdvice]
 @dataclasses.dataclass
 class TextAdviceReplacement(TextAdvice):
     replacement: str = None
+    hint: str = None
 
 
 @dataclasses.dataclass
