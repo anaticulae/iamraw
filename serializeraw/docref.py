@@ -6,6 +6,11 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""\
+>>> import iamraw
+>>> advices = [iamraw.TextAdvice(), iamraw.TextAdviceDelete(), iamraw.TextAdviceReplacement()]
+>>> assert load_textadvices(dump_textadvices(advices)) == advices
+"""
 
 import re
 
@@ -46,4 +51,17 @@ def load_docref(content: str, pages: tuple = None) -> iamraw.DocRefs:
                 sentence=sentence,
                 marked=marked,
             ))
+    return result
+
+
+def dump_textadvices(advices: iamraw.TextAdvices) -> str:
+    dumped = utila.yaml_dump(advices, safe=False)
+    return dumped
+
+
+def load_textadvices(raw: str, pages: tuple = None) -> str:
+    loaded = utila.yaml_load(raw, safe=False)
+    result = [
+        item for item in loaded if not utila.should_skip(item.page, pages=pages)
+    ]
     return result

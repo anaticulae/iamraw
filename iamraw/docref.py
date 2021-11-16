@@ -22,3 +22,27 @@ class DocRef:
 
 
 DocRefs = typing.List[DocRef]
+
+
+@dataclasses.dataclass
+class TextAdvice:
+    raw: str = None
+    typ: str = None
+    docref: DocRef = None
+
+    @property
+    def page(self) -> int:
+        return self.docref.page if self.docref else -1
+
+
+TextAdvices = typing.List[TextAdvice]
+
+
+@dataclasses.dataclass
+class TextAdviceReplacement(TextAdvice):
+    replacement: str = None
+
+
+@dataclasses.dataclass
+class TextAdviceDelete(TextAdvice):
+    pass

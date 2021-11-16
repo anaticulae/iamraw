@@ -71,7 +71,9 @@ from serializeraw.docinfo import dump_docinfo
 from serializeraw.docinfo import load_docinfo
 # docref
 from serializeraw.docref import dump_docref
+from serializeraw.docref import dump_textadvices
 from serializeraw.docref import load_docref
+from serializeraw.docref import load_textadvices
 # document
 from serializeraw.document import dump_document
 from serializeraw.document import load_document

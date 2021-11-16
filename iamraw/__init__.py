@@ -77,6 +77,10 @@ from iamraw.docinfo import SectionLookup
 # docref
 from iamraw.docref import DocRef
 from iamraw.docref import DocRefs
+from iamraw.docref import TextAdvice
+from iamraw.docref import TextAdviceDelete
+from iamraw.docref import TextAdviceReplacement
+from iamraw.docref import TextAdvices
 # document
 from iamraw.document import Boxed
 from iamraw.document import Char
