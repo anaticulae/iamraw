@@ -33,6 +33,9 @@ def load_docref(content: str, pages: tuple = None) -> iamraw.DocRefs:
     for raw in loaded:
         page, sentence, marked = raw.split(maxsplit=2)
         page, sentence = int(page), int(sentence)
+        if utila.should_skip(page, pages):
+            # remove non selected pages
+            continue
         marked = [
             utila.parse_tuple(item, length=2, typ=int)
             for item in PATTERN.findall(marked)
@@ -43,8 +46,4 @@ def load_docref(content: str, pages: tuple = None) -> iamraw.DocRefs:
                 sentence=sentence,
                 marked=marked,
             ))
-    # remove non selected pages
-    result = [
-        item for item in result if not utila.should_skip(item.page, pages)
-    ]
     return result
