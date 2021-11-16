@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.44.0
+
+### Feature
+
+* add TextAdvice to improve text style (928d1dfbc63d)
+* reduce verbosity of missing headlines (cde202c8a825)
+
+### Fix
+
+* reduce debugging content (8a706f026e40)
+
 ## v4.43.1
 
 ### Feature
