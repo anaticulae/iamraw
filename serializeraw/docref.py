@@ -10,7 +10,6 @@
 import re
 
 import utila
-import yaml
 
 import iamraw
 
@@ -21,7 +20,7 @@ def dump_docref(references: iamraw.DocRefs) -> str:
         marked = utila.from_tuple(utila.flatten(reference.marked))
         raw = f'{reference.page} {reference.sentence} {marked}'
         result.append(raw)
-    dumped = yaml.safe_dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 
