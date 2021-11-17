@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.44.1
+
+### Feature
+
+* add optional replacement for every advice (581e19f80f5d)
+* add hint to add reason for this hint (475b6232d2c9)
+
 ## v4.44.0
 
 ### Feature
