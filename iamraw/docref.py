@@ -29,6 +29,7 @@ class TextAdvice:
     raw: str = None
     typ: str = None
     docref: DocRef = None
+    replacement: str = None
 
     @property
     def page(self) -> int:
@@ -40,7 +41,6 @@ TextAdvices = typing.List[TextAdvice]
 
 @dataclasses.dataclass
 class TextAdviceReplacement(TextAdvice):
-    replacement: str = None
     hint: str = None
 
 
