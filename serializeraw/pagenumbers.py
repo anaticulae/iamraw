@@ -12,33 +12,38 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 
 
 def dump_pagenumbers(items) -> str:
-
-    def raw(content):
-        items = [{
-            'pdfpage': pdfpage,
-            'bounding': str(bounding),
-            'detected': detectedpage
-        } for pdfpage, bounding, detectedpage in sorted(
-            content, key=lambda number: number[0])]
-        return items
-
     if not isinstance(items, tuple):
         # single
-        result = raw(items)
+        result = dump_raw(items)
     else:
         left, right = items
-        result = {
-            'left': raw(left),
-            'right': raw(right),
-        }
-    dumped = yaml.dump(result)
+        result = dict(
+            left=dump_raw(left),
+            right=dump_raw(right),
+        )
+    dumped = utila.yaml_dump(result)
     return dumped
+
+
+def dump_raw(content) -> list:
+    # sort by page number
+    content = sorted(
+        content,
+        key=lambda number: number[0],
+    )
+    result = [
+        dict(
+            pdfpage=pdfpage,
+            bounding=str(bounding),
+            detected=detectedpage,
+        ) for pdfpage, bounding, detectedpage in content
+    ]
+    return result
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
@@ -47,23 +52,28 @@ def load_pagenumbers(content: str, pages=None):
         content,
         fname='groupme__pagenumbers_pagenumbers',
     )
-
-    def to_int(item):
-        with contextlib.suppress(ValueError):
-            return int(item)
-        return item
-
-    def fromraw(content, pages):
-        result = []
-        for item in content:
-            pagenumber = to_int(item['pdfpage'])
-            if utila.should_skip(pagenumber, pages):
-                continue
-            box = iamraw.BoundingBox.from_str(item['bounding'])
-            detected = to_int(item['detected'])
-            result.append((pagenumber, box, detected))
-        return result
-
     with contextlib.suppress(TypeError):
-        return fromraw(loaded, pages)
-    return fromraw(loaded['left'], pages), fromraw(loaded['right'], pages)
+        return fromraw(loaded, pages=pages)
+    leftright = (
+        fromraw(loaded['left'], pages=pages),
+        fromraw(loaded['right'], pages=pages),
+    )
+    return leftright
+
+
+def fromraw(content, pages):
+    result = []
+    for item in content:
+        pagenumber = toint(item['pdfpage'])
+        if utila.should_skip(pagenumber, pages):
+            continue
+        box = iamraw.BoundingBox.from_str(item['bounding'])
+        detected = toint(item['detected'])
+        result.append((pagenumber, box, detected))
+    return result
+
+
+def toint(item):
+    with contextlib.suppress(ValueError):
+        return int(item)
+    return item
