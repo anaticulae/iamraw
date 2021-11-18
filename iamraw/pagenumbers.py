@@ -33,3 +33,10 @@ class PageNumber:
         if index == 2:
             return self.detected
         raise IndexError
+
+    def __lt__(self, item):
+        """\
+        >>> sorted([PageNumber(pdfpage=5), PageNumber(pdfpage=3)])
+        [...pdfpage=3,...pdfpage=5,...]
+        """
+        return self.pdfpage < item.pdfpage
