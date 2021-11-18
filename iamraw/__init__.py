@@ -205,6 +205,9 @@ from iamraw.page import PageSizeBorderList
 # content
 from iamraw.pagecontent import PageContent
 from iamraw.pagecontent import PageContents
+# pagenumber
+from iamraw.pagenumbers import PageNumber
+from iamraw.pagenumbers import PageNumberOrientation
 # pdf
 from iamraw.pdfinfo import InvalidPDF
 from iamraw.pdfinfo import PDFDate
