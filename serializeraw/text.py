@@ -22,10 +22,10 @@ def dump_text(text: iamraw.PageContentTexts) -> str:
             current = {
                 # placeholder headline
                 'headline': None,
-                'fc': headline.container,
+                'fc': headline.container if headline else None,
                 'content': [],
             }
-            if headline.title is not None:
+            if headline and headline.title is not None:
                 current['headline'] = index
                 index += 1
             for oneline in headline_content:
@@ -108,6 +108,6 @@ def select_headline(
             level=None,
             raw_level=None,
             page=page,
-            container=section['fc'],
+            container=section.get('fc', None),
         )
     return headline_selected
