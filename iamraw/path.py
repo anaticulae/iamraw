@@ -68,14 +68,6 @@ def formula(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'rawmaker', 'formula_formula', prefix, ftype=ftype)
 
 
-def headerfooters(path: str, prefix: str = '', ftype='yaml') -> str:
-    return con(path, 'groupme', 'footer_footerheader', prefix, ftype=ftype)
-
-
-def toc(path: str, prefix: str = '', ftype='yaml') -> str:
-    return con(path, 'groupme', 'toc_toc', prefix, ftype=ftype)
-
-
 def caption_figure(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'caption', 'figure_caption', prefix, ftype=ftype)
 
@@ -175,3 +167,45 @@ def tablero_result(path: str, prefix: str = '', ftype='yaml') -> str:
 
 def codero_result(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'codero', 'result_result', prefix, ftype=ftype)
+
+
+def groupme_abbreviation(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'groupme', 'abbreviation_abbreviation', prefix, ftype=ftype)  # yapf:disable
+
+
+def groupme_area(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'groupme', 'area_area', prefix, ftype=ftype)
+
+
+def groupme_border_leftright(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'groupme', 'border_leftright', prefix, ftype=ftype)
+
+
+def groupme_distance(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'groupme', 'distance_distance', prefix, ftype=ftype)
+
+
+def groupme_pagenumbers(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'groupme', 'pagenumbers_pagenumbers', prefix, ftype=ftype)
+
+
+def groupme_headerfooters(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'groupme', 'footer_footerheader', prefix, ftype=ftype)
+
+
+headerfooters = groupme_headerfooters
+
+
+def groupme_toc(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'groupme', 'toc_toc', prefix, ftype=ftype)
+
+
+toc = groupme_toc
+
+
+def groupme_figuretable(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'groupme', 'figuretable_figuretable', prefix, ftype=ftype)
+
+
+def groupme_tabletable(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'groupme', 'tabletable_tabletable', prefix, ftype=ftype)
