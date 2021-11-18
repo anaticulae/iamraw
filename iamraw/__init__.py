@@ -270,10 +270,7 @@ from iamraw.text import DocumentContent
 from iamraw.text import HeadlineWithContent
 from iamraw.text import PageContentText
 from iamraw.text import PageContentTexts
-from iamraw.text import PageNumber
 from iamraw.text import Paragraph
-from iamraw.text import ParagraphContent
-from iamraw.text import ParagraphItem
 from iamraw.text import Paragraphs
 from iamraw.text import TextSection
 from iamraw.text import TextSections
