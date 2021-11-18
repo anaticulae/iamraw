@@ -64,12 +64,17 @@ def load_pagenumbers(content: str, pages=None):
 def fromraw(content, pages):
     result = []
     for item in content:
-        pagenumber = toint(item['pdfpage'])
-        if utila.should_skip(pagenumber, pages):
+        pdfpage = toint(item['pdfpage'])
+        if utila.should_skip(pdfpage, pages):
             continue
         box = iamraw.BoundingBox.from_str(item['bounding'])
         detected = toint(item['detected'])
-        result.append((pagenumber, box, detected))
+        result.append(
+            iamraw.PageNumber(
+                detected=detected,
+                bounding=box,
+                pdfpage=pdfpage,
+            ))
     return result
 
 

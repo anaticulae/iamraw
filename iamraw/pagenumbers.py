@@ -19,9 +19,9 @@ class PageNumberOrientation(enum.Enum):
 
 @dataclasses.dataclass
 class PageNumber:
-    detected: str = None
-    bounding: tuple = dataclasses.field(default=None, compare=False, hash=False)
     pdfpage: int = None
+    bounding: tuple = dataclasses.field(default=None, compare=False, hash=False)
+    detected: str = None
     direction: PageNumberOrientation = PageNumberOrientation.NORMAL
 
     def __getitem__(self, index):
