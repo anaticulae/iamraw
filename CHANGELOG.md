@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.45.0
+
+### Feature
+
+* move path methods from groupme (519a3437f67a)
+* make pagenumber sortable (a283a77ac776)
+* use complex data type (bda58e3baba2)
+* use safe loader (d5311fa520a8)
+* add complex data type (df3330776dfa)
+
 ## v4.44.1
 
 ### Feature
