@@ -8,6 +8,7 @@
 # =============================================================================
 
 from iamraw import BoundingBox
+from iamraw import PageNumber
 
 TWO_PAGES = ([
     (3, BoundingBox(x0=72.00, y0=739.54, x1=77.54, y1=752.05), 'ii'),
@@ -37,6 +38,7 @@ TWO_PAGES = ([
     (24, BoundingBox(x0=528.92, y0=739.54, x1=540.00, y1=752.05), 21),
     (26, BoundingBox(x0=528.92, y0=739.54, x1=540.00, y1=752.05), 23),
 ])
+TWO_PAGES = tuple([PageNumber(*item) for item in part] for part in TWO_PAGES)
 
 SINGLE_PAGES = [
     (0, BoundingBox(x0=303.26, y0=737.56, x1=308.74, y1=751.82), 1),
@@ -47,3 +49,4 @@ SINGLE_PAGES = [
     (5, BoundingBox(x0=303.26, y0=737.56, x1=308.74, y1=751.82), 6),
     (6, BoundingBox(x0=303.26, y0=737.56, x1=308.74, y1=751.82), 7),
 ]
+SINGLE_PAGES = [PageNumber(*item) for item in SINGLE_PAGES]
