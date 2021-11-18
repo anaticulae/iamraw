@@ -46,7 +46,6 @@ def load_pagenumbers(content: str, pages=None):
     loaded = utila.yaml_load(
         content,
         fname='groupme__pagenumbers_pagenumbers',
-        safe=False,
     )
 
     def to_int(item):
