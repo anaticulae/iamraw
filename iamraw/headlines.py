@@ -17,7 +17,7 @@ import iamraw
 import iamraw.toc
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(unsafe_hash=True)
 class Headline:
     title: str
     level: int = dataclasses.field(default=0)
