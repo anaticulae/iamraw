@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.45.1
+
+### Feature
+
+* make headline hash able (b6c39ac22d59)
+
+### Fix
+
+* fixes headline access for data without loaded headlines (55741659ed11)
+
 ## v4.45.0
 
 ### Feature
