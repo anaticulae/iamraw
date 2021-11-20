@@ -262,6 +262,7 @@ def group_linedistances_complex(
     content: PageTextNavigator,
     max_sizediff: float = SIZEDIFF_MAX,
     max_distance: callable = maxdistance,
+    returndata: bool = False,
 ) -> typing.List[int]:
     """Group lines by sizes and distances of text chunks.
 
@@ -270,6 +271,7 @@ def group_linedistances_complex(
         max_sizediff: absolute difference of 2 font size in one group
         max_distance: function to determine limit maxmimal distance
                       between 2 lines in a group.
+        returndata: convert indexes to data
     Returns:
         List of grouped indexes
     """
@@ -308,6 +310,9 @@ def group_linedistances_complex(
             cursize = None
     if current:
         result.append(current)
+    if returndata:
+        # replace group index by navigator data
+        result = [[content[index] for index in group] for group in result]
     return result
 
 
