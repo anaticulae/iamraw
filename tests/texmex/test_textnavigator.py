@@ -9,6 +9,7 @@
 
 import power
 import utila
+import utilatest
 
 import iamraw
 import serializeraw
@@ -50,15 +51,28 @@ def test_fonts_navigator_to_bounds(navigator):
     assert all(isinstance(item, iamraw.BoundingBox) for item in result)
 
 
-def test_hey_navigator_find():
+def sample():
     navigator = texmex.PageTextNavigator()
     location = iamraw.BoundingBox.from_str('10.0 12.0 15 20')
     navigator.insert('me', bounding=location, style=None)
     location = iamraw.BoundingBox.from_str('100.0 120.0 150 200')
     navigator.insert('hello', bounding=location, style=None)
+    return navigator
 
+
+def test_hey_navigator_find():
+    navigator = sample()
+    location = iamraw.BoundingBox.from_str('100.0 120.0 150 200')
     located = navigator.find(location)
     assert located.text == 'hello'
+
+
+def test_navigator_print_debug(capsys):
+    navigator = sample()
+    navigator.print_debug()
+    expected = 'page: -1 size: (612.0, 792.0)\nme\nhello\n'
+    current = utilatest.stdout(capsys)
+    assert current == expected
 
 
 def test_textnavigator_before(navigator):

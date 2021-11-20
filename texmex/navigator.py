@@ -120,6 +120,14 @@ class NavigatorMixin:
         result = self.between(height, END, width, END, selector=selector)
         return result
 
+    @property
+    def debug(self):
+        return utila.NEWLINE.join((line.text.strip() for line in self))
+
+    def print_debug(self):
+        utila.log(f'page: {self.page} size: {self.pagesize}')
+        utila.log(self.debug)
+
 
 @dataclasses.dataclass
 class PageTextNavigator(NavigatorMixin):
