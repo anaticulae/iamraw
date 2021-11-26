@@ -64,7 +64,8 @@ class SectionRaw(Section):
     def __str__(self):
         result = (
             f'SectionRaw(raw="{self.raw}", raw_location={self.raw_location}, '
-            f'raw_level="{self.raw_level}", raw_page="{self.raw_page}")')
+            f'raw_level="{self.raw_level}", raw_page="{self.raw_page}", '
+            f'level={self.level})')
         return result
 
 
