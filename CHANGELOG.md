@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.46.0
+
+### Feature
+
+* add more debugging information (59f62f61c0ff)
+* add option to return data instead of group indexes (e26009fcff04)
+* add method to print ptn content (1f7de8ae657a)
+
 ## v4.45.1
 
 ### Feature
