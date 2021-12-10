@@ -163,6 +163,9 @@ class Line(Boxed):
             result.append(Char(value=char))
         return result
 
+    def __repr__(self):
+        return f'Line(text="{self.text.strip()}")'
+
 
 Lines = typing.List[Line]
 
