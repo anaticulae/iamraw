@@ -79,6 +79,13 @@ def test_textnavigator_before(navigator):
     assert navigator.between(0, 0.5)
 
 
+def test_textnavigator_roate_left(navigator):
+    before = list(navigator)
+    rotated = texmex.rotate_left(navigator)
+    after = list(rotated)
+    assert after != before
+
+
 def test_textnavigator_inserthorizontals():
     source = power.link(power.DOCU027_PDF)
     ptn = serializeraw.ptcn_frompath(

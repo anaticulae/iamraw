@@ -60,6 +60,7 @@ from texmex.navigator import determine_border
 from texmex.navigator import fill_empty_navigators
 from texmex.navigator import navigator_to_bounds
 from texmex.navigator import navigator_to_content
+from texmex.navigator import rotate_left
 from texmex.navigator import single
 # style
 from texmex.style import HIGHNOTE_RISE_MIN

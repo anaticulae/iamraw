@@ -196,6 +196,10 @@ class PageTextNavigator(NavigatorMixin):
     def __iter__(self):
         return iter(self.data)
 
+    def clear(self):
+        self.data.clear()
+        self.fast.clear()
+
     @property
     def dimension(self):
         return iamraw.PageSize(*self.pagesize)
@@ -312,6 +316,34 @@ class PageTextContentNavigator(NavigatorMixin):
 
     def __len__(self):
         return len(self.data)
+
+
+def rotate_left(navigator):
+
+    def rotate_bounding(bounding: tuple, width: float) -> iamraw.BoundingBox:
+        x0, y0, x1, y1 = bounding
+        box = (
+            y0,
+            width - x1,
+            y1,
+            width - x0,
+        )
+        result = iamraw.BoundingBox.from_list(box)
+        return result
+
+    result = PageTextNavigator(
+        page=navigator.page,
+        pagesize=(navigator.height, navigator.width),
+    )
+    for item in navigator:
+        result.insert(
+            text=item.text,
+            style=item.style,
+            bounding=rotate_bounding(item.bounding, width=navigator.width),
+            bounding_mean=item.bounding_mean,
+            line=item.line,
+        )
+    return result
 
 
 PageTextNavigators = typing.List[PageTextNavigator]
