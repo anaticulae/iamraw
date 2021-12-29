@@ -77,6 +77,7 @@ FootNotes = typing.List[FootNote]
 class FootRawNote(FootNote):
     text: str = None
     raw: str = None
+    raw_number: str = None
     style: list = dataclasses.field(default_factory=list)
 
 
