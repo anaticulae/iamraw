@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.47.0
+
+### Feature
+
+* add raw footnote representation (c2be3dd6efc0)
+* add method to rotate navigator (156598f6a866)
+* shorten developer view (1357f9a2ffa2)
+
 ## v4.46.0
 
 ### Feature
