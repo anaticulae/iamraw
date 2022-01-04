@@ -91,6 +91,8 @@ SectionList = typing.List[Section]
 @dataclasses.dataclass
 class Toc(TocLinkMixin):
     level: int = 0  # level must alsways be 0
+    # distinguish between numbered and stepped toc
+    numbered: bool = True
     children: SectionList = dataclasses.field(default_factory=list)
 
     def append(self, item):

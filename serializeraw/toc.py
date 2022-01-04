@@ -66,8 +66,10 @@ def _dump(current: iamraw.Section, dump_raw: bool):
                 result['raw_location'] = current.raw_location
     except AttributeError:
         # iamraw.Toc ROOT node
-        result = {'level': 0}
-
+        result = dict(
+            level=current.level,
+            numbered=current.numbered,
+        )
     if children:
         result['children'] = children
     return result
@@ -90,8 +92,10 @@ def _load(current: dict, parent: iamraw.Section, load_raw: bool):
         with contextlib.suppress(KeyError):
             result.page = current['page']
     except KeyError:
-        result = iamraw.Toc()  # pylint:disable=redefined-variable-type
-
+        result: iamraw.Toc = iamraw.Toc(
+            level=current.get('level', 0),
+            numbered=current.get('numbered', True),
+        )
     with contextlib.suppress(KeyError):
         # A leaf has no children
         result.children = [
