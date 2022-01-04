@@ -295,9 +295,13 @@ from iamraw.titlepage import TitlePage
 from iamraw.titlepage import TitlePages
 from iamraw.titlepage import TitleThesisType
 # table of content
+from iamraw.toc import AppendixLevel
+from iamraw.toc import Level
+from iamraw.toc import RomanLevel
 from iamraw.toc import Section
 from iamraw.toc import SectionList
 from iamraw.toc import SectionRaw
+from iamraw.toc import StepLevel
 from iamraw.toc import Toc
 from iamraw.toc import TocLinkMixin
 from iamraw.toc import TocLinkMixins

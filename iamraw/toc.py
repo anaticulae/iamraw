@@ -16,6 +16,7 @@ import abc
 import dataclasses
 import typing
 
+import configo
 import utila
 
 
@@ -195,3 +196,36 @@ def merge_toc(toc: Toc) -> str:
         result.extend(recursive(item, level=0))
     titles = utila.NEWLINE.join(result)
     return titles
+
+
+@dataclasses.dataclass
+class Level:
+    # TODO: MOVE TO IAMRAW
+    value: int = None
+    raw: str = dataclasses.field(compare=False, default=None)
+
+    def __int__(self):
+        return self.value
+
+
+class RomanLevel(Level):
+    pass
+
+
+class StepLevel(Level):
+    pass
+
+
+@dataclasses.dataclass
+class AppendixLevel(Level):
+    """\
+    Example::
+        A.1.1
+    """
+    character: str = None
+
+    def __int__(self):
+        return APPENDIX_LEVEL
+
+
+APPENDIX_LEVEL = configo.HV_INT_PLUS(default=100)
