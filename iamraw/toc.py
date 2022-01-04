@@ -108,7 +108,12 @@ class Toc(TocLinkMixin):
         return merge_toc(self)
 
 
-def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
+def create_toc(
+    outlines: SectionList,
+    numbered: bool = True,
+    *,
+    remove_rawinfo: bool = False,
+) -> Toc:
     """Extract toc out of pdf-outlines.
 
     The highest level is 0 the document root. Higher number level means
@@ -116,12 +121,13 @@ def create_toc(outlines: SectionList, remove_rawinfo: bool = False) -> Toc:
 
     Args:
         outlines: flat list to create toc
+        numbered(bool): distinguish between numbered and stepped toc
         remove_rawinfo(bool): if True, do not store information where
                               data was collected.
     Returns:
         Hierarchical table of content.
     """
-    root = Toc()
+    root = Toc(numbered=numbered)
     current = root
     for item in outlines:
         level = item.level
