@@ -14,6 +14,7 @@ Basic structure of get_outlines: (level, title, args, children)
 
 import abc
 import dataclasses
+import enum
 import typing
 
 import configo
@@ -86,6 +87,15 @@ def tosection(item: SectionRaw) -> Section:
 
 
 SectionList = typing.List[Section]
+
+
+class TocStyle(enum.IntEnum):
+    NUMBERED = enum.auto()
+    """1.2.3"""
+    STEPPED = enum.auto()
+    """A I. 1. a. aa)"""
+    SECTIONED = enum.auto()
+    """Section 1: Part 2: Normal"""
 
 
 @dataclasses.dataclass

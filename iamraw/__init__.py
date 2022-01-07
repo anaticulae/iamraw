@@ -305,6 +305,7 @@ from iamraw.toc import StepLevel
 from iamraw.toc import Toc
 from iamraw.toc import TocLinkMixin
 from iamraw.toc import TocLinkMixins
+from iamraw.toc import TocStyle
 from iamraw.toc import create_toc
 from iamraw.toc import merge_toc
 from iamraw.toc import tosection
