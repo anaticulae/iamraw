@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v4.48.0
+
+### Feature
+
+* add parameter to create numbered toc (ac81d7c2413a)
+* add attribute to distinguish between numbered and stepped toc (443328a43dcb)
+* add level data structure (940f3b8a1c26)
+
+### Documentation
+
+* Happy New Year! (f8a5219dccf7)
+
 ## v4.47.0
 
 ### Feature
