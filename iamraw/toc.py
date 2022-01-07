@@ -102,7 +102,7 @@ class TocStyle(enum.IntEnum):
 class Toc(TocLinkMixin):
     level: int = 0  # level must alsways be 0
     # distinguish between numbered and stepped toc
-    numbered: bool = True
+    numbered: bool = True  # TODO: REPLACE WITH TOCSTYLE
     children: SectionList = dataclasses.field(default_factory=list)
 
     def append(self, item):
