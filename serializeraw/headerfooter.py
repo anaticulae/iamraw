@@ -65,7 +65,7 @@ def load_headerfooter(
 
 
 def dump_footnote(note: iamraw.FootNote):
-    assert note.number is not None, note
+    assert hasattr(note, 'number'), str(note)
     with contextlib.suppress(AttributeError):
         assert note.text, note
     raw = utila.simplify(note)
@@ -77,7 +77,9 @@ def load_footnote(raw: dict) -> iamraw.FootNote:
         rawnote = iamraw.FootRawNote(**raw)
         if rawnote.style and len(rawnote.style) == 2:
             # style=(number.style, note.style),
-            number = texmex.CharStyle(**rawnote.style[0])
+            number = None
+            if rawnote.style[0]:
+                number = texmex.CharStyle(**rawnote.style[0])
             rawnote.style[1]['content'] = [
                 texmex.CharStyle(**item) for item in rawnote.style[1]['content']
             ]
