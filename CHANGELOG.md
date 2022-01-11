@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v4.49.0
+
+### Feature
+
+* allow footnotes without footnote number (67a4b2ce208d)
+* add enum to save to style (ec860a7b7adf)
+
+### Documentation
+
+* adjust modules path (cca0cec4f3ed)
+* Happy New Year! (7cb7c7eb463b)
+
 ## v4.48.0
 
 ### Feature
