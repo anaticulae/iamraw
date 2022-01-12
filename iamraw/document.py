@@ -14,7 +14,7 @@ import typing
 
 import utila
 
-from iamraw.bounding import BoundingBox
+import iamraw.bounding
 
 PageSize = collections.namedtuple('PageSize', 'width height')
 PageSizes = typing.List[PageSize]
@@ -23,14 +23,14 @@ PageSizes = typing.List[PageSize]
 @dataclasses.dataclass
 class PageObject:
     """Object to store every unsupported type"""
-    box: BoundingBox = None
+    box: iamraw.bounding.BoundingBox = None
     content: str = None
 
 
 @dataclasses.dataclass
 class Page:
     page: int = 0
-    dimension: BoundingBox = None
+    dimension: iamraw.bounding.BoundingBox = None
     children: typing.List[typing.Any] = dataclasses.field(default_factory=list)
 
     @property
@@ -105,7 +105,7 @@ class Document:
 @dataclasses.dataclass
 class Boxed:
     """Object with outlines like a rectangle"""
-    box: BoundingBox = None
+    box: iamraw.bounding.BoundingBox = None
 
 
 @dataclasses.dataclass
