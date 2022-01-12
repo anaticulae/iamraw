@@ -6,6 +6,13 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""\
+>>> page = Page(page=10, dimension=(0, 0, 768, 912))
+>>> page.page
+10
+>>> page.height
+912
+"""
 
 import collections
 import contextlib
@@ -32,6 +39,18 @@ class Page:
     page: int = 0
     dimension: iamraw.bounding.BoundingBox = None
     children: typing.List[typing.Any] = dataclasses.field(default_factory=list)
+
+    @property
+    def width(self) -> int:
+        if not self.dimension:
+            return None
+        return self.dimension[2]
+
+    @property
+    def height(self) -> int:
+        if not self.dimension:
+            return None
+        return self.dimension[3]
 
     @property
     def text(self) -> str:
