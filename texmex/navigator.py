@@ -515,13 +515,14 @@ def fill_empty_navigators(
     navigators: PageTextNavigators,
     dimension: iamraw.PageSize,
 ) -> PageTextNavigators:
-    """Some documents contain white pages. White pages contain no
-    text and therefore no text_positions. The document [CONTENT,
-    WHITEPAGE, CONTENT, CONTENT] produces the pagetextnavigators
-    page =[0,2,3]. If we assume that some algorithm requires a
-    closed row of navigators this can lead to problems.Therefore we
-    insert an empty PageTextNavigator at position 1 to avoid these
-    problems.
+    """Some documents contain white pages.
+
+    White pages contain no text and therefore no text_positions. The
+    document [CONTENT, WHITEPAGE, CONTENT, CONTENT] produces the
+    pagetextnavigators page =[0,2,3]. If we assume that some algorithm
+    requires a closed row of navigators this can lead to
+    problems.Therefore we insert an empty PageTextNavigator at position
+    1 to avoid these problems.
     """
     if not navigators:
         return []

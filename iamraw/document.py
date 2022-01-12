@@ -66,8 +66,11 @@ Pages = typing.List[Page]
 
 @dataclasses.dataclass
 class Document:
-    """A document describes a parsed PDF file. It is possbile to iterate over
-    the different pages to inspect the parsed children."""
+    """A document describes a parsed PDF file.
+
+    It is possbile to iterate over the different pages to inspect the
+    parsed children.
+    """
     dimension: PageSize = None
     pages: Pages = dataclasses.field(default_factory=list)
 
