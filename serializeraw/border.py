@@ -69,7 +69,6 @@ def load_pageborders(
 
 
 def size_toraw(size: iamraw.PageSize) -> str:
-    assert isinstance(size, iamraw.PageSize)
     try:
         return '%.2f %.2f' % size  #(size.width, size.height)
     except TypeError as error:

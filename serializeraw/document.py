@@ -92,7 +92,14 @@ def _dump_pageobject(pageobject: iamraw.PageObject):
 def _load_page(content):
     pagenumber = content['page']
     children = content['children']
-    page = iamraw.Page(pagenumber)
+    dimension = content.get('dimension', None)
+    if dimension:
+        if len(dimension.split()) == 2:
+            # TODO: REMOVE HACK AFTER CHANING BOUNDING BOX TO (width,
+            # height)-tuple
+            dimension = f'0 0 {dimension}'
+        dimension = iamraw.BoundingBox.from_str(dimension)
+    page = iamraw.Page(page=pagenumber, dimension=dimension)
     for class_, item_content in children:
         if class_ == iamraw.TextContainer.__name__:
             loaded = loadme(iamraw.TextContainer, item_content)
@@ -106,11 +113,14 @@ def _load_page(content):
     return page
 
 
-def _dump_page(page: iamraw.Page):
-    result = {
-        'page': page.page,
-        'children': [dumper(item) for item in page],
-    }
+def _dump_page(page: iamraw.Page) -> dict:
+    result = dict(
+        page=page.page,
+        children=[dumper(item) for item in page],
+    )
+    if page.dimension:
+        dimension = utila.from_tuple(page.dimension)
+        result['dimension'] = dimension
     return result
 
 
