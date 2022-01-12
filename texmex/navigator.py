@@ -444,12 +444,17 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
     result = []
     for textposition in text_positions:
         page = textposition.page
+        content = utila.select_page(text, page)
+        if content.width is not None:
+            pagesize = (content.width, content.height)
+        else:
+            # TODO: OUTDATED, REMOVE LATER
+            pagesize = text.dimension
         navigator = PageTextNavigator(
-            pagesize=text.dimension,
+            pagesize=pagesize,
             page=page,
         )
         textid = 0
-        content = utila.select_page(text, page)
         # remove horizontal or vertical text container
         content = select_textcontainer(content, mode=mode)
         for item in content:
@@ -486,7 +491,6 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
                 )
             textid += 1
         result.append(navigator)
-
     if fill_empty:
         result = fill_empty_navigators(result, dimension=text.dimension)
     return result
