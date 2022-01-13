@@ -44,6 +44,24 @@ class DocInfo:
     sections: 'SectionLookup' = None
     """Skip findings which do not pass sections check."""
 
+    @property
+    def dpl(self) -> str:
+        """CMD-Line-Style converter. DocumentTypePagesLang
+
+        >>> import iamraw
+        >>> DocInfo(pages=25, doctype=DocumentType.BOOK, lang=iamraw.Language.GERMAN).dpl
+        'book25ger'
+        """
+        # bachelor64german
+        result = ''
+        if self.doctype:
+            result += self.doctype.name.lower()
+        if self.pages:
+            result += str(self.pages)
+        if self.lang:
+            result += self.lang.name.lower()[0:3]
+        return result
+
 
 class SectionLookup:
 
