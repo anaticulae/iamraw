@@ -7,18 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
-from typing import Dict
-from typing import List
+import functools
+import typing
 
-from configo import CACHE_SMALL
-from utila import from_raw_or_path
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
+import configo
+import utila
 
 
-def dump_chapter(chapters: List[Dict]) -> str:
+def dump_chapter(chapters: typing.List[typing.Dict]) -> str:
     result = []
     for item in chapters:
         level, title, content = item['level'], item['title'], item['content']
@@ -27,12 +23,11 @@ def dump_chapter(chapters: List[Dict]) -> str:
             'title': title,
             'content': content,
         })
-    dumped = dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
-def load_chapter(content: str) -> List[Dict]:
-    content = from_raw_or_path(content, ftype='yaml')
-    loaded = load(content, Loader=FullLoader)
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_chapter(content: str) -> typing.List[typing.Dict]:
+    loaded = utila.yaml_load(content)
     return loaded

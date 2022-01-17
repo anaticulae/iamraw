@@ -10,13 +10,10 @@
 from collections import defaultdict
 from functools import lru_cache
 
+import configo
 import utila
-from configo import CACHE_SMALL
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
 
-from iamraw import BoundingBox
+import iamraw
 
 # TODO: not very nice, yet.
 
@@ -64,16 +61,12 @@ def dump_boxedcontent(boxed) -> str:
             'page': page,
             'content': pageresult,
         })
-    return dump(raw)
+    return utila.yaml_dump(raw)
 
 
-@lru_cache(CACHE_SMALL)
+@lru_cache(configo.CACHE_SMALL)
 def load_boxedcontent(content: str, pages=None):
-    content = utila.from_raw_or_path(
-        content,
-        ftype='yaml',
-    )
-    loaded = load(content, Loader=FullLoader)
+    loaded = utila.yaml_load(content)
     pagedict = defaultdict(list)
     for page in loaded:
         pagenumber = int(page['page'])
@@ -97,7 +90,7 @@ def parse_boxed_page(content):
         for single_collector in item['content']:
             boxed = []
             for multibox in single_collector:
-                m_bounding = BoundingBox.from_str(multibox['bounding'])
+                m_bounding = iamraw.BoundingBox.from_str(multibox['bounding'])
                 m_content = multibox['content']
                 boxid, _ = [  # boxid, index
                     int(item) for item in multibox['boxed_id'].split()
@@ -114,5 +107,5 @@ def parse_box_content(line: str) -> tuple:
         tuple of BoundingBox, undefined_index(int) and content(str)
     """
     splitted = line.split(maxsplit=5)
-    bounding = BoundingBox.from_str(' '.join(splitted[0:4]))
+    bounding = iamraw.BoundingBox.from_str(' '.join(splitted[0:4]))
     return (bounding, int(splitted[4]), splitted[5])

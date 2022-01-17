@@ -9,12 +9,8 @@
 
 from functools import lru_cache
 
+import utila
 from configo import CACHE_MEDIUM
-from utila import from_raw_or_path
-from utila import should_skip
-from yaml import FullLoader
-from yaml import dump
-from yaml import load
 
 from iamraw import BoundingBox
 from iamraw import HyperLink
@@ -58,7 +54,7 @@ def dump_annotations(annotations: PageAnnotations) -> str:
             ],
             'page': page.page
         })
-    dumped = dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 
@@ -72,16 +68,14 @@ def load_annotations(content: str, pages=None) -> PageAnnotations:
     Returns:
         loaded PageAnnotations
     """
-    content = from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='annotation_annotation',
-        ftype='yaml',
     )
-    loaded = load(content, Loader=FullLoader)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if should_skip(pagenumber, pages):
+        if utila.should_skip(pagenumber, pages):
             continue
         pagelinks = [
             PageLink(

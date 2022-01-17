@@ -12,7 +12,6 @@ from typing import Iterable
 
 import utila
 from configo import CACHE_SMALL
-from yaml import dump
 
 from iamraw import BoundingBox
 from iamraw import Box
@@ -34,7 +33,7 @@ def dump_boxes(pages: PagesWithBoxList) -> str:
             'page': page.page,
             'boxes': result,
         })
-    dumped = dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 
@@ -49,7 +48,7 @@ def dump_horizontals(pages: PagesWithHorizontalList) -> str:
             'page': page.page,
             'horizontals': result,
         })
-    dumped = dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 
