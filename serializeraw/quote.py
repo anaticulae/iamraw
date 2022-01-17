@@ -8,14 +8,13 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 
 
 def dump_blockquotes(blockquotes: iamraw.PageContentBlockQuotesList) -> str:
     converted = [(page.page, page.content) for page in blockquotes]
-    dumped = yaml.safe_dump(converted)
+    dumped = utila.yaml_dump(converted)
     return dumped
 
 
@@ -23,8 +22,7 @@ def load_blockquotes(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentBlockQuotesList:
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.safe_load(content)
+    loaded = utila.yaml_load(content)
     result = []
     for page, pagecontent in loaded:
         if utila.should_skip(page, pages):
@@ -41,7 +39,7 @@ def dump_quotations(quotations) -> str:
     result = []
     for page, index, sentence in quotations:
         result.append(f'{page} {index} {sentence}')
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

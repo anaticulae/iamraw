@@ -12,7 +12,6 @@ import typing
 
 import configo
 import utila
-import yaml
 
 import iamraw
 
@@ -24,7 +23,7 @@ def dump_whitepages(pages: iamraw.PageContentWhitepages) -> str:
         pages = {item.page: item for item in pages}
     for page, value in pages.items():
         result[page] = value.content.name if value.content else None
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

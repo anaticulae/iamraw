@@ -10,7 +10,6 @@
 import dataclasses
 
 import utila
-import yaml
 
 import iamraw
 
@@ -19,7 +18,7 @@ def dump_hyperlinks(links: iamraw.ExtractedHyperLinks) -> str:
     result = []
     for hyperlink in links:
         result.append(dataclasses.asdict(hyperlink))
-    dumped = yaml.safe_dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 
@@ -27,8 +26,7 @@ def load_hyperlinks(
     content: str,
     pages: tuple = None,
 ) -> iamraw.ExtractedHyperLinks:
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.safe_load(content)
+    loaded = utila.yaml_load(content)
     result = []
     for item in loaded:
         hyperlink = iamraw.ExtractedHyperLink(**item)

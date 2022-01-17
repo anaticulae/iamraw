@@ -12,7 +12,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 
@@ -40,7 +39,7 @@ def dump_likelihood(likelihoods: iamraw.PageContentLikelihoods) -> str:
             'page': page.page,
             'content': pageresult,
         })
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

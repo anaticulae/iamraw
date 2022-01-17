@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 
@@ -17,7 +16,7 @@ def dump_captions(items: iamraw.PageContentCaptions) -> str:
     # remove empty pages
     items = [item for item in items if item.content]
     # convert to yaml
-    dumped = yaml.dump(items)
+    dumped = utila.yaml_dump(items, safe=False)
     return dumped
 
 

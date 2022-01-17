@@ -12,7 +12,6 @@ import functools
 import os
 
 import utila
-import yaml
 
 import iamraw
 
@@ -34,7 +33,7 @@ def dump_image_info(info: iamraw.ImageInformation) -> str:
         result['bounding'] = utila.from_tuple(info.bounding)
     if info.dpi:
         result['dpi'] = utila.from_tuple(info.dpi)
-    dumped = yaml.safe_dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

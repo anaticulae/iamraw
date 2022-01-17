@@ -11,7 +11,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 import serializeraw
@@ -22,7 +21,7 @@ def dump_document(document: iamraw.Document, fast: bool = True) -> str:
     """Convert to raw python to have more clear yaml output"""
     assert isinstance(document, iamraw.Document), type(document)
     raw = dumper(document)
-    dumped = yaml.dump(raw)
+    dumped = utila.yaml_dump(raw)
     if fast:
         dumped = serializeraw.dump_yamlpages(dumped)
     return dumped

@@ -13,7 +13,6 @@ import contextlib
 import os
 
 import utila
-import yaml
 
 import iamraw
 
@@ -55,7 +54,7 @@ def dump_findings(findings: list) -> str:
         # ensure that the user could not see any not fully replaced templates
         assert istemplate_replaced(item.solution.description), message
         assert isinstance(item.number, int) or item.number is None
-    dumped = yaml.dump(findings)
+    dumped = utila.yaml_dump(findings, safe=False)
     return dumped
 
 

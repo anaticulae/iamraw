@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 
@@ -35,7 +34,7 @@ def dump_text(text: iamraw.PageContentTexts) -> str:
             'page': item.page,
             'content': collected,
         })
-    dumped = yaml.dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 

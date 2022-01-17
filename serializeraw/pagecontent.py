@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 
@@ -19,7 +18,7 @@ def dump_pagecontent(
 ) -> str:
     pagedumper = pagedumper if pagedumper else lambda x: x
     converted = [(page.page, pagedumper(page.content)) for page in pages]
-    dumped = yaml.safe_dump(converted)
+    dumped = utila.yaml_dump(converted)
     return dumped
 
 
@@ -30,7 +29,7 @@ def load_pagecontent(
     fname: str = None,
 ) -> iamraw.PageContents:
     content = utila.from_raw_or_path(content, ftype='yaml', fname=fname)
-    loaded = yaml.safe_load(content)
+    loaded = utila.yaml_load(content)
     pageloader = pageloader if pageloader else lambda x: x
     result = []
     for page, pagecontent in loaded:

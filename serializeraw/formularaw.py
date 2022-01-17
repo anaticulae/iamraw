@@ -29,7 +29,6 @@
 import itertools
 
 import utila
-import yaml
 
 import iamraw
 
@@ -40,7 +39,7 @@ def dump_rawformulas(pages: iamraw.PageContentRawFormulas) -> str:
     result = utila.flatten(result)
     raw = [dump_formula(item) for item in result]
     # convert
-    dumped = yaml.dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 

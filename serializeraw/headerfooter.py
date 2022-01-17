@@ -12,7 +12,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 import serializeraw
@@ -30,7 +29,7 @@ def dump_headerfooter(pages: iamraw.PageContentFooterHeaders) -> str:
             'header': raw_header,
             'footer': raw_footer,
         })
-    return yaml.dump(result)
+    return utila.yaml_dump(result)
 
 
 @functools.lru_cache(maxsize=configo.CACHE_SMALL)

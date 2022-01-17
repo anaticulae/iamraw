@@ -10,14 +10,12 @@
 import dataclasses
 
 import utila
-import yaml
 
 import iamraw
 
 
 def load_doctextstyle(content: str) -> iamraw.DocTextStyle:
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.safe_load(content)
+    loaded = utila.yaml_load(content)
     result = iamraw.DocTextStyle(**loaded)
     return result
 
@@ -25,5 +23,5 @@ def load_doctextstyle(content: str) -> iamraw.DocTextStyle:
 def dump_doctextstyle(style: iamraw.DocTextStyle) -> str:
     assert isinstance(style, iamraw.DocTextStyle)
     raw = dataclasses.asdict(style)
-    dumped = yaml.safe_dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped

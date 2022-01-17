@@ -8,14 +8,13 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 
 
 def dump_contentboundingbox(boxes: iamraw.ContentBoundingBoxes) -> str:
     converted = [(page.page, page.top, page.bottom) for page in boxes]
-    dumped = yaml.safe_dump(converted)
+    dumped = utila.yaml_dump(converted)
     return dumped
 
 
@@ -23,12 +22,10 @@ def load_contentboundingbox(
     content: str,
     pages: tuple = None,
 ) -> iamraw.ContentBoundingBoxes:
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname='groupme__content_content',
-        ftype='yaml',
     )
-    loaded = yaml.safe_load(content)
     result = []
     for page, top, bottom in loaded:
         if utila.should_skip(page, pages):

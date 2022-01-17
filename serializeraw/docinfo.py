@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 import serializeraw
@@ -25,7 +24,7 @@ def load_docinfo(path: str, pages: tuple = None) -> iamraw.DocInfo:  # pylint:di
 
 
 def dump_docinfo(docinfo: iamraw.DocInfo) -> str:
-    dumped = yaml.dump(docinfo)
+    dumped = utila.yaml_dump(docinfo, safe=False)
     return dumped
 
 

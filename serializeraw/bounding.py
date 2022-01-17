@@ -11,7 +11,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 import serializeraw
@@ -30,7 +29,7 @@ def dump_boundingboxes(boxes: iamraw.PageBoundingsList) -> str:
             ],
         }
         simple.append(item)
-    dumped = yaml.dump(simple)
+    dumped = utila.yaml_dump(simple)
     dumped = serializeraw.dump_yamlpages(dumped)
     return dumped
 

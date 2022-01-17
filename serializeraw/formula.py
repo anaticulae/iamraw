@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 
@@ -17,7 +16,7 @@ def dump_formulas(pages: iamraw.PageContentFormula) -> str:
     # remove empty pages
     result = [item for item in pages if item.content]
     # convert
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result, safe=False)
     return dumped
 
 

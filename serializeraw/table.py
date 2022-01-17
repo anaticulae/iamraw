@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 
@@ -23,7 +22,7 @@ def dump_tables(pages: iamraw.PageContentTableBoundings) -> str:
         } for item in page.content]
         raw = {'page': page.page, 'content': content}
         result.append(raw)
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

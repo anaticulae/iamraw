@@ -10,7 +10,6 @@
 import contextlib
 
 import utila
-import yaml
 
 import iamraw
 
@@ -64,7 +63,7 @@ def load_abbreviation(raw: dict) -> iamraw.Abbreviation:
 def dump_abbreviation_table(result: iamraw.abbreviation.AbbreviationResult) -> str: # yapf:disable
     assert isinstance(result, iamraw.AbbreviationResult), type(result)
     raw = [dump_abbreviation(item) for item in result]
-    dumped = yaml.dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 
@@ -91,7 +90,7 @@ def dump_text_abbreviations(items) -> str:
         if not content:
             continue
         result.append({'page': page.page, 'content': content})
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

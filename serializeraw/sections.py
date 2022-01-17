@@ -11,7 +11,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw.sections
 
@@ -26,7 +25,7 @@ def dump_sections(sections: iamraw.sections.Sections) -> str:
         content = dump_item(page)
         content['content'] = [dump_item(item) for item in page.content]
         result.append(content)
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

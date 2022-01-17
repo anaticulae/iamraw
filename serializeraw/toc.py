@@ -20,7 +20,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 
@@ -29,7 +28,7 @@ def dump_toc(content: iamraw.Toc, dump_raw: bool = True) -> str:
     """Convert table of content to raw yaml representation."""
     assert isinstance(content, iamraw.Toc), type(content)
     raw = _dump(content, dump_raw)
-    return yaml.dump(raw)
+    return utila.yaml_dump(raw)
 
 
 @functools.lru_cache(configo.CACHE_SMALL)

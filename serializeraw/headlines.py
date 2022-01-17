@@ -11,7 +11,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 
@@ -40,7 +39,7 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
             'chapter?': index,  # TODO: How to deal with empty chapter?
             'headlines': content,
         })
-    dumped = yaml.safe_dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 
@@ -51,7 +50,7 @@ def load_headlines(content: str, pages=None) -> iamraw.PagesHeadlineList:
         fname='words__headlines_headlines',
         ftype='yaml',
     )
-    loaded = yaml.safe_load(content)
+    loaded = utila.yaml_load(content)
     result = []
     for step in loaded:
         loadedstep = []

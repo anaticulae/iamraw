@@ -20,7 +20,6 @@ import json
 import re
 
 import utila
-import yaml
 
 import iamraw
 
@@ -29,7 +28,7 @@ def dump_pdfinfo(info: iamraw.PDFInfo, ext: str = 'json') -> str:
     assert ext in ('yaml', 'json'), ext
     simple = raw(info)
     if ext == 'yaml':
-        return yaml.dump(simple)
+        return utila.yaml_dump(simple, safe=False)
     if ext == 'json':
         return json.dumps(simple)
     return None

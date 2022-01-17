@@ -10,7 +10,6 @@
 import dataclasses
 
 import utila
-import yaml
 
 import iamraw
 
@@ -19,7 +18,7 @@ def dump_bibliography_reference(references: iamraw.BibliographyReferences) -> st
     result = []
     for page in references:
         result.append([dataclasses.asdict(item) for item in page])
-    dumped = yaml.safe_dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

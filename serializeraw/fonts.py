@@ -13,7 +13,6 @@ import math
 
 import configo
 import utila
-import yaml
 
 import iamraw
 
@@ -47,7 +46,7 @@ def dump_font_header(fonts) -> str:
         # do not store default value in yaml representation
         remove_default_value(raw['font'])
         result.append(raw)
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 
@@ -108,7 +107,7 @@ def dump_font_content(pages: iamraw.PageFontContents) -> str:
             'page': page.page,
             'fonts': items,
         })
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

@@ -11,7 +11,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 import serializeraw.border
@@ -31,7 +30,7 @@ def dump_hits(hits: iamraw.PageContentHits) -> str:
             'page': page.page
         }
         result.append(raw)
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
 
 

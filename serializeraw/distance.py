@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 
@@ -22,7 +21,7 @@ def dump_distance(items: iamraw.PageContentAreaDistances) -> str:
             after = utila.roundme(item.after) if item.after is not None else 'None' # yapf:disable
             content.append(f'{item.index} {before} {after}')
         raw.append({'page': page.page, 'content': content})
-    dumped = yaml.dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 
@@ -30,8 +29,7 @@ def load_distance(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentAreaDistances:
-    content = utila.from_raw_or_path(content, ftype='yaml')
-    loaded = yaml.safe_load(content)
+    loaded = utila.yaml_load(content)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])

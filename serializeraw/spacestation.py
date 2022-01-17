@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-import yaml
 
 import iamraw
 import serializeraw
@@ -86,7 +85,7 @@ def fromraw(item: str) -> tuple:
 
 def dump_document_chardist(item: iamraw.DocumentCharDist) -> str:
     raw = vars(item)
-    dumped = yaml.dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 
@@ -102,7 +101,7 @@ def load_document_chardist(path: str) -> iamraw.DocumentCharDist:
 
 def dump_document_worddist(item: iamraw.DocumentWordDist) -> str:
     raw = vars(item)
-    dumped = yaml.dump(raw)
+    dumped = utila.yaml_dump(raw)
     return dumped
 
 

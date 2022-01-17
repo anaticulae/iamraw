@@ -10,14 +10,13 @@
 # TODO: REPLACE THIS DRAFT LATER
 
 import utila
-import yaml
 
 import iamraw
 
 
 def dump_titlepage(titlepage: iamraw.TitlePage) -> str:
     # TODO: Improve with human readable format
-    dumped = yaml.dump(titlepage)
+    dumped = utila.yaml_dump(titlepage, safe=False)
     return dumped
 
 

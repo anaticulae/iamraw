@@ -11,7 +11,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 
@@ -23,7 +22,7 @@ def dump_pageborders(sizeandborders: iamraw.PageSizeBorderList) -> str:
         'size': size_toraw(item.size),
         'border': border_toraw(item.border),
     } for item in sizeandborders]
-    dumped = yaml.dump(page)
+    dumped = utila.yaml_dump(page)
     return dumped
 
 
@@ -125,5 +124,5 @@ def dump_leftright_border(result: list) -> str:
     item = (pagenumber, left, right, top, bottom)
     """
     result = [utila.from_tuple(item) for item in result]
-    dumped = yaml.safe_dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped

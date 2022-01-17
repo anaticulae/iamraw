@@ -11,7 +11,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import iamraw
 import serializeraw
@@ -32,7 +31,7 @@ def dump_textpositions(items: iamraw.PageContentTextPositions) -> str:
             'content': raw,
             'page': pagenumber,
         })
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     dumped = serializeraw.dump_yamlpages(dumped)
     return dumped
 

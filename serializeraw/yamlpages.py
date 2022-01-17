@@ -38,7 +38,6 @@ import re
 import textwrap
 
 import utila
-import yaml
 
 import serializeraw.__patch__
 
@@ -129,9 +128,9 @@ def split_content(content: str) -> tuple:
                 dynamic[key] = value
             else:
                 static[key] = value
-        static: str = yaml.dump(static) if static else ''
+        static: str = utila.yaml_dump(static) if static else ''
         assert len(dynamic) <= 1, 'could not write more than one dynamic'
-    dynamic: str = yaml.dump(dynamic) if dynamic else ''
+    dynamic: str = utila.yaml_dump(dynamic) if dynamic else ''
     if islist:
         head, tail = '', dynamic
     else:

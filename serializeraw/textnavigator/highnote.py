@@ -11,7 +11,6 @@ import functools
 
 import configo
 import utila
-import yaml
 
 import texmex
 
@@ -51,5 +50,5 @@ def dump_highnotes(pages) -> str:
         } for item in page.content]
         raw['content'] = items
         result.append(raw)
-    dumped = yaml.dump(result)
+    dumped = utila.yaml_dump(result)
     return dumped
