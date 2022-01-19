@@ -98,6 +98,8 @@ class TocStyle(enum.IntEnum):
     """Section 1: Part 2: Normal"""
     FIRSTLEVEL_ONLY = enum.auto()
     """Only some headlines have a level number"""
+    UNDEFINED = enum.auto()
+    """Not detected"""
 
 
 @dataclasses.dataclass
