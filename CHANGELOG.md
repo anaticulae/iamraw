@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.50.0
+
+### Feature
+
+* add toc state with only some levels (9159419e1c8f)
+* add cmd line converter (d697a3c73566)
+* replace document size with single page size (ed9f82e94741)
+* add width and height property (1fa0ab8d3853)
+* add optional page dimension for every page (d174418b7ab7)
+
 ## v4.49.0
 
 ### Feature
