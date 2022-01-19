@@ -96,6 +96,8 @@ class TocStyle(enum.IntEnum):
     """A I. 1. a. aa)"""
     SECTIONED = enum.auto()
     """Section 1: Part 2: Normal"""
+    FIRSTLEVEL_ONLY = enum.auto()
+    """Only some headlines have a level number"""
 
 
 @dataclasses.dataclass
