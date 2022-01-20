@@ -8,6 +8,7 @@
 # =============================================================================
 
 import collections
+import copy
 import dataclasses
 import typing
 
@@ -79,6 +80,7 @@ class FootRawNote(FootNote):
     raw: str = None
     raw_number: str = None
     style: list = dataclasses.field(default_factory=list)
+    # TODO: ADD SEPARATE STYLE FOR HIGHTNOTE AND TEXT
 
 
 @dataclasses.dataclass
@@ -92,9 +94,24 @@ class FootNoteMerged(FootNote):
         return result
 
     @property
-    def style(self):
-        result = utila.flatten((item.style for item in self.notes))
-        return result
+    def style(self) -> list:
+        # TODO: ADD SEPARATE STYLE FOR HIGHTNOTE AND TEXT
+        import texmex
+        content, start = [], 0
+        highnote = None
+        if self.notes and self.notes[0].style:
+            highnote = self.notes[0].style[0]
+        result = texmex.TextStyle(content=content)
+        for note in self.notes:
+            if not note.style:
+                continue
+            for item in note.style[1].content:
+                item = copy.deepcopy(item)
+                item.start += start
+                item.end += start
+                content.append(item)
+            start = content[-1].end
+        return highnote, result
 
     @property
     def raw_number(self):
