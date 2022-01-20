@@ -202,6 +202,9 @@ from serializeraw.webconfig import load_webconfig
 # whitepage
 from serializeraw.whitepage import dump_whitepages
 from serializeraw.whitepage import load_whitepages
+# wordspaces
+from serializeraw.wordspaces import dump_wordspaces
+from serializeraw.wordspaces import load_wordspaces
 # yamlpages
 from serializeraw.yamlpages import dump_yamlpages
 from serializeraw.yamlpages import load_yamlpages
