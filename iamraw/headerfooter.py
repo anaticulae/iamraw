@@ -96,6 +96,10 @@ class FootNoteMerged(FootNote):
         result = utila.flatten((item.style for item in self.notes))
         return result
 
+    @property
+    def raw_number(self):
+        return self.notes[0].raw_number
+
 
 @dataclasses.dataclass
 class FootJudgedNote(FootNote):
