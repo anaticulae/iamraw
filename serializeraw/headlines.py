@@ -53,12 +53,10 @@ def load_headlines(
     fname = 'words__headlines_headlines'
     if oneline:
         fname = 'words__headlines_oneline'
-    content = utila.from_raw_or_path(
+    loaded = utila.yaml_load(
         content,
         fname=fname,
-        ftype='yaml',
     )
-    loaded = utila.yaml_load(content)
     result = []
     for step in loaded:
         loadedstep = []
