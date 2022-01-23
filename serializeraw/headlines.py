@@ -44,10 +44,18 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
-def load_headlines(content: str, pages=None) -> iamraw.PagesHeadlineList:
+def load_headlines(
+    content: str,
+    pages=None,
+    *,
+    oneline: bool = False,
+) -> iamraw.PagesHeadlineList:
+    fname = 'words__headlines_headlines'
+    if oneline:
+        fname = 'words__headlines_oneline'
     content = utila.from_raw_or_path(
         content,
-        fname='words__headlines_headlines',
+        fname=fname,
         ftype='yaml',
     )
     loaded = utila.yaml_load(content)
