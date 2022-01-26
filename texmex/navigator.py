@@ -130,7 +130,7 @@ class NavigatorMixin:
         utila.log(self.debug)
 
     def hull_empty(self):
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
 
 @dataclasses.dataclass

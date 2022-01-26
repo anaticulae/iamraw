@@ -50,13 +50,13 @@ AreaItems = typing.List[AreaItem]
 class SectionMixin(PartOfDocMixin):
 
     def append(self, item):
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     def __getitem__(self, index):
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
     def __len__(self):
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
 
 @dataclasses.dataclass
