@@ -95,7 +95,7 @@ from serializeraw.fonts import load_font_header
 from serializeraw.fonts import toflag as dump_flags
 # fontstore
 from serializeraw.fontstore import create_fontstore
-from serializeraw.fontstore import create_fontstore_frompath
+from serializeraw.fontstore import fs_frompath
 # footnotes
 from serializeraw.footnotes import load_footnotes
 # formula
@@ -175,10 +175,10 @@ from serializeraw.table import load_tables
 from serializeraw.text import dump_text
 from serializeraw.text import load_text
 # textnavigator
-from serializeraw.textnavigator.create import create_pagetextcontentnavigators_fromfile
-from serializeraw.textnavigator.create import create_pagetextcontentnavigators_frompath
-from serializeraw.textnavigator.create import create_pagetextnavigators_fromfile
-from serializeraw.textnavigator.create import create_pagetextnavigators_frompath
+from serializeraw.textnavigator.create import ptcn_fromfile
+from serializeraw.textnavigator.create import ptcn_frompath
+from serializeraw.textnavigator.create import ptn_fromfile
+from serializeraw.textnavigator.create import ptn_frompath
 from serializeraw.textnavigator.filter import remove_magic
 from serializeraw.textnavigator.highnote import dump_highnotes
 from serializeraw.textnavigator.highnote import load_highnotes
@@ -210,8 +210,8 @@ from serializeraw.yamlpages import dump_yamlpages
 from serializeraw.yamlpages import load_yamlpages
 from serializeraw.yamlpages import write_yamlpages
 
-ptcn_fromfile = create_pagetextcontentnavigators_fromfile  # pylint:disable=C0103
-ptcn_frompath = create_pagetextcontentnavigators_frompath  # pylint:disable=C0103
-ptn_fromfile = create_pagetextnavigators_fromfile  # pylint:disable=C0103
-ptn_frompath = create_pagetextnavigators_frompath  # pylint:disable=C0103
-fs_frompath = create_fontstore_frompath  # pylint:disable=C0103
+create_pagetextcontentnavigators_fromfile = ptcn_fromfile  # pylint:disable=C0103
+create_pagetextcontentnavigators_frompath = ptcn_frompath  # pylint:disable=C0103
+create_pagetextnavigators_fromfile = ptn_fromfile  # pylint:disable=C0103
+create_pagetextnavigators_frompath = ptn_frompath  # pylint:disable=C0103
+create_fontstore_frompath = fs_frompath  # pylint:disable=C0103

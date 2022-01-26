@@ -39,7 +39,7 @@ def test_create_pagetextcontentnavigator_fromfile():
     headerfooterpath = iamraw.path.headerfooters(source)
     fontheader = iamraw.path.fontheader(source)
     fontcontent = iamraw.path.fontcontent(source)
-    loaded = serializeraw.create_pagetextcontentnavigators_fromfile(
+    loaded = serializeraw.ptcn_fromfile(
         text,
         textpositions,
         sizeandborderpath,

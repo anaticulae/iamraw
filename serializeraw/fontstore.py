@@ -40,7 +40,7 @@ def create_fontstore(
     return result
 
 
-def create_fontstore_frompath(
+def fs_frompath(
     path: str,
     prefix: str = '',
     pages: tuple = None,

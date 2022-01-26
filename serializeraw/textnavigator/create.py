@@ -16,7 +16,7 @@ import serializeraw
 import texmex
 
 
-def create_pagetextnavigators_frompath(
+def ptn_frompath(
     path: str,
     prefix='',
     pages: tuple = None,
@@ -59,7 +59,7 @@ def create_pagetextnavigators_frompath(
         backup=backup,
     )
     # load data
-    navigators = create_pagetextnavigators_fromfile(
+    navigators = ptn_fromfile(
         text=text,
         textpositions=textpositions,
         fontheader=fontheader,
@@ -72,7 +72,7 @@ def create_pagetextnavigators_frompath(
     return navigators
 
 
-def create_pagetextnavigators_fromfile(
+def ptn_fromfile(
     text: str,
     textpositions: str,
     fontheader: str = None,
@@ -127,7 +127,7 @@ def ptn_path(
     return text, textpositions, fontheader, fontcontent
 
 
-def create_pagetextcontentnavigators_frompath(
+def ptcn_frompath(
     path: str,
     prefix: str = '',
     pages: tuple = None,
@@ -173,7 +173,7 @@ def create_pagetextcontentnavigators_frompath(
     else:
         horizontals = None
     # create
-    result = create_pagetextcontentnavigators_fromfile(
+    result = ptcn_fromfile(
         text=text,
         textpositions=textpositions,
         sizeandborderpath=sizeandborderpath,
@@ -188,7 +188,7 @@ def create_pagetextcontentnavigators_frompath(
     return result
 
 
-def create_pagetextcontentnavigators_fromfile(
+def ptcn_fromfile(
     text: str,
     textpositions: str,
     sizeandborderpath: str,
@@ -204,7 +204,7 @@ def create_pagetextcontentnavigators_fromfile(
 ):
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
-    navigators = create_pagetextnavigators_fromfile(
+    navigators = ptn_fromfile(
         text,
         textpositions,
         fontheader,

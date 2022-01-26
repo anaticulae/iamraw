@@ -41,7 +41,7 @@ def test_document_textdistance():
 @utilatest.requires(power.DOCU027_PDF)
 def test_document_textdistance_from_contentnavigators():
     source = power.link(power.DOCU027_PDF)
-    data = serializeraw.create_pagetextcontentnavigators_frompath(source)
+    data = serializeraw.ptcn_frompath(source)
     result = texmex.document_textdistance_from_contentnavigators(data)
     assert result == 17.9, str(result)
 
@@ -69,7 +69,7 @@ def test_textsize_frompage():
 ])
 @utilatest.requires(power.DOCU027_PDF)
 def test_navigator_filter_mode(mode, empty):
-    result = serializeraw.create_pagetextnavigators_frompath(
+    result = serializeraw.ptn_frompath(
         power.link(power.DOCU027_PDF),
         mode=mode,
         pages=(0,),
