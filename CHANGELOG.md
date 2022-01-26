@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v4.51.0
+
+### Feature
+
+* add method to copy empty navigator hull (876707cdc4fe)
+* add option to load oneline headlines (7c971e99754f)
+* add raw number property (e3c014a6ce43)
+* move serializer methods from textflow project (03f43902f28c)
+* add undefined toc state (8430464180d5)
+
+### Fix
+
+* realign merge text style (c0aef239872e)
+
 ## v4.50.0
 
 ### Feature
