@@ -32,8 +32,8 @@ import utila
 import texmex
 from texmex.group.fonts import feeddistance
 from texmex.group.fonts import fontdistance
-from texmex.navigator import PageTextNavigator
-from texmex.navigator import PageTextNavigators
+from texmex.navigator import PTN
+from texmex.navigator import PTNs
 from texmex.text import TextBoundsInfo
 from texmex.text import TextBoundsInfos
 
@@ -82,7 +82,7 @@ class MultilineGroup:
 
 
 def group_pages_by_fontsize(
-    pagetextnavigators: PageTextNavigators,
+    pagetextnavigators: PTNs,
     sizediff: float = 0.0,
 ) -> PageContentMultiLines:
     """Iterate thru different pages of `pagetextnavigators` and extract
@@ -103,7 +103,7 @@ def group_pages_by_fontsize(
 
 
 def group_page_by_fontsize(
-    pagetextnavigator: PageTextNavigator,
+    pagetextnavigator: PTN,
     sizediff: float = 0.0,
 ) -> PageContentMultiLine:
     """Group text lines by `sizediff`.
@@ -259,7 +259,7 @@ def maxdistance(fontsize: float) -> float:
 
 
 def group_linedistances_complex(
-    content: PageTextNavigator,
+    content: PTN,
     max_sizediff: float = SIZEDIFF_MAX,
     max_distance: callable = maxdistance,
     returndata: bool = False,
@@ -316,7 +316,7 @@ def group_linedistances_complex(
     return result
 
 
-def group_page_by_size_distance(content: PageTextNavigator):
+def group_page_by_size_distance(content: PTN):
     assert isinstance(content, texmex.NavigatorMixin), type(content)
     grouped = group_linedistances_complex(content)
     result = []

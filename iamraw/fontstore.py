@@ -135,11 +135,11 @@ class FontContentStore:
     def __init__(
         self,
         store: FontStore,
-        navigator: 'PageTextContentNavigator',
+        navigator: 'PTCN',
         page: int,
     ):
         assert store, navigator
-        # assert isinstance(navigator, PageTextContentNavigator)
+        # assert isinstance(navigator, PTCN)
         assert page == navigator.page, f'{page} {navigator.page}'
         self.store = store
         self.off_start = navigator.offset[0]

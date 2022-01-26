@@ -52,7 +52,7 @@ def test_fonts_navigator_to_bounds(navigator):
 
 
 def sample():
-    navigator = texmex.PageTextNavigator()
+    navigator = texmex.PTN()
     location = iamraw.BoundingBox.from_str('10.0 12.0 15 20')
     navigator.insert('me', bounding=location, style=None)
     location = iamraw.BoundingBox.from_str('100.0 120.0 150 200')

@@ -63,9 +63,9 @@ def test_textsize_frompage():
 
 
 @pytest.mark.parametrize('mode, empty', [
-    (texmex.PageTextNavigatorMode.BOTH, False),
-    (texmex.PageTextNavigatorMode.VERTICAL, True),
-    (texmex.PageTextNavigatorMode.HORIZONTAL, False),
+    (texmex.PTNMode.BOTH, False),
+    (texmex.PTNMode.VERTICAL, True),
+    (texmex.PTNMode.HORIZONTAL, False),
 ])
 @utilatest.requires(power.DOCU027_PDF)
 def test_navigator_filter_mode(mode, empty):

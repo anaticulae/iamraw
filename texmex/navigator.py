@@ -134,18 +134,18 @@ class NavigatorMixin:
 
 
 @dataclasses.dataclass
-class PageTextNavigator(NavigatorMixin):
-    """The PageTextNavigator eases to navigate through the textual
-    content of a Page. The text is processed from top to down and left
-    to right.
+class PTN(NavigatorMixin):
+    """The PTN eases to navigate through the textual content of a Page.
+
+    The text is processed from top to down and left to right.
 
     To fill navigator with content use `insert`. Acessing the data is
     possible trough `between`, `before`, `after` or __getitem__.
 
     Make Navigator compareable.
 
-    >>> assert PageTextNavigator() == PageTextNavigator()
-    >>> assert PageTextNavigator(page=10) != PageTextNavigator()
+    >>> assert PTN() == PTN()
+    >>> assert PTN(page=10) != PTN()
     """
 
     data: typing.List = dataclasses.field(default_factory=list)
@@ -260,8 +260,8 @@ class PageTextNavigator(NavigatorMixin):
 
     def hull_empty(self):
         """\
-        >>> PageTextNavigator(page=10).hull_empty()
-        PageTextNavigator(page=10, pagesize=(612.0, 792.0), data=[], fast={})
+        >>> PTN(page=10).hull_empty()
+        PTN(page=10, pagesize=(612.0, 792.0), data=[], fast={})
         """
         result = copy.deepcopy(self)
         result.clear()
@@ -269,15 +269,15 @@ class PageTextNavigator(NavigatorMixin):
 
 
 @dataclasses.dataclass
-class PageTextContentNavigator(NavigatorMixin):
+class PTCN(NavigatorMixin):
     """Iterate over page content without footer and header.
 
-    See: :class:`hey.textnavigator.navigator.PageTextNavigator`.
+    See: :class:`hey.textnavigator.navigator.PTN`.
     """
 
     def __init__(
         self,
-        textnavigator: PageTextNavigator,
+        textnavigator: PTN,
         content: iamraw.Border,
         *,
         validate_leftright: bool = True,
@@ -291,8 +291,8 @@ class PageTextContentNavigator(NavigatorMixin):
             validate_leftright(bool): do not check left right coordinate.
         """
         super().__init__(pagesize=(textnavigator.width, textnavigator.height))
-        msg = 'require `PageTextNavigator` got: %s' % type(textnavigator)
-        assert isinstance(textnavigator, PageTextNavigator), msg
+        msg = 'require `PTN` got: %s' % type(textnavigator)
+        assert isinstance(textnavigator, PTN), msg
         msg = 'require `Border` got: %s' % type(content)
         assert isinstance(content, iamraw.Border), msg
         pagesize = iamraw.PageSize(
@@ -336,8 +336,8 @@ class PageTextContentNavigator(NavigatorMixin):
 
     def hull_empty(self):
         """\
-        >>> PageTextContentNavigator(PageTextNavigator(page=10), iamraw.Border(20, 500, 20, 700)).hull_empty()
-        PageTextContentNavigator(page=10, pagesize=(612.0, 792.0))
+        >>> PTCN(PTN(page=10), iamraw.Border(20, 500, 20, 700)).hull_empty()
+        PTCN(page=10, pagesize=(612.0, 792.0))
         """
         result = copy.deepcopy(self)
         result.clear()
@@ -357,7 +357,7 @@ def rotate_left(navigator):
         result = iamraw.BoundingBox.from_list(box)
         return result
 
-    result = PageTextNavigator(
+    result = PTN(
         page=navigator.page,
         pagesize=(navigator.height, navigator.width),
     )
@@ -372,8 +372,8 @@ def rotate_left(navigator):
     return result
 
 
-PageTextNavigators = typing.List[PageTextNavigator]
-PageTextContentNavigators = typing.List[PageTextContentNavigator]
+PTNs = typing.List[PTN]
+PTCNs = typing.List[PTCN]
 
 
 def insert_position(bounding: tuple, data: list) -> int:
@@ -436,7 +436,7 @@ def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0
     return True
 
 
-def navigator_to_content(navigator: PageTextNavigator) -> texmex.text.TextBoundsInfos:  # yapf:disable
+def navigator_to_content(navigator: PTN) -> texmex.text.TextBoundsInfos:
     result = []
     for item in navigator:
         info = texmex.text.TextBoundsInfo(
@@ -447,13 +447,13 @@ def navigator_to_content(navigator: PageTextNavigator) -> texmex.text.TextBounds
     return result
 
 
-def navigator_to_bounds(navigator: PageTextNavigator) -> iamraw.BoundingBoxes:
-    """Extract list of `BoundingBox` from `PageTextNavigator`."""
+def navigator_to_bounds(navigator: PTN) -> iamraw.BoundingBoxes:
+    """Extract list of `BoundingBox` from `PTN`."""
     assert isinstance(navigator, NavigatorMixin), type(navigator)
     return [item.bounding for item in navigator]
 
 
-class PageTextNavigatorMode(enum.Enum):
+class PTNMode(enum.Enum):
     BOTH = enum.auto()
     HORIZONTAL = enum.auto()
     VERTICAL = enum.auto()
@@ -464,9 +464,9 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
     text_positions,
     fontstore: iamraw.FontStore = None,
     fill_empty: bool = True,
-    mode=PageTextNavigatorMode.BOTH,
+    mode=PTNMode.BOTH,
     sort: bool = True,
-) -> PageTextNavigators:
+) -> PTNs:
     result = []
     for textposition in text_positions:
         page = textposition.page
@@ -476,7 +476,7 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
         else:
             # TODO: OUTDATED, REMOVE LATER
             pagesize = text.dimension
-        navigator = PageTextNavigator(
+        navigator = PTN(
             pagesize=pagesize,
             page=page,
         )
@@ -522,17 +522,17 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
     return result
 
 
-def select_textcontainer(content, mode: PageTextNavigatorMode):
+def select_textcontainer(content, mode: PTNMode):
     if not content:
         return content
 
-    if mode == PageTextNavigatorMode.HORIZONTAL:
+    if mode == PTNMode.HORIZONTAL:
         content = [
             item for item in content if isinstance(item, iamraw.TextContainer)
         ]
         return content
 
-    if mode == PageTextNavigatorMode.VERTICAL:
+    if mode == PTNMode.VERTICAL:
         content = [
             item for item in content
             if isinstance(item, iamraw.VerticalTextContainer)
@@ -542,16 +542,16 @@ def select_textcontainer(content, mode: PageTextNavigatorMode):
 
 
 def fill_empty_navigators(
-    navigators: PageTextNavigators,
+    navigators: PTNs,
     dimension: iamraw.PageSize,
-) -> PageTextNavigators:
+) -> PTNs:
     """Some documents contain white pages.
 
     White pages contain no text and therefore no text_positions. The
     document [CONTENT, WHITEPAGE, CONTENT, CONTENT] produces the
     pagetextnavigators page =[0,2,3]. If we assume that some algorithm
     requires a closed row of navigators this can lead to
-    problems.Therefore we insert an empty PageTextNavigator at position
+    problems.Therefore we insert an empty PTN at position
     1 to avoid these problems.
     """
     if not navigators:
@@ -562,7 +562,7 @@ def fill_empty_navigators(
     for item in navigators[1:]:
         # fill empty
         while filled[-1].page + 1 < item.page:
-            navigator = PageTextNavigator(
+            navigator = PTN(
                 pagesize=dimension,
                 page=filled[-1].page + 1,
             )
@@ -578,7 +578,7 @@ def create_pagetextcontentnavigators(
     horizontals: iamraw.PagesWithHorizontalList = None,
     validate_leftright: bool = True,
     pages: tuple = None,
-) -> PageTextContentNavigators:
+) -> PTCNs:
     # TODO: require fill_empty?
     result = []
     for navigator in navigators:
@@ -594,7 +594,7 @@ def create_pagetextcontentnavigators(
             continue
         if horizontals:
             insert_horizontals(navigator, horizontals)
-        current = PageTextContentNavigator(
+        current = PTCN(
             navigator,
             border,
             validate_leftright=validate_leftright,
@@ -606,7 +606,7 @@ def create_pagetextcontentnavigators(
 HORIZONTAL = '<<<<<<<<<<<<<<<<<<<<HORIZONTAL>>>>>>>>>>>>>>>>>>>>'
 
 
-def insert_horizontals(ptn: 'texmex.PageTextNavigator', horizontals):
+def insert_horizontals(ptn: 'texmex.PTN', horizontals):
     selected = utila.select_content(horizontals, ptn.page)
     if not selected:
         return
@@ -642,7 +642,7 @@ def determine_border(headerfooter, sizeandborder, page: int):
 
 
 def create_pagetextnavigator_fromstr(content: str, fontsize=12.0):
-    result = PageTextNavigator()
+    result = PTN()
     for index, line in enumerate(content.splitlines()):
         bounding = iamraw.BoundingBox(
             x0=50,
@@ -665,7 +665,7 @@ def create_pagetextnavigator_fromstr(content: str, fontsize=12.0):
     return result
 
 
-def single(navigators: 'texmex.PageTextNavigators') -> 'texmex.PageTextNavigator': # yapf:disable
+def single(navigators: 'texmex.PTNs') -> 'texmex.PTN':
     """Merge more than one pagenavigators to a single huge navigator to
     detect multi page lists."""
     if not navigators:
@@ -688,7 +688,7 @@ def single(navigators: 'texmex.PageTextNavigators') -> 'texmex.PageTextNavigator
         footer = page.content.bottom
         y0 += footer - header
     # create result
-    navigator = texmex.PageTextNavigator()
+    navigator = texmex.PTN()
     navigator.data = result
     navigator.page = navigators[0].page
     return navigator

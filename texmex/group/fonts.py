@@ -83,7 +83,7 @@ def bounds_to_textbounds(
 
 
 def textbounds(
-    navigator: texmex.navigator.PageTextNavigator,
+    navigator: texmex.navigator.PTN,
     contentborder: iamraw.Border,
 ) -> texmex.text.TextBoundsInfos:
     assert isinstance(navigator, texmex.NavigatorMixin), type(navigator)
@@ -125,7 +125,7 @@ def textsize_frompage(navigator: 'texmex.NavigatorMixin') -> float:
 
 
 def document_textfeed(
-    navigators: texmex.navigator.PageTextNavigators,
+    navigators: texmex.navigator.PTNs,
     count: int = 1,
     left: bool = True,
 ) -> utila.Ints:
@@ -170,7 +170,7 @@ def document_textdistance(
 ) -> int:
     """Determine the most common text distance"""
     data = [
-        texmex.PageTextContentNavigator(
+        texmex.PTCN(
             textnavigator=navigator,
             content=contentborder.border,
         ) for navigator, contentborder in utila.sync_pages(
@@ -183,7 +183,7 @@ def document_textdistance(
 
 
 def document_textdistance_from_contentnavigators(
-    navigators: 'texmex.PageTextContentNavigators',
+    navigators: 'texmex.PTCNs',
     digits: int = 1,
 ) -> float:
     """Determine the most common text distance"""

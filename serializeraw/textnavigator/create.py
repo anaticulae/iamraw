@@ -20,14 +20,14 @@ def ptn_frompath(
     path: str,
     prefix='',
     pages: tuple = None,
-    mode=texmex.PageTextNavigatorMode.BOTH,
+    mode=texmex.PTNMode.BOTH,
     *,
     backup: bool = False,
     fill_empty: bool = True,
     logging: bool = True,
     sort: bool = True,
-) -> texmex.PageTextNavigators:
-    """Load all resources from one `path` to create PageTextNavigator
+) -> texmex.PTNs:
+    """Load all resources from one `path` to create PTN
     for the selected list of `pages` with an optional `prefix` in loaded
     items.
 
@@ -35,7 +35,7 @@ def ptn_frompath(
         path(str): Path to folder which contains all data to construct.
         prefix(str): Optional prefix to differentiate items in folder.
         pages(tuple): Tuple of pages to load.
-        mode(PageTextNavigatorMode): select text container to skip
+        mode(PTNMode): select text container to skip
         backup(bool): If True use baml instead of yaml as ftype
         fill_empty(bool): insert empty pages for pages without any saved
                           data. Use `fill_empty=False` to avoid filling
@@ -43,7 +43,7 @@ def ptn_frompath(
         logging(bool): log errors while creating fontstore
         sort(bool): if False, do not check insert bounding position
     Returns:
-        A list of selected PageTextNavigators.
+        A list of selected PTNs.
 
     Example:
         rawmaker__oneline_text_text.yaml with `oneline` as prefix to
@@ -78,11 +78,11 @@ def ptn_fromfile(
     fontheader: str = None,
     fontcontent: str = None,
     pages: tuple = None,
-    mode=texmex.PageTextNavigatorMode.BOTH,
+    mode=texmex.PTNMode.BOTH,
     *,
     fill_empty: bool = True,
     sort: bool = True,
-) -> texmex.PageTextNavigators:
+) -> texmex.PTNs:
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
     text = serializeraw.load_document(text, pages=pages)
@@ -131,27 +131,27 @@ def ptcn_frompath(
     path: str,
     prefix: str = '',
     pages: tuple = None,
-    mode=texmex.PageTextNavigatorMode.BOTH,
+    mode=texmex.PTNMode.BOTH,
     *,
     backup: bool = False,
     validate_leftright: bool = True,
     footer_sized_prefixed: bool = False,
     horizontals: bool = False,
-) -> texmex.PageTextContentNavigators:
-    """Load `PageTextContentNavigators` from `path`.
+) -> texmex.PTCNs:
+    """Load `PTCNs` from `path`.
 
     Args:
         path(str): `path` where loaded data is located in
         prefix(str): prefix loaded resources
         pages(tuple): selected pages
-        mode(PageTextNavigatorMode): select text container to skip
+        mode(PTNMode): select text container to skip
         backup(bool): If True use baml instead of yaml as ftype
         validate_leftright(bool): do not check writing over ``content border``.
         footer_sized_prefixed(bool): if True use prefixed data
                                      if False use default data
         horizontals(bool): insert horizontals if given
     Returns:
-        List of loaded PageTextContentNavigators depending on `pages`.
+        List of loaded PTCNs depending on `pages`.
     """
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
@@ -197,7 +197,7 @@ def ptcn_fromfile(
     fontcontent: str = None,
     horizontals: str = None,
     pages: tuple = None,
-    mode=texmex.PageTextNavigatorMode.BOTH,
+    mode=texmex.PTNMode.BOTH,
     *,
     fill_empty: bool = True,
     validate_leftright: bool = True,

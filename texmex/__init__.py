@@ -45,13 +45,13 @@ from texmex.iter import split_page
 # navigator
 from texmex.navigator import END
 from texmex.navigator import HORIZONTAL
+from texmex.navigator import PTCN
+from texmex.navigator import PTN
 from texmex.navigator import START
 from texmex.navigator import NavigatorMixin
-from texmex.navigator import PageTextContentNavigator
-from texmex.navigator import PageTextContentNavigators
-from texmex.navigator import PageTextNavigator
-from texmex.navigator import PageTextNavigatorMode
-from texmex.navigator import PageTextNavigators
+from texmex.navigator import PTCNs
+from texmex.navigator import PTNMode
+from texmex.navigator import PTNs
 from texmex.navigator import SelectBounding
 from texmex.navigator import create_pagetextcontentnavigators
 from texmex.navigator import create_pagetextnavigator_fromstr
@@ -91,6 +91,12 @@ from texmex.translation import TranslationLookup
 from texmex.translation import Translations
 # utils
 from texmex.utils import topbottom
+
+PageTextContentNavigator = PTCN
+PageTextContentNavigators = PTCNs
+PageTextNavigator = PTN
+PageTextNavigators = PTNs
+PageTextNavigatorMode = PTNMode
 
 # TODO: REMOVE LATER
 HIGHNOTE_MIN_RISE = HIGHNOTE_RISE_MIN
