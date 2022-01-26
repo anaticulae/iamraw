@@ -606,7 +606,7 @@ def create_pagetextcontentnavigators(
 HORIZONTAL = '<<<<<<<<<<<<<<<<<<<<HORIZONTAL>>>>>>>>>>>>>>>>>>>>'
 
 
-def insert_horizontals(ptn: 'texmex.PTN', horizontals):
+def insert_horizontals(ptn: PTN, horizontals):
     selected = utila.select_content(horizontals, ptn.page)
     if not selected:
         return
@@ -665,7 +665,7 @@ def create_pagetextnavigator_fromstr(content: str, fontsize=12.0):
     return result
 
 
-def single(navigators: 'texmex.PTNs') -> 'texmex.PTN':
+def single(navigators: PTNs) -> PTN:
     """Merge more than one pagenavigators to a single huge navigator to
     detect multi page lists."""
     if not navigators:
