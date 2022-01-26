@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import copy
 import dataclasses
 import enum
 import typing
@@ -127,6 +128,9 @@ class NavigatorMixin:
     def print_debug(self):
         utila.log(f'page: {self.page} size: {self.pagesize}')
         utila.log(self.debug)
+
+    def hull_empty(self):
+        raise NotImplementedError
 
 
 @dataclasses.dataclass
@@ -254,6 +258,15 @@ class PageTextNavigator(NavigatorMixin):
             utila.error(f'page: {self.page} height: {y1-y0} < {self.height}')
         # assert (y1 - y0) < self.height, f'{y1-y0} < {self.height}'
 
+    def hull_empty(self):
+        """\
+        >>> PageTextNavigator(page=10).hull_empty()
+        PageTextNavigator(page=10, pagesize=(612.0, 792.0), data=[], fast={})
+        """
+        result = copy.deepcopy(self)
+        result.clear()
+        return result
+
 
 @dataclasses.dataclass
 class PageTextContentNavigator(NavigatorMixin):
@@ -311,11 +324,24 @@ class PageTextContentNavigator(NavigatorMixin):
         # TODO: adjust dimension to content border
         return self.content.bottom - self.content.top
 
+    def clear(self):
+        self.data.clear()
+        self._offset = None, None
+
     def __getitem__(self, index):
         return self.data[index]
 
     def __len__(self):
         return len(self.data)
+
+    def hull_empty(self):
+        """\
+        >>> PageTextContentNavigator(PageTextNavigator(page=10), iamraw.Border(20, 500, 20, 700)).hull_empty()
+        PageTextContentNavigator(page=10, pagesize=(612.0, 792.0))
+        """
+        result = copy.deepcopy(self)
+        result.clear()
+        return result
 
 
 def rotate_left(navigator):
