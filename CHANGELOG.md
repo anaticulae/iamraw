@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.51.1
+
+### Feature
+
+* add method to insert content (6777c2f75a29)
+
 ## v4.51.0
 
 ### Feature
