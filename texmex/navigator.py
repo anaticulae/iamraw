@@ -147,7 +147,6 @@ class PTN(NavigatorMixin):
     >>> assert PTN() == PTN()
     >>> assert PTN(page=10) != PTN()
     """
-
     data: typing.List = dataclasses.field(default_factory=list)
     # access textual element by BoundingBox
     fast: typing.Dict = dataclasses.field(default_factory=dict)
@@ -188,7 +187,8 @@ class PTN(NavigatorMixin):
             self.data.insert(position, datum)
         else:
             self.data.append(datum)
-        self.fast[bounding] = datum
+        if hasattr(self, 'fast'):
+            self.fast[bounding] = datum
 
     def __getitem__(self, index) -> texmex.style.TextInfo:
         return self.data[index]
@@ -342,6 +342,9 @@ class PTCN(NavigatorMixin):
         result = copy.deepcopy(self)
         result.clear()
         return result
+
+    assert_bounding = PTN.assert_bounding
+    insert = PTN.insert
 
 
 def rotate_left(navigator):
