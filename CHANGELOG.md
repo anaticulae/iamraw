@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.52.0
+
+### Feature
+
+* add footer number bounding location (c953de84941c)
+* add attribute to store style of extracted toc (aa087ae73d83)
+
 ## v4.51.1
 
 ### Feature
