@@ -69,6 +69,7 @@ class FootNote:
     number: int = -1
     page: int = -1
     bounding: tuple = None
+    bounding_number: tuple = None
 
 
 FootNotes = typing.List[FootNote]
