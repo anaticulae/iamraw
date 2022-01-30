@@ -9,17 +9,17 @@
 import iamraw
 
 FOOTNOTES = [
-    iamraw.FootRawNote(
+    iamraw.FootNoteRaw(
         number='1',
         text='Aus Grnden der besseren Lesbarkeit wird hier und im ',
         raw='1 Aus Grnden der besseren Lesbarkeit wird hier und im ',
     ),
-    iamraw.FootRawNote(
+    iamraw.FootNoteRaw(
         number='2',
         text='s. Berg 2013: 2 ',
         raw='2 s. Berg 2013: 2 ',
     ),
-    iamraw.FootRawNote(
+    iamraw.FootNoteRaw(
         number='3',
         text='s. Facebook newsroom; Stand: 1. Quartal 2014 ',
         raw='3 s. Facebook newsroom; Stand: 1. Quartal 2014 ',

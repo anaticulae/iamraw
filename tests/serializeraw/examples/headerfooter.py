@@ -11,7 +11,7 @@ from iamraw import BoundingBox
 from iamraw import FixedFooterInformation
 from iamraw import FixedHeaderInformation
 from iamraw import FootNoteMerged
-from iamraw import FootRawNote
+from iamraw import FootNoteRaw
 from iamraw import HeaderTitle
 from iamraw import MovingFooterInformation
 from iamraw import PageContentFooterHeader
@@ -32,12 +32,12 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootRawNote(
+                FootNoteRaw(
                     number='1',
                     text='Personal Digital Assistant.',
                     raw='1Personal Digital Assistant.',
                 ),
-                FootRawNote(
+                FootNoteRaw(
                     number='2',
                     text='Operating System.',
                     raw='2Operating System.',
@@ -53,17 +53,17 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootRawNote(
+                FootNoteRaw(
                     number='3',
                     text='Eclipse ist eine Gemeinschaft die sich mit ',
                     raw='3Eclipse ist eine Gemeinschaft die sich mit ',
                 ),
-                FootRawNote(
+                FootNoteRaw(
                     number='4',
                     text='Java Standard Edition',
                     raw='4Java Standard Edition',
                 ),
-                FootRawNote(
+                FootNoteRaw(
                     number='5',
                     text='Software Development Kit',
                     raw='5Software Development Kit',
@@ -79,12 +79,12 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootRawNote(
+                FootNoteRaw(
                     number='6',
                     text='Virtual Machine',
                     raw='6Virtual Machine',
                 ),
-                FootRawNote(
+                FootNoteRaw(
                     number='7',
                     text='Application Programming Interface',
                     raw='7Application Programming Interface',
@@ -100,7 +100,7 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootRawNote(
+                FootNoteRaw(
                     number='8',
                     text='Graphical User Interface',
                     raw='8Graphical User Interface',
@@ -116,18 +116,18 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootRawNote(
+                FootNoteRaw(
                     number='21',
                     text='High Speed Packet Access',
                     raw='21High Speed Packet Access',
                 ),
                 FootNoteMerged(notes=[
-                    FootRawNote(
+                    FootNoteRaw(
                         number='22',
                         text='Orthogonal-Frequency-Division-Multiplexing',
                         raw='22Orthogonal-Frequency-Division-Multiplexing',
                     ),
-                    FootRawNote(
+                    FootNoteRaw(
                         number='23',
                         text='Multiple-Input-Multiple-Output',
                         raw='23Multiple-Input-Multiple-Output',
@@ -144,7 +144,7 @@ FOOTER_HEADER = [
             end=1.0,
             page=None,
             notes=[
-                FootRawNote(
+                FootNoteRaw(
                     number='24',
                     text='Industrial, scientific, medical',
                     raw='24Industrial, scientific, medical',

@@ -73,7 +73,7 @@ def dump_footnote(note: iamraw.FootNote):
 
 def load_footnote(raw: dict) -> iamraw.FootNote:
     with contextlib.suppress(TypeError):
-        rawnote = iamraw.FootRawNote(**raw)
+        rawnote = iamraw.FootNoteRaw(**raw)
         if rawnote.style and len(rawnote.style) == 2:
             # style=(number.style, note.style),
             number = None

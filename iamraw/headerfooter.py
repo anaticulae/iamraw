@@ -75,7 +75,7 @@ FootNotes = typing.List[FootNote]
 
 
 @dataclasses.dataclass
-class FootRawNote(FootNote):
+class FootNoteRaw(FootNote):
     text: str = None
     raw: str = None
     raw_number: str = None

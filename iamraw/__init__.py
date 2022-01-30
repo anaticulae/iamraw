@@ -150,8 +150,8 @@ from iamraw.headerfooter import FooterInformation
 from iamraw.headerfooter import FootJudgedNote
 from iamraw.headerfooter import FootNote
 from iamraw.headerfooter import FootNoteMerged
+from iamraw.headerfooter import FootNoteRaw
 from iamraw.headerfooter import FootNotes
-from iamraw.headerfooter import FootRawNote
 from iamraw.headerfooter import HeaderImages
 from iamraw.headerfooter import HeaderInformation
 from iamraw.headerfooter import HeaderTitle
@@ -316,6 +316,9 @@ from iamraw.webconfig import WebConfig
 from iamraw.whitepage import PageContentWhitepage
 from iamraw.whitepage import PageContentWhitepages
 from iamraw.whitepage import WhitePage
+
+# TODO: REMOVE LATER
+FootRawNote = FootNoteRaw
 
 __version__ = '4.51.1'
 

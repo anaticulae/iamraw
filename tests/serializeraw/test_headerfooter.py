@@ -49,7 +49,7 @@ def test_footerheader_dump_invalid_list():
 
 def test_footerheader_movingfooterinformation():
     footer = iamraw.MovingFooterInformation()
-    note = iamraw.FootRawNote(number=1, text='hello', raw='1 hello')
+    note = iamraw.FootNoteRaw(number=1, text='hello', raw='1 hello')
     assert not footer
     footer.append(note)
     assert len(footer) == 1
@@ -116,17 +116,17 @@ def test_dump_mergednote():
             end=1.0,
             page=None,
             notes=[
-                iamraw.FootRawNote(
+                iamraw.FootNoteRaw(
                     number='3',
                     text='Eclipse ist eine Gemeinschaft die sich mit ',
                     raw='3Eclipse ist eine Gemeinschaft die sich mit ',
                 ),
-                iamraw.FootRawNote(
+                iamraw.FootNoteRaw(
                     number='4',
                     text='Java Standard Edition',
                     raw='4Java Standard Edition',
                 ),
-                iamraw.FootRawNote(
+                iamraw.FootNoteRaw(
                     number='5',
                     text='Software Development Kit',
                     raw='5Software Development Kit',
