@@ -68,6 +68,7 @@ def _dump(current: iamraw.Section, dump_raw: bool):
         result = dict(
             level=current.level,
             numbered=current.numbered,
+            style=current.style,
         )
     if children:
         result['children'] = children
@@ -94,6 +95,7 @@ def _load(current: dict, parent: iamraw.Section, load_raw: bool):
         result: iamraw.Toc = iamraw.Toc(
             level=current.get('level', 0),
             numbered=current.get('numbered', True),
+            style=current.get('style', None),
         )
     with contextlib.suppress(KeyError):
         # A leaf has no children

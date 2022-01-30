@@ -106,6 +106,7 @@ class TocStyle(enum.IntEnum):
 class Toc(TocLinkMixin):
     level: int = 0  # level must alsways be 0
     # distinguish between numbered and stepped toc
+    style: TocStyle = None
     numbered: bool = True  # TODO: REPLACE WITH TOCSTYLE
     children: SectionList = dataclasses.field(default_factory=list)
 
@@ -125,6 +126,7 @@ class Toc(TocLinkMixin):
 def create_toc(
     outlines: SectionList,
     numbered: bool = True,
+    style: TocStyle = None,
     *,
     remove_rawinfo: bool = False,
 ) -> Toc:
@@ -136,12 +138,13 @@ def create_toc(
     Args:
         outlines: flat list to create toc
         numbered(bool): distinguish between numbered and stepped toc
+        style(TocStyle): define toc style
         remove_rawinfo(bool): if True, do not store information where
                               data was collected.
     Returns:
         Hierarchical table of content.
     """
-    root = Toc(numbered=numbered)
+    root = Toc(numbered=numbered, style=style)
     current = root
     for item in outlines:
         level = item.level
