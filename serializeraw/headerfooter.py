@@ -46,13 +46,10 @@ def load_headerfooter(
     for item in loaded:
         pagenumber = item['page']
         assert isinstance(pagenumber, int)
-
         if utila.should_skip(pagenumber, pages):
             continue
-
         header = _load_header(item['header'])
         footer = _load_footer(item['footer'])
-
         footerheader = iamraw.PageContentFooterHeader(
             header=header,
             footer=footer,
@@ -104,18 +101,15 @@ def _dump_footer(footer):
     if footer.page is not None:
         raw['page_value'] = footer.page.value
         raw['page_raw'] = footer.page.raw
-
     if isinstance(footer, iamraw.MovingFooterInformation):
         # dump footnotes
         notes = [dump_footnote(item) for item in footer.notes]
         raw['notes'] = notes
-
     if isinstance(footer, iamraw.PagesFooterInformation):
         if footer.page_location is not None:
             raw['page_location'] = str(footer.page_location)
         else:
             raw['page_location'] = None
-
     return raw
 
 
@@ -124,14 +118,12 @@ def _load_footer(raw) -> iamraw.FooterInformation:
         return None
     begin = raw['begin']
     end = raw['end']
-
     page = None
     with contextlib.suppress(KeyError):
         page = iamraw.PageInformation(
             value=raw['page_value'],
             raw=raw['page_raw'],
         )
-
     # try to export MovingFooterInformation
     with contextlib.suppress(KeyError):
         notes = raw['notes']
@@ -142,7 +134,6 @@ def _load_footer(raw) -> iamraw.FooterInformation:
             notes=notes,
         )
         return result
-
     # try to export PagesFooterInformation
     with contextlib.suppress(KeyError):
         page_location = raw['page_location']
@@ -156,13 +147,11 @@ def _load_footer(raw) -> iamraw.FooterInformation:
         if page is not None:
             result.page = page
         return result
-
     # try to export FixedFooterInformation
     result = iamraw.FixedFooterInformation(
         begin=begin,
         end=end,
     )
-
     return result
 
 
@@ -174,14 +163,12 @@ def _dump_header(header):
         'end': header.end,
         'page': _dump_pageinformation(header.page)
     }
-
     with contextlib.suppress(KeyError):
         raw['undefined'] = [
             _dump_headerinfo_undefined(item) for item in header.undefined
         ]
     with contextlib.suppress(KeyError):
         raw['title'] = _dump_headerinfo_headertitle(header.title)
-
     return raw
 
 
