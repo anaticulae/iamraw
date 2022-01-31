@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.52.1
+
+### Feature
+
+* add pdfpage attribute (23e93a408828)
+* add caption type (d9a27e7529a4)
+* add number, label and text (cf064a73c6bb)
+
 ## v4.52.0
 
 ### Feature
