@@ -54,6 +54,7 @@ from iamraw.boxes import PagesWithHorizontalList
 # captions
 from iamraw.caption import Caption
 from iamraw.caption import Captions
+from iamraw.caption import CaptionType
 from iamraw.caption import PageContentCaption
 from iamraw.caption import PageContentCaptions
 # code

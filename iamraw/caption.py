@@ -9,7 +9,15 @@
 
 import collections
 import dataclasses
+import enum
 import typing
+
+
+class CaptionType(enum.Enum):
+    CODE = enum.auto()
+    FIGURE = enum.auto()
+    TABLE = enum.auto()
+    UNDEFINED = enum.auto()
 
 
 @dataclasses.dataclass
@@ -22,6 +30,7 @@ class Caption:
     raw: str = None
     # 0 top, 1 right, 2 bottom, 3 left
     position: float = None
+    typ: CaptionType = None
     # TODO: ADD BOUNDING?
 
 
