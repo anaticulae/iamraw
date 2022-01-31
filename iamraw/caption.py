@@ -31,6 +31,7 @@ class Caption:
     # 0 top, 1 right, 2 bottom, 3 left
     position: float = None
     typ: CaptionType = None
+    pdfpage: int = None
     # TODO: ADD BOUNDING?
 
 
