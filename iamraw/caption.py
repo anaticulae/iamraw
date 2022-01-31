@@ -16,6 +16,9 @@ import typing
 class Caption:
     line: int = None
     lineend: int = None
+    number: int = None
+    label: str = None
+    text: str = None
     raw: str = None
     # 0 top, 1 right, 2 bottom, 3 left
     position: float = None
