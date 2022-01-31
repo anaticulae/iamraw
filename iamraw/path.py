@@ -60,7 +60,7 @@ def line(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'rawmaker', 'line_line', prefix, ftype=ftype)
 
 
-def images(path: str, prefix: str = '', ftype='yaml') -> str:
+def images(path: str, prefix: str = '', ftype='') -> str:
     return con(path, 'rawmaker', 'images_images', prefix, ftype=ftype)
 
 
