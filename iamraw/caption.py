@@ -32,6 +32,8 @@ class Caption:
     position: float = None
     typ: CaptionType = None
     pdfpage: int = None
+    """Caption is printed on next page."""
+    overlap: bool = False
     # TODO: ADD BOUNDING?
 
 
