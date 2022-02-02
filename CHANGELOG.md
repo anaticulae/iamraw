@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.52.2
+
+### Feature
+
+* add overlap parameter (6e45c52bd86b)
+
+### Fix
+
+* change default type (9c265c642094)
+
 ## v4.52.1
 
 ### Feature
