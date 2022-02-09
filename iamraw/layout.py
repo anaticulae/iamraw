@@ -24,6 +24,8 @@ class Layout(enum.Flag):
     SINGLE = enum.auto()
     # double column text page
     DOUBLECOLUMN = enum.auto()
+    # double column block content
+    DOUBLECOLUMN_HIGHDENSITY = enum.auto()
     # no information extractable
     UNDEFINED = enum.auto()
 
