@@ -209,3 +209,7 @@ def groupme_figuretable(path: str, prefix: str = '', ftype='yaml') -> str:
 
 def groupme_tabletable(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'groupme', 'tabletable_tabletable', prefix, ftype=ftype)
+
+
+def pdfinfo(path: str) -> str:
+    return utila.join(path, 'pdfinfo.yaml')
