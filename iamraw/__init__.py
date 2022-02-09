@@ -11,6 +11,8 @@ import os
 
 # path
 import iamraw.path as path
+# mixin
+from iamraw.__mixin__ import ExtractedMixin
 # abbreviation
 from iamraw.abbreviation import Abbreviation
 from iamraw.abbreviation import AbbreviationList
