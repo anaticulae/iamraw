@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.52.3
+
+### Feature
+
+* add high density double column layout (486fe5f571f9)
+* add basic class to store extraction/strategy information (363394e0fc3c)
+
 ## v4.52.2
 
 ### Feature
