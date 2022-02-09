@@ -45,7 +45,10 @@ def load_pdfinfo(path: str) -> iamraw.PDFInfo:
         loaded['version']['major'],
         loaded['version']['minor'],
     )
-    loaded['generator'] = iamraw.Generator[loaded['generator'].upper()]
+    try:
+        loaded['generator'] = iamraw.Generator[loaded['generator'].upper()]
+    except KeyError:
+        loaded['generator'] = None
     result = iamraw.PDFInfo(**loaded)
     return result
 
