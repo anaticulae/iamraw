@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.52.4
+
+### Fix
+
+* make loader more robust (16b2e9b969ed)
+
 ## v4.52.3
 
 ### Feature
