@@ -132,6 +132,10 @@ class NavigatorMixin:
     def hull_empty(self):
         raise NotImplementedError  # pragma: no cover
 
+    @property
+    def rotated(self):
+        return self.pagesize[0] > self.pagesize[1]
+
 
 @dataclasses.dataclass
 class PTN(NavigatorMixin):
@@ -146,6 +150,8 @@ class PTN(NavigatorMixin):
 
     >>> assert PTN() == PTN()
     >>> assert PTN(page=10) != PTN()
+    >>> PTN().rotated
+    False
     """
     data: typing.List = dataclasses.field(default_factory=list)
     # access textual element by BoundingBox
