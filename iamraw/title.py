@@ -40,6 +40,8 @@ class AcademicTitle(enum.Flag):
         """\
         >>> AcademicTitle.fromstring('M.Sc.')
         <AcademicTitle.MASTER: ...>
+        >>> AcademicTitle.fromstring('Mag.')
+        <AcademicTitle.MASTER: ...>
         """
         # TODO: DECOUPLE FROM AcademicTitle and use regex matches also
         try:
@@ -76,6 +78,7 @@ MATCHES = {
     r'Dipl.-\w+': AcademicTitle.MASTER,
     'M.A.': AcademicTitle.MASTER,
     'M.Sc.': AcademicTitle.MASTER,
+    'Mag.': AcademicTitle.MASTER,
     'Dr.(-| )?(Ing.)?( ?(sc.|tech.|h.c.|E.h.)){0,5}': AcademicTitle.DR,
     # TODO: ADD GENERAL -/RULE?
     'Prof.[-]{0,1} ?(em.)?': AcademicTitle.PROF,
