@@ -302,7 +302,7 @@ class PTCN(NavigatorMixin):
         self.content = content
         assert content.bottom >= 100, str(content)  # ensure that are pixel
         top, bottom = texmex.utils.topbottom(pagesize, content)
-        assert 0 <= top <= bottom <= 1.0, str(top) + str(bottom)
+        assert 0 <= top <= bottom <= 1.0, f'0 <= {top} <= {bottom} <= 1.0'
         self.page = textnavigator.page
         # disable validation if required
         right = END if validate_leftright else DISABLE_VALIDATION
