@@ -295,12 +295,12 @@ class PTCN(NavigatorMixin):
         assert isinstance(textnavigator, PTN), msg
         msg = 'require `Border` got: %s' % type(content)
         assert isinstance(content, iamraw.Border), msg
+        assert content.bottom >= 100, str(content)  # ensure that are pixel
+        self.content = content
         pagesize = iamraw.PageSize(
             width=textnavigator.width,
             height=textnavigator.height,
         )
-        self.content = content
-        assert content.bottom >= 100, str(content)  # ensure that are pixel
         top, bottom = texmex.utils.topbottom(pagesize, content)
         assert 0 <= top <= bottom <= 1.0, f'0 <= {top} <= {bottom} <= 1.0'
         self.page = textnavigator.page
