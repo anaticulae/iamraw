@@ -225,7 +225,6 @@ def merge_toc(toc: Toc) -> str:
 
 @dataclasses.dataclass
 class Level:
-    # TODO: MOVE TO IAMRAW
     value: int = None
     raw: str = dataclasses.field(compare=False, default=None)
 
