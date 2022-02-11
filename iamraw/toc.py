@@ -107,7 +107,8 @@ class Toc(TocLinkMixin):
     level: int = 0  # level must alsways be 0
     # distinguish between numbered and stepped toc
     style: TocStyle = None
-    numbered: bool = True  # TODO: REPLACE WITH TOCSTYLE
+    # TODO: REMOVE WITH NEW MAJOR
+    numbered: bool = None  # TODO: REPLACE WITH TOCSTYLE
     children: SectionList = dataclasses.field(default_factory=list)
 
     def append(self, item):
@@ -125,7 +126,7 @@ class Toc(TocLinkMixin):
 
 def create_toc(
     outlines: SectionList,
-    numbered: bool = True,
+    numbered: bool = None,  # pylint:disable=W0613
     style: TocStyle = None,
     *,
     remove_rawinfo: bool = False,
@@ -144,7 +145,7 @@ def create_toc(
     Returns:
         Hierarchical table of content.
     """
-    root = Toc(numbered=numbered, style=style)
+    root = Toc(style=style)
     current = root
     for item in outlines:
         level = item.level
