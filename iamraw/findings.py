@@ -218,7 +218,8 @@ class BoundingLocation:
     line: int = None
 
     def __str__(self) -> str:
-        joined = utila.from_tuple(self.value, separator=';')
+        rounded = utila.roundme(self.value)
+        joined = utila.from_tuple(rounded, separator=';')
         raw = f'b({joined})p{self.page}'
         if self.line is not None:
             raw += f'l{self.line}'
