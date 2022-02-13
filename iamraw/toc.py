@@ -20,6 +20,8 @@ import typing
 import configo
 import utila
 
+import iamraw
+
 
 class TocLinkMixin(abc.ABC):
 
@@ -35,6 +37,7 @@ class TocLinkMixin(abc.ABC):
 TocLinkMixins = typing.List[TocLinkMixin]
 
 
+@iamraw.extracted
 @dataclasses.dataclass
 class Section(TocLinkMixin):
     level: int = None
@@ -102,8 +105,13 @@ class TocStyle(enum.IntEnum):
     """Not detected"""
 
 
+@iamraw.extracted
 @dataclasses.dataclass
 class Toc(TocLinkMixin):
+    """\
+    >>> Toc(style=TocStyle.SECTIONED)
+    Toc(...level=0, style=<TocStyle.SECTIONED:...>...)
+    """
     level: int = 0  # level must alsways be 0
     # distinguish between numbered and stepped toc
     style: TocStyle = None

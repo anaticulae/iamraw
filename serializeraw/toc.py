@@ -60,6 +60,9 @@ def _dump(current: iamraw.Section, dump_raw: bool):
             'title': current.title,
         }
         with contextlib.suppress(AttributeError):
+            if current.__strategy__:
+                result['__strategy__'] = current.strategy
+        with contextlib.suppress(AttributeError):
             if dump_raw:
                 result['raw'] = current.raw
                 result['raw_location'] = current.raw_location
@@ -95,6 +98,7 @@ def _load(current: dict, parent: iamraw.Section, load_raw: bool):
             level=current.get('level', 0),
             style=current.get('style', None),
         )
+        result.__strategy__ = current.get('__strategy__', None)
     with contextlib.suppress(KeyError):
         # A leaf has no children
         result.children = [
