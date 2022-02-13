@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v4.53.0
+
+### Feature
+
+* use extracted mixin to store used extraction strategy (81fd8b79af1b)
+* do not use toc.numbered anymore (365043f43347)
+* improve raw repr of bounding location (10b1bda145a3)
+* add magister (c112b5add586)
+* add rotated property (828843b97ad2)
+* improve error message (67a1bd999d5e)
+* add method to determine pdf path (da0903e4a67c)
+
+### Fix
+
+* abstract method is not required (b81e21b78c3a)
+
 ## v4.52.4
 
 ### Fix
