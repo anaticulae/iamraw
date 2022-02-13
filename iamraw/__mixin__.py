@@ -6,16 +6,24 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""\
+>>> @extracted
+... class Helmut:
+...     pass
+>>> first = Helmut()
+>>> first.__strategy__ = 'hello'
+>>> first.__strategy__
+'hello'
+"""
 
-import abc
 
+def extracted(item):
+    setattr(item, '__strategy__', None)
+    setattr(item, '__strategy_location__', None)
 
-class ExtractedMixin:
-
-    def __init__(self, location=None, strategy: str = None):
-        self.location = location
-        self.strategy = strategy
-
-    @abc.abstractmethod
     def raw(self) -> str:
         """Element in document which is converted to current result."""
+        raise NotImplementedError
+
+    setattr(item, '__strategy_raw__', raw)
+    return item
