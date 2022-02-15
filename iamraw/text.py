@@ -30,7 +30,9 @@ class DocumentContent:
 
 @dataclasses.dataclass
 class Paragraph(DocumentContent):
-    pass
+
+    def __repr__(self):
+        return f"Paragraph(content='{str(self.content).strip()}')"
 
 
 @dataclasses.dataclass
