@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.53.1
+
+### Feature
+
+* extend public interface (07519401d91f)
+* shorten debug information (92e9b3f09b13)
+
 ## v4.53.0
 
 ### Feature
