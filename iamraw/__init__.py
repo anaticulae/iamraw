@@ -228,9 +228,11 @@ from iamraw.quote import PageContentBlockQuotesList
 # sections
 from iamraw.sections import AbbreviationTable
 from iamraw.sections import Abstract
+from iamraw.sections import Appendix
 from iamraw.sections import AreaItem
 from iamraw.sections import AreaItems
 from iamraw.sections import Bibliography
+from iamraw.sections import Chapter
 from iamraw.sections import CiteContent
 from iamraw.sections import CitePart
 from iamraw.sections import CodeTable
@@ -246,6 +248,7 @@ from iamraw.sections import Sections
 from iamraw.sections import SectionsList
 from iamraw.sections import TableOfContent
 from iamraw.sections import TableTable
+from iamraw.sections import Unknown
 # solution
 from iamraw.solution import Doctails
 from iamraw.solution import ProblemStatus
