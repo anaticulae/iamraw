@@ -47,7 +47,10 @@ def dump_lists(lists: list) -> str:
 
 @functools.lru_cache(configo.CACHE_SMALL)
 def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
-    loaded = utila.yaml_load(content, fname='words__list_list')
+    loaded = utila.yaml_load(
+        content,
+        fname='words__list_list',
+    )
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
@@ -56,6 +59,7 @@ def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
         lists = []
         for listinstance in page['lists']:
             instance = load_list_instance(listinstance)
+            instance.pdfpage = pagenumber
             lists.append(instance)
         result.append(iamraw.PageContentList(page=pagenumber, content=lists))
     return result

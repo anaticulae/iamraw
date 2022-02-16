@@ -36,6 +36,7 @@ class PageList:
     area_length: typing.List[int] = dataclasses.field(default_factory=list)
     paragraph: int = None
     merged: int = None
+    pdfpage: int = None
 
     def append(self, title: str, level: str = None):
         self.data.append((level, title))  # pylint:disable=E1101
