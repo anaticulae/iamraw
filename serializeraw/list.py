@@ -19,30 +19,36 @@ def dump_lists(lists: list) -> str:
     raw = []
     for (pagenumber, pagecontent) in lists:
         pagenumber = int(pagenumber)
-        pageresult = []
-        for list_single in pagecontent:
-            area = dump_area(list_single.area)
-            content = []
-            for pnumber, item in list_single.data:
-                if not item:
-                    utila.error(list_single)
-                    utila.error(f'page:{pagenumber};{pnumber} empty list item')
-                content.append(f'{pnumber} {item}')
-            item = dict(
-                area=area,
-                content=content,
-                id=f'{list_single.paragraph} {list_single.merged}',
-            )
-            if list_single.area_length:
-                item['area_length'] = dump_area(list_single.area_length)
-            pageresult.append(item)
-        if pageresult:
-            raw.append({
-                'page': pagenumber,
-                'lists': pageresult,
-            })
+        pageresult = [
+            list_raw(instance, pagenumber=pagenumber)
+            for instance in pagecontent
+        ]
+        if not pageresult:
+            continue
+        raw.append(dict(
+            page=pagenumber,
+            lists=pageresult,
+        ))
     dumped = utila.yaml_dump(raw)
     return dumped
+
+
+def list_raw(instance, pagenumber) -> dict:
+    area = dump_area(instance.area)
+    content = []
+    for pnumber, item in instance.data:
+        if not item:
+            utila.error(instance)
+            utila.error(f'page:{pagenumber};{pnumber} empty list item')
+        content.append(f'{pnumber} {item}')
+    result = dict(
+        area=area,
+        content=content,
+        id=f'{instance.paragraph} {instance.merged}',
+    )
+    if instance.area_length:
+        result['area_length'] = dump_area(instance.area_length)
+    return result
 
 
 @functools.lru_cache(configo.CACHE_SMALL)
