@@ -64,6 +64,12 @@ from texmex.navigator import rotate_left
 from texmex.navigator import single
 # sentences
 from texmex.sentences import SentenceType
+from texmex.sentences import is_formula
+from texmex.sentences import is_listitem
+from texmex.sentences import is_listsepa
+from texmex.sentences import list_split
+from texmex.sentences import nosentence
+from texmex.sentences import sentence_type
 # style
 from texmex.style import HIGHNOTE_RISE_MIN
 from texmex.style import CharStyle
