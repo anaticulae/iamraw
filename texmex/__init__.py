@@ -62,6 +62,8 @@ from texmex.navigator import navigator_to_bounds
 from texmex.navigator import navigator_to_content
 from texmex.navigator import rotate_left
 from texmex.navigator import single
+# sentences
+from texmex.sentences import SentenceType
 # style
 from texmex.style import HIGHNOTE_RISE_MIN
 from texmex.style import CharStyle
