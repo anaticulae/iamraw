@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.55.0
+
+### Feature
+
+* move methods from words (fe122559a422)
+* add data type to mark sentence types (29d246efaa8c)
+
 ## v4.54.0
 
 ### Feature
