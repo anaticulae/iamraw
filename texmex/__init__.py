@@ -62,6 +62,8 @@ from texmex.navigator import navigator_to_bounds
 from texmex.navigator import navigator_to_content
 from texmex.navigator import rotate_left
 from texmex.navigator import single
+# search
+from texmex.search import search_area
 # sentences
 from texmex.sentences import SentenceType
 from texmex.sentences import is_formula
