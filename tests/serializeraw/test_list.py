@@ -11,10 +11,10 @@ import serializeraw
 import tests.serializeraw.examples.list
 
 
-def test_words_list_dump_and_load_lists():
-    dumped = serializeraw.dump_lists(tests.serializeraw.examples.list.EXAMPLE)
+def test_dump_load_list():
+    expected = tests.serializeraw.examples.list.EXAMPLE
+    dumped = serializeraw.dump_lists(expected)
     loaded = serializeraw.load_lists(dumped)
-
-    assert loaded == tests.serializeraw.examples.list.EXAMPLE
+    assert loaded == expected
     loaded = serializeraw.load_lists(dumped, (8, 24))
     assert len(loaded) == 2
