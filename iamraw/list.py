@@ -29,7 +29,6 @@ ListItems = typing.List[ListItem]
 
 @dataclasses.dataclass
 class PageList:
-
     data: ListItems = dataclasses.field(default_factory=list)
     area: typing.List[int] = dataclasses.field(default_factory=list)
     """Numbers of elements to build a list element."""
@@ -49,6 +48,16 @@ class PageList:
 
     def ltype(self):  # pylint:disable=R0201
         return ListType.UNDEFINED
+
+    @property
+    def identifier(self) -> int:
+        """\
+        Ensure to generate valid hash int value
+        >>> assert PageList().identifier > 100000
+        """
+        raw = f'page:{self.pdfpage}area:{self.area}'
+        result = hash(raw)
+        return result
 
 
 PageContentList = collections.namedtuple('PageContentList', 'page, content')
