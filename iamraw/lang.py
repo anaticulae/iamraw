@@ -26,6 +26,20 @@ LANGUAGE = {
 
 
 def simplelang(lang: Language) -> str:
+    """\
+    >>> simplelang(Language.GERMAN)
+    'ger'
+    >>> simplelang('german')
+    'ger'
+    >>> simplelang('port')
+    Traceback (most recent call last):
+    ...
+    ValueError: invalid language: port
+    """
     if isinstance(lang, str):
-        return lang
+        lang = lang.lower()
+        for value in LANGUAGE.values():
+            if lang in value:
+                return value[0]
+        raise ValueError(f'invalid language: {lang}')
     return LANGUAGE[lang][0]
