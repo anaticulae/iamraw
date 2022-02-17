@@ -48,6 +48,8 @@ def list_raw(instance, pagenumber) -> dict:
     )
     if instance.area_length:
         result['area_length'] = dump_area(instance.area_length)
+    if instance.__strategy__:
+        result['__strategy__'] = instance.__strategy__
     return result
 
 

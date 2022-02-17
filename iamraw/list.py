@@ -12,6 +12,8 @@ import dataclasses
 import enum
 import typing
 
+import iamraw
+
 
 class ListType(enum.Enum):
     UNDEFINED = None
@@ -27,6 +29,7 @@ ListItem = typing.Tuple[str, str]
 ListItems = typing.List[ListItem]
 
 
+@iamraw.extracted
 @dataclasses.dataclass
 class PageList:
     data: ListItems = dataclasses.field(default_factory=list)
