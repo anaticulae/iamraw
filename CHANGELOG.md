@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.56.0
+
+### Feature
+
+* add strategy option (c3d9955e3d78)
+* add method to search area (5e6ebbd13baa)
+
 ## v4.55.0
 
 ### Feature
