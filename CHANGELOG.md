@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.54.0
+
+### Feature
+
+* add option to hash list content (c69feb0fa301)
+* add pdfpage attribute (32c605a6d5d4)
+* improve language lookup (f34a14f4eadf)
+
 ## v4.53.1
 
 ### Feature
