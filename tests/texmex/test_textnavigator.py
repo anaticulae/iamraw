@@ -91,7 +91,7 @@ def test_textnavigator_inserthorizontals():
     ptn = serializeraw.ptcn_frompath(
         source,
         horizontals=True,
-        pages=utila.ranged_tuple(0, 5),
+        pages=utila.rtuple(5),
     )
     counted = 0
     for page in ptn:
