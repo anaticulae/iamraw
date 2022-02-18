@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.57.0
+
+### Feature
+
+* add method to check if sentence is a quote (45aa462ecda9)
+* add quotation mark (695f281e4042)
+
 ## v4.56.0
 
 ### Feature
