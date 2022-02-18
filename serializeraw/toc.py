@@ -70,7 +70,7 @@ def _dump(current: iamraw.Section, dump_raw: bool):
         # iamraw.Toc ROOT node
         result = dict(
             level=current.level,
-            style=current.style,
+            style=current.style.name if current.style else None,
         )
     if children:
         result['children'] = children
@@ -94,9 +94,12 @@ def _load(current: dict, parent: iamraw.Section, load_raw: bool):
         with contextlib.suppress(KeyError):
             result.page = current['page']
     except KeyError:
+        tocstyle = current.get('style', None)
+        if tocstyle:
+            tocstyle = iamraw.TocStyle[tocstyle]
         result: iamraw.Toc = iamraw.Toc(
             level=current.get('level', 0),
-            style=current.get('style', None),
+            style=tocstyle,
         )
         result.__strategy__ = current.get('__strategy__', None)
     with contextlib.suppress(KeyError):
