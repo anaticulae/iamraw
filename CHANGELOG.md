@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.57.1
+
+### Feature
+
+* add method to verify if line is a list (da1ce51b06af)
+
+### Fix
+
+* add toc style to serializer (776e56076fdc)
+
 ## v4.57.0
 
 ### Feature
