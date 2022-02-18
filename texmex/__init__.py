@@ -67,6 +67,7 @@ from texmex.search import search_area
 # sentences
 from texmex.sentences import SentenceType
 from texmex.sentences import is_formula
+from texmex.sentences import is_list
 from texmex.sentences import is_listitem
 from texmex.sentences import is_listsepa
 from texmex.sentences import is_quote

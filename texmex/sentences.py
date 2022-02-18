@@ -90,6 +90,14 @@ def is_listitem(item: str) -> bool:
     return sentence_type(item) == SentenceType.LIST_ITEM
 
 
+def is_list(item: str) -> bool:
+    """\
+    >>> is_list('#$@LIST_ITEM@$#:Content')
+    True
+    """
+    return is_listitem(item) or is_listsepa(item)
+
+
 def is_formula(item: str) -> bool:
     """\
     >>> is_formula('#$@FORMULA@$#:5')
