@@ -248,6 +248,7 @@ from iamraw.sections import Sections
 from iamraw.sections import SectionsList
 from iamraw.sections import TableOfContent
 from iamraw.sections import TableTable
+from iamraw.sections import TitlePageSection
 from iamraw.sections import Unknown
 # solution
 from iamraw.solution import Doctails

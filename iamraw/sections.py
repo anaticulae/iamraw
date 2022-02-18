@@ -180,7 +180,7 @@ class TableOfContent(AreaItem):
 
 
 @dataclasses.dataclass
-class TitlePage(AreaItem):
+class TitlePageSection(AreaItem):
     pass
 
 
@@ -248,3 +248,7 @@ class CiteContent(AreaItem):
 @dataclasses.dataclass
 class NotImplementedItem(AreaItem):
     classname: str = None
+
+
+# TODO: REMOVE LATER
+TitlePage = TitlePageSection
