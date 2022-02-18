@@ -106,6 +106,7 @@ def nosentence(text: str) -> bool:
     return sentence_type(text) != SentenceType.NORMAL
 
 
+QUOT = special(SentenceType.QUOT.name)
 LIST_SEPA = special(SentenceType.LIST_SEPA.name)
 LIST_ITEM = special(SentenceType.LIST_ITEM.name)
 
