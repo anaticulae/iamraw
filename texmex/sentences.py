@@ -98,6 +98,17 @@ def is_formula(item: str) -> bool:
     return sentence_type(item) == SentenceType.FORMULA
 
 
+def is_quote(item: str) -> bool:
+    """\
+    >>> is_quote('#$@QUOT@$#:"Hier Spricht Helmut"')
+    True
+    """
+    if matched := sentence_type(item):
+        if 'QUOT' in matched.name:
+            return True
+    return False
+
+
 def nosentence(text: str) -> bool:
     """\
     >>> nosentence('#$@FORMULA@$#:5')

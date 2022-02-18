@@ -69,6 +69,7 @@ from texmex.sentences import SentenceType
 from texmex.sentences import is_formula
 from texmex.sentences import is_listitem
 from texmex.sentences import is_listsepa
+from texmex.sentences import is_quote
 from texmex.sentences import list_split
 from texmex.sentences import nosentence
 from texmex.sentences import sentence_type
