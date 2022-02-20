@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.57.2
+
+### Fix
+
+* solve naming conflict (1969544a68df)
+
 ## v4.57.1
 
 ### Feature
