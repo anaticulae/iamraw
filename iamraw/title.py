@@ -36,24 +36,6 @@ class AcademicTitle(enum.Flag):
             return False
 
     @staticmethod
-    def fromstring(value):
-        """\
-        >>> AcademicTitle.fromstring('M.Sc.')
-        <AcademicTitle.MASTER: ...>
-        >>> AcademicTitle.fromstring('Mag.')
-        <AcademicTitle.MASTER: ...>
-        """
-        # TODO: DECOUPLE FROM AcademicTitle and use regex matches also
-        try:
-            return MATCHES[value]
-        except KeyError:
-            return None
-
-    @staticmethod
-    def keys():
-        return list(MATCHES)
-
-    @staticmethod
     def merges(items) -> 'iamraw.AcademicTitle':
         """\
         >>> AcademicTitle.merges((AcademicTitle.PROF, AcademicTitle.DR))
@@ -70,24 +52,3 @@ class AcademicTitle(enum.Flag):
 
 
 PROF_DR = AcademicTitle.PROF | AcademicTitle.DR
-
-MATCHES = {
-    'Prof.[-]{0,1} ?Dr.(-| )?Ing.': PROF_DR,
-    'B.Sc.': AcademicTitle.BSC,
-    'Dipl.(-| )Ing.': AcademicTitle.MASTER,
-    r'Dipl.-\w+': AcademicTitle.MASTER,
-    'M.A.': AcademicTitle.MASTER,
-    'M.Sc.': AcademicTitle.MASTER,
-    'Mag.': AcademicTitle.MASTER,
-    'Dr.(-| )?(Ing.)?( ?(sc.|tech.|h.c.|E.h.)){0,5}': AcademicTitle.DR,
-    # TODO: ADD GENERAL -/RULE?
-    'Prof.[-]{0,1} ?(em.)?': AcademicTitle.PROF,
-    # minimum two chapters to distinguish from first names
-    r'[a-zA-Z\-]{2,}. ': AcademicTitle.DR,
-    # see general pattern above
-    # 'Dr. rer. biol. hum.': AcademicTitle.DR,
-    # 'Dr. med.': AcademicTitle.DR,
-}
-
-NO_ESCAPE = not any('[ ]' in item or r'\.' in item for item in MATCHES)
-assert NO_ESCAPE, 'escaping white spaces/dots is not required'
