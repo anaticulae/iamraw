@@ -39,6 +39,21 @@ class Headline:
             return self.container[1]  # pylint:disable=E1136
         return self.container
 
+    @property
+    def identifier(self) -> int:
+        """\
+        >>> Headline('Einleitung', container=5).identifier
+        123400090015
+        """
+        page = str(self.page + 10).zfill(4)
+        container = self.container
+        if isinstance(container, tuple):
+            container = container[0]
+        container = 1000 if container is None else container + 10
+        container = str(container).zfill(4)
+        result = int('1234' + page + container)
+        return result
+
 
 Headlines = typing.List[Headline]
 PagesHeadlineList = typing.List[Headlines]
