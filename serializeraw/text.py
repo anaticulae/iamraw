@@ -14,7 +14,6 @@ import iamraw
 
 def dump_text(text: iamraw.PageContentTexts) -> str:
     raw = []
-    index = 0
     for item in text:
         collected = []
         for headline, headline_content in item.content:
@@ -25,8 +24,7 @@ def dump_text(text: iamraw.PageContentTexts) -> str:
                 'content': [],
             }
             if headline and headline.title is not None:
-                current['headline'] = index
-                index += 1
+                current['headline'] = headline.identifier
             for oneline in headline_content:
                 current['content'].append(oneline)
             collected.append(current)
@@ -59,8 +57,11 @@ def load_text(
     )
     if headlines is None:
         utila.debug('load_text without any given headlines')
-    # convert page index to global index
-    headlines = utila.flatten(headlines) if headlines is not None else None
+    else:
+        headlines = {
+            headline.identifier: headline
+            for headline in utila.flatten(headlines)
+        }
     result = []
     for line in loaded:
         page, content = int(line['page']), line['content']
@@ -69,11 +70,9 @@ def load_text(
         pagecontent = []
         for section in content:
             section_content = section['content']
+            headline = None
             if headlines:
-                # do not
                 headline = select_headline(headlines, section, page)
-            else:
-                headline = None
             pagecontent.append(
                 iamraw.TextSection(
                     headline=headline,
@@ -92,21 +91,22 @@ def select_headline(
     section,
     page,
 ) -> iamraw.Headline:
-    headline_selected = section['headline']
+    selected = section['headline']
     try:
-        headline_selected = headlines[headline_selected]
-    except (IndexError, TypeError):
-        if headline_selected is not None:
+        selected = headlines[selected]
+    except KeyError:
+        if selected is not None:
             # None-Headline is expected on page start?
-            msg = f'could not load headline: {headline_selected} on page:{page}'
+            msg = f'could not load headline: {selected} on page:{page}'
             utila.error(msg)
-        headline_selected = None
-    if headline_selected is None:
-        headline_selected = iamraw.Headline(
-            title=None,
-            level=None,
-            raw_level=None,
-            page=page,
-            container=section.get('fc', None),
-        )
-    return headline_selected
+        selected = None
+    if selected:
+        return selected
+    result = iamraw.Headline(
+        title=None,
+        level=None,
+        raw_level=None,
+        page=page,
+        container=section.get('fc', None),
+    )
+    return result
