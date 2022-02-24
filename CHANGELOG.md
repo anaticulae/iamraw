@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.58.0
+
+### Feature
+
+* use location based index to select sub contents correctly (1bdbb96eaf34)
+* add location dependent hash (fbcbdc34bc54)
+
 ## v4.57.2
 
 ### Fix
