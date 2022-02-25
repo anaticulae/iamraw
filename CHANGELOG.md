@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.59.1
+
+### Feature
+
+* make bib table iterable (9d473876f4a2)
+
+### Fix
+
+* fix bib serializer (d45175c85b7e)
+
 ## v4.59.0
 
 ### Feature
