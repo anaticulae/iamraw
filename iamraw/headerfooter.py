@@ -81,7 +81,8 @@ class FootNoteRaw(FootNote):
     raw: str = None
     raw_number: str = None
     style: list = dataclasses.field(default_factory=list)
-    # TODO: ADD SEPARATE STYLE FOR HIGHTNOTE AND TEXT
+    style_number: 'texmex.CharStyle' = None
+    style_text: list = dataclasses.field(default_factory=list)
 
 
 @dataclasses.dataclass
