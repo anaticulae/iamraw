@@ -66,3 +66,6 @@ class BibliographyTable:
     headline: str = None
     references: BibliographyReferences = dataclasses.field(default_factory=list)
     pdfpages: tuple = None
+
+    def __getitem__(self, index):
+        return self.references[index]
