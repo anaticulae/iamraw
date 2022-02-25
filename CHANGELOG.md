@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v4.59.0
+
+### Feature
+
+* add separate footnote style serializer (67730c1e9283)
+* add separate footnote style (5aba6bdd04ba)
+* add method to serialize new bib table (5cadbf555095)
+* add bib table data type (3be596f3a0db)
+
 ## v4.58.0
 
 ### Feature
