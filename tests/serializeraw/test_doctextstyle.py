@@ -13,7 +13,6 @@ import serializeraw
 
 def test_doctextstyle_dump_load():
     style = iamraw.DocTextStyle()
-
     dumped = serializeraw.dump_doctextstyle(style)
     loaded = serializeraw.load_doctextstyle(dumped)
     assert loaded == style
