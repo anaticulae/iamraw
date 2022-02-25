@@ -71,6 +71,7 @@ def dump_footnote(note: iamraw.FootNote):
 def load_footnote(raw: dict) -> iamraw.FootNote:
     with contextlib.suppress(TypeError):
         rawnote = iamraw.FootNoteRaw(**raw)
+        # TODO: REMOVE WITH NEXT MAJOR
         if rawnote.style and len(rawnote.style) == 2:
             # style=(number.style, note.style),
             number = None
@@ -81,6 +82,15 @@ def load_footnote(raw: dict) -> iamraw.FootNote:
             ]
             note = texmex.TextStyle(**(rawnote.style[1]))
             rawnote.style = (number, note)
+        # new approach
+        if rawnote.style_number:
+            rawnote.style_number = texmex.CharStyle(**rawnote.style_number)
+        if rawnote.style_text:
+            rawnote.style_text['content'] = [
+                texmex.CharStyle(**item)
+                for item in rawnote.style_text['content']
+            ]
+            rawnote.style_text = texmex.TextStyle(**rawnote.style_text)
         return rawnote
     with contextlib.suppress(TypeError):
         return iamraw.FootJudgedNote(**raw)
