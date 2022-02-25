@@ -69,7 +69,7 @@ def load_bib_table(table: dict) -> iamraw.BibliographyTable:
     headline = table.get('headline', '')
     pdfpages = table.get('pdfpages', None)
     if pdfpages:
-        pdfpages = utila.parse_tuple(pdfpages)
+        pdfpages = utila.parse_tuple(pdfpages, length=None, typ=int)
     references = table.get('references', [])
     result = iamraw.BibliographyTable(
         headline=headline,
