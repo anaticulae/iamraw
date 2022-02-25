@@ -59,3 +59,10 @@ class BibliographyReference:  # pylint:disable=R0902
 
 
 BibliographyReferences = typing.List[BibliographyReference]
+
+
+@dataclasses.dataclass
+class BibliographyTable:
+    headline: str = None
+    references: BibliographyReferences = dataclasses.field(default_factory=list)
+    pdfpages: tuple = None
