@@ -651,6 +651,16 @@ def determine_border(headerfooter, sizeandborder, page: int):
 
 
 def create_pagetextnavigator_fromstr(content: str, fontsize=12.0):
+    r"""\
+    >>> create_pagetextnavigator_fromstr('I am a\nNavigator\ngood bye.')
+    PTN(page=-1, pagesize=(612.0, 792.0), data=[I am a
+    , Navigator
+    , good bye.
+    ], fast={BoundingBox(x0=50, y0=100, x1=200, y1=120): I am a
+    , BoundingBox(x0=50, y0=120, x1=200, y1=140): Navigator
+    , BoundingBox(x0=50, y0=140, x1=200, y1=160): good bye.
+    })
+    """
     result = PTN()
     for index, line in enumerate(content.splitlines()):
         bounding = iamraw.BoundingBox(
@@ -677,6 +687,7 @@ def create_pagetextnavigator_fromstr(content: str, fontsize=12.0):
 def single(navigators: PTNs) -> PTN:
     """Merge more than one pagenavigators to a single huge navigator to
     detect multi page lists."""
+    # TODO: UPDATE PAGESIZE
     if not navigators:
         return None
     if navigators[0]:

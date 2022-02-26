@@ -99,3 +99,10 @@ def test_textnavigator_inserthorizontals():
             if line.text == texmex.HORIZONTAL:
                 counted += 1
     assert counted == 3
+
+
+def test_ptn_single():
+    source = power.link(power.DOCU027_PDF)
+    ptns = serializeraw.ptcn_frompath(source)
+    merged = texmex.single(ptns)
+    assert isinstance(merged, texmex.PTN)
