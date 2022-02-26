@@ -39,7 +39,7 @@ def dump_raw(content) -> list:
     result = [
         dict(
             pdfpage=pdfpage,
-            bounding=str(bounding),
+            bounding=utila.from_tuple(bounding),
             detected=detectedpage,
         ) for pdfpage, bounding, detectedpage in content
     ]
