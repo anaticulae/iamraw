@@ -7,7 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
 import pytest
+import utila
+import utilatest
 
 import iamraw
 import serializeraw
@@ -26,3 +29,12 @@ def test_dump_and_load_image_hidden(hidden):
     dumped = serializeraw.dump_image_info(info)
     loaded = serializeraw.load_image_info(dumped)
     assert loaded == info
+
+
+@utilatest.requires(power.BACHELOR037_PDF)
+def test_images_load():
+    source = power.link(power.BACHELOR037_PDF)
+    imagepath = iamraw.path.images(source)
+    loaded = serializeraw.load_image_infos_frompath(imagepath)
+    loaded = utila.flatten_content(loaded)
+    assert len(loaded) == 2
