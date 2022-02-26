@@ -7,6 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import warnings
+
 import utila
 
 con = utila.pathconnector  # pylint:disable=C0103
@@ -69,6 +71,8 @@ def formula(path: str, prefix: str = '', ftype='yaml') -> str:
 
 
 def caption_figure(path: str, prefix: str = '', ftype='yaml') -> str:
+    # TODO: REMOVE WITH NEXT MAJOR
+    warnings.warn('use caption_image, caption_figure will be removed later')
     return con(path, 'caption', 'figure_caption', prefix, ftype=ftype)
 
 
