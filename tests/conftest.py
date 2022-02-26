@@ -24,6 +24,9 @@ power.setup(iamraw.ROOT)
 RESOURCES = [
     power.DOCU027_PDF,
     power.DOCU007_PDF,
+    (power.MASTER072_PDF, '0:10'),
+    (power.BACHELOR111_PDF, '0:5'),
+    (power.BACHELOR037_PDF, '0:5'),
 ]
 
 
