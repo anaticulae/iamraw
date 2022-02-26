@@ -7,8 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
 import pytest
 import utila
+import utilatest
 
 import iamraw
 import serializeraw
@@ -139,3 +141,17 @@ def test_dump_mergednote():
     dumped = utila.simplify(data)
     assert dumped
     assert hash(str(data)) == before, 'data changed due simplify'
+
+
+@utilatest.requires(power.MASTER072_PDF)
+def test_footer_load():
+    source = power.link(power.MASTER072_PDF)
+    loaded = serializeraw.load_headerfooter(source)
+    assert len(loaded) == 7  # seven pages
+
+
+@utilatest.requires(power.MASTER072_PDF)
+def test_footnotes_load():
+    source = power.link(power.MASTER072_PDF)
+    loaded = serializeraw.load_footnotes(source)
+    assert len(loaded) == 5  # five footnotes
