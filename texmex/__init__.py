@@ -86,6 +86,7 @@ from texmex.style import TextStyle
 from texmex.style import create_textstyle
 from texmex.style import highnotes
 from texmex.style import remove_highnotes
+from texmex.style import splitby_count
 from texmex.style import style_without_highnotes
 # text
 from texmex.text import FontOccurrence

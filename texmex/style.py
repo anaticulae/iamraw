@@ -139,6 +139,49 @@ class TextInfo:
         return result
 
 
+def splitby_count(item: TextInfo, counts: tuple) -> list:
+    width = sum(counts)
+    if not width:
+        return []
+    bounding_old = item.bounding
+    step = (bounding_old[2] - bounding_old[0]) / width
+    start = 0
+    result = []
+    for count in counts:
+        text = item.text[start:start + count]
+        x0 = bounding_old[0] + start * step
+        bounding = utila.roundme(
+            x0,
+            bounding_old[1],
+            x0 + step * len(text),
+            bounding_old[3],
+        )
+        new = TextInfo(
+            text=text,
+            bounding=bounding,
+            bounding_mean=item.bounding_mean,
+            # TODO: ADD ROTATION LATER
+            style=TextStyle(content=substyle(
+                item.style,
+                start=start,
+                end=start + count,
+            )),
+            line=item.line,
+        )
+        result.append(new)
+        start += count
+    return result
+
+
+def substyle(styles: CharStyles, start, end) -> list:
+    result = []
+    for style in styles:
+        # TODO: REWORK THIS DRAF LATER
+        if start <= style.start <= end or start <= style.end <= end:
+            result.append(style)
+    return result
+
+
 def create_textstyle(chars: iamraw.Chars) -> TextStyle:
     assert chars
     start, size, rise, font = 0, chars[0].size, chars[0].rise, chars[0].font
@@ -241,7 +284,7 @@ def style_without_highnotes(
         item.start = item.start - diff
         item.end = item.end - diff
         last = item.end
-
+    # last
     if merge and result:
         merged = [result[0]]
         for item in result[1:]:
@@ -250,7 +293,6 @@ def style_without_highnotes(
             else:
                 merged.append(item)
         result = merged
-
     return TextStyle(content=result)
 
 
