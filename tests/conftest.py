@@ -40,8 +40,5 @@ def extract(resources):
         files=resources,
         destination=power.generated(),
         groupme=True,
-        formulero=False,
-        tablero=False,
-        rawmaker_cleanup=False,
         pages=':',
     )
