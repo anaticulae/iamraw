@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.60.0
+
+### Feature
+
+* allow other bounding than BoundingBox (dea071897a30)
+* add method to split TextInfo by position (d7242a1d1a36)
+
 ## v4.59.1
 
 ### Feature
