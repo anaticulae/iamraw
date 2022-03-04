@@ -247,22 +247,31 @@ def highnotes(
     return result
 
 
-def remove_highnotes(info: TextInfo) -> str:
+def remove_highnotes(info: TextInfo, magic: bool = False) -> str:
     """Replace hight notes with empty character. Therefore the text
     width is shrinked.
 
     Args:
         info(TextInfo): text data with rise information
+        magic(bool): if True replace note due pattern
     Returns:
         text without any hightnotes
+    Example:
+        magic:True "Internetnutzer^1 waren" => "Internetnutzer{{hn:1:nh}} waren"
     """
     notes = highnotes(info)
     result = []
     current = 0
     for item in notes:
-        result.append(info.text[current:item.start])
+        if not magic:
+            text = info.text[current:item.start]
+        else:
+            highnote = '{{hn:%d:nh}}' % item.value
+            text = info.text[current:item.start] + highnote
+        result.append(text)
         current = item.end
     if current != len(info.text):
+        # append content after highnote
         result.append(info.text[current:])
     return ''.join(result)
 

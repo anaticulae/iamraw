@@ -26,6 +26,11 @@ def test_textnavigator_style_highnotes_remove_highnotes():
     assert removed == expected
 
 
+def test_remove_highnote_magic():
+    removed = texmex.remove_highnotes(tft.EXAMPLE, magic=True)
+    assert 'Internetnutzer{{hn:1:nh}} waren' in removed
+
+
 @pytest.mark.parametrize('expected, merge', [
     (
         texmex.TextStyle(content=[
