@@ -24,6 +24,9 @@ def dump_docref(references: iamraw.DocRefs) -> str:
     for reference in references:
         marked = utila.from_tuple(utila.flatten(reference.marked))
         raw = f'{reference.page} {reference.sentence} {marked}'
+        if reference.raw:
+            reference_raw = utila.from_tuple(reference.raw, separator='@@@@')
+            raw += f'raw:{reference_raw}'
         result.append(raw)
     dumped = utila.yaml_dump(result)
     return dumped
@@ -41,16 +44,27 @@ def load_docref(content: str, pages: tuple = None) -> iamraw.DocRefs:
         if utila.should_skip(page, pages):
             # remove non selected pages
             continue
+        try:
+            marked, raw, = marked.split('raw:', maxsplit=1)
+            raw = utila.parse_tuple(
+                raw,
+                length=None,
+                typ=str,
+                separator='@@@@',
+            )
+        except ValueError:
+            raw = None
         marked = [
             utila.parse_tuple(item, length=2, typ=int)
             for item in PATTERN.findall(marked)
         ]
-        result.append(
-            iamraw.DocRef(
-                page=page,
-                sentence=sentence,
-                marked=marked,
-            ))
+        docref = iamraw.DocRef(
+            page=page,
+            sentence=sentence,
+            marked=marked,
+            raw=raw,
+        )
+        result.append(docref)
     return result
 
 

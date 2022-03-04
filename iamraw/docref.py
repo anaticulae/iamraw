@@ -16,6 +16,7 @@ class DocRef:
     page: int
     sentence: int
     marked: list = dataclasses.field(default=list)
+    raw: list = None
 
     def __getitem__(self, index):
         return (self.page, self.sentence, self.marked)[index]
