@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.62.0
+
+### Feature
+
+* add magic parameter to convert highnote (3b1f725e8912)
+
 ## v4.61.0
 
 ### Feature
