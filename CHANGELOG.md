@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.61.0
+
+### Feature
+
+* add raw field (d07c9c310560)
+
 ## v4.60.0
 
 ### Feature
