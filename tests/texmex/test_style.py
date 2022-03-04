@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import tests.fixtures.textnavigator_style
+import tests.fixtures.style
 import texmex
 
 
@@ -20,7 +20,7 @@ def test_textinfo_hash():
 
 def test_splitby_count():
     splitted = texmex.splitby_count(
-        tests.fixtures.textnavigator_style.EXAMPLE,
+        tests.fixtures.style.EXAMPLE,
         (5, 12, 20),
     )
     assert len(splitted) == 3

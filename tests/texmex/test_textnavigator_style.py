@@ -10,24 +10,25 @@
 import pytest
 
 import serializeraw
-import tests.fixtures.textnavigator_style as tft
+import tests.fixtures.style
 import texmex
 
 
 def test_textnavigator_style_highnotes():
-    parsed = texmex.highnotes(tft.EXAMPLE)
+    parsed = texmex.highnotes(tests.fixtures.style.EXAMPLE)
     expected = [texmex.HighNote(start=20, end=21, value=1)]
     assert parsed == expected, parsed
 
 
 def test_textnavigator_style_highnotes_remove_highnotes():
-    removed = texmex.remove_highnotes(tft.EXAMPLE)
-    expected = tft.EXAMPLE.text[0:20] + tft.EXAMPLE.text[21:]
+    example = tests.fixtures.style.EXAMPLE
+    removed = texmex.remove_highnotes(example)
+    expected = example.text[0:20] + example.text[21:]
     assert removed == expected
 
 
 def test_remove_highnote_magic():
-    removed = texmex.remove_highnotes(tft.EXAMPLE, magic=True)
+    removed = texmex.remove_highnotes(tests.fixtures.style.EXAMPLE, magic=True)
     assert 'Internetnutzer{{hn:1:nh}} waren' in removed
 
 
@@ -49,7 +50,10 @@ def test_remove_highnote_magic():
     ),
 ])
 def test_textnavigator_style_remove_hightnotes(expected, merge):
-    clean = texmex.style_without_highnotes(tft.EXAMPLE, merge=merge)
+    clean = texmex.style_without_highnotes(
+        tests.fixtures.style.EXAMPLE,
+        merge=merge,
+    )
     assert clean == expected
 
 
@@ -73,5 +77,4 @@ def test_textnavigator_style_dump_and_load_highnotes():
     ]
     dumped = serializeraw.dump_highnotes(highnotes)
     loaded = serializeraw.load_highnotes(dumped)
-
     assert loaded == highnotes
