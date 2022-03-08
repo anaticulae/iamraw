@@ -136,10 +136,11 @@ def document_textfeed(
             if not item.text.strip():
                 continue
             if left:
-                counter[item.bounding[0]] += 1
+                distance = item.bounding[0]
             else:
-                right = navigator.width - item.bounding[2]
-                counter[right] += 1
+                distance = navigator.width - item.bounding[2]
+            distance = utila.roundme(distance, digits=1)
+            counter[distance] += 1
     result = counter.most_common(count)
     result = [item for item, _ in result]
     if not result:
