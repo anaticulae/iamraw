@@ -27,20 +27,26 @@ def dump_color_statistics(colors: iamraw.PageContents) -> str:
     return dumped
 
 
-def load_color_statistics(content: str) -> iamraw.PageContents:
+def load_color_statistics(
+    content: str,
+    pages: tuple = None,
+) -> iamraw.PageContents:
     loaded = utila.yaml_load(
         content,
         fname='color__statistics_statistics',
     )
     result = []
     for page in loaded:
+        pagenumber = int(page['page'])
+        if utila.should_skip(pagenumber, pages):
+            continue
         data = [
             utila.parse_tuple(item, length=2, typ=int)
             for item in page['content']
         ]
         data = [(utila.int2rgb(item[0]), item[1]) for item in data]
         result.append(iamraw.PageContent(
-            page=int(page['page']),
+            page=pagenumber,
             content=data,
         ))
     return result
