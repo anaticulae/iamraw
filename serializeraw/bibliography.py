@@ -46,7 +46,8 @@ def dump_bib_table(table: iamraw.BibliographyTable):
 
 def load_bibliography_reference(content: str) -> iamraw.BibliographyReferences:
     """\
-    >>> load_bibliography_reference(dump_bibliography_reference(iamraw.BibliographyTable(headline='Bibliography', references=[])))
+    >>> load_bibliography_reference(dump_bibliography_reference(
+    ... iamraw.BibliographyTable(headline='Bibliography', references=[])))
     BibliographyTable(headline='Bibliography', references=[], pdfpages='')
     """
     loaded = utila.yaml_load(
@@ -56,8 +57,8 @@ def load_bibliography_reference(content: str) -> iamraw.BibliographyReferences:
     if isinstance(loaded, list):
         result = []
         for page in loaded:
-            result.append(
-                [iamraw.BibliographyReference(**item) for item in page])
+            references = [iamraw.BibliographyReference(**item) for item in page]
+            result.append(references)
         for page in result:
             for item in page:
                 item.authors = load_authors(item.authors)
