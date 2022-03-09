@@ -59,6 +59,9 @@ from serializeraw.chapter import load_chapter
 # code
 from serializeraw.code import dump_codes
 from serializeraw.code import load_codes
+# color
+from serializeraw.color import dump_color_statistics
+from serializeraw.color import load_color_statistics
 # content
 from serializeraw.content import dump_contentboundingbox
 from serializeraw.content import load_contentboundingbox
