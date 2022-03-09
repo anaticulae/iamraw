@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.63.0
+
+### Feature
+
+* add option to skip pages (757b49b91609)
+* add method to dump and load color statistics (ea53991fed7d)
+
+### Fix
+
+* make document text feed determine stable against floating bounds (f5c0468ab5d9)
+
 ## v4.62.0
 
 ### Feature
