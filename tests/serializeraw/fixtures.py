@@ -10,14 +10,9 @@
 import power
 import pytest
 import utilatest
-from pytest import fixture
 
 import iamraw
 import serializeraw
-from iamraw import Border
-from iamraw import PageBoundings
-from iamraw import PageSize
-from iamraw import PageSizeBorder
 
 
 @pytest.fixture
@@ -34,46 +29,46 @@ def docu027_fontstore() -> iamraw.FontStore:
     return result
 
 
-@fixture
+@pytest.fixture
 def boxdata_from_pdf():
     size = [
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=None, height=None),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89),
-        PageSize(width=595.28, height=841.89)
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=None, height=None),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89),
+        iamraw.PageSize(width=595.28, height=841.89)
     ]
     border = [
-        Border(left=194.37, right=400.9, top=648.34, bottom=72.0),
-        Border(left=None, right=None, top=None, bottom=None),
-        Border(left=50.4, right=544.88, top=700.78, bottom=40.18),
-        Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
-        Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
-        Border(left=47.01, right=548.26, top=807.93, bottom=41.15),
-        Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
-        Border(left=50.4, right=544.89, top=807.93, bottom=41.15),
-        Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
-        Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
-        Border(left=50.4, right=544.89, top=807.93, bottom=41.15),
-        Border(left=50.4, right=544.89, top=807.93, bottom=41.15),
-        Border(left=50.4, right=544.88, top=807.93, bottom=41.15)
+        iamraw.Border(left=194.37, right=400.9, top=648.34, bottom=72.0),
+        iamraw.Border(left=None, right=None, top=None, bottom=None),
+        iamraw.Border(left=50.4, right=544.88, top=700.78, bottom=40.18),
+        iamraw.Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
+        iamraw.Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
+        iamraw.Border(left=47.01, right=548.26, top=807.93, bottom=41.15),
+        iamraw.Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
+        iamraw.Border(left=50.4, right=544.89, top=807.93, bottom=41.15),
+        iamraw.Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
+        iamraw.Border(left=50.4, right=544.88, top=807.93, bottom=41.15),
+        iamraw.Border(left=50.4, right=544.89, top=807.93, bottom=41.15),
+        iamraw.Border(left=50.4, right=544.89, top=807.93, bottom=41.15),
+        iamraw.Border(left=50.4, right=544.88, top=807.93, bottom=41.15)
     ]
 
     sizesandborders = [
-        PageSizeBorder(size=size, border=border, page=index)
+        iamraw.PageSizeBorder(size=size, border=border, page=index)
         for index, (size, border) in enumerate(zip(size, border))
     ]
 
     boxes = [
-        PageBoundings(
+        iamraw.PageBoundings(
             boundings=[
                 # First page
                 (0, (232.4, 617.65, 362.87, 648.34)),
@@ -85,7 +80,7 @@ def boxdata_from_pdf():
             ],
             page=0,
         ),
-        PageBoundings(
+        iamraw.PageBoundings(
             boundings=[
                 # Second page
                 (6, (50.4, 669.44, 244.84, 700.13)),
@@ -100,7 +95,7 @@ def boxdata_from_pdf():
             ],
             page=1,
         ),
-        PageBoundings(
+        iamraw.PageBoundings(
             boundings=[
                 # Third page
                 (15, (50.4, 675.22, 154.43, 700.78)),
