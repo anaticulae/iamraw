@@ -14,21 +14,6 @@ import utilatest
 import iamraw
 import serializeraw
 
-
-@pytest.fixture
-def restructured_fontstore() -> iamraw.FontStore:
-    """Loaded restructured FontStore.
-
-    Regenerate data due:
-
-        rawmaker -i power/power/repository/docu/restructuredtext.pdf
-        --pages=0:11 --char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3
-    """
-    utilatest.fixture_requires(power.DOCU027_PDF)
-    result = serializeraw.fs_frompath(power.link(power.DOCU027_PDF))
-    return result
-
-
 FIRST_FONT = iamraw.Font(
     pdfref='WLXADN+NimbusSanL-Bold',
     name='NimbusSanL',
@@ -83,14 +68,14 @@ FIFTH_FONT = iamraw.Font(
     (2, 0, 0, 7, FIFTH_FONT),
 ])
 def test_fontstore_access_font_id(
-    restructured_fontstore: iamraw.FontStore,  # pylint:disable=W0621
+    docu027_fontstore: iamraw.FontStore,
     page,
     container,
     line,
     char,
     expected,
 ):
-    fontstore = restructured_fontstore
+    fontstore = docu027_fontstore
     fontid = fontstore.fontid(page, container, line, char)
     assert expected == fontstore[fontid]
 
@@ -102,14 +87,14 @@ def test_fontstore_access_font_id(
     (1, 0, 0, 0),
 ])
 def test_fontstore_access_out_of_bounds(
-    restructured_fontstore: iamraw.FontStore,  # pylint:disable=W0621
+    docu027_fontstore: iamraw.FontStore,
     page,
     container,
     line,
     char,
 ):
     """Notes: (1,0,0,0): empty page"""
-    fontstore = restructured_fontstore
+    fontstore = docu027_fontstore
     fontid = fontstore.fontid(page, container, line, char)
     assert fontid == iamraw.NO_FONT
 
@@ -148,9 +133,9 @@ def expected_result():
     return (text, page, expected)
 
 
-def test_fontstore_from_str(restructured_fontstore: iamraw.FontStore):  # pylint:disable=W0621
+def test_fontstore_from_str(docu027_fontstore: iamraw.FontStore):
     """Determine fonts via text input and start of text sequence."""
-    fontstore = restructured_fontstore
+    fontstore = docu027_fontstore
     (text, page, expected) = expected_result()
     result = fontstore.fromstr(page, 1, 0, text)
     assert len(result) == len(expected), str(result)

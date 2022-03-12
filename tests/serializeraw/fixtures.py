@@ -6,12 +6,32 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
+import power
+import pytest
+import utilatest
 from pytest import fixture
 
+import iamraw
+import serializeraw
 from iamraw import Border
 from iamraw import PageBoundings
 from iamraw import PageSize
 from iamraw import PageSizeBorder
+
+
+@pytest.fixture
+def docu027_fontstore() -> iamraw.FontStore:
+    """Loaded restructured FontStore.
+
+    Regenerate data due:
+
+        rawmaker -i power/power/repository/docu/restructuredtext.pdf
+        --pages=0:11 --char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3
+    """
+    utilatest.fixture_requires(power.DOCU027_PDF)
+    result = serializeraw.fs_frompath(power.link(power.DOCU027_PDF))
+    return result
 
 
 @fixture
