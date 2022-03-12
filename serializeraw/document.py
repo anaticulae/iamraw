@@ -87,6 +87,15 @@ def _dump_pageobject(pageobject: iamraw.PageObject):
     return [str(iamraw.PageObject.__name__), pageobject.content]
 
 
+CTOR = {
+    item.__name__: item for item in (
+        iamraw.PageObject,
+        iamraw.TextContainer,
+        iamraw.VerticalTextContainer,
+    )
+}
+
+
 def _load_page(content):
     pagenumber = content['page']
     childrens = content['children']
@@ -100,15 +109,8 @@ def _load_page(content):
     page = iamraw.Page(page=pagenumber, dimension=dimension)
     for children in childrens:
         classname, item_content = children
-        if classname == iamraw.TextContainer.__name__:
-            loaded = loadme(iamraw.TextContainer, item_content)
-            page.append(loaded)
-        elif classname == iamraw.VerticalTextContainer.__name__:
-            loaded = loadme(iamraw.VerticalTextContainer, item_content)
-            page.append(loaded)
-        elif classname == iamraw.PageObject.__name__:
-            loaded = loadme(iamraw.PageObject, item_content)
-            page.append(loaded)
+        loaded = loadme(CTOR[classname], item_content)
+        page.append(loaded)
     return page
 
 
