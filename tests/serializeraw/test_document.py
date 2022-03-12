@@ -87,9 +87,8 @@ def test_load_and_dump_line():
 
 def test_dump_and_load_textcontainer():
     container = simple_textcontainer()
-    _, dumped = _dump_textcontainer(container)
+    dumped = _dump_textcontainer(container)
     loaded = _load_textcontainer(dumped)
-
     assert loaded == container
 
 

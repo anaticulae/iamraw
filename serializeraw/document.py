@@ -94,9 +94,10 @@ CTOR = {
         iamraw.VerticalTextContainer,
     )
 }
+KEYS = set(CTOR.keys())
 
 
-def _load_page(content):
+def _load_page(content: dict) -> iamraw.Page:
     pagenumber = content['page']
     childrens = content['children']
     dimension = content.get('dimension', None)
@@ -108,7 +109,10 @@ def _load_page(content):
         dimension = iamraw.BoundingBox.from_str(dimension)
     page = iamraw.Page(page=pagenumber, dimension=dimension)
     for children in childrens:
-        classname, item_content = children
+        if isinstance(children, tuple):
+            classname, item_content = children
+        else:
+            classname, item_content = iamraw.TextContainer.__name__, children
         loaded = loadme(CTOR[classname], item_content)
         page.append(loaded)
     return page
@@ -168,7 +172,6 @@ def create_style(start, end, size, rise):
 
 def _load_line(line) -> iamraw.Line:
     assert len(line) == 2, line
-
     data, styles = line
     chars = []
     for style in styles:
@@ -178,7 +181,6 @@ def _load_line(line) -> iamraw.Line:
             size = None
         if rise == 'None':
             rise = None
-
         for index in range(start, end):
             # TODO: Unicodechar?
             char = iamraw.Char(
@@ -192,15 +194,18 @@ def _load_line(line) -> iamraw.Line:
 
 def _dump_textcontainer(container: iamraw.TextContainer):
     assert isinstance(container, iamraw.TextContainer), type(container)
-    result = [
+    result = (
         container.__class__.__name__,
         [_dump_line(line) for line in container.lines],
-    ]  # use list for a more human readable format
+    )  # use list for a more human readable format
+    if container.__class__.__name__ == iamraw.TextContainer.__name__:
+        # default class
+        return result[1]
     return result
 
 
 def _load_textcontainer(content) -> iamraw.TextContainer:
-    assert isinstance(content, list), type(content)
+    assert isinstance(content, (list, tuple)), type(content)
     assert all(isinstance(item, list) for item in content), str(content)
     lines = [loadme(iamraw.Line, item) for item in content]
     return iamraw.TextContainer(lines=lines)
