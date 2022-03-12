@@ -39,6 +39,6 @@ def extract(resources):
     genex.example.extract(
         files=resources,
         destination=power.generated(),
-        groupme=True,
+        groupme='--border --pagenumbers --footer --toc',
         pages=':',
     )
