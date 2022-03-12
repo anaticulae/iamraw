@@ -78,7 +78,7 @@ FIFTH_FONT = iamraw.Font(
     (0, 2, 0, 10, SECOND_FONT),
     (0, 3, 0, 11, THIRD_FONT),
     (0, 4, 0, 0, FORTH_FONT),
-    (0, 4, 0, 12, FORTH_FONT),
+    (0, 4, 0, 11, FORTH_FONT),
     (2, 0, 0, 0, FIFTH_FONT),
     (2, 0, 0, 7, FIFTH_FONT),
 ])

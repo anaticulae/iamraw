@@ -151,4 +151,5 @@ def test_create_pagetextcontent_navigator_frompath():
     )
     first = loaded[0]
     lasttext = first[-1].text
-    assert lasttext != 'i', lasttext
+    # no newline at end
+    assert lasttext == 'i', lasttext
