@@ -56,7 +56,6 @@ def load_document(
     loaded = utila.yaml_load(
         content,
         fname='rawmaker__text_text',
-        safe=False,
     )
 
     def remove_skipped(loaded, pages):
