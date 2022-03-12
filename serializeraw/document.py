@@ -89,7 +89,7 @@ def _dump_pageobject(pageobject: iamraw.PageObject):
 
 def _load_page(content):
     pagenumber = content['page']
-    children = content['children']
+    childrens = content['children']
     dimension = content.get('dimension', None)
     if dimension:
         if len(dimension.split()) == 2:
@@ -98,14 +98,15 @@ def _load_page(content):
             dimension = f'0 0 {dimension}'
         dimension = iamraw.BoundingBox.from_str(dimension)
     page = iamraw.Page(page=pagenumber, dimension=dimension)
-    for class_, item_content in children:
-        if class_ == iamraw.TextContainer.__name__:
+    for children in childrens:
+        classname, item_content = children
+        if classname == iamraw.TextContainer.__name__:
             loaded = loadme(iamraw.TextContainer, item_content)
             page.append(loaded)
-        elif class_ == iamraw.VerticalTextContainer.__name__:
+        elif classname == iamraw.VerticalTextContainer.__name__:
             loaded = loadme(iamraw.VerticalTextContainer, item_content)
             page.append(loaded)
-        elif class_ == iamraw.PageObject.__name__:
+        elif classname == iamraw.PageObject.__name__:
             loaded = loadme(iamraw.PageObject, item_content)
             page.append(loaded)
     return page
