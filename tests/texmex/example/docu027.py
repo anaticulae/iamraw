@@ -46,7 +46,6 @@ i
 
 def document() -> iamraw.Document:
     result = iamraw.Document()
-
     for number, content in [(0, FIRST), (1, ''), (2, THIRD)]:
         page = iamraw.Page(page=number)
         for container in content.split('\n\n'):
