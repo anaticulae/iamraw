@@ -215,12 +215,13 @@ class TextContainer(Boxed):
         return len(self.lines)
 
     @classmethod
-    def fromstr(cls, text):
+    def fromstr(cls, text, state=None):
         result = cls()
         for line in text.splitlines():
             # ensure that line ends with newline
             line = line + utila.NEWLINE
             result.append(Line.fromstr(line))
+        result.state = state
         return result
 
     @property

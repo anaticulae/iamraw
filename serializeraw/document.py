@@ -15,6 +15,7 @@ import utila
 import iamraw
 import serializeraw
 import serializeraw.border
+import texmex
 
 
 def dump_document(document: iamraw.Document, fast: bool = True) -> str:
@@ -109,11 +110,17 @@ def _load_page(content: dict) -> iamraw.Page:
         dimension = iamraw.BoundingBox.from_str(dimension)
     page = iamraw.Page(page=pagenumber, dimension=dimension)
     for children in childrens:
+        state = None
+        if isinstance(children, tuple) and isinstance(children[1], int):
+            state = children[1]
+            children = children[0]
         if isinstance(children, tuple):
             classname, item_content = children
         else:
             classname, item_content = iamraw.TextContainer.__name__, children
         loaded = loadme(CTOR[classname], item_content)
+        if state is not None:
+            loaded.state = state
         page.append(loaded)
     return page
 
@@ -193,19 +200,37 @@ def _load_line(line) -> iamraw.Line:
 
 
 def _dump_textcontainer(container: iamraw.TextContainer):
+    r"""\
+    >>> _dump_textcontainer(iamraw.TextContainer.fromstr('this is a line',
+    ...     state=texmex.TextState.HIDDEN))
+    ([['this is a line\n', ['0 15 None None']]], 0)
+    """
     assert isinstance(container, iamraw.TextContainer), type(container)
     result = (
         container.__class__.__name__,
         [_dump_line(line) for line in container.lines],
     )  # use list for a more human readable format
+    if container.textstate != texmex.TextState.VISIBLE:
+        result = (result[0], result[1], int(container.textstate))
     if container.__class__.__name__ == iamraw.TextContainer.__name__:
         # default class
+        if len(result) == 3:
+            return result[1:]
         return result[1]
     return result
 
 
 def _load_textcontainer(content) -> iamraw.TextContainer:
+    r"""\
+    >>> _load_textcontainer(([['this is a line\n', ['0 15 None None']]],
+    ...     texmex.TextState.HIDDEN.value))
+    TextContainer(box=None, lines=[Line(text="this is a line")], state=<TextState.HIDDEN:...>)
+    """
     assert isinstance(content, (list, tuple)), type(content)
+    state = None
+    if len(content) >= 2 and isinstance(content[1], int):
+        state = texmex.TextState(content[1])
+        content = content[0]
     try:
         outdated = content[0] in 'TextContainer VerticalTextContainer'
     except TypeError:
@@ -215,7 +240,7 @@ def _load_textcontainer(content) -> iamraw.TextContainer:
         content = content[1]
     assert all(isinstance(item, list) for item in content), str(content)
     lines = [loadme(iamraw.Line, item) for item in content]
-    return iamraw.TextContainer(lines=lines)
+    return iamraw.TextContainer(lines=lines, state=state)
 
 
 def _load_verticaltextcontainer(content) -> iamraw.VerticalTextContainer:

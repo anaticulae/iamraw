@@ -10,6 +10,7 @@
 import power
 import utilatest
 
+import texmex
 from iamraw import Char
 from iamraw import Document
 from iamraw import Line
@@ -26,7 +27,7 @@ from serializeraw.document import _load_textcontainer
 
 
 def simple_textcontainer():
-    container = TextContainer()
+    container = TextContainer(state=texmex.TextState.HIDDEN)
     for line in [
             'I am a beautiful Line\n',
             'I am a more beautiful Line\n',
