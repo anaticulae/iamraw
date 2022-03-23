@@ -223,6 +223,18 @@ class TextContainer(Boxed):
             result.append(Line.fromstr(line))
         return result
 
+    @property
+    def textstate(self) -> 'texmex.TextState':
+        """\
+        >>> TextContainer().textstate
+        <TextState.VISIBLE:...>
+        """
+        import texmex
+        if self.state is None:
+            # if no state is given, use visible the default state
+            return texmex.TextState.VISIBLE
+        return self.state
+
 
 TextContainers = typing.List[TextContainer]
 
