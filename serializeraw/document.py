@@ -206,6 +206,13 @@ def _dump_textcontainer(container: iamraw.TextContainer):
 
 def _load_textcontainer(content) -> iamraw.TextContainer:
     assert isinstance(content, (list, tuple)), type(content)
+    try:
+        outdated = content[0] in 'TextContainer VerticalTextContainer'
+    except TypeError:
+        outdated = False
+    if outdated:
+        # TODO: REMOVE WITH NEXT MAJOR
+        content = content[1]
     assert all(isinstance(item, list) for item in content), str(content)
     lines = [loadme(iamraw.Line, item) for item in content]
     return iamraw.TextContainer(lines=lines)
