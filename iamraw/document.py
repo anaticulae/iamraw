@@ -195,6 +195,7 @@ Lines = typing.List[Line]
 @dataclasses.dataclass
 class TextContainer(Boxed):
     lines: Lines = dataclasses.field(default_factory=list)
+    state: 'texmex.TextState' = None
 
     @property
     def text(self) -> str:

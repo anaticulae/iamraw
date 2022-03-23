@@ -164,6 +164,7 @@ class PTN(NavigatorMixin):
         bounding: iamraw.BoundingBox,
         bounding_mean: float = None,
         line: int = 0,
+        state: 'TextState' = None,
         sort: callable = True,
     ):
         """Insert text element top to bottom and left to right.
@@ -174,8 +175,10 @@ class PTN(NavigatorMixin):
             bounding(iamraw.BoundingBox): position and dimension of text area
             bounding_mean: average distance from bottom line to char top
             line(int): position in parsed container
+            state(TextState): add type information to text token
             sort(strategy): if True, insert bounding dependent
         """
+        state = texmex.TextState.VISIBLE if state is None else state
         utila.asserts(text, str)
         self.assert_bounding(bounding)
         datum = texmex.style.TextInfo(
@@ -184,6 +187,7 @@ class PTN(NavigatorMixin):
             style=style,
             text=text,
             line=line,
+            state=state,
         )
         if sort:
             if isinstance(sort, bool):
@@ -377,6 +381,7 @@ def rotate_left(navigator):
             bounding=rotate_bounding(item.bounding, width=navigator.width),
             bounding_mean=item.bounding_mean,
             line=item.line,
+            state=item.state,
         )
     return result
 

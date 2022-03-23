@@ -8,6 +8,7 @@
 # =============================================================================
 
 import dataclasses
+import enum
 import typing
 
 import configo
@@ -107,6 +108,11 @@ class TextStyle:
         return TextStyle(content=[item.copy() for item in self.content])  # pylint:disable=E1133
 
 
+class TextState(enum.IntEnum):
+    VISIBLE = 1
+    HIDDEN = 0
+
+
 @dataclasses.dataclass
 class TextInfo:
     """\
@@ -119,6 +125,7 @@ class TextInfo:
     style: TextStyle = None
     bounding_mean: float = None
     line: int = 0
+    state: TextState = TextState.VISIBLE
 
     def copy(self):
         result = TextInfo(
