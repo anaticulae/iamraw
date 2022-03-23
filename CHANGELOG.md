@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.64.0
+
+### Feature
+
+* serialize text container state (6626b9bec04a)
+* add property to access raw text state (8f8344b06269)
+* add option to hide and show token (7ebf2b3f4963)
+* backup old data structure (5fa39b37c100)
+* do not dump default container type (f983ffae077e)
+* use secure loader (163e39b9977c)
+
 ## v4.63.0
 
 ### Feature
