@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.65.1
+
+### Fix
+
+* add index section to public API (0f75500de9d6)
+
 ## v4.65.0
 
 ### Feature
