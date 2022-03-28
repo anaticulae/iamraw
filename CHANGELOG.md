@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.65.0
+
+### Feature
+
+* add index data structure (6a94c9927943)
+
 ## v4.64.0
 
 ### Feature
