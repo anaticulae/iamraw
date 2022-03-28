@@ -181,6 +181,9 @@ from iamraw.images import ImageInformation
 from iamraw.images import ImageInformations
 from iamraw.images import PageContentImageInfo
 from iamraw.images import PageContentImageInfos
+# index
+from iamraw.index import DocumentIndex
+from iamraw.index import DocumentIndexElement
 # lang
 from iamraw.lang import Language
 from iamraw.lang import simplelang
