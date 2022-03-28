@@ -242,6 +242,7 @@ from iamraw.sections import CitePart
 from iamraw.sections import CodeTable
 from iamraw.sections import DocumentSection
 from iamraw.sections import FigureTable
+from iamraw.sections import Index
 from iamraw.sections import MainPart
 from iamraw.sections import MultipleSection
 from iamraw.sections import NotImplementedItem
