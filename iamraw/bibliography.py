@@ -69,3 +69,6 @@ class BibliographyTable:
 
     def __getitem__(self, index):
         return self.references[index]
+
+    def __len__(self):
+        return len(self.references)
