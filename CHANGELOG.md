@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v4.66.0
+
+### Feature
+
+* ensure that year is int or not defined (017591cb3865)
+* add length method (be6d5824c474)
+
+### Fix
+
+* add missing attribute (69976ecd78e1)
+* adjust file name (53dbbcb8fe5a)
+
 ## v4.65.1
 
 ### Fix
