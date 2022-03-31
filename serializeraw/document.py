@@ -246,7 +246,10 @@ def _load_textcontainer(content) -> iamraw.TextContainer:
 def _load_verticaltextcontainer(content) -> iamraw.VerticalTextContainer:
     content = _load_textcontainer(content)
     # TODO: USE KEYWARGS **?
-    result = iamraw.VerticalTextContainer(lines=content.lines)
+    result = iamraw.VerticalTextContainer(
+        lines=content.lines,
+        state=content.state,
+    )
     return result
 
 
