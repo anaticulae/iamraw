@@ -33,7 +33,7 @@ def load_color_statistics(
 ) -> iamraw.PageContents:
     loaded = utila.yaml_load(
         content,
-        fname='color__statistics_statistics',
+        fname='colors__statistics_statistics',
     )
     result = []
     for page in loaded:
