@@ -57,6 +57,11 @@ class BibliographyReference:  # pylint:disable=R0902
             return self.authors[0].name  # pylint:disable=E1136
         return None
 
+    def __post_init__(self):
+        # TODO: MAY REMOVE NO YEAR LATER
+        assert any((self.year is None, isinstance(self.year, int),
+                    self.year == 'no year')), str(self)
+
 
 BibliographyReferences = typing.List[BibliographyReference]
 
