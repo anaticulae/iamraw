@@ -119,6 +119,14 @@ class FootNoteMerged(FootNote):
     def raw_number(self):
         return self.notes[0].raw_number
 
+    @property
+    def style_number(self) -> 'texmex.CharStyle':
+        return self.notes[0].style_number
+
+    @property
+    def style_text(self) -> list:
+        return utila.flatten([item.style_text for item in self.notes])
+
 
 @dataclasses.dataclass
 class FootJudgedNote(FootNote):
