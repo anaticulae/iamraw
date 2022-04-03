@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.66.1
+
+### Feature
+
+* add state to vertical container (63a724812ddd)
+
+### Fix
+
+* load vertical container correctly (18dcd5952cf7)
+
 ## v4.66.0
 
 ### Feature
