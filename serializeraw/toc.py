@@ -51,7 +51,14 @@ def load_toc(content: str, load_raw: bool = True) -> iamraw.Toc:
 
 
 def _dump(current: iamraw.Section, dump_raw: bool):
-    """Convert to raw python to have more clear yaml output"""
+    """Convert to raw python to have more clear yaml output.
+
+    >>> toc = iamraw.Toc()
+    >>> toc.__strategy__='Master'
+    >>> _dump(toc, dump_raw=True)
+    {...'__strategy__': 'Master'}
+
+    """
     children = [_dump(item, dump_raw) for item in current.children]
     try:
         result = {
@@ -59,9 +66,6 @@ def _dump(current: iamraw.Section, dump_raw: bool):
             'page': current.page,
             'title': current.title,
         }
-        with contextlib.suppress(AttributeError):
-            if current.__strategy__:
-                result['__strategy__'] = current.strategy
         with contextlib.suppress(AttributeError):
             if dump_raw:
                 result['raw'] = current.raw
@@ -72,6 +76,9 @@ def _dump(current: iamraw.Section, dump_raw: bool):
             level=current.level,
             style=current.style.name if current.style else None,
         )
+        with contextlib.suppress(AttributeError):
+            if current.__strategy__:
+                result['__strategy__'] = current.__strategy__
     if children:
         result['children'] = children
     return result
