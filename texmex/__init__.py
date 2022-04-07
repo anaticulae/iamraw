@@ -14,8 +14,8 @@ from texmex.alignment import TextAlignments
 from texmex.character import DOT
 # group
 from texmex.group.fonts import bounds_to_textbounds
+from texmex.group.fonts import document_textdist_from_ptcns
 from texmex.group.fonts import document_textdistance
-from texmex.group.fonts import document_textdistance_from_contentnavigators
 from texmex.group.fonts import document_textfeed
 from texmex.group.fonts import document_textsize
 from texmex.group.fonts import feeddistance
@@ -111,6 +111,7 @@ PageTextContentNavigators = PTCNs
 PageTextNavigator = PTN
 PageTextNavigators = PTNs
 PageTextNavigatorMode = PTNMode
+document_textdistance_from_contentnavigators = document_textdist_from_ptcns
 
 # TODO: REMOVE LATER
 HIGHNOTE_MIN_RISE = HIGHNOTE_RISE_MIN

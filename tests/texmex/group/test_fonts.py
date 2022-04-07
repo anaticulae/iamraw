@@ -39,10 +39,10 @@ def test_document_textdistance():
 
 
 @utilatest.requires(power.DOCU027_PDF)
-def test_document_textdistance_from_contentnavigators():
+def test_document_textdist_from_ptcns():
     source = power.link(power.DOCU027_PDF)
     data = serializeraw.ptcn_frompath(source)
-    result = texmex.document_textdistance_from_contentnavigators(data)
+    result = texmex.document_textdist_from_ptcns(data)
     assert result == 17.9, str(result)
 
 

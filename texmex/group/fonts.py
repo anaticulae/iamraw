@@ -179,11 +179,11 @@ def document_textdistance(
             numbers=False,
         ) if navigator
     ]
-    result = document_textdistance_from_contentnavigators(data, digits=digits)
+    result = document_textdist_from_ptcns(data, digits=digits)
     return result
 
 
-def document_textdistance_from_contentnavigators(
+def document_textdist_from_ptcns(
     navigators: 'texmex.PTCNs',
     digits: int = 1,
 ) -> float:
