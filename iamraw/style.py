@@ -10,6 +10,8 @@
 import dataclasses
 import typing
 
+import utila
+
 
 @dataclasses.dataclass(unsafe_hash=True)
 class PageTextProperties:
@@ -112,3 +114,16 @@ class DocTextStyle:
     content_rotated_right: float = None
     content_rotated_top: float = None
     content_rotated_bottom: float = None
+
+    def __str__(self):
+        r"""\
+        >>> str(DocTextStyle(text_size=12.2, h2_family=101221223))
+        'text_size                 12.2\nh2_family                 101221223'
+        """
+        collected = [
+            '{:<25} {}'.format(key, value)
+            for key, value in dataclasses.asdict(self).items()
+            if value is not None
+        ]
+        result = utila.NEWLINE.join(collected)
+        return result
