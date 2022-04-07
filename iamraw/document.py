@@ -58,7 +58,7 @@ class Page:
         for item in self.children:  # pylint:disable=E1133
             with contextlib.suppress(AttributeError):
                 textcontainer.append(item.text)
-        result = ''.join(textcontainer)
+        result = utila.NEWLINE.join(textcontainer)
         return result
 
     def __repr__(self):
@@ -99,7 +99,7 @@ class Document:
         texts = []
         for page in self:
             texts.append(page.text)
-        result = ''.join(texts)
+        result = utila.NEWLINE.join(texts)
         return result
 
     def append(self, page):
@@ -113,7 +113,7 @@ class Document:
         result = [f'Document: pages={len(self.pages)}']
         for page in self:
             result.append(str(page))
-        result = ''.join(result)  # pylint:disable=R0204
+        result: str = utila.NEWLINE.join(result)
         return result
 
     def __getitem__(self, key):

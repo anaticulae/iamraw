@@ -35,7 +35,7 @@ def page(textcontainer) -> Page:  # pylint:disable=W0621
 
 def test_page_text(page: Page):  # pylint:disable=W0621
     content = page.text
-    assert len(content.splitlines()) == 9
+    assert len([item for item in content.splitlines() if item]) == 9
 
 
 def test_textcontainer_iter(textcontainer: TextContainer):  # pylint:disable=W0621
