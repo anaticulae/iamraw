@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.66.2
+
+### Fix
+
+* add newline after changing rawmaker behavior (1e73e844856e)
+* dump strategy correctly (37bf41945525)
+
 ## v4.66.1
 
 ### Feature
