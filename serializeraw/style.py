@@ -15,7 +15,10 @@ import iamraw
 
 
 def load_doctextstyle(content: str) -> iamraw.DocTextStyle:
-    loaded = utila.yaml_load(content)
+    loaded = utila.yaml_load(
+        content,
+        fname='doctextstyle__textstyle',
+    )
     result = iamraw.DocTextStyle(**loaded)
     return result
 
