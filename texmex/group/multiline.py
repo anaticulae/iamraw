@@ -359,12 +359,14 @@ def group_page_by_size_distance(
     content: PTN,
     distance_max: callable = maxdistance,
     sizediff_max: float = SIZEDIFF_MAX,
+    xdist_max: float = None,
 ) -> MultilineGroups:
     assert isinstance(content, texmex.NavigatorMixin), type(content)
     grouped = group_linedistances_complex(
         content,
         max_distance=distance_max,
         max_sizediff=sizediff_max,
+        xdist_max=xdist_max,
     )
     result = []
     for group in grouped:
