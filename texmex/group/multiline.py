@@ -316,6 +316,32 @@ def group_linedistances_complex(
     return result
 
 
+def xdistances(content) -> list:
+    r"""Determine changes in distance to left page border.
+
+    >>> xdistances(texmex.ptn_fromstr('First\nSecond\nThird\nFourth\nFifth'))
+    [None, 0.0, 0.0, 0.0, 0.0]
+
+    Regression
+    ----------
+    Do not convert data type while rounding:
+    >>> import texmex
+    >>> xdistances(texmex.ptn_fromstr('First\n\Second'))
+    [None, 0.0]
+
+    Do not fail on too few items
+    >>> xdistances(texmex.ptn_fromstr('First'))
+    []
+    """
+    if len(content) <= 1:
+        return []
+    result = [None]
+    diffs = utila.diffs([line.bounding[0] for line in content])
+    diffs: list = utila.roundme(diffs, convert=False)
+    result += diffs
+    return result
+
+
 def group_page_by_size_distance(
     content: PTN,
     distance_max: callable = maxdistance,
