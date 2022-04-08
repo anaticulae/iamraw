@@ -81,6 +81,9 @@ class MultilineGroup:
             yield index, item
 
 
+MultilineGroups = typing.List[MultilineGroup]
+
+
 def group_pages_by_fontsize(
     pagetextnavigators: PTNs,
     sizediff: float = 0.0,
@@ -213,11 +216,9 @@ def group_linedistances(
 
     """
     assert items
-    items = items[:]
+    items = items[:]  # avoid side effects
     items = [items[0]] + items[:-1] + [items[-2]]
-
     grad = gradient(items)
-
     result = []
     current = []
     # TODO: THIS APPROACH DOES NOT WORK RIGHT NOW
@@ -236,7 +237,6 @@ def group_linedistances(
             current = []
     if current:
         result.append(current)
-
     return result
 
 
@@ -316,7 +316,7 @@ def group_linedistances_complex(
     return result
 
 
-def group_page_by_size_distance(content: PTN):
+def group_page_by_size_distance(content: PTN) -> MultilineGroups:
     assert isinstance(content, texmex.NavigatorMixin), type(content)
     grouped = group_linedistances_complex(content)
     result = []
