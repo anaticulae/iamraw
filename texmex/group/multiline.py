@@ -258,10 +258,11 @@ def maxdistance(fontsize: float) -> float:
     return DISTANCE_MAX(fontsize)
 
 
-def group_linedistances_complex(
+def group_linedistances_complex(  # pylint:disable=R0914,R1260
     content: PTN,
     max_sizediff: float = SIZEDIFF_MAX,
     max_distance: callable = maxdistance,
+    xdist_max: float = None,
     returndata: bool = False,
 ) -> typing.List[int]:
     """Group lines by sizes and distances of text chunks.
@@ -271,14 +272,20 @@ def group_linedistances_complex(
         max_sizediff: absolute difference of 2 font size in one group
         max_distance: function to determine limit maxmimal distance
                       between 2 lines in a group.
+        xdist_max: max xdist change to be in the same group
         returndata: convert indexes to data
     Returns:
         List of grouped indexes
     """
     assert isinstance(content, texmex.NavigatorMixin), type(content)
+    if len(content) == 0:  # pylint:disable=compare-to-zero
+        return []
+    if len(content) == 1:
+        return [content[0]] if returndata else [[0]]
     distances = linedistances(content)
     sizes = [max([item.size for item in items.style]) for items in content]
-    assert len(distances) == len(sizes)
+    xdists = xdistances(content)
+    assert len(distances) == len(sizes) == len(xdists)
     if len(distances) < 2:
         return []
     distances = distances[:]
@@ -287,13 +294,19 @@ def group_linedistances_complex(
     result = []
     current = []
     cursize = None
-    for index, (size, distance) in enumerate(zip(sizes, distances)):
+    for index, (size, distance, xdist) in enumerate(zip(sizes, distances, xdists)):  # yapf:disable
         if cursize is None:
             if distance > max_distance(size):
                 result.append([index])
             else:
                 current.append(index)
                 cursize = size
+            continue
+        if xdist_max is not None and xdist > xdist_max:
+            # xdist is to high
+            result.append(current)
+            current = [index]
+            cursize = None
             continue
         sizediff = utila.roundme(math.fabs(cursize - size))
         if sizediff < max_sizediff:
