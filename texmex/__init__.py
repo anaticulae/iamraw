@@ -26,12 +26,12 @@ from texmex.group.fonts import textsize
 from texmex.group.fonts import textsize_frompage
 from texmex.group.multiline import MultilineGroup
 from texmex.group.multiline import PageContentMultiLine
-from texmex.group.multiline import group_by_linedistance
 from texmex.group.multiline import group_linedistances
 from texmex.group.multiline import group_linedistances_complex
 from texmex.group.multiline import group_page_by_fontsize
 from texmex.group.multiline import group_page_by_size_distance
 from texmex.group.multiline import group_pages_by_fontsize
+from texmex.group.multiline import groupby_linedistance
 from texmex.group.multiline import linedistance
 from texmex.group.multiline import linedistances
 from texmex.group.multiline import maxdistance
@@ -112,6 +112,7 @@ PageTextNavigator = PTN
 PageTextNavigators = PTNs
 PageTextNavigatorMode = PTNMode
 document_textdistance_from_contentnavigators = document_textdist_from_ptcns
+group_by_linedistance = groupby_linedistance
 
 # TODO: REMOVE LATER
 HIGHNOTE_MIN_RISE = HIGHNOTE_RISE_MIN

@@ -149,7 +149,7 @@ def group_page_by_fontsize(
     )
 
 
-def group_by_linedistance(page: PageContentMultiLine) -> PageContentMultiLine:
+def groupby_linedistance(page: PageContentMultiLine) -> PageContentMultiLine:
     flatten = utila.flatten(page)
     distances = linedistances(flatten)
     grouped = group_linedistances(distances)

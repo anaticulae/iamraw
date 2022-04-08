@@ -35,7 +35,7 @@ def example():
 def test_multiline_group_page_no_group():
     navigators = example()
     grouped = texmex.group_pages_by_fontsize(navigators)
-    grouped = [texmex.group_by_linedistance(item) for item in grouped]
+    grouped = [texmex.groupby_linedistance(item) for item in grouped]
 
     count = [[len(item) for item in items] for items in grouped]
     assert count == NO_GROUP
