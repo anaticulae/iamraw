@@ -72,9 +72,7 @@ def group_linedistances_complex(
             cursize = None
     if current:
         result.append(current)
-    if returndata:
-        # replace group index by navigator data
-        result = [[content[index] for index in group] for group in result]
+    result = finish(result, content, returndata=returndata)
     return result
 
 
@@ -93,3 +91,11 @@ def setup(content, returndata: bool = False):
     # remove None at end of distances
     distances[-1] = distances[-2]
     return zip(sizes, distances, xdists)
+
+
+def finish(result, ptxn, returndata: bool = False):
+    if not returndata:
+        return result
+    # replace group index by navigator data
+    result = [[ptxn[index] for index in group] for group in result]
+    return result
