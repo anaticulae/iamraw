@@ -41,37 +41,37 @@ def group_linedistances_complex(
     if isinstance(prepared, list):
         return prepared
     result = []
-    current = []
+    current_group = []
     cursize = None
     for index, (size, distance, xdist) in enumerate(prepared):
         if cursize is None:
             if distance > max_distance(size):
                 result.append([index])
             else:
-                current.append(index)
+                current_group.append(index)
                 cursize = size
             continue
         if xdist_max is not None and xdist > xdist_max:
             # xdist is to high
-            result.append(current)
-            current = [index]
+            result.append(current_group)
+            current_group = [index]
             cursize = None
             continue
         sizediff = utila.roundme(math.fabs(cursize - size))
         if sizediff < max_sizediff:
             if distance < max_distance(size):
-                current.append(index)
+                current_group.append(index)
             else:
-                current.append(index)
-                result.append(current)
-                current = []
+                current_group.append(index)
+                result.append(current_group)
+                current_group = []
                 cursize = None
         else:
-            result.append(current)
-            current = [index]
+            result.append(current_group)
+            current_group = [index]
             cursize = None
-    if current:
-        result.append(current)
+    if current_group:
+        result.append(current_group)
     result = finish(result, content, returndata=returndata)
     return result
 
