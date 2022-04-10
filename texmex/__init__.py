@@ -54,12 +54,12 @@ from texmex.navigator import PTNMode
 from texmex.navigator import PTNs
 from texmex.navigator import SelectBounding
 from texmex.navigator import create_pagetextcontentnavigators
-from texmex.navigator import create_pagetextnavigator_fromstr
 from texmex.navigator import create_pagetextnavigators
 from texmex.navigator import determine_border
 from texmex.navigator import fill_empty_navigators
 from texmex.navigator import navigator_to_bounds
 from texmex.navigator import navigator_to_content
+from texmex.navigator import ptn_fromstr
 from texmex.navigator import rotate_left
 from texmex.navigator import single
 # search
@@ -113,6 +113,8 @@ PageTextNavigators = PTNs
 PageTextNavigatorMode = PTNMode
 document_textdistance_from_contentnavigators = document_textdist_from_ptcns
 group_by_linedistance = groupby_linedistance
+
+create_pagetextnavigator_fromstr = ptn_fromstr
 
 # TODO: REMOVE LATER
 HIGHNOTE_MIN_RISE = HIGHNOTE_RISE_MIN

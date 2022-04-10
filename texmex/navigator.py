@@ -655,9 +655,9 @@ def determine_border(headerfooter, sizeandborder, page: int):
     return border
 
 
-def create_pagetextnavigator_fromstr(content: str, fontsize=12.0):
+def ptn_fromstr(content: str, fontsize=12.0):
     r"""\
-    >>> create_pagetextnavigator_fromstr('I am a\nNavigator\ngood bye.')
+    >>> ptn_fromstr('I am a\nNavigator\ngood bye.')
     PTN(page=-1, pagesize=(612.0, 792.0), data=[I am a
     , Navigator
     , good bye.
