@@ -48,5 +48,6 @@ if __name__ == "__main__":
             'serializeraw.textnavigator',
             'texmex',
             'texmex.group',
+            'texmex.group.multiline',
         ],
     )
