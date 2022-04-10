@@ -2,6 +2,22 @@
 
 Every noteable change is logged here.
 
+## v4.67.0
+
+### Feature
+
+* shorten naming (c547ec57299f)
+* add xdist_max parameter to grouping (dfad82bc2910)
+* add parameter to group lines by xdist (430aecfb4e81)
+* add method to determine xdist change (65ffb5ed4a9f)
+* make interface more configurable (6dd5ff5b5357)
+* add default path to doctextstyle loader (4d16a19dffbd)
+* add docstyle display method (4696549ceb74)
+
+### Documentation
+
+* extend interface documentation (eedae0a8de7e)
+
 ## v4.66.2
 
 ### Fix
