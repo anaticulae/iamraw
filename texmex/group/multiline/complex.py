@@ -1,0 +1,88 @@
+# =============================================================================
+# C O P Y R I G H T
+# -----------------------------------------------------------------------------
+# Copyright (c) 2022 by Helmut Konrad Fahrendholz. All rights reserved.
+# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# use or distribution is an offensive act against international law and may
+# be prosecuted under federal law. Its content is company confidential.
+# =============================================================================
+
+import math
+import typing
+
+import utila
+
+import texmex
+import texmex.group.multiline
+import texmex.navigator
+
+
+def group_linedistances_complex(  # pylint:disable=R0914,R1260
+    content: texmex.navigator.PTN,
+    max_sizediff: float = texmex.group.multiline.SIZEDIFF_MAX,
+    max_distance: callable = texmex.group.multiline.maxdistance,
+    xdist_max: float = None,
+    returndata: bool = False,
+) -> typing.List[int]:
+    """Group lines by sizes and distances of text chunks.
+
+    Args:
+        content: content to group
+        max_sizediff: absolute difference of 2 font size in one group
+        max_distance: function to determine limit maxmimal distance
+                      between 2 lines in a group.
+        xdist_max: max xdist change to be in the same group
+        returndata: convert indexes to data
+    Returns:
+        List of grouped indexes
+    """
+    assert isinstance(content, texmex.NavigatorMixin), type(content)
+    if len(content) == 0:  # pylint:disable=compare-to-zero
+        return []
+    if len(content) == 1:
+        return [content[0]] if returndata else [[0]]
+    distances = texmex.group.multiline.linedistances(content)
+    sizes = [max([item.size for item in items.style]) for items in content]
+    xdists = texmex.group.multiline.xdistances(content)
+    assert len(distances) == len(sizes) == len(xdists)
+    if len(distances) < 2:
+        return []
+    distances = distances[:]
+    # remove None at end of distances
+    distances[-1] = distances[-2]
+    result = []
+    current = []
+    cursize = None
+    for index, (size, distance, xdist) in enumerate(zip(sizes, distances, xdists)):  # yapf:disable
+        if cursize is None:
+            if distance > max_distance(size):
+                result.append([index])
+            else:
+                current.append(index)
+                cursize = size
+            continue
+        if xdist_max is not None and xdist > xdist_max:
+            # xdist is to high
+            result.append(current)
+            current = [index]
+            cursize = None
+            continue
+        sizediff = utila.roundme(math.fabs(cursize - size))
+        if sizediff < max_sizediff:
+            if distance < max_distance(size):
+                current.append(index)
+            else:
+                current.append(index)
+                result.append(current)
+                current = []
+                cursize = None
+        else:
+            result.append(current)
+            current = [index]
+            cursize = None
+    if current:
+        result.append(current)
+    if returndata:
+        # replace group index by navigator data
+        result = [[content[index] for index in group] for group in result]
+    return result

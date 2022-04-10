@@ -27,7 +27,6 @@ from texmex.group.fonts import textsize_frompage
 from texmex.group.multiline import MultilineGroup
 from texmex.group.multiline import PageContentMultiLine
 from texmex.group.multiline import group_linedistances
-from texmex.group.multiline import group_linedistances_complex
 from texmex.group.multiline import group_page_by_fontsize
 from texmex.group.multiline import group_page_by_size_distance
 from texmex.group.multiline import group_pages_by_fontsize
@@ -38,6 +37,7 @@ from texmex.group.multiline import maxdistance
 from texmex.group.multiline import merge_content
 from texmex.group.multiline import merge_content_join
 from texmex.group.multiline import unite_groups
+from texmex.group.multiline.complex import group_linedistances_complex
 # iterator
 from texmex.iter import PageIter
 from texmex.iter import TextContainerIterator
