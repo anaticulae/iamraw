@@ -408,6 +408,7 @@ def merge_content(  # pylint:disable=R0914
     if not text:
         # Nothing to merge
         return []
+    # TODO: MERGE WITH GROUP_LINEDISTANCES_COMPLEX???
     # ensure input
     assert all(isinstance(item, TextBoundsInfo) for item in text), str(text)
     uindex = list(range(len(text))) if uindex is None else uindex
