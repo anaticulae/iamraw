@@ -17,7 +17,7 @@ import texmex.group.multiline
 import texmex.navigator
 
 
-def group_linedistances_complex(  # pylint:disable=R0914,R1260
+def group_linedistances_complex(
     content: texmex.navigator.PTN,
     max_sizediff: float = texmex.group.multiline.SIZEDIFF_MAX,
     max_distance: callable = texmex.group.multiline.maxdistance,
@@ -37,23 +37,13 @@ def group_linedistances_complex(  # pylint:disable=R0914,R1260
         List of grouped indexes
     """
     assert isinstance(content, texmex.NavigatorMixin), type(content)
-    if len(content) == 0:  # pylint:disable=compare-to-zero
-        return []
-    if len(content) == 1:
-        return [content[0]] if returndata else [[0]]
-    distances = texmex.group.multiline.linedistances(content)
-    sizes = [max([item.size for item in items.style]) for items in content]
-    xdists = texmex.group.multiline.xdistances(content)
-    assert len(distances) == len(sizes) == len(xdists)
-    if len(distances) < 2:
-        return []
-    distances = distances[:]
-    # remove None at end of distances
-    distances[-1] = distances[-2]
+    prepared = setup(content, returndata=returndata)
+    if isinstance(prepared, list):
+        return prepared
     result = []
     current = []
     cursize = None
-    for index, (size, distance, xdist) in enumerate(zip(sizes, distances, xdists)):  # yapf:disable
+    for index, (size, distance, xdist) in enumerate(prepared):
         if cursize is None:
             if distance > max_distance(size):
                 result.append([index])
@@ -86,3 +76,20 @@ def group_linedistances_complex(  # pylint:disable=R0914,R1260
         # replace group index by navigator data
         result = [[content[index] for index in group] for group in result]
     return result
+
+
+def setup(content, returndata: bool = False):
+    if len(content) == 0:  # pylint:disable=compare-to-zero
+        return []
+    if len(content) == 1:
+        return [content[0]] if returndata else [[0]]
+    distances = texmex.group.multiline.linedistances(content)
+    sizes = [max([item.size for item in items.style]) for items in content]
+    xdists = texmex.group.multiline.xdistances(content)
+    assert len(distances) == len(sizes) == len(xdists)
+    if len(distances) < 2:
+        return []
+    distances = distances[:]
+    # remove None at end of distances
+    distances[-1] = distances[-2]
+    return zip(sizes, distances, xdists)
