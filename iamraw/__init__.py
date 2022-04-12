@@ -13,6 +13,7 @@ import os
 import iamraw.path as path
 # mixin
 from iamraw.__mixin__ import extracted
+from iamraw.__mixin__ import hasstrategy
 # abbreviation
 from iamraw.abbreviation import Abbreviation
 from iamraw.abbreviation import AbbreviationList

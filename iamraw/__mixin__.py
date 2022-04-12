@@ -27,3 +27,7 @@ def extracted(item):
 
     setattr(item, '__strategy_raw__', raw)
     return item
+
+
+def hasstrategy(item) -> bool:
+    return hasattr(item, '__strategy__')
