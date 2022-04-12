@@ -17,13 +17,10 @@ import iamraw
 
 def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
     raw = []
-    for page in headlines:
-        content = []
-        for headline in page:
-            content.append(headline_raw(headline))
-        if not content:
-            # do not write empty pages
+    for group in headlines:
+        if not group:
             continue
+        content = [headline_raw(headline) for headline in group]
         raw.append({
             'headlines': content,
         })
