@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import contextlib
 import functools
 
 import configo
@@ -16,15 +17,23 @@ import iamraw
 
 
 def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
-    raw = []
+    collected = []
     for group in headlines:
         if not group:
             continue
         content = [headline_raw(headline) for headline in group]
-        raw.append({
+        collected.append({
             'headlines': content,
         })
-    dumped = utila.yaml_dump(raw)
+
+    strategy = None
+    with contextlib.suppress(AttributeError):
+        strategy = headlines.__strategy__
+    result = dict(
+        headlines=collected,
+        __strategy__=strategy,
+    )
+    dumped = utila.yaml_dump(result)
     return dumped
 
 
@@ -42,8 +51,10 @@ def load_headlines(
         content,
         fname=fname,
     )
-    result = []
-    for step in loaded:
+    strategy = loaded.get('__strategy__', None)
+    content = loaded.get('headlines')
+    collected = []
+    for step in content:
         loadedstep = []
         for rawheadline in step['headlines']:
             pagenumber = int(rawheadline['page'])
@@ -51,8 +62,11 @@ def load_headlines(
                 continue
             headline = headline_fromraw(rawheadline)
             loadedstep.append(headline)
-        if loadedstep:
-            result.append(loadedstep)
+        if not loadedstep:
+            continue
+        collected.append(iamraw.HeadlineGroup(headlines=loadedstep))
+    result = iamraw.HeadlineResult(groups=collected)
+    result.__strategy__ = strategy
     return result
 
 

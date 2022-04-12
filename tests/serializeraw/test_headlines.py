@@ -12,8 +12,8 @@ import utila
 import iamraw
 import serializeraw
 
-EXPECTED = [
-    [
+EXPECTED = iamraw.HeadlineResult(groups=[
+    iamraw.HeadlineGroup(headlines=[
         iamraw.Headline(
             title='CHAPTER 1',
             level=1,
@@ -28,8 +28,8 @@ EXPECTED = [
             container=1,
             page=6,
         ),
-    ],
-    [
+    ]),
+    iamraw.HeadlineGroup(headlines=[
         iamraw.Headline(
             title='CHAPTER 2',
             level=1,
@@ -65,8 +65,9 @@ EXPECTED = [
             container=10,
             page=9,
         ),
-    ],
-]
+    ]),
+])
+EXPECTED.__strategy__ = 'cluster'
 
 
 def test_headlines_dump_and_load():
@@ -78,8 +79,8 @@ def test_headlines_dump_and_load():
     assert len(loaded) == 2
 
 
-HEADLINE_CONTAINER_RANGE = [
-    [
+HEADLINE_CONTAINER_RANGE = iamraw.HeadlineResult(groups=[
+    iamraw.HeadlineGroup(headlines=[
         iamraw.Headline(
             title='CHAPTER 1',
             level=1,
@@ -94,17 +95,17 @@ HEADLINE_CONTAINER_RANGE = [
             container=(0, 5),
             page=6,
         ),
-    ],
-    [
+    ]),
+    iamraw.HeadlineGroup(headlines=[
         iamraw.Headline(
             title='Text Tutorial',
             level=2,
             raw_level='',
             container=0,
             page=6,
-        ),
-    ],
-]
+        )
+    ])
+])
 
 
 def test_headlines_dump_and_load_with_rangedcontainer():
