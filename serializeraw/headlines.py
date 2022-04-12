@@ -17,7 +17,7 @@ import iamraw
 
 def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
     raw = []
-    for index, page in enumerate(headlines):
+    for page in headlines:
         content = []
         for headline in page:
             content.append(headline_raw(headline))
@@ -25,7 +25,6 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
             # do not write empty pages
             continue
         raw.append({
-            'chapter?': index,  # TODO: How to deal with empty chapter?
             'headlines': content,
         })
     dumped = utila.yaml_dump(raw)
