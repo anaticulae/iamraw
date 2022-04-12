@@ -6,6 +6,9 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+
+import utila
+
 import iamraw
 import serializeraw
 
@@ -66,14 +69,12 @@ EXPECTED = [
 ]
 
 
-def test_headlines_dump_and_load_headlines():
+def test_headlines_dump_and_load():
     """Dump and load the example above"""
     dumped = serializeraw.dump_headlines(EXPECTED)
     loaded = serializeraw.load_headlines(dumped)
-
     assert loaded == EXPECTED
-
-    loaded = serializeraw.load_headlines(dumped, tuple(range(10)))
+    loaded = serializeraw.load_headlines(dumped, utila.rtuple(10))
     assert len(loaded) == 2
 
 
@@ -106,8 +107,7 @@ HEADLINE_CONTAINER_RANGE = [
 ]
 
 
-def test_headlines_dump_and_load_headlines_with_rangedcontainer():
+def test_headlines_dump_and_load_with_rangedcontainer():
     dumped = serializeraw.dump_headlines(HEADLINE_CONTAINER_RANGE)
     loaded = serializeraw.load_headlines(dumped)
-
     assert loaded == HEADLINE_CONTAINER_RANGE
