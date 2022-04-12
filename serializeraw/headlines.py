@@ -19,19 +19,8 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
     raw = []
     for index, page in enumerate(headlines):
         content = []
-        for item in page:
-            container = item.container
-            if isinstance(container, tuple):
-                container = utila.from_tuple(container)
-            content.append({
-                'container': container,
-                'level': item.level,
-                'page': item.page,
-                'raw': item.raw,
-                'raw_level': item.raw_level,
-                'title': item.title,
-                'decoration': item.decoration,
-            })
+        for headline in page:
+            content.append(headline_raw(headline))
         if not content:
             # do not write empty pages
             continue
@@ -60,34 +49,56 @@ def load_headlines(
     result = []
     for step in loaded:
         loadedstep = []
-        for headline in step['headlines']:
-            pagenumber = int(headline['page'])
+        for rawheadline in step['headlines']:
+            pagenumber = int(rawheadline['page'])
             if utila.should_skip(pagenumber, pages):
                 continue
-            try:
-                container = int(headline['container'])
-            except ValueError:
-                # support ranged container id
-                container = utila.parse_tuple(  # pylint:disable=R0204
-                    headline['container'],
-                    length=2,
-                    typ=int,
-                )
-            level = headline['level']
-            if level is not None:
-                level = int(level)
-            else:
-                utila.error(f'headline level is None: {headline["title"]}')
-            item = iamraw.Headline(
-                container=container,
-                level=level,
-                page=pagenumber,
-                raw=headline['raw'],
-                raw_level=headline['raw_level'],
-                title=headline['title'],
-                decoration=headline.get('decoration', None),
-            )
-            loadedstep.append(item)
+            headline = headline_fromraw(rawheadline)
+            loadedstep.append(headline)
         if loadedstep:
             result.append(loadedstep)
+    return result
+
+
+def headline_fromraw(headline: dict) -> iamraw.Headline:
+    try:
+        container = int(headline['container'])
+    except ValueError:
+        # support ranged container id
+        container = utila.parse_tuple(  # pylint:disable=R0204
+            headline['container'],
+            length=2,
+            typ=int,
+        )
+    level = headline['level']
+    if level is not None:
+        level = int(level)
+    else:
+        utila.error(f'headline level is None: {headline["title"]}')
+    pagenumber = int(headline['page'])
+    item = iamraw.Headline(
+        container=container,
+        level=level,
+        page=pagenumber,
+        raw=headline['raw'],
+        raw_level=headline['raw_level'],
+        title=headline['title'],
+        decoration=headline.get('decoration', None),
+    )
+    return item
+
+
+def headline_raw(item) -> dict:
+    container = item.container
+    if isinstance(container, tuple):
+        container = utila.from_tuple(container)
+    result = {
+        'container': container,
+        'level': item.level,
+        'page': item.page,
+        'raw': item.raw,
+        'raw_level': item.raw_level,
+        'title': item.title,
+        'decoration': item.decoration,
+    }
     return result
