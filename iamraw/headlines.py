@@ -56,7 +56,34 @@ class Headline:
 
 
 Headlines = typing.List[Headline]
-PagesHeadlineList = typing.List[Headlines]
+PagesHeadlineList = typing.List[Headlines]  # TODO: REMOVE LATER
+
+
+@dataclasses.dataclass(unsafe_hash=True)
+class HeadlineGroup:
+    headlines: Headlines = dataclasses.field(default_factory=list)
+    number: int = None
+
+    def __getitem__(self, index):
+        return self.headlines[index]
+
+    def __len__(self):
+        return len(self.headlines)
+
+
+HeadlineGroups = typing.List[HeadlineGroup]
+
+
+@iamraw.extracted
+@dataclasses.dataclass(unsafe_hash=True)
+class HeadlineResult:
+    groups: HeadlineGroups = dataclasses.field(default_factory=list)
+
+    def __getitem__(self, index):
+        return self.groups[index]
+
+    def __len__(self):
+        return len(self.groups)
 
 
 def headlines_totoc(

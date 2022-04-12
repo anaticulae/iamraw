@@ -168,6 +168,9 @@ from iamraw.headerfooter import PagesFooterInformation
 from iamraw.headerfooter import RawText
 # headlines
 from iamraw.headlines import Headline
+from iamraw.headlines import HeadlineGroup
+from iamraw.headlines import HeadlineGroups
+from iamraw.headlines import HeadlineResult
 from iamraw.headlines import Headlines
 from iamraw.headlines import PagesHeadlineList
 from iamraw.headlines import headlines_totoc
