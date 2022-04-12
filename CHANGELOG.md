@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.68.0
+
+### Feature
+
+* dump and load strategy field if given (dd4e94e3f96e)
+* add headline group with strategy field (64b708234b7c)
+* add method to check if strategy exists (b0565135d22b)
+
 ## v4.67.0
 
 ### Feature
