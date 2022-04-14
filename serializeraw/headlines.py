@@ -54,8 +54,15 @@ def load_headlines(
         content,
         fname=fname,
     )
-    strategy = loaded.get('__strategy__', None)
-    content = loaded.get('headlines')
+    if isinstance(loaded, list):
+        # TODO: REMOVE LATER
+        content = loaded
+        strategy = None
+        confidence = 1.0
+    else:
+        strategy = loaded.get('__strategy__', None)
+        confidence = loaded.get('confidence', None)
+        content = loaded.get('headlines')
     collected = []
     for step in content:
         loadedstep = []
@@ -68,7 +75,10 @@ def load_headlines(
         if not loadedstep:
             continue
         collected.append(iamraw.HeadlineGroup(headlines=loadedstep))
-    result = iamraw.HeadlineResult(groups=collected)
+    result = iamraw.HeadlineResult(
+        groups=collected,
+        confidence=confidence,
+    )
     result.__strategy__ = strategy
     return result
 
