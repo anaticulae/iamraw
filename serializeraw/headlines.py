@@ -25,13 +25,16 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
         collected.append({
             'headlines': content,
         })
-
     strategy = None
     with contextlib.suppress(AttributeError):
         strategy = headlines.__strategy__
+    confidence = None
+    with contextlib.suppress(AttributeError):
+        confidence = headlines.confidence
     result = dict(
-        headlines=collected,
         __strategy__=strategy,
+        confidence=confidence,
+        headlines=collected,
     )
     dumped = utila.yaml_dump(result)
     return dumped

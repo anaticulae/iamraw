@@ -78,6 +78,8 @@ HeadlineGroups = typing.List[HeadlineGroup]
 @dataclasses.dataclass(unsafe_hash=True)
 class HeadlineResult:
     groups: HeadlineGroups = dataclasses.field(default_factory=list)
+    """Value of trust in this extraction result."""
+    confidence: float = None
 
     def __getitem__(self, index):
         return self.groups[index]
