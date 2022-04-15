@@ -112,8 +112,8 @@ def test_multiline_group_linedistances_page_zero_tolerance():
     content = navigators[0]
     grouped = texmex.group_linedistances_complex(
         content,
-        max_sizediff=0.0,
-        max_distance=lambda x: 0.0,
+        sizediff_max=0.0,
+        distance_max=lambda x: 0.0,
     )
     assert len(grouped) == 18
 

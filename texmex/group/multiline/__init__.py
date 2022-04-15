@@ -293,8 +293,8 @@ def group_page_by_size_distance(
     assert isinstance(content, texmex.NavigatorMixin), type(content)
     grouped = texmex.group_linedistances_complex(
         content,
-        max_distance=distance_max,
-        max_sizediff=sizediff_max,
+        distance_max=distance_max,
+        sizediff_max=sizediff_max,
         xdist_max=xdist_max,
     )
     result = []

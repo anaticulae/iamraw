@@ -17,10 +17,14 @@ import texmex.group.multiline
 import texmex.navigator
 
 
+@utila.rename(
+    max_distance='distance_max',
+    max_sizediff='sizediff_max',
+)
 def group_linedistances_complex(
     content: texmex.navigator.PTN,
-    max_sizediff: float = texmex.group.multiline.SIZEDIFF_MAX,
-    max_distance: callable = texmex.group.multiline.maxdistance,
+    sizediff_max: float = texmex.group.multiline.SIZEDIFF_MAX,
+    distance_max: callable = texmex.group.multiline.maxdistance,
     xdist_max: float = None,
     returndata: bool = False,
 ) -> typing.List[int]:
@@ -28,8 +32,8 @@ def group_linedistances_complex(
 
     Args:
         content: content to group
-        max_sizediff: absolute difference of 2 font size in one group
-        max_distance: function to determine limit maxmimal distance
+        sizediff_max: absolute difference of 2 font size in one group
+        distance_max: function to determine limit maxmimal distance
                       between 2 lines in a group.
         xdist_max: max xdist change to be in the same group
         returndata: convert indexes to data
@@ -45,7 +49,7 @@ def group_linedistances_complex(
     cursize = None
     for index, (size, distance, xdist) in enumerate(prepared):
         if cursize is None:
-            if distance > max_distance(size):
+            if distance > distance_max(size):
                 result.append([index])
             else:
                 current_group.append(index)
@@ -58,8 +62,8 @@ def group_linedistances_complex(
             cursize = None
             continue
         sizediff = utila.roundme(math.fabs(cursize - size))
-        if sizediff < max_sizediff:
-            if distance < max_distance(size):
+        if sizediff < sizediff_max:
+            if distance < distance_max(size):
                 current_group.append(index)
             else:
                 current_group.append(index)
