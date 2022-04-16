@@ -24,6 +24,7 @@ class CharStyle:
     size: float = None
     rise: float = None
     font: int = None
+    underline: bool = None
 
     def copy(self):
         return CharStyle(
@@ -32,6 +33,7 @@ class CharStyle:
             font=self.font,
             rise=self.rise,
             size=self.size,
+            underline=self.underline,
         )
 
     @property
@@ -101,8 +103,16 @@ class TextStyle:
         return method(result)
 
     @classmethod
-    def create(cls, start, end, size, rise=0):
-        return cls(content=[CharStyle(start, end, size, rise)])
+    def create(cls, start, end, size, rise=0, underline=False):
+        return cls(content=[
+            CharStyle(
+                start=start,
+                end=end,
+                size=size,
+                rise=rise,
+                underline=underline,
+            )
+        ])
 
     def copy(self):
         return TextStyle(content=[item.copy() for item in self.content])  # pylint:disable=E1133
@@ -191,25 +201,30 @@ def substyle(styles: CharStyles, start, end) -> list:
 
 def create_textstyle(chars: iamraw.Chars) -> TextStyle:
     assert chars
-    start, size, rise, font = 0, chars[0].size, chars[0].rise, chars[0].font
+    start = 0
+    size, rise, font = chars[0].size, chars[0].rise, chars[0].font
+    underline = chars[0].underline
     result = []
     for index, char in enumerate(chars[1:], start=1):
-        if char.size != size or char.rise != rise or char.font != font:
+        if char.size != size or char.rise != rise or char.font != font or char.underline != underline:
             style = CharStyle(
                 start=start,
                 end=index,
                 size=size,
                 rise=rise,
+                underline=underline,
                 font=font,
             )
             result.append(style)
             start, size, rise, font = index, char.size, char.rise, char.font
+            underline = char.underline
     if start != len(chars):
         style = CharStyle(
             start=start,
             end=len(chars),
             size=size,
             rise=rise,
+            underline=underline,
             font=font,
         )
         result.append(style)

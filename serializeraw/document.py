@@ -153,7 +153,8 @@ def _dump_line(line: iamraw.Line) -> str:
                 cursize,
                 currise,
             ))
-            start, cursize, currise = end, character.size, character.rise
+            start = end
+            cursize, currise, curunder = character.size, character.rise, character.underline
     if start != len(line):
         styles.append(create_style(
             start,
