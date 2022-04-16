@@ -20,7 +20,6 @@ def topbottom(size: iamraw.PageSize, contentborder: iamraw.Border):
     (0.1667, 0.8854)
     """
     top, bottom = contentborder.top, contentborder.bottom
-
     top = contentborder.top / size.height
     bottom = contentborder.bottom / size.height
     top, bottom = utila.roundme(top, bottom, digits=4)
