@@ -185,6 +185,7 @@ from serializeraw.textnavigator.create import ptcn_fromfile
 from serializeraw.textnavigator.create import ptcn_frompath
 from serializeraw.textnavigator.create import ptn_fromfile
 from serializeraw.textnavigator.create import ptn_frompath
+from serializeraw.textnavigator.dump import dump_ptn
 from serializeraw.textnavigator.filter import remove_magic
 from serializeraw.textnavigator.highnote import dump_highnotes
 from serializeraw.textnavigator.highnote import load_highnotes
