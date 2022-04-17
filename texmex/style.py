@@ -130,6 +130,13 @@ class TextStyle:
         return TextStyle(content=[item.copy() for item in self.content])  # pylint:disable=E1133
 
 
+class TextLineStyle(enum.IntEnum):
+    NONE = 0
+    UNDERLINED = 1
+    CROSSED = 2
+    OVERLINED = 3
+
+
 class TextState(enum.IntEnum):
     VISIBLE = 1
     HIDDEN = 0

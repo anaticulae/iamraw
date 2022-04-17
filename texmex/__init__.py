@@ -82,6 +82,7 @@ from texmex.style import HighNote
 from texmex.style import HighNotes
 from texmex.style import PageContentTextItems
 from texmex.style import TextInfo
+from texmex.style import TextLineStyle
 from texmex.style import TextState
 from texmex.style import TextStyle
 from texmex.style import create_textstyle
