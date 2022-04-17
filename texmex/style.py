@@ -85,6 +85,10 @@ class TextStyle:
         return TextStyle.textsizes(self)
 
     @property
+    def underlined(self) -> bool:
+        return TextStyle.underlines(self)
+
+    @property
     def fontid(self) -> int:
         return TextStyle.fontids(self)
 
@@ -99,6 +103,14 @@ class TextStyle:
         # detect most common font size(s)
         assert isinstance(item, cls), type(item)
         result = [[char.size] * char.char_count for char in item.content]
+        result = utila.flatten(result)
+        return method(result)
+
+    @classmethod
+    def underlines(cls, item: 'TextStyle', method=utila.mode):
+        assert isinstance(item, cls), type(item)
+        result = [[1 if char.underline else 0] * char.char_count
+                  for char in item.content]
         result = utila.flatten(result)
         return method(result)
 
