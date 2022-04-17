@@ -43,9 +43,7 @@ def load_boxes(content: str, pages=None) -> iamraw.PagesWithBoxList:
         if utila.should_skip(pagenumber, pages):
             continue
         box = [
-            iamraw.Box(box=iamraw.BoundingBox.from_list(
-                [float(splitted)
-                 for splitted in item.split()]),)
+            iamraw.Box(iamraw.BoundingBox.from_list(utila.parse_tuple(item)))
             for item in page['boxes']
         ]
         boxes = iamraw.PageContentBoxes(content=box, page=pagenumber)

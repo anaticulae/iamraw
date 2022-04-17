@@ -48,7 +48,7 @@ def load_lines(
             continue
         content = []
         for raw in page['content']:
-            item = utila.parse_tuple(raw, length=4, typ=float)
+            item = utila.parse_tuple(raw)
             content.append(item)
         result.append(iamraw.PageContentLine(page=pagenumber, content=content))
     return result
@@ -86,8 +86,9 @@ def load_horizontals(
         if utila.should_skip(pagenumber, pages):
             continue
         horizontals = [
-            iamraw.HorizontalLine(box=iamraw.BoundingBox(
-                *utila.parse_tuple(item))) for item in page['horizontals']
+            iamraw.HorizontalLine(
+                iamraw.BoundingBox.from_list(utila.parse_tuple(item)))
+            for item in page['horizontals']
         ]
         item = iamraw.PageContentHorizontals(
             content=horizontals,
