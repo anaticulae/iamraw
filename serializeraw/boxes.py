@@ -7,20 +7,17 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
-from typing import Iterable
+import functools
+import typing
 
+import configo
 import utila
-from configo import CACHE_SMALL
 
-from iamraw import BoundingBox
-from iamraw import Box
-from iamraw import PageContentBoxes
-from iamraw import PagesWithBoxList
+import iamraw
 
 
-def dump_boxes(pages: PagesWithBoxList) -> str:
-    assert isinstance(pages, Iterable), type(pages)
+def dump_boxes(pages: iamraw.PagesWithBoxList) -> str:
+    assert isinstance(pages, typing.Iterable), type(pages)
     raw = []
     for page in pages:
         if not page.content:
@@ -34,8 +31,8 @@ def dump_boxes(pages: PagesWithBoxList) -> str:
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
-def load_boxes(content: str, pages=None) -> PagesWithBoxList:
+@functools.lru_cache(configo.CACHE_SMALL)
+def load_boxes(content: str, pages=None) -> iamraw.PagesWithBoxList:
     loaded = utila.yaml_load(
         content,
         fname='rawmaker__boxes_boxes',
@@ -46,11 +43,11 @@ def load_boxes(content: str, pages=None) -> PagesWithBoxList:
         if utila.should_skip(pagenumber, pages):
             continue
         box = [
-            Box(box=BoundingBox.from_list(
+            iamraw.Box(box=iamraw.BoundingBox.from_list(
                 [float(splitted)
                  for splitted in item.split()]),)
             for item in page['boxes']
         ]
-        boxes = PageContentBoxes(content=box, page=pagenumber)
+        boxes = iamraw.PageContentBoxes(content=box, page=pagenumber)
         result.append(boxes)
     return result

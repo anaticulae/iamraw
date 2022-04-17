@@ -7,17 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
-from typing import Iterable
+import functools
+import typing
 
+import configo
 import utila
-from configo import CACHE_SMALL
 
 import iamraw
-from iamraw import BoundingBox
-from iamraw import HorizontalLine
-from iamraw import PageContentHorizontals
-from iamraw import PagesWithHorizontalList
 
 
 def dump_lines(lines: iamraw.PageContentLines) -> str:
@@ -58,8 +54,8 @@ def load_lines(
     return result
 
 
-def dump_horizontals(pages: PagesWithHorizontalList) -> str:
-    assert isinstance(pages, Iterable), type(pages)
+def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
+    assert isinstance(pages, typing.Iterable), type(pages)
     raw = []
     for page in pages:
         if not page.content:
@@ -73,12 +69,12 @@ def dump_horizontals(pages: PagesWithHorizontalList) -> str:
     return dumped
 
 
-@lru_cache(CACHE_SMALL)
+@functools.lru_cache(configo.CACHE_SMALL)
 def load_horizontals(
     content: str,
     pages=None,
     prefix='',
-) -> PagesWithHorizontalList:
+) -> iamraw.PagesWithHorizontalList:
     prefix = f'{prefix}_' if prefix else ''
     loaded = utila.yaml_load(
         content,
@@ -90,9 +86,12 @@ def load_horizontals(
         if utila.should_skip(pagenumber, pages):
             continue
         horizontals = [
-            HorizontalLine(box=BoundingBox(*utila.parse_tuple(item)))
-            for item in page['horizontals']
+            iamraw.HorizontalLine(box=iamraw.BoundingBox(
+                *utila.parse_tuple(item))) for item in page['horizontals']
         ]
-        item = PageContentHorizontals(content=horizontals, page=pagenumber)
+        item = iamraw.PageContentHorizontals(
+            content=horizontals,
+            page=pagenumber,
+        )
         result.append(item)
     return result
