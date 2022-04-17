@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.69.0
+
+### Feature
+
+* add text line style (66b3a7313f5a)
+* add method to check that text line is underlined (7506241601c3)
+* dump underline style (55ce540b4845)
+* add underline parameter (5c452f52cdf0)
+* make headline loader backward compatible (55ea5155a774)
+* add confidence value (719acdbf91a9)
+
 ## v4.68.0
 
 ### Feature
