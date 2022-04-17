@@ -15,11 +15,8 @@ from configo import CACHE_SMALL
 
 from iamraw import BoundingBox
 from iamraw import Box
-from iamraw import HorizontalLine
 from iamraw import PageContentBoxes
-from iamraw import PageContentHorizontals
 from iamraw import PagesWithBoxList
-from iamraw import PagesWithHorizontalList
 
 
 def dump_boxes(pages: PagesWithBoxList) -> str:
@@ -32,21 +29,6 @@ def dump_boxes(pages: PagesWithBoxList) -> str:
         raw.append({
             'page': page.page,
             'boxes': result,
-        })
-    dumped = utila.yaml_dump(raw)
-    return dumped
-
-
-def dump_horizontals(pages: PagesWithHorizontalList) -> str:
-    assert isinstance(pages, Iterable), type(pages)
-    raw = []
-    for page in pages:
-        if not page.content:
-            continue  # skip empty pages
-        result = [str(horizontal.box) for horizontal in page.content]
-        raw.append({
-            'page': page.page,
-            'horizontals': result,
         })
     dumped = utila.yaml_dump(raw)
     return dumped
@@ -71,29 +53,4 @@ def load_boxes(content: str, pages=None) -> PagesWithBoxList:
         ]
         boxes = PageContentBoxes(content=box, page=pagenumber)
         result.append(boxes)
-    return result
-
-
-@lru_cache(CACHE_SMALL)
-def load_horizontals(
-    content: str,
-    pages=None,
-    prefix='',
-) -> PagesWithHorizontalList:
-    prefix = f'{prefix}_' if prefix else ''
-    loaded = utila.yaml_load(
-        content,
-        fname=f'rawmaker__{prefix}horizontals_horizontals',
-    )
-    result = []
-    for page in loaded:
-        pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
-            continue
-        horizontals = [
-            HorizontalLine(box=BoundingBox(*utila.parse_tuple(item)))
-            for item in page['horizontals']
-        ]
-        item = PageContentHorizontals(content=horizontals, page=pagenumber)
-        result.append(item)
     return result

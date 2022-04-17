@@ -47,9 +47,7 @@ from serializeraw.boxedcontent import dump_boxedcontent
 from serializeraw.boxedcontent import load_boxedcontent
 # boxes
 from serializeraw.boxes import dump_boxes
-from serializeraw.boxes import dump_horizontals
 from serializeraw.boxes import load_boxes
-from serializeraw.boxes import load_horizontals
 # caption
 from serializeraw.caption import dump_captions
 from serializeraw.caption import load_captions
@@ -133,7 +131,9 @@ from serializeraw.index import load_index
 from serializeraw.likelihood import dump_likelihood
 from serializeraw.likelihood import load_likelihood
 # lines
+from serializeraw.line import dump_horizontals
 from serializeraw.line import dump_lines
+from serializeraw.line import load_horizontals
 from serializeraw.line import load_lines
 # list
 from serializeraw.list import dump_lists
