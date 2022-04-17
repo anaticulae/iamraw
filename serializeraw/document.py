@@ -142,26 +142,30 @@ def _dump_page(page: iamraw.Page) -> dict:
 def _dump_line(line: iamraw.Line) -> str:
     assert len(line) >= 1, line
     styles = []
-    start, cursize, currise = 0, line[0].size, line[0].rise
-    for end, character in enumerate(line[1:], 1):
+    start = 0
+    cursize, currise, curunder = line[0].size, line[0].rise, line[0].underline
+    for end, character in enumerate(line[1:], start=1):
         if isinstance(character, iamraw.VirtualChar):
             continue
-        if cursize != character.size or currise != character.rise:
+        if cursize != character.size or currise != character.rise or curunder != character.underline:
             styles.append(create_style(
                 start,
                 end,
                 cursize,
                 currise,
+                curunder,
             ))
             start = end
             cursize, currise, curunder = character.size, character.rise, character.underline
     if start != len(line):
-        styles.append(create_style(
-            start,
-            len(line),
-            cursize,
-            currise,
-        ))
+        styles.append(
+            create_style(
+                start,
+                len(line),
+                cursize,
+                currise,
+                curunder,
+            ))
     content = ''.join([item.value for item in line])
     # use list for a more human readable format
     result = [
@@ -171,12 +175,13 @@ def _dump_line(line: iamraw.Line) -> str:
     return result
 
 
-def create_style(start, end, size, rise):
+def create_style(start, end, size, rise, underline):
     style = ' '.join((
         f'{start}',
         f'{end}',
         '%.2f' % size if size is not None else 'None',
         '%.2f' % rise if rise is not None else 'None',
+        'T' if underline else 'F',
     ))
     return style
 
@@ -186,18 +191,27 @@ def _load_line(line) -> iamraw.Line:
     data, styles = line
     chars = []
     for style in styles:
-        start, end, size, rise = style.split()
+        try:
+            start, end, size, rise, underline = style.split()
+        except ValueError:
+            # TODO: REMOVE AFTER INCREASING MAJOR VERSION
+            start, end, size, rise, underline = *style.split(), 'F'
         start, end = int(start), int(end)
         if size == 'None':
             size = None
         if rise == 'None':
             rise = None
+        if underline == 'None':
+            underline = None
+        else:
+            underline = underline == 'T'
         for index in range(start, end):
             # TODO: Unicodechar?
             char = iamraw.Char(
                 value=data[index],
                 size=float(size) if size is not None else None,
                 rise=float(rise) if rise is not None else None,
+                underline=underline,
             )
             chars.append(char)
     return iamraw.Line(chars=chars)
@@ -207,10 +221,10 @@ def _dump_textcontainer(container: iamraw.TextContainer):
     r"""\
     >>> _dump_textcontainer(iamraw.TextContainer.fromstr('this is a line',
     ...     state=texmex.TextState.HIDDEN))
-    ([['this is a line\n', ['0 15 None None']]], 0)
+    ([['this is a line\n', ['0 15 None None F']]], 0)
     >>> _dump_textcontainer(iamraw.VerticalTextContainer.fromstr('this is a line',
     ...     state=texmex.TextState.HIDDEN))
-    ('VerticalTextContainer', [['this is a line\n', ['0 15 None None']]], 0)
+    ('VerticalTextContainer', [['this is a line\n', ['0 15 None None F']]], 0)
     """
     assert isinstance(container, iamraw.TextContainer), type(container)
     result = (
@@ -229,7 +243,7 @@ def _dump_textcontainer(container: iamraw.TextContainer):
 
 def _load_textcontainer(content) -> iamraw.TextContainer:
     r"""\
-    >>> _load_textcontainer(([['this is a line\n', ['0 15 None None']]],
+    >>> _load_textcontainer(([['this is a line\n', ['0 15 None None F']]],
     ...     texmex.TextState.HIDDEN.value))
     TextContainer(box=None, lines=[Line(text="this is a line")], state=<TextState.HIDDEN:...>)
     """

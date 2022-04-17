@@ -24,7 +24,7 @@ class CharStyle:
     size: float = None
     rise: float = None
     font: int = None
-    underline: bool = None
+    underline: bool = False
 
     def copy(self):
         return CharStyle(

@@ -77,11 +77,10 @@ def test_load_dump_load_document():
 
 def test_load_and_dump_line():
     text = 'I am a Line'
-    style = [f'0 {len(text)} 12.00 15.00']
+    style = [f'0 {len(text)} 12.00 15.00 T']
     expected = [text, style]
     loaded = _load_line(expected)
     assert len(loaded.chars) == len(text)
-
     dumped = _dump_line(loaded)
     assert dumped == expected, dumped
 

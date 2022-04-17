@@ -133,6 +133,7 @@ class Char(Boxed):
     font: float = None
     size: float = None
     rise: float = None
+    underline: bool = False
     """Adobe PDF/9.3.7; Shall specify the distance in unscaled text
     space units to move text the baseline up or down.
     No rise 0, superscripts greater than 0, subscript lower than 0."""
