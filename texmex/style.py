@@ -166,6 +166,9 @@ class TextInfo:
         )
         return result
 
+    def hide(self):
+        self.state = TextState.HIDDEN
+
     def __repr__(self):
         return self.text + utila.NEWLINE
 
