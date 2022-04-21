@@ -151,6 +151,10 @@ class NavigatorMixin:
     def rotated(self):
         return self.pagesize[0] > self.pagesize[1]
 
+    @property
+    def vdata(self):
+        return [item for item in self if item.visible]
+
 
 @dataclasses.dataclass
 class PTN(NavigatorMixin):

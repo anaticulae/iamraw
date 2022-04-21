@@ -237,6 +237,11 @@ class TextContainer(Boxed):
             return texmex.TextState.VISIBLE
         return self.state
 
+    @property
+    def visible(self):
+        import texmex
+        return self.textstate == texmex.TextState.VISIBLE
+
 
 TextContainers = typing.List[TextContainer]
 

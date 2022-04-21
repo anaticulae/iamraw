@@ -169,6 +169,10 @@ class TextInfo:
     def hide(self):
         self.state = TextState.HIDDEN
 
+    @property
+    def visible(self):
+        return self.state == TextState.VISIBLE
+
     def __repr__(self):
         return self.text + utila.NEWLINE
 
