@@ -230,14 +230,17 @@ def _dump_textcontainer(container: iamraw.TextContainer):
     result = (
         container.__class__.__name__,
         [_dump_line(line) for line in container.lines],
+        int(container.textstate),
     )  # use list for a more human readable format
-    if container.textstate != texmex.TextState.VISIBLE:
-        result = (result[0], result[1], int(container.textstate))
     if container.__class__.__name__ == iamraw.TextContainer.__name__:
         # default class
-        if len(result) == 3:
-            return result[1:]
-        return result[1]
+        result = result[1:]
+    if container.visible:
+        # default state
+        result = result[:-1]
+    if len(result) == 1:
+        # default class and default state
+        result = result[0]
     return result
 
 
