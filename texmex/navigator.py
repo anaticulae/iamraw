@@ -323,10 +323,8 @@ class PTCN(NavigatorMixin):
             validate_leftright(bool): do not check left right coordinate.
         """
         super().__init__(pagesize=(textnavigator.width, textnavigator.height))
-        msg = 'require `PTN` got: %s' % type(textnavigator)
-        assert isinstance(textnavigator, PTN), msg
-        msg = 'require `Border` got: %s' % type(content)
-        assert isinstance(content, iamraw.Border), msg
+        utila.asserts(textnavigator, PTN)
+        utila.asserts(content, iamraw.Border)
         assert content.bottom >= 100, str(content)  # ensure that are pixel
         self.content = content
         pagesize = iamraw.PageSize(
