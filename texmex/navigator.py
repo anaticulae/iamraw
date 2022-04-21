@@ -309,36 +309,36 @@ class PTCN(NavigatorMixin):
 
     def __init__(
         self,
-        textnavigator: PTN,
+        ptn: PTN,
         content: iamraw.Border,
         *,
         validate_leftright: bool = True,
     ):
-        """Navigate throw text content, ignore footer and header
+        """Navigate thrue text content, ignore footer and header
 
         Args:
-            textnavigator: `textnavigator` with items are located
+            ptn: `ptn` with items are located
                            outside of `content`.
             content: distance from page border which defines start of content.
             validate_leftright(bool): do not check left right coordinate.
         """
-        super().__init__(pagesize=(textnavigator.width, textnavigator.height))
-        utila.asserts(textnavigator, PTN)
+        super().__init__(pagesize=(ptn.width, ptn.height))
+        utila.asserts(ptn, PTN)
         utila.asserts(content, iamraw.Border)
         assert content.bottom >= 100, str(content)  # ensure that are pixel
         self.content = content
         pagesize = iamraw.PageSize(
-            width=textnavigator.width,
-            height=textnavigator.height,
+            width=ptn.width,
+            height=ptn.height,
         )
         top, bottom = texmex.utils.topbottom(pagesize, content)
         assert 0 <= top <= bottom <= 1.0, f'0 <= {top} <= {bottom} <= 1.0'
-        self.page = textnavigator.page
+        self.page = ptn.page
         # disable validation if required
         right = END if validate_leftright else DISABLE_VALIDATION
         # fill content navigator
-        self.data = textnavigator.between(top, bottom, right=right)
-        self._offset = textnavigator.offset(top, bottom)
+        self.data = ptn.between(top, bottom, right=right)
+        self._offset = ptn.offset(top, bottom)
 
     @property
     def offset(self):

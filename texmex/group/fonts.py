@@ -172,7 +172,7 @@ def document_textdistance(
     """Determine the most common text distance"""
     data = [
         texmex.PTCN(
-            textnavigator=navigator,
+            ptn=navigator,
             content=contentborder.border,
         ) for navigator, contentborder in utila.sync_pages(
             (navigators, borders),
