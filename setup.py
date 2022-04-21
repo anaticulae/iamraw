@@ -49,5 +49,6 @@ if __name__ == "__main__":
             'texmex',
             'texmex.group',
             'texmex.group.multiline',
+            'texmex.navigator',
         ],
     )
