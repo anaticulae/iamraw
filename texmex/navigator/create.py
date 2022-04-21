@@ -23,7 +23,7 @@ class PTNMode(enum.Enum):
 
 
 @utila.rename(text_positions='textpositions')
-def create_pagetextnavigators(  # pylint:disable=R0914,R1260
+def create_pagetextnavigators(
     text: iamraw.Document,
     textpositions: iamraw.PageContentTextPositions,
     fontstore: iamraw.FontStore = None,
@@ -44,46 +44,65 @@ def create_pagetextnavigators(  # pylint:disable=R0914,R1260
             pagesize=pagesize,
             page=page,
         )
-        textid = 0
         # remove horizontal or vertical text container
         content = select_textcontainer(content, mode=mode)
-        for item in content:
-            try:
-                lines = item.lines
-            except AttributeError:
-                continue
-            pos, mean = textposition.content[textid]
-            for index, line in enumerate(lines):
-                bounding = iamraw.split_y(pos, index, len(lines))
-                if fontstore:
-                    for char_number, char in enumerate(line.chars):
-                        fontid = fontstore.fontid(
-                            page,
-                            textid,
-                            index,
-                            char_number,
-                        )
-                        char.font = fontid
-                style = texmex.style.create_textstyle(line.chars)
-                if isinstance(item, iamraw.VerticalTextContainer):
-                    style.rotation = 1.0
-                # TODO: Remove strip after container is fixed
-                if not line.text.strip():
-                    # skip bad removed rawmaker extraction
-                    continue
-                navigator.insert(
-                    text=line.text,
-                    style=style,
-                    bounding=bounding,
-                    bounding_mean=mean,
-                    line=index,
-                    sort=sort,
-                )
-            textid += 1
+        fill_navigator(
+            content,
+            navigator,
+            textposition,
+            fontstore,
+            sort,
+        )
         result.append(navigator)
     if fill_empty:
-        result = fill_empty_navigators(result, dimension=text.dimension)
+        result = fill_empty_navigators(
+            result,
+            dimension=text.dimension,
+        )
     return result
+
+
+def fill_navigator(  # pylint:disable=R0914
+        content,
+        navigator,
+        textposition,
+        fontstore,
+        sort,
+):
+    textid = 0
+    for item in content:
+        try:
+            lines = item.lines
+        except AttributeError:
+            continue
+        pos, mean = textposition.content[textid]
+        for index, line in enumerate(lines):
+            bounding = iamraw.split_y(pos, index, len(lines))
+            if fontstore:
+                for char_number, char in enumerate(line.chars):
+                    fontid = fontstore.fontid(
+                        textposition.page,
+                        textid,
+                        index,
+                        char_number,
+                    )
+                    char.font = fontid
+            style = texmex.style.create_textstyle(line.chars)
+            if isinstance(item, iamraw.VerticalTextContainer):
+                style.rotation = 1.0
+            # TODO: Remove strip after container is fixed
+            if not line.text.strip():
+                # skip bad removed rawmaker extraction
+                continue
+            navigator.insert(
+                text=line.text,
+                style=style,
+                bounding=bounding,
+                bounding_mean=mean,
+                line=index,
+                sort=sort,
+            )
+        textid += 1
 
 
 def create_pagetextcontentnavigators(
