@@ -22,16 +22,17 @@ class PTNMode(enum.Enum):
     VERTICAL = enum.auto()
 
 
+@utila.rename(text_positions='textpositions')
 def create_pagetextnavigators(  # pylint:disable=R0914,R1260
     text: iamraw.Document,
-    text_positions,
+    textpositions: iamraw.PageContentTextPositions,
     fontstore: iamraw.FontStore = None,
     fill_empty: bool = True,
     mode=PTNMode.BOTH,
     sort: bool = True,
 ) -> texmex.navigator.PTNs:
     result = []
-    for textposition in text_positions:
+    for textposition in textpositions:
         page = textposition.page
         content = utila.select_page(text, page)
         if content.width is not None:
@@ -98,7 +99,11 @@ def create_pagetextcontentnavigators(
     for navigator in navigators:
         if utila.should_skip(navigator.page, pages):
             continue
-        border = determine_border(headerfooter, sizeandborder, navigator.page)
+        border = determine_border(
+            headerfooter,
+            sizeandborder,
+            navigator.page,
+        )
         if border is None:
             # No page border available for text navigator, skip creation.
             # Processing selective pages produces white page navgiators
