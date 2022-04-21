@@ -54,6 +54,7 @@ class NavigatorMixin:
         left: float = START,
         right: float = END,
         selector: SelectBounding = SelectBounding.MAX,
+        state: 'TextState' = texmex.style.TextState.VISIBLE,
     ) -> list:
         """Return content between top and bottom and left to right in
         range [top(0.0), bottom(1.0)] and [left(0.0), right(1.0)].
@@ -64,6 +65,7 @@ class NavigatorMixin:
             left(float): accepted content after left mark
             right(float): accepted content before right mark
             selector: select different bounding checker
+            state(TextState): skip other items, use None to select all
         Returns:
             list of `TextInfo`
         """
@@ -83,6 +85,8 @@ class NavigatorMixin:
         for item in self.data:
             if not valid(item, inside, selector=selector):
                 continue
+            if state is not None and item.state != state:
+                continue
             result.append(item.copy())
         return result
 
@@ -91,6 +95,7 @@ class NavigatorMixin:
         height: float,
         width: float = END,
         selector: SelectBounding = SelectBounding.MAX,
+        state: 'TextState' = texmex.style.TextState.VISIBLE,
     ) -> list:
         """Determine elements on the top of the document
 
@@ -98,6 +103,7 @@ class NavigatorMixin:
             height(float[0.0,1.0]): 0.0 is top, 1.0 is bottom
             width: marker from left to right, return elements [0.0 width]
             selector: select bounding check strategy
+            state(TextState): skip other items, use None to select all
         Returns:
             list of `TextInfo`
         """
@@ -107,6 +113,7 @@ class NavigatorMixin:
             left=START,
             right=width,
             selector=selector,
+            state=state,
         )
         return result
 
@@ -115,10 +122,18 @@ class NavigatorMixin:
         height,
         width=START,
         selector: SelectBounding = SelectBounding.MAX,
+        state: 'TextState' = texmex.style.TextState.VISIBLE,
     ):
         """Determine elements after `height` till the bottom of the
         page. Additonal shrink from left to right with `width`."""
-        result = self.between(height, END, width, END, selector=selector)
+        result = self.between(
+            height,
+            END,
+            width,
+            END,
+            selector=selector,
+            state=state,
+        )
         return result
 
     @property
@@ -226,7 +241,12 @@ class PTN(NavigatorMixin):
     def height(self):
         return self.pagesize[1]
 
-    def offset(self, top: float, bottom: float) -> typing.Tuple[int, int]:
+    def offset(
+        self,
+        top: float,
+        bottom: float,
+        state: 'TextState' = None,
+    ) -> typing.Tuple[int, int]:
         """Determine the range of content index which represents the
         dataindex's of [top, bottom]."""
         assert START <= top <= bottom <= END
@@ -234,6 +254,8 @@ class PTN(NavigatorMixin):
         before = top * self.height  # greater than
         result = []
         for index, item in enumerate(self.data):
+            if state is not None and item.state != state:
+                continue
             # before and after are pixel coordinates
             if before <= item.bounding.y0 <= item.bounding.y1 <= after:
                 result.append(index)
