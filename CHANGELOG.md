@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v4.70.0
+
+### Feature
+
+* add visible method (9f6da94434e6)
+* add method to hide text style (ceb11eb3c233)
+* add state parameter to select different container (8a113ce6bd4e)
+* add text state to select different content (24b3f6b6fed6)
+* add method to dump ptn (83e235c08ebc)
+
+### Fix
+
+* fix text container loader (2012d151f0cb)
+
 ## v4.69.0
 
 ### Feature
