@@ -410,37 +410,6 @@ PTNs = typing.List[PTN]
 PTCNs = typing.List[PTCN]
 
 
-def insert_position(bounding: tuple, data: list) -> int:
-    """Determine position in data list to insert Textinfo."""
-    x0, y0 = int(bounding[0]), int(bounding[1])
-    position = 0
-    for item in data:
-        pos = item.bounding
-        if int(pos[1]) == y0:
-            if x0 <= int(pos[0]):
-                break
-        elif y0 <= pos[1]:  # pylint:disable=R5601
-            break
-        position += 1
-    return position
-
-
-def insert_position_middle(bounding: tuple, data: list) -> int:
-    """This strategy produces better results when inserting horizontal
-    lines and is more accurat for this case."""
-    x0, y0 = int(bounding[0]), (bounding[1] + bounding[3]) // 2
-    position = 0
-    for item in data:
-        pos = item.bounding
-        if (pos.y0 + pos.y1) // 2 == y0:
-            if x0 <= int(pos.x0):
-                break
-        elif y0 <= (pos.y0 + pos.y1) // 2:  # pylint:disable=R5601
-            break
-        position += 1
-    return position
-
-
 def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0911
     bounding = item.bounding
     (before, after, beforeleft, afterright) = inside
@@ -487,228 +456,6 @@ def navigator_to_bounds(navigator: PTN) -> iamraw.BoundingBoxes:
     return [item.bounding for item in navigator]
 
 
-class PTNMode(enum.Enum):
-    BOTH = enum.auto()
-    HORIZONTAL = enum.auto()
-    VERTICAL = enum.auto()
-
-
-def create_pagetextnavigators(  # pylint:disable=R0914,R1260
-    text: iamraw.Document,
-    text_positions,
-    fontstore: iamraw.FontStore = None,
-    fill_empty: bool = True,
-    mode=PTNMode.BOTH,
-    sort: bool = True,
-) -> PTNs:
-    result = []
-    for textposition in text_positions:
-        page = textposition.page
-        content = utila.select_page(text, page)
-        if content.width is not None:
-            pagesize = (content.width, content.height)
-        else:
-            # TODO: OUTDATED, REMOVE LATER
-            pagesize = text.dimension
-        navigator = PTN(
-            pagesize=pagesize,
-            page=page,
-        )
-        textid = 0
-        # remove horizontal or vertical text container
-        content = select_textcontainer(content, mode=mode)
-        for item in content:
-            try:
-                lines = item.lines
-            except AttributeError:
-                continue
-            pos, mean = textposition.content[textid]
-            for index, line in enumerate(lines):
-                bounding = iamraw.split_y(pos, index, len(lines))
-                if fontstore:
-                    for char_number, char in enumerate(line.chars):
-                        fontid = fontstore.fontid(
-                            page,
-                            textid,
-                            index,
-                            char_number,
-                        )
-                        char.font = fontid
-                style = texmex.style.create_textstyle(line.chars)
-                if isinstance(item, iamraw.VerticalTextContainer):
-                    style.rotation = 1.0
-                # TODO: Remove strip after container is fixed
-                if not line.text.strip():
-                    # skip bad removed rawmaker extraction
-                    continue
-                navigator.insert(
-                    text=line.text,
-                    style=style,
-                    bounding=bounding,
-                    bounding_mean=mean,
-                    line=index,
-                    sort=sort,
-                )
-            textid += 1
-        result.append(navigator)
-    if fill_empty:
-        result = fill_empty_navigators(result, dimension=text.dimension)
-    return result
-
-
-def select_textcontainer(content, mode: PTNMode):
-    if not content:
-        return content
-
-    if mode == PTNMode.HORIZONTAL:
-        content = [
-            item for item in content if isinstance(item, iamraw.TextContainer)
-        ]
-        return content
-
-    if mode == PTNMode.VERTICAL:
-        content = [
-            item for item in content
-            if isinstance(item, iamraw.VerticalTextContainer)
-        ]
-        return content
-    return content
-
-
-def fill_empty_navigators(
-    navigators: PTNs,
-    dimension: iamraw.PageSize,
-) -> PTNs:
-    """Some documents contain white pages.
-
-    White pages contain no text and therefore no text_positions. The
-    document [CONTENT, WHITEPAGE, CONTENT, CONTENT] produces the
-    pagetextnavigators page =[0,2,3]. If we assume that some algorithm
-    requires a closed row of navigators this can lead to
-    problems.Therefore we insert an empty PTN at position
-    1 to avoid these problems.
-    """
-    if not navigators:
-        return []
-    # require ascending list for while loop below
-    navigators = sorted(navigators, key=lambda x: x.page)
-    filled = [navigators[0]]
-    for item in navigators[1:]:
-        # fill empty
-        while filled[-1].page + 1 < item.page:
-            navigator = PTN(
-                pagesize=dimension,
-                page=filled[-1].page + 1,
-            )
-            filled.append(navigator)
-        filled.append(item)
-    return filled
-
-
-def create_pagetextcontentnavigators(
-    navigators,
-    headerfooter,
-    sizeandborder,
-    horizontals: iamraw.PagesWithHorizontalList = None,
-    validate_leftright: bool = True,
-    pages: tuple = None,
-) -> PTCNs:
-    # TODO: require fill_empty?
-    result = []
-    for navigator in navigators:
-        if utila.should_skip(navigator.page, pages):
-            continue
-        border = determine_border(headerfooter, sizeandborder, navigator.page)
-        if border is None:
-            # No page border available for text navigator, skip creation.
-            # Processing selective pages produces white page navgiators
-            # between content. For this white page navgiators, no page
-            # content information are available. Therefore we do not add
-            # this empty navgiator to list.
-            continue
-        if horizontals:
-            insert_horizontals(navigator, horizontals)
-        current = PTCN(
-            navigator,
-            border,
-            validate_leftright=validate_leftright,
-        )
-        result.append(current)
-    return result
-
-
-HORIZONTAL = '<<<<<<<<<<<<<<<<<<<<HORIZONTAL>>>>>>>>>>>>>>>>>>>>'
-
-
-def insert_horizontals(ptn: PTN, horizontals):
-    selected = utila.select_content(horizontals, ptn.page)
-    if not selected:
-        return
-    for horizontal in selected:  # iamraw.HorizontalLine
-        ptn.insert(
-            text=HORIZONTAL,
-            style=None,
-            bounding=horizontal.box,
-            sort=insert_position_middle,
-        )
-
-
-def determine_border(headerfooter, sizeandborder, page: int):
-    """Determine contentborder out of footer and header information."""
-    pagesize = utila.select_page(sizeandborder, page)
-    if pagesize is None:
-        return pagesize
-    border = pagesize.border
-    pagesize = pagesize.size
-    headerfooter = utila.select_page(headerfooter, page)
-    top, bottom = 0, pagesize.height
-    if headerfooter and headerfooter.header:
-        top = pagesize.height * headerfooter.header.end
-    if headerfooter and headerfooter.footer:
-        bottom = bottom * headerfooter.footer.begin
-    border = iamraw.Border(
-        left=border.left,
-        right=border.right,
-        top=top,
-        bottom=bottom,
-    )
-    return border
-
-
-def ptn_fromstr(content: str, fontsize=12.0):
-    r"""\
-    >>> ptn_fromstr('I am a\nNavigator\ngood bye.')
-    PTN(page=-1, pagesize=(612.0, 792.0), data=[I am a
-    , Navigator
-    , good bye.
-    ], fast={BoundingBox(x0=50, y0=100, x1=200, y1=120): I am a
-    , BoundingBox(x0=50, y0=120, x1=200, y1=140): Navigator
-    , BoundingBox(x0=50, y0=140, x1=200, y1=160): good bye.
-    })
-    """
-    result = PTN()
-    for index, line in enumerate(content.splitlines()):
-        bounding = iamraw.BoundingBox(
-            x0=50,
-            y0=100 + index * 20,
-            x1=200,
-            y1=100 + (index + 1) * 20,
-        )
-        content = [texmex.style.CharStyle(
-            0,
-            len(line),
-            fontsize,
-            0,
-        )]
-        style = texmex.style.TextStyle(content=content)
-        result.insert(
-            text=line,
-            bounding=bounding,
-            style=style,
-        )
-    return result
-
-
 def single(navigators: PTNs) -> PTN:
     """Merge more than one pagenavigators to a single huge navigator to
     detect multi page lists."""
@@ -737,3 +484,34 @@ def single(navigators: PTNs) -> PTN:
     navigator.data = result
     navigator.page = navigators[0].page
     return navigator
+
+
+def insert_position(bounding: tuple, data: list) -> int:
+    """Determine position in data list to insert Textinfo."""
+    x0, y0 = int(bounding[0]), int(bounding[1])
+    position = 0
+    for item in data:
+        pos = item.bounding
+        if int(pos[1]) == y0:
+            if x0 <= int(pos[0]):
+                break
+        elif y0 <= pos[1]:  # pylint:disable=R5601
+            break
+        position += 1
+    return position
+
+
+def insert_position_middle(bounding: tuple, data: list) -> int:
+    """This strategy produces better results when inserting horizontal
+    lines and is more accurat for this case."""
+    x0, y0 = int(bounding[0]), (bounding[1] + bounding[3]) // 2
+    position = 0
+    for item in data:
+        pos = item.bounding
+        if (pos.y0 + pos.y1) // 2 == y0:
+            if x0 <= int(pos.x0):
+                break
+        elif y0 <= (pos.y0 + pos.y1) // 2:  # pylint:disable=R5601
+            break
+        position += 1
+    return position

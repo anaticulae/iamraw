@@ -44,24 +44,25 @@ from texmex.iter import TextContainerIterator
 from texmex.iter import split_page
 # navigator
 from texmex.navigator import END
-from texmex.navigator import HORIZONTAL
 from texmex.navigator import PTCN
 from texmex.navigator import PTN
 from texmex.navigator import START
 from texmex.navigator import NavigatorMixin
 from texmex.navigator import PTCNs
-from texmex.navigator import PTNMode
 from texmex.navigator import PTNs
 from texmex.navigator import SelectBounding
-from texmex.navigator import create_pagetextcontentnavigators
-from texmex.navigator import create_pagetextnavigators
-from texmex.navigator import determine_border
-from texmex.navigator import fill_empty_navigators
 from texmex.navigator import navigator_to_bounds
 from texmex.navigator import navigator_to_content
-from texmex.navigator import ptn_fromstr
 from texmex.navigator import rotate_left
 from texmex.navigator import single
+# navigator:create
+from texmex.navigator.create import HORIZONTAL
+from texmex.navigator.create import PTNMode
+from texmex.navigator.create import create_pagetextcontentnavigators
+from texmex.navigator.create import create_pagetextnavigators
+from texmex.navigator.create import determine_border
+from texmex.navigator.create import fill_empty_navigators
+from texmex.navigator.create import ptn_fromstr
 # search
 from texmex.search import search_area
 # sentences
