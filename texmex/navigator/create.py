@@ -30,6 +30,7 @@ def create_pagetextnavigators(
     fill_empty: bool = True,
     mode=PTNMode.BOTH,
     sort: bool = True,
+    state: 'TextState' = texmex.style.TextState.VISIBLE,
 ) -> texmex.navigator.PTNs:
     result = []
     for textposition in textpositions:
@@ -52,6 +53,7 @@ def create_pagetextnavigators(
             textposition,
             fontstore,
             sort,
+            state,
         )
         result.append(navigator)
     if fill_empty:
@@ -63,17 +65,20 @@ def create_pagetextnavigators(
 
 
 def fill_navigator(  # pylint:disable=R0914
-        content,
-        navigator,
-        textposition,
-        fontstore,
-        sort,
+    content,
+    navigator,
+    textposition,
+    fontstore,
+    sort,
+    state: 'TextState' = texmex.style.TextState.VISIBLE,
 ):
     textid = 0
     for item in content:
         try:
             lines = item.lines
         except AttributeError:
+            continue
+        if skip(expected=state, current=item.state):
             continue
         pos, mean = textposition.content[textid]
         for index, line in enumerate(lines):
@@ -101,8 +106,17 @@ def fill_navigator(  # pylint:disable=R0914
                 bounding_mean=mean,
                 line=index,
                 sort=sort,
+                state=item.state,
             )
         textid += 1
+
+
+def skip(expected, current) -> bool:
+    if expected is None:
+        return False
+    if current is None:
+        return False
+    return expected != current
 
 
 def create_pagetextcontentnavigators(

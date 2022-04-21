@@ -248,7 +248,7 @@ def _load_textcontainer(content) -> iamraw.TextContainer:
     TextContainer(box=None, lines=[Line(text="this is a line")], state=<TextState.HIDDEN:...>)
     """
     assert isinstance(content, (list, tuple)), type(content)
-    state = None
+    state = texmex.TextState.VISIBLE
     if len(content) >= 2 and isinstance(content[1], int):
         state = texmex.TextState(content[1])
         content = content[0]
@@ -261,13 +261,17 @@ def _load_textcontainer(content) -> iamraw.TextContainer:
         content = content[1]
     assert all(isinstance(item, list) for item in content), str(content)
     lines = [loadme(iamraw.Line, item) for item in content]
-    return iamraw.TextContainer(lines=lines, state=state)
+    result = iamraw.TextContainer(
+        lines=lines,
+        state=state,
+    )
+    return result
 
 
 def _load_verticaltextcontainer(content) -> iamraw.VerticalTextContainer:
     """\
     >>> _load_verticaltextcontainer(_dump_textcontainer(iamraw.VerticalTextContainer.fromstr('this is a line')))
-    VerticalTextContainer(box=None, lines=[Line(text="this is a line")], state=None)
+    VerticalTextContainer(box=None, lines=[Line(text="this is a line")], state=<TextState.VISIBLE:...)
     """
     content = _load_textcontainer(content)
     # TODO: USE KEYWARGS **?

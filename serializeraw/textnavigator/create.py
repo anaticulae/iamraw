@@ -26,6 +26,7 @@ def ptn_frompath(
     fill_empty: bool = True,
     logging: bool = True,
     sort: bool = True,
+    state: texmex.TextState = texmex.TextState.VISIBLE,
 ) -> texmex.PTNs:
     """Load all resources from one `path` to create PTN
     for the selected list of `pages` with an optional `prefix` in loaded
@@ -42,6 +43,7 @@ def ptn_frompath(
                           navigators between pages=(0, 1, 4, 5).
         logging(bool): log errors while creating fontstore
         sort(bool): if False, do not check insert bounding position
+        state(TextState): use None to load all
     Returns:
         A list of selected PTNs.
 
@@ -68,6 +70,7 @@ def ptn_frompath(
         mode=mode,
         sort=sort,
         pages=pages,
+        state=state,
     )
     return navigators
 
@@ -82,6 +85,7 @@ def ptn_fromfile(
     *,
     fill_empty: bool = True,
     sort: bool = True,
+    state: texmex.TextState = texmex.TextState.VISIBLE,
 ) -> texmex.PTNs:
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
@@ -100,6 +104,7 @@ def ptn_fromfile(
         fill_empty=fill_empty,
         mode=mode,
         sort=sort,
+        state=state,
     )
     return navigators
 
@@ -127,7 +132,7 @@ def ptn_path(
     return text, textpositions, fontheader, fontcontent
 
 
-def ptcn_frompath(
+def ptcn_frompath(  # pylint:disable=R0914
     path: str,
     prefix: str = '',
     pages: tuple = None,
@@ -137,6 +142,7 @@ def ptcn_frompath(
     validate_leftright: bool = True,
     footer_sized_prefixed: bool = False,
     horizontals: bool = False,
+    state: texmex.TextState = texmex.TextState.VISIBLE,
 ) -> texmex.PTCNs:
     """Load `PTCNs` from `path`.
 
@@ -150,6 +156,7 @@ def ptcn_frompath(
         footer_sized_prefixed(bool): if True use prefixed data
                                      if False use default data
         horizontals(bool): insert horizontals if given
+        state(TextState): use None to load all
     Returns:
         List of loaded PTCNs depending on `pages`.
     """
@@ -184,11 +191,12 @@ def ptcn_frompath(
         pages=pages,
         mode=mode,
         validate_leftright=validate_leftright,
+        state=state,
     )
     return result
 
 
-def ptcn_fromfile(
+def ptcn_fromfile(  # pylint:disable=R0914
     text: str,
     textpositions: str,
     sizeandborderpath: str,
@@ -201,6 +209,7 @@ def ptcn_fromfile(
     *,
     fill_empty: bool = True,
     validate_leftright: bool = True,
+    state: texmex.TextState = texmex.TextState.VISIBLE,
 ):
     # convert page to tuple, if required
     pages = utila.ensure_tuple(pages)
@@ -212,6 +221,7 @@ def ptcn_fromfile(
         pages=pages,
         mode=mode,
         fill_empty=fill_empty,
+        state=state,
     )
     # load header, footer, pageborder
     headerfooter = serializeraw.load_headerfooter(
