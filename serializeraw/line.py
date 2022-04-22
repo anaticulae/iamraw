@@ -74,6 +74,7 @@ def load_horizontals(
     content: str,
     pages=None,
     prefix='',
+    width_min: int = 120,
 ) -> iamraw.PagesWithHorizontalList:
     prefix = f'{prefix}_' if prefix else ''
     loaded = utila.yaml_load(
@@ -90,6 +91,10 @@ def load_horizontals(
                 iamraw.BoundingBox.from_list(utila.parse_tuple(item)))
             for item in page['horizontals']
         ]
+        # skip short horizontals
+        horizontals = [item for item in horizontals if item.width > width_min]
+        if not horizontals:
+            continue
         item = iamraw.PageContentHorizontals(
             content=horizontals,
             page=pagenumber,
