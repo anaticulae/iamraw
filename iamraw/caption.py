@@ -34,7 +34,7 @@ class Caption:
     pdfpage: int = None
     """Caption is printed on next page."""
     overlap: bool = False
-    # TODO: ADD BOUNDING?
+    bounding: 'BoundingBox' = None
 
 
 Captions = typing.List[Caption]
@@ -74,4 +74,6 @@ def caption_toraw(caption: Caption) -> dict:
         result['lineend'] = caption.lineend
     if caption.position is not None:
         result['position'] = caption.position
+    if caption.bounding is not None:
+        result['bounding'] = str(caption.bounding)
     return result
