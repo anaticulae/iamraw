@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.70.1
+
+### Feature
+
+* add bounding attribute (6eb0f8847c7c)
+
 ## v4.70.0
 
 ### Feature
