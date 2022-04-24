@@ -79,6 +79,9 @@ def fill_navigator(  # pylint:disable=R0914
         except AttributeError:
             continue
         if skip(expected=state, current=item.state):
+            # increase textid to ensure that textposition and text is
+            # aligned correctly when using hidden token.
+            textid += 1
             continue
         pos, mean = textposition.content[textid]
         for index, line in enumerate(lines):
