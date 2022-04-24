@@ -137,9 +137,20 @@ class TextLineStyle(enum.IntEnum):
     OVERLINED = 3
 
 
-class TextState(enum.IntEnum):
-    VISIBLE = 1
+class TextState(enum.IntFlag):
+    """\
+    >>> int(TextState.FORMULA)
+    16
+    >>> int(TextState.FORMULA | TextState.CAPTION)
+    18
+    """
+    # TODO: CHANGE HIDDEN LABEL TO CREATE "HIDDEN FORMULA CAPTION"
     HIDDEN = 0
+    VISIBLE = 1
+    CAPTION = 2
+    CODE = 4
+    FIGURE = 8
+    FORMULA = 16
 
 
 @dataclasses.dataclass
@@ -171,7 +182,7 @@ class TextInfo:
 
     @property
     def visible(self):
-        return self.state == TextState.VISIBLE
+        return self.state >= TextState.VISIBLE
 
     def __repr__(self):
         return self.text + utila.NEWLINE

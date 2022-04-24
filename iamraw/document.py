@@ -240,7 +240,7 @@ class TextContainer(Boxed):
     @property
     def visible(self):
         import texmex
-        return self.textstate == texmex.TextState.VISIBLE
+        return self.textstate >= texmex.TextState.VISIBLE
 
 
 TextContainers = typing.List[TextContainer]
