@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.70.2
+
+### Feature
+
+* add parameter to define minimal line width (8231c550ea91)
+
+### Fix
+
+* align hidden text token correctly (c9c2f3af5e0e)
+
 ## v4.70.1
 
 ### Feature
