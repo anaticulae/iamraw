@@ -86,6 +86,7 @@ def test_textnavigator_roate_left(navigator):
     assert after != before
 
 
+@utilatest.requires(power.DOCU027_PDF)
 def test_textnavigator_inserthorizontals():
     source = power.link(power.DOCU027_PDF)
     ptn = serializeraw.ptcn_frompath(
@@ -101,6 +102,7 @@ def test_textnavigator_inserthorizontals():
     assert counted == 3
 
 
+@utilatest.requires(power.DOCU027_PDF)
 def test_ptn_single():
     source = power.link(power.DOCU027_PDF)
     ptns = serializeraw.ptcn_frompath(source)

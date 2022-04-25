@@ -118,6 +118,7 @@ def test_multiline_group_linedistances_page_zero_tolerance():
     assert len(grouped) == 18
 
 
+@utilatest.requires(power.DOCU007_PDF)
 def test_merge_content():  # pylint:disable=W0621
     navigator = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.DOCU007_PDF))
@@ -143,6 +144,7 @@ def test_merge_content():  # pylint:disable=W0621
     assert content_count == merged_count
 
 
+@utilatest.requires(power.BACHELOR111_PDF)
 def test_create_pagetextcontent_navigator_frompath():
     loaded = serializeraw.create_pagetextcontentnavigators_frompath(
         power.link(power.BACHELOR111_PDF),

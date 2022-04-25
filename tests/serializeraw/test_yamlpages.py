@@ -16,6 +16,7 @@ import utilatest
 import serializeraw
 
 
+@utilatest.requires(power.DOCU027_PDF)
 def test_yamlpages_write(testdir):
     source = power.link(power.DOCU027_PDF)
     filename = 'rawmaker__text_text.yaml'
@@ -41,6 +42,7 @@ def test_yamlpages_write(testdir):
     assert yaml['pages'][1]['page'] == 11
 
 
+@utilatest.requires(power.DOCU027_PDF)
 def test_yamlpages_compare_speed(testdir, capsys):
     source = power.link(power.DOCU027_PDF)
     filename = 'rawmaker__text_text.yaml'
@@ -67,6 +69,7 @@ def test_yamlpages_compare_speed(testdir, capsys):
     assert times[1] < times[0], str(times)
 
 
+@utilatest.requires(power.DOCU027_PDF)
 def test_yamlpages_load(testdir):
     """Do not fail on raw yaml sources."""
     source = power.link(power.DOCU027_PDF)
