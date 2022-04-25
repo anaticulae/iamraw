@@ -8,6 +8,7 @@
 # =============================================================================
 
 import power
+import utila
 import utilatest
 
 import texmex
@@ -73,6 +74,15 @@ def test_load_dump_load_document():
 
     assert document
     assert second_load == document
+
+
+@utilatest.requires(power.DOCU007_PDF)
+def test_load_dump_page_dimension():
+    source = power.link(power.DOCU007_PDF)
+    document = load_document(source)
+    before = utila.file_read(utila.join(source, 'rawmaker__text_text.yaml'))
+    dumped = dump_document(document)
+    assert dumped == before
 
 
 def test_load_and_dump_line():

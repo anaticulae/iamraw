@@ -76,7 +76,6 @@ def load_document(
         return loaded
 
     loaded = remove_skipped(loaded, pages)
-
     return loadme(iamraw.Document, loaded)
 
 
@@ -106,7 +105,7 @@ def _load_page(content: dict) -> iamraw.Page:
         if len(dimension.split()) == 2:
             # TODO: REMOVE HACK AFTER CHANING BOUNDING BOX TO (width,
             # height)-tuple
-            dimension = f'0 0 {dimension}'
+            dimension = f'0.0 0.0 {dimension}'
         dimension = iamraw.BoundingBox.from_str(dimension)
     page = iamraw.Page(page=pagenumber, dimension=dimension)
     for children in childrens:
@@ -134,7 +133,11 @@ def _dump_page(page: iamraw.Page) -> dict:
         children=[dumper(item) for item in page],
     )
     if page.dimension:
-        dimension = utila.from_tuple(page.dimension)
+        dimension = tuple(float(item) for item in page.dimension)
+        if len(dimension) == 2:
+            # TODO: REMOVE HACK AFTER HAVING BOUNDING-BOX DIMENSION
+            dimension = 0.0, 0.0, dimension[0], dimension[1]
+        dimension: str = utila.from_tuple(dimension)
         result['dimension'] = dimension
     return result
 
