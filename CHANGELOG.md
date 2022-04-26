@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.70.3
+
+### Feature
+
+* add more text styles (65d17399a50c)
+
+### Fix
+
+* do not fail on empty data (9b2ca96a226f)
+* ensure that dimension is dumped correctly (7296b6394a65)
+
 ## v4.70.2
 
 ### Feature
