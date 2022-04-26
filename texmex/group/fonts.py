@@ -161,6 +161,8 @@ def document_textsize(navigators) -> float:
                 method=lambda x: x,  # do not filter anything
             )
             collected.extend(fontsizes)
+    if not collected:
+        return None
     return statistics.mode(collected)
 
 
@@ -200,6 +202,8 @@ def document_textdist_from_ptcns(
         for yfirst, ysecond in zip(ydist[:-1], ydist[1:]):
             distance = yfirst - ysecond
             result.append(distance)
+    if not result:
+        return None
     result = utila.roundme(result, digits=digits, convert=False)  # pylint:disable=R0204
     mode = utila.modes(result)
     return mode
