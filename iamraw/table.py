@@ -10,6 +10,8 @@
 import dataclasses
 import typing
 
+import utila
+
 import iamraw
 
 
@@ -17,6 +19,7 @@ import iamraw
 class TableBounding:
     bounding: iamraw.BoundingBox = None
     lines: iamraw.BoundingBoxes = dataclasses.field(default_factory=list)
+    page: int = None
 
     def append(self, item):
         self.lines.append(item)  # pylint:disable=E1101
@@ -26,6 +29,14 @@ class TableBounding:
 
     def __len__(self):
         return len(self.lines)
+
+    @property
+    def identifier(self) -> int:
+        """\
+        >>> TableBounding((10.5, 10.5, 20.5, 200.51), page=5).identifier
+        900150000000010510520520051
+        """
+        return utila.pagebox_hash(page=self.page, box=self.bounding)
 
 
 TableBoundings = typing.List[TableBounding]

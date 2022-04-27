@@ -37,16 +37,17 @@ def load_tables(
     )
     result = []
     for page in loaded:
-        number = int(page['page'])
-        if utila.should_skip(number, pages):
+        pagenumber = int(page['page'])
+        if utila.should_skip(page=pagenumber, pages=pages):
             continue
-        item = iamraw.PageContentTableBounding(page=number)
+        item = iamraw.PageContentTableBounding(page=pagenumber)
         for raw in page['content']:
             lines = [utila.parse_tuple(item) for item in raw['lines']]
             bounding = utila.parse_tuple(raw['bounding'])
             parsed = iamraw.TableBounding(
                 bounding=bounding,
                 lines=lines,
+                page=pagenumber,
             )
             item.append(parsed)
         result.append(item)
