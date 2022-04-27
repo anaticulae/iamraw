@@ -10,14 +10,23 @@
 import dataclasses
 import typing
 
+import utila
+
 
 @dataclasses.dataclass
 class Figure:
-
     data: 'PIL.Image.Image' = None
     bounding: tuple = None
     page: int = None
     index: int = None
+
+    @property
+    def identifier(self) -> int:
+        """\
+        >>> Figure(bounding=(1, 1, 1, 1), page=5).identifier
+        900150000000000000000001111
+        """
+        return utila.pagebox_hash(page=self.page, box=self.bounding)
 
 
 Figures = typing.List[Figure]
