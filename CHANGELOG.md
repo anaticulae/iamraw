@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v4.71.0
+
+### Feature
+
+* add POC identifier (c05f36a150fa)
+* add figure identifier (3b23423cb881)
+* add table identifier (396d84161b68)
+* add reference where caption references (e7cd5124109f)
+
 ## v4.70.3
 
 ### Feature
