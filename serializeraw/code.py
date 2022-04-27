@@ -58,6 +58,7 @@ def load_page(page) -> iamraw.PageContentCode:
             tokens_bounding=[
                 utila.parse_tuple(item) for item in code['tokens_bounding']
             ],
+            page=pagenr,
         ) for code in page['content']
     ]
     return iamraw.PageContentCode(content=content, page=pagenr)

@@ -11,6 +11,8 @@ import collections
 import dataclasses
 import typing
 
+import utila
+
 PageContentCode = collections.namedtuple(
     'PageContentCode',
     'page content',
@@ -24,6 +26,16 @@ class PeaceOfCode:
     tokens: typing.Tuple[int] = dataclasses.field(default_factory=tuple)
     tokens_bounding: list = dataclasses.field(default_factory=list)
     caption_bounding: list = dataclasses.field(default_factory=list)
+    page: int = None
+
+    @property
+    def identifier(self) -> int:
+        """\
+        >>> PeaceOfCode(tokens_bounding=[(10, 10, 10, 10)], page=5).identifier
+        90015...0
+        """
+        bounding = utila.rectangle_max(self.tokens_bounding)
+        return utila.pagebox_hash(page=self.page, box=bounding)
 
 
 PeaceOfCodes = typing.List[PeaceOfCode]

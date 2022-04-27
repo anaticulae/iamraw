@@ -24,8 +24,9 @@ CONTENT = [
                 caption_bounding=[
                     (10.2, 12.2, 30.2, 40.2),
                 ],
+                page=10,
             ),
-            iamraw.PeaceOfCode(),
+            iamraw.PeaceOfCode(page=10),
         ],
     )
 ]
