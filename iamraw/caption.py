@@ -35,6 +35,8 @@ class Caption:
     """Caption is printed on next page."""
     overlap: bool = False
     bounding: 'BoundingBox' = None
+    """Table, Figure or Codeblock where caption references."""
+    reference: int = None
 
 
 Captions = typing.List[Caption]
@@ -76,4 +78,6 @@ def caption_toraw(caption: Caption) -> dict:
         result['position'] = caption.position
     if caption.bounding is not None:
         result['bounding'] = str(caption.bounding)
+    if caption.reference is not None:
+        result['reference'] = str(caption.reference)
     return result
