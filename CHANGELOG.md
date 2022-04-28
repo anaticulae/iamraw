@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.71.1
+
+### Fix
+
+* skip reference for comparing (140969794fd7)
+
 ## v4.71.0
 
 ### Feature
