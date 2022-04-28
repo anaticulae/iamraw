@@ -35,7 +35,11 @@ def dump_figures(figures: iamraw.Figures, path: str):
 
 def load_figures(path: str, skip_raw: bool = True, pages: tuple = None):
     assert os.path.exists(path)
-    files = utila.file_list(path, include='yaml')
+    files = utila.file_list(
+        path,
+        include='yaml',
+        absolute=True,
+    )
     files = utila.files_sort(files)  # pylint:disable=R0204
     result = []
     for item in files:
