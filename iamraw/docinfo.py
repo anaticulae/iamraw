@@ -35,6 +35,15 @@ class Generator(enum.Enum):
         return str(self.name).lower()
 
 
+class DocContentType(enum.Enum):
+    PHIL_PLAIN = enum.auto()
+    PHIL_MIXED = enum.auto()
+
+    TECH_CODE = enum.auto()
+    TECH_MATH = enum.auto()
+    TECH_PHYS = enum.auto()
+
+
 @dataclasses.dataclass
 class DocInfo:
     pages: int = None
