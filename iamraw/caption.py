@@ -20,7 +20,7 @@ class CaptionType(enum.Enum):
     UNDEFINED = enum.auto()
 
 
-@dataclasses.dataclass
+@dataclasses.dataclass(unsafe_hash=True)
 class Caption:
     line: int = None
     lineend: int = None
@@ -36,7 +36,7 @@ class Caption:
     overlap: bool = False
     bounding: 'BoundingBox' = None
     """Table, Figure or Codeblock where caption references."""
-    reference: int = None
+    reference: int = dataclasses.field(default=None, compare=False, hash=False)
 
 
 Captions = typing.List[Caption]
