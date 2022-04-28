@@ -90,6 +90,7 @@ def load_image_infos_fromfiles(
     pages: tuple = None,
     skip_hidden: bool = False,
     path_append: bool = False,
+    figure: bool = None,
 ) -> iamraw.PageContentImageInfos:
     collected = collections.defaultdict(list)
     for source in files:
@@ -99,6 +100,8 @@ def load_image_infos_fromfiles(
         if utila.should_skip(loaded.page, pages):
             continue
         if skip_hidden and loaded.hidden:
+            continue
+        if figure is not None and loaded.figure != figure:
             continue
         # add image content hash
         hashedimage = utila.file_name(source)
