@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.71.2
+
+### Feature
+
+* add parameter to skip select images (06885ed18cb0)
+* add pages parameter to shrink figure loader (21b493116ac2)
+
+### Fix
+
+* make loader path independent (5bbf3e1478ba)
+
 ## v4.71.1
 
 ### Fix
