@@ -26,6 +26,7 @@ class Headline:
     page: int = dataclasses.field(default=-1)
     container: int = dataclasses.field(default=None)
     decoration: int = dataclasses.field(default=None)
+    # TODO: RENAME PAGE TO PDFPAGE
 
     @property
     def start(self):
