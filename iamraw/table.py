@@ -33,8 +33,7 @@ class TableBounding:
     @property
     def identifier(self) -> int:
         """\
-        >>> TableBounding((10.5, 10.5, 20.5, 200.51), page=5).identifier
-        900150000000010510520520051
+        >>> assert TableBounding((10.5, 10.5, 20.5, 200.51), page=5).identifier
         """
         return utila.pagebox_hash(page=self.page, box=self.bounding)
 
