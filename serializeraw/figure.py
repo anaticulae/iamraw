@@ -33,13 +33,15 @@ def dump_figures(figures: iamraw.Figures, path: str):
             write_image_raw(raw, path, page, index)
 
 
-def load_figures(path: str, skip_raw: bool = True):
+def load_figures(path: str, skip_raw: bool = True, pages: tuple = None):
     assert os.path.exists(path)
     files = utila.file_list(path, include='yaml')
     files = utila.files_sort(files)  # pylint:disable=R0204
     result = []
     for item in files:
         figure = _load_figure(item)
+        if utila.should_skip(figure.page, pages=pages):
+            continue
         name = filename(figure.page, figure.index, EXT)
         if not skip_raw:
             raw_path = os.path.join(path, name)
@@ -66,7 +68,6 @@ def write_image_info(dumped: str, path: str, page: int, index: int):
 def _load_figure(path: str) -> iamraw.Figure:
     info = serializeraw.load_image_info(path)
     index = parse_index(path)
-
     result = iamraw.Figure(
         page=info.page,
         index=index,
