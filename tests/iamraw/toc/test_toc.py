@@ -6,6 +6,8 @@
 # company confidential.
 #==============================================================================
 
+import utila
+
 from iamraw import Section
 from iamraw import create_toc
 
@@ -121,3 +123,25 @@ WRONG_TOC = [
 def test_wrong_toc():
     root = create_toc(WRONG_TOC)
     assert_children(root, 2)
+
+
+EXPECTED = """\
+Kapitel 1
+Kapitel 1.1
+Kapitel 1.2
+Kapitel 1.2.1
+Kapitel 1.2.2
+Kapitel 1.2.3
+Kapitel 1.2.3.2
+Kapitel 1.3
+Kapitel 2
+Kapitel 2.1
+Kapitel 2.2
+Kapitel 3
+""".strip()
+
+
+def test_toc_recursive():
+    root = create_toc(TOC)
+    raw = utila.NEWLINE.join(item[1].title for item in root.recursive())
+    assert raw == EXPECTED

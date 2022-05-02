@@ -131,6 +131,24 @@ class Toc(TocLinkMixin):
     def __str__(self) -> str:
         return merge_toc(self)
 
+    def recursive(self) -> list:
+        return toc_recursive(self)
+
+
+def toc_recursive(toc: Toc) -> list:
+    result = []
+
+    def recursive(item, level: int):
+        result = [(level, item)]
+        if item.children:
+            for child in item.children:
+                result.extend(recursive(child, level=level + 1))
+        return result
+
+    for item in toc:
+        result.extend(recursive(item, level=0))
+    return result
+
 
 def create_toc(
     outlines: SectionList,
