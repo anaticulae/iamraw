@@ -70,6 +70,8 @@ def _dump(current: iamraw.Section, dump_raw: bool):
             if dump_raw:
                 result['raw'] = current.raw
                 result['raw_location'] = current.raw_location
+                result['raw_page'] = current.raw_page
+                result['raw_level'] = current.raw_level
     except AttributeError:
         # iamraw.Toc ROOT node
         result = dict(
@@ -98,6 +100,8 @@ def _load(current: dict, parent: iamraw.Section, load_raw: bool):
             if load_raw:
                 result.raw = current['raw']
                 result.raw_location = current['raw_location']
+                result.raw_level = current['raw_level']
+                result.raw_page = current['raw_page']
         with contextlib.suppress(KeyError):
             result.page = current['page']
     except KeyError:
