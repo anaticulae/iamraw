@@ -234,20 +234,10 @@ def create_toc(
 
 def merge_toc(toc: Toc) -> str:
     """Convert `table of content` to string."""
-    result = []
-
-    def recursive(item, level):
-        result = []
-        result.append('    ' * level + item.title)
-        if item.children:
-            for child in item.children:
-                result.extend(recursive(child, level + 1))
-        return result
-
-    for item in toc:
-        result.extend(recursive(item, level=0))
-    titles = utila.NEWLINE.join(result)
-    return titles
+    order = toc_recursive(toc)
+    items = ['    ' * level + item.title for level, item in order]
+    result = utila.NEWLINE.join(items)
+    return result
 
 
 @dataclasses.dataclass
