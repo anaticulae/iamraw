@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.72.1
+
+### Feature
+
+* add method to visit toc (560774db3212)
+
 ## v4.72.0
 
 ### Feature
