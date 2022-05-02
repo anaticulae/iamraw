@@ -48,6 +48,7 @@ from texmex.navigator import PTCN
 from texmex.navigator import PTN
 from texmex.navigator import START
 from texmex.navigator import NavigatorMixin
+from texmex.navigator import NavigatorMixins
 from texmex.navigator import PTCNs
 from texmex.navigator import PTNs
 from texmex.navigator import SelectBounding

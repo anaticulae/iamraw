@@ -156,6 +156,9 @@ class NavigatorMixin:
         return [item for item in self if item.visible]
 
 
+NavigatorMixins = typing.List[NavigatorMixin]
+
+
 @dataclasses.dataclass
 class PTN(NavigatorMixin):
     """The PTN eases to navigate through the textual content of a Page.
