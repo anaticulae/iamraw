@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.72.0
+
+### Feature
+
+* add list of navigators (ab4f0071c483)
+* add document content type (c165bc8aafe5)
+
+### Fix
+
+* dump and load raw page and raw level (74d598c794c9)
+
 ## v4.71.2
 
 ### Feature
