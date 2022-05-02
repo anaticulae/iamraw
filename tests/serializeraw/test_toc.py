@@ -48,30 +48,29 @@ def create_section(
 def toc_example(dump_raw: bool = False):
     """Create table of content with 3 headlines."""
     root = iamraw.Toc()
-
     create = functools.partial(create_section, raw=dump_raw)
-
+    # create three level
     first = create(1, 'Kapitel 1', root)
     second = create(2, 'Kapitel 1.1', first)
     third = create(3, 'Kapitel 1.1.1', second)
-
     root.append(first)
     first.append(second)
     second.append(third)
-
     return root
 
 
 @utilatest.requires(power.DOCU007_PDF)
 def test_load_toc_from_path():
-    toc = serializeraw.load_toc(power.link(power.DOCU007_PDF))
+    source = power.link(power.DOCU007_PDF)
+    toc = serializeraw.load_toc(source)
     assert toc
 
 
 EXPECTED = """\
 Kapitel 1
     Kapitel 1.1
-        Kapitel 1.1.1"""
+        Kapitel 1.1.1\
+"""
 
 
 def test_toc_str():
@@ -95,16 +94,20 @@ def test_dump_and_load_toc(dump_raw):  # pylint:disable=W0621
 def test_load_from_filepath(dump_raw, tmpdir):  # pylint:disable=W0621
     """Compare loading from raw string and filepath."""
     root = toc_example(dump_raw)
-
-    dumped = serializeraw.dump_toc(root, dump_raw=dump_raw)
-
+    dumped = serializeraw.dump_toc(
+        root,
+        dump_raw=dump_raw,
+    )
     to_write = os.path.join(tmpdir, 'toc.yaml')
-
     utila.file_create(to_write, dumped)
-
-    from_file = serializeraw.load_toc(to_write, load_raw=dump_raw)  # from path
-    from_raw = serializeraw.load_toc(dumped, load_raw=dump_raw)  # from raw
-
+    from_file = serializeraw.load_toc(
+        to_write,
+        load_raw=dump_raw,
+    )
+    from_raw = serializeraw.load_toc(
+        dumped,
+        load_raw=dump_raw,
+    )
     assert from_file == root
     assert from_file == from_raw
 
@@ -112,7 +115,6 @@ def test_load_from_filepath(dump_raw, tmpdir):  # pylint:disable=W0621
 def test_load_non_existing_toc():
     """None existing resource leads to ValueError."""
     path = 'C:/iamthepath/toc.yaml'
-
     with pytest.raises(FileNotFoundError):
         serializeraw.load_toc(path)
 
