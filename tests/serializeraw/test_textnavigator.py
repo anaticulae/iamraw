@@ -35,15 +35,15 @@ def test_create_pagetextcontentnavigator_fromfile():
     source = power.link(power.DOCU027_PDF)
     text = iamraw.path.text(source)
     textpositions = iamraw.path.textposition(source)
-    sizeandborderpath = iamraw.path.sizeandborder(source)
-    headerfooterpath = iamraw.path.headerfooters(source)
+    sizeandborder = iamraw.path.sizeandborder(source)
+    headerfooter = iamraw.path.headerfooters(source)
     fontheader = iamraw.path.fontheader(source)
     fontcontent = iamraw.path.fontcontent(source)
     loaded = serializeraw.ptcn_fromfile(
         text,
         textpositions,
-        sizeandborderpath,
-        headerfooterpath,
+        sizeandborder,
+        headerfooter,
         fontheader,
         fontcontent,
     )

@@ -171,8 +171,8 @@ def ptcn_frompath(  # pylint:disable=R0914
     # do not generate general data twice
     prefix = prefix if footer_sized_prefixed else ''
     # determine paths
-    headerfooterpath = iamraw.path.headerfooters(path, prefix=prefix)
-    sizeandborderpath = iamraw.path.sizeandborder(path, prefix=prefix)
+    headerfooter = iamraw.path.headerfooters(path, prefix=prefix)
+    sizeandborder = iamraw.path.sizeandborder(path, prefix=prefix)
     if horizontals:
         horizontals = iamraw.path.horizontals(path, prefix=prefix)
         if not os.path.exists(horizontals):
@@ -183,8 +183,8 @@ def ptcn_frompath(  # pylint:disable=R0914
     result = ptcn_fromfile(
         text=text,
         textpositions=textpositions,
-        sizeandborderpath=sizeandborderpath,
-        headerfooterpath=headerfooterpath,
+        sizeandborder=sizeandborder,
+        headerfooter=headerfooter,
         fontheader=fontheader,
         fontcontent=fontcontent,
         horizontals=horizontals,
@@ -196,11 +196,15 @@ def ptcn_frompath(  # pylint:disable=R0914
     return result
 
 
+@utila.rename(
+    sizeandborderpath='sizeandborder',
+    headerfooterpath='headerfooter',
+)
 def ptcn_fromfile(  # pylint:disable=R0914
     text: str,
     textpositions: str,
-    sizeandborderpath: str,
-    headerfooterpath: str,
+    sizeandborder: str,
+    headerfooter: str,
     fontheader: str = None,
     fontcontent: str = None,
     horizontals: str = None,
@@ -225,11 +229,11 @@ def ptcn_fromfile(  # pylint:disable=R0914
     )
     # load header, footer, pageborder
     headerfooter = serializeraw.load_headerfooter(
-        headerfooterpath,
+        headerfooter,
         pages=pages,
     )
     sizeandborder = serializeraw.load_pageborders(
-        sizeandborderpath,
+        sizeandborder,
         pages=pages,
     )
     if horizontals:
