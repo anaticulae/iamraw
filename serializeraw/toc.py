@@ -44,7 +44,7 @@ def load_toc(content: str, load_raw: bool = True) -> iamraw.Toc:
     """
     loaded = utila.yaml_load(
         content,
-        fname='groupme__toc_toc',
+        fname=('reftable__toc_toc', 'groupme__toc_toc'),
         safe=False,
     )
     return _load(loaded, parent=None, load_raw=load_raw)
