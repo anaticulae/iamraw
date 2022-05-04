@@ -215,5 +215,21 @@ def groupme_tabletable(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'groupme', 'tabletable_tabletable', prefix, ftype=ftype)
 
 
+def reftable_toc(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'reftable', 'toc_toc', prefix, ftype=ftype)
+
+
+def reftable_figure(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'reftable', 'figure_figure', prefix, ftype=ftype)
+
+
+def reftable_table(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'reftable', 'table_table', prefix, ftype=ftype)
+
+
+def reftable_abbrev(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'reftable', 'abbrev_abbrev', prefix, ftype=ftype)
+
+
 def pdfinfo(path: str) -> str:
     return utila.join(path, 'pdfinfo.yaml')
