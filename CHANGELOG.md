@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.72.3
+
+### Feature
+
+* add strategy parameter (336360fb7a86)
+* add table, figure and toc path (1a9303f7322f)
+
 ## v4.72.2
 
 ### Feature
