@@ -66,6 +66,7 @@ class BibliographyReference:  # pylint:disable=R0902
 BibliographyReferences = typing.List[BibliographyReference]
 
 
+@iamraw.extracted
 @dataclasses.dataclass
 class BibliographyTable:
     headline: str = None

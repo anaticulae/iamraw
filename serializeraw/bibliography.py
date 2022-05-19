@@ -17,7 +17,7 @@ import iamraw
 def dump_bibliography_reference(references: iamraw.BibliographyReferences) -> str: # yapf:disable
     r"""\
     >>> dump_bibliography_reference(iamraw.BibliographyTable(headline='Bibliography', references=[]))
-    "headline: Bibliography\npdfpages: ''\nreferences: []\n"
+    "__strategy__: null\nheadline: Bibliography\npdfpages: ''\nreferences: []\n"
     """
     if not isinstance(references, iamraw.BibliographyTable):
         # TODO: REMOVE OUTDATED DUMP WITH NEW MAJOR
@@ -29,7 +29,7 @@ def dump_bibliography_reference(references: iamraw.BibliographyReferences) -> st
     return dump_bib_table(references)
 
 
-def dump_bib_table(table: iamraw.BibliographyTable):
+def dump_bib_table(table: iamraw.BibliographyTable) -> str:
     assert table.references is not None, str(table)
     if table.pdfpages is not None:
         pdfpages = utila.from_tuple(table.pdfpages)
@@ -39,6 +39,7 @@ def dump_bib_table(table: iamraw.BibliographyTable):
         headline=table.headline,
         pdfpages=pdfpages,
         references=[dataclasses.asdict(item) for item in table.references],
+        __strategy__=table.__strategy__,
     )
     dumped = utila.yaml_dump(raw)
     return dumped
@@ -72,11 +73,13 @@ def load_bib_table(table: dict) -> iamraw.BibliographyTable:
     if pdfpages:
         pdfpages = utila.parse_tuple(pdfpages, length=None, typ=int)
     references = table.get('references', [])
+    strategy = table.get('__strategy__', None)
     result = iamraw.BibliographyTable(
         headline=headline,
         pdfpages=pdfpages,
         references=[load_reference(item) for item in references],
     )
+    result.__strategy__ = strategy
     return result
 
 
