@@ -24,5 +24,6 @@ def load_titlepage(content: str) -> iamraw.TitlePage:
     loaded = utila.yaml_load(
         content,
         safe=False,
+        fname='detector__titlepage_detected',
     )
     return loaded
