@@ -53,7 +53,10 @@ def load_bibliography_reference(content: str) -> iamraw.BibliographyReferences:
     """
     loaded = utila.yaml_load(
         content,
-        fname='detector__bibliography_detected',
+        fname=(
+            'bibliography__result_result',
+            'detector__bibliography_detected',
+        ),
     )
     if isinstance(loaded, list):
         result = []
