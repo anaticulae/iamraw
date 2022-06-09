@@ -31,6 +31,7 @@ THESIS = {
         'Projektarbeit',
         'Projektpraktikum',
         'Studienarbeit',
+        'Wissenschaftliche Hausarbeit',
     },
     iamraw.DocumentType.BACHELOR: {
         'Bachelor',
@@ -40,6 +41,7 @@ THESIS = {
     iamraw.DocumentType.MASTER: {
         'Diplomarbeit',
         'Master',
+        'Master Thesis',
         'Masterarbeit',
         'Masterthesis',
     },
