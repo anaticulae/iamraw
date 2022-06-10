@@ -93,6 +93,8 @@ class TitlePage:
     matrikel: Matrikel = None
     examiner: iamraw.Persons = dataclasses.field(default_factory=list)
     institution: Institution = None
+    # Some user put the page number on the title page which is not correct
+    pagenumber: str = None
     # page in pdf location to signal if first page was skipped
     pageraw: int = None
 
