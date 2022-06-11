@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.73.0
+
+### Feature
+
+* add another list path (7020d3a51971)
+* add parameter to store potential page number (11da77e929c7)
+* extend list of valid headlines (9f9a1915ecfc)
+* add default path (1e75bd137d4a)
+* add fallback file name (b0c10bb6bd1d)
+
 ## v4.72.3
 
 ### Feature
