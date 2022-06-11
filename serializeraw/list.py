@@ -57,7 +57,10 @@ def list_raw(instance, pagenumber) -> dict:
 def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
     loaded = utila.yaml_load(
         content,
-        fname='words__list_list',
+        fname=(
+            'lists__result_result',
+            'words__list_list',
+        ),
     )
     result = []
     for page in loaded:
