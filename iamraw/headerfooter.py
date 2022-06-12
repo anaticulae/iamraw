@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import collections
 import copy
 import dataclasses
 import typing
@@ -16,10 +15,20 @@ import utila
 
 from iamraw.bounding import BoundingBox
 
-PageContentFooterHeader = collections.namedtuple(
-    'PageContentFooterHeader',
-    'header, footer, page',
-)
+
+@dataclasses.dataclass
+class PageContentFooterHeader:
+    header: list = None
+    footer: list = None
+    page: int = None
+
+    def __getitem__(self, index):
+        if not index:
+            return self.header
+        if index == 1:
+            return self.footer
+        raise IndexError
+
 
 PageContentFooterHeaders = typing.List[PageContentFooterHeader]
 
