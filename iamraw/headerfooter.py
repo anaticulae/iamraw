@@ -71,6 +71,10 @@ class FootNote:
     bounding: tuple = None
     bounding_number: tuple = None
 
+    def __repr__(self):
+        raw = f'FootNote(number="{self.number}", page="{self.page}")'
+        return raw
+
 
 FootNotes = typing.List[FootNote]
 
@@ -83,6 +87,11 @@ class FootNoteRaw(FootNote):
     style: list = dataclasses.field(default_factory=list)
     style_number: 'texmex.CharStyle' = None
     style_text: list = dataclasses.field(default_factory=list)
+
+    def __repr__(self):
+        text = '' if not self.text else utila.shrink(self.text, maxlength=300)
+        raw = f'FootNoteRaw(number="{self.number}", text="{text}", page="{self.page}")'
+        return raw
 
 
 @dataclasses.dataclass
@@ -126,6 +135,10 @@ class FootNoteMerged(FootNote):
     @property
     def style_text(self) -> list:
         return utila.flatten([item.style_text for item in self.notes])
+
+    def __repr__(self):
+        raw = f'FootNoteMerged(notes={self.notes})'
+        return raw
 
 
 @dataclasses.dataclass
@@ -186,6 +199,10 @@ class MovingFooterInformation(FooterInformation):
 
     def __len__(self):
         return len(self.notes)
+
+    def __repr__(self):
+        raw = f'MovingFooterInformation(page={self.page}, notes={self.notes})'
+        return raw
 
 
 @dataclasses.dataclass
