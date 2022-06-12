@@ -8,7 +8,6 @@
 # =============================================================================
 
 import contextlib
-import functools
 
 import configo
 import utila
@@ -46,7 +45,7 @@ def dump_raw(content) -> list:
     return result
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_pagenumbers(content: str, pages=None):
     loaded = utila.yaml_load(
         content,

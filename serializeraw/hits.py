@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
-
 import configo
 import utila
 
@@ -34,7 +32,7 @@ def dump_hits(hits: iamraw.PageContentHits) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_hits(content: str, pages: tuple = None) -> iamraw.PageContentHits:
     loaded = utila.yaml_load(
         content,

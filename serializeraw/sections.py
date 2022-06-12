@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
-
 import configo
 import utila
 
@@ -29,7 +27,7 @@ def dump_sections(sections: iamraw.sections.Sections) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_sections(
     content: str,
     onerror: callable = None,

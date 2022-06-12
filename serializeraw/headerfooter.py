@@ -8,7 +8,6 @@
 # =============================================================================
 
 import contextlib
-import functools
 
 import configo
 import utila
@@ -32,7 +31,7 @@ def dump_headerfooter(pages: iamraw.PageContentFooterHeaders) -> str:
     return utila.yaml_dump(result)
 
 
-@functools.lru_cache(maxsize=configo.CACHE_SMALL)
+@configo.cache_small
 def load_headerfooter(
     content: str,
     pages=None,

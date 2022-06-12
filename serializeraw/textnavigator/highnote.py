@@ -7,15 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
-
 import configo
 import utila
 
 import texmex
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_highnotes(content: str, pages: tuple = None):
     loaded = utila.yaml_load(
         content,

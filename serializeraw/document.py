@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
-
 import configo
 import utila
 
@@ -28,7 +26,7 @@ def dump_document(document: iamraw.Document, fast: bool = True) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_document(
     content: str,
     pages: tuple = None,

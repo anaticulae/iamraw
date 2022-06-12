@@ -7,8 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from collections import defaultdict
-from functools import lru_cache
+import collections
 
 import configo
 import utila
@@ -64,10 +63,10 @@ def dump_boxedcontent(boxed) -> str:
     return utila.yaml_dump(raw)
 
 
-@lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_boxedcontent(content: str, pages=None):
     loaded = utila.yaml_load(content)
-    pagedict = defaultdict(list)
+    pagedict = collections.defaultdict(list)
     for page in loaded:
         pagenumber = int(page['page'])
         if utila.should_skip(pagenumber, pages):

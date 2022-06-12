@@ -7,10 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from functools import lru_cache
-
+import configo
 import utila
-from configo import CACHE_MEDIUM
 
 from iamraw import BoundingBox
 from iamraw import HyperLink
@@ -58,7 +56,7 @@ def dump_annotations(annotations: PageAnnotations) -> str:
     return dumped
 
 
-@lru_cache(CACHE_MEDIUM)
+@configo.cache_medium
 def load_annotations(content: str, pages=None) -> PageAnnotations:
     """Load annotations from dumped raw data.
 

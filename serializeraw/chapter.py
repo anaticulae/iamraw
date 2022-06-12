@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
 import typing
 
 import configo
@@ -27,7 +26,7 @@ def dump_chapter(chapters: typing.List[typing.Dict]) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_chapter(content: str) -> typing.List[typing.Dict]:
     loaded = utila.yaml_load(content)
     return loaded

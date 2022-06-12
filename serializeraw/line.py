@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
 import typing
 
 import configo
@@ -69,7 +68,7 @@ def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_horizontals(
     content: str,
     pages=None,

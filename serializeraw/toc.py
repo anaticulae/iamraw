@@ -15,8 +15,8 @@ Public methods:
     load_yamp
 
 """
+
 import contextlib
-import functools
 
 import configo
 import utila
@@ -31,7 +31,7 @@ def dump_toc(content: iamraw.Toc, dump_raw: bool = True) -> str:
     return utila.yaml_dump(raw)
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_toc(content: str, load_raw: bool = True) -> iamraw.Toc:
     """Load table of content from file or content
 

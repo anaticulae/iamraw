@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
-
 import configo
 import utila
 
@@ -53,7 +51,7 @@ def list_raw(instance, pagenumber) -> dict:
     return result
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
     loaded = utila.yaml_load(
         content,

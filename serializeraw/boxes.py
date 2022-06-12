@@ -7,7 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
 import typing
 
 import configo
@@ -31,7 +30,7 @@ def dump_boxes(pages: iamraw.PagesWithBoxList) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_boxes(content: str, pages=None) -> iamraw.PagesWithBoxList:
     loaded = utila.yaml_load(
         content,

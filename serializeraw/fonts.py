@@ -8,7 +8,6 @@
 # =============================================================================
 
 import contextlib
-import functools
 import math
 
 import configo
@@ -50,7 +49,7 @@ def dump_font_header(fonts) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_font_header(content):
     """Load font header from raw string representation.
 
@@ -111,7 +110,7 @@ def dump_font_content(pages: iamraw.PageFontContents) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_font_content(content, pages=None):
     loaded = utila.yaml_load(
         content,

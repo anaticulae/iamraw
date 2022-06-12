@@ -8,7 +8,6 @@
 # =============================================================================
 
 import contextlib
-import functools
 
 import configo
 import utila
@@ -43,7 +42,7 @@ def dump_likelihood(likelihoods: iamraw.PageContentLikelihoods) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_likelihood(
     content: str,
     singlevalue: bool = True,

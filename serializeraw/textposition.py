@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
-
 import configo
 import utila
 
@@ -36,7 +34,7 @@ def dump_textpositions(items: iamraw.PageContentTextPositions) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_textpositions(
     content: str,
     pages=None,

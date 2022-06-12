@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
-
 import configo
 import utila
 
@@ -26,7 +24,7 @@ def dump_pageborders(sizeandborders: iamraw.PageSizeBorderList) -> str:
     return dumped
 
 
-@functools.lru_cache(configo.CACHE_SMALL)
+@configo.cache_small
 def load_pageborders(
     content: str,
     pages: tuple = None,
