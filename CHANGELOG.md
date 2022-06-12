@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.74.0
+
+### Feature
+
+* add page number magics loader (aa7188a468d5)
+* add improved repr (27f3a49baa93)
+* shorten repr format (fa052267b01f)
+
 ## v4.73.0
 
 ### Feature
