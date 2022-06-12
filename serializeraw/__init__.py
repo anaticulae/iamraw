@@ -149,6 +149,7 @@ from serializeraw.pagecontent import load_pagecontent
 # pagenumbers
 from serializeraw.pagenumbers import dump_pagenumbers
 from serializeraw.pagenumbers import load_pagenumbers
+from serializeraw.pagenumbers import load_pagenumbers_magic
 # pdfinfo
 from serializeraw.pdfinfo import date_fromstr
 from serializeraw.pdfinfo import date_str

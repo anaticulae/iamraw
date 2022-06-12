@@ -81,3 +81,23 @@ def toint(item):
     with contextlib.suppress(ValueError):
         return int(item)
     return item
+
+
+def load_pagenumbers_magic(content: str, pages: tuple = None) -> dict:
+    """Load extend page numbers with filled user pages.
+
+    >>> import utila
+    >>> data = utila.yaml_dump({3:'I', 4:'1', 5:'2', 6:'3'})
+    >>> load_pagenumbers_magic(data)
+    {3: 'I', 4: '1', 5: '2', 6: '3'}
+    """
+    loaded = utila.yaml_load(
+        content,
+        fname='groupme__pagenumbers_magic',
+    )
+    result = {
+        pdfpage: userpage
+        for pdfpage, userpage in loaded.items()
+        if not utila.should_skip(page=pdfpage, pages=pages)
+    }
+    return result
