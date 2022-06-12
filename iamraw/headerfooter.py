@@ -29,6 +29,19 @@ class PageContentFooterHeader:
             return self.footer
         raise IndexError
 
+    def __repr__(self):
+        result = f'PageContentFooterHeader(page={self.page}, '
+        if self.header:
+            result += 'header='
+            result += str(self.header)
+            result += ', '
+        if self.footer:
+            result += 'footer='
+            result += str(self.footer)
+        result += ')'
+        result += utila.NEWLINE * 2
+        return result
+
 
 PageContentFooterHeaders = typing.List[PageContentFooterHeader]
 
