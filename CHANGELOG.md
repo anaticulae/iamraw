@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.74.1
+
+### Feature
+
+* make group hash able (42bb239837a3)
+
 ## v4.74.0
 
 ### Feature
