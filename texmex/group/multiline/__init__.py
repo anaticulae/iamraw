@@ -60,6 +60,9 @@ class MultilineGroup:
     Public Attributes:
         text: content as a list of following texmex.TextInfo.
         size: font size of common content.
+
+    Ensure that MultilineGroup is hashable:
+    >>> assert hash(MultilineGroup())
     """
     text: list = dataclasses.field(default_factory=list)
     size: float = None
@@ -79,6 +82,9 @@ class MultilineGroup:
         assert self.firstid is not None, 'create MultilineGroup with firstid'
         for index, item in enumerate(self, start=self.firstid):
             yield index, item
+
+    def __hash__(self):
+        return hash(str(self))
 
 
 MultilineGroups = typing.List[MultilineGroup]
