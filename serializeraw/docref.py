@@ -23,11 +23,11 @@ def dump_docref(references: iamraw.DocRefs) -> str:
     result = []
     for reference in references:
         marked = utila.from_tuple(utila.flatten(reference.marked))
-        raw = f'{reference.page} {reference.sentence} {marked}'
+        line = f'{reference.page} {reference.sentence} {marked}'
         if reference.raw:
             reference_raw = utila.from_tuple(reference.raw, separator='@@@@')
-            raw += SEPARATOR_RAW + reference_raw
-        result.append(raw)
+            line += SEPARATOR_RAW + reference_raw
+        result.append(line)
     dumped = utila.yaml_dump(result)
     return dumped
 
