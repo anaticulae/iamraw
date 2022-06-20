@@ -6,10 +6,15 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
-"""\
+r"""\
 >>> import iamraw
 >>> advices = [iamraw.TextAdvice(), iamraw.TextAdviceDelete(), iamraw.TextAdviceReplacement()]
 >>> assert load_textadvices(dump_textadvices(advices)) == advices
+
+>>> REFERENCES = [iamraw.DocRef(page=5, sentence=1, marked=[(5, 23)], raw=('siehe Abbildung 13',))]
+>>> dump_docref(REFERENCES)
+"- '5 1 5 23 raw: siehe Abbildung 13'\n"
+>>> assert load_docref(dump_docref(REFERENCES)) == REFERENCES, 'verify dumper/loader'
 """
 
 import re
