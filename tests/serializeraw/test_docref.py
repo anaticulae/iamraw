@@ -11,11 +11,11 @@ import iamraw
 import serializeraw
 
 DOC_REFERENCE = [
-    iamraw.DocRef(page=7, sentence=5, marked=[(31, 36)]),
-    iamraw.DocRef(page=9, sentence=7, marked=[(44, 49)]),
-    iamraw.DocRef(page=14, sentence=2, marked=[(33, 38)]),
-    iamraw.DocRef(page=15, sentence=0, marked=[(2, 7)]),
-    iamraw.DocRef(page=20, sentence=3, marked=[(22, 29), (40, 45)]),
+    iamraw.DocRef(page=7, sentence=5, marked=((31, 36),)),
+    iamraw.DocRef(page=9, sentence=7, marked=((44, 49),)),
+    iamraw.DocRef(page=14, sentence=2, marked=((33, 38),)),
+    iamraw.DocRef(page=15, sentence=0, marked=((2, 7),)),
+    iamraw.DocRef(page=20, sentence=3, marked=((22, 29), (40, 45))),
 ]
 
 

@@ -11,7 +11,7 @@ r"""\
 >>> advices = [iamraw.TextAdvice(), iamraw.TextAdviceDelete(), iamraw.TextAdviceReplacement()]
 >>> assert load_textadvices(dump_textadvices(advices)) == advices
 
->>> REFERENCES = [iamraw.DocRef(page=5, sentence=1, marked=[(5, 23)], raw=('siehe Abbildung 13',))]
+>>> REFERENCES = [iamraw.DocRef(page=5, sentence=1, marked=((5, 23),), raw=('siehe Abbildung 13',))]
 >>> dump_docref(REFERENCES)
 "- '5 1 5 23 raw: siehe Abbildung 13'\n"
 >>> assert load_docref(dump_docref(REFERENCES)) == REFERENCES, 'verify dumper/loader'
@@ -61,10 +61,8 @@ def load_docref(content: str, pages: tuple = None) -> iamraw.DocRefs:
             )
         except ValueError:
             raw = None
-        marked = [
-            utila.parse_tuple(item, length=2, typ=int)
-            for item in PATTERN.findall(marked)
-        ]
+        marked = tuple((utila.parse_tuple(item, length=2, typ=int)
+                        for item in PATTERN.findall(marked)))
         docref = iamraw.DocRef(
             page=page,
             sentence=sentence,
