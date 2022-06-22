@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.75.1
+
+### Feature
+
+* add parameter to increase split width (ee39c7595fae)
+
 ## v4.75.0
 
 ### Feature
