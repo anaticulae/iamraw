@@ -200,11 +200,10 @@ BOUNDINGLOCATION_PATTERN = r"""
 
 @dataclasses.dataclass(unsafe_hash=True)
 class BoundingLocation:
-    """The BoundingLocation defines the object on which the Finding
-    belongs to. This rectangle can be highlighted in further
-    presentation steps.
+    """The BoundingLocation defines the area which the Finding belongs to.
 
-    The rectangle is the simplest highlighting method.
+    This rectangle can be highlighted in further presentation steps. The
+    rectangle is the simplest highlighting method.
 
     >>> BoundingLocation.fromstr('b(137.0;145.0;123.0;232.0)p5')
     BoundingLocation(page=5, shortcut='b', value=(137.0, 145.0, 123.0, 232.0), line=None)
