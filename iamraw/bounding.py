@@ -152,6 +152,7 @@ def split_x(
     bounding: BoundingBox,
     part: int,
     parts: int,
+    width: int = 1,
 ) -> BoundingBox:
     """Split `bounding` in `parts`.
 
@@ -159,18 +160,18 @@ def split_x(
         bounding: parent BoundingBox to split into `part`
         part: number of sub-bounding from top to bottom
         parts: number of chunks to split parent box
+        width: chars to join
     Returns:
         sub-BoundingBox
     """
     assert parts >= 0, 'non positive parts'
     assert part < parts, f'part:{part} < parts:{parts}'
-
     step = (bounding.x1 - bounding.x0) / parts
-
+    # result
     result = BoundingBox(
         bounding.x0 + step * part,
         bounding.y0,
-        bounding.x0 + step * (part + 1),
+        bounding.x0 + step * (part + width),
         bounding.y1,
     )
     return result
