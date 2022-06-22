@@ -163,6 +163,9 @@ from serializeraw.quote import load_quotations
 # sections
 from serializeraw.sections import dump_sections
 from serializeraw.sections import load_sections
+# sentences
+from serializeraw.sentence import dump_sentence_bounding
+from serializeraw.sentence import load_sentence_bounding
 # spacestation
 from serializeraw.spacestation import dump_document_chardist
 from serializeraw.spacestation import dump_document_worddist
