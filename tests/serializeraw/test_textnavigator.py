@@ -48,3 +48,16 @@ def test_create_pagetextcontentnavigator_fromfile():
         fontcontent,
     )
     assert len(loaded) == 27
+
+
+@utilatest.requires(power.DOCU027_PDF)
+def test_load_dump_ptn():
+    source = power.link(power.DOCU027_PDF)
+    ptns = serializeraw.ptn_frompath(source)
+    fontstore = serializeraw.fs_frompath(source)
+    dumped = serializeraw.dump_ptn(
+        ptns=ptns,
+        fontstore=fontstore,
+    )
+    assert dumped[0]  # document
+    assert dumped[1]  # position
