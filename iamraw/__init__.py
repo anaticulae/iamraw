@@ -337,6 +337,6 @@ from iamraw.whitepage import WhitePage
 # TODO: REMOVE LATER
 FootRawNote = FootNoteRaw
 
-__version__ = '4.74.1'
+__version__ = '4.75.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))

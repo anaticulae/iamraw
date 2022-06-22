@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v4.75.0
+
+### Feature
+
+* add method to dump and load sentences (2f11ea02e6db)
+* add new table path (149dc1b5e99c)
+* use tuple to avoid side effects (f1dc3cf3e166)
+
+### Documentation
+
+* adjust header (7835819c2b11)
+
 ## v4.74.1
 
 ### Feature
