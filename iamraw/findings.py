@@ -10,21 +10,18 @@
 import contextlib
 import dataclasses
 import enum
-import re
 import typing
 
 import utila
 
 SUMMARY = -1
 
-LOCATION_PATTERN = re.compile(
-    r"""(
-         ((?P<shortcut>[a-z]+)(?P<value>-{0,1}\d+))
-         ?p(?P<page>-{0,1}\d+)                        # page can be negative
-        )
-     """,
-    re.VERBOSE,
+LOCATION_PATTERN = utila.compiles(r"""
+(
+     ((?P<shortcut>[a-z]+)(?P<value>-{0,1}\d+))
+     ?p(?P<page>-{0,1}\d+)                        # page can be negative
 )
+""")
 
 
 @dataclasses.dataclass(unsafe_hash=True)
@@ -60,15 +57,13 @@ class Location:
     def fromstr(cls, raw: str):
         if not raw:
             return None
-        matched = re.match(LOCATION_PATTERN, raw)
+        matched = LOCATION_PATTERN.match(raw)
         if not matched:
             return None
-
         page, shortcut, value = int(matched['page']), 'p', None
         with contextlib.suppress(TypeError):
             value = int(matched['value'])
             shortcut = matched['shortcut']
-
         result = cls(page=page, shortcut=shortcut, value=value)
         return result
 
@@ -104,15 +99,12 @@ class Location:
 
 SUMMARY_LOCATION = Location.from_page(SUMMARY)
 
-RANGEDLOCATION_PATTERN = re.compile(
-    r"""
+RANGEDLOCATION_PATTERN = utila.compiles(r"""
     (p(?P<page>\d+)(_(?P<page_end>\d+))?[~]?)?
     (l(?P<line>\d+)(_(?P<line_end>\d+))?[~]?)?
     (t(?P<token>\d+)(_(?P<token_end>\d+))?[~]?)?
     (c(?P<char>\d+)(_(?P<char_end>\d+))?)?
-    """,
-    re.VERBOSE,
-)
+""")
 
 RANGEDLOCATION_KEYS = [
     'page', 'page_end', 'line', 'line_end', 'token', 'token_end', 'char',
@@ -150,7 +142,7 @@ class RangedLocation:
 
     @classmethod
     def fromstr(cls, raw: str):
-        matched = re.match(RANGEDLOCATION_PATTERN, raw)
+        matched = RANGEDLOCATION_PATTERN.match(raw)
         if not matched:
             return None
         result = RangedLocation()
@@ -190,12 +182,12 @@ class RangedLocation:
         return 'r'
 
 
-BOUNDINGLOCATION_PATTERN = r"""
+BOUNDINGLOCATION_PATTERN = utila.compiles(r"""
     (?P<shortcut>b)
     \((?P<tuple>((-?\d+\.\d+;{0,1}){4,}))\)
     p(?P<page>\d+)
     (l(?P<line>\d+))?
-"""
+""")
 
 
 @dataclasses.dataclass(unsafe_hash=True)
@@ -227,7 +219,7 @@ class BoundingLocation:
     @classmethod
     def fromstr(cls, raw: str):
         assert raw, 'require input'
-        matched = re.match(BOUNDINGLOCATION_PATTERN, raw, flags=re.X)
+        matched = BOUNDINGLOCATION_PATTERN.match(raw)
         if not matched:
             return None
         page, shortcut, value = int(matched['page']), 'b', None
