@@ -13,8 +13,15 @@ import iamraw
 import serializeraw
 
 
+def dumper(boundings) -> list:
+    result = []
+    for bounding in boundings:
+        single = utila.from_tuple(bounding)
+        result.append(single)
+    return result
+
+
 def dump_sentence_bounding(sentences: iamraw.PageContents) -> str:
-    dumper = lambda x: [utila.from_tuple(item) for item in x]
     result = serializeraw.dump_pagecontent(
         pages=sentences,
         pagedumper=dumper,
@@ -22,11 +29,18 @@ def dump_sentence_bounding(sentences: iamraw.PageContents) -> str:
     return result
 
 
+def loader(boundings) -> list:
+    result = []
+    for bounding in boundings:
+        single = utila.parse_tuple(bounding)
+        result.append(single)
+    return result
+
+
 def load_sentence_bounding(
     source: str,
     pages: tuple = None,
 ) -> iamraw.PageContents:
-    loader = lambda x: [utila.parse_tuple(item) for item in x]
     result = serializeraw.load_pagecontent(
         content=source,
         pages=pages,
