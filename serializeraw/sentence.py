@@ -16,8 +16,15 @@ import serializeraw
 def dumper(boundings) -> list:
     result = []
     for bounding in boundings:
-        single = utila.from_tuple(bounding)
-        result.append(single)
+        single = isinstance(bounding[0], (int, float))
+        if single:
+            item = utila.from_tuple(bounding)
+        else:
+            item = utila.from_tuple(
+                [utila.from_tuple(it) for it in bounding],
+                separator='@',
+            )
+        result.append(item)
     return result
 
 
@@ -32,8 +39,18 @@ def dump_sentence_bounding(sentences: iamraw.PageContents) -> str:
 def loader(boundings) -> list:
     result = []
     for bounding in boundings:
-        single = utila.parse_tuple(bounding)
-        result.append(single)
+        single = '@' not in bounding
+        if single:
+            item = utila.parse_tuple(bounding)
+        else:
+            splitted = utila.parse_tuple(
+                bounding,
+                length=None,
+                typ=str,
+                separator='@',
+            )
+            item = tuple(utila.parse_tuple(it) for it in splitted)
+        result.append(item)
     return result
 
 
