@@ -40,8 +40,10 @@ MULTILINE_SEPARATOR = '  '
 def dumper(boundings) -> list:
     result = []
     for bounding in boundings:
-        single = isinstance(bounding[0], (int, float))
+        single = not bounding or isinstance(bounding[0], (int, float))
         if single:
+            if not bounding:
+                utila.debug(f'dump empty bounding: {boundings}')
             item = utila.from_tuple(bounding)
         else:
             item = utila.from_tuple(
@@ -55,6 +57,11 @@ def dumper(boundings) -> list:
 def loader(boundings) -> list:
     result = []
     for bounding in boundings:
+        if not bounding:
+            # empty element
+            utila.debug(f'load empty boundung: {boundings}')
+            result.append(tuple())
+            continue
         single = MULTILINE_SEPARATOR not in bounding
         if single:
             item = utila.parse_tuple(bounding)
