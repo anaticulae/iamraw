@@ -13,6 +13,27 @@ import iamraw
 import serializeraw
 
 
+def load_sentence_bounding(
+    source: str,
+    pages: tuple = None,
+) -> iamraw.PageContents:
+    result = serializeraw.load_pagecontent(
+        content=source,
+        pages=pages,
+        pageloader=loader,
+        fname='words__sentences_bounding',
+    )
+    return result
+
+
+def dump_sentence_bounding(sentences: iamraw.PageContents) -> str:
+    result = serializeraw.dump_pagecontent(
+        pages=sentences,
+        pagedumper=dumper,
+    )
+    return result
+
+
 def dumper(boundings) -> list:
     result = []
     for bounding in boundings:
@@ -25,14 +46,6 @@ def dumper(boundings) -> list:
                 separator='@',
             )
         result.append(item)
-    return result
-
-
-def dump_sentence_bounding(sentences: iamraw.PageContents) -> str:
-    result = serializeraw.dump_pagecontent(
-        pages=sentences,
-        pagedumper=dumper,
-    )
     return result
 
 
@@ -51,17 +64,4 @@ def loader(boundings) -> list:
             )
             item = tuple(utila.parse_tuple(it) for it in splitted)
         result.append(item)
-    return result
-
-
-def load_sentence_bounding(
-    source: str,
-    pages: tuple = None,
-) -> iamraw.PageContents:
-    result = serializeraw.load_pagecontent(
-        content=source,
-        pages=pages,
-        pageloader=loader,
-        fname='words__sentences_bounding',
-    )
     return result
