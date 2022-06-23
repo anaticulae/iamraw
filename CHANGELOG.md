@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.76.0
+
+### Feature
+
+* make dumped format more readable (2bd6285cc45c)
+* dump more than one bounding for one sentence (86ab77ebbd0f)
+
+### Fix
+
+* do not fail on empty bounding (36c17f24ef2e)
+
 ## v4.75.1
 
 ### Feature
