@@ -13,8 +13,6 @@ import utila
 
 import iamraw
 
-Strs = typing.List[str]
-
 
 class TextContainerIterator:
 
@@ -116,7 +114,7 @@ def split_page(
     positions: typing.List,
     *,
     append_unvisited: bool = True,
-) -> Strs:
+) -> utila.Strings:
     """Split page into chunks given by `positions`. The source of these
     positions can be rawmaker with font-extractor.
 
