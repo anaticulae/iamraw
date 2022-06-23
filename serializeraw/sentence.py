@@ -34,6 +34,9 @@ def dump_sentence_bounding(sentences: iamraw.PageContents) -> str:
     return result
 
 
+MULTILINE_SEPARATOR = '  '
+
+
 def dumper(boundings) -> list:
     result = []
     for bounding in boundings:
@@ -43,7 +46,7 @@ def dumper(boundings) -> list:
         else:
             item = utila.from_tuple(
                 [utila.from_tuple(it) for it in bounding],
-                separator='@',
+                separator=MULTILINE_SEPARATOR,
             )
         result.append(item)
     return result
@@ -52,7 +55,7 @@ def dumper(boundings) -> list:
 def loader(boundings) -> list:
     result = []
     for bounding in boundings:
-        single = '@' not in bounding
+        single = MULTILINE_SEPARATOR not in bounding
         if single:
             item = utila.parse_tuple(bounding)
         else:
@@ -60,7 +63,7 @@ def loader(boundings) -> list:
                 bounding,
                 length=None,
                 typ=str,
-                separator='@',
+                separator=MULTILINE_SEPARATOR,
             )
             item = tuple(utila.parse_tuple(it) for it in splitted)
         result.append(item)
