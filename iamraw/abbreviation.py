@@ -40,6 +40,7 @@ Abbreviations = typing.List[Abbreviation]
 class AbbreviationResult:
 
     abbreviations: Abbreviations = dataclasses.field(default_factory=list)
+    pdfpages: list = dataclasses.field(default_factory=list)
 
     def append(self, item):
         self.abbreviations.append(item)  # pylint:disable=E1101
