@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.76.2
+
+### Feature
+
+* add method to lookup abbreviation (63b8980eb8d6)
+
 ## v4.76.1
 
 ### Feature
