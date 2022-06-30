@@ -70,7 +70,10 @@ def dump_abbreviation_table(result: iamraw.abbreviation.AbbreviationResult) -> s
 def load_abbreviation_table(content: str) -> iamraw.AbbreviationResult:
     loaded = utila.yaml_load(
         content,
-        fname='groupme__abbreviation_abbreviation',
+        fname=(
+            'reftable__abbrev_abbrev',
+            'groupme__abbreviation_abbreviation',
+        ),
         safe=False,
     )
     result = iamraw.AbbreviationResult()
