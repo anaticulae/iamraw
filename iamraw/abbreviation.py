@@ -50,6 +50,16 @@ class AbbreviationResult:
     def __len__(self):
         return len(self.abbreviations)
 
+    def short_inside(self, abbrev: str) -> bool:
+        """\
+        >>> AbbreviationResult().short_inside('')
+        False
+        """
+        for item in self.abbreviations:
+            if item.short.lower() == abbrev:
+                return True
+        return False
+
 
 ExtractedTextAbbreviation = collections.namedtuple(
     'ExtractedTextAbbreviation',
