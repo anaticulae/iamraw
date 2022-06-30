@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.76.1
+
+### Feature
+
+* add default abbreviation text path (dccccd4abbc8)
+* add new default abbrev table path (cb0d28a379a7)
+
+### Fix
+
+* do not fail on pages as list (f3cb2fa30f37)
+
 ## v4.76.0
 
 ### Feature
