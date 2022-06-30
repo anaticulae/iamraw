@@ -104,6 +104,7 @@ def load_text_abbreviations(
     loaded = utila.yaml_load(
         content,
         safe=False,
+        fname='words__abbreviation_detected',
     )
     result = []
     for page in loaded:
