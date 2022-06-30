@@ -22,6 +22,9 @@ def load_footnotes(
     if prefix:
         fname = fname.replace('groupme', f'groupme_{prefix}')
     content = utila.from_raw_or_path(content, fname=fname)
+    # list is not hashable, therefore we convert to tuple for #
+    # headerfooter loading.
+    pages = utila.ensure_tuple(pages)
     loaded = serializeraw.load_headerfooter(content, pages=pages)
     result = []
     for page in loaded:
