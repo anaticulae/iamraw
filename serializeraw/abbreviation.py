@@ -61,8 +61,17 @@ def load_abbreviation(raw: dict) -> iamraw.Abbreviation:
 
 
 def dump_abbreviation_table(result: iamraw.abbreviation.AbbreviationResult) -> str: # yapf:disable
+    """\
+    >>> import iamraw; TABLE = iamraw.AbbreviationResult(pdfpages=[10, 11])
+    >>> load_abbreviation_table(dump_abbreviation_table(TABLE)) == TABLE
+    True
+    """
     assert isinstance(result, iamraw.AbbreviationResult), type(result)
-    raw = [dump_abbreviation(item) for item in result]
+    items = [dump_abbreviation(item) for item in result]
+    raw = dict(
+        content=items,
+        pdfpages=result.pdfpages,
+    )
     dumped = utila.yaml_dump(raw)
     return dumped
 
@@ -76,10 +85,10 @@ def load_abbreviation_table(content: str) -> iamraw.AbbreviationResult:
         ),
         safe=False,
     )
-    result = iamraw.AbbreviationResult()
-    for item in loaded:
-        loaded = load_abbreviation(item)
-        result.append(loaded)
+    result = iamraw.AbbreviationResult(pdfpages=loaded['pdfpages'])
+    for item in loaded['content']:
+        abbrev = load_abbreviation(item)
+        result.append(abbrev)
     return result
 
 
