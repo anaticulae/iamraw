@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.77.0
+
+### Feature
+
+* make serializer more complex (e1b5adeae71c)
+* add pdf page (58f4055faa79)
+
 ## v4.76.2
 
 ### Feature
