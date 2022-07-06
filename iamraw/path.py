@@ -233,3 +233,23 @@ def reftable_abbrev(path: str, prefix: str = '', ftype='yaml') -> str:
 
 def pdfinfo(path: str) -> str:
     return utila.join(path, 'pdfinfo.yaml')
+
+
+def smarty_phrases(path: str, prefix: str = '') -> str:
+    return con(path, 'smarty', 'phrases_phrases', prefix)
+
+
+def smarty_pleonasmas(path: str, prefix: str = '') -> str:
+    return con(path, 'smarty', 'pleonasma_pleonasma', prefix)
+
+
+def smarty_reduces(path: str, prefix: str = '') -> str:
+    return con(path, 'smarty', 'reduce_reduce', prefix)
+
+
+def smarty_spelling_hyphen(path: str, prefix: str = '') -> str:
+    return con(path, 'smarty', 'spelling_hyphen', prefix)
+
+
+def smarty_spelling_guess(path: str, prefix: str = '') -> str:
+    return con(path, 'smarty', 'spelling_guess', prefix)
