@@ -14,8 +14,8 @@ import iamraw
 
 @pytest.mark.parametrize('location, expected', [
     ('p10', iamraw.Location(page=10, shortcut='p')),
-    ('w100p13', iamraw.Location(page=13, shortcut='w', value=100)),
-    ('sec3p5', iamraw.Location(page=5, shortcut='sec', value=3)),
+    ('p13w100', iamraw.Location(page=13, shortcut='w', value=100)),
+    ('p5sec3', iamraw.Location(page=5, shortcut='sec', value=3)),
 ])
 def test_finding_location_fromstr(location, expected):
     created = iamraw.Location.fromstr(location)

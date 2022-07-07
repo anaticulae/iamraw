@@ -18,8 +18,8 @@ SUMMARY = -1
 
 LOCATION_PATTERN = utila.compiles(r"""
 (
-     ((?P<shortcut>[a-z]+)(?P<value>-{0,1}\d+))
-     ?p(?P<page>-{0,1}\d+)                        # page can be negative
+     p(?P<page>-{0,1}\d+)                        # page can be negative
+     ((?P<shortcut>[a-z]+)(?P<value>-{0,1}\d+))?
 )
 """)
 
@@ -33,15 +33,15 @@ class Location:
         Examples for location:
 
         page                p10
-        chapter             c2     p10
-        section             sec3   p5
-        paragraph           pa5    p10
-        sentence            s10    p10
-        word                w100   p13
-        char                cr137  p4
-        whitespace          ws17   p3
-        image               i1     p1
-        oneline             ol5    p13
+        chapter             p10     c2
+        section             p5      sec3
+        paragraph           p10     pa5
+        sentence            p10     s10
+        word                p13     w100
+        char                p4      cr137
+        whitespace          p3      ws17
+        image               p1      i1
+        oneline             p13     ol5
     """
     page: int = -1
     shortcut: str = None
@@ -51,7 +51,7 @@ class Location:
         value = self.value if self.value else ''
         if self.shortcut == 'p':
             return f'p{self.page}'
-        return f'{self.shortcut}{value}p{self.page}'
+        return f'p{self.page}{self.shortcut}{value}'
 
     @classmethod
     def fromstr(cls, raw: str):
@@ -82,19 +82,19 @@ class Location:
     def from_sentence(cls, sentence: int, page: int):
         assert page >= SUMMARY, str(page)
         assert sentence >= 0, str(sentence)
-        return cls.fromstr(f's{sentence}p{page}')
+        return cls.fromstr(f'p{page}s{sentence}')
 
     @classmethod
     def from_chapter(cls, chapter: int, page: int):
         assert page >= SUMMARY, str(page)
         assert chapter >= 0, str(chapter)
-        return cls.fromstr(f'c{chapter}p{page}')
+        return cls.fromstr(f'p{page}c{chapter}')
 
     @classmethod
     def from_oneline(cls, line: int, page: int):
         assert page >= SUMMARY, str(page)
         assert line >= 0, str(line)
-        return cls.fromstr(f'ol{line}p{page}')
+        return cls.fromstr(f'p{page}ol{line}')
 
 
 SUMMARY_LOCATION = Location.from_page(SUMMARY)
@@ -183,10 +183,10 @@ class RangedLocation:
 
 
 BOUNDINGLOCATION_PATTERN = utila.compiles(r"""
-    (?P<shortcut>b)
-    \((?P<tuple>((-?\d+\.\d+;{0,1}){4,}))\)
     p(?P<page>\d+)
     (l(?P<line>\d+))?
+    (?P<shortcut>b)
+    \((?P<tuple>((-?\d+\.\d+;{0,1}){4,}))\)
 """)
 
 
@@ -197,9 +197,9 @@ class BoundingLocation:
     This rectangle can be highlighted in further presentation steps. The
     rectangle is the simplest highlighting method.
 
-    >>> BoundingLocation.fromstr('b(137.0;145.0;123.0;232.0)p5')
+    >>> BoundingLocation.fromstr('p5b(137.0;145.0;123.0;232.0)')
     BoundingLocation(page=5, shortcut='b', value=(137.0, 145.0, 123.0, 232.0), line=None)
-    >>> BoundingLocation.fromstr('b(137.0;-145.0;123.0;-232.0)p5l10')
+    >>> BoundingLocation.fromstr('p5l10b(137.0;-145.0;123.0;-232.0)')
     BoundingLocation(page=5, shortcut='b', value=(137.0, -145.0, 123.0, -232.0), line=10)
     """
     page: int = -1
@@ -211,9 +211,10 @@ class BoundingLocation:
     def __str__(self) -> str:
         rounded = utila.roundme(self.value)
         joined = utila.from_tuple(rounded, separator=';')
-        raw = f'b({joined})p{self.page}'
+        raw = f'p{self.page}'
         if self.line is not None:
             raw += f'l{self.line}'
+        raw += f'b({joined})'
         return raw
 
     @classmethod
