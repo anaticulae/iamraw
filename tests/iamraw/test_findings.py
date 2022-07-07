@@ -28,9 +28,8 @@ def test_finding_location_fromstr(location, expected):
     iamraw.Location(page=5, shortcut='sec', value=3),
 ])
 def test_finding_location_fromstr_raw(location):
-    raw = location.raw()
+    raw = str(location)
     assert raw
-
     parsed = iamraw.Location.fromstr(raw)
     assert parsed == location, str(parsed)
 
@@ -84,5 +83,5 @@ def test_finding_rangedlocation_fromstr(location, expected):
 ])
 def test_finding_rangedlocation_str_obj_str(location):
     parsed = iamraw.RangedLocation.fromstr(location)
-    tostring = parsed.raw()
+    tostring = str(parsed)
     assert tostring == location

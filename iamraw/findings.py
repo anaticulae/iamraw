@@ -47,12 +47,6 @@ class Location:
     shortcut: str = None
     value: int = None
 
-    def raw(self) -> str:  # pylint:disable=no-self-use
-        value = self.value if self.value else ''
-        if self.shortcut == 'p':
-            return f'p{self.page}'
-        return f'p{self.page}{self.shortcut}{value}'
-
     @classmethod
     def fromstr(cls, raw: str):
         if not raw:
@@ -74,7 +68,7 @@ class Location:
         Location(page=10, shortcut='p', value=None)
         >>> Location.from_page(-1)
         Location(page=-1, shortcut='p', value=None)
-        >>> Location.from_page(-1).raw()
+        >>> str(Location.from_page(-1))
         'p-1'
         """
         assert page >= SUMMARY, str(page)
@@ -97,6 +91,16 @@ class Location:
         assert page >= SUMMARY, str(page)
         assert line >= 0, str(line)
         return cls.fromstr(f'p{page}ol{line}')
+
+    def __str__(self) -> str:  # pylint:disable=no-self-use
+        value = self.value if self.value else ''
+        if self.shortcut == 'p':
+            return f'p{self.page}'
+        return f'p{self.page}{self.shortcut}{value}'
+
+    def raw(self):
+        # TODO: REMOVE WITH NEXT MAJOR
+        return str(self)
 
 
 SUMMARY_LOCATION = Location.from_page(SUMMARY)
@@ -153,7 +157,19 @@ class RangedLocation:
                 setattr(result, item, int(matched[item]))
         return result
 
-    def raw(self) -> str:
+    def __repr__(self):
+        values = [
+            f'{key}={getattr(self, key)}' for key in RANGEDLOCATION_KEYS
+            if getattr(self, key) is not None
+        ]
+        values = ', '.join(values)
+        return f'RangedLocation({values})'
+
+    @property
+    def shortcut(self):
+        return 'r'
+
+    def __str__(self) -> str:
         result = f'p{self.page}'
         if self.page_end is not None:
             result += f'_{self.page_end}'
@@ -171,17 +187,9 @@ class RangedLocation:
             result += f'_{self.char_end}'
         return result
 
-    def __repr__(self):
-        values = [
-            f'{key}={getattr(self, key)}' for key in RANGEDLOCATION_KEYS
-            if getattr(self, key) is not None
-        ]
-        values = ', '.join(values)
-        return f'RangedLocation({values})'
-
-    @property
-    def shortcut(self):
-        return 'r'
+    def raw(self):
+        # TODO: REMOVE WITH NEXT MAJOR
+        return str(self)
 
 
 BOUNDINGLOCATION_PATTERN = utila.compiles(r"""
@@ -210,15 +218,6 @@ class BoundingLocation:
     value: tuple = None
     line: int = None
 
-    def __str__(self) -> str:
-        rounded = utila.roundme(self.value)
-        joined = utila.from_tuple(rounded, separator=';')
-        raw = f'p{self.page}'
-        if self.line is not None:
-            raw += f'l{self.line}'
-        raw += f'b({joined})'
-        return raw
-
     @classmethod
     def fromstr(cls, raw: str):
         assert raw, 'require input'
@@ -236,6 +235,19 @@ class BoundingLocation:
     @classmethod
     def fromtuple(cls, bounding: tuple, page: int, line: int = None):
         return cls(shortcut='b', page=page, value=bounding, line=line)
+
+    def __str__(self) -> str:
+        rounded = utila.roundme(self.value)
+        joined = utila.from_tuple(rounded, separator=';')
+        raw = f'p{self.page}'
+        if self.line is not None:
+            raw += f'l{self.line}'
+        raw += f'b({joined})'
+        return raw
+
+    def raw(self):
+        # TODO: REMOVE WITH NEXT MAJOR
+        return str(self)
 
 
 class FindingLevel(enum.Enum):
