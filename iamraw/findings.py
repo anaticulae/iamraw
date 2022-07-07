@@ -70,6 +70,8 @@ class Location:
         Location(page=-1, shortcut='p', value=None)
         >>> str(Location.from_page(-1))
         'p-1'
+        >>> str(Location.from_sentence(page=0, sentence=0))
+        'p0s0'
         """
         assert page >= SUMMARY, str(page)
         return cls.fromstr(f'p{page}')
@@ -93,7 +95,7 @@ class Location:
         return cls.fromstr(f'p{page}ol{line}')
 
     def __str__(self) -> str:  # pylint:disable=no-self-use
-        value = self.value if self.value else ''
+        value = self.value if self.value is not None else ''
         if self.shortcut == 'p':
             return f'p{self.page}'
         return f'p{self.page}{self.shortcut}{value}'
