@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v4.78.0
+
+### Feature
+
+* remove raw method, use pythonic instead (e60d4ea20ebe)
+* move the page number to the front (86afacec891b)
+* add smarty paths (c570a734b2c0)
+
+### Fix
+
+* do not skip zero value (7de3ce18cb7e)
+
 ## v4.77.0
 
 ### Feature
