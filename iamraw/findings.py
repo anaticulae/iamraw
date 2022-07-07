@@ -74,6 +74,8 @@ class Location:
         Location(page=10, shortcut='p', value=None)
         >>> Location.from_page(-1)
         Location(page=-1, shortcut='p', value=None)
+        >>> Location.from_page(-1).raw()
+        'p-1'
         """
         assert page >= SUMMARY, str(page)
         return cls.fromstr(f'p{page}')
