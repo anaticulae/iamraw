@@ -36,8 +36,6 @@ class PageList:
     area: typing.List[int] = dataclasses.field(default_factory=list)
     """Numbers of elements to build a list element."""
     area_length: typing.List[int] = dataclasses.field(default_factory=list)
-    paragraph: int = None
-    merged: int = None
     pdfpage: int = None
 
     def append(self, title: str, level: str = None):

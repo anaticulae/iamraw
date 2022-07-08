@@ -42,7 +42,6 @@ def list_raw(instance, pagenumber) -> dict:
     result = dict(
         area=area,
         content=content,
-        id=f'{instance.paragraph} {instance.merged}',
     )
     if instance.area_length:
         result['area_length'] = dump_area(instance.area_length)
@@ -77,16 +76,9 @@ def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
 def load_list_instance(raw: dict) -> iamraw.PageList:
     area = load_area(raw['area'])
     area_length = load_area(raw.get('area_length', ''))
-    paragraph, merged = utila.parse_tuple(
-        raw['id'],
-        length=2,
-        typ=int,
-    )
     result = iamraw.PageList(
         area=area,
         area_length=area_length,
-        paragraph=paragraph,
-        merged=merged,
     )
     for entree in raw['content']:
         # See (Number, Item)
