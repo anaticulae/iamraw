@@ -50,9 +50,11 @@ class Location:
     @classmethod
     def fromstr(cls, raw: str):
         if not raw:
+            utila.error(f'invalid location: {raw}')
             return None
         matched = LOCATION_PATTERN.match(raw)
         if not matched:
+            utila.error(f'invalid location: {raw}')
             return None
         page, shortcut, value = int(matched['page']), 'p', None
         with contextlib.suppress(TypeError):
