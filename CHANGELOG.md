@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.79.1
+
+### Feature
+
+* add from word ctor (7469e9daee5b)
+* increase logging (52ea1a830f2a)
+
 ## v4.79.0
 
 ### Feature
