@@ -91,6 +91,16 @@ class Location:
         return cls.fromstr(f'p{page}c{chapter}')
 
     @classmethod
+    def from_word(cls, word: int, page: int):
+        """\
+        >>> str(Location.from_word(10, 5))
+        'p5w10'
+        """
+        assert page >= SUMMARY, str(page)
+        assert word >= 0, str(word)
+        return cls.fromstr(f'p{page}w{word}')
+
+    @classmethod
     def from_oneline(cls, line: int, page: int):
         assert page >= SUMMARY, str(page)
         assert line >= 0, str(line)
