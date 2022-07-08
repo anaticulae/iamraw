@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.79.0
+
+### Feature
+
+* remove useless attributes (32ef04425ee6)
+
 ## v4.78.0
 
 ### Feature
