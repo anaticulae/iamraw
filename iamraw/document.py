@@ -90,7 +90,11 @@ class Document:
     It is possbile to iterate over the different pages to inspect the
     parsed children.
     """
-    dimension: PageSize = None
+    dimension: PageSize = dataclasses.field(
+        default=None,
+        compare=False,
+        hash=False,
+    )
     pages: Pages = dataclasses.field(default_factory=list)
 
     @property
