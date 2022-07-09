@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.79.2
+
+### Fix
+
+* do not skip empty pages (3baea51f63b1)
+* do not compare page size (580d5daa31fb)
+
 ## v4.79.1
 
 ### Feature
