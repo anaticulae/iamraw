@@ -33,11 +33,13 @@ def create_pagetextnavigators(
     state: 'TextState' = texmex.style.TextState.VISIBLE,
 ) -> texmex.navigator.PTNs:
     result = []
-    for textposition in textpositions:
-        page = textposition.page
-        content = utila.select_page(text, page)
-        if content.width is not None:
-            pagesize = (content.width, content.height)
+    # TODO: IS DEFAULT REQUIRED?
+    for page, (textpage, textposition) in utila.sync_pages(
+        (text, textpositions),
+            default=[],
+    ):
+        if textpage.width is not None:
+            pagesize = (textpage.width, textpage.height)
         else:
             # TODO: OUTDATED, REMOVE LATER
             pagesize = text.dimension
@@ -46,9 +48,9 @@ def create_pagetextnavigators(
             page=page,
         )
         # remove horizontal or vertical text container
-        content = select_textcontainer(content, mode=mode)
+        textpage = select_textcontainer(textpage, mode=mode)
         fill_navigator(
-            content,
+            textpage,
             navigator,
             textposition,
             fontstore,
