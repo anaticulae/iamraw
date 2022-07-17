@@ -49,7 +49,10 @@ def dump_raw(content) -> list:
 def load_pagenumbers(content: str, pages=None):
     loaded = utila.yaml_load(
         content,
-        fname='groupme__pagenumbers_pagenumbers',
+        fname=(
+            'pagenumber__result_result',
+            'groupme__pagenumbers_pagenumbers',
+        ),
     )
     with contextlib.suppress(TypeError):
         return fromraw(loaded, pages=pages)

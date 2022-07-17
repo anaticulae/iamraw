@@ -189,6 +189,7 @@ def groupme_distance(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'groupme', 'distance_distance', prefix, ftype=ftype)
 
 
+# TODO: REMOVE LATER
 def groupme_pagenumbers(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'groupme', 'pagenumbers_pagenumbers', prefix, ftype=ftype)
 
@@ -213,6 +214,14 @@ def groupme_figuretable(path: str, prefix: str = '', ftype='yaml') -> str:
 
 def groupme_tabletable(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'groupme', 'tabletable_tabletable', prefix, ftype=ftype)
+
+
+def pagenumber_result(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'pagenumber', 'result_result', prefix, ftype=ftype)
+
+
+def pagenumber_magic(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'pagenumber', 'magic_magic', prefix, ftype=ftype)
 
 
 def reftable_toc(path: str, prefix: str = '', ftype='yaml') -> str:
