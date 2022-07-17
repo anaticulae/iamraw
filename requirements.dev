@@ -7,10 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-rawmaker==2.37.4
-groupme==0.34.4
+rawmaker==2.37.6
+groupme==0.35.0
 
-power==2.9.0
-genex==0.30.0
+power==2.10.0
+genex==0.31.0
 
-utilatest==0.15.0
+utilatest==0.15.1
