@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.79.3
+
+### Feature
+
+* add pagenumber path (59d6928b58f5)
+
 ## v4.79.2
 
 ### Fix
