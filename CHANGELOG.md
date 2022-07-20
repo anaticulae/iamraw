@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.79.4
+
+### Feature
+
+* add optional footnote path (39a32dd28e88)
+* add footnote result path (b9a00c923aed)
+
 ## v4.79.3
 
 ### Feature
