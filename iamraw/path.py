@@ -216,6 +216,10 @@ def groupme_tabletable(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'groupme', 'tabletable_tabletable', prefix, ftype=ftype)
 
 
+def footnote_result(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'footnote', 'result_result', prefix, ftype=ftype)
+
+
 def pagenumber_result(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'pagenumber', 'result_result', prefix, ftype=ftype)
 
