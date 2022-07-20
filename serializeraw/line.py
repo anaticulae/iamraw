@@ -91,7 +91,7 @@ def load_horizontals(
             for item in page['horizontals']
         ]
         # skip short horizontals
-        horizontals = [item for item in horizontals if item.width > width_min]
+        horizontals = [item for item in horizontals if item.width >= width_min]
         if not horizontals:
             continue
         item = iamraw.PageContentHorizontals(
