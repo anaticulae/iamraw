@@ -18,9 +18,13 @@ def load_footnotes(
     prefix: str = '',
     pages: tuple = None,
 ) -> iamraw.PageContentFootnotes:
-    fname = 'groupme__footer_footerheader'
+    fname = 'groupme__footer_footerheader'  # TODO: REMOVE LATER
     if prefix:
         fname = fname.replace('groupme', f'groupme_{prefix}')
+    fname = (  # pylint:disable=R0204
+        'footnote__result_result',
+        fname,
+    )
     content = utila.from_raw_or_path(content, fname=fname)
     # list is not hashable, therefore we convert to tuple for #
     # headerfooter loading.
