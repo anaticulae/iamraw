@@ -120,7 +120,7 @@ def _load_page(content: dict) -> iamraw.Page:
             item_content = children
         loaded = loadme(CTOR[classname], item_content)
         if state is not None:
-            loaded.state = state
+            loaded.state = texmex.TextState(state)
         page.append(loaded)
     return page
 
