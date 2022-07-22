@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.80.0
+
+### Feature
+
+* add option to change text style (43a3ef796d4e)
+* add further text style (7e2018ffcb19)
+
+### Fix
+
+* adjust min width selection (b77ecd8f7442)
+
 ## v4.79.4
 
 ### Feature
