@@ -151,6 +151,9 @@ class TextState(enum.IntFlag):
     CODE = 4
     FIGURE = 8
     FORMULA = 16
+    PAGENUMBER = 32
+    FOOTNOTE = 64
+    TABLE = 128
 
 
 @dataclasses.dataclass
