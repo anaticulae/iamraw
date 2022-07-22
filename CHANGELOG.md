@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.80.1
+
+### Feature
+
+* add property to verify text state flag (159ae9123415)
+
+### Fix
+
+* support complex TextState pattern (a31b8dc58604)
+
 ## v4.80.0
 
 ### Feature
