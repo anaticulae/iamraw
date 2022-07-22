@@ -183,6 +183,9 @@ class TextInfo:
     def hide(self):
         self.state = TextState.HIDDEN
 
+    def state_change(self, new):
+        self.state = new
+
     @property
     def visible(self):
         return self.state >= TextState.VISIBLE
