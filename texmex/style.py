@@ -144,7 +144,6 @@ class TextState(enum.IntFlag):
     >>> int(TextState.FORMULA | TextState.CAPTION)
     18
     """
-    # TODO: CHANGE HIDDEN LABEL TO CREATE "HIDDEN FORMULA CAPTION"
     HIDDEN = 0
     VISIBLE = 1
     CAPTION = 2
@@ -154,6 +153,20 @@ class TextState(enum.IntFlag):
     PAGENUMBER = 32
     FOOTNOTE = 64
     TABLE = 128
+
+    @property
+    def visible(self) -> bool:
+        """\
+        >>> TextState.CAPTION.visible
+        False
+        >>> TextState.VISIBLE.visible
+        True
+        >>> TextState.HIDDEN.visible
+        False
+        >>> (TextState.CAPTION | TextState.VISIBLE).visible
+        True
+        """
+        return bool(self.value % 2)
 
 
 @dataclasses.dataclass
