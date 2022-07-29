@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.80.2
+
+### Fix
+
+* do not skip horizontals on a rotated page (1dca0e88a990)
+
 ## v4.80.1
 
 ### Feature
