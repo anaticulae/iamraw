@@ -75,6 +75,10 @@ def load_horizontals(
     prefix='',
     width_min: int = 120,
 ) -> iamraw.PagesWithHorizontalList:
+    """Load horizontals or verticals.
+
+    A vertical is a horizontal on a rotated page.
+    """
     prefix = f'{prefix}_' if prefix else ''
     loaded = utila.yaml_load(
         content,

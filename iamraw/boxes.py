@@ -25,7 +25,13 @@ class HorizontalLine(Boxed):
 
     @property
     def width(self):
-        return abs(self.box.x1 - self.box.x0)
+        width_ = abs(self.box.x1 - self.box.x0)
+        height_ = abs(self.box.y1 - self.box.y0)
+        if height_ > width_:
+            # rotated page
+            return height_
+        # normal horizontal
+        return width_
 
     def __str__(self):
         xleft = min([self.box.x0, self.box.x1])
