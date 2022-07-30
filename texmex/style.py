@@ -152,7 +152,8 @@ class TextState(enum.IntFlag):
     FORMULA = 16
     PAGENUMBER = 32
     FOOTNOTE = 64
-    TABLE = 128
+    HEADNOTE = 128
+    TABLE = 256
 
     @property
     def visible(self) -> bool:
