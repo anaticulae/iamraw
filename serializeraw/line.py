@@ -17,15 +17,18 @@ import iamraw
 
 def dump_lines(lines: iamraw.PageContentLines) -> str:
     lines = sorted(lines, key=lambda x: x.page)
-    result = []
+    collected = []
     for page in lines:
         if not page.content:
             # skip empty page
             continue
         content = ['%.2f %.2f %.2f %.2f' % item for item in page.content]
-        raw = {'page': page.page, 'content': content}
-        result.append(raw)
-    dumped = utila.yaml_dump(result)
+        pageitem = dict(
+            page=page.page,
+            content=content,
+        )
+        collected.append(pageitem)
+    dumped = utila.yaml_dump(collected)
     return dumped
 
 
@@ -49,22 +52,26 @@ def load_lines(
         for raw in page['content']:
             item = utila.parse_tuple(raw)
             content.append(item)
-        result.append(iamraw.PageContentLine(page=pagenumber, content=content))
+        result.append(iamraw.PageContentLine(
+            page=pagenumber,
+            content=content,
+        ))
     return result
 
 
 def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
     assert isinstance(pages, typing.Iterable), type(pages)
-    raw = []
+    collected = []
     for page in pages:
         if not page.content:
             continue  # skip empty pages
-        result = [str(horizontal.box) for horizontal in page.content]
-        raw.append({
-            'page': page.page,
-            'horizontals': result,
-        })
-    dumped = utila.yaml_dump(raw)
+        horizontals = [str(horizontal.box) for horizontal in page.content]
+        pageitem = dict(
+            page=page.page,
+            horizontals=horizontals,
+        )
+        collected.append(pageitem)
+    dumped = utila.yaml_dump(collected)
     return dumped
 
 
