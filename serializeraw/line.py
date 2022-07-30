@@ -27,6 +27,8 @@ def dump_lines(lines: iamraw.PageContentLines) -> str:
             page=page.page,
             content=content,
         )
+        if page.rotated:
+            pageitem['rotated'] = 1
         collected.append(pageitem)
     dumped = utila.yaml_dump(collected)
     return dumped
@@ -52,10 +54,13 @@ def load_lines(
         for raw in page['content']:
             item = utila.parse_tuple(raw)
             content.append(item)
-        result.append(iamraw.PageContentLine(
+        rotated = utila.str2bool(page.get('rotated', False))
+        pageitem = iamraw.PageContentLine(
             page=pagenumber,
             content=content,
-        ))
+            rotated=rotated,
+        )
+        result.append(pageitem)
     return result
 
 
@@ -70,6 +75,8 @@ def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
             page=page.page,
             horizontals=horizontals,
         )
+        if page.rotated:
+            pageitem['rotated'] = 1
         collected.append(pageitem)
     dumped = utila.yaml_dump(collected)
     return dumped
@@ -105,9 +112,11 @@ def load_horizontals(
         horizontals = [item for item in horizontals if item.width >= width_min]
         if not horizontals:
             continue
+        rotated = utila.str2bool(page.get('rotated', False))
         item = iamraw.PageContentHorizontals(
             content=horizontals,
             page=pagenumber,
+            rotated=rotated,
         )
         result.append(item)
     return result

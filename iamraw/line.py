@@ -15,6 +15,7 @@ import typing
 class PageContentLine:
     page: int
     content: list
+    rotated: bool = False
 
 
 PageContentLines = typing.List[PageContentLine]

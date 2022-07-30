@@ -85,13 +85,13 @@ def test_dump_and_load_horizontal():
                 HorizontalLine(box=BoundingBox(72.00, 298.76, 540.00, 298.76)),
             ],
             page=5,
+            rotated=True,
         ),
     ]
 
     dumped = dump_horizontals(pages)
     assert dumped
     assert len(dumped) > 100
-
     loaded = load_horizontals(dumped)
     assert loaded == pages
 

@@ -23,6 +23,7 @@ PageContentBoxes = collections.namedtuple(
 class PageContentHorizontals:
     content: list
     page: int
+    rotated: bool = False
 
 
 PagesWithBoxList = typing.List[PageContentBoxes]
