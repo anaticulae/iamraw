@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.81.0
+
+### Feature
+
+* add rotated flag (a303df26b862)
+
 ## v4.80.3
 
 ### Feature
