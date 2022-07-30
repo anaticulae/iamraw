@@ -220,6 +220,10 @@ def footnote_result(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'footnote', 'result_result', prefix, ftype=ftype)
 
 
+def headnote_result(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'headnote', 'result_result', prefix, ftype=ftype)
+
+
 def pagenumber_result(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'pagenumber', 'result_result', prefix, ftype=ftype)
 
