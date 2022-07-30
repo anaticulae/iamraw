@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.80.3
+
+### Feature
+
+* add headnote type (cab593bffd05)
+* add headnote result path (be573be5dfb2)
+
 ## v4.80.2
 
 ### Fix
