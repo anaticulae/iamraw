@@ -17,10 +17,13 @@ PageContentBoxes = collections.namedtuple(
     'PageContentBoxes',
     'content page',
 )
-PageContentHorizontals = collections.namedtuple(
-    'PageContentHorizontals',
-    'content page',
-)
+
+
+@dataclasses.dataclass
+class PageContentHorizontals:
+    content: list
+    page: int
+
 
 PagesWithBoxList = typing.List[PageContentBoxes]
 PagesWithHorizontalList = typing.List[PageContentHorizontals]

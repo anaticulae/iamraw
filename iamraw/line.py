@@ -7,8 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import collections
+import dataclasses
 import typing
 
-PageContentLine = collections.namedtuple('PageContentLine', 'page, content')
+
+@dataclasses.dataclass
+class PageContentLine:
+    page: int
+    content: list
+
+
 PageContentLines = typing.List[PageContentLine]
