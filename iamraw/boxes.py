@@ -7,21 +7,27 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from collections import namedtuple
-from dataclasses import dataclass
-from typing import List
+import collections
+import dataclasses
+import typing
 
-from iamraw.document import Boxed
+import iamraw.document
 
-PageContentBoxes = namedtuple('PageContentBoxes', 'content page')
-PageContentHorizontals = namedtuple('PageContentHorizontals', 'content page')
+PageContentBoxes = collections.namedtuple(
+    'PageContentBoxes',
+    'content page',
+)
+PageContentHorizontals = collections.namedtuple(
+    'PageContentHorizontals',
+    'content page',
+)
 
-PagesWithBoxList = List[PageContentBoxes]
-PagesWithHorizontalList = List[PageContentHorizontals]
+PagesWithBoxList = typing.List[PageContentBoxes]
+PagesWithHorizontalList = typing.List[PageContentHorizontals]
 
 
-@dataclass
-class HorizontalLine(Boxed):
+@dataclasses.dataclass
+class HorizontalLine(iamraw.document.Boxed):
 
     @property
     def width(self):
@@ -38,8 +44,8 @@ class HorizontalLine(Boxed):
         return 'HorizontalLine[xleft=%d, width=%d]' % (xleft, self.width)
 
 
-@dataclass
-class Box(Boxed):
+@dataclasses.dataclass
+class Box(iamraw.document.Boxed):
     """This Box can contains Text, Images etc."""
 
     def __str__(self):
