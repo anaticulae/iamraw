@@ -25,6 +25,17 @@ class PageContentHorizontals:
     page: int
     rotated: bool = False
 
+    def __getitem__(self, index):
+        """\
+        >>> content, page=PageContentHorizontals(['EMPTY'], page=7); page, content
+        (7, ['EMPTY'])
+        """
+        if index == 0:  # pylint:disable=compare-to-zero
+            return self.content
+        if index == 1:
+            return self.page
+        raise StopIteration
+
 
 PagesWithBoxList = typing.List[PageContentBoxes]
 PagesWithHorizontalList = typing.List[PageContentHorizontals]

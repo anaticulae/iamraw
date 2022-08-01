@@ -17,5 +17,16 @@ class PageContentLine:
     content: list
     rotated: bool = False
 
+    def __getitem__(self, index):
+        """\
+        >>> page, content = PageContentLine(5, ['EMPTY']); page, content
+        (5, ['EMPTY'])
+        """
+        if index == 0:  # pylint:disable=compare-to-zero
+            return self.page
+        if index == 1:
+            return self.content
+        raise StopIteration
+
 
 PageContentLines = typing.List[PageContentLine]
