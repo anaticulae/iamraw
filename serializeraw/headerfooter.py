@@ -119,6 +119,9 @@ def _dump_footer(footer):
             raw['page_location'] = str(footer.page_location)
         else:
             raw['page_location'] = None
+    if isinstance(footer, iamraw.FixedFooterInformation):
+        if dumped := _dump_header(footer):
+            return dumped
     return raw
 
 
@@ -156,6 +159,8 @@ def _load_footer(raw) -> iamraw.FooterInformation:
         if page is not None:
             result.page = page
         return result
+    if loaded := _load_footer_fixed(raw):
+        return loaded
     # try to export FixedFooterInformation
     result = iamraw.FixedFooterInformation(
         begin=begin,
@@ -199,6 +204,32 @@ def _load_header(raw):
         title = _load_headerinfo_headertitle(raw['title'])
 
     result = iamraw.FixedHeaderInformation(
+        begin=begin,
+        end=end,
+        page=page,
+    )
+    if undefined:
+        result.undefined = undefined
+    if title:
+        result.title = title
+    return result
+
+
+def _load_footer_fixed(raw):
+    if not raw:
+        return None
+    begin = raw['begin']
+    end = raw['end']
+    page = _load_pageinformation(raw.get('page'))
+    undefined = None
+    with contextlib.suppress(KeyError):
+        undefined = [
+            _load_headerinfo_undefined(item) for item in raw['undefined']
+        ]
+    title = None
+    with contextlib.suppress(KeyError):
+        title = _load_headerinfo_headertitle(raw['title'])
+    result = iamraw.FixedFooterInformation(
         begin=begin,
         end=end,
         page=page,

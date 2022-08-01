@@ -206,7 +206,17 @@ class FixedHeaderInformation(HeaderInformation):
 
 @dataclasses.dataclass
 class FixedFooterInformation(FooterInformation):
-    pass
+    title: HeaderTitle = None
+    undefined: typing.List[RawText] = dataclasses.field(default_factory=list)
+    images: typing.List[HeaderImages] = dataclasses.field(default_factory=list)
+
+    def append(self, item):
+        if isinstance(item, RawText):
+            self.undefined.append(item)  # pylint:disable=E1101
+        elif isinstance(item, HeaderImages):
+            self.images.append(item)  # pylint:disable=E1101
+        else:
+            raise ValueError(f'wrong data type: {item}')
 
 
 @dataclasses.dataclass
