@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.81.1
+
+### Fix
+
+* make container unpacking again (787157d8d655)
+
 ## v4.81.0
 
 ### Feature
