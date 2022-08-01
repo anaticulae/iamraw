@@ -27,6 +27,7 @@ import iamraw
 
 THESIS = {
     iamraw.DocumentType.HOMEWORK: {
+        'Belegarbeit',
         'Komplexe Transferaufgabe',
         'Projektarbeit',
         'Projektpraktikum',
