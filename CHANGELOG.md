@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.82.0
+
+### Feature
+
+* add option to dump and load more common footer data (9ecd37dce323)
+* extend possible homework types (7bc83162549f)
+
 ## v4.81.1
 
 ### Fix
