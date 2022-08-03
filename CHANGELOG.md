@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.82.1
+
+### Feature
+
+* add image type (8e28ab6eb0a8)
+* add headnote fixed and common path (9c2e7a8dff90)
+
 ## v4.82.0
 
 ### Feature
