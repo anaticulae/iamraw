@@ -220,6 +220,14 @@ def footnote_result(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'footnote', 'result_result', prefix, ftype=ftype)
 
 
+def headnote_fixed(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'headnote', 'fixed_fixed', prefix, ftype=ftype)
+
+
+def headnote_common(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'headnote', 'common_common', prefix, ftype=ftype)
+
+
 def headnote_result(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'headnote', 'result_result', prefix, ftype=ftype)
 
