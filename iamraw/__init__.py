@@ -150,9 +150,9 @@ from iamraw.formula import PageContentFormulas
 from iamraw.formula import PageContentRawFormula
 from iamraw.formula import PageContentRawFormulas
 # headerfooter
-from iamraw.headerfooter import FixedFooterInformation
-from iamraw.headerfooter import FixedHeaderInformation
-from iamraw.headerfooter import FooterInformation
+from iamraw.headerfooter import FixedFooterInfo
+from iamraw.headerfooter import FixedHeaderInfo
+from iamraw.headerfooter import FooterInfo
 from iamraw.headerfooter import FootJudgedNote
 from iamraw.headerfooter import FootNote
 from iamraw.headerfooter import FootNoteMerged
@@ -161,11 +161,11 @@ from iamraw.headerfooter import FootNotes
 from iamraw.headerfooter import HeaderImages
 from iamraw.headerfooter import HeaderInformation
 from iamraw.headerfooter import HeaderTitle
-from iamraw.headerfooter import MovingFooterInformation
+from iamraw.headerfooter import MovingFooterInfo
 from iamraw.headerfooter import PageContentFooterHeader
 from iamraw.headerfooter import PageContentFooterHeaders
 from iamraw.headerfooter import PageInformation
-from iamraw.headerfooter import PagesFooterInformation
+from iamraw.headerfooter import PagesFooterInfo
 from iamraw.headerfooter import RawText
 # headlines
 from iamraw.headlines import Headline
@@ -336,6 +336,11 @@ from iamraw.whitepage import WhitePage
 
 # TODO: REMOVE LATER
 FootRawNote = FootNoteRaw
+FixedFooterInformation = FixedFooterInfo
+FixedHeaderInformation = FixedHeaderInfo
+FooterInformation = FooterInfo
+MovingFooterInformation = MovingFooterInfo
+PagesFooterInformation = PagesFooterInfo
 
 __version__ = '4.82.0'
 

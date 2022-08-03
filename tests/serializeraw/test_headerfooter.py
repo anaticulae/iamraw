@@ -49,8 +49,8 @@ def test_footerheader_dump_invalid_list():
         serializeraw.dump_headerfooter(duplication)
 
 
-def test_footerheader_movingfooterinformation():
-    footer = iamraw.MovingFooterInformation()
+def test_footerheader_movingfooterinfo():
+    footer = iamraw.MovingFooterInfo()
     note = iamraw.FootNoteRaw(number=1, text='hello', raw='1 hello')
     assert not footer
     footer.append(note)
@@ -59,7 +59,7 @@ def test_footerheader_movingfooterinformation():
 
 
 def test_footerheader_footer_extend():
-    footer = iamraw.MovingFooterInformation()
+    footer = iamraw.MovingFooterInfo()
     footer.extend(begin=0.2)
     assert footer.begin == 0.2
     footer.extend(begin=0.3)
@@ -90,7 +90,7 @@ def test_footerheader_header_extend():
 
 
 def test_footerheader_footer_dump():
-    footer = iamraw.PagesFooterInformation(
+    footer = iamraw.PagesFooterInfo(
         page_location=iamraw.BoundingBox(10, 20, 50, 60),
         page=iamraw.PageInformation(
             value=1,
@@ -113,7 +113,7 @@ def test_footerheader_footer_dump():
 def test_dump_mergednote():
     data = iamraw.PageContentFooterHeader(
         header=None,
-        footer=iamraw.MovingFooterInformation(
+        footer=iamraw.MovingFooterInfo(
             begin=0.76,
             end=1.0,
             page=None,

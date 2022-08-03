@@ -110,22 +110,22 @@ def _dump_footer(footer):
     if footer.page is not None:
         raw['page_value'] = footer.page.value
         raw['page_raw'] = footer.page.raw
-    if isinstance(footer, iamraw.MovingFooterInformation):
+    if isinstance(footer, iamraw.MovingFooterInfo):
         # dump footnotes
         notes = [dump_footnote(item) for item in footer.notes]
         raw['notes'] = notes
-    if isinstance(footer, iamraw.PagesFooterInformation):
+    if isinstance(footer, iamraw.PagesFooterInfo):
         if footer.page_location is not None:
             raw['page_location'] = str(footer.page_location)
         else:
             raw['page_location'] = None
-    if isinstance(footer, iamraw.FixedFooterInformation):
+    if isinstance(footer, iamraw.FixedFooterInfo):
         if dumped := _dump_header(footer):
             return dumped
     return raw
 
 
-def _load_footer(raw) -> iamraw.FooterInformation:
+def _load_footer(raw) -> iamraw.FooterInfo:
     if not raw:
         return None
     begin = raw['begin']
@@ -136,22 +136,22 @@ def _load_footer(raw) -> iamraw.FooterInformation:
             value=raw['page_value'],
             raw=raw['page_raw'],
         )
-    # try to export MovingFooterInformation
+    # try to export MovingFooterInfo
     with contextlib.suppress(KeyError):
         notes = raw['notes']
         notes = [load_footnote(item) for item in notes]
-        result = iamraw.MovingFooterInformation(
+        result = iamraw.MovingFooterInfo(
             begin=begin,
             end=end,
             notes=notes,
         )
         return result
-    # try to export PagesFooterInformation
+    # try to export PagesFooterInfo
     with contextlib.suppress(KeyError):
         page_location = raw['page_location']
         if page_location is not None:
             page_location = iamraw.BoundingBox.from_str(page_location)
-        result = iamraw.PagesFooterInformation(  # pylint:disable=R0204
+        result = iamraw.PagesFooterInfo(  # pylint:disable=R0204
             begin=begin,
             end=end,
             page_location=page_location,
@@ -161,8 +161,8 @@ def _load_footer(raw) -> iamraw.FooterInformation:
         return result
     if loaded := _load_footer_fixed(raw):
         return loaded
-    # try to export FixedFooterInformation
-    result = iamraw.FixedFooterInformation(
+    # try to export FixedFooterInfo
+    result = iamraw.FixedFooterInfo(
         begin=begin,
         end=end,
     )
@@ -203,7 +203,7 @@ def _load_header(raw):
     with contextlib.suppress(KeyError):
         title = _load_headerinfo_headertitle(raw['title'])
 
-    result = iamraw.FixedHeaderInformation(
+    result = iamraw.FixedHeaderInfo(
         begin=begin,
         end=end,
         page=page,
@@ -229,7 +229,7 @@ def _load_footer_fixed(raw):
     title = None
     with contextlib.suppress(KeyError):
         title = _load_headerinfo_headertitle(raw['title'])
-    result = iamraw.FixedFooterInformation(
+    result = iamraw.FixedFooterInfo(
         begin=begin,
         end=end,
         page=page,

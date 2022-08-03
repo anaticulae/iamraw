@@ -70,13 +70,13 @@ class HeaderInformation:
 
 
 @dataclasses.dataclass
-class FooterInformation:
+class FooterInfo:
     begin: float = None
     end: float = None
     page: PageInformation = None
 
     def extend(self, begin=None, end=None):
-        """Update area of FooterInformation. Maximze area."""
+        """Update area of FooterInfo. Maximze area."""
         if begin is not None:
             self.begin = min(
                 self.begin if self.begin is not None else utila.INF,
@@ -190,7 +190,7 @@ class RawText:
 
 
 @dataclasses.dataclass
-class FixedHeaderInformation(HeaderInformation):
+class FixedHeaderInfo(HeaderInformation):
     title: HeaderTitle = None
     undefined: typing.List[RawText] = dataclasses.field(default_factory=list)
     images: typing.List[HeaderImages] = dataclasses.field(default_factory=list)
@@ -205,7 +205,7 @@ class FixedHeaderInformation(HeaderInformation):
 
 
 @dataclasses.dataclass
-class FixedFooterInformation(FooterInformation):
+class FixedFooterInfo(FooterInfo):
     title: HeaderTitle = None
     undefined: typing.List[RawText] = dataclasses.field(default_factory=list)
     images: typing.List[HeaderImages] = dataclasses.field(default_factory=list)
@@ -220,7 +220,7 @@ class FixedFooterInformation(FooterInformation):
 
 
 @dataclasses.dataclass
-class MovingFooterInformation(FooterInformation):
+class MovingFooterInfo(FooterInfo):
     notes: FootNotes = dataclasses.field(default_factory=list)
 
     def append(self, item):
@@ -233,10 +233,10 @@ class MovingFooterInformation(FooterInformation):
         return len(self.notes)
 
     def __repr__(self):
-        raw = f'MovingFooterInformation(page={self.page}, notes={self.notes})'
+        raw = f'MovingFooterInfo(page={self.page}, notes={self.notes})'
         return raw
 
 
 @dataclasses.dataclass
-class PagesFooterInformation(FooterInformation):
+class PagesFooterInfo(FooterInfo):
     page_location: BoundingBox = None

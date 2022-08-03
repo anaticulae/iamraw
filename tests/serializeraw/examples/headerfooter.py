@@ -8,15 +8,15 @@
 # =============================================================================
 
 from iamraw import BoundingBox
-from iamraw import FixedFooterInformation
-from iamraw import FixedHeaderInformation
+from iamraw import FixedFooterInfo
+from iamraw import FixedHeaderInfo
 from iamraw import FootNoteMerged
 from iamraw import FootNoteRaw
 from iamraw import HeaderTitle
-from iamraw import MovingFooterInformation
+from iamraw import MovingFooterInfo
 from iamraw import PageContentFooterHeader
 from iamraw import PageInformation
-from iamraw import PagesFooterInformation
+from iamraw import PagesFooterInfo
 from iamraw import RawText
 
 FOOTER_HEADER = [
@@ -27,7 +27,7 @@ FOOTER_HEADER = [
     PageContentFooterHeader(header=None, footer=None, page=7),
     PageContentFooterHeader(
         header=None,
-        footer=MovingFooterInformation(
+        footer=MovingFooterInfo(
             begin=0.81,
             end=1.0,
             page=None,
@@ -48,7 +48,7 @@ FOOTER_HEADER = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=MovingFooterInformation(
+        footer=MovingFooterInfo(
             begin=0.76,
             end=1.0,
             page=None,
@@ -74,7 +74,7 @@ FOOTER_HEADER = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=MovingFooterInformation(
+        footer=MovingFooterInfo(
             begin=0.81,
             end=1.0,
             page=None,
@@ -95,7 +95,7 @@ FOOTER_HEADER = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=MovingFooterInformation(
+        footer=MovingFooterInfo(
             begin=0.82,
             end=1.0,
             page=None,
@@ -111,7 +111,7 @@ FOOTER_HEADER = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=MovingFooterInformation(
+        footer=MovingFooterInfo(
             begin=0.79,
             end=1.0,
             page=None,
@@ -139,7 +139,7 @@ FOOTER_HEADER = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=MovingFooterInformation(
+        footer=MovingFooterInfo(
             begin=0.81,
             end=1.0,
             page=None,
@@ -157,7 +157,7 @@ FOOTER_HEADER = [
 
 SECOND = [
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='ii', raw='ii'),
@@ -169,7 +169,7 @@ SECOND = [
         page=2,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='iii', raw='iii'),
@@ -181,7 +181,7 @@ SECOND = [
         page=3,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='iv', raw='iv'),
@@ -193,7 +193,7 @@ SECOND = [
         page=4,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='2', raw='2'),
@@ -206,7 +206,7 @@ SECOND = [
         page=6,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='3', raw='3'),
@@ -219,7 +219,7 @@ SECOND = [
         page=7,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='5', raw='5'),
@@ -231,7 +231,7 @@ SECOND = [
         page=9,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='9', raw='9'),
@@ -243,7 +243,7 @@ SECOND = [
         page=13,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='10', raw='10'),
@@ -255,7 +255,7 @@ SECOND = [
         page=14,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='11', raw='11'),
@@ -268,7 +268,7 @@ SECOND = [
         page=15,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.14,
             page=PageInformation(value='12', raw='12'),
@@ -284,7 +284,7 @@ SECOND = [
 THIRD = [
     PageContentFooterHeader(
         header=None,
-        footer=PagesFooterInformation(
+        footer=PagesFooterInfo(
             begin=0.95,
             end=1.0,
             page=None,
@@ -297,7 +297,7 @@ THIRD = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=PagesFooterInformation(
+        footer=PagesFooterInfo(
             begin=0.95,
             end=1.0,
             page=None,
@@ -310,7 +310,7 @@ THIRD = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=PagesFooterInformation(
+        footer=PagesFooterInfo(
             begin=0.95,
             end=1.0,
             page=None,
@@ -323,7 +323,7 @@ THIRD = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=PagesFooterInformation(
+        footer=PagesFooterInfo(
             begin=0.95,
             end=1.0,
             page=None,
@@ -336,7 +336,7 @@ THIRD = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=PagesFooterInformation(
+        footer=PagesFooterInfo(
             begin=0.95,
             end=1.0,
             page=None,
@@ -353,16 +353,16 @@ FOURTH = [
     PageContentFooterHeader(header=None, footer=None, page=0),
     PageContentFooterHeader(
         header=None,
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=2,
     ),
     PageContentFooterHeader(
         header=None,
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=3,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.07,
             page=None,
@@ -373,11 +373,11 @@ FOURTH = [
                 ),
             ],
             images=[]),
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=4,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.07,
             page=None,
@@ -387,16 +387,16 @@ FOURTH = [
                     text='The RestructuredText Book Documentation, Release 0.1')
             ],
             images=[]),
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=5,
     ),
     PageContentFooterHeader(
         header=None,
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=6,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.07,
             page=None,
@@ -407,16 +407,16 @@ FOURTH = [
                 ),
             ],
             images=[]),
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=7,
     ),
     PageContentFooterHeader(
         header=None,
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=8,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.07,
             page=None,
@@ -427,16 +427,16 @@ FOURTH = [
                 ),
             ],
             images=[]),
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=9,
     ),
     PageContentFooterHeader(
         header=None,
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=10,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.07,
             page=None,
@@ -447,16 +447,16 @@ FOURTH = [
                 ),
             ],
             images=[]),
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=11,
     ),
     PageContentFooterHeader(
         header=None,
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=12,
     ),
     PageContentFooterHeader(
-        header=FixedHeaderInformation(
+        header=FixedHeaderInfo(
             begin=0.0,
             end=0.07,
             page=None,
@@ -467,7 +467,7 @@ FOURTH = [
                 ),
             ],
             images=[]),
-        footer=FixedFooterInformation(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=13,
     ),
 ]
