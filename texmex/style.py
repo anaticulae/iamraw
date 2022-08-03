@@ -140,20 +140,21 @@ class TextLineStyle(enum.IntEnum):
 class TextState(enum.IntFlag):
     """\
     >>> int(TextState.FORMULA)
-    16
+    32
     >>> int(TextState.FORMULA | TextState.CAPTION)
-    18
+    34
     """
     HIDDEN = 0
     VISIBLE = 1
     CAPTION = 2
     CODE = 4
-    FIGURE = 8
-    FORMULA = 16
-    PAGENUMBER = 32
-    FOOTNOTE = 64
-    HEADNOTE = 128
-    TABLE = 256
+    IMAGE = 8
+    FIGURE = 16
+    FORMULA = 32
+    PAGENUMBER = 64
+    FOOTNOTE = 128
+    HEADNOTE = 256
+    TABLE = 512
 
     @property
     def visible(self) -> bool:
