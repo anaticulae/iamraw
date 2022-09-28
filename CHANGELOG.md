@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.83.0 (2022-09-28)
+
+### Chore
+
+* use modern test data generator (5ac39f97480a)
+* add Jenkinsfile (53e4043e50e5)
+* upgrade requirements.txt (ac465ffe637f)
+
 ## v4.82.1
 
 ### Feature
