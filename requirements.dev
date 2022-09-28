@@ -14,3 +14,7 @@ power==2.14.1
 genex==0.35.1
 
 utilatest==0.20.1
+pagenumber>=0.2.1<0.3.0
+footnote>=0.2.2<0.3.0
+reftable>=0.4.0<0.5.0
+sections>=1.21.2<1.22.0

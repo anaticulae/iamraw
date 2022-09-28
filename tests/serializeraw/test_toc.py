@@ -60,9 +60,11 @@ def toc_example(dump_raw: bool = False):
 
 
 @utilatest.requires(power.DOCU007_PDF)
-def test_load_toc_from_path():
+def test_load_toc_from_path(testdir):
     source = power.link(power.DOCU007_PDF)
-    toc = serializeraw.load_toc(source)
+    cmd = f'reftable -i {source} -o {testdir.tmpdir} --toc --page=0'
+    utila.run(cmd)
+    toc = serializeraw.load_toc(testdir.tmpdir)
     assert toc
 
 
