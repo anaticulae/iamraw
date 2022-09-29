@@ -24,6 +24,7 @@ def test_yamlpages_write(testdir):
         source,
         dst=testdir.tmpdir,
         pattern=filename,
+        unlock=True,
     )
     dumped = serializeraw.dump_document(
         serializeraw.load_document(filename),
@@ -50,6 +51,7 @@ def test_yamlpages_compare_speed(testdir, capsys):
         source,
         dst=testdir.tmpdir,
         pattern=filename,
+        unlock=True,
     )
     dumped = serializeraw.dump_document(
         serializeraw.load_document(filename),
