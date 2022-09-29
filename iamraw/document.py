@@ -199,6 +199,10 @@ Lines = typing.List[Line]
 
 @dataclasses.dataclass
 class TextContainer(Boxed):
+    """\
+    >>> TextContainer() == TextContainer()
+    True
+    """
     lines: Lines = dataclasses.field(default_factory=list)
     state: 'texmex.TextState' = None
 
@@ -234,6 +238,11 @@ class TextContainer(Boxed):
         """\
         >>> TextContainer().textstate
         <TextState.VISIBLE:...>
+        >>> import texmex
+        >>> TextContainer(state=texmex.TextState.VISIBLE) == TextContainer(state=texmex.TextState.VISIBLE)
+        True
+        >>> TextContainer(state=texmex.TextState.HIDDEN) == TextContainer(state=texmex.TextState.VISIBLE)
+        False
         """
         import texmex
         if self.state is None:
