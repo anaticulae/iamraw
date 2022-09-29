@@ -202,6 +202,10 @@ class TextContainer(Boxed):
     """\
     >>> TextContainer() == TextContainer()
     True
+
+    Ensure hashing TextContainer
+    >>> hash(TextContainer()) == hash(TextContainer())
+    True
     """
     lines: Lines = dataclasses.field(default_factory=list)
     state: 'texmex.TextState' = None
@@ -255,6 +259,10 @@ class TextContainer(Boxed):
         if self.state is None:
             return True
         return self.state.visible
+
+    def __hash__(self):
+        # TODO: VERY SIMPLE HASH
+        return hash(str(self) + str(self.textstate))
 
 
 TextContainers = typing.List[TextContainer]
