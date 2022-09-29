@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.84.0 (2022-09-29)
+
+### Feature
+
+* add simple TextContainer hash-method (6884a9feb1e4)
+
+### Chore
+
+* upgrade requirements.txt (ece3c3fc523e)
+
 ## v4.83.0 (2022-09-28)
 
 ### Chore
