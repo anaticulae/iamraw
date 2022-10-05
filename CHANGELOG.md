@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.84.1 (2022-10-05)
+
+### Chore
+
+* upgrade baw (7c8fff80cddb)
+* root is not required (a87356fee473)
+
 ## v4.84.0 (2022-09-29)
 
 ### Feature
