@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.84.2 (2022-10-05)
+
+### Chore
+
+* upgrade requirements.txt (1077476b6b2f)
+
 ## v4.84.1 (2022-10-05)
 
 ### Chore
