@@ -57,6 +57,7 @@ class HeaderInfo:
     begin: float = None
     end: float = None
     page: PageInformation = None
+    refs: list = None
 
     def extend(self, begin=None, end=None):
         """Update area of HeaderInfo. Maximze area."""
@@ -74,6 +75,7 @@ class FooterInfo:
     begin: float = None
     end: float = None
     page: PageInformation = None
+    refs: list = None
 
     def extend(self, begin=None, end=None):
         """Update area of FooterInfo. Maximze area."""
