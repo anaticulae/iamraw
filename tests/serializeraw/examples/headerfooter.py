@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import iamraw
 from iamraw import BoundingBox
 from iamraw import FixedFooterInfo
 from iamraw import FixedHeaderInfo
@@ -19,7 +20,7 @@ from iamraw import PageInformation
 from iamraw import PagesFooterInfo
 from iamraw import RawText
 
-FOOTER_HEADER = [
+FOOTER_HEADER = iamraw.PageContentFooterHeaders([
     PageContentFooterHeader(header=None, footer=None, page=2),
     PageContentFooterHeader(header=None, footer=None, page=3),
     PageContentFooterHeader(header=None, footer=None, page=4),
@@ -153,9 +154,9 @@ FOOTER_HEADER = [
         ),
         page=19,
     ),
-]
+])
 
-SECOND = [
+SECOND = iamraw.PageContentFooterHeaders([
     PageContentFooterHeader(
         header=FixedHeaderInfo(
             begin=0.0,
@@ -280,8 +281,8 @@ SECOND = [
         footer=None,
         page=16,
     ),
-]
-THIRD = [
+])
+THIRD = iamraw.PageContentFooterHeaders([
     PageContentFooterHeader(
         header=None,
         footer=PagesFooterInfo(
@@ -347,9 +348,9 @@ THIRD = [
         ),
         page=8,
     ),
-]
+])
 
-FOURTH = [
+FOURTH = iamraw.PageContentFooterHeaders([
     PageContentFooterHeader(header=None, footer=None, page=0),
     PageContentFooterHeader(
         header=None,
@@ -476,4 +477,4 @@ FOURTH = [
         footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=13,
     ),
-]
+])

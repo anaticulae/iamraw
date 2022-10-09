@@ -19,15 +19,21 @@ import texmex
 
 def dump_headerfooter(pages: iamraw.PageContentFooterHeaders) -> str:
     serializeraw.validate(pages)
-    result = []
+    content = []
     for page in pages:
         raw_header = _dump_header(page.header)
         raw_footer = _dump_footer(page.footer)
-        result.append({
+        content.append({
             'page': page.page,
             'header': raw_header,
             'footer': raw_footer,
         })
+    result = dict(
+        content=content,
+        __strategy__=None,
+    )
+    with contextlib.suppress(AttributeError):
+        result['__strategy__'] = pages.__strategy__
     return utila.yaml_dump(result)
 
 
@@ -41,8 +47,10 @@ def load_headerfooter(
         fname=('footnote_result_result', 'groupme__footer_footerheader'),
         safe=False,
     )
-    result = []
-    for item in loaded:
+    content = []
+    legacy = isinstance(loaded, list)
+    data = loaded if legacy else loaded['content']
+    for item in data:
         pagenumber = item['page']
         assert isinstance(pagenumber, int)
         if utila.should_skip(pagenumber, pages):
@@ -54,8 +62,11 @@ def load_headerfooter(
             footer=footer,
             page=pagenumber,
         )
-        result.append(footerheader)
-    serializeraw.validate(result)
+        content.append(footerheader)
+    serializeraw.validate(content)
+    result = iamraw.PageContentFooterHeaders(content=content)
+    if not legacy:
+        result.__strategy__ = loaded.get('__strategy__', None)
     return result
 
 

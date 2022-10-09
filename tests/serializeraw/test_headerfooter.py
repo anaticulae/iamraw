@@ -104,6 +104,8 @@ def test_footerheader_footer_dump():
             page=1,
         )
     ]
+    footers = iamraw.PageContentFooterHeaders(content=footers)  # pylint:disable=R0204
+    footers.__strategy__ = 'common'
     dumped = serializeraw.dump_headerfooter(footers)
     assert '!!python/object' not in dumped, 'we do not want yaml-bib here'
     loaded = serializeraw.load_headerfooter(dumped)
