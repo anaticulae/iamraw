@@ -192,17 +192,16 @@ def _load_header(raw):
     begin = raw['begin']
     end = raw['end']
     page = _load_pageinformation(raw['page'])
-
+    # undefined
     undefined = None
     with contextlib.suppress(KeyError):
         undefined = [
             _load_headerinfo_undefined(item) for item in raw['undefined']
         ]
-
+    # title
     title = None
     with contextlib.suppress(KeyError):
         title = _load_headerinfo_headertitle(raw['title'])
-
     result = iamraw.FixedHeaderInfo(
         begin=begin,
         end=end,
