@@ -159,7 +159,7 @@ from iamraw.headerfooter import FootNoteMerged
 from iamraw.headerfooter import FootNoteRaw
 from iamraw.headerfooter import FootNotes
 from iamraw.headerfooter import HeaderImages
-from iamraw.headerfooter import HeaderInformation
+from iamraw.headerfooter import HeaderInfo
 from iamraw.headerfooter import HeaderTitle
 from iamraw.headerfooter import MovingFooterInfo
 from iamraw.headerfooter import PageContentFooterHeader
@@ -338,6 +338,7 @@ from iamraw.whitepage import WhitePage
 FootRawNote = FootNoteRaw
 FixedFooterInformation = FixedFooterInfo
 FixedHeaderInformation = FixedHeaderInfo
+HeaderInformation = HeaderInfo
 FooterInformation = FooterInfo
 MovingFooterInformation = MovingFooterInfo
 PagesFooterInformation = PagesFooterInfo

@@ -72,7 +72,7 @@ def test_footerheader_footer_extend():
 
 
 def test_footerheader_header_extend():
-    header = iamraw.HeaderInformation()
+    header = iamraw.HeaderInfo()
     header.extend(begin=0.2)
     assert header.begin == 0.2
     header.extend(begin=0.3)

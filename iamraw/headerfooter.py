@@ -53,13 +53,13 @@ class PageInformation:
 
 
 @dataclasses.dataclass
-class HeaderInformation:
+class HeaderInfo:
     begin: float = None
     end: float = None
     page: PageInformation = None
 
     def extend(self, begin=None, end=None):
-        """Update area of HeaderInformation. Maximze area."""
+        """Update area of HeaderInfo. Maximze area."""
         if begin is not None:
             self.begin = min((
                 self.begin if self.begin is not None else utila.INF,
@@ -190,7 +190,7 @@ class RawText:
 
 
 @dataclasses.dataclass
-class FixedHeaderInfo(HeaderInformation):
+class FixedHeaderInfo(HeaderInfo):
     title: HeaderTitle = None
     undefined: typing.List[RawText] = dataclasses.field(default_factory=list)
     images: typing.List[HeaderImages] = dataclasses.field(default_factory=list)
