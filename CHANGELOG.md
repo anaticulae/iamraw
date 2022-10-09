@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.86.0 (2022-10-09)
+
+### Feature
+
+* use more complex data structure (4416f8782ff3)
+* add strategy field (1460a454d941)
+* add new file name (c3a3a28d1d32)
+
 ## v4.85.0 (2022-10-09)
 
 ### Feature
