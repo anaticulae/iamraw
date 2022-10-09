@@ -372,7 +372,8 @@ FOURTH = [
                     text='The RestructuredText Book Documentation, Release 0.1'
                 ),
             ],
-            images=[]),
+            images=[],
+            refs=[(1.1, 5.5, 10.10, 20)]),
         footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
         page=4,
     ),
@@ -432,7 +433,12 @@ FOURTH = [
     ),
     PageContentFooterHeader(
         header=None,
-        footer=FixedFooterInfo(begin=0.93, end=1.0, page=None),
+        footer=FixedFooterInfo(
+            begin=0.93,
+            end=1.0,
+            page=None,
+            refs=[(1.1, 5.5, 10.10, 20), (10.1, 50.5, 100.10, 200)],
+        ),
         page=10,
     ),
     PageContentFooterHeader(

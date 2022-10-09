@@ -183,6 +183,10 @@ def _dump_header(header):
         ]
     with contextlib.suppress(KeyError):
         raw['title'] = _dump_headerinfo_headertitle(header.title)
+    with contextlib.suppress(KeyError):
+        refs = _dump_refs(header.refs)
+        if refs:
+            raw['refs'] = refs
     return raw
 
 
@@ -200,6 +204,9 @@ def _load_header(raw):
     title = None
     with contextlib.suppress(KeyError):
         title = _load_headerinfo_headertitle(raw['title'])
+    refs = None
+    with contextlib.suppress(KeyError):
+        refs = _load_refs(raw['refs'])
     result = iamraw.FixedHeaderInfo(
         begin=begin,
         end=end,
@@ -209,6 +216,8 @@ def _load_header(raw):
         result.undefined = undef
     if title:
         result.title = title
+    if refs:
+        result.refs = refs
     return result
 
 
@@ -226,6 +235,9 @@ def _load_footer_fixed(raw):
     title = None
     with contextlib.suppress(KeyError):
         title = _load_headerinfo_headertitle(raw['title'])
+    refs = None
+    with contextlib.suppress(KeyError):
+        refs = _load_refs(raw['refs'])
     result = iamraw.FixedFooterInfo(
         begin=begin,
         end=end,
@@ -235,6 +247,8 @@ def _load_footer_fixed(raw):
         result.undefined = undefined
     if title:
         result.title = title
+    if refs:
+        result.refs = refs
     return result
 
 
@@ -291,3 +305,15 @@ def _load_headerinfo_headertitle(item):
         raw=item['raw'],
     )
     return result
+
+
+def _dump_refs(items):
+    if not items:
+        return []
+    return [utila.from_tuple(item) for item in items]
+
+
+def _load_refs(items):
+    if not items:
+        return []
+    return [utila.parse_tuple(item) for item in items]
