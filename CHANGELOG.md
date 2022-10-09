@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.85.0 (2022-10-09)
+
+### Feature
+
+* add refs serializer (c4225d191430)
+* add refs to store dependent objects (691b9a453759)
+
+### Chore
+
+* upgrade requirements.txt (f8481a1f4bfd)
+
 ## v4.84.2 (2022-10-05)
 
 ### Chore
