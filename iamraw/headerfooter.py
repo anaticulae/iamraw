@@ -13,6 +13,7 @@ import typing
 
 import utila
 
+import iamraw
 from iamraw.bounding import BoundingBox
 
 
@@ -43,7 +44,23 @@ class PageContentFooterHeader:
         return result
 
 
-PageContentFooterHeaders = typing.List[PageContentFooterHeader]
+@iamraw.extracted
+class PageContentFooterHeaders:
+
+    def __init__(self, content):
+        self.content = content
+
+    def __getitem__(self, index):
+        return self.content[index]
+
+    def __len__(self) -> int:
+        return len(self.content)
+
+    def __eq__(self, value):
+        try:
+            return self.content == value.content
+        except AttributeError:
+            return False
 
 
 @dataclasses.dataclass
