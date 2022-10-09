@@ -8,13 +8,14 @@
 #==============================================================================
 
 rawmaker==2.40.0
-groupme==0.37.0
+groupme==0.37.1
 
-power==2.14.1
+power==2.14.2
 genex==0.35.5
 
-utilatest==0.21.0
-pagenumber>=0.2.1<0.3.0
-footnote>=0.2.2<0.3.0
-reftable>=0.4.0<0.5.0
-sections>=1.21.3<1.22.0
+utilatest==0.22.0
+
+pagenumber>=0.2.1<1.0.0
+footnote>=0.2.2<1.0.0
+reftable>=0.4.0<1.0.0
+sections>=1.22.0<2.0.0

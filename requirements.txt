@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-PyYAML>=6.0.0<6.0.0
+PyYAML>=5.1.0<6.0.0
 
-configo>=0.21.1<1.0.0
-utila>=2.88.0<3.0.0
+configo>=0.22.0<1.0.0
+utila>=2.89.0<3.0.0
