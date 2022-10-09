@@ -38,7 +38,7 @@ def load_headerfooter(
 ) -> iamraw.PageContentFooterHeaders:
     loaded = utila.yaml_load(
         content,
-        fname='groupme__footer_footerheader',
+        fname=('footnote_result_result', 'groupme__footer_footerheader'),
         safe=False,
     )
     result = []
