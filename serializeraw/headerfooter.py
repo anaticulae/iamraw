@@ -193,11 +193,9 @@ def _load_header(raw):
     end = raw['end']
     page = _load_pageinformation(raw['page'])
     # undefined
-    undefined = None
+    undef = None
     with contextlib.suppress(KeyError):
-        undefined = [
-            _load_headerinfo_undefined(item) for item in raw['undefined']
-        ]
+        undef = [_load_headerinfo_undefined(item) for item in raw['undefined']]
     # title
     title = None
     with contextlib.suppress(KeyError):
@@ -207,8 +205,8 @@ def _load_header(raw):
         end=end,
         page=page,
     )
-    if undefined:
-        result.undefined = undefined
+    if undef:
+        result.undefined = undef
     if title:
         result.title = title
     return result
