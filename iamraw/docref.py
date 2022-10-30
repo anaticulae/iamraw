@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 
 @dataclasses.dataclass
@@ -22,7 +21,7 @@ class DocRef:
         return (self.page, self.sentence, self.marked)[index]
 
 
-DocRefs = typing.List[DocRef]
+DocRefs = list[DocRef]
 
 
 @dataclasses.dataclass
@@ -37,7 +36,7 @@ class TextAdvice:
         return self.docref.page if self.docref else -1
 
 
-TextAdvices = typing.List[TextAdvice]
+TextAdvices = list[TextAdvice]
 
 
 @dataclasses.dataclass

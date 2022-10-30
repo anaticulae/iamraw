@@ -59,8 +59,7 @@ def load_text(
         utila.debug('load_text without any given headlines')
     else:
         headlines = {
-            headline.identifier: headline
-            for headline in utila.flatten(headlines)
+            headline.identifier: headline for headline in utila.flat(headlines)
         }
     result = []
     for line in loaded:

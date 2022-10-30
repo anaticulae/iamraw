@@ -9,7 +9,6 @@
 
 import collections
 import dataclasses
-import typing
 
 import iamraw.document
 
@@ -37,8 +36,8 @@ class PageContentHorizontals:
         raise StopIteration
 
 
-PagesWithBoxList = typing.List[PageContentBoxes]
-PagesWithHorizontalList = typing.List[PageContentHorizontals]
+PagesWithBoxList = list[PageContentBoxes]
+PagesWithHorizontalList = list[PageContentHorizontals]
 
 
 @dataclasses.dataclass

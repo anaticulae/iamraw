@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 import utila
 
@@ -41,8 +40,8 @@ class TextProperty:
     page: int = None
 
 
-PageTextPropertiesList = typing.List[PageTextProperties]
-TextProperties = typing.List[TextProperty]
+PageTextPropertiesList = list[PageTextProperties]
+TextProperties = list[TextProperty]
 
 
 @dataclasses.dataclass

@@ -9,7 +9,6 @@
 
 import contextlib
 import dataclasses
-import typing
 
 import iamraw
 
@@ -33,7 +32,7 @@ class BibliographyReference:  # pylint:disable=R0902
 
     # a,b,c... to differentiate item in the same year
     number: str = None
-    authors: typing.List[str] = dataclasses.field(default_factory=list)
+    authors: list[str] = dataclasses.field(default_factory=list)
 
     publisher: str = None
 
@@ -63,7 +62,7 @@ class BibliographyReference:  # pylint:disable=R0902
                     self.year == 'no year')), str(self)
 
 
-BibliographyReferences = typing.List[BibliographyReference]
+BibliographyReferences = list[BibliographyReference]
 
 
 @iamraw.extracted

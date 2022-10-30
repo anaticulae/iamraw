@@ -9,7 +9,6 @@
 
 import dataclasses
 import enum
-import typing
 
 import configo
 import utila
@@ -47,7 +46,7 @@ class CharStyle:
         return self.width
 
 
-CharStyles = typing.List[CharStyle]
+CharStyles = list[CharStyle]
 
 
 @dataclasses.dataclass
@@ -57,7 +56,7 @@ class HighNote:
     value: int
 
 
-HighNotes = typing.List[HighNote]
+HighNotes = list[HighNote]
 
 
 @dataclasses.dataclass
@@ -95,7 +94,7 @@ class TextStyle:
     @classmethod
     def fontids(cls, item: 'TextStyle', method=utila.mode):
         result = [[char.font] * char.char_count for char in item.content]
-        result = utila.flatten(result)
+        result = utila.flat(result)
         return method(result)
 
     @classmethod
@@ -103,7 +102,7 @@ class TextStyle:
         # detect most common font size(s)
         assert isinstance(item, cls), type(item)
         result = [[char.size] * char.char_count for char in item.content]
-        result = utila.flatten(result)
+        result = utila.flat(result)
         return method(result)
 
     @classmethod
@@ -111,7 +110,7 @@ class TextStyle:
         assert isinstance(item, cls), type(item)
         result = [[1 if char.underline else 0] * char.char_count
                   for char in item.content]
-        result = utila.flatten(result)
+        result = utila.flat(result)
         return method(result)
 
     @classmethod

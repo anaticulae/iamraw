@@ -16,13 +16,12 @@ True
 
 import collections
 import dataclasses
-import typing
 
 PageContentImageInfo = collections.namedtuple(
     'PageContentImageInfo',
     'content page',
 )
-PageContentImageInfos = typing.List[PageContentImageInfo]
+PageContentImageInfos = list[PageContentImageInfo]
 
 
 @dataclasses.dataclass(unsafe_hash=True)
@@ -38,4 +37,4 @@ class ImageInformation:
     """Disable image to avoid further processing."""
 
 
-ImageInformations = typing.List[ImageInformation]
+ImageInformations = list[ImageInformation]

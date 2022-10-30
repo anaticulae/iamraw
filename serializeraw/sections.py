@@ -92,10 +92,11 @@ def inside_section(section: dict, pages: tuple) -> list:
 def dump_item(item):
     keys = [key for key in dir(item) if not key.startswith(SEPCIALFIELD)]
     result = {
-        key: (item.__getattribute__(key)
-              if key != 'content' else [dump_item(it) for it in item.content])
+        key: (
+            item.__getattribute__(key)  # pylint:disable=C2801
+            if key != 'content' else [dump_item(it) for it in item.content])
         for key in keys
-        if not callable(item.__getattribute__(key))
+        if not callable(item.__getattribute__(key))  # pylint:disable=C2801
     }
     result[CLASSNAME] = item.__class__.__name__
     return result

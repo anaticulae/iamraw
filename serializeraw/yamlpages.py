@@ -81,7 +81,7 @@ def load_yamlpages(content: str, pages: tuple = None, fname=None) -> str:
         return content
     fileinfo, content = content.split(utila.NEWLINE, maxsplit=1)
     fileinfo = fileinfo.replace(HEADER, '')
-    headerlength, fixed = utila.parse_numbers(fileinfo.replace(':', ' '))
+    headerlength, fixed = utila.parse_ints(fileinfo.replace(':', ' '))  # pylint:disable=W0632
     if pages is None:
         content = content[headerlength:]
         return content

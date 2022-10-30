@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import typing
+import collections.abc
 
 import configo
 import utila
@@ -65,7 +65,7 @@ def load_lines(
 
 
 def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
-    assert isinstance(pages, typing.Iterable), type(pages)
+    assert isinstance(pages, collections.abc.Iterable), type(pages)
     collected = []
     for page in pages:
         if not page.content:

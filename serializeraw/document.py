@@ -254,7 +254,7 @@ def _load_textcontainer(content) -> iamraw.TextContainer:
     assert isinstance(content, (list, tuple)), type(content)
     state = texmex.TextState.VISIBLE
     if len(content) >= 2 and isinstance(content[1], int):
-        state = texmex.TextState(content[1])
+        state: texmex.TextState = texmex.TextState(content[1])
         content = content[0]
     try:
         outdated = content[0] in 'TextContainer VerticalTextContainer'

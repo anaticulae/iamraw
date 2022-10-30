@@ -24,7 +24,6 @@ r"""Multiline
 
 import dataclasses
 import math
-import typing
 
 import configo
 import utila
@@ -50,7 +49,7 @@ class PageContentMultiLine:
         return len(self.content)
 
 
-PageContentMultiLines = typing.List[PageContentMultiLine]
+PageContentMultiLines = list[PageContentMultiLine]
 
 
 @dataclasses.dataclass
@@ -87,7 +86,7 @@ class MultilineGroup:
         return hash(str(self))
 
 
-MultilineGroups = typing.List[MultilineGroup]
+MultilineGroups = list[MultilineGroup]
 
 
 def group_pages_by_fontsize(
@@ -156,7 +155,7 @@ def group_page_by_fontsize(
 
 
 def groupby_linedistance(page: PageContentMultiLine) -> PageContentMultiLine:
-    flatten = utila.flatten(page)
+    flatten = utila.flat(page)
     distances = linedistances(flatten)
     grouped = group_linedistances(distances)
     content = unite_groups(page.content, grouped)
@@ -184,9 +183,9 @@ def linedistances(pagetextnavigator, noneatend=True):
 
 
 def group_linedistances(
-    items: typing.List[float],
+    items: list[float],
     maxdiff: float = 0.0,
-) -> typing.List[int]:
+) -> list[int]:
     """Group items and return for every group with at least 2 members at
     list of indexes.
 
@@ -309,7 +308,7 @@ def group_page_by_size_distance(
         # TODO: make container more pythonic
         size = groupcontent[0].style.content[0].size
         firstid = group[0]
-        bounding = utila.rectangle_max([item.bounding for item in groupcontent])
+        bounding = utila.rect_max([item.bounding for item in groupcontent])
         result.append(
             MultilineGroup(
                 bounding=bounding,
@@ -444,7 +443,7 @@ def merge_content(  # pylint:disable=R0914
         merged[-1].append(uindex[index])
         # merged items together and save them as last item
         result[-1] = (
-            utila.rectangle_max([member_location, merger_location]),
+            utila.rect_max([member_location, merger_location]),
             member_content,
         )
     result = [TextBoundsInfo(

@@ -10,7 +10,6 @@
 import collections
 import dataclasses
 import enum
-import typing
 
 import iamraw
 
@@ -25,17 +24,17 @@ class ListType(enum.Enum):
     MINUSED = '-'
 
 
-ListItem = typing.Tuple[str, str]
-ListItems = typing.List[ListItem]
+ListItem = tuple[str, str]
+ListItems = list[ListItem]
 
 
 @iamraw.extracted
 @dataclasses.dataclass
 class PageList:
     data: ListItems = dataclasses.field(default_factory=list)
-    area: typing.List[int] = dataclasses.field(default_factory=list)
+    area: list[int] = dataclasses.field(default_factory=list)
     """Numbers of elements to build a list element."""
-    area_length: typing.List[int] = dataclasses.field(default_factory=list)
+    area_length: list[int] = dataclasses.field(default_factory=list)
     pdfpage: int = None
 
     def append(self, title: str, level: str = None):
@@ -62,4 +61,4 @@ class PageList:
 
 
 PageContentList = collections.namedtuple('PageContentList', 'page, content')
-PageContentLists = typing.List[PageContentList]
+PageContentLists = list[PageContentList]

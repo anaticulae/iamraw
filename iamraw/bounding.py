@@ -22,7 +22,6 @@ described item which the box refers.
 """
 
 import dataclasses
-import typing
 
 import utila
 
@@ -117,7 +116,7 @@ class BoundingBox:
         return BoundingBox(x0=self.x0, y0=self.y0, x1=self.x1, y1=self.y1)
 
 
-BoundingBoxes = typing.List[BoundingBox]
+BoundingBoxes = list[BoundingBox]
 
 
 def split_y(
@@ -177,7 +176,7 @@ def split_x(
     return result
 
 
-Boundings = typing.List[typing.Tuple[int, BoundingBox]]
+Boundings = list[tuple[int, BoundingBox]]
 
 
 @dataclasses.dataclass
@@ -196,7 +195,7 @@ class PageBoundings:
         raise IndexError(f'invalid index: {index}')
 
 
-PageBoundingsList = typing.List[PageBoundings]
+PageBoundingsList = list[PageBoundings]
 
 
 def between(bounding, ymin, ymax):

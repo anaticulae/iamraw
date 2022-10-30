@@ -10,7 +10,6 @@
 import collections
 import dataclasses
 import enum
-import typing
 
 import iamraw.bounding
 
@@ -42,12 +41,12 @@ PageAnnotation = collections.namedtuple(
     'PageAnnotation',
     'pagelinks hyperlinks page',
 )
-PageAnnotations = typing.List[PageAnnotation]
+PageAnnotations = list[PageAnnotation]
 
 
-def pagelink_annotations(annos: PageAnnotations) -> typing.List[PageLink]:
+def pagelink_annotations(annos: PageAnnotations) -> list[PageLink]:
     return [item.pagelinks for item in annos]
 
 
-def hyperlink_annotations(annos: PageAnnotations) -> typing.List[HyperLink]:
+def hyperlink_annotations(annos: PageAnnotations) -> list[HyperLink]:
     return [item.hyperlinks for item in annos]

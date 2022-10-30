@@ -10,7 +10,6 @@
 import contextlib
 import dataclasses
 import enum
-import typing
 
 import utila
 
@@ -307,7 +306,7 @@ class Finding:  # pylint:disable=R0903
         assert isinstance(self.number, int) or self.number is None
 
 
-Findings = typing.List[Finding]
+Findings = list[Finding]
 
 
 @dataclasses.dataclass
@@ -325,7 +324,7 @@ class PageFinding:
         self.content.append(item)  # pylint:disable=E1101
 
 
-PageFindings = typing.List[PageFinding]
+PageFindings = list[PageFinding]
 
 
 def select_findings(findings: Findings, msgid: set = None) -> Findings:

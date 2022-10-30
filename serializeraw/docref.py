@@ -27,7 +27,7 @@ import iamraw
 def dump_docref(references: iamraw.DocRefs) -> str:
     result = []
     for reference in references:
-        marked = utila.from_tuple(utila.flatten(reference.marked))
+        marked = utila.from_tuple(utila.flat(reference.marked))
         line = f'{reference.page} {reference.sentence} {marked}'
         if reference.raw:
             reference_raw = utila.from_tuple(reference.raw, separator='@@@@')

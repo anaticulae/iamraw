@@ -8,10 +8,9 @@
 # =============================================================================
 
 from collections import namedtuple
-from typing import List
 
 PageContentTextPosition = namedtuple('PageContentTextPosition', 'content, page')
-PageContentTextPositions = List[PageContentTextPosition]
+PageContentTextPositions = list[PageContentTextPosition]
 
 TextPosition = namedtuple('TextPosition', 'bounding, mean')
-TextPositions = List[TextPosition]
+TextPositions = list[TextPosition]

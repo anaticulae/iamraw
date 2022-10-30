@@ -88,7 +88,7 @@ def load_grouped(
             pagenumber(item, none=True) for item in utila.file_list(source)
         ]
         # remove invalid file names
-        pages = utila.not_none(pages)
+        pages = utila.notnone(pages)
     # yaml parsing is cpu bound, therefore we need a process pool instead
     # of thread pool.
     executor = utila.select_executor()
@@ -170,7 +170,7 @@ def findings_from_path(
         ) for item in path
     ]
     # resolve multiple directory tree
-    files = utila.flatten(files)
+    files = utila.flat(files)
     if useronly:
         files = [
             item for item in files if utila.file_name(item).endswith('_user')

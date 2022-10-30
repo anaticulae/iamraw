@@ -9,7 +9,6 @@
 
 import contextlib
 import dataclasses
-import typing
 
 import utila
 
@@ -56,8 +55,8 @@ class Headline:
         return result
 
 
-Headlines = typing.List[Headline]
-PagesHeadlineList = typing.List[Headlines]  # TODO: REMOVE LATER
+Headlines = list[Headline]
+PagesHeadlineList = list[Headlines]  # TODO: REMOVE LATER
 
 
 @dataclasses.dataclass(unsafe_hash=True)
@@ -72,7 +71,7 @@ class HeadlineGroup:
         return len(self.headlines)
 
 
-HeadlineGroups = typing.List[HeadlineGroup]
+HeadlineGroups = list[HeadlineGroup]
 
 
 @iamraw.extracted
@@ -100,7 +99,7 @@ def headlines_totoc(
     Hint: Converting to toc requires a None-Level for every item.
     """
     try:
-        flat = utila.flatten(headlines)
+        flat = utila.flat(headlines)
     except TypeError:
         # list is already flat
         flat = headlines

@@ -10,7 +10,7 @@
 import os
 
 # path
-import iamraw.path as path
+from iamraw import path
 # mixin
 from iamraw.__mixin__ import extracted
 from iamraw.__mixin__ import hasstrategy

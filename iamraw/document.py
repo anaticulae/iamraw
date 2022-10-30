@@ -24,7 +24,7 @@ import utila
 import iamraw.bounding
 
 PageSize = collections.namedtuple('PageSize', 'width height')
-PageSizes = typing.List[PageSize]
+PageSizes = list[PageSize]
 
 
 @dataclasses.dataclass
@@ -38,7 +38,7 @@ class PageObject:
 class Page:
     page: int = 0
     dimension: iamraw.bounding.BoundingBox = None
-    children: typing.List[typing.Any] = dataclasses.field(default_factory=list)
+    children: list[typing.Any] = dataclasses.field(default_factory=list)
 
     @property
     def width(self) -> int:
@@ -80,7 +80,7 @@ class Page:
         return not self.children
 
 
-Pages = typing.List[Page]
+Pages = list[Page]
 
 
 @dataclasses.dataclass
@@ -144,7 +144,7 @@ class Char(Boxed):
     flags: int = None
 
 
-Chars = typing.List[Char]
+Chars = list[Char]
 
 
 @dataclasses.dataclass
@@ -163,7 +163,7 @@ class VirtualChar:
 @dataclasses.dataclass
 class Line(Boxed):
 
-    chars: typing.List[Char] = dataclasses.field(default_factory=list)
+    chars: list[Char] = dataclasses.field(default_factory=list)
 
     @property
     def text(self) -> str:
@@ -194,7 +194,7 @@ class Line(Boxed):
         return f'Line(text="{self.text.strip()}")'
 
 
-Lines = typing.List[Line]
+Lines = list[Line]
 
 
 @dataclasses.dataclass
@@ -265,7 +265,7 @@ class TextContainer(Boxed):
         return hash(str(self) + str(self.textstate))
 
 
-TextContainers = typing.List[TextContainer]
+TextContainers = list[TextContainer]
 
 
 @dataclasses.dataclass
@@ -273,4 +273,4 @@ class VerticalTextContainer(TextContainer):
     pass
 
 
-VerticalTextContainers = typing.List[VerticalTextContainer]
+VerticalTextContainers = list[VerticalTextContainer]

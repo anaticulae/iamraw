@@ -8,7 +8,6 @@
 # =============================================================================
 
 import math
-import typing
 
 import utila
 
@@ -27,7 +26,7 @@ def group_linedistances_complex(
     distance_max: callable = texmex.group.multiline.maxdistance,
     xdist_max: float = None,
     returndata: bool = False,
-) -> typing.List[int]:
+) -> list[int]:
     """Group lines by sizes and distances of text chunks.
 
     Args:
@@ -86,7 +85,7 @@ def setup(content, returndata: bool = False):
     if len(content) == 1:
         return [content[0]] if returndata else [[0]]
     distances = texmex.group.multiline.linedistances(content)
-    sizes = [max([item.size for item in items.style]) for items in content]
+    sizes = [max((item.size for item in items.style)) for items in content]
     xdists = texmex.group.multiline.xdistances(content)
     assert len(distances) == len(sizes) == len(xdists)
     if len(distances) < 2:

@@ -15,7 +15,6 @@ Basic structure of get_outlines: (level, title, args, children)
 import abc
 import dataclasses
 import enum
-import typing
 
 import configo
 import utila
@@ -34,7 +33,7 @@ class TocLinkMixin(abc.ABC):
         """Access children at `index`"""
 
 
-TocLinkMixins = typing.List[TocLinkMixin]
+TocLinkMixins = list[TocLinkMixin]
 
 
 @iamraw.extracted
@@ -43,7 +42,7 @@ class Section(TocLinkMixin):
     level: int = None
     title: str = None
     page: int = None  # pdf representation
-    args: typing.Dict[str, str] = dataclasses.field(default_factory=dict)
+    args: dict[str, str] = dataclasses.field(default_factory=dict)
     # compare = False to avoid recursive lookups
     parent: TocLinkMixin = dataclasses.field(default=None, compare=False)
     children: TocLinkMixins = dataclasses.field(default_factory=list)
@@ -89,7 +88,7 @@ def tosection(item: SectionRaw) -> Section:
     return Section(**data)
 
 
-SectionList = typing.List[Section]
+SectionList = list[Section]
 
 
 class TocStyle(enum.IntEnum):

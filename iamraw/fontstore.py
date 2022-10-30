@@ -9,7 +9,6 @@
 
 import dataclasses
 import functools
-import typing
 
 import utila
 
@@ -24,7 +23,7 @@ class FontChunk:
     font: iamraw.Font = None
 
 
-FontChunks = typing.List[FontChunk]
+FontChunks = list[FontChunk]
 
 
 @dataclasses.dataclass

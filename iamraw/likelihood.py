@@ -9,10 +9,9 @@
 
 import collections
 import dataclasses
-import typing
 
 PageContentLikelihood = collections.namedtuple('PageLikelihood', 'page content')
-PageContentLikelihoods = typing.List[PageContentLikelihood]
+PageContentLikelihoods = list[PageContentLikelihood]
 
 
 @dataclasses.dataclass

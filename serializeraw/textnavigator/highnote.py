@@ -37,7 +37,7 @@ def load_highnotes(content: str, pages: tuple = None):
 
 
 def dump_highnotes(pages) -> str:
-    utila.assert_type_list(pages, texmex.PageContentTextItems)
+    utila.asserts_types(pages, texmex.PageContentTextItems)
     result = []
     for page in pages:
         raw = {'page': page.page}

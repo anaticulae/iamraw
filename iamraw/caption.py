@@ -10,7 +10,6 @@
 import collections
 import dataclasses
 import enum
-import typing
 
 
 class CaptionType(enum.Enum):
@@ -39,13 +38,13 @@ class Caption:
     reference: int = dataclasses.field(default=None, compare=False, hash=False)
 
 
-Captions = typing.List[Caption]
+Captions = list[Caption]
 
 PageContentCaption = collections.namedtuple(
     'PageContentCaption',
     'page content',
 )
-PageContentCaptions = typing.List[PageContentCaption]
+PageContentCaptions = list[PageContentCaption]
 
 
 def pagecaptions_toraw(pagecaptions: PageContentCaptions) -> list:

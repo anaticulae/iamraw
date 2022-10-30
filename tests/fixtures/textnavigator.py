@@ -27,7 +27,7 @@ SAMPLE = [
 
 
 def document_size(items):
-    dimension = utila.rectangle_max(items)
+    dimension = utila.rect_max(items)
     return (dimension[2], dimension[3])
 
 

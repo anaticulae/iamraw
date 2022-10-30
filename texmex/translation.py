@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 
 @dataclasses.dataclass
@@ -33,7 +32,7 @@ class Translation:
             return dest
 
 
-Translations = typing.List[Translation]
+Translations = list[Translation]
 
 
 class TranslationLookup:

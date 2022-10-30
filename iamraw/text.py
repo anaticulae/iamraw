@@ -9,7 +9,6 @@
 
 import dataclasses
 import enum
-import typing
 
 import iamraw.headlines
 
@@ -46,13 +45,13 @@ class DFormula(DocumentContent):
     number: int = dataclasses.field(default=-1)
 
 
-ChapterText = typing.List[DocumentContent]
-ChapterTextList = typing.List[ChapterText]
+ChapterText = list[DocumentContent]
+ChapterTextList = list[ChapterText]
 
 PageNumber = int
-ParagraphContent = typing.List[str]
-ParagraphItem = typing.Tuple[iamraw.headlines.Headline, ParagraphContent]
-Paragraphs = typing.List[ParagraphItem]
+ParagraphContent = list[str]
+ParagraphItem = tuple[iamraw.headlines.Headline, ParagraphContent]
+Paragraphs = list[ParagraphItem]
 
 
 @dataclasses.dataclass
@@ -61,21 +60,21 @@ class PageContentText:
     content: list = None
 
 
-PageContentTexts = typing.List[PageContentText]
+PageContentTexts = list[PageContentText]
 
 
 @dataclasses.dataclass
 class HeadlineWithContent:
     # TODO: DO WE REQUIRE THIS?
     text: str = None
-    content: typing.List[str] = dataclasses.field(default_factory=list)
+    content: list[str] = dataclasses.field(default_factory=list)
 
 
 @dataclasses.dataclass
 class TextSection:
     headline: str = None
-    content: typing.List = dataclasses.field(default_factory=list)
-    pages: typing.List = dataclasses.field(default_factory=list)
+    content: list = dataclasses.field(default_factory=list)
+    pages: list = dataclasses.field(default_factory=list)
 
     def __getitem__(self, index):
         # TODO: support tuple unpacking, remove later
@@ -87,5 +86,8 @@ class TextSection:
         # TODO: support tuple unpacking, remove later
         return self[0] == value[0] and self[1] == value[1]
 
+    def __hash__(self):
+        return hash(str(self))
 
-TextSections = typing.List[TextSection]
+
+TextSections = list[TextSection]

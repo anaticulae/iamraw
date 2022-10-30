@@ -8,11 +8,10 @@
 # =============================================================================
 
 import collections
-import typing
 
 PageContentHit = collections.namedtuple(
     'PageContentHits',
     'border, hits, page',
 )
 
-PageContentHits = typing.List[PageContentHit]
+PageContentHits = list[PageContentHit]

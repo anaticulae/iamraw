@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 
 @dataclasses.dataclass
@@ -29,4 +28,4 @@ class NoPerson:
     raw: str = None
 
 
-Persons = typing.List[Person]
+Persons = list[Person]

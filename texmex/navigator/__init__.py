@@ -10,7 +10,6 @@
 import copy
 import dataclasses
 import enum
-import typing
 
 import utila
 
@@ -156,7 +155,7 @@ class NavigatorMixin:
         return [item for item in self if item.visible]
 
 
-NavigatorMixins = typing.List[NavigatorMixin]
+NavigatorMixins = list[NavigatorMixin]
 
 
 @dataclasses.dataclass
@@ -175,9 +174,9 @@ class PTN(NavigatorMixin):
     >>> PTN().rotated
     False
     """
-    data: typing.List = dataclasses.field(default_factory=list)
+    data: list = dataclasses.field(default_factory=list)
     # access textual element by BoundingBox
-    fast: typing.Dict = dataclasses.field(default_factory=dict)
+    fast: dict = dataclasses.field(default_factory=dict)
 
     def insert(
         self,
@@ -253,7 +252,7 @@ class PTN(NavigatorMixin):
         top: float,
         bottom: float,
         state: 'TextState' = None,
-    ) -> typing.Tuple[int, int]:
+    ) -> tuple[int, int]:
         """Determine the range of content index which represents the
         dataindex's of [top, bottom]."""
         assert START <= top <= bottom <= END
@@ -413,8 +412,8 @@ def rotate_left(navigator):
     return result
 
 
-PTNs = typing.List[PTN]
-PTCNs = typing.List[PTCN]
+PTNs = list[PTN]
+PTCNs = list[PTCN]
 
 
 def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0911

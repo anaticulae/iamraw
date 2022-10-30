@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 
 @dataclasses.dataclass
@@ -19,4 +18,4 @@ class ExtractedHyperLink:
     raw: str = None
 
 
-ExtractedHyperLinks = typing.List[ExtractedHyperLink]
+ExtractedHyperLinks = list[ExtractedHyperLink]

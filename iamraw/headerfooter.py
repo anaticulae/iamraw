@@ -9,7 +9,6 @@
 
 import copy
 import dataclasses
-import typing
 
 import utila
 
@@ -61,6 +60,9 @@ class PageContentFooterHeaders:
             return self.content == value.content
         except AttributeError:
             return False
+
+    def __hash__(self):
+        return hash(str(self))
 
 
 @dataclasses.dataclass
@@ -117,7 +119,7 @@ class FootNote:
         return raw
 
 
-FootNotes = typing.List[FootNote]
+FootNotes = list[FootNote]
 
 
 @dataclasses.dataclass
@@ -175,7 +177,7 @@ class FootNoteMerged(FootNote):
 
     @property
     def style_text(self) -> list:
-        return utila.flatten([item.style_text for item in self.notes])
+        return utila.flat([item.style_text for item in self.notes])
 
     def __repr__(self):
         raw = f'FootNoteMerged(notes={self.notes})'
@@ -211,8 +213,8 @@ class RawText:
 @dataclasses.dataclass
 class FixedHeaderInfo(HeaderInfo):
     title: HeaderTitle = None
-    undefined: typing.List[RawText] = dataclasses.field(default_factory=list)
-    images: typing.List[HeaderImages] = dataclasses.field(default_factory=list)
+    undefined: list[RawText] = dataclasses.field(default_factory=list)
+    images: list[HeaderImages] = dataclasses.field(default_factory=list)
 
     def append(self, item):
         if isinstance(item, RawText):
@@ -226,8 +228,8 @@ class FixedHeaderInfo(HeaderInfo):
 @dataclasses.dataclass
 class FixedFooterInfo(FooterInfo):
     title: HeaderTitle = None
-    undefined: typing.List[RawText] = dataclasses.field(default_factory=list)
-    images: typing.List[HeaderImages] = dataclasses.field(default_factory=list)
+    undefined: list[RawText] = dataclasses.field(default_factory=list)
+    images: list[HeaderImages] = dataclasses.field(default_factory=list)
 
     def append(self, item):
         if isinstance(item, RawText):

@@ -8,16 +8,15 @@
 # =============================================================================
 
 import collections
-import typing
 
 AreaDistance = collections.namedtuple(
     'AreaDistance',
     'index, before, after',
 )
-AreaDistances = typing.List[AreaDistance]
+AreaDistances = list[AreaDistance]
 
 PageContentAreaDistance = collections.namedtuple(
     'PageContentAreaDistance',
     'page, content',
 )
-PageContentAreaDistances = typing.List[PageContentAreaDistance]
+PageContentAreaDistances = list[PageContentAreaDistance]

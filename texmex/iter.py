@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import typing
-
 import utila
 
 import iamraw
@@ -111,7 +109,7 @@ class PageIter:
 
 def split_page(
     page: iamraw.Page,
-    positions: typing.List,
+    positions: list,
     *,
     append_unvisited: bool = True,
 ) -> utila.Strings:

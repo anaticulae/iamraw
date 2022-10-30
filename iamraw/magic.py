@@ -9,14 +9,13 @@
 
 import collections
 import enum
-import typing
 
 PageContentContentType = collections.namedtuple(
     'PageContentContentType',
     'page, content',
 )
 
-PageContentContentTypes = typing.List[PageContentContentType]
+PageContentContentTypes = list[PageContentContentType]
 
 
 class PageContentType(enum.Enum):

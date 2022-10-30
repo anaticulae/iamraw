@@ -18,7 +18,7 @@ def dump_wordspaces(items) -> str:
     def dumper(lines) -> list:
         result = []
         for number, content in lines:
-            content = utila.from_tuple(utila.flatten(content))
+            content = utila.from_tuple(utila.flat(content))
             line = f'{number} {content}'
             result.append(line)
         return result

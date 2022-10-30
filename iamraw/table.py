@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 import utila
 
@@ -38,7 +37,7 @@ class TableBounding:
         return utila.pagebox_hash(page=self.page, box=self.bounding)
 
 
-TableBoundings = typing.List[TableBounding]
+TableBoundings = list[TableBounding]
 
 
 @dataclasses.dataclass
@@ -56,4 +55,4 @@ class PageContentTableBounding:
         return len(self.content)
 
 
-PageContentTableBoundings = typing.List[PageContentTableBounding]
+PageContentTableBoundings = list[PageContentTableBounding]

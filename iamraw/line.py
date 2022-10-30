@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 
 @dataclasses.dataclass
@@ -29,4 +28,4 @@ class PageContentLine:
         raise StopIteration
 
 
-PageContentLines = typing.List[PageContentLine]
+PageContentLines = list[PageContentLine]

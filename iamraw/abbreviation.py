@@ -9,7 +9,6 @@
 
 import collections
 import dataclasses
-import typing
 
 import utila
 
@@ -33,7 +32,7 @@ class Abbreviation:
         return False
 
 
-Abbreviations = typing.List[Abbreviation]
+Abbreviations = list[Abbreviation]
 
 
 @dataclasses.dataclass
@@ -56,17 +55,14 @@ class AbbreviationResult:
         >>> AbbreviationResult().short_inside('')
         False
         """
-        for item in self.abbreviations:
-            if item.short.lower() == abbrev:
-                return True
-        return False
+        return any((item.short.lower() == abbrev for item in self.abbreviations))  # yapf:disable
 
 
 ExtractedTextAbbreviation = collections.namedtuple(
     'ExtractedTextAbbreviation',
     'page, content',
 )
-ExtractedTextAbbreviations = typing.List[ExtractedTextAbbreviation]
+ExtractedTextAbbreviations = list[ExtractedTextAbbreviation]
 
 
 @dataclasses.dataclass
@@ -80,7 +76,7 @@ class AbbreviationList:
         return item in self.data  # pylint:disable=unsupported-membership-test
 
 
-AbbreviationLists = typing.List[AbbreviationList]
+AbbreviationLists = list[AbbreviationList]
 
 
 @dataclasses.dataclass
@@ -89,7 +85,7 @@ class AbbreviationListLookup:
     other: AbbreviationLists = dataclasses.field(default_factory=list)
 
     def __contains__(self, item):
-        if item in self.table:
+        if item in self.table:  # pylint:disable=E1135
             return True
         if self.other:
             for table in self.other:

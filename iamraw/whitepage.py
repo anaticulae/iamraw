@@ -9,7 +9,6 @@
 
 import collections
 import enum
-import typing
 
 
 class WhitePage(enum.Enum):
@@ -23,4 +22,4 @@ PageContentWhitepage = collections.namedtuple(
     'content, page',
 )
 
-PageContentWhitepages = typing.List[PageContentWhitepage]
+PageContentWhitepages = list[PageContentWhitepage]

@@ -8,17 +8,16 @@
 # =============================================================================
 
 import collections
-import typing
 
 PageContentBlockQuotes = collections.namedtuple(
     'PageContentBlockQuotes',
     'content, page',
 )
-PageContentBlockQuotesList = typing.List[PageContentBlockQuotes]
+PageContentBlockQuotesList = list[PageContentBlockQuotes]
 
 ExtractedQuotation = collections.namedtuple(
     'ExtractedQuotation',
     'page, index, sentence',
 )
 
-ExtractedQuotations = typing.List[ExtractedQuotation]
+ExtractedQuotations = list[ExtractedQuotation]

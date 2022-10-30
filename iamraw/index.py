@@ -45,7 +45,7 @@ class DocumentIndexElement:
 class DocumentIndex:
 
     def __init__(self):
-        self.data = dict()
+        self.data = {}
 
     def add(
         self,
@@ -84,3 +84,6 @@ class DocumentIndex:
 
     def __eq__(self, value):
         return str(self) == str(value)
+
+    def __hash__(self):
+        return hash(str(self))

@@ -7,8 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-from collections import namedtuple
-from typing import List
+import collections
 
-PageSizeBorder = namedtuple('PageSizeBorder', 'size border page')
-PageSizeBorderList = List[PageSizeBorder]
+PageSizeBorder = collections.namedtuple('PageSizeBorder', 'size border page')
+PageSizeBorderList = list[PageSizeBorder]

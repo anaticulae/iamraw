@@ -21,7 +21,6 @@ Definition
 """
 
 import dataclasses
-import typing
 
 import iamraw
 
@@ -100,7 +99,7 @@ class TitlePage:
     pageraw: int = None
 
 
-TitlePages = typing.List[TitlePage]
+TitlePages = list[TitlePage]
 
 
 @dataclasses.dataclass

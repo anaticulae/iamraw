@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 
 @dataclasses.dataclass
@@ -25,4 +24,4 @@ class ContentBoundingBox:
         raise IndexError
 
 
-ContentBoundingBoxes = typing.List[ContentBoundingBox]
+ContentBoundingBoxes = list[ContentBoundingBox]

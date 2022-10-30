@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import typing
+import collections.abc
 
 import configo
 import utila
@@ -16,7 +16,7 @@ import iamraw
 
 
 def dump_boxes(pages: iamraw.PagesWithBoxList) -> str:
-    assert isinstance(pages, typing.Iterable), type(pages)
+    assert isinstance(pages, collections.abc.Iterable), type(pages)
     raw = []
     for page in pages:
         if not page.content:

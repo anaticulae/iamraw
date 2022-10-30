@@ -8,7 +8,6 @@
 # =============================================================================
 
 import enum
-import typing
 
 
 class TextAlignment(enum.Enum):
@@ -49,4 +48,4 @@ class TextAlignment(enum.Enum):
         return 'undefiniert'
 
 
-TextAlignments = typing.List[TextAlignment]
+TextAlignments = list[TextAlignment]

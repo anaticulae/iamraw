@@ -7,14 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import collections.abc
 import dataclasses
-import typing
 
 import utila
 
 Page = int
 Percentage = float  # start of area [0.0 Pagestart, 100.0 Pageend]
-Position = typing.Tuple[Page, Percentage]
+Position = tuple[Page, Percentage]
 
 PERCENT_100 = 1.0  # analysed by hand
 
@@ -23,7 +23,7 @@ class PartOfDocMixin:
     pass
 
 
-PartsOfDoc = typing.Iterable[PartOfDocMixin]
+PartsOfDoc = collections.abc.Iterable[PartOfDocMixin]
 
 
 @dataclasses.dataclass
@@ -44,7 +44,7 @@ class AreaItem(PartOfDocMixin):
     trust: Percentage  # [0.0 100.0]
 
 
-AreaItems = typing.List[AreaItem]
+AreaItems = list[AreaItem]
 
 
 class SectionMixin(PartOfDocMixin):
@@ -82,7 +82,7 @@ class DocumentSection(SectionMixin):
         return len(self.content)
 
 
-DocumentSections = typing.List[DocumentSection]
+DocumentSections = list[DocumentSection]
 
 
 @dataclasses.dataclass
@@ -121,7 +121,7 @@ class Sections:
         return len(self.content)
 
 
-SectionsList = typing.List[Sections]
+SectionsList = list[Sections]
 
 
 @dataclasses.dataclass

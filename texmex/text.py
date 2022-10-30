@@ -10,7 +10,6 @@
 import contextlib
 import dataclasses
 import re
-import typing
 
 import texmex
 
@@ -33,13 +32,13 @@ class TextBoundsInfo:
     #     assert isinstance(self.bounds, TextBounds)
 
 
-TextBoundsInfos = typing.List[TextBoundsInfo]
-TextBoundsList = typing.List[TextBounds]
+TextBoundsInfos = list[TextBoundsInfo]
+TextBoundsList = list[TextBounds]
 
 FontSize = int
 Occurrence = float
-FontOccurrence = typing.Tuple[FontSize, Occurrence]
-FontOccurrences = typing.List[FontOccurrence]
+FontOccurrence = tuple[FontSize, Occurrence]
+FontOccurrences = list[FontOccurrence]
 
 
 def count_textlines(page: 'texmex.NavigatorMixin', remove_empty=False) -> int:

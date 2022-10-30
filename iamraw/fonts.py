@@ -10,12 +10,11 @@
 import collections
 import dataclasses
 import enum
-import typing
 
 import utila
 
 PageFontContent = collections.namedtuple('PageFontContent', 'content page')
-PageFontContents = typing.List[PageFontContent]
+PageFontContents = list[PageFontContent]
 
 
 class FontFlag(enum.Enum):
@@ -32,7 +31,7 @@ class FontFlag(enum.Enum):
     FORCEBOLD = 19
 
 
-FontFlags = typing.Tuple[FontFlag]
+FontFlags = tuple[FontFlag]
 
 
 class Weight(enum.Enum):

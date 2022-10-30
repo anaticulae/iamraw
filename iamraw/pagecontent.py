@@ -8,7 +8,6 @@
 # =============================================================================
 
 import collections
-import typing
 
 PageContent = collections.namedtuple('PageContent', 'content page')
-PageContents = typing.List[PageContent]
+PageContents = list[PageContent]

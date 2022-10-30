@@ -36,7 +36,7 @@ import iamraw
 def dump_rawformulas(pages: iamraw.PageContentRawFormulas) -> str:
     # remove empty pages
     result = [item.content for item in pages if item.content]
-    result = utila.flatten(result)
+    result = utila.flat(result)
     raw = [dump_formula(item) for item in result]
     # convert
     dumped = utila.yaml_dump(raw)

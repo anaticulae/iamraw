@@ -9,7 +9,6 @@
 
 import dataclasses
 import enum
-import typing
 
 
 class ProblemStatus(enum.Enum):
@@ -27,7 +26,7 @@ class Solution:
     status: ProblemStatus = ProblemStatus.OPEN
 
 
-Solutions = typing.List[Solution]
+Solutions = list[Solution]
 
 
 @dataclasses.dataclass(unsafe_hash=True)  # pylint:disable=R0903

@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import typing
-
 import configo
 import utila
 
@@ -30,7 +28,7 @@ def dump_whitepages(pages: iamraw.PageContentWhitepages) -> str:
 def load_whitepages(
     content: str,
     pages=None,
-) -> typing.List[iamraw.WhitePage]:
+) -> list[iamraw.WhitePage]:
     """Load whitepages from `content`. Content can be a path or loaded
     text data.
 

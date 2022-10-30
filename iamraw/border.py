@@ -8,12 +8,11 @@
 # =============================================================================
 
 import collections
-import typing
 
 import utila
 
 Border = collections.namedtuple('Border', 'left right top bottom')
-Borders = typing.List[Border]
+Borders = list[Border]
 
 
 def validate(items) -> bool:

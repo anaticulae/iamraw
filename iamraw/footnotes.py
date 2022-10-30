@@ -8,10 +8,9 @@
 # =============================================================================
 
 import collections
-import typing
 
 PageContentFootnote = collections.namedtuple(
     'PageContentFootnotes',
     'content, page, yrange',
 )
-PageContentFootnotes = typing.List[PageContentFootnote]
+PageContentFootnotes = list[PageContentFootnote]

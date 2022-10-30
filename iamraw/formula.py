@@ -9,7 +9,6 @@
 
 import collections
 import dataclasses
-import typing
 
 import utila
 
@@ -18,7 +17,7 @@ PageContentFormula = collections.namedtuple(
     'content page',
 )
 
-PageContentFormulas = typing.List[PageContentFormula]
+PageContentFormulas = list[PageContentFormula]
 
 
 @dataclasses.dataclass
@@ -30,14 +29,14 @@ class Formula:
     raw: str = None
 
 
-Formulas = typing.List[Formula]
+Formulas = list[Formula]
 
 PageContentRawFormula = collections.namedtuple(
     'PageContentRawFormula',
     'content page',
 )
 
-PageContentRawFormulas = typing.List[PageContentRawFormula]
+PageContentRawFormulas = list[PageContentRawFormula]
 
 
 @dataclasses.dataclass
@@ -47,7 +46,7 @@ class MathChar:
     value: str = None
 
 
-MathChars = typing.List[MathChar]
+MathChars = list[MathChar]
 
 
 @dataclasses.dataclass
@@ -76,7 +75,7 @@ class FormulaRaw:
         boundings = [item.bounding for item in self.content]  # pylint:disable=E1133
         if self.label_bounding:
             boundings.append(self.label_bounding)
-        result = utila.rectangle_max(boundings)
+        result = utila.rect_max(boundings)
         return result
 
     @property
@@ -98,4 +97,4 @@ class FormulaRaw:
         return str(self)
 
 
-FormulasRaw = typing.List[FormulaRaw]
+FormulasRaw = list[FormulaRaw]

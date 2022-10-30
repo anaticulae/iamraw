@@ -8,7 +8,6 @@
 # =============================================================================
 
 import dataclasses
-import typing
 
 import utila
 
@@ -28,4 +27,4 @@ class Figure:
         return utila.pagebox_hash(page=self.page, box=self.bounding)
 
 
-Figures = typing.List[Figure]
+Figures = list[Figure]
