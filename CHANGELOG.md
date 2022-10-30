@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v4.86.1 (2022-10-30)
+
+### Chore
+
+* adjust classifier (69e53773d31f)
+* convert nightly to all (d35a386ed714)
+* upgrade environment (51bf5e7311ea)
+* upgrade requirements.txt (c50b92d30779)
+
 ## v4.86.0 (2022-10-09)
 
 ### Feature
