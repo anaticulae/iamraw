@@ -154,6 +154,7 @@ class TextState(enum.IntFlag):
     FOOTNOTE = 128
     HEADNOTE = 256
     TABLE = 512
+    ALL = 1048575  # 1111...
 
     @property
     def visible(self) -> bool:
@@ -165,6 +166,8 @@ class TextState(enum.IntFlag):
         >>> TextState.HIDDEN.visible
         False
         >>> (TextState.CAPTION | TextState.VISIBLE).visible
+        True
+        >>> TextState.ALL.visible
         True
         """
         return bool(self.value % 2)
