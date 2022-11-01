@@ -97,7 +97,7 @@ def ptn_fromfile(
             fontheader,
             fontcontent,
         )
-    navigators = texmex.create_pagetextnavigators(
+    navigators = texmex.create_ptns(
         text,
         textpositions,
         fontstore,
@@ -242,7 +242,7 @@ def ptcn_fromfile(  # pylint:disable=R0914
             pages=pages,
         )
     # prepare result
-    result = texmex.create_pagetextcontentnavigators(
+    result = texmex.create_ptcns(
         headerfooter=headerfooter,
         navigators=navigators,
         pages=pages,

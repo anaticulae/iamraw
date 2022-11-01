@@ -59,8 +59,8 @@ from texmex.navigator import single
 # navigator:create
 from texmex.navigator.create import HORIZONTAL
 from texmex.navigator.create import PTNMode
-from texmex.navigator.create import create_pagetextcontentnavigators
-from texmex.navigator.create import create_pagetextnavigators
+from texmex.navigator.create import create_ptcns
+from texmex.navigator.create import create_ptns
 from texmex.navigator.create import determine_border
 from texmex.navigator.create import fill_empty_navigators
 from texmex.navigator.create import ptn_fromstr
@@ -118,6 +118,8 @@ document_textdistance_from_contentnavigators = document_textdist_from_ptcns
 group_by_linedistance = groupby_linedistance
 
 create_pagetextnavigator_fromstr = ptn_fromstr
+create_pagetextnavigators = create_ptns
+create_pagetextcontentnavigators = create_ptcns
 
 # TODO: REMOVE LATER
 HIGHNOTE_MIN_RISE = HIGHNOTE_RISE_MIN

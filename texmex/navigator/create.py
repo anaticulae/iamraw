@@ -23,7 +23,7 @@ class PTNMode(enum.Enum):
 
 
 @utila.rename(text_positions='textpositions')
-def create_pagetextnavigators(
+def create_ptns(
     text: iamraw.Document,
     textpositions: iamraw.PageContentTextPositions,
     fontstore: iamraw.FontStore = None,
@@ -124,7 +124,7 @@ def skip(expected, current) -> bool:
     return expected != current
 
 
-def create_pagetextcontentnavigators(
+def create_ptcns(
     navigators,
     headerfooter,
     sizeandborder,
