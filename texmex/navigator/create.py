@@ -117,6 +117,13 @@ def fill_navigator(  # pylint:disable=R0914
 
 
 def skip(expected, current) -> bool:
+    """\
+    >>> from texmex import TextState
+    >>> skip(TextState.VISIBLE, TextState.VISIBLE)
+    False
+    >>> skip(TextState.VISIBLE, TextState.HIDDEN)
+    True
+    """
     if expected is None:
         return False
     if current is None:
