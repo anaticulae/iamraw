@@ -123,12 +123,27 @@ def skip(expected, current) -> bool:
     False
     >>> skip(TextState.VISIBLE, TextState.HIDDEN)
     True
+    >>> skip(TextState.ALL, TextState.HIDDEN)
+    True
+    >>> skip(TextState.ALL, TextState.TABLE)
+    False
+    >>> skip(TextState.ALL, TextState.CODE | TextState.IMAGE)
+    False
+    >>> skip(TextState.IMAGE, TextState.ALL)
+    True
     """
     if expected is None:
         return False
     if current is None:
         return False
-    return expected != current
+    if expected == current:
+        return False
+    if current in expected:
+        if current & expected:
+            # current is a teilmenge of expected
+            return False
+        return True
+    return True
 
 
 def create_ptcns(
