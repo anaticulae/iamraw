@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.87.0 (2022-11-01)
+
+### Feature
+
+* make skip check more flexible (4e2f9e66e9b7)
+* add TextState all to select all elements (57d4da3e9d66)
+* extend automated name list (8936c777a935)
+
 ## v4.86.1 (2022-10-30)
 
 ### Chore
