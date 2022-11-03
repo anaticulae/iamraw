@@ -13,7 +13,6 @@ import dataclasses
 import utila
 
 import iamraw
-from iamraw.bounding import BoundingBox
 
 
 @dataclasses.dataclass
@@ -202,7 +201,7 @@ class HeaderTitle:
 @dataclasses.dataclass
 class HeaderImages:
     number: int = None
-    location: BoundingBox = None
+    location: 'iamraw.BoundingBox' = None
 
 
 @dataclasses.dataclass
@@ -260,4 +259,4 @@ class MovingFooterInfo(FooterInfo):
 
 @dataclasses.dataclass
 class PagesFooterInfo(FooterInfo):
-    page_location: BoundingBox = None
+    page_location: 'iamraw.BoundingBox' = None
