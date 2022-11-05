@@ -45,8 +45,8 @@ def load_headerfooter(
     loaded = utila.yaml_load(
         content,
         fname=(
-            'footnote_result_result',
-            'headnote_result_result',
+            'footnote__result_result',
+            'headnote__result_result',
             'groupme__footer_footerheader',
         ),
         safe=False,
