@@ -82,8 +82,9 @@ class NavigatorMixin:
         # collect valid content
         result = []
         for item in self.data:
-            if state is not None and item.state != state:
-                continue
+            if state is not None:
+                if texmex.style.skip(expected=state, current=item.state):
+                    continue
             if not valid(item, inside, selector=selector):
                 continue
             result.append(item.copy())
@@ -260,8 +261,9 @@ class PTN(NavigatorMixin):
         before = top * self.height  # greater than
         result = []
         for index, item in enumerate(self.data):
-            if state is not None and item.state != state:
-                continue
+            if state is not None:
+                if texmex.style.skip(expected=state, current=item.state):
+                    continue
             # before and after are pixel coordinates
             if before <= item.bounding.y0 <= item.bounding.y1 <= after:
                 result.append(index)
