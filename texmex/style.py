@@ -173,6 +173,36 @@ class TextState(enum.IntFlag):
         return bool(self.value % 2)
 
 
+def skip(expected, current) -> bool:
+    """\
+    >>> from texmex import TextState
+    >>> skip(TextState.VISIBLE, TextState.VISIBLE)
+    False
+    >>> skip(TextState.VISIBLE, TextState.HIDDEN)
+    True
+    >>> skip(TextState.ALL, TextState.HIDDEN)
+    True
+    >>> skip(TextState.ALL, TextState.TABLE)
+    False
+    >>> skip(TextState.ALL, TextState.CODE | TextState.IMAGE)
+    False
+    >>> skip(TextState.IMAGE, TextState.ALL)
+    True
+    """
+    if expected is None:
+        return False
+    if current is None:
+        return False
+    if expected == current:
+        return False
+    if current in expected:
+        if current & expected:
+            # current is a teilmenge of expected
+            return False
+        return True
+    return True
+
+
 @dataclasses.dataclass
 class TextInfo:
     """\

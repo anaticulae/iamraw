@@ -80,7 +80,7 @@ def fill_navigator(  # pylint:disable=R0914
             lines = item.lines
         except AttributeError:
             continue
-        if skip(expected=state, current=item.state):
+        if texmex.style.skip(expected=state, current=item.state):
             # increase textid to ensure that textposition and text is
             # aligned correctly when using hidden token.
             textid += 1
@@ -114,36 +114,6 @@ def fill_navigator(  # pylint:disable=R0914
                 state=item.state,
             )
         textid += 1
-
-
-def skip(expected, current) -> bool:
-    """\
-    >>> from texmex import TextState
-    >>> skip(TextState.VISIBLE, TextState.VISIBLE)
-    False
-    >>> skip(TextState.VISIBLE, TextState.HIDDEN)
-    True
-    >>> skip(TextState.ALL, TextState.HIDDEN)
-    True
-    >>> skip(TextState.ALL, TextState.TABLE)
-    False
-    >>> skip(TextState.ALL, TextState.CODE | TextState.IMAGE)
-    False
-    >>> skip(TextState.IMAGE, TextState.ALL)
-    True
-    """
-    if expected is None:
-        return False
-    if current is None:
-        return False
-    if expected == current:
-        return False
-    if current in expected:
-        if current & expected:
-            # current is a teilmenge of expected
-            return False
-        return True
-    return True
 
 
 def create_ptcns(
