@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.88.0 (2022-11-05)
+
+### Feature
+
+* use better skipper (28d768d84f25)
+
+### Chore
+
+* upgrade requirements.txt (964266cda704)
+
 ## v4.87.0 (2022-11-01)
 
 ### Feature
