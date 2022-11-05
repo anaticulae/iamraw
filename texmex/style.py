@@ -173,6 +173,7 @@ class TextState(enum.IntFlag):
         return bool(self.value % 2)
 
 
+@utila.cacheme
 def skip(expected, current) -> bool:
     """\
     >>> from texmex import TextState
