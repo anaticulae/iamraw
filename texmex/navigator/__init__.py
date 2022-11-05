@@ -82,9 +82,9 @@ class NavigatorMixin:
         # collect valid content
         result = []
         for item in self.data:
-            if not valid(item, inside, selector=selector):
-                continue
             if state is not None and item.state != state:
+                continue
+            if not valid(item, inside, selector=selector):
                 continue
             result.append(item.copy())
         return result
