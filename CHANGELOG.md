@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.88.1 (2022-11-06)
+
+### Feature
+
+* add new default file name (df0a03f8e564)
+* cache visible check (e7a8dc789b5a)
+
+### Fix
+
+* adjust default name (23b5e0fcc806)
+
 ## v4.88.0 (2022-11-05)
 
 ### Feature
