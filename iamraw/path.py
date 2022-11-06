@@ -195,7 +195,7 @@ def groupme_pagenumbers(path: str, prefix: str = '', ftype='yaml') -> str:
 
 
 def groupme_headerfooters(path: str, prefix: str = '', ftype='yaml') -> str:
-    return con(path, 'groupme', 'footer_footerheader', prefix, ftype=ftype)
+    return con(path, 'groupme', 'hefopa_result', prefix, ftype=ftype)
 
 
 headerfooters = groupme_headerfooters
