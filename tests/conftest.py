@@ -39,8 +39,9 @@ def pytest_sessionstart():
 def extract(resources):
     genex.example.extract(
         files=resources,
-        groupme='--border',
         footnote=True,
+        groupme='--border --hefopa',
+        headnote=True,
         pagenumber=True,
         reftable='--toc',
         worker=len(RESOURCES),
