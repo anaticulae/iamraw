@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v4.88.2 (2022-11-06)
+
+### Fix
+
+* adjust header footer pagenumber path (6d1a181bba87)
+
+### Chore
+
+* extend test data generator (8e0d4a206233)
+* upgrade requirements.txt (3c4bb730c1a7)
+
 ## v4.88.1 (2022-11-06)
 
 ### Feature
