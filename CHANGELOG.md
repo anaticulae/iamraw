@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.88.3 (2022-11-07)
+
+### Chore
+
+* upgrade requirements.txt (4ab479266ea9)
+
 ## v4.88.2 (2022-11-06)
 
 ### Fix
