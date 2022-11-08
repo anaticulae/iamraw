@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.88.5 (2022-11-08)
+
+### Fix
+
+* do not compare bounding (25505e69ff94)
+
 ## v4.88.4 (2022-11-08)
 
 ### Feature
