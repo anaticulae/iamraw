@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.88.4 (2022-11-08)
+
+### Feature
+
+* add bounding (719ee71a82ed)
+
+### Chore
+
+* upgrade environment (1217972f38f3)
+
 ## v4.88.3 (2022-11-07)
 
 ### Chore
