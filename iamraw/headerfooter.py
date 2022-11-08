@@ -196,20 +196,32 @@ class HeaderTitle:
     # XXX: Store location and font?
     title: str = None
     raw: str = None
-    box: tuple = None
+    box: tuple = dataclasses.field(
+        default=None,
+        compare=False,
+        hash=False,
+    )
 
 
 @dataclasses.dataclass
 class HeaderImages:
     number: int = None
     location: 'iamraw.BoundingBox' = None
-    box: tuple = None
+    box: tuple = dataclasses.field(
+        default=None,
+        compare=False,
+        hash=False,
+    )
 
 
 @dataclasses.dataclass
 class RawText:
     text: str = None
-    box: tuple = None
+    box: tuple = dataclasses.field(
+        default=None,
+        compare=False,
+        hash=False,
+    )
 
 
 @dataclasses.dataclass
