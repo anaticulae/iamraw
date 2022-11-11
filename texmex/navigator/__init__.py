@@ -19,7 +19,7 @@ import texmex.style
 import texmex.text
 import texmex.utils
 
-START = 0.0
+BEGIN = 0.0
 END = 1.0
 
 DISABLE_VALIDATION = END * 2
@@ -50,7 +50,7 @@ class NavigatorMixin:
         self,
         top: float,
         bottom: float,
-        left: float = START,
+        left: float = BEGIN,
         right: float = END,
         selector: SelectBounding = SelectBounding.MAX,
         state: 'TextState' = texmex.style.TextState.VISIBLE,
@@ -68,8 +68,8 @@ class NavigatorMixin:
         Returns:
             list of `TextInfo`
         """
-        assert START <= top <= bottom <= END, f'{START}<={top}<={bottom}<={END}'
-        assert START <= left <= right <= DISABLE_VALIDATION, f'{START}<={left}<={right}<={DISABLE_VALIDATION}'
+        assert BEGIN <= top <= bottom <= END, f'{BEGIN}<={top}<={bottom}<={END}'
+        assert BEGIN <= left <= right <= DISABLE_VALIDATION, f'{BEGIN}<={left}<={right}<={DISABLE_VALIDATION}'
         if not self.data:
             # empty page
             return []
@@ -108,9 +108,9 @@ class NavigatorMixin:
             list of `TextInfo`
         """
         result = self.between(
-            START,
+            BEGIN,
             height,
-            left=START,
+            left=BEGIN,
             right=width,
             selector=selector,
             state=state,
@@ -120,7 +120,7 @@ class NavigatorMixin:
     def after(
         self,
         height,
-        width=START,
+        width=BEGIN,
         selector: SelectBounding = SelectBounding.MAX,
         state: 'TextState' = texmex.style.TextState.VISIBLE,
     ):
@@ -256,7 +256,7 @@ class PTN(NavigatorMixin):
     ) -> tuple[int, int]:
         """Determine the range of content index which represents the
         dataindex's of [top, bottom]."""
-        assert START <= top <= bottom <= END
+        assert BEGIN <= top <= bottom <= END
         after = bottom * self.height
         before = top * self.height  # greater than
         result = []

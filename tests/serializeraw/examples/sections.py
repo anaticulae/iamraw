@@ -33,11 +33,11 @@ def restructured_sections_manual() -> Sections:
 
     def analyse(section, start, end):
         return section(result, start, end, PERCENT_100)
-        # TODO: reactivate [start, START] later
-        # return section(result, [start, START], [end, END], PERCENT_100)
+        # TODO: reactivate [start, BEGIN] later
+        # return section(result, [start, BEGIN], [end, END], PERCENT_100)
 
     def add_children(parent, ctor, start, end):
-        # new = ctor(parent, [start, START], [end, END], PERCENT_100)
+        # new = ctor(parent, [start, BEGIN], [end, END], PERCENT_100)
         new = ctor(parent, start, end, PERCENT_100)
         return new
 
@@ -108,7 +108,7 @@ def add_chapter(
     insert = Chapter(
         start=pstart,
         end=pend,
-        # start=[pstart, START],
+        # start=[pstart, BEGIN],
         # end=[pend, END],
         trust=trust,
         number=number,

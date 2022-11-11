@@ -43,10 +43,10 @@ from texmex.iter import PageIter
 from texmex.iter import TextContainerIterator
 from texmex.iter import split_page
 # navigator
+from texmex.navigator import BEGIN
 from texmex.navigator import END
 from texmex.navigator import PTCN
 from texmex.navigator import PTN
-from texmex.navigator import START
 from texmex.navigator import NavigatorMixin
 from texmex.navigator import NavigatorMixins
 from texmex.navigator import PTCNs
@@ -123,3 +123,4 @@ create_pagetextcontentnavigators = create_ptcns
 
 # TODO: REMOVE LATER
 HIGHNOTE_MIN_RISE = HIGHNOTE_RISE_MIN
+START = BEGIN

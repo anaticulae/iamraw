@@ -28,10 +28,10 @@ class SentenceType(enum.Enum):
     # TODO: ADD DIFFERENT FORMULAS
     # quotation
     QUOT = enum.auto()
-    QUOT_START = enum.auto()
+    QUOT_BEGIN = enum.auto()
     QUOT_END = enum.auto()
     QUOT_QUOT = enum.auto()  # quotation inside quotation
-    QUOT_QUOT_START = enum.auto()
+    QUOT_QUOT_BEGIN = enum.auto()
     QUOT_QUOT_END = enum.auto()
 
 
