@@ -1,56 +1,67 @@
-pipeline {
-    agent {
-        docker {
-            image '169.254.149.20:6001/arch_python_baw_opengl:0.15.1'
-            args  '-v $WORKSPACE:/var/workdir'
+@Library('caelum@108f81811f363bfda4a3fd6110a5c190e56b2fa0') _
+
+pipeline{
+    agent{
+        docker{
+            image '169.254.149.20:6001/arch_python_git_ghost_opencv_baw:v1.30.0'
         }
     }
-
-    parameters {
-        string(name: 'BRANCH', defaultValue: 'master')
-        booleanParam(name: 'RELEASE', defaultValue: false)
-    }
-
     stages{
-        stage('sync'){
-            steps{
-                sh 'baw sync all'
-                sh 'baw sh "pip install ."'
+        stage('setup'){
+            steps{script{baw.setup()}}
+        }
+        stage('test'){
+            failFast true
+            parallel{
+                stage('doc'){
+                    steps{
+                        script{baw.doctest()}
+                    }
+                }
+                stage('fast'){
+                    steps{
+                        script{baw.fast()}
+                    }
+                }
+                stage('long'){
+                    steps{
+                        script{baw.longrun()}
+                    }
+                }
             }
         }
-        stage('doctest'){
-            steps{
-                sh 'baw test docs -n1'
+        stage('quality'){
+            failFast true
+            parallel{
+                stage('lint'){
+                    steps{
+                        script{baw.lint()}
+                    }
+                }
+                stage('format'){
+                    steps{
+                        script{baw.format()}
+                    }
+                }
             }
         }
-        stage('fast'){
+        stage('generate'){
             steps{
-                sh 'baw test fast -n5'
+                sh 'baw --docken generate all'
             }
-        }
-        stage('long'){
-            steps{
-                sh 'baw test long -n8'
-            }
-        }
-        stage('lint'){
-            steps{
-                sh 'baw lint'
+            post{
+                always{script{publish.generated()}}
             }
         }
         stage('all'){
             steps{
-                sh 'baw test all -n16 --cov --junit_xml=report.xml'
-                junit '**/report.xml'
+                sh 'baw --docken test all -n32'
+                //script{baw.all()}
             }
         }
         stage('release'){
-            when {
-                expression { return params.RELEASE }
-            }
             steps{
-                sh 'baw install && baw release && baw publish'
-                // TODO: GIT COMMIT?
+                script{publish.release()}
             }
         }
     }
