@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.88.6 (2022-12-06)
+
+### Chore
+
+* add missing dev resource (d2e8e241be69)
+* upgrade requirements.txt (ac876338cdfa)
+* upgrade pipeline (c01d720746c7)
+
 ## v4.88.5 (2022-11-08)
 
 ### Fix

@@ -343,6 +343,6 @@ FooterInformation = FooterInfo
 MovingFooterInformation = MovingFooterInfo
 PagesFooterInformation = PagesFooterInfo
 
-__version__ = '4.88.5'
+__version__ = '4.88.6'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
