@@ -19,3 +19,4 @@ pagenumber>=0.3.2<1.0.0
 footnote>=0.2.5<1.0.0
 reftable>=0.4.0<1.0.0
 sections>=1.23.1<2.0.0
+headnote>=0.5.1<1.0.0
