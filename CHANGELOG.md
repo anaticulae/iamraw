@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.88.7 (2022-12-09)
+
+### Chore
+
+* add integration step (e207b568912f)
+* upgrade pipe library (4f23ca596a3d)
+* upgrade images (b8274eb3f22b)
+
 ## v4.88.6 (2022-12-06)
 
 ### Chore
