@@ -184,24 +184,24 @@ from serializeraw.table import load_tables
 # text
 from serializeraw.text import dump_text
 from serializeraw.text import load_text
-# textnavigator
-from serializeraw.textnavigator.create import ptcn_fromfile
-from serializeraw.textnavigator.create import ptcn_frompath
-from serializeraw.textnavigator.create import ptn_fromfile
-from serializeraw.textnavigator.create import ptn_frompath
-from serializeraw.textnavigator.dump import dump_ptn
-from serializeraw.textnavigator.filter import remove_magic
-from serializeraw.textnavigator.highnote import dump_highnotes
-from serializeraw.textnavigator.highnote import load_highnotes
-# translations
-from serializeraw.textnavigator.translation import dump_translations
-from serializeraw.textnavigator.translation import load_translations
 # textpostions
 from serializeraw.textposition import dump_textpositions
 from serializeraw.textposition import load_textpositions
 # titlepage
 from serializeraw.titlepage import dump_titlepage
 from serializeraw.titlepage import load_titlepage
+# textnavigator
+from serializeraw.tnav.create import ptcn_fromfile
+from serializeraw.tnav.create import ptcn_frompath
+from serializeraw.tnav.create import ptn_fromfile
+from serializeraw.tnav.create import ptn_frompath
+from serializeraw.tnav.dump import dump_ptn
+from serializeraw.tnav.filter import remove_magic
+from serializeraw.tnav.highnote import dump_highnotes
+from serializeraw.tnav.highnote import load_highnotes
+# translations
+from serializeraw.tnav.translation import dump_translations
+from serializeraw.tnav.translation import load_translations
 # toc
 from serializeraw.toc import dump_toc
 from serializeraw.toc import load_toc

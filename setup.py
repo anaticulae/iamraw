@@ -13,7 +13,7 @@ import utila
 PACKAGES = [
     'iamraw',
     'serializeraw',
-    'serializeraw.textnavigator',
+    'serializeraw.tnav',
     'texmex',
     'texmex.group',
     'texmex.group.multiline',
