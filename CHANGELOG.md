@@ -2,6 +2,14 @@
 
 Every noteable change is logged here.
 
+## v4.88.8 (2022-12-13)
+
+### Chore
+
+* upgrade Jenkinsfile (d45a0c866e4c)
+* upgrade pipe library (dbfd11fc70e3)
+* use quick to enable pre releases (43656b5c2191)
+
 ## v4.88.7 (2022-12-09)
 
 ### Chore
