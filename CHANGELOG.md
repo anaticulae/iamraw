@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v4.88.9 (2022-12-14)
+
+### Chore
+
+* upgrade Jenkinsfile (9b23ba41909f)
+
 ## v4.88.8 (2022-12-13)
 
 ### Chore
