@@ -10,12 +10,12 @@
 rawmaker==2.40.1
 groupme==0.40.3
 
-power==2.19.0
+power==2.20.0
 genex==0.37.0
 
-utilatest==0.24.1
+utilatest==0.24.3
 
-pagenumber>=0.3.2<1.0.0
+pagenumber>=0.3.3<1.0.0
 footnote>=0.2.5<1.0.0
 reftable>=0.4.0<1.0.0
 sections>=1.23.1<2.0.0
