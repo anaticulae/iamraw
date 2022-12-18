@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v4.88.10 (2022-12-18)
+
+### Chore
+
+* add rebase step (0c1a93fb4193)
+* upgrade requirements.txt (e52b5e9c428e)
+* upgrade Jenkinsfile (e98ac354dd84)
+* upgrade pipe library (ab4cf0f3376b)
+
 ## v4.88.9 (2022-12-14)
 
 ### Chore
