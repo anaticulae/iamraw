@@ -1,8 +1,8 @@
 # =============================================================================
 # C O P Y R I G H T
 # -----------------------------------------------------------------------------
-# Copyright (c) 2020-2022 by Helmut Konrad Fahrendholz. All rights reserved.
-# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# Copyright (c) 2020-2023 by Helmut Konrad Schewe. All rights reserved.
+# This file is property of Helmut Konrad Schewe. Any unauthorized copy,
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
@@ -12,9 +12,9 @@ import serializeraw
 
 EXAMPLE = [
     [
-        iamraw.BibliographyReference.create('Fahrendholz Konrad', year=2016),
-        iamraw.BibliographyReference.create('Fahrendholz Konrad', year=None),
-        iamraw.BibliographyReference.create('Fahrendholz Konrad', year=1987),
+        iamraw.BibliographyReference.create('Schewe Konrad', year=2016),
+        iamraw.BibliographyReference.create('Schewe Konrad', year=None),
+        iamraw.BibliographyReference.create('Schewe Konrad', year=1987),
     ],
 ]
 
@@ -26,8 +26,8 @@ def test_bibliography_dump_load():
 
 
 def test_bibliography_author():
-    author = iamraw.BibliographyReference.create('Fahrendholz Konrad')
-    assert author.author == 'Fahrendholz'
+    author = iamraw.BibliographyReference.create('Schewe Konrad')
+    assert author.author == 'Schewe'
 
 
 def test_bibliographytable_dump_load():
