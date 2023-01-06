@@ -13,7 +13,7 @@ groupme==0.40.5
 power==2.20.1
 genex==0.37.1
 
-utilatest==0.26.0
+utilatest==0.26.1
 
 pagenumber>=0.3.4<1.0.0
 footnote>=0.2.6<1.0.0
