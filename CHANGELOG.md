@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.88.12 (2023-01-07)
+
+### Chore
+
+* make requirements less strict (3d0f3876c482)
+* upgrade requirements.txt (a547c9133e6b)
+
 ## v4.88.11 (2023-01-02)
 
 ### Documentation
