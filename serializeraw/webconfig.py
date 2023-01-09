@@ -29,6 +29,9 @@ def load_webconfig(path: str) -> iamraw.WebConfig:
 def dump_webconfig(path: str, config: iamraw.WebConfig):
     raw = dataclasses.asdict(config)
     raw['active'] = list(raw['active'])
-    raw['decider'] = list(raw['decider'])
+    raw['decider'] = sorted(
+        raw['decider'],
+        key=utila.alphabetically,
+    )
     dumped = utila.yaml_dump(raw)
     utila.file_replace(path, dumped)

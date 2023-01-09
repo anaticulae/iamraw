@@ -13,6 +13,10 @@ import serializeraw
 
 def test_webconfig_dump_load(testdir):
     config = iamraw.WebConfig()
+    config.decider.append('first')
+    config.decider.append('third')
+    config.decider.append('second')
+    config.decider.sort()
     path = testdir.tmpdir.join('abc.config')
     serializeraw.dump_webconfig(path, config)
     loaded = serializeraw.load_webconfig(path)
