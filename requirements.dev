@@ -15,8 +15,8 @@ genex==0.37.1
 
 utilatest==0.26.1
 
-pagenumber>=0.3.4<1.0.0
+pagenumber>=0.3.5<1.0.0
 footnote>=0.2.6<1.0.0
-reftable>=0.5.1<1.0.0
-sections>=1.23.2<2.0.0
+reftable>=0.6.0<1.0.0
+sections>=1.23.3<2.0.0
 headnote>=0.5.2<1.0.0
