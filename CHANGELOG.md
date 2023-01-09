@@ -2,6 +2,16 @@
 
 Every noteable change is logged here.
 
+## v4.89.0 (2023-01-09)
+
+### Feature
+
+* sort decider alphabetically (4853ac922b26)
+
+### Chore
+
+* upgrade requirements.txt (0f468c115b3f)
+
 ## v4.88.13 (2023-01-09)
 
 ### Chore
