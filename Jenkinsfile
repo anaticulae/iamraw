@@ -55,16 +55,12 @@ pipeline{
         }
         stage('generate'){
             steps{
-                sh 'baw --docken generate all'
-            }
-            post{
-                always{script{publish.generated()}}
+                script{baw.generate()}
             }
         }
         stage('all'){
             steps{
-                sh 'baw --docken test all -n32'
-                //script{baw.all()}
+                script{baw.all(32, true)}
             }
         }
         stage('release'){
