@@ -2,6 +2,15 @@
 
 Every noteable change is logged here.
 
+## v4.89.1 (2023-01-15)
+
+### Chore
+
+* use new docken (50a836526729)
+* upgrade requirements.txt (b8512873272e)
+* upgrade Jenkinsfile (20b2660bd3fb)
+* upgrade pipe library (4e9465fd70fc)
+
 ## v4.89.0 (2023-01-09)
 
 ### Feature
