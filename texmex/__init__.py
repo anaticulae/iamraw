@@ -52,6 +52,8 @@ from texmex.nav import NavigatorMixins
 from texmex.nav import PTCNs
 from texmex.nav import PTNs
 from texmex.nav import SelectBounding
+from texmex.nav import insert_position
+from texmex.nav import insert_position_middle
 from texmex.nav import navigator_to_bounds
 from texmex.nav import navigator_to_content
 from texmex.nav import rotate_left
