@@ -14,7 +14,7 @@ import utila
 
 import iamraw
 import texmex
-import texmex.navigator
+import texmex.nav
 import texmex.text
 
 
@@ -83,7 +83,7 @@ def bounds_to_textbounds(
 
 
 def textbounds(
-    navigator: texmex.navigator.PTN,
+    navigator: texmex.nav.PTN,
     contentborder: iamraw.Border,
 ) -> texmex.text.TextBoundsInfos:
     assert isinstance(navigator, texmex.NavigatorMixin), type(navigator)
@@ -125,7 +125,7 @@ def textsize_frompage(navigator: 'texmex.NavigatorMixin') -> float:
 
 
 def document_textfeed(
-    navigators: texmex.navigator.PTNs,
+    navigators: texmex.nav.PTNs,
     count: int = 1,
     left: bool = True,
 ) -> utila.Ints:

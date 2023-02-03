@@ -43,27 +43,27 @@ from texmex.iter import PageIter
 from texmex.iter import TextContainerIterator
 from texmex.iter import split_page
 # navigator
-from texmex.navigator import BEGIN
-from texmex.navigator import END
-from texmex.navigator import PTCN
-from texmex.navigator import PTN
-from texmex.navigator import NavigatorMixin
-from texmex.navigator import NavigatorMixins
-from texmex.navigator import PTCNs
-from texmex.navigator import PTNs
-from texmex.navigator import SelectBounding
-from texmex.navigator import navigator_to_bounds
-from texmex.navigator import navigator_to_content
-from texmex.navigator import rotate_left
-from texmex.navigator import single
+from texmex.nav import BEGIN
+from texmex.nav import END
+from texmex.nav import PTCN
+from texmex.nav import PTN
+from texmex.nav import NavigatorMixin
+from texmex.nav import NavigatorMixins
+from texmex.nav import PTCNs
+from texmex.nav import PTNs
+from texmex.nav import SelectBounding
+from texmex.nav import navigator_to_bounds
+from texmex.nav import navigator_to_content
+from texmex.nav import rotate_left
+from texmex.nav import single
 # navigator:create
-from texmex.navigator.create import HORIZONTAL
-from texmex.navigator.create import PTNMode
-from texmex.navigator.create import create_ptcns
-from texmex.navigator.create import create_ptns
-from texmex.navigator.create import determine_border
-from texmex.navigator.create import fill_empty_navigators
-from texmex.navigator.create import ptn_fromstr
+from texmex.nav.create import HORIZONTAL
+from texmex.nav.create import PTNMode
+from texmex.nav.create import create_ptcns
+from texmex.nav.create import create_ptns
+from texmex.nav.create import determine_border
+from texmex.nav.create import fill_empty_navigators
+from texmex.nav.create import ptn_fromstr
 # search
 from texmex.search import search_area
 # sentences

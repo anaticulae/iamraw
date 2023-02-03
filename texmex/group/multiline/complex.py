@@ -13,7 +13,7 @@ import utila
 
 import texmex
 import texmex.group.multiline
-import texmex.navigator
+import texmex.nav
 
 
 @utila.rename(
@@ -21,7 +21,7 @@ import texmex.navigator
     max_sizediff='sizediff_max',
 )
 def group_linedistances_complex(
-    content: texmex.navigator.PTN,
+    content: texmex.nav.PTN,
     sizediff_max: float = texmex.group.multiline.SIZEDIFF_MAX,
     distance_max: callable = texmex.group.multiline.maxdistance,
     xdist_max: float = None,

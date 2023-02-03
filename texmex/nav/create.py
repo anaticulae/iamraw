@@ -12,7 +12,7 @@ import enum
 import utila
 
 import iamraw
-import texmex.navigator
+import texmex.nav
 import texmex.style
 
 
@@ -31,7 +31,7 @@ def create_ptns(
     mode=PTNMode.BOTH,
     sort: bool = True,
     state: 'TextState' = texmex.style.TextState.VISIBLE,
-) -> texmex.navigator.PTNs:
+) -> texmex.nav.PTNs:
     result = []
     # TODO: IS DEFAULT REQUIRED?
     for page, (textpage, textposition) in utila.sync_pages(
@@ -43,7 +43,7 @@ def create_ptns(
         else:
             # TODO: OUTDATED, REMOVE LATER
             pagesize = text.dimension
-        navigator = texmex.navigator.PTN(
+        navigator = texmex.nav.PTN(
             pagesize=pagesize,
             page=page,
         )
@@ -123,7 +123,7 @@ def create_ptcns(
     horizontals: iamraw.PagesWithHorizontalList = None,
     validate_leftright: bool = True,
     pages: tuple = None,
-) -> texmex.navigator.PTCNs:
+) -> texmex.nav.PTCNs:
     # TODO: require fill_empty?
     result = []
     for navigator in navigators:
@@ -143,7 +143,7 @@ def create_ptcns(
             continue
         if horizontals:
             insert_horizontals(navigator, horizontals)
-        current = texmex.navigator.PTCN(
+        current = texmex.nav.PTCN(
             navigator,
             border,
             validate_leftright=validate_leftright,
@@ -163,7 +163,7 @@ def ptn_fromstr(content: str, fontsize=12.0):
     , BoundingBox(x0=50, y0=140, x1=200, y1=160): good bye.
     })
     """
-    result = texmex.navigator.PTN()
+    result = texmex.nav.PTN()
     for index, line in enumerate(content.splitlines()):
         bounding = iamraw.BoundingBox(
             x0=50,
@@ -187,9 +187,9 @@ def ptn_fromstr(content: str, fontsize=12.0):
 
 
 def fill_empty_navigators(
-    navigators: texmex.navigator.PTNs,
+    navigators: texmex.nav.PTNs,
     dimension: iamraw.PageSize,
-) -> texmex.navigator.PTNs:
+) -> texmex.nav.PTNs:
     """Some documents contain white pages.
 
     White pages contain no text and therefore no text_positions. The
@@ -207,7 +207,7 @@ def fill_empty_navigators(
     for item in navigators[1:]:
         # fill empty
         while filled[-1].page + 1 < item.page:
-            navigator = texmex.navigator.PTN(
+            navigator = texmex.nav.PTN(
                 pagesize=dimension,
                 page=filled[-1].page + 1,
             )
@@ -219,7 +219,7 @@ def fill_empty_navigators(
 HORIZONTAL = '<<<<<<<<<<<<<<<<<<<<HORIZONTAL>>>>>>>>>>>>>>>>>>>>'
 
 
-def insert_horizontals(ptn: texmex.navigator.PTN, horizontals):
+def insert_horizontals(ptn: texmex.nav.PTN, horizontals):
     selected = utila.select_content(horizontals, ptn.page)
     if not selected:
         return
@@ -228,7 +228,7 @@ def insert_horizontals(ptn: texmex.navigator.PTN, horizontals):
             text=HORIZONTAL,
             style=None,
             bounding=horizontal.box,
-            sort=texmex.navigator.insert_position_middle,
+            sort=texmex.nav.insert_position_middle,
         )
 
 

@@ -31,8 +31,8 @@ import utila
 import texmex
 from texmex.group.fonts import feeddistance
 from texmex.group.fonts import fontdistance
-from texmex.navigator import PTN
-from texmex.navigator import PTNs
+from texmex.nav import PTN
+from texmex.nav import PTNs
 from texmex.text import TextBoundsInfo
 from texmex.text import TextBoundsInfos
 
