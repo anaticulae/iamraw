@@ -2,6 +2,18 @@
 
 Every noteable change is logged here.
 
+## v4.90.0 (2023-02-03)
+
+### Feature
+
+* extend public API (c8fc99cc3676)
+* add method to create enum from str (46e06d8e9a0f)
+
+### Chore
+
+* upgrade requirements.txt (aba746e1bf0e)
+* upgrade Jenkinsfile (7a06a08dcd7c)
+
 ## v4.89.2 (2023-01-31)
 
 ### Chore
