@@ -16,10 +16,28 @@ class Language(enum.Enum):
     FRENCH = enum.auto()
     UNKNOWN = enum.auto()
 
+    @staticmethod
+    def from_str(item: str) -> 'Language':
+        """\
+        >>> Language.from_str('GER')
+        <Language.GERMAN:...>
+        >>> Language.from_str('INVALID_LANG')
+        Traceback (most recent call last):
+        ...
+        ValueError: not a lang: invalid_lang
+        >>> Language.from_str('en')
+        <Language.ENGLISH:...>
+        """
+        item = item.lower().strip()
+        for value, key in LANGUAGE.items():
+            if item in key:
+                return value
+        raise ValueError(f'not a lang: {item}')
+
 
 LANGUAGE = {
-    Language.GERMAN: 'ger german'.split(),
-    Language.ENGLISH: 'eng english'.split(),
+    Language.GERMAN: 'ger german de'.split(),
+    Language.ENGLISH: 'eng english en'.split(),
     Language.FRENCH: 'fre french'.split(),
     Language.UNKNOWN: 'none unknown'.split(),
 }
