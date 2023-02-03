@@ -2,6 +2,13 @@
 
 Every noteable change is logged here.
 
+## v4.91.0 (2023-02-03)
+
+### Feature
+
+* add publications area item (ef8f478d1089)
+* extend public API (5549d293e405)
+
 ## v4.90.0 (2023-02-03)
 
 ### Feature
