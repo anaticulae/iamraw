@@ -201,6 +201,11 @@ class Bibliography(AreaItem):
 
 
 @dataclasses.dataclass
+class Publication(AreaItem):
+    """Mostly used in phd. A list of publications of the author."""
+
+
+@dataclasses.dataclass
 class LegalInformation(AreaItem):
     pass
 
