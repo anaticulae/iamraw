@@ -12,7 +12,7 @@ import math
 import utila
 
 import texmex
-import texmex.group.multiline
+import texmex.group.ml
 import texmex.nav
 
 
@@ -22,8 +22,8 @@ import texmex.nav
 )
 def group_linedistances_complex(
     content: texmex.nav.PTN,
-    sizediff_max: float = texmex.group.multiline.SIZEDIFF_MAX,
-    distance_max: callable = texmex.group.multiline.maxdistance,
+    sizediff_max: float = texmex.group.ml.SIZEDIFF_MAX,
+    distance_max: callable = texmex.group.ml.maxdistance,
     xdist_max: float = None,
     returndata: bool = False,
 ) -> list[int]:
@@ -84,9 +84,9 @@ def setup(content, returndata: bool = False):
         return []
     if len(content) == 1:
         return [content[0]] if returndata else [[0]]
-    distances = texmex.group.multiline.linedistances(content)
+    distances = texmex.group.ml.linedistances(content)
     sizes = [max((item.size for item in items.style)) for items in content]
-    xdists = texmex.group.multiline.xdistances(content)
+    xdists = texmex.group.ml.xdistances(content)
     assert len(distances) == len(sizes) == len(xdists)
     if len(distances) < 2:
         return []

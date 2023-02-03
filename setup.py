@@ -16,7 +16,7 @@ PACKAGES = [
     'serializeraw.tnav',
     'texmex',
     'texmex.group',
-    'texmex.group.multiline',
+    'texmex.group.ml',
     'texmex.nav',
 ]
 
