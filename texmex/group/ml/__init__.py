@@ -273,7 +273,7 @@ def xdistances(content) -> list:
     ----------
     Do not convert data type while rounding:
     >>> import texmex
-    >>> xdistances(texmex.ptn_fromstr('First\n\Second'))
+    >>> xdistances(texmex.ptn_fromstr('First\n\\Second'))
     [None, 0.0]
 
     Do not fail on too few items

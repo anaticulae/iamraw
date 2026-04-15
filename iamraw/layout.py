@@ -8,7 +8,7 @@
 # =============================================================================
 """\
 >>> Layout.STANDARD | Layout.DOUBLECOLUMN
-<Layout.DOUBLECOLUMN|STANDARD: ...>
+<Layout.STANDARD|DOUBLECOLUMN: 9>
 """
 
 import enum

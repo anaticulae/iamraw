@@ -39,7 +39,7 @@ class AcademicTitle(enum.Flag):
     def merges(items) -> 'iamraw.AcademicTitle':
         """\
         >>> AcademicTitle.merges((AcademicTitle.PROF, AcademicTitle.DR))
-        <AcademicTitle.PROF|DR: 96>
+        <AcademicTitle.DR|PROF: 96>
         """
         if not items:
             return None

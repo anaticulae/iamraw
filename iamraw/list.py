@@ -53,7 +53,8 @@ class PageList:
     def identifier(self) -> int:
         """\
         Ensure to generate valid hash int value
-        >>> assert PageList().identifier > 100000
+        >>> hashed  = PageList().identifier
+        >>> assert abs(hashed)  > 100000, hashed
         """
         raw = f'page:{self.pdfpage}area:{self.area}'
         result = hash(raw)

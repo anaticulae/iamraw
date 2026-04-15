@@ -8,8 +8,9 @@
 # =============================================================================
 
 # import genex.example
-# import power
+import power
 import pytest
+import resinf
 
 import iamraw
 from tests.fixtures.textnavigator import navigator  # pylint:disable=W0611
@@ -20,6 +21,7 @@ from tests.serializeraw.fixtures import docu027_fontstore  # pylint:disable=W061
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
 PACKAGE = 'iamraw'
+resinf.setup(iamraw.ROOT)  # TODO: REMOVE LATER?
 # power.setup(iamraw.ROOT)
 
 RESOURCES = [
@@ -29,6 +31,12 @@ RESOURCES = [
     # (power.BACHELOR111_PDF, '0:5'),
     # (power.BACHELOR037_PDF, '0:5'),
 ]
+
+power.BACHELOR037_PDF = "abc/bachelor/bachelor037.pdf"
+power.BACHELOR111_PDF = "abc/bachelor/bachelor111.pdf"
+power.DOCU027_PDF = "abc/docu/docu027.pdf"
+
+power.MASTER072_PDF = "abc/master/master072.pdf"
 
 
 @pytest.mark.usefixtures('session')
