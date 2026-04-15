@@ -94,9 +94,8 @@ def dump_item(item):
     result = {
         key: (
             item.__getattribute__(key)  # pylint:disable=C2801
-            if key != 'content' else [dump_item(it) for it in item.content])
-        for key in keys
-        if not callable(item.__getattribute__(key))  # pylint:disable=C2801
+            if key != 'content' else [dump_item(it) for it in item.content]
+        ) for key in keys if not callable(item.__getattribute__(key))  # pylint:disable=C2801
     }
     result[CLASSNAME] = item.__class__.__name__
     return result

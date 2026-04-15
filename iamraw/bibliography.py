@@ -58,8 +58,8 @@ class BibliographyReference:  # pylint:disable=R0902
 
     def __post_init__(self):
         # TODO: MAY REMOVE NO YEAR LATER
-        assert any((self.year is None, isinstance(self.year, int),
-                    self.year == 'no year')), str(self)
+        assert any((self.year is None, isinstance(self.year, int), self.year
+                    == 'no year'),), str(self)
 
 
 BibliographyReferences = list[BibliographyReference]
