@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -27,7 +27,7 @@ def dump_boundingboxes(boxes: iamraw.PageBoundingsList) -> str:
             ],
         }
         simple.append(item)
-    dumped = utila.yaml_dump(simple)
+    dumped = utilo.yaml_dump(simple)
     dumped = serializeraw.dump_yamlpages(dumped)
     return dumped
 
@@ -39,7 +39,7 @@ def load_boundingboxes(content: str, pages=None) -> iamraw.PageBoundingsList:
         pages=pages,
         fname='rawmaker__border_boundingboxes',
     )
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='rawmaker__border_boundingboxes',
         safe=False,
@@ -47,7 +47,7 @@ def load_boundingboxes(content: str, pages=None) -> iamraw.PageBoundingsList:
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         boundings = []
         for item in page['content']:

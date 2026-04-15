@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
@@ -18,7 +18,7 @@ def dump_pagecontent(
 ) -> str:
     pagedumper = pagedumper if pagedumper else lambda x: x
     converted = [(page.page, pagedumper(page.content)) for page in pages]
-    dumped = utila.yaml_dump(converted)
+    dumped = utilo.yaml_dump(converted)
     return dumped
 
 
@@ -28,12 +28,12 @@ def load_pagecontent(
     pageloader: callable = None,
     fname: str = None,
 ) -> iamraw.PageContents:
-    content = utila.from_raw_or_path(content, ftype='yaml', fname=fname)
-    loaded = utila.yaml_load(content)
+    content = utilo.from_raw_or_path(content, ftype='yaml', fname=fname)
+    loaded = utilo.yaml_load(content)
     pageloader = pageloader if pageloader else lambda x: x
     result = []
     for page, pagecontent in loaded:
-        if utila.should_skip(page, pages):
+        if utilo.should_skip(page, pages):
             continue
         pagecontent = pageloader(pagecontent)
         result.append(iamraw.PageContent(

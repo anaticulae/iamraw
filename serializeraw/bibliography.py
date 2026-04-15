@@ -9,7 +9,7 @@
 
 import dataclasses
 
-import utila
+import utilo
 
 import iamraw
 
@@ -24,7 +24,7 @@ def dump_bibliography_reference(references: iamraw.BibliographyReferences) -> st
         result = []
         for page in references:
             result.append([dataclasses.asdict(item) for item in page])
-        dumped = utila.yaml_dump(result)
+        dumped = utilo.yaml_dump(result)
         return dumped
     return dump_bib_table(references)
 
@@ -32,7 +32,7 @@ def dump_bibliography_reference(references: iamraw.BibliographyReferences) -> st
 def dump_bib_table(table: iamraw.BibliographyTable) -> str:
     assert table.references is not None, str(table)
     if table.pdfpages is not None:
-        pdfpages = utila.from_tuple(table.pdfpages)
+        pdfpages = utilo.from_tuple(table.pdfpages)
     else:
         pdfpages = ''
     raw = dict(
@@ -41,7 +41,7 @@ def dump_bib_table(table: iamraw.BibliographyTable) -> str:
         references=[dataclasses.asdict(item) for item in table.references],
         __strategy__=table.__strategy__,
     )
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
@@ -51,7 +51,7 @@ def load_bibliography_reference(content: str) -> iamraw.BibliographyReferences:
     ... iamraw.BibliographyTable(headline='Bibliography', references=[])))
     BibliographyTable(headline='Bibliography', references=[], pdfpages='')
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=(
             'bibliography__result_result',
@@ -74,7 +74,7 @@ def load_bib_table(table: dict) -> iamraw.BibliographyTable:
     headline = table.get('headline', '')
     pdfpages = table.get('pdfpages', None)
     if pdfpages:
-        pdfpages = utila.parse_tuple(pdfpages, length=None, typ=int)
+        pdfpages = utilo.parse_tuple(pdfpages, length=None, typ=int)
     references = table.get('references', [])
     strategy = table.get('__strategy__', None)
     result = iamraw.BibliographyTable(

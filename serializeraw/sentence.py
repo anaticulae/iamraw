@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -43,11 +43,11 @@ def dumper(boundings) -> list:
         single = not bounding or isinstance(bounding[0], (int, float))
         if single:
             if not bounding:
-                utila.debug(f'dump empty bounding: {boundings}')
-            item = utila.from_tuple(bounding)
+                utilo.debug(f'dump empty bounding: {boundings}')
+            item = utilo.from_tuple(bounding)
         else:
-            item = utila.from_tuple(
-                [utila.from_tuple(it) for it in bounding],
+            item = utilo.from_tuple(
+                [utilo.from_tuple(it) for it in bounding],
                 separator=MULTILINE_SEPARATOR,
             )
         result.append(item)
@@ -59,19 +59,19 @@ def loader(boundings) -> list:
     for bounding in boundings:
         if not bounding:
             # empty element
-            utila.debug(f'load empty boundung: {boundings}')
+            utilo.debug(f'load empty boundung: {boundings}')
             result.append(tuple())
             continue
         single = MULTILINE_SEPARATOR not in bounding
         if single:
-            item = utila.parse_tuple(bounding)
+            item = utilo.parse_tuple(bounding)
         else:
-            splitted = utila.parse_tuple(
+            splitted = utilo.parse_tuple(
                 bounding,
                 length=None,
                 typ=str,
                 separator=MULTILINE_SEPARATOR,
             )
-            item = tuple(utila.parse_tuple(it) for it in splitted)
+            item = tuple(utilo.parse_tuple(it) for it in splitted)
         result.append(item)
     return result

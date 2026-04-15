@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
@@ -52,8 +52,8 @@ class PageIter:
             content between current text iterator and passed new iterator
             if the new iterator is out of bounds a ValueError is raised.
         """
-        utila.debug(f'input {container} {line} {char}')
-        utila.debug(f'current: {self.container} {self.line} {self.char}')
+        utilo.debug(f'input {container} {line} {char}')
+        utilo.debug(f'current: {self.container} {self.line} {self.char}')
         empty = True
         result = ''
         if all([
@@ -112,7 +112,7 @@ def split_page(
     positions: list,
     *,
     append_unvisited: bool = True,
-) -> utila.Strings:
+) -> utilo.Strings:
     """Split page into chunks given by `positions`. The source of these
     positions can be rawmaker with font-extractor.
 

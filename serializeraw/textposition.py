@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -29,7 +29,7 @@ def dump_textpositions(items: iamraw.PageContentTextPositions) -> str:
             'content': raw,
             'page': pagenumber,
         })
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     dumped = serializeraw.dump_yamlpages(dumped)
     return dumped
 
@@ -45,7 +45,7 @@ def load_textpositions(
         pages=pages,
         fname=fname,
     )
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=fname,
         safe=False,
@@ -57,7 +57,7 @@ def load_textpositions(
         return result
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         pagedata = {}
         for item in page['content']:
@@ -79,6 +79,6 @@ def raw_bounding(bounding) -> str:
     """Convert BoundingBox or tuple to str representation."""
     if isinstance(bounding, tuple):
         assert len(bounding) == 4
-        return utila.from_tuple(bounding)
+        return utilo.from_tuple(bounding)
     # iamraw.BoundingBox
     return str(bounding)

@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 import iamraw.sections
 
@@ -23,7 +23,7 @@ def dump_sections(sections: iamraw.sections.Sections) -> str:
         content = dump_item(page)
         content['content'] = [dump_item(item) for item in page.content]
         result.append(content)
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -43,7 +43,7 @@ def load_sections(
     Return:
         loaded Sections
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='sections__section_result',
         safe=False,
@@ -84,7 +84,7 @@ def inside_section(section: dict, pages: tuple) -> list:
         end = end + 1
     section_pages = tuple(range(start, end))
     inside = [
-        page for page in section_pages if not utila.should_skip(page, pages)
+        page for page in section_pages if not utilo.should_skip(page, pages)
     ]
     return inside, section_pages
 
@@ -129,7 +129,7 @@ def load_item(item, onerror: callable = None):
             classname=classname,
             **result,
         )
-        utila.error(f'section `{classname}` not supported - use default')
+        utilo.error(f'section `{classname}` not supported - use default')
     else:
         result = ctor(**result)  # pylint:disable=not-a-mapping
     return result
@@ -139,7 +139,7 @@ def shrink_section(section, pages: tuple):
     """Shrink content `section` to selected `pages`."""
     section_pages = range(section.start, section.end + 1)
     inside = [
-        page for page in section_pages if not utila.should_skip(page, pages)
+        page for page in section_pages if not utilo.should_skip(page, pages)
     ]
     # adjust border to new border
     section.start, section.end = min(inside), max(inside)
@@ -153,4 +153,4 @@ def shrink_section(section, pages: tuple):
 
 # Create table with name[constructor].
 # lookuptable with constructor to create objects out of raw information
-CTOR = utila.name_classes(utila.collect_classes(iamraw.sections))
+CTOR = utilo.name_classes(utilo.collect_classes(iamraw.sections))

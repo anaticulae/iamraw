@@ -9,8 +9,8 @@
 
 import power
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import iamraw
 import serializeraw
@@ -140,20 +140,20 @@ def test_dump_mergednote():
         page=10,
     )
     before = hash(str(data))
-    dumped = utila.simplify(data)
+    dumped = utilo.simplify(data)
     assert dumped
     assert hash(str(data)) == before, 'data changed due simplify'
 
 
-@utilatest.requires(power.MASTER072_PDF)
+@utilotest.requires(power.MASTER072_PDF)
 def test_footer_load():
     source = power.link(power.MASTER072_PDF)
     loaded = serializeraw.load_headerfooter(source)
-    assert utila.near(current=len(loaded), expected=7, diff=3)  # seven pages
+    assert utilo.near(current=len(loaded), expected=7, diff=3)  # seven pages
 
 
-@utilatest.requires(power.MASTER072_PDF)
+@utilotest.requires(power.MASTER072_PDF)
 def test_footnotes_load():
     source = power.link(power.MASTER072_PDF)
     loaded = serializeraw.load_footnotes(source)
-    assert utila.near(current=len(loaded), expected=5, diff=3)  # five footnotes
+    assert utilo.near(current=len(loaded), expected=5, diff=3)  # five footnotes

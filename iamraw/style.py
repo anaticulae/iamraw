@@ -9,7 +9,7 @@
 
 import dataclasses
 
-import utila
+import utilo
 
 
 @dataclasses.dataclass(unsafe_hash=True)
@@ -124,5 +124,5 @@ class DocTextStyle:
             for key, value in dataclasses.asdict(self).items()
             if value is not None
         ]
-        result = utila.NEWLINE.join(collected)
+        result = utilo.NEWLINE.join(collected)
         return result

@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -75,7 +75,7 @@ def test_headlines_dump_and_load():
     dumped = serializeraw.dump_headlines(EXPECTED)
     loaded = serializeraw.load_headlines(dumped)
     assert loaded == EXPECTED
-    loaded = serializeraw.load_headlines(dumped, utila.rtuple(10))
+    loaded = serializeraw.load_headlines(dumped, utilo.rtuple(10))
     assert len(loaded) == 2
 
 

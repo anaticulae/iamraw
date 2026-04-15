@@ -8,21 +8,21 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 import texmex
 
 
 @configo.cache_small
 def load_highnotes(content: str, pages: tuple = None):
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         safe=False,
     )
     result = []
     for pagecontent in loaded:
         pagenumber = int(pagecontent['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         page = texmex.PageContentTextItems(page=pagenumber)
         page.content = [
@@ -37,7 +37,7 @@ def load_highnotes(content: str, pages: tuple = None):
 
 
 def dump_highnotes(pages) -> str:
-    utila.asserts_types(pages, texmex.PageContentTextItems)
+    utilo.asserts_types(pages, texmex.PageContentTextItems)
     result = []
     for page in pages:
         raw = {'page': page.page}
@@ -48,5 +48,5 @@ def dump_highnotes(pages) -> str:
         } for item in page.content]
         raw['content'] = items
         result.append(raw)
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped

@@ -9,14 +9,14 @@
 
 import math
 
-import utila
+import utilo
 
 import texmex
 import texmex.group.ml
 import texmex.nav
 
 
-@utila.rename(
+@utilo.rename(
     max_distance='distance_max',
     max_sizediff='sizediff_max',
 )
@@ -60,7 +60,7 @@ def group_linedistances_complex(
             current_group = [index]
             cursize = None
             continue
-        sizediff = utila.roundme(math.fabs(cursize - size))
+        sizediff = utilo.roundme(math.fabs(cursize - size))
         if sizediff < sizediff_max:
             if distance < distance_max(size):
                 current_group.append(index)

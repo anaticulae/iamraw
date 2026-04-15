@@ -10,7 +10,7 @@
 import collections
 import dataclasses
 
-import utila
+import utilo
 
 
 @dataclasses.dataclass
@@ -27,7 +27,7 @@ class Abbreviation:
     position: AbbreviationPosition = None
 
     def __lt__(self, item):
-        if utila.alphabetically(self.short) <= utila.alphabetically(item.short):
+        if utilo.alphabetically(self.short) <= utilo.alphabetically(item.short):
             return True
         return False
 

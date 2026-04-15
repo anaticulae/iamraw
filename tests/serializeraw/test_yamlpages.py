@@ -10,17 +10,17 @@
 import os
 
 import power
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import serializeraw
 
 
-@utilatest.requires(power.DOCU027_PDF)
+@utilotest.requires(power.DOCU027_PDF)
 def test_yamlpages_write(testdir):
     source = power.link(power.DOCU027_PDF)
     filename = 'rawmaker__text_text.yaml'
-    utila.copy_content(
+    utilo.copy_content(
         source,
         dst=testdir.tmpdir,
         pattern=filename,
@@ -30,24 +30,24 @@ def test_yamlpages_write(testdir):
         serializeraw.load_document(filename),
         fast=False,
     )
-    utila.file_replace(filename, dumped)
+    utilo.file_replace(filename, dumped)
     serializeraw.write_yamlpages(filename)
     loaded = serializeraw.load_yamlpages(filename, pages=10)
-    yaml = utila.yaml_load(loaded)
+    yaml = utilo.yaml_load(loaded)
     assert yaml['dimension']
     assert yaml['pages'][0]['page'] == 10
     # double page test
     loaded = serializeraw.load_yamlpages(filename, pages=(0, 11))
-    yaml = utila.yaml_load(loaded)
+    yaml = utilo.yaml_load(loaded)
     assert yaml['pages'][0]['page'] == 0  # pylint:disable=C2001
     assert yaml['pages'][1]['page'] == 11
 
 
-@utilatest.requires(power.DOCU027_PDF)
+@utilotest.requires(power.DOCU027_PDF)
 def test_yamlpages_compare_speed(testdir, capsys):
     source = power.link(power.DOCU027_PDF)
     filename = 'rawmaker__text_text.yaml'
-    utila.copy_content(
+    utilo.copy_content(
         source,
         dst=testdir.tmpdir,
         pattern=filename,
@@ -57,25 +57,25 @@ def test_yamlpages_compare_speed(testdir, capsys):
         serializeraw.load_document(filename),
         fast=False,
     )
-    utila.file_replace(filename, dumped)
-    with utila.level_tmp(utila.Level.DEBUG):
-        with utila.profile('slow'):
+    utilo.file_replace(filename, dumped)
+    with utilo.level_tmp(utilo.Level.DEBUG):
+        with utilo.profile('slow'):
             slow = serializeraw.load_document(filename, pages=10, fast=False)
         fast = os.path.join(source, filename)
-        with utila.profile('fast'):
+        with utilo.profile('fast'):
             fast = serializeraw.load_document(fast, pages=10, fast=True)
     assert fast == slow
     # compare speed
-    log = utilatest.stdout(capsys)
-    times = utila.parse_floats(log)
+    log = utilotest.stdout(capsys)
+    times = utilo.parse_floats(log)
     assert times[1] < times[0], str(times)
 
 
-@utilatest.requires(power.DOCU027_PDF)
+@utilotest.requires(power.DOCU027_PDF)
 def test_yamlpages_load(testdir):
     """Do not fail on raw yaml sources."""
     source = power.link(power.DOCU027_PDF)
     filename = 'rawmaker__text_text.yaml'
-    utila.copy_content(source, dst=testdir.tmpdir, pattern=filename)
+    utilo.copy_content(source, dst=testdir.tmpdir, pattern=filename)
     loaded = serializeraw.load_yamlpages(filename, pages=10)
     assert loaded

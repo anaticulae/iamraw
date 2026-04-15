@@ -37,7 +37,7 @@ import dataclasses
 import re
 import textwrap
 
-import utila
+import utilo
 
 import serializeraw.__patch__
 
@@ -69,19 +69,19 @@ class YAMLPages:
 
 
 def isyamlpage(path: str) -> bool:
-    # TODO: USE ONLY LIMTED BITS AFTER UPGRADING UTILA
-    header = utila.file_read(path)
+    # TODO: USE ONLY LIMTED BITS AFTER UPGRADING UTILO
+    header = utilo.file_read(path)
     return header.startswith(HEADER)
 
 
 def load_yamlpages(content: str, pages: tuple = None, fname=None) -> str:
-    content = utila.from_raw_or_path(content, fname=fname)
+    content = utilo.from_raw_or_path(content, fname=fname)
     isyamlpages = content.startswith(HEADER)
     if not isyamlpages:
         return content
-    fileinfo, content = content.split(utila.NEWLINE, maxsplit=1)
+    fileinfo, content = content.split(utilo.NEWLINE, maxsplit=1)
     fileinfo = fileinfo.replace(HEADER, '')
-    headerlength, fixed = utila.parse_ints(fileinfo.replace(':', ' '))  # pylint:disable=W0632
+    headerlength, fixed = utilo.parse_ints(fileinfo.replace(':', ' '))  # pylint:disable=W0632
     if pages is None:
         content = content[headerlength:]
         return content
@@ -93,15 +93,15 @@ def load_yamlpages(content: str, pages: tuple = None, fname=None) -> str:
     content = content[fixed:].strip()
     for _, (start, end) in header.content.items():
         raw.append(content[start:end])
-    result = utila.NEWLINE.join(raw)
+    result = utilo.NEWLINE.join(raw)
     return result
 
 
 def write_yamlpages(path: str):
-    utila.exists_assert(path)
-    content = utila.file_read(path)
+    utilo.exists_assert(path)
+    content = utilo.file_read(path)
     result = dump_yamlpages(content)
-    utila.file_replace(path, result)
+    utilo.file_replace(path, result)
 
 
 def dump_yamlpages(content: str) -> str:
@@ -116,7 +116,7 @@ def dump_yamlpages(content: str) -> str:
 
 
 def split_content(content: str) -> tuple:
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     static = {}
     dynamic = {}
     islist = isinstance(loaded, list)
@@ -128,9 +128,9 @@ def split_content(content: str) -> tuple:
                 dynamic[key] = value
             else:
                 static[key] = value
-        static: str = utila.yaml_dump(static) if static else ''
+        static: str = utilo.yaml_dump(static) if static else ''
         assert len(dynamic) <= 1, 'could not write more than one dynamic'
-    dynamic: str = utila.yaml_dump(dynamic) if dynamic else ''
+    dynamic: str = utilo.yaml_dump(dynamic) if dynamic else ''
     if islist:
         head, tail = '', dynamic
     else:
@@ -141,7 +141,7 @@ def split_content(content: str) -> tuple:
     else:
         static = f'{head}'
     dynamic = [tail[start:end] for page, (start, end) in header.content.items()]
-    dynamic: str = utila.NEWLINE.join(dynamic)
+    dynamic: str = utilo.NEWLINE.join(dynamic)
     return header, static, dynamic
 
 
@@ -172,20 +172,20 @@ def parse_header(content: str, pages: tuple = None) -> YAMLPages:
     content = content.replace('# ', '')
     result = YAMLPages()
     for item in content.split():
-        page, start, end = utila.parse_tuple(
+        page, start, end = utilo.parse_tuple(
             item,
             length=3,
             typ=int,
             separator='/',
         )
-        if utila.should_skip(page, pages):
+        if utilo.should_skip(page, pages):
             continue
         result.addpage(page, start, end)
     return result
 
 
 def getpage(content: str) -> int:
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     if isinstance(loaded, list):
         loaded = loaded[0]
     return loaded['page']

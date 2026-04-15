@@ -28,7 +28,7 @@
 
 import itertools
 
-import utila
+import utilo
 
 import iamraw
 
@@ -36,10 +36,10 @@ import iamraw
 def dump_rawformulas(pages: iamraw.PageContentRawFormulas) -> str:
     # remove empty pages
     result = [item.content for item in pages if item.content]
-    result = utila.flat(result)
+    result = utilo.flat(result)
     raw = [dump_formula(item) for item in result]
     # convert
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
@@ -47,13 +47,13 @@ def load_rawformulas(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentRawFormulas:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         safe=False,
     )
     loaded = [load_formula(item) for item in loaded]
     selected = [
-        item for item in loaded if not utila.should_skip(item.page, pages)
+        item for item in loaded if not utilo.should_skip(item.page, pages)
     ]
     result = [
         iamraw.PageContentRawFormula(page=page, content=list(content))
@@ -68,8 +68,8 @@ def dump_formula(formula: iamraw.FormulaRaw) -> dict:
     {...'label': '(10.3)', 'label_bounding': '10.2 50.0 100.0 133.33'}
     """
     text = ''.join(item.value for item in formula.content)
-    boundings = [utila.from_tuple(item.bounding) for item in formula.content]
-    sizes = utila.from_tuple([item.size for item in formula.content])
+    boundings = [utilo.from_tuple(item.bounding) for item in formula.content]
+    sizes = utilo.from_tuple([item.size for item in formula.content])
     raw = {
         'text': text,
         'boundings': boundings,
@@ -79,20 +79,20 @@ def dump_formula(formula: iamraw.FormulaRaw) -> dict:
     if formula.label:
         raw['label'] = formula.label
     if formula.label_bounding:
-        raw['label_bounding'] = utila.from_tuple(formula.label_bounding)
+        raw['label_bounding'] = utilo.from_tuple(formula.label_bounding)
     return raw
 
 
 def load_formula(formula: dict) -> iamraw.FormulaRaw:
     text = formula['text']
     length = len(text)
-    sizes = utila.parse_tuple(formula['sizes'], length=length)
-    boundings = [utila.parse_tuple(item) for item in formula['boundings']]
+    sizes = utilo.parse_tuple(formula['sizes'], length=length)
+    boundings = [utilo.parse_tuple(item) for item in formula['boundings']]
     page = int(formula['page'])
     label = formula.get('label', None)
     label_bounding = formula.get('label_bounding', None)
     if label_bounding:
-        label_bounding = utila.parse_tuple(label_bounding)
+        label_bounding = utilo.parse_tuple(label_bounding)
     content = []
     for char, size, bounding in zip(text, sizes, boundings):
         content.append(

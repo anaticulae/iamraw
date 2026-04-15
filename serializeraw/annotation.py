@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 from iamraw import BoundingBox
 from iamraw import HyperLink
@@ -52,7 +52,7 @@ def dump_annotations(annotations: PageAnnotations) -> str:
             ],
             'page': page.page
         })
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
@@ -66,14 +66,14 @@ def load_annotations(content: str, pages=None) -> PageAnnotations:
     Returns:
         loaded PageAnnotations
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='annotation_annotation',
     )
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         pagelinks = [
             PageLink(

@@ -8,7 +8,7 @@
 # =============================================================================
 
 import pytest
-import utila
+import utilo
 
 import iamraw
 import texmex
@@ -27,7 +27,7 @@ SAMPLE = [
 
 
 def document_size(items):
-    dimension = utila.rect_max(items)
+    dimension = utilo.rect_max(items)
     return (dimension[2], dimension[3])
 
 

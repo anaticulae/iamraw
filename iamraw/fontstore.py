@@ -10,7 +10,7 @@
 import dataclasses
 import functools
 
-import utila
+import utilo
 
 import iamraw
 
@@ -34,9 +34,9 @@ class FontStore:
 
     def __init__(self, header, pages):
         if not header:
-            utila.error('empty font header')
+            utilo.error('empty font header')
         if not pages:
-            utila.error('empty font footer/pages')
+            utilo.error('empty font footer/pages')
         self.header = {hash(item): item for item in header}
         self.pages = {page.page: page.content for page in pages}
 
@@ -106,7 +106,7 @@ class FontStore:
                     collector += item
             if linenumber + 1 < len(lines):
                 # last item needs no newline
-                collector += utila.NEWLINE
+                collector += utilo.NEWLINE
         # Final font
         if collector:
             result.append(FontChunk(content=collector, font=current))
@@ -122,7 +122,7 @@ class FontStore:
         try:
             return self.header[index]
         except KeyError:
-            utila.error(f'could not find font: {index}')
+            utilo.error(f'could not find font: {index}')
             return None
 
     def __hash__(self):

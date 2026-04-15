@@ -9,7 +9,7 @@
 
 import power
 import pytest
-import utilatest
+import utilotest
 
 import iamraw
 import serializeraw
@@ -164,7 +164,7 @@ def test_fontstore_font_to_fontid():
     assert store.font_to_fontid(f5) == hash(f5)
 
 
-@utilatest.requires(power.DOCU027_PDF)
+@utilotest.requires(power.DOCU027_PDF)
 def test_fontstore_font_access():
     loaded = serializeraw.fs_frompath(power.link(power.DOCU027_PDF))
     fontid = loaded.fontid(0, 0, 0, 0)

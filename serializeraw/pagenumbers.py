@@ -10,7 +10,7 @@
 import contextlib
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -25,7 +25,7 @@ def dump_pagenumbers(items) -> str:
             left=dump_raw(left),
             right=dump_raw(right),
         )
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -38,7 +38,7 @@ def dump_raw(content) -> list:
     result = [
         dict(
             pdfpage=pdfpage,
-            bounding=utila.from_tuple(bounding),
+            bounding=utilo.from_tuple(bounding),
             detected=detectedpage,
         ) for pdfpage, bounding, detectedpage in content
     ]
@@ -47,7 +47,7 @@ def dump_raw(content) -> list:
 
 @configo.cache_small
 def load_pagenumbers(content: str, pages=None):
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=(
             'pagenumber__result_result',
@@ -67,7 +67,7 @@ def fromraw(content, pages):
     result = []
     for item in content:
         pdfpage = toint(item['pdfpage'])
-        if utila.should_skip(pdfpage, pages):
+        if utilo.should_skip(pdfpage, pages):
             continue
         box = iamraw.BoundingBox.from_str(item['bounding'])
         detected = toint(item['detected'])
@@ -89,18 +89,18 @@ def toint(item):
 def load_pagenumbers_magic(content: str, pages: tuple = None) -> dict:
     """Load extend page numbers with filled user pages.
 
-    >>> import utila
-    >>> data = utila.yaml_dump({3:'I', 4:'1', 5:'2', 6:'3'})
+    >>> import utilo
+    >>> data = utilo.yaml_dump({3:'I', 4:'1', 5:'2', 6:'3'})
     >>> load_pagenumbers_magic(data)
     {3: 'I', 4: '1', 5: '2', 6: '3'}
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='groupme__pagenumbers_magic',
     )
     result = {
         pdfpage: userpage
         for pdfpage, userpage in loaded.items()
-        if not utila.should_skip(page=pdfpage, pages=pages)
+        if not utilo.should_skip(page=pdfpage, pages=pages)
     }
     return result

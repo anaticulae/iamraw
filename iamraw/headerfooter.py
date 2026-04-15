@@ -10,7 +10,7 @@
 import copy
 import dataclasses
 
-import utila
+import utilo
 
 import iamraw
 
@@ -38,7 +38,7 @@ class PageContentFooterHeader:
             result += 'footer='
             result += str(self.footer)
         result += ')'
-        result += utila.NEWLINE * 2
+        result += utilo.NEWLINE * 2
         return result
 
 
@@ -81,7 +81,7 @@ class HeaderInfo:
         """Update area of HeaderInfo. Maximze area."""
         if begin is not None:
             self.begin = min((
-                self.begin if self.begin is not None else utila.INF,
+                self.begin if self.begin is not None else utilo.INF,
                 begin,
             ))
         if end is not None:
@@ -99,7 +99,7 @@ class FooterInfo:
         """Update area of FooterInfo. Maximze area."""
         if begin is not None:
             self.begin = min(
-                self.begin if self.begin is not None else utila.INF,
+                self.begin if self.begin is not None else utilo.INF,
                 begin,
             )
         if end is not None:
@@ -131,7 +131,7 @@ class FootNoteRaw(FootNote):
     style_text: list = dataclasses.field(default_factory=list)
 
     def __repr__(self):
-        text = '' if not self.text else utila.shrink(self.text, maxlength=300)
+        text = '' if not self.text else utilo.shrink(self.text, maxlength=300)
         raw = f'FootNoteRaw(number="{self.number}", text="{text}", page="{self.page}")'
         return raw
 
@@ -143,7 +143,7 @@ class FootNoteMerged(FootNote):
 
     @property
     def text(self):
-        result = utila.normalize_text(self.notes, normalize_spaces=True)
+        result = utilo.normalize_text(self.notes, normalize_spaces=True)
         return result
 
     @property
@@ -176,7 +176,7 @@ class FootNoteMerged(FootNote):
 
     @property
     def style_text(self) -> list:
-        return utila.flat([item.style_text for item in self.notes])
+        return utilo.flat([item.style_text for item in self.notes])
 
     def __repr__(self):
         raw = f'FootNoteMerged(notes={self.notes})'

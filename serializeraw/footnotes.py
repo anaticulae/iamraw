@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -25,10 +25,10 @@ def load_footnotes(
         'footnote__result_result',
         fname,
     )
-    content = utila.from_raw_or_path(content, fname=fname)
+    content = utilo.from_raw_or_path(content, fname=fname)
     # list is not hashable, therefore we convert to tuple for #
     # headerfooter loading.
-    pages = utila.ensure_tuple(pages)
+    pages = utilo.ensure_tuple(pages)
     loaded = serializeraw.load_headerfooter(content, pages=pages)
     result = []
     for page in loaded:
@@ -37,7 +37,7 @@ def load_footnotes(
         except AttributeError:
             continue
         assert selected
-        yrange = utila.roundme((page.footer.begin, page.footer.end))
+        yrange = utilo.roundme((page.footer.begin, page.footer.end))
         notes = iamraw.PageContentFootnote(
             content=selected,
             page=page.page,

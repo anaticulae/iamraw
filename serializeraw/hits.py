@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 import iamraw
 import serializeraw.border
@@ -28,13 +28,13 @@ def dump_hits(hits: iamraw.PageContentHits) -> str:
             'page': page.page
         }
         result.append(raw)
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
 @configo.cache_small
 def load_hits(content: str, pages: tuple = None) -> iamraw.PageContentHits:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='border_detection',
         safe=False,
@@ -42,14 +42,14 @@ def load_hits(content: str, pages: tuple = None) -> iamraw.PageContentHits:
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
 
         border = serializeraw.border.border_fromraw(page['border'])
         hits = []
         for hit in page['hits']:
             index, box = hit.split(' ', maxsplit=1)
-            index, box = int(index), utila.parse_tuple(box)
+            index, box = int(index), utilo.parse_tuple(box)
             hits.append((index, box))
 
         current = iamraw.PageContentHit(

@@ -9,13 +9,13 @@
 
 import dataclasses
 
-import utila
+import utilo
 
 import iamraw
 
 
 def load_doctextstyle(content: str) -> iamraw.DocTextStyle:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='doctextstyle__textstyle',
     )
@@ -26,5 +26,5 @@ def load_doctextstyle(content: str) -> iamraw.DocTextStyle:
 def dump_doctextstyle(style: iamraw.DocTextStyle) -> str:
     assert isinstance(style, iamraw.DocTextStyle)
     raw = dataclasses.asdict(style)
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped

@@ -9,7 +9,7 @@
 
 import dataclasses
 
-import utila
+import utilo
 
 
 @dataclasses.dataclass
@@ -24,7 +24,7 @@ class Figure:
         """\
         >>> assert Figure(bounding=(1, 1, 1, 1), page=5).identifier
         """
-        return utila.pagebox_hash(page=self.page, box=self.bounding)
+        return utilo.pagebox_hash(page=self.page, box=self.bounding)
 
 
 Figures = list[Figure]

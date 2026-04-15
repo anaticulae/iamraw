@@ -8,20 +8,20 @@
 # =============================================================================
 
 import power
-import utilatest
+import utilotest
 
 import serializeraw
 import texmex
 
 
-@utilatest.requires(power.DOCU027_PDF)
+@utilotest.requires(power.DOCU027_PDF)
 def test_group_page_by_size_distance():
     navigator = serializeraw.ptn_frompath(power.link(power.DOCU027_PDF))[0]
     result = texmex.group_page_by_size_distance(navigator)
     assert len(result) == 4, str(result)
 
 
-@utilatest.requires(power.DOCU027_PDF)
+@utilotest.requires(power.DOCU027_PDF)
 def test_group_pages_by_fontsize():
     navigators = serializeraw.ptn_frompath(power.link(power.DOCU027_PDF))
     result = texmex.group_pages_by_fontsize(navigators)

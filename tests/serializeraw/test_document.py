@@ -8,8 +8,8 @@
 # =============================================================================
 
 import power
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import texmex
 from iamraw import Char
@@ -56,7 +56,7 @@ def simple_document():
     return document
 
 
-@utilatest.requires(power.DOCU007_PDF)
+@utilotest.requires(power.DOCU007_PDF)
 def test_load_document_from_path():
     document = load_document(power.link(power.DOCU007_PDF))
     assert document
@@ -65,7 +65,7 @@ def test_load_document_from_path():
     assert len(document) == 2
 
 
-@utilatest.requires(power.DOCU007_PDF)
+@utilotest.requires(power.DOCU007_PDF)
 def test_load_dump_load_document():
     document = load_document(power.link(power.DOCU007_PDF))
 
@@ -76,11 +76,11 @@ def test_load_dump_load_document():
     assert second_load == document
 
 
-@utilatest.requires(power.DOCU007_PDF)
+@utilotest.requires(power.DOCU007_PDF)
 def test_load_dump_page_dimension():
     source = power.link(power.DOCU007_PDF)
     document = load_document(source)
-    before = utila.file_read(utila.join(source, 'rawmaker__text_text.yaml'))
+    before = utilo.file_read(utilo.join(source, 'rawmaker__text_text.yaml'))
     dumped = dump_document(document)
     assert dumped == before
 

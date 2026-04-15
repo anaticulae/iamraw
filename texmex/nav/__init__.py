@@ -11,7 +11,7 @@ import copy
 import dataclasses
 import enum
 
-import utila
+import utilo
 
 import iamraw
 import texmex
@@ -138,11 +138,11 @@ class NavigatorMixin:
 
     @property
     def debug(self):
-        return utila.NEWLINE.join((line.text.strip() for line in self))
+        return utilo.NEWLINE.join((line.text.strip() for line in self))
 
     def print_debug(self):
-        utila.log(f'page: {self.page} size: {self.pagesize}')
-        utila.log(self.debug)
+        utilo.log(f'page: {self.page} size: {self.pagesize}')
+        utilo.log(self.debug)
 
     def hull_empty(self):
         raise NotImplementedError  # pragma: no cover
@@ -201,7 +201,7 @@ class PTN(NavigatorMixin):
             sort(strategy): if True, insert bounding dependent
         """
         state = texmex.TextState.VISIBLE if state is None else state
-        utila.asserts(text, str)
+        utilo.asserts(text, str)
         self.assert_bounding(bounding)
         datum = texmex.style.TextInfo(
             bounding=bounding,
@@ -292,10 +292,10 @@ class PTN(NavigatorMixin):
         # TODO: Substract border to move starting text to (0,0)?. If not,
         # x1 is sometimes higher than self.width.
         if (x1 - x0) > self.width:
-            utila.error(f'page: {self.page} width: {x1-x0} < {self.width}')
+            utilo.error(f'page: {self.page} width: {x1-x0} < {self.width}')
         # assert (x1 - x0) < self.width, f'{x1-x0} < {self.width}'
         if (y1 - y0) > self.height:
-            utila.error(f'page: {self.page} height: {y1-y0} < {self.height}')
+            utilo.error(f'page: {self.page} height: {y1-y0} < {self.height}')
         # assert (y1 - y0) < self.height, f'{y1-y0} < {self.height}'
 
     def hull_empty(self):
@@ -331,8 +331,8 @@ class PTCN(NavigatorMixin):
             validate_leftright(bool): do not check left right coordinate.
         """
         super().__init__(pagesize=(ptn.width, ptn.height))
-        utila.asserts(ptn, PTN)
-        utila.asserts(content, iamraw.Border)
+        utilo.asserts(ptn, PTN)
+        utilo.asserts(content, iamraw.Border)
         assert content.bottom >= 100, str(content)  # ensure that are pixel
         self.content = content
         pagesize = iamraw.PageSize(
@@ -482,8 +482,8 @@ def single(navigators: PTNs) -> PTN:
         for item in page:
             # avoid side effects to other content
             item = item.copy()
-            item.bounding.y0 = utila.roundme(item.bounding.y0 + offset)
-            item.bounding.y1 = utila.roundme(item.bounding.y1 + offset)
+            item.bounding.y0 = utilo.roundme(item.bounding.y0 + offset)
+            item.bounding.y1 = utilo.roundme(item.bounding.y1 + offset)
             result.append(item)
         footer = page.content.bottom
         y0 += footer - header

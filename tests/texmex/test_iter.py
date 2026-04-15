@@ -8,7 +8,7 @@
 # =============================================================================
 
 import pytest
-import utila
+import utilo
 
 import tests.texmex.example.docu027
 import texmex
@@ -41,6 +41,6 @@ def test_split_page(page, position, expected):
     iterator. To access elements before iterator, rewinding the iterator
     is nessacary."""
     example = tests.texmex.example.docu027.document()
-    current = utila.select_page(example, page)
+    current = utilo.select_page(example, page)
     result = texmex.split_page(current, position, append_unvisited=False)
     assert result == expected

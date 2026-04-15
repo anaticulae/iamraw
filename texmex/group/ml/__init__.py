@@ -26,7 +26,7 @@ import dataclasses
 import math
 
 import configo
-import utila
+import utilo
 
 import texmex
 from texmex.group.fonts import feeddistance
@@ -155,7 +155,7 @@ def group_page_by_fontsize(
 
 
 def groupby_linedistance(page: PageContentMultiLine) -> PageContentMultiLine:
-    flatten = utila.flat(page)
+    flatten = utilo.flat(page)
     distances = linedistances(flatten)
     grouped = group_linedistances(distances)
     content = unite_groups(page.content, grouped)
@@ -170,7 +170,7 @@ def linedistance(index, pagetextnavigator) -> float:
     except IndexError:
         return None
     else:
-        return utila.roundme(after.bounding.y1 - current.bounding.y1)
+        return utilo.roundme(after.bounding.y1 - current.bounding.y1)
 
 
 def linedistances(pagetextnavigator, noneatend=True):
@@ -255,7 +255,7 @@ DISTANCE_MAX = configo.HolyTable(
         (15.96, 35.0),
         (16.0, 50.0),
     ),
-    strategy=utila.Strategy.UPPER,
+    strategy=utilo.Strategy.UPPER,
 )
 
 
@@ -283,8 +283,8 @@ def xdistances(content) -> list:
     if len(content) <= 1:
         return []
     result = [None]
-    diffs = utila.diffs([line.bounding[0] for line in content])
-    diffs: list = utila.roundme(diffs, convert=False)
+    diffs = utilo.diffs([line.bounding[0] for line in content])
+    diffs: list = utilo.roundme(diffs, convert=False)
     result += diffs
     return result
 
@@ -308,7 +308,7 @@ def group_page_by_size_distance(
         # TODO: make container more pythonic
         size = groupcontent[0].style.content[0].size
         firstid = group[0]
-        bounding = utila.rect_max([item.bounding for item in groupcontent])
+        bounding = utilo.rect_max([item.bounding for item in groupcontent])
         result.append(
             MultilineGroup(
                 bounding=bounding,
@@ -324,7 +324,7 @@ def gradient(items):
     result = [
         (after - current) for current, after in zip(items[0:-1], items[1:])
     ]
-    result = [utila.roundme(item) for item in result]
+    result = [utilo.roundme(item) for item in result]
     return result
 
 
@@ -443,7 +443,7 @@ def merge_content(  # pylint:disable=R0914
         merged[-1].append(uindex[index])
         # merged items together and save them as last item
         result[-1] = (
-            utila.rect_max([member_location, merger_location]),
+            utilo.rect_max([member_location, merger_location]),
             member_content,
         )
     result = [TextBoundsInfo(
@@ -456,7 +456,7 @@ def merge_content(  # pylint:disable=R0914
 def merge_content_join(result):
     result = [
         TextBoundsInfo(
-            text=utila.NEWLINE.join(item.text),
+            text=utilo.NEWLINE.join(item.text),
             bounds=item.bounds,
         ) for item in result
     ]

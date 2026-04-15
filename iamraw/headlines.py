@@ -10,7 +10,7 @@
 import contextlib
 import dataclasses
 
-import utila
+import utilo
 
 import iamraw
 import iamraw.toc
@@ -99,7 +99,7 @@ def headlines_totoc(
     Hint: Converting to toc requires a None-Level for every item.
     """
     try:
-        flat = utila.flat(headlines)
+        flat = utilo.flat(headlines)
     except TypeError:
         # list is already flat
         flat = headlines

@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
@@ -17,11 +17,11 @@ def dump_distance(items: iamraw.PageContentAreaDistances) -> str:
     for page in items:
         content = []
         for item in page.content:
-            before = utila.roundme(item.before) if item.before is not None else 'None' # yapf:disable
-            after = utila.roundme(item.after) if item.after is not None else 'None' # yapf:disable
+            before = utilo.roundme(item.before) if item.before is not None else 'None' # yapf:disable
+            after = utilo.roundme(item.after) if item.after is not None else 'None' # yapf:disable
             content.append(f'{item.index} {before} {after}')
         raw.append({'page': page.page, 'content': content})
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
@@ -29,11 +29,11 @@ def load_distance(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentAreaDistances:
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         pagecontent = []
         for line in page['content']:

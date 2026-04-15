@@ -10,7 +10,7 @@
 import collections
 import dataclasses
 
-import utila
+import utilo
 
 PageContentFormula = collections.namedtuple(
     'PageContentFormula',
@@ -61,8 +61,8 @@ class FormulaRaw:
     def __post_init__(self):
         # assert len(self.sizes) == len(self.raw), f'{len(self.sizes)} == {len(self.raw)}' # yapf:disable
         if len(self.sizes) != len(self.raw):
-            utila.debug(f'{len(self.sizes)} == {len(self.raw)}')
-            utila.debug('XXXX'+utila.fix_encoding(self.raw)+'XXXX')
+            utilo.debug(f'{len(self.sizes)} == {len(self.raw)}')
+            utilo.debug('XXXX'+utilo.fix_encoding(self.raw)+'XXXX')
 
     def append(self, item):
         self.content.append(item)  # pylint:disable=E1101
@@ -75,7 +75,7 @@ class FormulaRaw:
         boundings = [item.bounding for item in self.content]  # pylint:disable=E1133
         if self.label_bounding:
             boundings.append(self.label_bounding)
-        result = utila.rect_max(boundings)
+        result = utilo.rect_max(boundings)
         return result
 
     @property
@@ -86,7 +86,7 @@ class FormulaRaw:
         return result
 
     @property
-    def sizes(self) -> utila.Floats:
+    def sizes(self) -> utilo.Floats:
         result = [item.size for item in self.content]  # pylint:disable=E1133
         return result
 

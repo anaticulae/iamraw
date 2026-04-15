@@ -6,7 +6,7 @@
 # company confidential.
 #==============================================================================
 
-import utila
+import utilo
 
 from iamraw import Section
 from iamraw import create_toc
@@ -143,5 +143,5 @@ Kapitel 3
 
 def test_toc_recursive():
     root = create_toc(TOC)
-    raw = utila.NEWLINE.join(item[1].title for item in root.recursive())
+    raw = utilo.NEWLINE.join(item[1].title for item in root.recursive())
     assert raw == EXPECTED

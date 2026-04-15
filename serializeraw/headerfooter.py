@@ -10,7 +10,7 @@
 import contextlib
 
 import configo
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -34,7 +34,7 @@ def dump_headerfooter(pages: iamraw.PageContentFooterHeaders) -> str:
     )
     with contextlib.suppress(AttributeError):
         result['__strategy__'] = pages.__strategy__
-    return utila.yaml_dump(result)
+    return utilo.yaml_dump(result)
 
 
 @configo.cache_small
@@ -42,7 +42,7 @@ def load_headerfooter(
     content: str,
     pages=None,
 ) -> iamraw.PageContentFooterHeaders:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=(
             'groupme__hefopa_result',
@@ -58,7 +58,7 @@ def load_headerfooter(
     for item in data:
         pagenumber = item['page']
         assert isinstance(pagenumber, int)
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         header = _load_header(item['header'])
         footer = _load_footer(item['footer'])
@@ -79,7 +79,7 @@ def dump_footnote(note: iamraw.FootNote):
     assert hasattr(note, 'number'), str(note)
     with contextlib.suppress(AttributeError):
         assert note.text, note
-    raw = utila.simplify(note)
+    raw = utilo.simplify(note)
     return raw
 
 
@@ -326,10 +326,10 @@ def _load_headerinfo_headertitle(item):
 def _dump_refs(items):
     if not items:
         return []
-    return [utila.from_tuple(item) for item in items]
+    return [utilo.from_tuple(item) for item in items]
 
 
 def _load_refs(items):
     if not items:
         return []
-    return [utila.parse_tuple(item) for item in items]
+    return [utilo.parse_tuple(item) for item in items]

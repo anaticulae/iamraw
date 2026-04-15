@@ -23,7 +23,7 @@ described item which the box refers.
 
 import dataclasses
 
-import utila
+import utilo
 
 
 @dataclasses.dataclass(unsafe_hash=True)
@@ -41,10 +41,10 @@ class BoundingBox:
     >>> assert BoundingBox(10.5, 13.2, 23.33, 30.0) == BoundingBox(10.5, 13.2, 23.33, 30.0)
     """
 
-    x0: float = -utila.INF
-    y0: float = -utila.INF
-    x1: float = utila.INF
-    y1: float = utila.INF
+    x0: float = -utilo.INF
+    y0: float = -utilo.INF
+    x1: float = utilo.INF
+    y1: float = utilo.INF
 
     def __repr__(self):
         result = (f'BoundingBox(x0={self.x0}, y0={self.y0}, '
@@ -89,10 +89,10 @@ class BoundingBox:
 
     def __post_init__(self):
         # round to clarify coordinate and avoid confusion in math accuracy
-        self.x0 = utila.roundme(self.x0)
-        self.x1 = utila.roundme(self.x1)
-        self.y0 = utila.roundme(self.y0)
-        self.y1 = utila.roundme(self.y1)
+        self.x0 = utilo.roundme(self.x0)
+        self.x1 = utilo.roundme(self.x1)
+        self.y0 = utilo.roundme(self.y0)
+        self.y1 = utilo.roundme(self.y1)
         # ensure correct coordinate relation
         assert self.x0 <= self.x1, f'{self.x0} <= {self.x1}'
         assert self.y0 <= self.y1, f'{self.y0} <= {self.y1}'

@@ -19,7 +19,7 @@ r"""\
 
 import re
 
-import utila
+import utilo
 
 import iamraw
 
@@ -27,13 +27,13 @@ import iamraw
 def dump_docref(references: iamraw.DocRefs) -> str:
     result = []
     for reference in references:
-        marked = utila.from_tuple(utila.flat(reference.marked))
+        marked = utilo.from_tuple(utilo.flat(reference.marked))
         line = f'{reference.page} {reference.sentence} {marked}'
         if reference.raw:
-            reference_raw = utila.from_tuple(reference.raw, separator='@@@@')
+            reference_raw = utilo.from_tuple(reference.raw, separator='@@@@')
             line += SEPARATOR_RAW + reference_raw
         result.append(line)
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -43,17 +43,17 @@ SEPARATOR_RAW = ' raw: '
 
 
 def load_docref(content: str, pages: tuple = None) -> iamraw.DocRefs:
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     result = []
     for raw in loaded:
         page, sentence, marked = raw.split(maxsplit=2)
         page, sentence = int(page), int(sentence)
-        if utila.should_skip(page, pages):
+        if utilo.should_skip(page, pages):
             # remove non selected pages
             continue
         try:
             marked, raw, = marked.split(SEPARATOR_RAW, maxsplit=1)
-            raw = utila.parse_tuple(
+            raw = utilo.parse_tuple(
                 raw,
                 length=None,
                 typ=str,
@@ -61,7 +61,7 @@ def load_docref(content: str, pages: tuple = None) -> iamraw.DocRefs:
             )
         except ValueError:
             raw = None
-        marked = tuple((utila.parse_tuple(item, length=2, typ=int)
+        marked = tuple((utilo.parse_tuple(item, length=2, typ=int)
                         for item in PATTERN.findall(marked)))
         docref = iamraw.DocRef(
             page=page,
@@ -74,13 +74,13 @@ def load_docref(content: str, pages: tuple = None) -> iamraw.DocRefs:
 
 
 def dump_textadvices(advices: iamraw.TextAdvices) -> str:
-    dumped = utila.yaml_dump(advices, safe=False)
+    dumped = utilo.yaml_dump(advices, safe=False)
     return dumped
 
 
 def load_textadvices(raw: str, pages: tuple = None) -> str:
-    loaded = utila.yaml_load(raw, safe=False)
+    loaded = utilo.yaml_load(raw, safe=False)
     result = [
-        item for item in loaded if not utila.should_skip(item.page, pages=pages)
+        item for item in loaded if not utilo.should_skip(item.page, pages=pages)
     ]
     return result

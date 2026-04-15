@@ -21,7 +21,7 @@
 [2, 3, 4, 5]
 """
 
-import utila
+import utilo
 
 
 def search_area(items: list, detected: str, startindex: int = 0) -> list:
@@ -37,18 +37,18 @@ def search_area(items: list, detected: str, startindex: int = 0) -> list:
     start = find_withbackup(items, start)
     end = find_withbackup(items, end)
     if not isinstance(start, int):
-        utila.error(f'could not find {start} in: {items}')
+        utilo.error(f'could not find {start} in: {items}')
         return []
     if not isinstance(end, int):
-        utila.error(f'could not find {end} in: {items}')
+        utilo.error(f'could not find {end} in: {items}')
         return []
     end = end + 1  # ranged list
-    result = utila.rlist(start + startindex, end + startindex)
+    result = utilo.rlist(start + startindex, end + startindex)
     return result
 
 
 def find_withbackup(items, find) -> int:
-    for similar in (utila.verysimilar, utila.similar):
+    for similar in (utilo.verysimilar, utilo.similar):
         for index, item in enumerate(items):
             if similar(item, find):
                 return index

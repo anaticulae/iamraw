@@ -7,14 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
 
 def dump_blockquotes(blockquotes: iamraw.PageContentBlockQuotesList) -> str:
     converted = [(page.page, page.content) for page in blockquotes]
-    dumped = utila.yaml_dump(converted)
+    dumped = utilo.yaml_dump(converted)
     return dumped
 
 
@@ -22,10 +22,10 @@ def load_blockquotes(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentBlockQuotesList:
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     result = []
     for page, pagecontent in loaded:
-        if utila.should_skip(page, pages):
+        if utilo.should_skip(page, pages):
             continue
         result.append(
             iamraw.PageContentBlockQuotes(
@@ -39,7 +39,7 @@ def dump_quotations(quotations) -> str:
     result = []
     for page, index, sentence in quotations:
         result.append(f'{page} {index} {sentence}')
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -47,7 +47,7 @@ def load_quotations(
     content: str,
     pages: tuple = None,
 ) -> iamraw.ExtractedQuotations:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         safe=False,
     )
@@ -55,7 +55,7 @@ def load_quotations(
     for item in loaded:
         page, index, sentence = item.split(maxsplit=2)
         page = int(page)
-        if utila.should_skip(page, pages):
+        if utilo.should_skip(page, pages):
             continue
         index = int(index)
         result.append(iamraw.ExtractedQuotation(page, index, sentence))

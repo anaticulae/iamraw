@@ -19,7 +19,7 @@ Public methods:
 import contextlib
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -28,7 +28,7 @@ def dump_toc(content: iamraw.Toc, dump_raw: bool = True) -> str:
     """Convert table of content to raw yaml representation."""
     assert isinstance(content, iamraw.Toc), type(content)
     raw = _dump(content, dump_raw)
-    return utila.yaml_dump(raw)
+    return utilo.yaml_dump(raw)
 
 
 @configo.cache_small
@@ -42,7 +42,7 @@ def load_toc(content: str, load_raw: bool = True) -> iamraw.Toc:
     Returns:
         loaded iamraw.Toc
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=('reftable__toc_toc', 'groupme__toc_toc'),
         safe=False,

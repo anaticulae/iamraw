@@ -9,7 +9,7 @@
 
 import os
 
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -52,7 +52,7 @@ def ptn_frompath(
         separate instances.
     """
     # convert page to tuple, if required
-    pages = utila.ensure_tuple(pages)
+    pages = utilo.ensure_tuple(pages)
     # prepare path
     text, textpositions, fontheader, fontcontent = ptn_path(
         path,
@@ -88,7 +88,7 @@ def ptn_fromfile(
     state: texmex.TextState = texmex.TextState.VISIBLE,
 ) -> texmex.PTNs:
     # convert page to tuple, if required
-    pages = utila.ensure_tuple(pages)
+    pages = utilo.ensure_tuple(pages)
     text = serializeraw.load_document(text, pages=pages)
     textpositions = serializeraw.load_textpositions(textpositions, pages=pages)
     fontstore = None
@@ -121,13 +121,13 @@ def ptn_path(
     textpositions = iamraw.path.textposition(path, prefix=prefix, ftype=ftype)
     fontheader = iamraw.path.fontheader(path, prefix=prefix, ftype=ftype)
     fontcontent = iamraw.path.fontcontent(path, prefix=prefix, ftype=ftype)
-    if not utila.exists(fontheader):
+    if not utilo.exists(fontheader):
         if logging:
-            utila.debug(f'fontstore: {fontheader} does not exists')
+            utilo.debug(f'fontstore: {fontheader} does not exists')
         fontheader = None
-    if not utila.exists(fontcontent):
+    if not utilo.exists(fontcontent):
         if logging:
-            utila.debug(f'fontstore: {fontcontent} does not exists')
+            utilo.debug(f'fontstore: {fontcontent} does not exists')
         fontcontent = None
     return text, textpositions, fontheader, fontcontent
 
@@ -161,7 +161,7 @@ def ptcn_frompath(  # pylint:disable=R0914
         List of loaded PTCNs depending on `pages`.
     """
     # convert page to tuple, if required
-    pages = utila.ensure_tuple(pages)
+    pages = utilo.ensure_tuple(pages)
     # prepare path
     text, textpositions, fontheader, fontcontent = ptn_path(
         path,
@@ -196,7 +196,7 @@ def ptcn_frompath(  # pylint:disable=R0914
     return result
 
 
-@utila.rename(
+@utilo.rename(
     sizeandborderpath='sizeandborder',
     headerfooterpath='headerfooter',
 )
@@ -216,7 +216,7 @@ def ptcn_fromfile(  # pylint:disable=R0914
     state: texmex.TextState = texmex.TextState.VISIBLE,
 ):
     # convert page to tuple, if required
-    pages = utila.ensure_tuple(pages)
+    pages = utilo.ensure_tuple(pages)
     navigators = ptn_fromfile(
         text,
         textpositions,

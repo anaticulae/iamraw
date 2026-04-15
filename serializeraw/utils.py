@@ -9,7 +9,7 @@
 
 import collections
 
-import utila
+import utilo
 
 
 def validate(items: list):
@@ -30,4 +30,4 @@ def validate(items: list):
             continue
         msg.append(f'duplicated page: {page} ({value})')
     if msg:
-        raise ValueError(utila.NEWLINE.join(msg))
+        raise ValueError(utilo.NEWLINE.join(msg))

@@ -2391,7 +2391,7 @@ Every noteable change is logged here.
 
 ### Fix
 
-* fix missing utila API change (7d4734aefd19)
+* fix missing utilo API change (7d4734aefd19)
 
 ## v1.5.2
 
@@ -2712,4 +2712,3 @@ Every noteable change is logged here.
 * add Toc and Section to store a table of content with section's (75b2cf970cd0)
 
 ## v0.0.0 Initial release
-

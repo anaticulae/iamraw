@@ -9,7 +9,7 @@
 
 import os
 
-import utila
+import utilo
 
 import iamraw
 from serializeraw.fonts import load_font_content
@@ -34,7 +34,7 @@ def create_fontstore(
     pages = load_font_content(content, pages=pages)
     if pages:
         # remove non required fonts
-        valid = {item[3] for item in utila.flatten_content(pages)}
+        valid = {item[3] for item in utilo.flatten_content(pages)}
         fonts = [font for font in fonts if hash(font) in valid]
     result = iamraw.FontStore(fonts, pages)
     return result
@@ -50,10 +50,10 @@ def fs_frompath(
     content = iamraw.path.fontcontent(path, prefix=prefix)
     if not os.path.exists(header):
         if logging:
-            utila.debug(f'fontstore: {header} does not exists')
+            utilo.debug(f'fontstore: {header} does not exists')
         return None
     if not os.path.exists(content):
         if logging:
-            utila.debug(f'fontstore: {content} does not exists')
+            utilo.debug(f'fontstore: {content} does not exists')
         return None
     return create_fontstore(header, content, pages)

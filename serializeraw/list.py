@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -27,7 +27,7 @@ def dump_lists(lists: list) -> str:
             page=pagenumber,
             lists=pageresult,
         ))
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
@@ -36,8 +36,8 @@ def list_raw(instance, pagenumber) -> dict:
     content = []
     for pnumber, item in instance.data:
         if not item:
-            utila.error(instance)
-            utila.error(f'page:{pagenumber};{pnumber} empty list item')
+            utilo.error(instance)
+            utilo.error(f'page:{pagenumber};{pnumber} empty list item')
         content.append(f'{pnumber} {item}')
     result = dict(
         area=area,
@@ -52,7 +52,7 @@ def list_raw(instance, pagenumber) -> dict:
 
 @configo.cache_small
 def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=(
             'lists__result_result',
@@ -62,7 +62,7 @@ def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         lists = []
         for listinstance in page['lists']:
@@ -85,7 +85,7 @@ def load_list_instance(raw: dict) -> iamraw.PageList:
         try:
             number, text = entree.split(maxsplit=1)
         except ValueError:
-            utila.error('could not load list properly '
+            utilo.error('could not load list properly '
                         f'on raw {raw}: {entree}')
             number, text = '', entree
         # try to convert to int/float
@@ -103,7 +103,7 @@ def dump_area(area) -> str:
     '0 1 2 3'
     """
     area = area if isinstance(area[0], tuple) else [area]
-    splitted = [utila.from_tuple(item) for item in area]
+    splitted = [utilo.from_tuple(item) for item in area]
     raw = '|'.join(splitted)
     return raw
 

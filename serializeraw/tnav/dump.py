@@ -9,7 +9,7 @@
 
 # import rawmaker.features.fonts
 
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -73,7 +73,7 @@ def merge_neighbors(lines, positions):
             # add content
             before.lines.extend(line.lines)
             # update rectangle
-            before.box = utila.rect_max((before.box, line.box))
+            before.box = utilo.rect_max((before.box, line.box))
             # merge textpositions
             textpositions[-1] = iamraw.TextPosition(
                 bounding=tuple(before.box),
@@ -97,13 +97,13 @@ def create_line(item, fontstore: iamraw.FontStore) -> iamraw.Line:
     else:
         line = iamraw.TextContainer(box=item.bounding)
     style = item.style.content
-    sizes = utila.flat([item.width * [item.size] for item in style])
-    rises = utila.flat([item.width * [item.rise] for item in style])
-    underlines = utila.flat([(item.width) * [item.underline] for item in style])
-    fonts = utila.flat([
+    sizes = utilo.flat([item.width * [item.size] for item in style])
+    rises = utilo.flat([item.width * [item.rise] for item in style])
+    underlines = utilo.flat([(item.width) * [item.underline] for item in style])
+    fonts = utilo.flat([
         (item.width) * [fontstore[item.font].pdfref] for item in style
     ])
-    flags = utila.flat([
+    flags = utilo.flat([
         item.width * [serializeraw.fonts.toflag(fontstore[item.font].flags)]
         for item in style
     ])

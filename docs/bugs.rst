@@ -13,7 +13,7 @@ no unique text size
 
     E       stderr:
     E       [ERROR] Traceback (most recent call last):
-    E         File "C:/kiwi/kiwi/decider/.virtual/lib/site-packages/utila/feature.py", line 330, in run_hook_safely
+    E         File "C:/kiwi/kiwi/decider/.virtual/lib/site-packages/utilo/feature.py", line 330, in run_hook_safely
     E           result = hook(pages=pages)
     E         File "C:/kiwi/kiwi/decider/.virtual/lib/site-packages/groupme/feature/footer.py", line 68, in work
     E           pagetextnavigators=pagetextnavigators,

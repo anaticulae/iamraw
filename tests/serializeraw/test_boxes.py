@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 from iamraw import BoundingBox
 from iamraw import Box
@@ -101,6 +101,6 @@ def test_boxes_rectangle_max_box():
     middle = BoundingBox.from_list([-25.0, 25.0, 50.0, 100.0])
     right_top = BoundingBox.from_list([75.0, 75.0, 150.0, 150.0])
 
-    merged = utila.rect_max([left_bottom, middle, right_top])
+    merged = utilo.rect_max([left_bottom, middle, right_top])
     expected = (-25.0, 0.0, 150.0, 150.0)
     assert merged == expected

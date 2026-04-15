@@ -9,9 +9,9 @@
 
 import warnings
 
-import utila
+import utilo
 
-con = utila.pathconnector  # pylint:disable=C0103
+con = utilo.pathconnector  # pylint:disable=C0103
 
 
 def text(path: str, prefix: str = '', ftype='yaml') -> str:
@@ -257,7 +257,7 @@ def reftable_abbrev(path: str, prefix: str = '', ftype='yaml') -> str:
 
 
 def pdfinfo(path: str) -> str:
-    return utila.join(path, 'pdfinfo.yaml')
+    return utilo.join(path, 'pdfinfo.yaml')
 
 
 def smarty_phrases(path: str, prefix: str = '') -> str:

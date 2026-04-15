@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
@@ -32,7 +32,7 @@ def dump_text(text: iamraw.PageContentTexts) -> str:
             'page': item.page,
             'content': collected,
         })
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
@@ -50,21 +50,21 @@ def load_text(
     Returns:
         loaded text with replaced headlines
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='words__text_text',
         safe=False,
     )
     if headlines is None:
-        utila.debug('load_text without any given headlines')
+        utilo.debug('load_text without any given headlines')
     else:
         headlines = {
-            headline.identifier: headline for headline in utila.flat(headlines)
+            headline.identifier: headline for headline in utilo.flat(headlines)
         }
     result = []
     for line in loaded:
         page, content = int(line['page']), line['content']
-        if utila.should_skip(page, pages):
+        if utilo.should_skip(page, pages):
             continue
         pagecontent = []
         for section in content:
@@ -97,7 +97,7 @@ def select_headline(
         if selected is not None:
             # None-Headline is expected on page start?
             msg = f'could not load headline: {selected} on page:{page}'
-            utila.error(msg)
+            utilo.error(msg)
         selected = None
     if selected:
         return selected

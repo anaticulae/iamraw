@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -20,7 +20,7 @@ def dump_whitepages(pages: iamraw.PageContentWhitepages) -> str:
         pages = {item.page: item for item in pages}
     for page, value in pages.items():
         result[page] = value.content.name if value.content else None
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -38,13 +38,13 @@ def load_whitepages(
     Returns:
         list of loaded `WhitePage` type
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         safe=False,
     )
     result = []
     for pagenumber, whitepage in loaded.items():
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         item = iamraw.PageContentWhitepage(
             page=pagenumber,

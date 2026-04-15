@@ -9,7 +9,7 @@
 
 import contextlib
 
-import utila
+import utilo
 
 import iamraw
 
@@ -46,7 +46,7 @@ def load_abbreviation(raw: dict) -> iamraw.Abbreviation:
     with contextlib.suppress(KeyError):
         result.description = raw['description']
     with contextlib.suppress(KeyError):
-        page, sentence, word = utila.parse_tuple(
+        page, sentence, word = utilo.parse_tuple(
             raw['position'],
             length=3,
             typ=int,
@@ -72,12 +72,12 @@ def dump_abbreviation_table(result: iamraw.abbreviation.AbbreviationResult) -> s
         content=items,
         pdfpages=result.pdfpages,
     )
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
 def load_abbreviation_table(content: str) -> iamraw.AbbreviationResult:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=(
             'reftable__abbrev_abbrev',
@@ -102,7 +102,7 @@ def dump_text_abbreviations(items) -> str:
         if not content:
             continue
         result.append({'page': page.page, 'content': content})
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -110,7 +110,7 @@ def load_text_abbreviations(
     content: str,
     pages: tuple = None,
 ) -> iamraw.ExtractedTextAbbreviations:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         safe=False,
         fname='words__abbreviation_detected',
@@ -118,7 +118,7 @@ def load_text_abbreviations(
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         current = [load_abbreviation(item) for item in page['content']]
         result.append(

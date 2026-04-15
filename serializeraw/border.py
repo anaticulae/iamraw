@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -20,7 +20,7 @@ def dump_pageborders(sizeandborders: iamraw.PageSizeBorderList) -> str:
         'size': size_toraw(item.size),
         'border': border_toraw(item.border),
     } for item in sizeandborders]
-    dumped = utila.yaml_dump(page)
+    dumped = utilo.yaml_dump(page)
     return dumped
 
 
@@ -45,14 +45,14 @@ def load_pageborders(
     Returns:
         List[PageSize], List[Border]
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='rawmaker__border_pages',
     )
     result = []
     for item in loaded:
         pagenumber = int(item['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         size = size_fromraw(item['size'])
         border = border_fromraw(item['border'])
@@ -69,7 +69,7 @@ def size_toraw(size: iamraw.PageSize) -> str:
     try:
         return '%.2f %.2f' % size  #(size.width, size.height)
     except TypeError as error:
-        utila.debug('%s %r' % (error, size))
+        utilo.debug('%s %r' % (error, size))
     return 'None'
 
 
@@ -78,7 +78,7 @@ def size_fromraw(size: str) -> iamraw.PageSize:
     try:
         return iamraw.PageSize(*[float(var) for var in size.split()])
     except ValueError as error:
-        utila.debug('%s %r' % (error, size))
+        utilo.debug('%s %r' % (error, size))
     return iamraw.PageSize(None, None)
 
 
@@ -87,7 +87,7 @@ def border_toraw(border: iamraw.Border) -> str:
     try:
         return '%.2f %.2f %.2f %.2f' % border
     except TypeError as error:
-        utila.debug('%s %r' % (error, border))
+        utilo.debug('%s %r' % (error, border))
     return 'None'
 
 
@@ -96,12 +96,12 @@ def border_fromraw(border: str) -> iamraw.Border:
     try:
         return iamraw.Border(*[float(var) for var in border.split()])
     except ValueError as error:
-        utila.debug('%s %r' % (error, border))
+        utilo.debug('%s %r' % (error, border))
     return iamraw.Border(None, None, None, None)
 
 
 def load_leftright_border(content: str, pages: tuple = None) -> dict:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='groupme__border_leftright',
     )
@@ -109,9 +109,9 @@ def load_leftright_border(content: str, pages: tuple = None) -> dict:
     for line in loaded:
         page, border = line.split(maxsplit=1)
         page = int(page)
-        if utila.should_skip(page, pages):
+        if utilo.should_skip(page, pages):
             continue
-        border = utila.parse_tuple(border, length=4)
+        border = utilo.parse_tuple(border, length=4)
         lookup[page] = border
     return lookup
 
@@ -121,6 +121,6 @@ def dump_leftright_border(result: list) -> str:
 
     item = (pagenumber, left, right, top, bottom)
     """
-    result = [utila.from_tuple(item) for item in result]
-    dumped = utila.yaml_dump(result)
+    result = [utilo.from_tuple(item) for item in result]
+    dumped = utilo.yaml_dump(result)
     return dumped

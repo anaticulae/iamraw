@@ -8,8 +8,8 @@
 # =============================================================================
 
 import power
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import iamraw
 import serializeraw
@@ -71,7 +71,7 @@ def test_navigator_print_debug(capsys):
     navigator = sample()
     navigator.print_debug()
     expected = 'page: -1 size: (612.0, 792.0)\nme\nhello\n'
-    current = utilatest.stdout(capsys)
+    current = utilotest.stdout(capsys)
     assert current == expected
 
 
@@ -86,13 +86,13 @@ def test_textnavigator_roate_left(navigator):
     assert after != before
 
 
-@utilatest.requires(power.DOCU027_PDF)
+@utilotest.requires(power.DOCU027_PDF)
 def test_textnavigator_inserthorizontals():
     source = power.link(power.DOCU027_PDF)
     ptn = serializeraw.ptcn_frompath(
         source,
         horizontals=True,
-        pages=utila.rtuple(5),
+        pages=utilo.rtuple(5),
     )
     counted = 0
     for page in ptn:
@@ -103,7 +103,7 @@ def test_textnavigator_inserthorizontals():
     assert 3 <= counted <= 7
 
 
-@utilatest.requires(power.DOCU027_PDF)
+@utilotest.requires(power.DOCU027_PDF)
 def test_ptn_single():
     source = power.link(power.DOCU027_PDF)
     ptns = serializeraw.ptcn_frompath(source)

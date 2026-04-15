@@ -10,7 +10,7 @@
 import collections.abc
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -30,7 +30,7 @@ def dump_lines(lines: iamraw.PageContentLines) -> str:
         if page.rotated:
             pageitem['rotated'] = 1
         collected.append(pageitem)
-    dumped = utila.yaml_dump(collected)
+    dumped = utilo.yaml_dump(collected)
     return dumped
 
 
@@ -40,7 +40,7 @@ def load_lines(
     prefix: str = '',
 ) -> iamraw.PageContentLines:
     prefix = f'{prefix}_' if prefix else ''
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         source,
         fname=f'rawmaker__{prefix}line_line',
         safe=False,
@@ -48,13 +48,13 @@ def load_lines(
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         content = []
         for raw in page['content']:
-            item = utila.parse_tuple(raw)
+            item = utilo.parse_tuple(raw)
             content.append(item)
-        rotated = utila.str2bool(page.get('rotated', False))
+        rotated = utilo.str2bool(page.get('rotated', False))
         pageitem = iamraw.PageContentLine(
             page=pagenumber,
             content=content,
@@ -78,7 +78,7 @@ def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
         if page.rotated:
             pageitem['rotated'] = 1
         collected.append(pageitem)
-    dumped = utila.yaml_dump(collected)
+    dumped = utilo.yaml_dump(collected)
     return dumped
 
 
@@ -94,25 +94,25 @@ def load_horizontals(
     A vertical is a horizontal on a rotated page.
     """
     prefix = f'{prefix}_' if prefix else ''
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=f'rawmaker__{prefix}horizontals_horizontals',
     )
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         horizontals = [
             iamraw.HorizontalLine(
-                iamraw.BoundingBox.from_list(utila.parse_tuple(item)))
+                iamraw.BoundingBox.from_list(utilo.parse_tuple(item)))
             for item in page['horizontals']
         ]
         # skip short horizontals
         horizontals = [item for item in horizontals if item.width >= width_min]
         if not horizontals:
             continue
-        rotated = utila.str2bool(page.get('rotated', False))
+        rotated = utilo.str2bool(page.get('rotated', False))
         item = iamraw.PageContentHorizontals(
             content=horizontals,
             page=pagenumber,

@@ -9,8 +9,8 @@
 
 import power
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import iamraw
 import serializeraw
@@ -31,10 +31,10 @@ def test_dump_and_load_image_hidden(hidden):
     assert loaded == info
 
 
-@utilatest.requires(power.BACHELOR037_PDF)
+@utilotest.requires(power.BACHELOR037_PDF)
 def test_images_load():
     source = power.link(power.BACHELOR037_PDF)
     imagepath = iamraw.path.images(source)
     loaded = serializeraw.load_image_infos_frompath(imagepath)
-    loaded = utila.flatten_content(loaded)
+    loaded = utilo.flatten_content(loaded)
     assert len(loaded) == 2

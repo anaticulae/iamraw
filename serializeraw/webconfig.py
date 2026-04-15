@@ -10,15 +10,15 @@
 import dataclasses
 import os
 
-import utila
+import utilo
 
 import iamraw
 
 
 def load_webconfig(path: str) -> iamraw.WebConfig:
     assert os.path.exists(path), str(path)
-    config = utila.yaml_load(path)
-    assert utila.iterable(config['decider']), type(config['decider'])
+    config = utilo.yaml_load(path)
+    assert utilo.iterable(config['decider']), type(config['decider'])
     activex = config.get('active', set())
     # support for tuple with msgid and comment
     config['active'] = set(int(str(item).split()[0]) for item in activex)
@@ -31,7 +31,7 @@ def dump_webconfig(path: str, config: iamraw.WebConfig):
     raw['active'] = list(raw['active'])
     raw['decider'] = sorted(
         raw['decider'],
-        key=utila.alphabetically,
+        key=utilo.alphabetically,
     )
-    dumped = utila.yaml_dump(raw)
-    utila.file_replace(path, dumped)
+    dumped = utilo.yaml_dump(raw)
+    utilo.file_replace(path, dumped)

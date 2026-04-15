@@ -9,7 +9,7 @@
 
 import dataclasses
 
-import utila
+import utilo
 
 import iamraw
 
@@ -34,7 +34,7 @@ class TableBounding:
         """\
         >>> assert TableBounding((10.5, 10.5, 20.5, 200.51), page=5).identifier
         """
-        return utila.pagebox_hash(page=self.page, box=self.bounding)
+        return utilo.pagebox_hash(page=self.page, box=self.bounding)
 
 
 TableBoundings = list[TableBounding]

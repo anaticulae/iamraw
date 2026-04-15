@@ -11,7 +11,7 @@ import dataclasses
 import enum
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -92,25 +92,25 @@ class TextStyle:
         return TextStyle.fontids(self)
 
     @classmethod
-    def fontids(cls, item: 'TextStyle', method=utila.mode):
+    def fontids(cls, item: 'TextStyle', method=utilo.mode):
         result = [[char.font] * char.char_count for char in item.content]
-        result = utila.flat(result)
+        result = utilo.flat(result)
         return method(result)
 
     @classmethod
-    def textsizes(cls, item: 'TextStyle', method=utila.mode):
+    def textsizes(cls, item: 'TextStyle', method=utilo.mode):
         # detect most common font size(s)
         assert isinstance(item, cls), type(item)
         result = [[char.size] * char.char_count for char in item.content]
-        result = utila.flat(result)
+        result = utilo.flat(result)
         return method(result)
 
     @classmethod
-    def underlines(cls, item: 'TextStyle', method=utila.mode):
+    def underlines(cls, item: 'TextStyle', method=utilo.mode):
         assert isinstance(item, cls), type(item)
         result = [[1 if char.underline else 0] * char.char_count
                   for char in item.content]
-        result = utila.flat(result)
+        result = utilo.flat(result)
         return method(result)
 
     @classmethod
@@ -173,7 +173,7 @@ class TextState(enum.IntFlag):
         return bool(self.value % 2)
 
 
-@utila.cacheme
+@utilo.cacheme
 def skip(expected, current) -> bool:
     """\
     >>> from texmex import TextState
@@ -239,7 +239,7 @@ class TextInfo:
         return self.state >= TextState.VISIBLE
 
     def __repr__(self):
-        return self.text + utila.NEWLINE
+        return self.text + utilo.NEWLINE
 
     def __hash__(self):
         result = (hash(self.text) + hash(str(self.style)) +
@@ -258,7 +258,7 @@ def splitby_count(item: TextInfo, counts: tuple) -> list:
     for count in counts:
         text = item.text[start:start + count]
         x0 = bounding_old[0] + start * step
-        bounding = utila.roundme(
+        bounding = utilo.roundme(
             x0,
             bounding_old[1],
             x0 + step * len(text),

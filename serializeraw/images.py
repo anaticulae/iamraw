@@ -11,7 +11,7 @@ import collections
 import functools
 import os
 
-import utila
+import utilo
 
 import iamraw
 
@@ -30,24 +30,24 @@ def dump_image_info(info: iamraw.ImageInformation) -> str:
     if info.figure:
         result['figure'] = info.figure
     if info.bounding:
-        result['bounding'] = utila.from_tuple(info.bounding)
+        result['bounding'] = utilo.from_tuple(info.bounding)
     if info.dpi:
-        result['dpi'] = utila.from_tuple(info.dpi)
-    dumped = utila.yaml_dump(result)
+        result['dpi'] = utilo.from_tuple(info.dpi)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
 def load_image_info(content: str) -> iamraw.ImageInformation:
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     parsed = iamraw.ImageInformation()
     loader = [
         ('page', int),
         ('width', float),
         ('height', float),
-        ('hidden', utila.str2bool),
-        ('figure', utila.str2bool),
-        ('dpi', functools.partial(utila.parse_tuple, length=2)),
-        ('bounding', functools.partial(utila.parse_tuple, length=4)),
+        ('hidden', utilo.str2bool),
+        ('figure', utilo.str2bool),
+        ('dpi', functools.partial(utilo.parse_tuple, length=2)),
+        ('bounding', functools.partial(utilo.parse_tuple, length=4)),
     ]
     for key, typ in loader:
         try:
@@ -55,7 +55,7 @@ def load_image_info(content: str) -> iamraw.ImageInformation:
         except KeyError:
             continue
         except TypeError:
-            utila.error(f'invalid load_image_info: {loaded}')
+            utilo.error(f'invalid load_image_info: {loaded}')
             return None
         setattr(parsed, key, value)
     return parsed
@@ -71,7 +71,7 @@ def load_image_infos_frompath(
         return []
     files = [
         os.path.join(path, item)
-        for item in utila.file_list(path, include='yaml')
+        for item in utilo.file_list(path, include='yaml')
     ]
     result = load_image_infos_fromfiles(
         files=files,
@@ -97,14 +97,14 @@ def load_image_infos_fromfiles(
         loaded = load_image_info(source)
         if not loaded:
             continue
-        if utila.should_skip(loaded.page, pages):
+        if utilo.should_skip(loaded.page, pages):
             continue
         if skip_hidden and loaded.hidden:
             continue
         if figure is not None and loaded.figure != figure:
             continue
         # add image content hash
-        hashedimage = utila.file_name(source)
+        hashedimage = utilo.file_name(source)
         loaded.hashedimage = hashedimage
         if path_append:
             collected[loaded.page].append((loaded, source))

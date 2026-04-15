@@ -9,19 +9,19 @@
 
 # TODO: REPLACE THIS DRAFT LATER
 
-import utila
+import utilo
 
 import iamraw
 
 
 def dump_titlepage(titlepage: iamraw.TitlePage) -> str:
     # TODO: Improve with human readable format
-    dumped = utila.yaml_dump(titlepage, safe=False)
+    dumped = utilo.yaml_dump(titlepage, safe=False)
     return dumped
 
 
 def load_titlepage(content: str) -> iamraw.TitlePage:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         safe=False,
         fname='detector__titlepage_detected',

@@ -19,7 +19,7 @@
 import json
 import re
 
-import utila
+import utilo
 
 import iamraw
 
@@ -28,14 +28,14 @@ def dump_pdfinfo(info: iamraw.PDFInfo, ext: str = 'json') -> str:
     assert ext in {'yaml', 'json'}, ext
     simple = raw(info)
     if ext == 'yaml':
-        return utila.yaml_dump(simple, safe=False)
+        return utilo.yaml_dump(simple, safe=False)
     if ext == 'json':
         return json.dumps(simple)
     return None
 
 
 def load_pdfinfo(path: str) -> iamraw.PDFInfo:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         path,
         fname='pdfinfo',
     )

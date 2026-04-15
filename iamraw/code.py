@@ -10,7 +10,7 @@
 import collections
 import dataclasses
 
-import utila
+import utilo
 
 PageContentCode = collections.namedtuple(
     'PageContentCode',
@@ -33,8 +33,8 @@ class PeaceOfCode:
         >>> PeaceOfCode(tokens_bounding=[(10, 10, 10, 10)], page=5).identifier
         90015...0
         """
-        bounding = utila.rect_max(self.tokens_bounding)
-        return utila.pagebox_hash(page=self.page, box=bounding)
+        bounding = utilo.rect_max(self.tokens_bounding)
+        return utilo.pagebox_hash(page=self.page, box=bounding)
 
 
 PeaceOfCodes = list[PeaceOfCode]

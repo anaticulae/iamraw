@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -18,7 +18,7 @@ def dump_wordspaces(items) -> str:
     def dumper(lines) -> list:
         result = []
         for number, content in lines:
-            content = utila.from_tuple(utila.flat(content))
+            content = utilo.from_tuple(utilo.flat(content))
             line = f'{number} {content}'
             result.append(line)
         return result
@@ -36,8 +36,8 @@ def load_wordspaces(content: str, pages: tuple = None) -> iamraw.PageContents:
             # TODO: IMPROVE THIS METHOD
             content = content.split()
             content = [
-                utila.parse_tuple(' '.join(chunk))
-                for chunk in utila.chunks(content, size=4)
+                utilo.parse_tuple(' '.join(chunk))
+                for chunk in utilo.chunks(content, size=4)
             ]
             result.append((int(number), content))
         return result

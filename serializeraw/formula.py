@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
@@ -16,7 +16,7 @@ def dump_formulas(pages: iamraw.PageContentFormula) -> str:
     # remove empty pages
     result = [item for item in pages if item.content]
     # convert
-    dumped = utila.yaml_dump(result, safe=False)
+    dumped = utilo.yaml_dump(result, safe=False)
     return dumped
 
 
@@ -24,13 +24,13 @@ def load_formulas(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentFormula:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='detector__formula_detected',
         safe=False,
     )
 
     result = [
-        item for item in loaded if not utila.should_skip(item.page, pages)
+        item for item in loaded if not utilo.should_skip(item.page, pages)
     ]
     return result

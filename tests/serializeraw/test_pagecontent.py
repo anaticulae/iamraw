@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -33,11 +33,11 @@ def test_pagecontent_selected():
 def test_pagecontent_specific_dumper():
 
     def dumped(items):
-        raw = utila.from_tuple(items)
+        raw = utilo.from_tuple(items)
         return raw
 
     def loader(raw):
-        return utila.numbers(raw.split())
+        return utilo.numbers(raw.split())
 
     dumped = serializeraw.dump_pagecontent(CONTENT, pagedumper=dumped)
     loaded = serializeraw.load_pagecontent(dumped, pageloader=loader)

@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
@@ -16,16 +16,16 @@ def load_magic_types(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentContentTypes:
-    content = utila.from_raw_or_path(
+    content = utilo.from_raw_or_path(
         content,
         fname='magic__content_content',
         ftype='yaml',
     )
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
 
     result = []
     for page, pagecontent in loaded:
-        if utila.should_skip(page, pages):
+        if utilo.should_skip(page, pages):
             continue
         parsed = types_fromstr(pagecontent)
         result.append(iamraw.PageContentContentType(page=page, content=parsed))
@@ -39,7 +39,7 @@ def dump_magic_types(items: iamraw.PageContentContentTypes) -> str:
     result = [(page, types_tostr(content)) for page, content in items]
     # remove empty pages:
     result = [item for item in result if item[1]]
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 

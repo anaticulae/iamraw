@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
@@ -22,5 +22,5 @@ def topbottom(size: iamraw.PageSize, contentborder: iamraw.Border):
     top, bottom = contentborder.top, contentborder.bottom
     top = contentborder.top / size.height
     bottom = contentborder.bottom / size.height
-    top, bottom = utila.roundme(top, bottom, digits=4)
+    top, bottom = utilo.roundme(top, bottom, digits=4)
     return top, bottom

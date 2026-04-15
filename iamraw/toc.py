@@ -17,7 +17,7 @@ import dataclasses
 import enum
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -235,7 +235,7 @@ def merge_toc(toc: Toc) -> str:
     """Convert `table of content` to string."""
     order = toc_recursive(toc)
     items = ['    ' * level + item.title for level, item in order]
-    result = utila.NEWLINE.join(items)
+    result = utilo.NEWLINE.join(items)
     return result
 
 

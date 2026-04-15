@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -20,7 +20,7 @@ def dump_document(document: iamraw.Document, fast: bool = True) -> str:
     """Convert to raw python to have more clear yaml output"""
     assert isinstance(document, iamraw.Document), type(document)
     raw = dumper(document)
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     if fast:
         dumped = serializeraw.dump_yamlpages(dumped)
     return dumped
@@ -52,7 +52,7 @@ def load_document(
             pages=pages,
             fname='rawmaker__text_text',
         )
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='rawmaker__text_text',
     )
@@ -67,7 +67,7 @@ def load_document(
         to_process = []
         for item in loaded['pages']:
             pagenumber = int(item['page'])
-            if utila.should_skip(pagenumber, pages):
+            if utilo.should_skip(pagenumber, pages):
                 continue
             to_process.append(item)
         loaded['pages'] = to_process
@@ -135,7 +135,7 @@ def _dump_page(page: iamraw.Page) -> dict:
         if len(dimension) == 2:
             # TODO: REMOVE HACK AFTER HAVING BOUNDING-BOX DIMENSION
             dimension = 0.0, 0.0, dimension[0], dimension[1]
-        dimension: str = utila.from_tuple(dimension)
+        dimension: str = utilo.from_tuple(dimension)
         result['dimension'] = dimension
     return result
 
@@ -307,7 +307,7 @@ def dumper(content):
     try:
         dumpy, _ = DUMP_LOAD[key]
     except KeyError as msg:
-        utila.error('Could not dump: %s' % msg)
+        utilo.error('Could not dump: %s' % msg)
         return None
     else:
         return dumpy(content)
@@ -317,7 +317,7 @@ def loadme(structure, data):
     try:
         _, loady = DUMP_LOAD[structure.__name__]
     except KeyError as msg:
-        utila.error('Could not load: %s' % msg)
+        utilo.error('Could not load: %s' % msg)
         return None
     else:
         return loady(data)

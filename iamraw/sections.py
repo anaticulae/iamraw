@@ -10,7 +10,7 @@
 import collections.abc
 import dataclasses
 
-import utila
+import utilo
 
 Page = int
 Percentage = float  # start of area [0.0 Pagestart, 100.0 Pageend]
@@ -111,7 +111,7 @@ class Sections:
     content: DocumentSections = dataclasses.field(default_factory=list)
 
     def append(self, item: SectionMixin):
-        utila.asserts(item, SectionMixin)
+        utilo.asserts(item, SectionMixin)
         self.content.append(item)  #  pylint:disable=E1101
 
     def __getitem__(self, index):

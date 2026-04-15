@@ -10,7 +10,7 @@
 import enum
 import re
 
-import utila
+import utilo
 
 
 class SentenceType(enum.Enum):
@@ -35,7 +35,7 @@ class SentenceType(enum.Enum):
     QUOT_QUOT_END = enum.auto()
 
 
-DETECTOR = utila.compiles(r"""
+DETECTOR = utilo.compiles(r"""
     ^
     \#\$\@
     (

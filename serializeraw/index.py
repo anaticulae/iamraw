@@ -9,18 +9,18 @@
 
 # TODO: REPLACE THIS DRAFT LATER
 
-import utila
+import utilo
 
 import iamraw
 
 
 def dump_index(titlepage: iamraw.DocumentIndex) -> str:
-    dumped = utila.yaml_dump(titlepage, safe=False)
+    dumped = utilo.yaml_dump(titlepage, safe=False)
     return dumped
 
 
 def load_index(content: str) -> iamraw.DocumentIndex:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='detector__index_detected',
         safe=False,

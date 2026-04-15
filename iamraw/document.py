@@ -19,7 +19,7 @@ import contextlib
 import dataclasses
 import typing
 
-import utila
+import utilo
 
 import iamraw.bounding
 
@@ -58,7 +58,7 @@ class Page:
         for item in self.children:  # pylint:disable=E1133
             with contextlib.suppress(AttributeError):
                 textcontainer.append(item.text)
-        result = utila.NEWLINE.join(textcontainer)
+        result = utilo.NEWLINE.join(textcontainer)
         return result
 
     def __repr__(self):
@@ -103,7 +103,7 @@ class Document:
         texts = []
         for page in self:
             texts.append(page.text)
-        result = utila.NEWLINE.join(texts)
+        result = utilo.NEWLINE.join(texts)
         return result
 
     def append(self, page):
@@ -117,7 +117,7 @@ class Document:
         result = [f'Document: pages={len(self.pages)}']
         for page in self:
             result.append(str(page))
-        result: str = utila.NEWLINE.join(result)
+        result: str = utilo.NEWLINE.join(result)
         return result
 
     def __getitem__(self, key):
@@ -232,7 +232,7 @@ class TextContainer(Boxed):
         result = cls()
         for line in text.splitlines():
             # ensure that line ends with newline
-            line = line + utila.NEWLINE
+            line = line + utilo.NEWLINE
             result.append(Line.fromstr(line))
         result.state = state
         return result

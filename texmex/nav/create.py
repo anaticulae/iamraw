@@ -9,7 +9,7 @@
 
 import enum
 
-import utila
+import utilo
 
 import iamraw
 import texmex.nav
@@ -22,7 +22,7 @@ class PTNMode(enum.Enum):
     VERTICAL = enum.auto()
 
 
-@utila.rename(text_positions='textpositions')
+@utilo.rename(text_positions='textpositions')
 def create_ptns(
     text: iamraw.Document,
     textpositions: iamraw.PageContentTextPositions,
@@ -34,7 +34,7 @@ def create_ptns(
 ) -> texmex.nav.PTNs:
     result = []
     # TODO: IS DEFAULT REQUIRED?
-    for page, (textpage, textposition) in utila.sync_pages(
+    for page, (textpage, textposition) in utilo.sync_pages(
         (text, textpositions),
             default=[],
     ):
@@ -127,7 +127,7 @@ def create_ptcns(
     # TODO: require fill_empty?
     result = []
     for navigator in navigators:
-        if utila.should_skip(navigator.page, pages):
+        if utilo.should_skip(navigator.page, pages):
             continue
         border = determine_border(
             headerfooter,
@@ -220,7 +220,7 @@ HORIZONTAL = '<<<<<<<<<<<<<<<<<<<<HORIZONTAL>>>>>>>>>>>>>>>>>>>>'
 
 
 def insert_horizontals(ptn: texmex.nav.PTN, horizontals):
-    selected = utila.select_content(horizontals, ptn.page)
+    selected = utilo.select_content(horizontals, ptn.page)
     if not selected:
         return
     for horizontal in selected:  # iamraw.HorizontalLine
@@ -251,23 +251,23 @@ def select_textcontainer(content, mode: PTNMode):
 
 def determine_border(headerfooter, sizeandborder, page: int):
     """Determine contentborder out of footer and header information."""
-    pagesize = utila.select_page(sizeandborder, page)
+    pagesize = utilo.select_page(sizeandborder, page)
     if pagesize is None:
         return pagesize
     border = pagesize.border
     pagesize = pagesize.size
-    headerfooter = utila.select_page(headerfooter, page)
+    headerfooter = utilo.select_page(headerfooter, page)
     top, bottom = 0, pagesize.height
     if headerfooter and headerfooter.header:
         if headerfooter.header.end:
             top = pagesize.height * headerfooter.header.end
         else:
-            utila.debug(f'missing header end: {headerfooter.header}')
+            utilo.debug(f'missing header end: {headerfooter.header}')
     if headerfooter and headerfooter.footer:
         if headerfooter.footer.begin:
             bottom = bottom * headerfooter.footer.begin
         else:
-            utila.debug(f'missing footer begin: {headerfooter.footer}')
+            utilo.debug(f'missing footer begin: {headerfooter.footer}')
     border = iamraw.Border(
         left=border.left,
         right=border.right,

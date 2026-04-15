@@ -10,7 +10,7 @@
 import collections.abc
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -26,23 +26,23 @@ def dump_boxes(pages: iamraw.PagesWithBoxList) -> str:
             'page': page.page,
             'boxes': result,
         })
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
 @configo.cache_small
 def load_boxes(content: str, pages=None) -> iamraw.PagesWithBoxList:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='rawmaker__boxes_boxes',
     )
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         box = [
-            iamraw.Box(iamraw.BoundingBox.from_list(utila.parse_tuple(item)))
+            iamraw.Box(iamraw.BoundingBox.from_list(utilo.parse_tuple(item)))
             for item in page['boxes']
         ]
         boxes = iamraw.PageContentBoxes(content=box, page=pagenumber)

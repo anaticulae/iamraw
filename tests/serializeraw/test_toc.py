@@ -16,8 +16,8 @@ import os
 
 import power
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import iamraw
 import serializeraw
@@ -59,11 +59,11 @@ def toc_example(dump_raw: bool = False):
     return root
 
 
-@utilatest.requires(power.DOCU007_PDF)
+@utilotest.requires(power.DOCU007_PDF)
 def test_load_toc_from_path(testdir):
     source = power.link(power.DOCU007_PDF)
     cmd = f'reftable -i {source} -o {testdir.tmpdir} --toc --page=0'
-    utila.run(cmd)
+    utilo.run(cmd)
     toc = serializeraw.load_toc(testdir.tmpdir)
     assert toc
 
@@ -101,7 +101,7 @@ def test_load_from_filepath(dump_raw, tmpdir):  # pylint:disable=W0621
         dump_raw=dump_raw,
     )
     to_write = os.path.join(tmpdir, 'toc.yaml')
-    utila.file_create(to_write, dumped)
+    utilo.file_create(to_write, dumped)
     from_file = serializeraw.load_toc(
         to_write,
         load_raw=dump_raw,

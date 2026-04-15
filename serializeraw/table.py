@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
@@ -22,7 +22,7 @@ def dump_tables(pages: iamraw.PageContentTableBoundings) -> str:
         } for item in page.content]
         raw = {'page': page.page, 'content': content}
         result.append(raw)
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -30,7 +30,7 @@ def load_tables(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentTableBoundings:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=(
             'tablero__result_result',
@@ -41,12 +41,12 @@ def load_tables(
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(page=pagenumber, pages=pages):
+        if utilo.should_skip(page=pagenumber, pages=pages):
             continue
         item = iamraw.PageContentTableBounding(page=pagenumber)
         for raw in page['content']:
-            lines = [utila.parse_tuple(item) for item in raw['lines']]
-            bounding = utila.parse_tuple(raw['bounding'])
+            lines = [utilo.parse_tuple(item) for item in raw['lines']]
+            bounding = utilo.parse_tuple(raw['bounding'])
             parsed = iamraw.TableBounding(
                 bounding=bounding,
                 lines=lines,
@@ -64,5 +64,5 @@ def tupleraw(item) -> str:
     >>> tupleraw((10.22, 50.33, 20.0, 60.0))
     '10.22 50.33 20.0 60.0'
     """
-    item = utila.roundme(*item, digits=2, convert=False)
-    return utila.from_tuple(item)
+    item = utilo.roundme(*item, digits=2, convert=False)
+    return utilo.from_tuple(item)

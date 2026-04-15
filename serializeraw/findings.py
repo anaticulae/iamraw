@@ -12,7 +12,7 @@ import concurrent.futures
 import contextlib
 import os
 
-import utila
+import utilo
 
 import iamraw
 
@@ -33,7 +33,7 @@ def load_findings(
     Raises:
         Assertion: if file is corrupt
     """
-    loaded = utila.yaml_load(path, safe=False)
+    loaded = utilo.yaml_load(path, safe=False)
     assert isinstance(loaded, list), type(loaded)
     assert all(isinstance(item, iamraw.Finding) for item in loaded), str(loaded)
     loaded = select_pages(loaded, pages)
@@ -54,7 +54,7 @@ def dump_findings(findings: list) -> str:
         # ensure that the user could not see any not fully replaced templates
         assert istemplate_replaced(item.solution.description), message
         assert isinstance(item.number, int) or item.number is None
-    dumped = utila.yaml_dump(findings, safe=False)
+    dumped = utilo.yaml_dump(findings, safe=False)
     return dumped
 
 
@@ -66,7 +66,7 @@ def write_grouped(
 ) -> list:
     result = []
     grouped = bypage(findings)
-    writer = utila.file_replace if overwrite else utila.file_create
+    writer = utilo.file_replace if overwrite else utilo.file_create
     for item in grouped:
         page = fname(item.page)
         outpath = os.path.join(dest, page)
@@ -85,13 +85,13 @@ def load_grouped(
     if pages is None:
         # load all findings
         pages = [
-            pagenumber(item, none=True) for item in utila.file_list(source)
+            pagenumber(item, none=True) for item in utilo.file_list(source)
         ]
         # remove invalid file names
-        pages = utila.notnone(pages)
+        pages = utilo.notnone(pages)
     # yaml parsing is cpu bound, therefore we need a process pool instead
     # of thread pool.
-    executor = utila.select_executor()
+    executor = utilo.select_executor()
     result = []
     with executor(max_workers=worker) as executor:
         todo = {
@@ -129,7 +129,7 @@ def select_pages(findings, pages: tuple = None) -> list:
     selected = []
     for finding in findings:
         try:
-            skip = utila.should_skip(finding.location.page, pages)
+            skip = utilo.should_skip(finding.location.page, pages)
             if skip:
                 continue
         except AttributeError:
@@ -157,12 +157,12 @@ def findings_from_path(
 ) -> iamraw.PageFindings:
     """Load Findings from `path` directory and group them by page as
     `PageFindings`."""
-    if not utila.iterable(path):
+    if not utilo.iterable(path):
         path = (path,)
     assert all(os.path.isdir(item) for item in path)
     # load findings from multiple directories
     files = [
-        utila.file_list(
+        utilo.file_list(
             item,
             absolute=True,
             include='yaml',
@@ -170,18 +170,18 @@ def findings_from_path(
         ) for item in path
     ]
     # resolve multiple directory tree
-    files = utila.flat(files)
+    files = utilo.flat(files)
     if useronly:
         files = [
-            item for item in files if utila.file_name(item).endswith('_user')
+            item for item in files if utilo.file_name(item).endswith('_user')
         ]
     # limit worker by max file count
-    worker = utila.mins(worker, len(files))
+    worker = utilo.mins(worker, len(files))
     # ensure to have at least one worker when collection now file
-    worker = utila.maxs(1, worker)
+    worker = utilo.maxs(1, worker)
     # yaml parsing is cpu bound, therefore we need a process pool instead
     # of thread pool.
-    executor = utila.select_executor()
+    executor = utilo.select_executor()
     with executor(max_workers=worker) as executor:
         todo = {
             executor.submit(load_findings, path, msgid, pages): path
@@ -226,7 +226,7 @@ def pagenumber(page: str, none: bool = True) -> int:
     raise ValueError(f'could not convert to int: {page}')
 
 
-NOT_REPLACED = utila.compiles(r"""
+NOT_REPLACED = utilo.compiles(r"""
 \{\{[\w\_]*\}\}
 """)
 

@@ -10,7 +10,7 @@
 import collections
 import statistics
 
-import utila
+import utilo
 
 import iamraw
 import texmex
@@ -18,31 +18,31 @@ import texmex.nav
 import texmex.text
 
 
-def fontdistance(bounds: iamraw.BoundingBoxes) -> utila.Floats:
+def fontdistance(bounds: iamraw.BoundingBoxes) -> utilo.Floats:
     """Describes the difference between two content lines"""
     distance = [
-        utila.roundme(second.y0 - first.y1)
+        utilo.roundme(second.y0 - first.y1)
         for (first), (second) in zip(bounds[0:], bounds[1:])
     ]
     return distance
 
 
-def feeddistance(bounds: iamraw.BoundingBoxes) -> utila.Floats:
+def feeddistance(bounds: iamraw.BoundingBoxes) -> utilo.Floats:
     """The text feed describes the distance from the left content border to
     the first content. The feeddistance describes the difference of two
     items"""
     distance = [
-        utila.roundme(second.x0 - first.x0)
+        utilo.roundme(second.x0 - first.x0)
         for (first), (second) in zip(bounds[0:], bounds[1:])
     ]
     return distance
 
 
-def fontdistance_textbounds(bounds: texmex.text.TextBoundsList) -> utila.Floats:
+def fontdistance_textbounds(bounds: texmex.text.TextBoundsList) -> utilo.Floats:
     assert isinstance(bounds, list)
     assert all(isinstance(item, texmex.text.TextBounds) for item in bounds)
     distance = [
-        utila.roundme(first.bottomdist - second.bottomdist)
+        utilo.roundme(first.bottomdist - second.bottomdist)
         for (first), (second) in zip(bounds[0:], bounds[1:])
     ]
     if bounds:
@@ -72,7 +72,7 @@ def bounds_to_textbounds(
     """
     assert contentborder, contentborder
     x0, y0, x1, y1 = bounds
-    data = utila.roundme(
+    data = utilo.roundme(
         x0 - contentborder.left,
         contentborder.right - x1,
         y0 - contentborder.top,
@@ -121,14 +121,14 @@ def textsize_frompage(navigator: 'texmex.NavigatorMixin') -> float:
             method=lambda x: x,  # do not filter anything
         )
         collected.extend(fontsizes)
-    return utila.mode(collected, minimize=True)
+    return utilo.mode(collected, minimize=True)
 
 
 def document_textfeed(
     navigators: texmex.nav.PTNs,
     count: int = 1,
     left: bool = True,
-) -> utila.Ints:
+) -> utilo.Ints:
     assert count >= 1, f'require none negative count, got: {count}'
     counter = collections.Counter()
     for navigator in navigators:
@@ -139,7 +139,7 @@ def document_textfeed(
                 distance = item.bounding[0]
             else:
                 distance = navigator.width - item.bounding[2]
-            distance = utila.roundme(distance, digits=1)
+            distance = utilo.roundme(distance, digits=1)
             counter[distance] += 1
     result = counter.most_common(count)
     result = [item for item, _ in result]
@@ -176,7 +176,7 @@ def document_textdistance(
         texmex.PTCN(
             ptn=navigator,
             content=contentborder.border,
-        ) for navigator, contentborder in utila.sync_pages(
+        ) for navigator, contentborder in utilo.sync_pages(
             (navigators, borders),
             numbers=False,
         ) if navigator
@@ -204,6 +204,6 @@ def document_textdist_from_ptcns(
             result.append(distance)
     if not result:
         return None
-    result = utila.roundme(result, digits=digits, convert=False)  # pylint:disable=R0204
-    mode = utila.modes(result)
+    result = utilo.roundme(result, digits=digits, convert=False)  # pylint:disable=R0204
+    mode = utilo.modes(result)
     return mode

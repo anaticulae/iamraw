@@ -10,7 +10,7 @@
 import contextlib
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -35,7 +35,7 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
         confidence=confidence,
         headlines=collected,
     )
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -49,7 +49,7 @@ def load_headlines(
     fname = 'words__headlines_headlines'
     if oneline:
         fname = 'words__headlines_oneline'
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname=fname,
     )
@@ -67,7 +67,7 @@ def load_headlines(
         loadedstep = []
         for rawheadline in step['headlines']:
             pagenumber = int(rawheadline['page'])
-            if utila.should_skip(pagenumber, pages):
+            if utilo.should_skip(pagenumber, pages):
                 continue
             headline = headline_fromraw(rawheadline)
             loadedstep.append(headline)
@@ -87,7 +87,7 @@ def headline_fromraw(headline: dict) -> iamraw.Headline:
         container = int(headline['container'])
     except ValueError:
         # support ranged container id
-        container = utila.parse_tuple(  # pylint:disable=R0204
+        container = utilo.parse_tuple(  # pylint:disable=R0204
             headline['container'],
             length=2,
             typ=int,
@@ -96,7 +96,7 @@ def headline_fromraw(headline: dict) -> iamraw.Headline:
     if level is not None:
         level = int(level)
     else:
-        utila.error(f'headline level is None: {headline["title"]}')
+        utilo.error(f'headline level is None: {headline["title"]}')
     pagenumber = int(headline['page'])
     item = iamraw.Headline(
         container=container,
@@ -113,7 +113,7 @@ def headline_fromraw(headline: dict) -> iamraw.Headline:
 def headline_raw(item) -> dict:
     container = item.container
     if isinstance(container, tuple):
-        container = utila.from_tuple(container)
+        container = utilo.from_tuple(container)
     result = {
         'container': container,
         'level': item.level,

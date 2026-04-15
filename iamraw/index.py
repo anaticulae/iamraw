@@ -28,7 +28,7 @@ A [DocumentIndexElement(Academic career 138 raw="Academic career, 138")]
 
 import dataclasses
 
-import utila
+import utilo
 
 
 @dataclasses.dataclass
@@ -79,7 +79,7 @@ class DocumentIndex:
             result.append(f'{key}:')
             for item in value:
                 result.append(item.raw)
-        raw = utila.NEWLINE.join(result)
+        raw = utilo.NEWLINE.join(result)
         return raw
 
     def __eq__(self, value):

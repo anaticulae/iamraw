@@ -7,12 +7,12 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 
 def remove_magic(ptcns, magics, validtypes: set):
     for ptcn in ptcns:
-        magic = utila.select_page(magics, ptcn.page)
+        magic = utilo.select_page(magics, ptcn.page)
         invalid = {
             number for number, typ in magic.content if typ not in validtypes
         }

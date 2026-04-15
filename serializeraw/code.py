@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 
@@ -17,20 +17,20 @@ def dump_codes(items: iamraw.PageContentCodes) -> str:
     items = [item for item in items if item.content]
     raw = [dump_page(item) for item in items]
     # convert to yaml
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
 def dump_page(page: iamraw.PageContentCode) -> dict:
     content = [
         dict(
-            caption=utila.from_tuple(code.caption) if code.caption else tuple(),
+            caption=utilo.from_tuple(code.caption) if code.caption else tuple(),
             caption_bounding=[
-                utila.from_tuple(item) for item in code.caption_bounding
+                utilo.from_tuple(item) for item in code.caption_bounding
             ],
-            tokens=utila.from_tuple(code.tokens) if code.tokens else tuple(),
+            tokens=utilo.from_tuple(code.tokens) if code.tokens else tuple(),
             tokens_bounding=[
-                utila.from_tuple(item) for item in code.tokens_bounding
+                utilo.from_tuple(item) for item in code.tokens_bounding
             ],
         ) for code in page.content
     ]
@@ -42,21 +42,21 @@ def load_page(page) -> iamraw.PageContentCode:
     pagenr = int(page['page'])
     content = [
         iamraw.PeaceOfCode(
-            caption=utila.parse_tuple(
+            caption=utilo.parse_tuple(
                 code['caption'],
                 length=None,
                 typ=int,
             ) if code['caption'] else tuple(),
             caption_bounding=[
-                utila.parse_tuple(item) for item in code['caption_bounding']
+                utilo.parse_tuple(item) for item in code['caption_bounding']
             ],
-            tokens=utila.parse_tuple(
+            tokens=utilo.parse_tuple(
                 code['tokens'],
                 length=None,
                 typ=int,
             ) if code['tokens'] else tuple(),
             tokens_bounding=[
-                utila.parse_tuple(item) for item in code['tokens_bounding']
+                utilo.parse_tuple(item) for item in code['tokens_bounding']
             ],
             page=pagenr,
         ) for code in page['content']
@@ -68,14 +68,14 @@ def load_codes(
     content: str,
     pages: tuple = None,
 ) -> iamraw.PageContentCodes:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='codero__result_result',
         safe=False,
     )
     result = []
     for page in loaded:
-        if utila.should_skip(page['page'], pages):
+        if utilo.should_skip(page['page'], pages):
             continue
         content = load_page(page)
         result.append(content)

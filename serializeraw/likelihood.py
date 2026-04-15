@@ -10,7 +10,7 @@
 import contextlib
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -38,7 +38,7 @@ def dump_likelihood(likelihoods: iamraw.PageContentLikelihoods) -> str:
             'page': page.page,
             'content': pageresult,
         })
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -58,14 +58,14 @@ def load_likelihood(
     Returns:
         List of loaded likelihood.
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         safe=False,
     )
     result = []
     for page in loaded:
         pagenumber = page['page']
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         content = page['content']
         pagecontent = []

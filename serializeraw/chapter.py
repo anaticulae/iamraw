@@ -8,7 +8,7 @@
 # =============================================================================
 
 import configo
-import utila
+import utilo
 
 
 def dump_chapter(chapters: list[dict]) -> str:
@@ -20,11 +20,11 @@ def dump_chapter(chapters: list[dict]) -> str:
             'title': title,
             'content': content,
         })
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
 @configo.cache_small
 def load_chapter(content: str) -> list[dict]:
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     return loaded

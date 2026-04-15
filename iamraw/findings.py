@@ -11,11 +11,11 @@ import contextlib
 import dataclasses
 import enum
 
-import utila
+import utilo
 
 SUMMARY = -1
 
-LOCATION_PATTERN = utila.compiles(r"""
+LOCATION_PATTERN = utilo.compiles(r"""
 (
      p(?P<page>-{0,1}\d+)                        # page can be negative
      ((?P<shortcut>[a-z]+)(?P<value>-{0,1}\d+))?
@@ -49,11 +49,11 @@ class Location:
     @classmethod
     def fromstr(cls, raw: str):
         if not raw:
-            utila.error(f'invalid location: {raw}')
+            utilo.error(f'invalid location: {raw}')
             return None
         matched = LOCATION_PATTERN.match(raw)
         if not matched:
-            utila.error(f'invalid location: {raw}')
+            utilo.error(f'invalid location: {raw}')
             return None
         page, shortcut, value = int(matched['page']), 'p', None
         with contextlib.suppress(TypeError):
@@ -118,7 +118,7 @@ class Location:
 
 SUMMARY_LOCATION = Location.from_page(SUMMARY)
 
-RANGEDLOCATION_PATTERN = utila.compiles(r"""
+RANGEDLOCATION_PATTERN = utilo.compiles(r"""
     (p(?P<page>\d+)(_(?P<page_end>\d+))?[~]?)?
     (l(?P<line>\d+)(_(?P<line_end>\d+))?[~]?)?
     (t(?P<token>\d+)(_(?P<token_end>\d+))?[~]?)?
@@ -205,7 +205,7 @@ class RangedLocation:
         return str(self)
 
 
-BOUNDINGLOCATION_PATTERN = utila.compiles(r"""
+BOUNDINGLOCATION_PATTERN = utilo.compiles(r"""
     p(?P<page>\d+)
     (l(?P<line>\d+))?
     (?P<shortcut>b)
@@ -238,7 +238,7 @@ class BoundingLocation:
         if not matched:
             return None
         page, shortcut, value = int(matched['page']), 'b', None
-        value = utila.parse_tuple(matched['tuple'], separator=';', length=None)
+        value = utilo.parse_tuple(matched['tuple'], separator=';', length=None)
         shortcut = matched['shortcut']
         result = cls(page=page, shortcut=shortcut, value=value)
         with contextlib.suppress(KeyError, TypeError):
@@ -250,8 +250,8 @@ class BoundingLocation:
         return cls(shortcut='b', page=page, value=bounding, line=line)
 
     def __str__(self) -> str:
-        rounded = utila.roundme(self.value)
-        joined = utila.from_tuple(rounded, separator=';')
+        rounded = utilo.roundme(self.value)
+        joined = utilo.from_tuple(rounded, separator=';')
         raw = f'p{self.page}'
         if self.line is not None:
             raw += f'l{self.line}'

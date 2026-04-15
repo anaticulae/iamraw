@@ -11,7 +11,7 @@ import collections
 import dataclasses
 import enum
 
-import utila
+import utilo
 
 PageFontContent = collections.namedtuple('PageFontContent', 'content page')
 PageFontContents = list[PageFontContent]
@@ -102,5 +102,5 @@ class Font:
         """
         # TODO: VERIFY THIS
         raw = bytes(str(self), 'utf8')
-        hashed = utila.binhash(raw)
+        hashed = utilo.binhash(raw)
         return hashed

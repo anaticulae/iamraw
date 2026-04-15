@@ -10,7 +10,7 @@
 import collections
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -38,7 +38,7 @@ def dump_boxedcontent(boxed) -> str:
                 for index, (bounding, (*boxid, _content)) in enumerate(multiboxed): # yapf: disable
                     # TODO: REMOVE LATER
                     if len(boxid) > 1:
-                        utila.error(f'invalid boxid: {boxid} page:{page} index: {index}') # yapf:disable
+                        utilo.error(f'invalid boxid: {boxid} page:{page} index: {index}') # yapf:disable
                     boxid = boxid[0]
                     items.append({
                         'boxed_id':
@@ -60,16 +60,16 @@ def dump_boxedcontent(boxed) -> str:
             'page': page,
             'content': pageresult,
         })
-    return utila.yaml_dump(raw)
+    return utilo.yaml_dump(raw)
 
 
 @configo.cache_small
 def load_boxedcontent(content: str, pages=None):
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     pagedict = collections.defaultdict(list)
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
         content = page['content']
         parsed = parse_boxed_page(content)

@@ -42,7 +42,7 @@ dev = [
     #power==2.23.0
     #genex==0.40.0
 
-    #utilatest==0.28.2
+    #utilotest==0.28.2
 
     #pagenumber>=0.3.5<1.0.0
     #footnote>=0.2.6<1.0.0

@@ -11,7 +11,7 @@ import itertools
 import os
 import re
 
-import utila
+import utilo
 
 import iamraw
 import serializeraw.images
@@ -35,16 +35,16 @@ def dump_figures(figures: iamraw.Figures, path: str):
 
 def load_figures(path: str, skip_raw: bool = True, pages: tuple = None):
     assert os.path.exists(path)
-    files = utila.file_list(
+    files = utilo.file_list(
         path,
         include='yaml',
         absolute=True,
     )
-    files = utila.files_sort(files)  # pylint:disable=R0204
+    files = utilo.files_sort(files)  # pylint:disable=R0204
     result = []
     for item in files:
         figure = _load_figure(item)
-        if utila.should_skip(figure.page, pages=pages):
+        if utilo.should_skip(figure.page, pages=pages):
             continue
         name = filename(figure.page, figure.index, EXT)
         if not skip_raw:
@@ -66,7 +66,7 @@ def write_image_info(dumped: str, path: str, page: int, index: int):
     assert isinstance(dumped, str), type(dumped)
     name = filename(page, index, ext='yaml')
     outpath = os.path.join(path, name)
-    utila.file_create(outpath, dumped)
+    utilo.file_create(outpath, dumped)
 
 
 def _load_figure(path: str) -> iamraw.Figure:
@@ -87,7 +87,7 @@ def _load_image_raw(path: str) -> 'PIL.Image.Image':
         image.load()
         return image
     except OSError as err:
-        utila.error(err)
+        utilo.error(err)
         return None
 
 

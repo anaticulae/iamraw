@@ -11,8 +11,8 @@
 
 import power
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import serializeraw
 import texmex
@@ -21,9 +21,9 @@ NO_GROUP = [[18], [31], [29], [35]]  # number of items per page
 
 
 def example():
-    utilatest.fixture_requires(power.MASTER072_PDF)
+    utilotest.fixture_requires(power.MASTER072_PDF)
     source = power.link(power.MASTER072_PDF)
-    pages = utila.rtuple(5, 9)
+    pages = utilo.rtuple(5, 9)
     navigators = serializeraw.create_pagetextnavigators_frompath(
         source,
         pages=pages,
@@ -95,7 +95,7 @@ def test_multiline_group_page_by_maxdistance():
         [28],
     ]),
     (3, [
-        utila.rlist(30),
+        utilo.rlist(30),
         [30, 31, 32, 33],
         [34],
     ]),
@@ -118,11 +118,11 @@ def test_multiline_group_linedistances_page_zero_tolerance():
     assert len(grouped) == 18
 
 
-@utilatest.requires(power.DOCU007_PDF)
+@utilotest.requires(power.DOCU007_PDF)
 def test_merge_content():  # pylint:disable=W0621
     navigator = serializeraw.create_pagetextnavigators_frompath(
         power.link(power.DOCU007_PDF))
-    navigator = utila.select_page(navigator, page=1)
+    navigator = utilo.select_page(navigator, page=1)
     content = texmex.navigator_to_content(navigator)
     merged, _ = texmex.merge_content(content)
     merged = texmex.merge_content_join(merged)
@@ -134,8 +134,8 @@ def test_merge_content():  # pylint:disable=W0621
     #     assert len(merged) == paragraph_after_merge
     merged_content = texmex.merge_content_join(merged)
 
-    expectend_content = utila.NEWLINE.join([item.text for item in content])
-    merged_content = utila.NEWLINE.join([item.text for item in merged_content])
+    expectend_content = utilo.NEWLINE.join([item.text for item in content])
+    merged_content = utilo.NEWLINE.join([item.text for item in merged_content])
 
     assert merged_content == expectend_content
     content_count = len(expectend_content)
@@ -144,7 +144,7 @@ def test_merge_content():  # pylint:disable=W0621
     assert content_count == merged_count
 
 
-@utilatest.requires(power.BACHELOR111_PDF)
+@utilotest.requires(power.BACHELOR111_PDF)
 def test_create_pagetextcontent_navigator_frompath():
     loaded = serializeraw.create_pagetextcontentnavigators_frompath(
         power.link(power.BACHELOR111_PDF),

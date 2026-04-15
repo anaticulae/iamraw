@@ -9,7 +9,7 @@
 """A simple test to getting started with yaml API and ensure a little bit of
 upgrading external yaml package."""
 
-import utila
+import utilo
 
 
 def test_dump_and_load():
@@ -21,6 +21,6 @@ def test_dump_and_load():
         'sex': 'm',
         'notes': [1, 2, 1, 3, 1, 1]
     }
-    dumped = utila.yaml_dump(simple)
-    loaded = utila.yaml_load(dumped)
+    dumped = utilo.yaml_dump(simple)
+    loaded = utilo.yaml_load(dumped)
     assert loaded == simple

@@ -11,7 +11,7 @@ import contextlib
 import math
 
 import configo
-import utila
+import utilo
 
 import iamraw
 
@@ -45,7 +45,7 @@ def dump_font_header(fonts) -> str:
         # do not store default value in yaml representation
         remove_default_value(raw['font'])
         result.append(raw)
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -57,7 +57,7 @@ def load_font_header(content):
     `default` value is used. If the value is `NONE` is it replaced by `None`.
     Third, if the state is defined the state is loaded.
     """
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='rawmaker__fonts_header',
     )
@@ -106,26 +106,26 @@ def dump_font_content(pages: iamraw.PageFontContents) -> str:
             'page': page.page,
             'fonts': items,
         })
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
 @configo.cache_small
 def load_font_content(content, pages=None):
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         content,
         fname='rawmaker__fonts_content',
     )
     result = []
     for page in loaded:
         pagenumber = int(page['page'])
-        if utila.should_skip(pagenumber, pages):
+        if utilo.should_skip(pagenumber, pages):
             continue
 
         def parse_font(pagefonts):
             item = []
             for fontraw in pagefonts:
-                item.append(utila.parse_tuple(fontraw, length=4, typ=int))
+                item.append(utilo.parse_tuple(fontraw, length=4, typ=int))
             return item
 
         pagefonts = page['fonts']

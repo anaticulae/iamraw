@@ -9,7 +9,7 @@
 
 import collections
 
-import utila
+import utilo
 
 Border = collections.namedtuple('Border', 'left right top bottom')
 Borders = list[Border]
@@ -31,6 +31,6 @@ def validate(items) -> bool:
         for itemindex, check in enumerate(item):
             if check is not None and check < 0:
                 msg = 'invalid field(%d, %d): %r' % (index, itemindex, check)
-                utila.error(msg)
+                utilo.error(msg)
                 valid = False
     return valid

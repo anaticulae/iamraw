@@ -9,7 +9,7 @@
 
 import dataclasses
 
-import utila
+import utilo
 
 import iamraw
 
@@ -18,7 +18,7 @@ def dump_hyperlinks(links: iamraw.ExtractedHyperLinks) -> str:
     result = []
     for hyperlink in links:
         result.append(dataclasses.asdict(hyperlink))
-    dumped = utila.yaml_dump(result)
+    dumped = utilo.yaml_dump(result)
     return dumped
 
 
@@ -26,11 +26,11 @@ def load_hyperlinks(
     content: str,
     pages: tuple = None,
 ) -> iamraw.ExtractedHyperLinks:
-    loaded = utila.yaml_load(content)
+    loaded = utilo.yaml_load(content)
     result = []
     for item in loaded:
         hyperlink = iamraw.ExtractedHyperLink(**item)
-        if utila.should_skip(hyperlink.page, pages):
+        if utilo.should_skip(hyperlink.page, pages):
             continue
         result.append(hyperlink)
     return result

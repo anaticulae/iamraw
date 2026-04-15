@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 import iamraw
 import serializeraw
@@ -16,7 +16,7 @@ import serializeraw
 def dump_wspaces(pages) -> str:
 
     def dumper(items: list) -> str:
-        raw = [utila.from_tuple(item) for item in items]
+        raw = [utilo.from_tuple(item) for item in items]
         return raw
 
     dumped = serializeraw.dump_pagecontent(pages, pagedumper=dumper)
@@ -26,7 +26,7 @@ def dump_wspaces(pages) -> str:
 def load_wspaces(content: str, pages: tuple = None) -> iamraw.PageContents:
 
     def loader(items: list) -> iamraw.PageContents:
-        loaded = [utila.parse_tuple(item) for item in items]
+        loaded = [utilo.parse_tuple(item) for item in items]
         return loaded
 
     loaded = serializeraw.load_pagecontent(
@@ -70,14 +70,14 @@ def rawchar(item) -> str:
     # ensure to have single char, treat ligature as single char
     text = item._text[0]  # pylint:disable=W0212
     char = ord(text)
-    raw = f'{char}|{utila.from_tuple(item.bbox)}|{item.fontsize}|{item.fontname}'
+    raw = f'{char}|{utilo.from_tuple(item.bbox)}|{item.fontsize}|{item.fontname}'
     return raw
 
 
 def fromraw(item: str) -> tuple:
     text, bounding, fontsize, fontname = item.split('|')
     text = chr(int(text))
-    bounding = utila.parse_tuple(bounding)
+    bounding = utilo.parse_tuple(bounding)
     fontsize = float(fontsize)
     result = (text, bounding, fontsize, fontname)
     return result
@@ -85,12 +85,12 @@ def fromraw(item: str) -> tuple:
 
 def dump_document_chardist(item: iamraw.DocumentCharDist) -> str:
     raw = vars(item)
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
 def load_document_chardist(path: str) -> iamraw.DocumentCharDist:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         path,
         fname='spacestation__chardist_chardist',
         safe=True,
@@ -101,12 +101,12 @@ def load_document_chardist(path: str) -> iamraw.DocumentCharDist:
 
 def dump_document_worddist(item: iamraw.DocumentWordDist) -> str:
     raw = vars(item)
-    dumped = utila.yaml_dump(raw)
+    dumped = utilo.yaml_dump(raw)
     return dumped
 
 
 def load_document_worddist(path: str) -> iamraw.DocumentWordDist:
-    loaded = utila.yaml_load(
+    loaded = utilo.yaml_load(
         path,
         fname='spacestation__worddist_worddist',
         safe=True,

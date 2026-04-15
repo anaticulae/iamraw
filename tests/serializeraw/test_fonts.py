@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 from iamraw import Font
 from iamraw import PageFontContent
@@ -80,7 +80,7 @@ FONT_HEADER_WITH_DEFAULT = [
 
 def test_fonts_remove_default_while_dumping():
     dumped = dump_font_header(FONT_HEADER_WITH_DEFAULT)
-    loaded = utila.yaml_load(dumped)
+    loaded = utilo.yaml_load(dumped)
     # first font
     # assert that some keys are there/left
     first_keys = loaded[0]['font']
