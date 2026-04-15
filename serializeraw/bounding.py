@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -32,7 +32,7 @@ def dump_boundingboxes(boxes: iamraw.PageBoundingsList) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_boundingboxes(content: str, pages=None) -> iamraw.PageBoundingsList:
     content = serializeraw.load_yamlpages(
         content,

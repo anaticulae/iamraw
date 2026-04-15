@@ -240,7 +240,7 @@ def istemplate_replaced(text: str) -> bool:
     False
     >>> istemplate_replaced('{{myname_is_helm}}')
     False
-    >>> istemplate_replaced('<configo.holyvalue.data.HolyValue object at 0x00000260AEA64220>,')
+    >>> istemplate_replaced('<configos.holyvalue.data.HolyValue object at 0x00000260AEA64220>,')
     False
     """
     if not text:

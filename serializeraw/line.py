@@ -9,7 +9,7 @@
 
 import collections.abc
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -82,7 +82,7 @@ def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_horizontals(
     content: str,
     pages=None,

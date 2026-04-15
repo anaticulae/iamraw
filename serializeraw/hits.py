@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -32,7 +32,7 @@ def dump_hits(hits: iamraw.PageContentHits) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_hits(content: str, pages: tuple = None) -> iamraw.PageContentHits:
     loaded = utilo.yaml_load(
         content,

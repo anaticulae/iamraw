@@ -9,7 +9,7 @@
 
 import contextlib
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -42,7 +42,7 @@ def dump_likelihood(likelihoods: iamraw.PageContentLikelihoods) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_likelihood(
     content: str,
     singlevalue: bool = True,

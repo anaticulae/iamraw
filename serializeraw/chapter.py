@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import utilo
 
 
@@ -24,7 +24,7 @@ def dump_chapter(chapters: list[dict]) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_chapter(content: str) -> list[dict]:
     loaded = utilo.yaml_load(content)
     return loaded

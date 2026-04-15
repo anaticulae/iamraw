@@ -10,7 +10,7 @@
 import contextlib
 import math
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -49,7 +49,7 @@ def dump_font_header(fonts) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_font_header(content):
     """Load font header from raw string representation.
 
@@ -110,7 +110,7 @@ def dump_font_content(pages: iamraw.PageFontContents) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_font_content(content, pages=None):
     loaded = utilo.yaml_load(
         content,

@@ -9,7 +9,7 @@
 
 import collections.abc
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -30,7 +30,7 @@ def dump_boxes(pages: iamraw.PagesWithBoxList) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_boxes(content: str, pages=None) -> iamraw.PagesWithBoxList:
     loaded = utilo.yaml_load(
         content,

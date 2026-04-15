@@ -9,7 +9,7 @@
 
 import contextlib
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -39,7 +39,7 @@ def dump_headlines(headlines: iamraw.PagesHeadlineList) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_headlines(
     content: str,
     pages=None,

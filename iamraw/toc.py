@@ -16,7 +16,7 @@ import abc
 import dataclasses
 import enum
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -268,4 +268,4 @@ class AppendixLevel(Level):
         return APPENDIX_LEVEL
 
 
-APPENDIX_LEVEL = configo.HV_INT_PLUS(default=100)
+APPENDIX_LEVEL = configos.HV_INT_PLUS(default=100)

@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -24,7 +24,7 @@ def dump_whitepages(pages: iamraw.PageContentWhitepages) -> str:
     return dumped
 
 
-@configo.cache_small
+@configos.cache_small
 def load_whitepages(
     content: str,
     pages=None,

@@ -7,13 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import utilo
 
 import texmex
 
 
-@configo.cache_small
+@configos.cache_small
 def load_highnotes(content: str, pages: tuple = None):
     loaded = utilo.yaml_load(
         content,

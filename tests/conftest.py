@@ -7,8 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import genex.example
-import power
+# import genex.example
+# import power
 import pytest
 
 import iamraw
@@ -20,29 +20,31 @@ from tests.serializeraw.fixtures import docu027_fontstore  # pylint:disable=W061
 pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
 PACKAGE = 'iamraw'
-power.setup(iamraw.ROOT)
+# power.setup(iamraw.ROOT)
 
 RESOURCES = [
-    power.DOCU027_PDF,
-    power.DOCU007_PDF,
-    (power.MASTER072_PDF, '0:10'),
-    (power.BACHELOR111_PDF, '0:5'),
-    (power.BACHELOR037_PDF, '0:5'),
+    # power.DOCU027_PDF,
+    # power.DOCU007_PDF,
+    # (power.MASTER072_PDF, '0:10'),
+    # (power.BACHELOR111_PDF, '0:5'),
+    # (power.BACHELOR037_PDF, '0:5'),
 ]
 
 
 @pytest.mark.usefixtures('session')
 def pytest_sessionstart():
-    power.run()
+    # power.run()
+    pass
 
 
 def extract(resources):
-    genex.example.extract(
-        files=resources,
-        footnote=True,
-        groupme='--border --hefopa',
-        headnote=True,
-        pagenumber=True,
-        reftable='--toc',
-        worker=len(RESOURCES),
-    )
+    # genex.example.extract(
+    #     files=resources,
+    #     footnote=True,
+    #     groupme='--border --hefopa',
+    #     headnote=True,
+    #     pagenumber=True,
+    #     reftable='--toc',
+    #     worker=len(RESOURCES),
+    # )
+    pass

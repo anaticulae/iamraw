@@ -9,7 +9,7 @@
 
 import contextlib
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -45,7 +45,7 @@ def dump_raw(content) -> list:
     return result
 
 
-@configo.cache_small
+@configos.cache_small
 def load_pagenumbers(content: str, pages=None):
     loaded = utilo.yaml_load(
         content,

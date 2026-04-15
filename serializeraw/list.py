@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -50,7 +50,7 @@ def list_raw(instance, pagenumber) -> dict:
     return result
 
 
-@configo.cache_small
+@configos.cache_small
 def load_lists(content: str, pages=None) -> iamraw.PageContentLists:
     loaded = utilo.yaml_load(
         content,

@@ -18,7 +18,7 @@ Public methods:
 
 import contextlib
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -31,7 +31,7 @@ def dump_toc(content: iamraw.Toc, dump_raw: bool = True) -> str:
     return utilo.yaml_dump(raw)
 
 
-@configo.cache_small
+@configos.cache_small
 def load_toc(content: str, load_raw: bool = True) -> iamraw.Toc:
     """Load table of content from file or content
 

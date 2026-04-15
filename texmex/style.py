@@ -10,7 +10,7 @@
 import dataclasses
 import enum
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -322,7 +322,7 @@ def create_textstyle(chars: iamraw.Chars) -> TextStyle:
     return TextStyle(content=result)
 
 
-HIGHNOTE_RISE_MIN = configo.HV_FLOAT_PLUS(default=5.0)
+HIGHNOTE_RISE_MIN = configos.HV_FLOAT_PLUS(default=5.0)
 
 
 def highnotes(

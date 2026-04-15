@@ -9,7 +9,7 @@
 
 import collections
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -63,7 +63,7 @@ def dump_boxedcontent(boxed) -> str:
     return utilo.yaml_dump(raw)
 
 
-@configo.cache_small
+@configos.cache_small
 def load_boxedcontent(content: str, pages=None):
     loaded = utilo.yaml_load(content)
     pagedict = collections.defaultdict(list)

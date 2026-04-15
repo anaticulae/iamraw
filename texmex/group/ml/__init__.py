@@ -25,7 +25,7 @@ r"""Multiline
 import dataclasses
 import math
 
-import configo
+import configos
 import utilo
 
 import texmex
@@ -245,9 +245,9 @@ def group_linedistances(
     return result
 
 
-SIZEDIFF_MAX = configo.HV_FLOAT_PLUS(default=1.0)
+SIZEDIFF_MAX = configos.HV_FLOAT_PLUS(default=1.0)
 
-DISTANCE_MAX = configo.HolyTable(
+DISTANCE_MAX = configos.HolyTable(
     items=(
         (0, 22.0),
         (12.0, 22.0),
@@ -385,8 +385,8 @@ def unite_groups(content, indexs):
 
 
 # Merge lines with lower distance to one text chunk.
-MERGE_DISTANCE_MAX = configo.HV_FLOAT_PLUS(default=3.55)
-MERGE_HORIZONTALY_MAX = configo.HV_FLOAT_PLUS(default=14.0)
+MERGE_DISTANCE_MAX = configos.HV_FLOAT_PLUS(default=3.55)
+MERGE_HORIZONTALY_MAX = configos.HV_FLOAT_PLUS(default=14.0)
 
 
 def merge_content(  # pylint:disable=R0914

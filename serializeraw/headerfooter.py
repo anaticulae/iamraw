@@ -9,7 +9,7 @@
 
 import contextlib
 
-import configo
+import configos
 import utilo
 
 import iamraw
@@ -37,7 +37,7 @@ def dump_headerfooter(pages: iamraw.PageContentFooterHeaders) -> str:
     return utilo.yaml_dump(result)
 
 
-@configo.cache_small
+@configos.cache_small
 def load_headerfooter(
     content: str,
     pages=None,

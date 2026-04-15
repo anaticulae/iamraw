@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
+import configos
 import utilo
 
 from iamraw import BoundingBox
@@ -56,7 +56,7 @@ def dump_annotations(annotations: PageAnnotations) -> str:
     return dumped
 
 
-@configo.cache_medium
+@configos.cache_medium
 def load_annotations(content: str, pages=None) -> PageAnnotations:
     """Load annotations from dumped raw data.
 
