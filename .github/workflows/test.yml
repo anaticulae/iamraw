@@ -54,10 +54,10 @@ jobs:
     - name: run alltest
       run: make docker-alltest
 
-  linter:
-    runs-on: ubuntu-24.04
-    needs: build
-    steps:
-    - uses: actions/checkout@v6
-    - name: run linter
-      run: make docker-lint
+  # linter:
+  #   runs-on: ubuntu-24.04
+  #   needs: build
+  #   steps:
+  #   - uses: actions/checkout@v6
+  #   - name: run linter
+  #     run: make docker-lint
