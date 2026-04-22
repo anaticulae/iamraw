@@ -19,7 +19,7 @@ dependencies = [
     "utilo>=2.107.4,<3.0.0",
     "configos>=1.0.4,<2.0.0",
 
-    "PyYAML>=6.0.0,<7.0.0",
+    "PyYAML>=6.0.3,<7.0.0",
 ]
 
 # Optional but recommended metadata
