@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import utilo
 import utilotest
 
@@ -56,18 +56,18 @@ def simple_document():
     return document
 
 
-@utilotest.requires(power.DOCU007_PDF)
+@utilotest.requires(hoverpower.DOCU007_PDF)
 def test_load_document_from_path():
-    document = load_document(power.link(power.DOCU007_PDF))
+    document = load_document(hoverpower.link(hoverpower.DOCU007_PDF))
     assert document
 
-    document = load_document(power.link(power.DOCU007_PDF), (1, 2))
+    document = load_document(hoverpower.link(hoverpower.DOCU007_PDF), (1, 2))
     assert len(document) == 2
 
 
-@utilotest.requires(power.DOCU007_PDF)
+@utilotest.requires(hoverpower.DOCU007_PDF)
 def test_load_dump_load_document():
-    document = load_document(power.link(power.DOCU007_PDF))
+    document = load_document(hoverpower.link(hoverpower.DOCU007_PDF))
 
     dumped = dump_document(document)
     second_load = load_document(dumped)
@@ -76,9 +76,9 @@ def test_load_dump_load_document():
     assert second_load == document
 
 
-@utilotest.requires(power.DOCU007_PDF)
+@utilotest.requires(hoverpower.DOCU007_PDF)
 def test_load_dump_page_dimension():
-    source = power.link(power.DOCU007_PDF)
+    source = hoverpower.link(hoverpower.DOCU007_PDF)
     document = load_document(source)
     before = utilo.file_read(utilo.join(source, 'rawmaker__text_text.yaml'))
     dumped = dump_document(document)

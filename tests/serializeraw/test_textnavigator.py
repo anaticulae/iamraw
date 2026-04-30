@@ -7,32 +7,32 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import utilotest
 
 import iamraw.path
 import serializeraw
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_create_pagetextnavigator_frompath():
-    loaded = serializeraw.ptn_frompath(power.link(power.DOCU027_PDF))
+    loaded = serializeraw.ptn_frompath(hoverpower.link(hoverpower.DOCU027_PDF))
     for page in loaded:
         for line in page:
             assert line.text
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_create_pagetextcontentnavigator_frompath():
-    loaded = serializeraw.ptcn_frompath(power.link(power.DOCU027_PDF))
+    loaded = serializeraw.ptcn_frompath(hoverpower.link(hoverpower.DOCU027_PDF))
     for page in loaded:
         for line in page:
             assert line.text
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_create_pagetextcontentnavigator_fromfile():
-    source = power.link(power.DOCU027_PDF)
+    source = hoverpower.link(hoverpower.DOCU027_PDF)
     text = iamraw.path.text(source)
     textpositions = iamraw.path.textposition(source)
     sizeandborder = iamraw.path.sizeandborder(source)
@@ -50,9 +50,9 @@ def test_create_pagetextcontentnavigator_fromfile():
     assert len(loaded) == 27
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_load_dump_ptn():
-    source = power.link(power.DOCU027_PDF)
+    source = hoverpower.link(hoverpower.DOCU027_PDF)
     ptns = serializeraw.ptn_frompath(source)
     fontstore = serializeraw.fs_frompath(source)
     dumped = serializeraw.dump_ptn(

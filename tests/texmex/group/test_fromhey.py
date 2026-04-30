@@ -9,7 +9,7 @@
 
 # TODO: RENAME LATER
 
-import power
+import hoverpower
 import pytest
 import utilo
 import utilotest
@@ -21,8 +21,8 @@ NO_GROUP = [[18], [31], [29], [35]]  # number of items per page
 
 
 def example():
-    utilotest.fixture_requires(power.MASTER072_PDF)
-    source = power.link(power.MASTER072_PDF)
+    utilotest.fixture_requires(hoverpower.MASTER072_PDF)
+    source = hoverpower.link(hoverpower.MASTER072_PDF)
     pages = utilo.rtuple(5, 9)
     navigators = serializeraw.create_pagetextnavigators_frompath(
         source,
@@ -118,10 +118,10 @@ def test_multiline_group_linedistances_page_zero_tolerance():
     assert len(grouped) == 18
 
 
-@utilotest.requires(power.DOCU007_PDF)
+@utilotest.requires(hoverpower.DOCU007_PDF)
 def test_merge_content():  # pylint:disable=W0621
     navigator = serializeraw.create_pagetextnavigators_frompath(
-        power.link(power.DOCU007_PDF))
+        hoverpower.link(hoverpower.DOCU007_PDF))
     navigator = utilo.select_page(navigator, page=1)
     content = texmex.navigator_to_content(navigator)
     merged, _ = texmex.merge_content(content)
@@ -144,10 +144,10 @@ def test_merge_content():  # pylint:disable=W0621
     assert content_count == merged_count
 
 
-@utilotest.requires(power.BACHELOR111_PDF)
+@utilotest.requires(hoverpower.BACHELOR111_PDF)
 def test_create_pagetextcontent_navigator_frompath():
     loaded = serializeraw.create_pagetextcontentnavigators_frompath(
-        power.link(power.BACHELOR111_PDF),
+        hoverpower.link(hoverpower.BACHELOR111_PDF),
         pages=(1, 2, 3, 4),
         prefix='oneline',
     )

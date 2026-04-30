@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import utilo
 import utilotest
 
@@ -86,9 +86,9 @@ def test_textnavigator_roate_left(navigator):
     assert after != before
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_textnavigator_inserthorizontals():
-    source = power.link(power.DOCU027_PDF)
+    source = hoverpower.link(hoverpower.DOCU027_PDF)
     ptn = serializeraw.ptcn_frompath(
         source,
         horizontals=True,
@@ -103,9 +103,9 @@ def test_textnavigator_inserthorizontals():
     assert 3 <= counted <= 7
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_ptn_single():
-    source = power.link(power.DOCU027_PDF)
+    source = hoverpower.link(hoverpower.DOCU027_PDF)
     ptns = serializeraw.ptcn_frompath(source)
     merged = texmex.single(ptns)
     assert isinstance(merged, texmex.PTN)
