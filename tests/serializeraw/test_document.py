@@ -58,10 +58,11 @@ def simple_document():
 
 @utilotest.requires(hoverpower.DOCU007_PDF)
 def test_load_document_from_path():
-    document = load_document(hoverpower.link(hoverpower.DOCU007_PDF))
+    source  = hoverpower.link(hoverpower.DOCU007_PDF)
+    document = load_document(source)
     assert document
 
-    document = load_document(hoverpower.link(hoverpower.DOCU007_PDF), (1, 2))
+    document = load_document(source, pages=(1, 2))
     assert len(document) == 2
 
 
