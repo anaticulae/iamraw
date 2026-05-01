@@ -32,17 +32,9 @@ RESOURCES = [
     (hoverpower.BACHELOR037_PDF, '0:5'),
 ]
 
-hoverpower.BACHELOR037_PDF = "abc/bachelor/bachelor037.pdf"
-hoverpower.BACHELOR111_PDF = "abc/bachelor/bachelor111.pdf"
-hoverpower.DOCU027_PDF = "abc/docu/docu027.pdf"
-
-hoverpower.MASTER072_PDF = "abc/master/master072.pdf"
-
-
 @pytest.mark.usefixtures('session')
 def pytest_sessionstart():
-    # hoverpower.run()
-    pass
+    hoverpower.run()
 
 
 def extract(resources):
