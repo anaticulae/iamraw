@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import utilotest
 
@@ -16,8 +16,8 @@ import texmex
 
 
 def navigators():
-    utilotest.fixture_requires(power.DOCU027_PDF)
-    result = serializeraw.ptn_frompath(power.link(power.DOCU027_PDF))
+    utilotest.fixture_requires(hoverpower.DOCU027_PDF)
+    result = serializeraw.ptn_frompath(hoverpower.link(hoverpower.DOCU027_PDF))
     return result
 
 
@@ -27,10 +27,11 @@ def test_document_textsize():
     assert size == 9.96, str(size)
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_document_textdistance():
     example = navigators()
-    borders = serializeraw.load_pageborders(power.link(power.DOCU027_PDF))
+    borders = serializeraw.load_pageborders(
+        hoverpower.link(hoverpower.DOCU027_PDF))
     result = texmex.document_textdistance(example, borders)
     # TODO: INVESTIGATE LATER
     # This is not the right result. A change indicates that the algo
@@ -38,17 +39,17 @@ def test_document_textdistance():
     assert result == 17.9, str(result)
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_document_textdist_from_ptcns():
-    source = power.link(power.DOCU027_PDF)
+    source = hoverpower.link(hoverpower.DOCU027_PDF)
     data = serializeraw.ptcn_frompath(source)
     result = texmex.document_textdist_from_ptcns(data)
     assert result == 17.9, str(result)
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_document_textfeed():
-    nav = serializeraw.ptn_frompath(power.link(power.DOCU027_PDF))
+    nav = serializeraw.ptn_frompath(hoverpower.link(hoverpower.DOCU027_PDF))
     leftfeed = texmex.document_textfeed(nav, left=True)
     assert leftfeed == 72.0, str(leftfeed)
     # distance of x1 to right page border
@@ -67,10 +68,10 @@ def test_textsize_frompage():
     (texmex.PTNMode.VERTICAL, True),
     (texmex.PTNMode.HORIZONTAL, False),
 ])
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_navigator_filter_mode(mode, empty):
     result = serializeraw.ptn_frompath(
-        power.link(power.DOCU027_PDF),
+        hoverpower.link(hoverpower.DOCU027_PDF),
         mode=mode,
         pages=(0,),
     )

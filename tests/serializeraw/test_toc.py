@@ -14,7 +14,7 @@
 import functools
 import os
 
-import power
+import hoverpower
 import pytest
 import utilo
 import utilotest
@@ -59,9 +59,9 @@ def toc_example(dump_raw: bool = False):
     return root
 
 
-@utilotest.requires(power.DOCU007_PDF)
+@utilotest.requires(hoverpower.DOCU007_PDF)
 def test_load_toc_from_path(testdir):
-    source = power.link(power.DOCU007_PDF)
+    source = hoverpower.link(hoverpower.DOCU007_PDF)
     cmd = f'reftable -i {source} -o {testdir.tmpdir} --toc --page=0'
     utilo.run(cmd)
     toc = serializeraw.load_toc(testdir.tmpdir)

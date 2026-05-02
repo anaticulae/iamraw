@@ -8,7 +8,7 @@
 # =============================================================================
 
 # import genex.example
-import power
+import hoverpower
 import pytest
 import resinf
 
@@ -22,27 +22,19 @@ pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
 PACKAGE = 'iamraw'
 resinf.setup(iamraw.ROOT)  # TODO: REMOVE LATER?
-# power.setup(iamraw.ROOT)
+# hoverpower.setup(iamraw.ROOT)
 
 RESOURCES = [
-    # power.DOCU027_PDF,
-    # power.DOCU007_PDF,
-    # (power.MASTER072_PDF, '0:10'),
-    # (power.BACHELOR111_PDF, '0:5'),
-    # (power.BACHELOR037_PDF, '0:5'),
+    hoverpower.DOCU027_PDF,
+    hoverpower.DOCU007_PDF,
+    (hoverpower.MASTER072_PDF, '0:10'),
+    (hoverpower.BACHELOR111_PDF, '0:5'),
+    (hoverpower.BACHELOR037_PDF, '0:5'),
 ]
-
-power.BACHELOR037_PDF = "abc/bachelor/bachelor037.pdf"
-power.BACHELOR111_PDF = "abc/bachelor/bachelor111.pdf"
-power.DOCU027_PDF = "abc/docu/docu027.pdf"
-
-power.MASTER072_PDF = "abc/master/master072.pdf"
-
 
 @pytest.mark.usefixtures('session')
 def pytest_sessionstart():
-    # power.run()
-    pass
+    hoverpower.run()
 
 
 def extract(resources):

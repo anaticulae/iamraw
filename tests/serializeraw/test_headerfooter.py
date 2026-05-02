@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import utilo
 import utilotest
@@ -145,15 +145,15 @@ def test_dump_mergednote():
     assert hash(str(data)) == before, 'data changed due simplify'
 
 
-@utilotest.requires(power.MASTER072_PDF)
+@utilotest.requires(hoverpower.MASTER072_PDF)
 def test_footer_load():
-    source = power.link(power.MASTER072_PDF)
+    source = hoverpower.link(hoverpower.MASTER072_PDF)
     loaded = serializeraw.load_headerfooter(source)
     assert utilo.near(current=len(loaded), expected=7, diff=3)  # seven pages
 
 
-@utilotest.requires(power.MASTER072_PDF)
+@utilotest.requires(hoverpower.MASTER072_PDF)
 def test_footnotes_load():
-    source = power.link(power.MASTER072_PDF)
+    source = hoverpower.link(hoverpower.MASTER072_PDF)
     loaded = serializeraw.load_footnotes(source)
     assert utilo.near(current=len(loaded), expected=5, diff=3)  # five footnotes

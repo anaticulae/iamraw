@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import utilo
 import utilotest
@@ -31,9 +31,9 @@ def test_dump_and_load_image_hidden(hidden):
     assert loaded == info
 
 
-@utilotest.requires(power.BACHELOR037_PDF)
+@utilotest.requires(hoverpower.BACHELOR037_PDF)
 def test_images_load():
-    source = power.link(power.BACHELOR037_PDF)
+    source = hoverpower.link(hoverpower.BACHELOR037_PDF)
     imagepath = iamraw.path.images(source)
     loaded = serializeraw.load_image_infos_frompath(imagepath)
     loaded = utilo.flatten_content(loaded)

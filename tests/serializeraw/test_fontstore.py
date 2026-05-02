@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import utilotest
 
@@ -164,9 +164,9 @@ def test_fontstore_font_to_fontid():
     assert store.font_to_fontid(f5) == hash(f5)
 
 
-@utilotest.requires(power.DOCU027_PDF)
+@utilotest.requires(hoverpower.DOCU027_PDF)
 def test_fontstore_font_access():
-    loaded = serializeraw.fs_frompath(power.link(power.DOCU027_PDF))
+    loaded = serializeraw.fs_frompath(hoverpower.link(hoverpower.DOCU027_PDF))
     fontid = loaded.fontid(0, 0, 0, 0)
     font = loaded.font(0, 0, 0, 0)
     assert loaded[fontid] == font

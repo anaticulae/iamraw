@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import utilotest
 
@@ -24,8 +24,8 @@ def docu027_fontstore() -> iamraw.FontStore:
         rawmaker -i power/power/repository/docu/restructuredtext.pdf
         --pages=0:11 --char_margin 5.0 --boxes_flow 1.0 --line_margin 0.3
     """
-    utilotest.fixture_requires(power.DOCU027_PDF)
-    result = serializeraw.fs_frompath(power.link(power.DOCU027_PDF))
+    utilotest.fixture_requires(hoverpower.DOCU027_PDF)
+    result = serializeraw.fs_frompath(hoverpower.link(hoverpower.DOCU027_PDF))
     return result
 
 

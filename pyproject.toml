@@ -39,7 +39,7 @@ dev = [
     #rawmaker>=2.40.2<3.0.0
     #groupme>=0.40.5<1.0.0
 
-    #power==2.23.0
+    "hoverpower==1.1.0",
     #genex==0.40.0
 
     #utilotest==0.28.2
