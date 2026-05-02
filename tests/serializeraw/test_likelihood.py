@@ -63,7 +63,7 @@ def test_likelihood_dump_and_load_with_single_value():
 
 def test_likelihood_dump_and_load_page2():
     dumped = serializeraw.dump_likelihood(EXAMPLE)
-    loaded = serializeraw.load_likelihood(dumped, pages=(2))
+    loaded = serializeraw.load_likelihood(dumped, pages=(2,))
 
     subexample = [EXAMPLE[1]]
     assert loaded == subexample, str(loaded)

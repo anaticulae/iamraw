@@ -10,6 +10,7 @@
 from iamraw import BoundingBox
 from iamraw import PageNumber
 
+# pylint: disable=invalid-name
 TWO_PAGES = ([
     (3, BoundingBox(x0=72.00, y0=739.54, x1=77.54, y1=752.05), 'ii'),
     (5, BoundingBox(x0=72.00, y0=739.54, x1=77.54, y1=752.05), 2),
