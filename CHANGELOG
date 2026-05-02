@@ -1,6 +1,27 @@
 # CHANGELOG
 
 
+## v4.91.2 (2026-05-02)
+
+### Chores
+
+- **project**: Use hoverpower package
+  ([`f50b6ae`](https://github.com/anaticulae/iamraw/commit/f50b6ae3ac66e45eeb36a76a556c43ddb70589ee))
+
+### Refactoring
+
+- **power**: Use hoverpower
+  ([`6ac6f0f`](https://github.com/anaticulae/iamraw/commit/6ac6f0f677d5e27fce51dcde6fddabdb4bd86543))
+
+### Testing
+
+- **config**: Enable test generation code
+  ([`137e8f0`](https://github.com/anaticulae/iamraw/commit/137e8f07e3a50166542bb44d97781af136d1a5f4))
+
+- **refactor**: Improve code
+  ([`e31ff45`](https://github.com/anaticulae/iamraw/commit/e31ff45a9868f56855e206130b25dcbe8b83b6d8))
+
+
 ## v4.91.1 (2026-04-16)
 
 ### Chores
