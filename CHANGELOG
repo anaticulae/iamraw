@@ -1,6 +1,22 @@
 # CHANGELOG
 
 
+## v4.91.3 (2026-05-03)
+
+### Chores
+
+- **docker**: Adjust invocation
+  ([`6feed07`](https://github.com/anaticulae/iamraw/commit/6feed07029e48c5268afe3cc598f1752f21805b7))
+
+### Code Style
+
+- **linter**: Solve linter warnings
+  ([`3343d11`](https://github.com/anaticulae/iamraw/commit/3343d11784cc113b5830eecce5cd76be7ed13e1a))
+
+- **linter**: Solve linter warnings
+  ([`b14f171`](https://github.com/anaticulae/iamraw/commit/b14f1713a85447139bbe32b1cf0a51056ffa7378))
+
+
 ## v4.91.2 (2026-05-02)
 
 ### Chores
