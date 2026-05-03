@@ -19,7 +19,7 @@ from iamraw.document import TextContainer
 @fixture
 def textcontainer() -> TextContainer:
     container = TextContainer()
-    for line in ['First\n', 'Second\n', 'Thrid Third Third\n']:
+    for line in ('First\n', 'Second\n', 'Thrid Third Third\n'):
         container.append(Line(chars=[Char(value=item) for item in line]))
     return container
 

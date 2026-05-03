@@ -38,6 +38,7 @@ USER_CHARACTER = [
     r'\w',
 ]
 
+# pylint: disable=invalid-name
 UC_NWS = ''.join(USER_CHARACTER)
 UC = UC_NWS + ' '  # user content with whitespace
 UC_WS_NL = UC + r'\s'  # content with whitespace, newline

@@ -74,8 +74,7 @@ class TextStyle:
             last = current
 
     def __iter__(self):
-        for style in self.content:  # pylint:disable=E1133
-            yield style
+        yield from self.content
 
     def __len__(self):
         return len(self.content)

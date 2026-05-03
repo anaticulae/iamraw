@@ -23,10 +23,10 @@ def dump_lines(lines: iamraw.PageContentLines) -> str:
             # skip empty page
             continue
         content = ['%.2f %.2f %.2f %.2f' % item for item in page.content]
-        pageitem = dict(
-            page=page.page,
-            content=content,
-        )
+        pageitem = {
+            'page':page.page,
+            'content':content,
+        }
         if page.rotated:
             pageitem['rotated'] = 1
         collected.append(pageitem)
@@ -71,10 +71,10 @@ def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
         if not page.content:
             continue  # skip empty pages
         horizontals = [str(horizontal.box) for horizontal in page.content]
-        pageitem = dict(
-            page=page.page,
-            horizontals=horizontals,
-        )
+        pageitem = {
+            'page':page.page,
+            'horizontals':horizontals,
+        }
         if page.rotated:
             pageitem['rotated'] = 1
         collected.append(pageitem)
