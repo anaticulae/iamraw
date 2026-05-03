@@ -42,8 +42,6 @@ dev = [
     "hoverpower==1.1.0",
     #genex==0.40.0
 
-    #utilotest==0.28.2
-
     #pagenumber>=0.3.5<1.0.0
     #footnote>=0.2.6<1.0.0
     #reftable>=0.6.0<1.0.0
