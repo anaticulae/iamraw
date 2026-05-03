@@ -425,18 +425,18 @@ def valid(item, inside, selector=SelectBounding.MAX):  # pylint:disable=R1260,R0
     if selector == SelectBounding.MAX:
         if not before <= bounding.y0 <= bounding.y1 <= after:
             return False
-    elif selector == SelectBounding.MEAN:  # pylint:disable=R5601
+    elif selector == SelectBounding.MEAN:
         mean = bounding.y1 - item.bounding_mean
         if not before <= mean <= bounding.y1 <= after:
             return False
-    elif selector == SelectBounding.TWO_THIRDS:  # pylint:disable=R5601
+    elif selector == SelectBounding.TWO_THIRDS:
         sixty = bounding.y1 - (bounding.y1 - bounding.y0) * 0.66
         if not before <= sixty <= bounding.y1 <= after:
             return False
-    elif selector == SelectBounding.TOP:  # pylint:disable=R5601
+    elif selector == SelectBounding.TOP:
         if not before <= bounding.y0 <= after:
             return False
-    elif selector == SelectBounding.BOTTOM:  # pylint:disable=R5601
+    elif selector == SelectBounding.BOTTOM:
         if not before <= bounding.y1 <= after:
             return False
     # TODO: ACTIVATE AFTER FIXING CONTENT BORDER OF MASTER_72
@@ -503,7 +503,7 @@ def insert_position(bounding: tuple, data: list) -> int:
         if int(pos[1]) == y0:
             if x0 <= int(pos[0]):
                 break
-        elif y0 <= pos[1]:  # pylint:disable=R5601
+        elif y0 <= pos[1]:
             break
         position += 1
     return position
@@ -519,7 +519,7 @@ def insert_position_middle(bounding: tuple, data: list) -> int:
         if (pos.y0 + pos.y1) // 2 == y0:
             if x0 <= int(pos.x0):
                 break
-        elif y0 <= (pos.y0 + pos.y1) // 2:  # pylint:disable=R5601
+        elif y0 <= (pos.y0 + pos.y1) // 2:
             break
         position += 1
     return position

@@ -13,6 +13,7 @@ import hoverpower
 import utilo
 import utilotest
 
+import iamraw
 import serializeraw
 
 
@@ -60,10 +61,18 @@ def test_yamlpages_compare_speed(testdir, capsys):
     utilo.file_replace(filename, dumped)
     with utilo.level_tmp(utilo.Level.DEBUG):
         with utilo.profile('slow'):
-            slow = serializeraw.load_document(filename, pages=10, fast=False)
+            slow = serializeraw.load_document(
+                filename,
+                pages=10,
+                fast=False,
+            )
         fast = os.path.join(source, filename)
         with utilo.profile('fast'):
-            fast = serializeraw.load_document(fast, pages=10, fast=True)
+            fast: iamraw.Document = serializeraw.load_document(
+                fast,
+                pages=10,
+                fast=True,
+            )
     assert fast == slow
     # compare speed
     log = utilotest.stdout(capsys)

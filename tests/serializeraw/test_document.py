@@ -29,11 +29,11 @@ from serializeraw.document import _load_textcontainer
 
 def simple_textcontainer():
     container = TextContainer(state=texmex.TextState.HIDDEN)
-    for line in [
+    for line in (
             'I am a beautiful Line\n',
             'I am a more beautiful Line\n',
             'I am a the most beautiful Line\n',
-    ]:
+    ):
         container.append(Line(chars=[Char(value=item) for item in line]))
     return container
 
@@ -58,7 +58,7 @@ def simple_document():
 
 @utilotest.requires(hoverpower.DOCU007_PDF)
 def test_load_document_from_path():
-    source  = hoverpower.link(hoverpower.DOCU007_PDF)
+    source = hoverpower.link(hoverpower.DOCU007_PDF)
     document = load_document(source)
     assert document
 

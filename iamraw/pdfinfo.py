@@ -23,6 +23,8 @@ class PDFInfo:
     meta: dict = None
 
 
+
+# pylint: disable=invalid-name
 InvalidPDF = object()
 
 

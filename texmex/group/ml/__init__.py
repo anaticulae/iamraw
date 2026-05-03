@@ -169,8 +169,7 @@ def linedistance(index, pagetextnavigator) -> float:
         after = pagetextnavigator[index + 1]
     except IndexError:
         return None
-    else:
-        return utilo.roundme(after.bounding.y1 - current.bounding.y1)
+    return utilo.roundme(after.bounding.y1 - current.bounding.y1)
 
 
 def linedistances(pagetextnavigator, noneatend=True):

@@ -32,6 +32,7 @@ RESOURCES = [
     (hoverpower.BACHELOR037_PDF, '0:5'),
 ]
 
+
 @pytest.mark.usefixtures('session')
 def pytest_sessionstart():
     hoverpower.run()

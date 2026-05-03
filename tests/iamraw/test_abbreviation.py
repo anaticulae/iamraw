@@ -13,6 +13,6 @@ import iamraw
 def test_abbreviation_sorting():
     example = [
         iamraw.Abbreviation(item)
-        for item in ['α', 'Alpha', 'Beta', 'Gamma', 'helm']
+        for item in ('α', 'Alpha', 'Beta', 'Gamma', 'helm')
     ]
     assert sorted(example) == example
