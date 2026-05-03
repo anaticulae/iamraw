@@ -24,8 +24,8 @@ def dump_lines(lines: iamraw.PageContentLines) -> str:
             continue
         content = ['%.2f %.2f %.2f %.2f' % item for item in page.content]
         pageitem = {
-            'page':page.page,
-            'content':content,
+            'page': page.page,
+            'content': content,
         }
         if page.rotated:
             pageitem['rotated'] = 1
@@ -72,8 +72,8 @@ def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
             continue  # skip empty pages
         horizontals = [str(horizontal.box) for horizontal in page.content]
         pageitem = {
-            'page':page.page,
-            'horizontals':horizontals,
+            'page': page.page,
+            'horizontals': horizontals,
         }
         if page.rotated:
             pageitem['rotated'] = 1

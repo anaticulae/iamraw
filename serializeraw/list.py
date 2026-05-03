@@ -24,8 +24,8 @@ def dump_lists(lists: list) -> str:
         if not pageresult:
             continue
         raw.append({
-            'page':pagenumber,
-            'lists':pageresult,
+            'page': pagenumber,
+            'lists': pageresult,
         })
     dumped = utilo.yaml_dump(raw)
     return dumped
@@ -40,8 +40,8 @@ def list_raw(instance, pagenumber) -> dict:
             utilo.error(f'page:{pagenumber};{pnumber} empty list item')
         content.append(f'{pnumber} {item}')
     result = {
-        'area':area,
-        'content':content,
+        'area': area,
+        'content': content,
     }
     if instance.area_length:
         result['area_length'] = dump_area(instance.area_length)
