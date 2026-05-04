@@ -14,21 +14,50 @@ docker-upload:
 	docker push $(IMAGE_NAME)
 
 docker-doctest: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_NAME) "baw test docs"
+	docker run\
+		-v $(CURDIR):/var/workdir\
+		$(IMAGE_NAME)\
+		"baw test docs"
 
-docker-fasttest: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_NAME) "baw test fast"
+docker-fasttest: docker-decrypt
+	docker run\
+		-v $(CURDIR):/var/workdir\
+		-v /tmp/power:/tmp/power\
+		$(IMAGE_NAME)\
+		"baw test fast"
 
-docker-longtest: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_NAME) "baw test long"
+docker-longtest: docker-decrypt
+	docker run\
+		-v $(CURDIR):/var/workdir\
+		-v /tmp/power:/tmp/power\
+		$(IMAGE_NAME)\
+		"baw test long"
 
-docker-alltest: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_NAME) "baw test all"
+docker-alltest: docker-decrypt
+	docker run\
+		-v $(CURDIR):/var/workdir\
+		-v /tmp/power:/tmp/power\
+		$(IMAGE_NAME)\
+		"baw test all"
 
 docker-lint: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_NAME) "baw lint all"
+	docker run\
+		-v $(CURDIR):/var/workdir\
+		$(IMAGE_NAME)\
+		"baw lint all"
+
+docker-decrypt: docker-build
+	docker run\
+		-v $(CURDIR):/var/workdir\
+		-v /tmp/power:/tmp/power\
+		-e HOVERPOWER_STORE=/var/workdir/hoverpower/repo\
+		-e HOVERPOWER_SECRET=$(HOVERPOWER_SECRET)\
+		$(IMAGE_NAME)\
+		"powerdownload && powerdecrypt"
 
 docker-release: docker-build
-	docker run -v $(CURDIR):/var/workdir\
-			-e GH_TOKEN=$(GH_TOKEN) $(IMAGE_NAME)\
-			"baw release --no_test --no_linter"
+	docker run\
+		-v $(CURDIR):/var/workdir\
+		-e GH_TOKEN=$(GH_TOKEN)\
+		$(IMAGE_NAME)\
+		"baw release --no_test --no_linter"
