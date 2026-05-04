@@ -137,9 +137,9 @@ def split_content(content: str) -> tuple:
         head, tail = dynamic.split('\n', maxsplit=1)
     header = create_header(tail)
     if static:
-        static:str = f'{static.strip()}\n{head}'.strip()
+        static: str = f'{static.strip()}\n{head}'.strip()
     else:
-        static:str = f'{head}'
+        static: str = f'{head}'
     dynamic = [tail[start:end] for page, (start, end) in header.content.items()]
     dynamic: str = utilo.NEWLINE.join(dynamic)
     return header, static, dynamic
