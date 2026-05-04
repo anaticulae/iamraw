@@ -1,6 +1,25 @@
 # CHANGELOG
 
 
+## v4.91.4 (2026-05-04)
+
+### Chores
+
+- **docker**: Add docker ignore
+  ([`6400b36`](https://github.com/anaticulae/iamraw/commit/6400b36bea648244e41226d91a669e8846bc6531))
+
+- **make**: Adjust make file
+  ([`24334d5`](https://github.com/anaticulae/iamraw/commit/24334d5664a71ee8a0355e1f5fd870b453361bd1))
+
+- **project**: Remove unused requirement
+  ([`24aa889`](https://github.com/anaticulae/iamraw/commit/24aa889e8184e2a079bf83784d787bb7f304936d))
+
+### Code Style
+
+- **format**: Format code
+  ([`875a83e`](https://github.com/anaticulae/iamraw/commit/875a83e7497c79c405626dc9f5b5b0025abf6bf4))
+
+
 ## v4.91.3 (2026-05-03)
 
 ### Chores
