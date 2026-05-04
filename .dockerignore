@@ -1,0 +1,7 @@
+.git
+.github
+
+venv
+dist
+
+*.egg-info
