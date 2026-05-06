@@ -16,7 +16,7 @@ authors = [
 ]
 
 dependencies = [
-    "utilo>=2.107.4,<3.0.0",
+    "utilo>=2.107.5,<3.0.0",
     "configos>=1.0.4,<2.0.0",
 
     "PyYAML>=6.0.3,<7.0.0",
@@ -34,7 +34,7 @@ license-files = ["LICENSE"]
 
 [project.optional-dependencies]
 dev = [
-    "utilotest>=1.0.1,<2.0.0",
+    "utilotest>=1.0.4,<2.0.0",
 
     #rawmaker>=2.40.2<3.0.0
     #groupme>=0.40.5<1.0.0
