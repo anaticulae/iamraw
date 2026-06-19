@@ -22,7 +22,7 @@ pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
 PACKAGE = 'iamraw'
 resinf.setup(iamraw.ROOT)  # TODO: REMOVE LATER?
-# hoverpower.setup(iamraw.ROOT)
+hoverpower.setup(iamraw.ROOT)
 
 RESOURCES = [
     hoverpower.DOCU027_PDF,
