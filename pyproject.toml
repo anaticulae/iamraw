@@ -37,6 +37,7 @@ content-type = "text/markdown"
 dev = [
     "utilotest>=1.0.4,<2.0.0",
     "hoverpower==1.4.2",
+    "gennex==1.0.3",
 ]
 
 [project.urls]
