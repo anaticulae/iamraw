@@ -37,7 +37,10 @@ def dump_pdfinfo(info: iamraw.PDFInfo, ext: str = 'json') -> str:
 def load_pdfinfo(path: str) -> iamraw.PDFInfo:
     loaded = utilo.yaml_load(
         path,
-        fname='pdfinfo',
+        fname=(
+            'pdflog',
+            'pdfinfo',
+        ),
     )
     if loaded == {}:
         return iamraw.InvalidPDF
