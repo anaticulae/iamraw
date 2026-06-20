@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-# import genex.example
+import gennex.example
 import hoverpower
 import pytest
 import resinf
@@ -22,7 +22,7 @@ pytest_plugins = ['pytester', 'xdist']  # pylint: disable=invalid-name
 
 PACKAGE = 'iamraw'
 resinf.setup(iamraw.ROOT)  # TODO: REMOVE LATER?
-# hoverpower.setup(iamraw.ROOT)
+hoverpower.setup(iamraw.ROOT)
 
 RESOURCES = [
     hoverpower.DOCU027_PDF,
@@ -39,13 +39,12 @@ def pytest_sessionstart():
 
 
 def extract(resources):
-    # genex.example.extract(
-    #     files=resources,
-    #     footnote=True,
-    #     groupme='--border --hefopa',
-    #     headnote=True,
-    #     pagenumber=True,
-    #     reftable='--toc',
-    #     worker=len(RESOURCES),
-    # )
-    pass
+    gennex.example.extract(
+        files=resources,
+        # footnote=True,
+        # groupme='--border --hefopa',
+        # headnote=True,
+        # pagenumber=True,
+        # reftable='--toc',
+        worker=len(RESOURCES),
+    )

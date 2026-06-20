@@ -24,7 +24,8 @@ def test_create_pagetextnavigator_frompath():
 
 @utilotest.requires(hoverpower.DOCU027_PDF)
 def test_create_pagetextcontentnavigator_frompath():
-    loaded = serializeraw.ptcn_frompath(hoverpower.link(hoverpower.DOCU027_PDF))
+    source = hoverpower.link(hoverpower.DOCU027_PDF)
+    loaded = serializeraw.ptcn_frompath(source)
     for page in loaded:
         for line in page:
             assert line.text

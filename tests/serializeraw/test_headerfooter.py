@@ -145,6 +145,7 @@ def test_dump_mergednote():
     assert hash(str(data)) == before, 'data changed due simplify'
 
 
+@pytest.mark.xfail(reason='enable groupme')
 @utilotest.requires(hoverpower.MASTER072_PDF)
 def test_footer_load():
     source = hoverpower.link(hoverpower.MASTER072_PDF)
@@ -152,6 +153,7 @@ def test_footer_load():
     assert utilo.near(current=len(loaded), expected=7, diff=3)  # seven pages
 
 
+@pytest.mark.xfail(reason='enable groupme')
 @utilotest.requires(hoverpower.MASTER072_PDF)
 def test_footnotes_load():
     source = hoverpower.link(hoverpower.MASTER072_PDF)

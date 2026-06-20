@@ -1,7 +1,7 @@
 [build-system]
 requires = [
     "setuptools>=82.0.1",
-    "wheel>=0.47.0"
+    "wheel>=0.47.0",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -9,44 +9,36 @@ build-backend = "setuptools.build_meta"
 name = "iamraw"
 version = "4.91.4"
 description = ""
-readme = {file = "README", content-type = "text/markdown"}
 requires-python = ">=3.12"
 authors = [
-  {name = "Helmut Konrad Schewe", email = "helmutus@outlook.com"}
+    { name = "Helmut Konrad Schewe", email = "helmutus@outlook.com" },
 ]
-
 dependencies = [
-    "utilo>=2.107.4,<3.0.0",
+    "utilo>=2.109.0,<3.0.0",
     "configos>=1.0.4,<2.0.0",
-
     "PyYAML>=6.0.3,<7.0.0",
 ]
-
-# Optional but recommended metadata
 keywords = []
 classifiers = [
-  'Programming Language :: Python :: 3.12',
-  'Programming Language :: Python :: 3.13',
-  'Programming Language :: Python :: 3.14',
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 license = "MIT"
-license-files = ["LICENSE"]
+license-files = [
+    "LICENSE",
+]
+
+[project.readme]
+file = "README"
+content-type = "text/markdown"
 
 [project.optional-dependencies]
 dev = [
-    "utilotest>=1.0.1,<2.0.0",
-
-    #rawmaker>=2.40.2<3.0.0
-    #groupme>=0.40.5<1.0.0
-
-    "hoverpower==1.1.0",
-    #genex==0.40.0
-
-    #pagenumber>=0.3.5<1.0.0
-    #footnote>=0.2.6<1.0.0
-    #reftable>=0.6.0<1.0.0
-    #sections>=1.24.0<2.0.0
-    #headnote>=0.5.2<1.0.0
+    "gennex==1.0.3",
+    "hoverpower==1.4.2",
+    "rawmaker==2.40.3",
+    "utilotest>=1.0.4,<2.0.0",
 ]
 
 [project.urls]
@@ -54,27 +46,51 @@ Homepage = "https://github.com/anaticulae/iamraw"
 Repository = "https://github.com/anaticulae/iamraw"
 
 [tool.semantic_release]
-version_toml = ["pyproject.toml:project.version"]
-[tool.semantic_release.changelog.default_templates]
-changelog_file = "CHANGELOG"
+version_toml = [
+    "pyproject.toml:project.version",
+]
+
 [tool.semantic_release.changelog]
 mode = "init"
 output_format = "md"
+
+[tool.semantic_release.changelog.default_templates]
+changelog_file = "CHANGELOG"
+
 [tool.semantic_release.commit_parser_options]
-# allways generate a new version
-patch_tags = ["fix", "perf", "build", "chore", "ci", "docs", "style", "refactor", "test", "deps"]
+patch_tags = [
+    "fix",
+    "perf",
+    "build",
+    "chore",
+    "ci",
+    "docs",
+    "style",
+    "refactor",
+    "test",
+    "deps",
+]
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = [
+    ".",
+]
 include = [
-    'iamraw',
-    'serializeraw',
-    'serializeraw.tnav',
-    'texmex',
-    'texmex.group',
-    'texmex.group.ml',
-    'texmex.nav',
+    "iamraw",
+    "serializeraw",
+    "serializeraw.tnav",
+    "texmex",
+    "texmex.group",
+    "texmex.group.ml",
+    "texmex.nav",
 ]
 exclude = [
     "tests*",
+]
+
+[tool.hoverpower]
+packages = [
+    "MASTER",
+    "BACHELOR",
+    "DOCU",
 ]

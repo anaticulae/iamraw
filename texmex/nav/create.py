@@ -256,7 +256,10 @@ def determine_border(headerfooter, sizeandborder, page: int):
         return pagesize
     border = pagesize.border
     pagesize = pagesize.size
-    headerfooter = utilo.select_page(headerfooter, page)
+    if headerfooter is not None:
+        headerfooter = utilo.select_page(headerfooter, page)
+    else:
+        headerfooter = None
     top, bottom = 0, pagesize.height
     if headerfooter and headerfooter.header:
         if headerfooter.header.end:

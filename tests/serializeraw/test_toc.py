@@ -59,6 +59,7 @@ def toc_example(dump_raw: bool = False):
     return root
 
 
+@pytest.mark.xfail(reason='missing reftable')
 @utilotest.requires(hoverpower.DOCU007_PDF)
 def test_load_toc_from_path(testdir):
     source = hoverpower.link(hoverpower.DOCU007_PDF)
