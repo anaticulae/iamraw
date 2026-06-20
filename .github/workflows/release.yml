@@ -3,6 +3,7 @@ name: Release
 on:
   push:
     branches: [main]
+    tags-ignore: ['*']
 env:
   GH_TOKEN: ${{ secrets.REPO }}
 permissions:
