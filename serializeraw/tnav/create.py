@@ -228,10 +228,15 @@ def ptcn_fromfile(  # pylint:disable=R0914
         state=state,
     )
     # load header, footer, pageborder
-    headerfooter = serializeraw.load_headerfooter(
-        headerfooter,
-        pages=pages,
-    )
+    try:
+        headerfooter = serializeraw.load_headerfooter(
+            headerfooter,
+            pages=pages,
+        )
+    except FileNotFoundError as error:
+        headerfooter = None
+        utilo.error(error)
+
     sizeandborder = serializeraw.load_pageborders(
         sizeandborder,
         pages=pages,
