@@ -1,6 +1,50 @@
 # CHANGELOG
 
 
+## v4.91.5 (2026-06-20)
+
+### Bug Fixes
+
+- **ptcn**: Allow creation with missing files
+  ([`ce79757`](https://github.com/anaticulae/iamraw/commit/ce7975755565974b3298d7676412803a8bf8ba0e))
+
+### Chores
+
+- **docker**: Upgrade environment
+  ([`e7f30e1`](https://github.com/anaticulae/iamraw/commit/e7f30e19a3740c8fbfd3c31b4f8c8d68a723d7a4))
+
+- **requirements**: Add gennex
+  ([`164bd1b`](https://github.com/anaticulae/iamraw/commit/164bd1b1d4c29dad500c75ffb7116aeaaa99a1e4))
+
+- **requirements**: Add rawmaker
+  ([`c3d5a38`](https://github.com/anaticulae/iamraw/commit/c3d5a38ffd4223d2a2ddba36163ff3c8a5c3c85a))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`72e8cf6`](https://github.com/anaticulae/iamraw/commit/72e8cf6d0b4c1081e2c2c60692be3ce885d67a2f))
+
+- **resources**: Shrink hoverpower
+  ([`d75be55`](https://github.com/anaticulae/iamraw/commit/d75be559915f4b86a5871c343145ed0ee605a90a))
+
+- **test**: Enable hoverpower
+  ([`97989f6`](https://github.com/anaticulae/iamraw/commit/97989f6cd898001e697238aebae9032d377ffda8))
+
+- **test**: Enable resource generator
+  ([`ff076c9`](https://github.com/anaticulae/iamraw/commit/ff076c98e60aa91dc021455d8020d189f6ce8ffb))
+
+### Code Style
+
+- **yaml**: Format code
+  ([`87d36e2`](https://github.com/anaticulae/iamraw/commit/87d36e2829cde2bbc944afb8e8af75e1dd8a48e8))
+
+### Testing
+
+- **refactor**: Clarify code
+  ([`f6b0570`](https://github.com/anaticulae/iamraw/commit/f6b05701313df53dc0440cc50b8266ae2b799995))
+
+- **skip**: Skip failing tests
+  ([`0282c3d`](https://github.com/anaticulae/iamraw/commit/0282c3d1df9cefb223b7e65d343ad9d93ce9dbd9))
+
+
 ## v4.91.4 (2026-05-04)
 
 ### Chores
