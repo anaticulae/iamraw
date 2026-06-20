@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v4.91.6 (2026-06-20)
+
+### Bug Fixes
+
+- **pdfinfo**: Adjust base name
+  ([`c3e070c`](https://github.com/anaticulae/iamraw/commit/c3e070ca0d27e520b7836a44394328a91932ae4e))
+
+### Chores
+
+- **requirements**: Upgrade pyproject.toml
+  ([`9228e59`](https://github.com/anaticulae/iamraw/commit/9228e591d7a1abb3e31c30207142e1b483b40788))
+
+
 ## v4.91.5 (2026-06-20)
 
 ### Bug Fixes
