@@ -38,7 +38,7 @@ docker-alltest: docker-decrypt
 		-v $(CURDIR):/var/workdir\
 		-v /tmp/power:/tmp/power\
 		$(IMAGE_NAME)\
-		"baw test all"
+		"baw test all --generate"
 
 docker-lint: docker-build
 	docker run\
