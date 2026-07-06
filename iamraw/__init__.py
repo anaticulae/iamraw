@@ -7,6 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import importlib.metadata
 import os
 
 # path
@@ -348,6 +349,6 @@ FooterInformation = FooterInfo
 MovingFooterInformation = MovingFooterInfo
 PagesFooterInformation = PagesFooterInfo
 
-__version__ = '4.91.0'
+__version__ = importlib.metadata.version('iamraw')
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
