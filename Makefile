@@ -56,8 +56,12 @@ docker-decrypt: docker-build
 		"powerdownload && powerdecrypt"
 
 docker-release: docker-build
-	docker run\
-		-v $(CURDIR):/var/workdir\
-		-e GH_TOKEN=$(GH_TOKEN)\
-		$(IMAGE_NAME)\
-		"baw release --no_test --no_linter"
+	@if git describe --exact-match --tags HEAD >/dev/null 2>&1; then\
+		echo "Current commit is already tagged. Skipping release.";\
+	else \
+		docker run\
+			-v $(CURDIR):/var/workdir\
+			-e GH_TOKEN\
+			$(IMAGE_NAME)\
+			"baw release --no_test --no_linter";\
+	fi
