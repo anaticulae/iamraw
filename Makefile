@@ -22,21 +22,21 @@ docker-doctest: docker-build
 docker-fasttest: docker-decrypt
 	docker run\
 		-v $(CURDIR):/var/workdir\
-		-v /tmp/power:/tmp/power\
+		-v /tmp/iamraw:/tmp/iamraw\
 		$(IMAGE_NAME)\
 		"baw test fast"
 
 docker-longtest: docker-decrypt
 	docker run\
 		-v $(CURDIR):/var/workdir\
-		-v /tmp/power:/tmp/power\
+		-v /tmp/iamraw:/tmp/iamraw\
 		$(IMAGE_NAME)\
 		"baw test long"
 
 docker-alltest: docker-decrypt
 	docker run\
 		-v $(CURDIR):/var/workdir\
-		-v /tmp/power:/tmp/power\
+		-v /tmp/iamraw:/tmp/iamraw\
 		$(IMAGE_NAME)\
 		"baw test all --generate"
 
@@ -49,7 +49,7 @@ docker-lint: docker-build
 docker-decrypt: docker-build
 	docker run\
 		-v $(CURDIR):/var/workdir\
-		-v /tmp/power:/tmp/power\
+		-v /tmp/iamraw:/tmp/iamraw\
 		-e HOVERPOWER_STORE=/var/workdir/hoverpower/repo\
 		-e HOVERPOWER_SECRET=$(HOVERPOWER_SECRET)\
 		$(IMAGE_NAME)\
