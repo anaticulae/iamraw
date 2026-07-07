@@ -85,20 +85,27 @@ def dump_horizontals(pages: iamraw.PagesWithHorizontalList) -> str:
 @configos.cache_small
 def load_horizontals(
     content: str,
-    pages=None,
+    pages: tuple | list | None = None,
     prefix='',
     width_min: int = 120,
 ) -> iamraw.PagesWithHorizontalList:
     """Load horizontals or verticals.
 
     A vertical is a horizontal on a rotated page.
+
+    >>> load_horizontals('not_exists.yaml')
+    []
     """
     prefix = f'{prefix}_' if prefix else ''
-    loaded = utilo.yaml_load(
-        content,
-        fname=f'rawmaker__{prefix}horizontals_horizontals',
-    )
     result = []
+    try:
+        loaded = utilo.yaml_load(
+            content,
+            fname=f'rawmaker__{prefix}horizontals_horizontals',
+        )
+    except FileNotFoundError:
+        utilo.debug(f'Horizontals does not exists: {content}')
+        return result
     for page in loaded:
         pagenumber = int(page['page'])
         if utilo.should_skip(pagenumber, pages):

@@ -41,10 +41,10 @@ def pytest_sessionstart():
 def extract(resources):
     gennex.example.extract(
         files=resources,
-        # footnote=True,
-        # groupme='--border --hefopa',
-        # headnote=True,
-        # pagenumber=True,
+        footnote=True,
+        groupme='--border --hefopa',
+        headnote=True,
+        pagenumber=True,
         # reftable='--toc',
         worker=len(RESOURCES),
     )

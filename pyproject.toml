@@ -36,8 +36,12 @@ content-type = "text/markdown"
 [project.optional-dependencies]
 dev = [
     "gennex==1.0.3",
-    "hoverpower==1.4.3",
-    "rawmaker==2.40.3",
+    "groupmes>=1.1.0,<2.0.0",
+    "headnote>=1.0.3,<2.0.0",
+    "hoverpower==1.5.1",
+    "ibidem>=1.0.2,<2.0.0",
+    "pagenumber>=1.0.0,<2.0.0",
+    "rawmaker==2.40.5",
     "utilotest>=1.0.4,<2.0.0",
 ]
 
@@ -59,16 +63,19 @@ changelog_file = "CHANGELOG"
 
 [tool.semantic_release.commit_parser_options]
 patch_tags = [
-    "fix",
-    "perf",
     "build",
     "chore",
     "ci",
-    "docs",
-    "style",
-    "refactor",
-    "test",
     "deps",
+    "docs",
+    "fix",
+    "perf",
+    "refactor",
+    "style",
+    "test",
+]
+minor_tags = [
+    "feat",
 ]
 
 [tool.setuptools.packages.find]
