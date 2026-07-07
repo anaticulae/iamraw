@@ -43,7 +43,7 @@ def extract(resources):
         files=resources,
         footnote=True,
         groupme='--border --hefopa',
-        # headnote=True,
+        headnote=True,
         pagenumber=True,
         # reftable='--toc',
         worker=len(RESOURCES),
