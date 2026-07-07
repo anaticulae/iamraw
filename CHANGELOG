@@ -1,6 +1,53 @@
 # CHANGELOG
 
 
+## v4.92.0 (2026-07-07)
+
+### Bug Fixes
+
+- **iamraw**: Use dynamic version
+  ([`f194cb8`](https://github.com/anaticulae/iamraw/commit/f194cb880c143593f5a56df54dc7768d11208680))
+
+### Chores
+
+- **docker**: Add resource storing location
+  ([`626ee15`](https://github.com/anaticulae/iamraw/commit/626ee15420a296b984f6bb62e2eb7222ee421bbd))
+
+- **make**: Adjust tmp path
+  ([`11ace2f`](https://github.com/anaticulae/iamraw/commit/11ace2ffb76939786383540873d4a9eee39447f4))
+
+- **make**: Do not run release on exiting tag
+  ([`e59b2e5`](https://github.com/anaticulae/iamraw/commit/e59b2e555367258e7265bdd5a3f7e0d5252b9a93))
+
+- **make**: Generate all step on small companies
+  ([`584c8a6`](https://github.com/anaticulae/iamraw/commit/584c8a6bb42c7d7e807c3a5086009578a8df41e0))
+
+- **pyproject**: Add missing generators
+  ([`6566367`](https://github.com/anaticulae/iamraw/commit/65663677aa7d07eab4a34111f7ce3fbba95b6b1f))
+
+- **pyproject**: Release on every commit
+  ([`32d970c`](https://github.com/anaticulae/iamraw/commit/32d970c6f8d44261b719b204b2ae20f835dc5f59))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`3ec6cce`](https://github.com/anaticulae/iamraw/commit/3ec6cce343160bf010c0e668aa2138d53eac6cb4))
+
+- **resources**: Enable headnote
+  ([`815af1b`](https://github.com/anaticulae/iamraw/commit/815af1b32587e617649385a5d5182d392e43469e))
+
+- **resources**: Enable missing generators
+  ([`e7fa380`](https://github.com/anaticulae/iamraw/commit/e7fa38040e47deb4efb52c4146045cb32c9f703c))
+
+### Features
+
+- **line**: Do not fail on missing horizontals file
+  ([`5202c1d`](https://github.com/anaticulae/iamraw/commit/5202c1d45351a7bd4356988355d67a6792abc4d6))
+
+### Testing
+
+- **header**: Enable unit tests
+  ([`53e971c`](https://github.com/anaticulae/iamraw/commit/53e971ccd6e1f8b3571d387455ec8b8a3b2785ed))
+
+
 ## v4.91.7 (2026-06-20)
 
 ### Chores
