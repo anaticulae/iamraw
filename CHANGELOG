@@ -1,6 +1,22 @@
 # CHANGELOG
 
 
+## v4.93.0 (2026-07-23)
+
+### Chores
+
+- **make**: Hide secret in log file
+  ([`2399100`](https://github.com/anaticulae/iamraw/commit/2399100fac8dca837eaa96b127d7a6727bd3d320))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`7394bf6`](https://github.com/anaticulae/iamraw/commit/7394bf6ca21fdda7dc6be7546b22747eacd2e570))
+
+### Features
+
+- **path**: Add magic content online path
+  ([`0d98f48`](https://github.com/anaticulae/iamraw/commit/0d98f4822e91f67437fd075ac45cf1e3a15215c7))
+
+
 ## v4.92.0 (2026-07-07)
 
 ### Bug Fixes
