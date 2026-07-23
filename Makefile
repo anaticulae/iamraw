@@ -51,7 +51,7 @@ docker-decrypt: docker-build
 		-v $(CURDIR):/var/workdir\
 		-v /tmp/iamraw:/tmp/iamraw\
 		-e HOVERPOWER_STORE=/var/workdir/hoverpower/repo\
-		-e HOVERPOWER_SECRET=$(HOVERPOWER_SECRET)\
+		-e HOVERPOWER_SECRET\
 		$(IMAGE_NAME)\
 		"powerdownload && powerdecrypt"
 
