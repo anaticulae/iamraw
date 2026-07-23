@@ -116,6 +116,10 @@ def magic_content(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'magic', 'content_content', prefix, ftype=ftype)
 
 
+def magic_content_online(path: str, prefix: str = '', ftype='yaml') -> str:
+    return con(path, 'magic', 'oneline_content', prefix, ftype=ftype)
+
+
 def words_headlines(path: str, prefix: str = '', ftype='yaml') -> str:
     return con(path, 'words', 'headlines_headlines', prefix, ftype=ftype)
 
