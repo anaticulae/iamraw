@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v4.93.1 (2026-08-10)
+
+### Bug Fixes
+
+- **list**: Use constant hash
+  ([`1f6a042`](https://github.com/anaticulae/iamraw/commit/1f6a0421ce1cbf4f1802f11d39ca8e6b93afd564))
+
+### Chores
+
+- **requirements**: Upgrade pyproject.toml
+  ([`7013249`](https://github.com/anaticulae/iamraw/commit/7013249afd460a5bf6426dcd06b4407cfa52414a))
+
+
 ## v4.93.0 (2026-07-23)
 
 ### Chores
