@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v4.94.1 (2026-08-12)
+
+### Bug Fixes
+
+- **group**: Ensure that hash is computed correctly
+  ([`3439b50`](https://github.com/anaticulae/iamraw/commit/3439b502b2ea7f57585f857a7aa643b1e34db62c))
+
+
 ## v4.94.0 (2026-08-12)
 
 ### Bug Fixes
