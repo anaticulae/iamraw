@@ -1,6 +1,24 @@
 # CHANGELOG
 
 
+## v4.94.0 (2026-08-12)
+
+### Bug Fixes
+
+- **list**: Use constant hash
+  ([`d774808`](https://github.com/anaticulae/iamraw/commit/d774808de13a32c1d00f46439e05f4f1425649b6))
+
+### Chores
+
+- **requirements**: Upgrade pyproject.toml
+  ([`d34752e`](https://github.com/anaticulae/iamraw/commit/d34752e927e819fa89c0a8ae20679b726320e61f))
+
+### Features
+
+- **hash**: Use stable hash to enable serializing
+  ([`e1f286b`](https://github.com/anaticulae/iamraw/commit/e1f286ba674b0a232763a71956eb72e8e2e55fcd))
+
+
 ## v4.93.1 (2026-08-10)
 
 ### Bug Fixes
