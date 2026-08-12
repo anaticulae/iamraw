@@ -10,8 +10,8 @@
 import collections
 import dataclasses
 import enum
-import hashlib
-import math
+
+import utilo
 
 import iamraw
 
@@ -56,39 +56,11 @@ class PageList:
         """\
         Ensure to generate valid hash int value
         >>> hashed  = PageList().identifier
-        >>> assert abs(hashed)  > 100000, hashed
+        >>> assert abs(int(hashed))  > 100000, hashed
         """
         raw = f'page:{self.pdfpage}area:{self.area}'
-        result = freehash(raw)
+        result = utilo.freehash(raw, returns=int)
         return result
-
-
-# TODO: REMOVE LATER
-def freehash(data: bytes, digits: int = 16) -> str:
-    """Hash data to ease using.
-
-    Hint: Use this for non secure approaches only.
-
-    >>> freehash(b'this is data', digits=10)
-    4923296541
-    """
-    if not isinstance(data, (bytes, str)):
-        data = str(data)
-    if isinstance(data, str):
-        # convert to byte
-        data: bytes = data.encode('utf8', errors='ignore')
-    # hexdigits produces two chars for one digit?
-    digits = math.ceil(digits / 2)
-    hashed = hashlib.blake2b(data, digest_size=digits)
-    result: str = hashed.hexdigest()
-    result = result.replace('a', '1')
-    result = result.replace('b', '2')
-    result = result.replace('c', '3')
-    result = result.replace('d', '4')
-    result = result.replace('e', '5')
-    result = result.replace('f', '6')
-    result: int = int(result)
-    return result
 
 
 PageContentList = collections.namedtuple('PageContentList', 'page, content')
