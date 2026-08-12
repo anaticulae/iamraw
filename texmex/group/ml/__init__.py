@@ -83,7 +83,8 @@ class MultilineGroup:
             yield index, item
 
     def __hash__(self):
-        return utilo.freehash(self, returns=int)
+        hashed = int(utilo.freehash(self, returns=int))
+        return hashed
 
 
 MultilineGroups = list[MultilineGroup]
