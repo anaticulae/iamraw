@@ -76,7 +76,7 @@ class FontStore:
 
     @functools.lru_cache()
     def font_to_fontid(self, font: iamraw.Font) -> int:
-        hashed = hash(font)
+        hashed = int(utilo.freehash(font, returns=int))
         try:
             _ = self[hashed]
             return hashed
@@ -126,7 +126,7 @@ class FontStore:
             return None
 
     def __hash__(self):
-        return hash(str(self))
+        return int(utilo.freehash(self, returns=int))
 
 
 class FontContentStore:

@@ -10,6 +10,8 @@
 import dataclasses
 import enum
 
+import utilo
+
 import iamraw.headlines
 
 
@@ -87,7 +89,11 @@ class TextSection:
         return self[0] == value[0] and self[1] == value[1]
 
     def __hash__(self):
-        return hash(str(self))
+        """\
+        >>> hash(TextSection())
+        5544127135035528
+        """
+        return int(utilo.freehash(self, returns=int))
 
 
 TextSections = list[TextSection]

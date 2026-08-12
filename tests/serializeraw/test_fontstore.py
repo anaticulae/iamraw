@@ -9,6 +9,7 @@
 
 import hoverpower
 import pytest
+import utilo
 import utilotest
 
 import iamraw
@@ -157,11 +158,11 @@ def test_fontstore_font_to_fontid():
     content = [iamraw.PageFontContent(content=[], page=0)]
 
     store = iamraw.FontStore(header, content)
-    assert store.font_to_fontid(f4) == hash(f4)
-    assert store.font_to_fontid(f3) == hash(f3)
-    assert store.font_to_fontid(f3) == hash(f3)
-    assert store.font_to_fontid(f0) == hash(f0)
-    assert store.font_to_fontid(f5) == hash(f5)
+    assert store.font_to_fontid(f4) == int(utilo.freehash(f4, returns=int))
+    assert store.font_to_fontid(f3) == int(utilo.freehash(f3, returns=int))
+    assert store.font_to_fontid(f3) == int(utilo.freehash(f3, returns=int))
+    assert store.font_to_fontid(f0) == int(utilo.freehash(f0, returns=int))
+    assert store.font_to_fontid(f5) == int(utilo.freehash(f5, returns=int))
 
 
 @utilotest.requires(hoverpower.DOCU027_PDF)
