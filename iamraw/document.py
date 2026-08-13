@@ -261,8 +261,7 @@ class TextContainer(Boxed):
         return self.state.visible
 
     def __hash__(self):
-        # TODO: VERY SIMPLE HASH
-        return hash(str(self) + str(self.textstate))
+        return utilo.freehash(self, returns=int)
 
 
 TextContainers = list[TextContainer]
