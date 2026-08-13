@@ -241,8 +241,10 @@ class TextInfo:
         return self.text + utilo.NEWLINE
 
     def __hash__(self):
-        result = (hash(self.text) + hash(str(self.style)) +
-                  hash(str(self.bounding)) + hash(self.line))
+        result = utilo.freehash(self.text, returns=int)
+        result += utilo.freehash(self.style, returns=int)
+        result += utilo.freehash(self.bounding, returns=int)
+        result += utilo.freehash(self.line, returns=int)
         return result
 
 
