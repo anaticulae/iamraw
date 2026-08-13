@@ -61,7 +61,7 @@ class PageContentFooterHeaders:
             return False
 
     def __hash__(self):
-        return int(utilo.freehash(self, returns=int))
+        return utilo.freehash(self, returns=int)
 
 
 @dataclasses.dataclass

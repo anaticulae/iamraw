@@ -93,7 +93,7 @@ class TextSection:
         >>> hash(TextSection())
         5544127135035528
         """
-        return int(utilo.freehash(self, returns=int))
+        return utilo.freehash(self, returns=int)
 
 
 TextSections = list[TextSection]
