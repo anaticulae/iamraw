@@ -99,8 +99,7 @@ class Font:
         """\
         font name is not part of hash value
         >>> assert hash(Font(name='abc')) ==  hash(Font(name=''))
+        >>> hash(Font())
+        9696990031565413
         """
-        # TODO: VERIFY THIS
-        raw = bytes(str(self), 'utf8')
-        hashed = utilo.binhash(raw)
-        return hashed
+        return utilo.freehash(self, returns=int)
