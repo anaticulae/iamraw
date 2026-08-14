@@ -14,7 +14,7 @@ authors = [
     { name = "Helmut Konrad Schewe", email = "helmutus@outlook.com" },
 ]
 dependencies = [
-    "utilo>=2.110.0,<3.0.0",
+    "utilo>=2.110.1,<3.0.0",
     "configos>=1.0.4,<2.0.0",
     "PyYAML>=6.0.3,<7.0.0",
 ]
@@ -97,7 +97,7 @@ exclude = [
 
 [tool.hoverpower]
 packages = [
-    "MASTER",
     "BACHELOR",
     "DOCU",
+    "MASTER",
 ]

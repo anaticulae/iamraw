@@ -86,4 +86,8 @@ class DocumentIndex:
         return str(self) == str(value)
 
     def __hash__(self):
-        return hash(str(self))
+        """\
+        >>> hash(DocumentIndex())
+        223544467156925
+        """
+        return utilo.freehash(self, returns=int)

@@ -158,11 +158,11 @@ def test_fontstore_font_to_fontid():
     content = [iamraw.PageFontContent(content=[], page=0)]
 
     store = iamraw.FontStore(header, content)
-    assert store.font_to_fontid(f4) == int(utilo.freehash(f4, returns=int))
-    assert store.font_to_fontid(f3) == int(utilo.freehash(f3, returns=int))
-    assert store.font_to_fontid(f3) == int(utilo.freehash(f3, returns=int))
-    assert store.font_to_fontid(f0) == int(utilo.freehash(f0, returns=int))
-    assert store.font_to_fontid(f5) == int(utilo.freehash(f5, returns=int))
+    assert store.font_to_fontid(f4) == utilo.freehash(f4, returns=int)
+    assert store.font_to_fontid(f3) == utilo.freehash(f3, returns=int)
+    assert store.font_to_fontid(f3) == utilo.freehash(f3, returns=int)
+    assert store.font_to_fontid(f0) == utilo.freehash(f0, returns=int)
+    assert store.font_to_fontid(f5) == utilo.freehash(f5, returns=int)
 
 
 @utilotest.requires(hoverpower.DOCU027_PDF)

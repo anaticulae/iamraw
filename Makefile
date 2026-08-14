@@ -10,7 +10,7 @@ IMAGE_NAME := ghcr.io/anaticulae/$(IMAGE)
 docker-build:
 	docker build -t $(IMAGE_NAME) .
 
-docker-upload:
+docker-upload: docker-build
 	docker push $(IMAGE_NAME)
 
 docker-doctest: docker-build
