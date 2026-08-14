@@ -1,6 +1,39 @@
 # CHANGELOG
 
 
+## v4.95.0 (2026-08-14)
+
+### Chores
+
+- **make**: Add missing requirement
+  ([`8f673bc`](https://github.com/anaticulae/iamraw/commit/8f673bcad2cc057527052b27243ad3b347a93c82))
+
+- **pyproject**: Sort resources
+  ([`29b1de8`](https://github.com/anaticulae/iamraw/commit/29b1de813c3d7297a073ce5b9f9d75933fb7aba3))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`ee0a263`](https://github.com/anaticulae/iamraw/commit/ee0a26372e40e4ee7e00171dae2da17fad2bb0d1))
+
+### Features
+
+- **document**: Use free hash
+  ([`53040de`](https://github.com/anaticulae/iamraw/commit/53040de7dc4cd935271f5b62f7300059a2175f65))
+
+- **font**: Use free hash
+  ([`a71e0c4`](https://github.com/anaticulae/iamraw/commit/a71e0c4e0b3fcabfbab05695266dc603e10ff9f2))
+
+- **index**: Use freehash
+  ([`9c4c846`](https://github.com/anaticulae/iamraw/commit/9c4c8466508a14805da77b6eab0891390eb6fa1a))
+
+- **style**: Use freehash
+  ([`d8fed1c`](https://github.com/anaticulae/iamraw/commit/d8fed1cd7e3b6e3178693d6c436712753ad72c1e))
+
+### Refactoring
+
+- **freehash**: Adjust to new interface
+  ([`68b609d`](https://github.com/anaticulae/iamraw/commit/68b609d665d6d506baad4807aece50e2b4104a23))
+
+
 ## v4.94.1 (2026-08-12)
 
 ### Bug Fixes
