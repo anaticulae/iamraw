@@ -1,7 +1,7 @@
 [build-system]
 requires = [
-    "setuptools>=82.0.1",
-    "wheel>=0.47.0",
+    "setuptools>=84.0.0",
+    "wheel>=0.48.0",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -14,7 +14,7 @@ authors = [
     { name = "Helmut Konrad Schewe", email = "helmutus@outlook.com" },
 ]
 dependencies = [
-    "utilo>=2.110.1,<3.0.0",
+    "utilo>=2.110.2,<3.0.0",
     "configos>=1.0.4,<2.0.0",
     "PyYAML>=6.0.3,<7.0.0",
 ]
@@ -38,11 +38,11 @@ dev = [
     "gennex==1.1.0",
     "groupmes>=1.1.0,<2.0.0",
     "headnote>=1.0.3,<2.0.0",
-    "hoverpower==1.6.0",
+    "hoverpower==1.7.0",
     "ibidem>=1.0.2,<2.0.0",
     "pagenumber>=1.0.0,<2.0.0",
     "rawmaker==2.40.5",
-    "utilotest>=1.0.5,<2.0.0",
+    "utilotest>=1.1.1,<2.0.0",
 ]
 
 [project.urls]
