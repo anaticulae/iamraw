@@ -83,6 +83,10 @@ class MultilineGroup:
             yield index, item
 
     def __hash__(self):
+        """\
+        >>> hash(MultilineGroup())
+        3220632257881451
+        """
         return utilo.freehash(self, returns=int)
 
 
