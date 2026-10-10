@@ -1,6 +1,35 @@
 # CHANGELOG
 
 
+## v4.95.1 (2026-10-10)
+
+### Bug Fixes
+
+- **font**: Use stable hash
+  ([`afd89a6`](https://github.com/anaticulae/iamraw/commit/afd89a64c2c0228a6e4842a4bdc99f2177e8bda6))
+
+### Chores
+
+- **docker**: Simplify dockerfile
+  ([`018944c`](https://github.com/anaticulae/iamraw/commit/018944c97b921c076a69d0564bc2d2afa6638cfb))
+
+- **docker**: Upgrade docker base images
+  ([`28b868b`](https://github.com/anaticulae/iamraw/commit/28b868b7928e0b04b43253577191511f6b19b64b))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`ab47e8b`](https://github.com/anaticulae/iamraw/commit/ab47e8bc24eb21dae5980f203b2f2d6c4ec8b335))
+
+### Code Style
+
+- **make**: Format code
+  ([`0de3ea6`](https://github.com/anaticulae/iamraw/commit/0de3ea66681154dd3477c92762f5b60a0f8031a5))
+
+### Testing
+
+- **group**: Add doctest
+  ([`ec5ebbf`](https://github.com/anaticulae/iamraw/commit/ec5ebbf106b42f673b8b55253cf49a593e9f8415))
+
+
 ## v4.95.0 (2026-08-14)
 
 ### Chores
