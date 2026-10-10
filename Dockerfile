@@ -9,9 +9,7 @@
 
 FROM ghcr.io/anaticulae/baw:v1.90.1-python
 
-ENV SHARED_TMP=/tmp/headnote/
 ENV HOVERPOWER_STORE=/var/workdir/hoverpower/repo
-ENV BAW=/tmp/bar/
 
 WORKDIR /var/install
 
