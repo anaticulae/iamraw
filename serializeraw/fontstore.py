@@ -35,7 +35,9 @@ def create_fontstore(
     if pages:
         # remove non required fonts
         valid = {item[3] for item in utilo.flatten_content(pages)}
-        fonts = [font for font in fonts if hash(font) in valid]
+        fonts = [
+            font for font in fonts if utilo.freehash(font, returns=int) in valid
+        ]
     result = iamraw.FontStore(fonts, pages)
     return result
 
